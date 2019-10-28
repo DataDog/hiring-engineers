@@ -52,7 +52,7 @@ function sendMetrics(temp, light ) {
   const options = {
     hostname: 'api.datadoghq.com',
     port: 443,
-    path: '/api/v1/series?api_key=52b3e56fe16b51eabe7c23c0160a0557',
+    path: '/api/v1/series?api_key=<KEY>',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
