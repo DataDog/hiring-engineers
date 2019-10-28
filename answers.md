@@ -17,7 +17,10 @@ I also tossed the agent on another old linux box just to have more than one mach
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-I chose PostgreSQL for this.  Added the user and ran permission scripts.
+I chose PostgreSQL for this, I already had postgresql installed.  Added the user and ran permission scripts.
+
+Since Datadog uses a single agent, once you configure the integration by giving it
+a login into postgres you're good to go.
 
 From conf.d/postgres.d/conf.yaml
 
@@ -40,12 +43,19 @@ From conf.d/postgres.d/conf.yaml
 
 [Postgres Dashboard](https://app.datadoghq.com/dash/integration/17/Postgres%20-%20Metrics?tpl_var_scope=host%3Anuc&from_ts=1572196143005&to_ts=1572199743005&live=true&tile_size=m)
 
+I generated a bit of activity and got the following...
 
 ![postgres_dashboad](images/postgres_dashboad.png)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+Again since Datadog has a single agent, you can add whatever you want and submit metrics
+with a simple config and python file.
+
+
 Simply add a config file: /etc/datadog-agent/conf.d/ntcheck.yaml
+
+[ntcheck.yaml](ntcheck.yaml)
 
 and python code: /etc/datadog-agent/checks.d/ntcheck.py
 
@@ -89,7 +99,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 
-For me the easiest way to do it is with curl then there's no dependencies on any
+For me the easiest way to do it is with curl because there's no dependencies on any
 python libraries.  You can "cheat" and just make a dashboard, do a GET using the api
 then take a few things out of the JSON and POST it back with a different name
 
@@ -129,6 +139,9 @@ Please configure the monitor’s message so that it will:
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
+This is a basic read the docs and do it.  Screenshots below.
+
+
 ![alert_config](images/alert_config.png)
 
 
@@ -158,9 +171,15 @@ Please configure the monitor’s message so that it will:
 
 I instrumented a prototype Django app I wrote a while ago.  I used ddtrace-run and configured the app appropriately.
 
-First ddtrace needs to be added to the requirements file used by pip
+First ddtrace needs to be added to the requirements file used by pip so it's in your virtual environment
 
-In the settings file...
+The whole process is pretty straightforward.  The fact that the Datadog agent is already
+running on the machine means there's not a bunch of config as the instrumentation
+defaults to sending the data to the local agent which sends the metrics up to
+Datadog.
+
+In the settings file turn debug off (optional can do a proerty change instead)
+and add the tracer to the INSTALLED_APPS
 ```
 DEBUG = False
 
@@ -175,7 +194,7 @@ INSTALLED_APPS = [
     'user',
     ...
 ```
-To run the app
+To run the app put ddtrace-run in front of the command (after the nohup)
 ```
 (flashquote_env) ntalbot@nuc:~/flashquote/django$ nohup ddtrace-run python manage.py runserver 192.168.11.50:8080 &
 [1] 8390
@@ -216,16 +235,20 @@ To run the app
 The service is the higher level application or microservice listening on a port and running as a process or set of processes.
 
 
-The resource is an invividual URL or DB query such as a REST endpoint representing an object within an application.
+The resource is an individual URL or DB query such as a REST endpoint representing an object within an application.
 
 In Django this means the whole app is a service, the DB is a service as well.
-Each Django view cooresponds to a resource.
+Each Django view corresponds to a resource.
+
+Resources are nicely displayed under their cooresponding service.
 
 
 * Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 Here is a dahsboard that has CPU utilization and Django hits along with SQL metrics.  You can see the corresponding increase in CPU when the browser
-refresh button was hit a few times.  You can also see a correlation between a longer response time when a single request at the
+refresh button was hit a few times.
+
+There are a couple interesting things this dashboard reveals. You  can see a correlation between a longer response time when a single request at the
 beginning makes close to 1k postgressql calls.
 
 [public dashboard](https://p.datadoghq.com/sb/47xdxpvf337s3ctr-8f59562f7b1503ac090229b603616026)
@@ -245,7 +268,7 @@ Hovering over reveals the Query.  This query would be a good candidate for cachi
 I am not including my entire app as it contains business data that is not mine.  
   I thought it's a good APM example since it contains some inefficient queries, and  
   has a data set. If that is a problem, let me know and I will instrument your sample app.  I included a couple
-models and views from the Django app.
+models and views from the Django app so the reader can get an idea, but it's a basic Django app.
 
 [views.py](views.py)
 
