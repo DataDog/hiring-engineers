@@ -1,5 +1,3 @@
-Your answers to the questions go here.
-<<<<<<< HEAD
 
 ## Collecting Metrics:
 
@@ -272,5 +270,4 @@ Voltage readings are taken and converted to more useful values then reported to
 Datadog using the metric API.
 
 Code : [datadog.js](datadog.js)
-=======
->>>>>>> Create answers.md
+
