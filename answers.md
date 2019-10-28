@@ -260,14 +260,19 @@ As edge computing is becoming mainstream there are more and more IoT devices
 that are not traditionally connected to the network and power.  If data is being gathered and processed into events on devices powered
 by solar and connected to a software defined mesh network, it would be useful
 to gather environmental data.  Datadog could be used to gather light and temperature
-data for example so that when devices fail to report you could go back and determine
+data for example so that when devices goes offline you could go back and determine
 if there is coorelation to periods of extreme temperature or low light.
+
+![IOT_metrics](images/IOT_metrics.png)
 
 In this example, I put together an extremely simple circuit that has a photoresistor
 and thermister in voltage dividers plugged into analog digital converters.  I used a [beaglebone](https://beagleboard.org/black/)  
-(similar to a raspberry pi) and javascript.  
+(similar to a raspberry pi) as the device.  
 Voltage readings are taken and converted to more useful values then reported to
 Datadog using the metric API.
 
 Code : [datadog.js](datadog.js)
 
+[public dashboard](https://p.datadoghq.com/sb/47xdxpvf337s3ctr-cf6d4ceebfd57e75bc3d1437a177b845)
+
+![image](iot_dash/image.png)
