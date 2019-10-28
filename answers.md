@@ -299,3 +299,9 @@ Code : [datadog.js](datadog.js)
 [public dashboard](https://p.datadoghq.com/sb/47xdxpvf337s3ctr-cf6d4ceebfd57e75bc3d1437a177b845)
 
 ![image](iot_dash/image.png)
+
+Datadog's REST api makes this particularly easy as a device can send metrics
+without even having the agent installed.  This would allow a particularly lightweight
+device to send metrics so long as it can slap together a JSON string and make an
+HTTP POST.  This allows whatever might matter to your application to be monitored even if
+it's not necessarily "part" of your application.
