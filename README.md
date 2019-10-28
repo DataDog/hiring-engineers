@@ -1,3 +1,6 @@
+## please see [answers](answers.md)
+
+
 If you want to apply as a solutions engineer at [Datadog](http://datadog.com) you are in the right spot. Read on, it's fun, I promise.
 
 <a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
