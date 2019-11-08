@@ -65,6 +65,12 @@ site: datadoghq.eu
 #   - environment:dev
 #   - <TAG_KEY>:<TAG_VALUE>
 
+
+tags:
+  - environment:dev
+  - data:dog
+
+
 ## @param tag_value_split_separator - list of key:value elements - optional
 ## Split tag values according to a given separator. Only applies to host tags,
 ## and tags coming from container integrations. It does not apply to tags on dogstatsd metrics,
