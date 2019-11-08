@@ -35,5 +35,57 @@ It takes a few steps to monitor MySQL databases with Datadog. First we need to c
 
 Step-by-step instructions can be found at: https://docs.datadoghq.com/integrations/mysql/
 
+### Generate some load on MySQL and show some pretty graphs
+
+We can use Sysbench to generate some load on the MySQL database.
+
+### Install sysbench:
+```shell
+sudo apt-get install sysbench
+```
+
+###Create database for Sysbench
+Then we create a database and assign privileges to user sysbench:
+```sql
+    mysql> CREATE DATABASE sysbench;
+    mysql> CREATE USER 'sysbench'@'localhost' IDENTIFIED BY 'password';
+    mysql> GRANT ALL PRIVILEGES ON sysbench. * TO 'newuser'@'localhost';
+    mysql> FLUSH PRIVILEGES;
+```
+
+### Setup MySQL integration in Datadog
+Now we are going to setup MySQL integration in the Datadog GUI:
+* Go to Integrations - Integrations 
+* Type mysql in the search bar
+* Click Install
+
+
+### Show the MySQL dashboard
+In the Datadog GUI:
+* Click Dashboards
+* Click MySQL - Overview
+
+### Run Sysbench
+
+Now we can go to the directory with Sysbench config files (/usr/share/sysbench) and run the command:
+
+```shell
+sysbench oltp_read_only.lua --threads=4 --mysql-host=localhost --mysql-user=sysbench --mysql-password=password --mysql-port=3306 --tables=10 --table-size=1000000 prepare --db-driver=mysql```
+
+Output should be similar to:
+    sysbench 1.0.11 (using system LuaJIT 2.1.0-beta3)
+
+    Initializing worker threads...
+    Creating table 'sbtest2'...
+    Creating table 'sbtest1'...
+    Creating table 'sbtest4'...
+    Creating table 'sbtest3'...
+    Inserting 1000000 records into 'sbtest2'
+    Inserting 1000000 records into 'sbtest1'
+    Inserting 1000000 records into 'sbtest4'
+    Inserting 1000000 records into 'sbtest3'
+    
+### Note
+For an extensive guide into Sysbench, take a look at: https://severalnines.com/database-blog/how-benchmark-performance-mysql-mariadb-using-sysbench
 
 
