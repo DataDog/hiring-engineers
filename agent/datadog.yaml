@@ -64,8 +64,6 @@ site: datadoghq.eu
 # tags:
 #   - environment:dev
 #   - <TAG_KEY>:<TAG_VALUE>
-
-
 tags:
   - environment:dev
   - data:dog
@@ -157,12 +155,18 @@ tags:
 ## @param collect_ec2_tags - boolean - optional - default: false
 ## Collect AWS EC2 custom tags as host tags.
 #
-# collect_ec2_tags: false
+# collect_ec2_  - environment:dev
+  - data:dog
+
+tags: false
 
 ## @param collect_gce_tags - boolean - optional - default: true
 ## Collect Google Cloud Engine metadata as host tags
 #
-# collect_gce_tags: true
+# collect_gce_  - environment:dev
+  - data:dog
+
+tags: true
 
 ## @param python_version - integer - optional - default: 2
 ## The major version of Python used to run integrations and custom checks.
