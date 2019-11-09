@@ -140,7 +140,7 @@ Your MySQL connection id is 5
 Server version: 5.7.28
 
 ```
-### Generate some load
+### Create MySQL database for Sysbench
 We are going to generate some load using Sysbench. First we need to create a database and user for Sysbench
 **Note: The Commands Used For The Docker Container Are Slighly Different From The Local Mysql Deployment since we are going to connect over TCP versus local socket. With the GRANT PRIVILEGES command we allow access from ANY host. **
 
