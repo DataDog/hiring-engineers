@@ -162,5 +162,71 @@ Finally we can run the Sysbench command. Note that the host is NOT localhost sin
 sysbench oltp_read_only.lua --threads=4 --mysql-host=127.0.0.1 --mysql-user=sbtest --mysql-password=password --mysql-port=33060 --tables=10 --table-size=1000000 prepare --db-driver=mysql
 ```
 
+### Custom Agent Check
 
+In this example we are going to deploy a custom agent check. Custom agent checks run at a regular interval which defaults to every 15 seconds and are recommended to collect metrics for custom applications or unique systems. Alternatively you can write a full fledged integration if you want to share your application (commercially or open soruce).
+
+For more information on customer agent checks check out: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6 and the full fledged integration can be found here: https://docs.datadoghq.com/developers/integrations/new_check_howto/
+
+### Deploying the custom agent check
+
+First we are going to create a hello.yaml in the *conf.d/ *directory of the agent. This needs to cointain a sequence called *Instances*  that has a mapping, but that can be empty.
+
+     
+	 conf.d/hello.yaml
+	     instances: [{}]
+		 
+
+Next we are going to deploy the code in *checks.d *.
+
+```python
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from old versions of the Agent...
+	from checks import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version 6 or later
+    from datadog_checks.checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.1"
+
+
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', 1, tags=['data:dawg'])
+
+
+```
+
+### Modifying interval and data
+To modify the interval of the checks, you can simply modify the conf.d/hello.yaml with the following code:
+
+    init_config:
+    
+    instances:
+      - min_collection_interval: 45
+	  
+
+To make the ouput of the check a little more interesting, we modify the code to generate a random number.
+
+    # the following try/except block will make the custom check compatible with any Agent version
+    import random
+    
+    try:
+        # first, try to import the base class from old versions of the Agent...
+        from checks import AgentCheck
+    except ImportError:
+        # ...if the above failed, the check is running in Agent version 6 or later
+    from datadog_checks.checks import AgentCheck
+    
+    # content of the special variable __version__ will be shown in the Agent status page
+    __version__ = "1.0.2"
+    
+    
+    class HelloCheck(AgentCheck):
+        def check(self, instance):
+            self.gauge('my_metric', random.randint(1,1000), tags=['data:dawg'])
+    
+    
 
