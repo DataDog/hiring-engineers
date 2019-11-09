@@ -89,4 +89,78 @@ Output should be similar to:
 ### Note
 For an extensive guide into Sysbench, take a look at: https://severalnines.com/database-blog/how-benchmark-performance-mysql-mariadb-using-sysbench
 
+## Running and monitoring MySQL on Docker
+
+* In the Datadog GUI Click Integrations, and search for Docker.
+* Install the Docker Integration, and click Configuration.
+* Follow the steps to add dd-agent to the Docker group and allow the agent to connect to docker
+* Restart the agent on your host
+
+### Pull MySQL image
+Next we are going to pull the MySQL image.
+
+```shell
+arne@nuc:~$ docker pull mysql/mysql-server:5.7
+5.7: Pulling from mysql/mysql-server
+a316717fc6ee: Pull complete 
+b64762744f75: Pull complete 
+a1f742e3aa43: Pull complete 
+f71a5f0dcc26: Pull complete 
+Digest: sha256:5396bc60a6c08abb6b7e8350b255324a91ee9f3ea11f009aea3e4b61ead38bf6
+Status: Downloaded newer image for mysql/mysql-server:5.7
+docker.io/mysql/mysql-server:5.7
+```
+
+### Run container
+and run the container, using a different port (optional if there is no MySQL running locally)
+
+```shell
+arne@nuc:~$ docker run --name=mysql1 -d mysql/mysql-server:5.7 -p 33060:3306
+0ad5b981857a43a828ae60c729257c4a3aa9b9ef0282046fd35c34247d42f330
+
+```
+
+### Get password
+We have to find out the auto-generated password:
+
+```shell
+arne@nuc:~$ docker logs mysql1 2>&1 | grep GENERATED
+[Entrypoint] GENERATED ROOT PASSWORD: 3M2EkVaNiqIK@hYLBIhedYpG3L0N
+
+```
+
+### Login MySQL
+and log in to the container using the generated password
+
+```shell
+arne@nuc:~$ docker exec -it mysql1 mysql -uroot -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.28
+
+```
+### Generate some load
+We are going to generate some load using Sysbench. First we need to create a database and user for Sysbench
+**Note: The Commands Used For The Docker Container Are Slighly Different From The Local Mysql Deployment since we are going to connect over TCP versus local socket. With the GRANT PRIVILEGES command we allow access from ANY host. **
+
+```shell
+mysql> CREATE DATABASE sysbench;
+mysql> CREATE USER 'sysbench'@'localhost' IDENTIFIED BY 'password';
+mysql> GRANT ALL PRIVILEGES ON sysbench. * TO 'sysbench'@''%;
+mysql> FLUSH PRIVILEGES;
+```
+
+### Install sysbench:
+```shell
+sudo apt-get install sysbench
+```
+### Run some load
+Finally we can run the Sysbench command. Note that the host is NOT localhost since that would connect to a socket. Instead an IP address is used to force a TCP connection. Also, we are using a different port to match that of the container.
+
+```shell
+sysbench oltp_read_only.lua --threads=4 --mysql-host=127.0.0.1 --mysql-user=sbtest --mysql-password=password --mysql-port=33060 --tables=10 --table-size=1000000 prepare --db-driver=mysql
+```
+
+
 
