@@ -84,6 +84,7 @@ Output should be similar to:
     Inserting 1000000 records into 'sbtest1'
     Inserting 1000000 records into 'sbtest4'
     Inserting 1000000 records into 'sbtest3'
+```
     
 ### Note
 For an extensive guide into Sysbench, take a look at: https://severalnines.com/database-blog/how-benchmark-performance-mysql-mariadb-using-sysbench
