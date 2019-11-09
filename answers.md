@@ -49,7 +49,7 @@ Then we create a database and assign privileges to user sysbench:
 ```sql
     mysql> CREATE DATABASE sysbench;
     mysql> CREATE USER 'sysbench'@'localhost' IDENTIFIED BY 'password';
-    mysql> GRANT ALL PRIVILEGES ON sysbench. * TO 'newuser'@'localhost';
+    mysql> GRANT ALL PRIVILEGES ON sysbench. * TO 'sysbench'@'localhost';
     mysql> FLUSH PRIVILEGES;
 ```
 
