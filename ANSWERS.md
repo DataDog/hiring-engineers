@@ -28,8 +28,7 @@ For a full copy of the yaml, check out [datadog.yaml](https://github.com/arnizzl
 
 This is a screenshot of a host configured with tags:
 
-<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/host%20tags.png
-">
+<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/host%20tags.png">
 
 
 ## MySQL deployment
