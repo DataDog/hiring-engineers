@@ -233,3 +233,130 @@ To make the ouput of the check a little more interesting, we modify the code to 
     
     
 
+### Tracing a Flask app
+
+Tracing with Datadog is a very easy task. Take a look at the following code.
+
+```python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+In order to trace this application in Datadog we have to do the following:
+* Install Datadog agent
+* Integrate Flask with Datadog
+* Configure Datadog to collect metrics
+* Configure the Datadog agent for logging
+
+#### Install the Datadog Agent
+On the server where your Flask app is running, you will need to install the Datadog Agent so you can start monitoring your application. ou can retrieve the Agent installation command for your OS, preconfigured with your API key, [here if you are in the US](https://app.datadoghq.com/account/settings#agent "here if you are in the US") or [here](https://app.datadoghq.eu/account/settings#agent "here") if you are in Europe. (You need to be logged in to your Datadog account to access the customized installation command.
+
+#### Integrate Flask with Datadog
+Now we need to install dd-trace, Datadogs Python tracing client library. The Agent uses this library to trace requests to your application and collect detailed performance data about your application:
+
+```bash
+pip install ddtrace
+```
+#### Configure Datadog to collect metrics
+The beauty about dd-trace is that it can collect data about your application without making any changes to your code. You do need to run your code using the ddtrace-run wrapper:
+
+    FLASK_APP=sample_app.py DATADOG_ENV=flask_test ddtrace-run flask run --port=4999
+
+
+**Note: By default Flask runs on port 5000, but this is the port of the Datadog agent as well. 
+**
+
+#### Configure the Datadog agent for logging
+First, we need to enable logging on the Datadog agent. We can do this by modifying the Agent configuration file. The path to the log file on your OS can be found [here](https://docs.datadoghq.com/agent/basic_agent_usage/ "here") (US) or [here](https://docs.datadoghq.eu/agent/basic_agent_usage/ "here") (Europe). 
+
+Then, make sure `logs_enabled: true` is enabled and uncommented.
+
+    logs_enabled: true
+
+Next, we are going to create a Python configuration in the [conf.d/ directory](mkdir conf.d/python.d # Create a Python config directory under conf.d vi conf.d/python.d/conf.yaml # Create and open the config file` "conf.d/ directory"). 
+
+    # Create a Python config directory under conf.d
+    mkdir conf.d/python.d
+    # Create and open the config file`
+    vi conf.d/python.d/conf.yaml 
+
+and add the following lines:
+    init_config:
+    
+    instances:
+    
+    logs:
+    
+      - type: file
+        path: /var/log/my-log.json
+        service: flask
+        source: python
+        sourcecategory: sourcecode
+
+**Note: make sure the agent has read/write access on /var/log/my-log.json **
+
+<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/flask.png">
+
+### Troubleshooting
+
+#### datadoghq .com or .eu
+Should the Flask app not report traces, the first thing to do is figure out if the agent is configured to run in your correct zone (.com or .eu). You can do this by editing datadog.yaml in your datadog-agent/ directory. The second parameter (site:) defaults to datadoghq.com and should be replaced by datadoghq.eu if you are in Europe.
+
+    ## @param site - string - optional - default: datadoghq.com
+    ## The site of the Datadog intake to send Agent data to.
+    ## Set to 'datadoghq.eu' to send data to the EU site.
+    #
+    site: datadoghq.eu
+    
+    
+
+#### API key
+Then figure out if your API key is valid by running the following command: 
+`sudo  datadog-agent status | grep -i -A 3 'API Keys status'`
+
+This should show the following:
+    arne@nuc:/etc/datadog-agent$ sudo  datadog-agent status | grep -i -A 3 'API Keys status'
+    [sudo] password for arne: 
+      API Keys status
+      ===============
+        API key ending with 82275: API Key valid
+
+You can also check if the agent is reporting via the GUI, by checking Infrastructure - Host Map.
+
+#### Trace the traces
+To check if traces are being accepted you can check the contents of /var/log/datadog/trace-agent.log If the following is shown, please recheck all the steps.
+
+    2019-11-12 11:34:16 CET | TRACE | INFO | (pkg/trace/info/stats.go:101 in LogStats) | No data received
+    2019-11-12 11:35:16 CET | TRACE | INFO | (pkg/trace/info/stats.go:101 in LogStats) | No data received
+    2019-11-12 11:36:26 CET | TRACE | INFO | (pkg/trace/info/stats.go:101 in LogStats) | No data received
+    2019-11-12 11:37:36 CET | TRACE | INFO | (pkg/trace/info/stats.go:101 in LogStats) | No data received
+    2
+	
+
+
