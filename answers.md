@@ -341,7 +341,7 @@ By clicking the box with the arrow above a graph we can send an image of the gra
 In this graph we can see a line showing performance. It is initially flat because the system is idle. After we run a benchmark, we quickly can see the line turning red indicating there is an anomaly detected. The grey area shows the bounderies for anomalies and in this picture is kind of misformed because of the massive difference between idle mode and the benchmark running.
 
 
-### Tracing a Flask app
+## Tracing a Flask app
 
 Tracing with Datadog is a very easy task. Take a look at the following code.
 
@@ -391,14 +391,6 @@ Now we need to install dd-trace, Datadogs Python tracing client library. The Age
 ```bash
 pip install ddtrace
 ```
-#### Configure Datadog to collect metrics
-The beauty about dd-trace is that it can collect data about your application without making any changes to your code. You do need to run your code using the ddtrace-run wrapper:
-
-    FLASK_APP=sample_app.py DATADOG_ENV=flask_test ddtrace-run flask run --port=4999
-
-
-**Note: By default Flask runs on port 5000, but this is the port of the Datadog agent as well. 
-**
 
 #### Configure the Datadog agent for logging
 First, we need to enable logging on the Datadog agent. We can do this by modifying the Agent configuration file. The path to the log file on your OS can be found [here](https://docs.datadoghq.com/agent/basic_agent_usage/ "here") (US) or [here](https://docs.datadoghq.eu/agent/basic_agent_usage/ "here") (Europe). 
@@ -430,6 +422,15 @@ and add the following lines:
 **Note: make sure the agent has read/write access on /var/log/my-log.json **
 
 <img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/flask.png">
+
+#### Configure Datadog to collect metrics
+The beauty about dd-trace is that it can collect data about your application without making any changes to your code. You do need to run your code using the ddtrace-run wrapper:
+
+    FLASK_APP=sample_app.py DATADOG_ENV=flask_test ddtrace-run flask run --port=4999
+
+
+**Note: By default Flask runs on port 5000, but this is the port of the Datadog agent as well.
+**
 
 ### Troubleshooting
 
