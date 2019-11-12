@@ -24,14 +24,19 @@ tags:
   - data:dog
 
 ```
-For a full copy of the yaml, check out agent/datadog.yaml
+For a full copy of the yaml, check out [datadog.yaml](https://github.com/arnizzle/hiring-engineers/blob/master/agent/datadog.yaml "datadog.yaml")
+
+This is a screenshot of a host configured with tags:
+
+<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/host%20tags.png
+">
 
 
 ## MySQL deployment
 I have installed MySQL Server version: 5.7.27-0 on my Ubuntu host.
 
 ## Monitoring MySQL
-It takes a few steps to monitor MySQL databases with Datadog. First we need to configure some configuration files in the Datadog conf directory (/etc/datadog-agent/conf.d/mysql.d). Then, we create a Datadog user for MySQL.
+It takes a few steps to monitor MySQL databases with Datadog. First we need to configure some configuration files in the Datadog conf directory (/etc/datadog-agent/conf.d/mysql.d on my host). Then, we create a Datadog user for MySQL.
 
 Step-by-step instructions can be found at: https://docs.datadoghq.com/integrations/mysql/
 
