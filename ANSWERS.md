@@ -235,7 +235,9 @@ To make the ouput of the check a little more interesting, we modify the code to 
         def check(self, instance):
             self.gauge('my_metric', random.randint(1,1000), tags=['data:dawg'])
     
-    
+Here is a graph of My Metric 
+<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/My%20Metric.png">
+
 
 ## Visualizing Data - 99 problems but a graph aint one
 
