@@ -149,7 +149,7 @@ Server version: 5.7.28
 ```
 ### Create MySQL database for Sysbench
 We are going to generate some load using Sysbench. First we need to create a database and user for Sysbench
-**Note: The Commands Used For The Docker Container Are Slighly Different From The Local Mysql Deployment since we are going to connect over TCP versus local socket. With the GRANT PRIVILEGES command we allow access from ANY host. **
+**Note: The Commands Used For The Docker Container Are Slighly Different From The Local Mysql Deployment since we are going to connect over TCP versus local socket. With the GRANT PRIVILEGES command we allow access from ANY host.**
 
 ```shell
 mysql> CREATE DATABASE sysbench;
@@ -177,14 +177,14 @@ For more information on customer agent checks check out: https://docs.datadoghq.
 
 ### Deploying the custom agent check
 
-First we are going to create a hello.yaml in the *conf.d/ *directory of the agent. This needs to cointain a sequence called *Instances*  that has a mapping, but that can be empty.
+First we are going to create a hello.yaml in the *conf.d/* directory of the agent. This needs to cointain a sequence called *Instances*  that has a mapping, but that can be empty.
 
      
 	 conf.d/hello.yaml
 	     instances: [{}]
 		 
 
-Next we are going to deploy the code in *checks.d *.
+Next we are going to deploy the code in *checks.d*.
 
 ```python
 # the following try/except block will make the custom check compatible with any Agent version
@@ -243,7 +243,7 @@ Here is a graph of My Metric
 
 The advantage of using graphs is that they represent complicated sets of data, or a plethora of data points in an easy to understand visual way. Fortunatly Datadog has a lot of ways to integrate graphs and make it easy to point out any anomalies in your environment, thereby reducing potential downtime.
 
-There are multiple ways to create graphs. First we are going to start by creating a Timeboard via the GUI. Click *Dashboards - New Dashboard. *Give it a nice name and click *New Timeboard.*
+There are multiple ways to create graphs. First we are going to start by creating a Timeboard via the GUI. Click *Dashboards - New Dashboard.* Give it a nice name and click *New Timeboard.*
 
 Now we can add a graph by clicking *Add Graph*.
 
@@ -350,13 +350,13 @@ In this graph we can see a line showing performance. It is initially flat becaus
 
 Looking at graphs all day can get tedious despite the beauty of said graphs. So in this example we are going to create a monitor. We have a metric called "My Metric" which can have a value from 0 to 1000. Everything under 500 is nothing to worry about, but we start getting worried when the value is over 500 and total panic mode ensues if the value is over 800 OR if there is no value being reported for the metric.
 
-Go to the GUI and click *Monitor - New Monitor *. We are going to select *Metric*  and search for My Metric after the metric field.
+Go to the GUI and click *Monitor - New Monitor*. We are going to select *Metric*  and search for My Metric after the metric field.
 
-Next, we are going to set the proper values for *Alert * and *Warning* tresholds.
+Next, we are going to set the proper values for *Alert* and *Warning* tresholds.
 
 We want to *Notify* if the value is not reported for 10 minutes.
 
-And we want to add the following script to the *Say what is happening * field.
+And we want to add the following script to the *Say what is happening* field.
 
     {{#is_alert}}
     OMG, my metric exceeds 800!
@@ -470,7 +470,7 @@ and add the following lines:
         source: python
         sourcecategory: sourcecode
 
-**Note: make sure the agent has read/write access on /var/log/my-log.json **
+**Note: make sure the agent has read/write access on /var/log/my-log.json**
 
 <img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/flask.png">
 
