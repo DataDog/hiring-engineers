@@ -65,6 +65,8 @@ In the Datadog GUI:
 * Click Dashboards
 * Click MySQL - Overview
 
+![MySQLOverview](https://www.dropbox.com/s/r4y6ynybv7q35mt/flask.png?dl=0)
+
 ### Run Sysbench
 
 Now we can go to the directory with Sysbench config files (/usr/share/sysbench) and run the command:
