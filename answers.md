@@ -63,6 +63,7 @@ Now we are going to setup MySQL integration in the Datadog GUI:
 ### Show the MySQL dashboard
 In the Datadog GUI:
 * Click Dashboards
+* Click Dashboard List
 * Click MySQL - Overview
 
 ![MySQLOverview](<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/MySQL%20Sysbench.png">)
