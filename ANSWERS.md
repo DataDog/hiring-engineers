@@ -169,6 +169,9 @@ Finally we can run the Sysbench command. Note that the host is NOT localhost sin
 sysbench oltp_read_only.lua --threads=4 --mysql-host=127.0.0.1 --mysql-user=sbtest --mysql-password=password --mysql-port=33060 --tables=10 --table-size=1000000 prepare --db-driver=mysql
 ```
 
+### Conclusion
+This is actually not a conclusion, but rather an easter egg. The first person to contact me via email will receive a can of a typical Dutch treat called stroopwafels. I am curious how many people actually read this :)
+
 ### Custom Agent Check
 
 In this example we are going to deploy a custom agent check. Custom agent checks run at a regular interval which defaults to every 15 seconds and are recommended to collect metrics for custom applications or unique systems. Alternatively you can write a full fledged integration if you want to share your application (commercially or open soruce).
