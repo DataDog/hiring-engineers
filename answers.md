@@ -233,6 +233,114 @@ To make the ouput of the check a little more interesting, we modify the code to 
     
     
 
+### Visualizing Data - 99 problems but a graph aint one
+
+The advantage of using graphs is that they represent complicated sets of data, or a plethora of data points in an easy to understand visual way. Fortunatly Datadog has a lot of ways to integrate graphs and make it easy to point out any anomalies in your environment, thereby reducing potential downtime.
+
+There are multiple ways to create graphs. First we are going to start by creating a Timeboard via the GUI. Click *Dashboards - New Dashboard. *Give it a nice name and click *New Timeboard.*
+
+Now we can add a graph by clicking *Add Graph*.
+
+What we want is a rollup value of My Metric scoped over host Nuc. We can do this by entering My Metric after the Metric dropdown box as seen below.
+
+<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/Query%20Value.png">
+
+The next step is to add the rollup code. We can do this by selecting the Code editor.
+
+<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/Enter%20Code.png">
+
+Now we can add the rollup function like so:
+<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/rollup.png">
+
+### Visualizing Data with a script
+To make life easier, we can also create script to automate the task of Timeboards. The following script updates an existing timeboard with the following:
+* My metric scoped over your NUC.
+* The anomalies of MySQL performance queries by host
+* My metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+```python
+from datadog import initialize, api
+import time
+from pprint import pprint
+
+options = {
+    'api_key':'8f2c00900af7e1873d6d32de9b335201',
+    'app_key':'64fe39f9adb2e2976f047d580af637d4793f87f8',
+    'api_host': 'https://api.datadoghq.eu'
+}
+
+initialize(**options)
+
+title = 'My Timeboard'
+description = 'My Metric and MySQL Anomalies!'
+graphs = [ {'definition': 
+             {'events': [],
+                'viz': 'query_value',
+                'requests': [{
+                'q': 'avg:my_metric{host: nuc}.rollup(sum,3600)'}
+               ],
+             },
+               'title': 'Cumulative Value of My Metric rolled up',
+             },
+           {'definition': 
+
+             {'legend_size': '0',
+              'events': [],
+                'requests': [{
+                'q': 'sum:my_metric{host:nuc}'}],
+                'type': 'alert_graph'
+             },
+             'title': 'Average Value of My_Metric scoped over Nuc'
+            },
+
+           {'definition': 
+             {'events': [],
+                'requests': [{
+                'q': "anomalies(avg:mysql.performance.queries{*} by {host}, 'basic', '2', 'direction=both' )",
+                'display_type': 'line',
+             }],
+            'precision': '0',
+            'autoscale': 'true',
+            'viz': 'timeseries'},
+            'title': 'Anomalies MySQL Performance queries'
+           },
+        ]
+
+title = 'Timeboard My Metric and Anomalies'
+layout_type = 'ordered'
+description = 'A dashboard with My Metric rollup function and MySQL anomalies'
+read_only = False
+notify_list = ['arne.polman@gmail.com']
+template_variables = [{
+    'name': 'NUC',
+    'prefix': 'host',
+    'default': 'NUC'
+}]
+
+pprint (api.Timeboard.update(
+    9192,
+    title=title,
+    description=description,
+    graphs=graphs,
+    template_variables=template_variables,
+    read_only=read_only,
+))
+```
+
+The end result looks like this:
+<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/Timeboard%20from%20Python.png">
+
+We have set the SQL graph for anomaly detection, and as you can see we have found an anomaly within the performance queries (by running a Sysbench on a idle system).
+
+<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/SQL%20Anomaly%20and%20Snapshot.png">
+
+By clicking the box with the arrow above a graph we can send an image of the graph to our team members.
+
+<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/Screenshot%20Sent%20to%20Self.png">
+
+In this graph we can see a line showing performance. It is initially flat because the system is idle. After we run a benchmark, we quickly can see the line turning red indicating there is an anomaly detected. The grey area shows the bounderies for anomalies and in this picture is kind of misformed because of the massive difference between idle mode and the benchmark running.
+
+
 ### Tracing a Flask app
 
 Tracing with Datadog is a very easy task. Take a look at the following code.
