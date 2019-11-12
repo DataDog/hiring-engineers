@@ -18,3 +18,5 @@ When configuring Google Cloud following the documentation at https://docs.datado
 
 The good news is that services are reported within Datadog.
 
+## Datadog COM or EU
+This bit me several times. The Datadog agent defaults to datadoghq.com, so my API key for datadoghq.eu is not going to work. Some of the documentation also points by default to .com (i.e. in the [Monitoring Flask](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/#installing-the-datadog-agent "Monitoring Flask") manual assumes the .com site which for obvious resasons I am unable to login to with my EU account. Additionally the datadog.conf assumes the .com site. 
