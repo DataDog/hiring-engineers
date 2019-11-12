@@ -254,7 +254,7 @@ Now we can add the rollup function like so:
 
 ### Visualizing Data with a script
 To make life easier, we can also create script to automate the task of Timeboards. The following script updates an existing timeboard with the following:
-* My metric scoped over your NUC.
+* My metric scoped over host NUC.
 * The anomalies of MySQL performance queries by host
 * My metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
