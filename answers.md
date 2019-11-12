@@ -233,7 +233,7 @@ To make the ouput of the check a little more interesting, we modify the code to 
     
     
 
-### Visualizing Data - 99 problems but a graph aint one
+## Visualizing Data - 99 problems but a graph aint one
 
 The advantage of using graphs is that they represent complicated sets of data, or a plethora of data points in an easy to understand visual way. Fortunatly Datadog has a lot of ways to integrate graphs and make it easy to point out any anomalies in your environment, thereby reducing potential downtime.
 
