@@ -521,5 +521,14 @@ To check if traces are being accepted you can check the contents of /var/log/dat
     2019-11-12 11:37:36 CET | TRACE | INFO | (pkg/trace/info/stats.go:101 in LogStats) | No data received
     2
 	
+## Infrastructure and APM 
+I have created a [dashboard](https://app.datadoghq.eu/dashboard/fsr-v2p-gzn/apm-infrastructure-dashboard?from_ts=1573583018325&to_ts=1573586618325&live=true "dashboard") with metrics of a flask app. Here is the screenshot:
+
+<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/apm%20infra%20dashboard.png">
+
+### Difference between a Service and a Resource
+Services are the building blocks of modern microservice architecture. Services usually contain Resources that represent a particular domain within the application i.e. web endpoint, database query or background job.
+
+
 
 
