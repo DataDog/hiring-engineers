@@ -66,7 +66,7 @@ In the Datadog GUI:
 * Click Dashboard List
 * Click MySQL - Overview
 
-![MySQLOverview](<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/MySQL%20Sysbench.png">)
+<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/MySQL%20Sysbench.png">
 
 ### Run Sysbench
 
