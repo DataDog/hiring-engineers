@@ -340,6 +340,51 @@ By clicking the box with the arrow above a graph we can send an image of the gra
 
 In this graph we can see a line showing performance. It is initially flat because the system is idle. After we run a benchmark, we quickly can see the line turning red indicating there is an anomaly detected. The grey area shows the bounderies for anomalies and in this picture is kind of misformed because of the massive difference between idle mode and the benchmark running.
 
+### Monitoring Data
+
+Looking at graphs all day can get tedious despite the beauty of said graphs. So in this example we are going to create a monitor. We have a metric called "My Metric" which can have a value from 0 to 1000. Everything under 500 is nothing to worry about, but we start getting worried when the value is over 500 and total panic mode ensues if the value is over 800 OR if there is no value being reported for the metric.
+
+Go to the GUI and click *Monitor - New Monitor *. We are going to select *Metric*  and search for My Metric after the metric field.
+
+Next, we are going to set the proper values for *Alert * and *Warning* tresholds.
+
+We want to *Notify* if the value is not reported for 10 minutes.
+
+And we want to add the following script to the *Say what is happening * field.
+
+    {{#is_alert}}
+    OMG, my metric exceeds 800!
+    Currently at {{value}}
+    {{/is_alert}} 
+    
+    {{#is_warning}}
+    Watch out now! My Metric is over 500!
+    Now at {{value}}
+    {{/is_warning}} 
+    
+    {{#is_no_data}}
+    No my metric heartbeat detected! 
+    Everything ok?
+    {{/is_no_data}}  @arne.polman@gmail.com
+    
+    {{#is_recovery}}
+    Phew, close one! Everything ok now.
+    {{/is_recovery}} 
+
+Lastly, we are going to inform a user by selecting the user from the dropdown box in *Notify your team*. This will send out an email if a treshold is reached or when things are back to normal.
+
+<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/Monitoring%20Screenshot.png">
+
+Now we have deployed all of the alerting, we are going to disable it for non-working hours. Obviously we would like to be notified that we will no longer receive alerts during this window.
+
+We can set this up by clicking *Monitor - Manage downtime*. Then we click *New downtime* and select the timerange we want for the downtime.
+
+In the example below we have downtime scheduled for Monday to Friday from 19:00 until 09:00 and we have downtime in the weekend. We are informing the user that no alerts will be send during this timeframe. 
+
+<img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/No%20Notification.png">
+
+
+
 
 ## Tracing a Flask app
 
