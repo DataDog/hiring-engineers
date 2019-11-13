@@ -285,19 +285,26 @@ description = 'My Metric and MySQL Anomalies!'
 graphs = [ {'definition': 
              {'events': [],
                 'viz': 'query_value',
+                
                 'requests': [{
+                # 'q': 'sum:my_metric{host: nuc}.rollup(3600)'}
                 'q': 'avg:my_metric{host: nuc}.rollup(sum,3600)'}
+                # 'aggregator': 'sum'}
+                
                ],
              },
                'title': 'Cumulative Value of My Metric rolled up',
              },
+
+
            {'definition': 
 
              {'legend_size': '0',
               'events': [],
-                'requests': [{
-                'q': 'sum:my_metric{host:nuc}'}],
-                'type': 'alert_graph'
+                
+             'requests': [{
+               'q': 'sum:my_metric{host:nuc}'}],
+               'type': 'alert_graph'
              },
              'title': 'Average Value of My_Metric scoped over Nuc'
             },
@@ -305,19 +312,22 @@ graphs = [ {'definition':
            {'definition': 
              {'events': [],
                 'requests': [{
-                'q': "anomalies(avg:mysql.performance.queries{*} by {host}, 'basic', '2', 'direction=both' )",
+                
+                'q': 'anomalies(avg:mysql.performance.queries{*}, "basic", 2)',
                 'display_type': 'line',
              }],
-            'precision': '0',
-            'autoscale': 'true',
-            'viz': 'timeseries'},
-            'title': 'Anomalies MySQL Performance queries'
-           },
+              'precision': '0',
+              'autoscale': 'true',
+              'viz': 'timeseries'},
+              'title': 'Anomalies MySQL Performance queries'
+            },
         ]
+            
+        
 
 title = 'Timeboard My Metric and Anomalies'
 layout_type = 'ordered'
-description = 'A dashboard with My Metric rollup function and MySQL anomalies'
+description = 'A dashboard with memory info.'
 read_only = False
 notify_list = ['arne.polman@gmail.com']
 template_variables = [{
@@ -325,6 +335,7 @@ template_variables = [{
     'prefix': 'host',
     'default': 'NUC'
 }]
+
 
 pprint (api.Timeboard.update(
     9192,
@@ -334,6 +345,7 @@ pprint (api.Timeboard.update(
     template_variables=template_variables,
     read_only=read_only,
 ))
+
 ```
 
 The end result looks like this:
