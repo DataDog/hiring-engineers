@@ -287,10 +287,7 @@ graphs = [ {'definition':
                 'viz': 'query_value',
                 
                 'requests': [{
-                # 'q': 'sum:my_metric{host: nuc}.rollup(3600)'}
                 'q': 'avg:my_metric{host: nuc}.rollup(sum,3600)'}
-                # 'aggregator': 'sum'}
-                
                ],
              },
                'title': 'Cumulative Value of My Metric rolled up',
@@ -303,7 +300,7 @@ graphs = [ {'definition':
               'events': [],
                 
              'requests': [{
-               'q': 'sum:my_metric{host:nuc}'}],
+               'q': 'avg:my_metric{host:nuc}'}],
                'type': 'alert_graph'
              },
              'title': 'Average Value of My_Metric scoped over Nuc'
@@ -350,6 +347,9 @@ pprint (api.Timeboard.update(
 
 The end result looks like this:
 <img src="https://github.com/arnizzle/hiring-engineers/blob/master/screenshots/Timeboard%20from%20Python.png">
+
+### Note
+I am note sure if this was a trick question, but for some reason the rollup function for one hour does not show data when selecting a short timeframe
 
 We have set the SQL graph for anomaly detection, and as you can see we have found an anomaly within the performance queries (by running a Sysbench on a idle system).
 
