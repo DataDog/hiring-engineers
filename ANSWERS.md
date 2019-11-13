@@ -541,6 +541,12 @@ I have created a [dashboard](https://app.datadoghq.eu/dashboard/fsr-v2p-gzn/apm-
 ### Difference between a Service and a Resource
 Services are the building blocks of modern microservice architecture. Services usually contain Resources that represent a particular domain within the application i.e. web endpoint, database query or background job.
 
+## Thank you!
+for reviewing my application. I had a lot of fun playing with the Datadog system and learned quite a lot. With this technical assesment I barely scratched the surface of the capabilities of Datadog, which is good because there will be plenty to learn.
+
+Take care,
+
+Arne
 
 
 
