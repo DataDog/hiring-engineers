@@ -170,7 +170,7 @@ sysbench oltp_read_only.lua --threads=4 --mysql-host=127.0.0.1 --mysql-user=sbte
 ```
 
 ### Conclusion
-~~This is actually not a conclusion, but rather an easter egg. The first person to contact me via email will receive a can of a typical Dutch treat called stroopwafels. I am curious how many people actually read this :)~~ The stroopwafels have now been claimed, better luck next time! 
+This is actually not a conclusion, but rather an easter egg. The first person to contact me via email will receive a can of a typical Dutch treat called stroopwafels. I am curious how many people actually read this :)
 
 ### Custom Agent Check
 
