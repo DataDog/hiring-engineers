@@ -46,7 +46,12 @@ Answer: the interval can be set in the YAML file without modifying the source sc
 Public link: https://p.datadoghq.eu/sb/pb6bfnbzervbjgv2-7844d9fa95bc7b2325b9a6d38afe6560
 
 ## Bonus Question: What is the difference between a Service and a Resource?
-Service: Logical group of resources. Example: Transactions Service contains all tables, jobs, queues of that specific goal.
-Resource: Using the previous example, a resource would be: a SQS Queue, RDS Database, Lambda Steps State Machine, Lambda Function, API Gateway Endpoints, etc.
+*Service*: Logical group of resources. Example: Transactions Service contains all tables, jobs, queues of that specific goal.
+
+*Resource*: Using the previous example, a resource would be: a SQS Queue, RDS Database, Lambda Steps State Machine, Lambda Function, API Gateway Endpoints, etc.
 
 ### Final Question
+
+First of all, I am personally impressed with the tool, I had a lot of fun creating the exercises! There are tons of features that I haven't had time to explore but certinaly I will be doing this soon.
+
+I have a few ideas in my mind but to stick with one: I am coming from Brazil a country known by its beauty of natural resources, beaches, mountains and so on. However, away from the touristic places , the population suffers with an increasing number of crimes happening in all metropolitan areas. Nowadays there are some mobile apps to report crimes (such as robbery, assaults, kidnaps , rapes) and those apps could provide important and centralized metrics to the authorities, allowing them to create an endless set of dashboards to fight against the gangs all over the country.
