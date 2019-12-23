@@ -179,34 +179,34 @@ To generate MySQL load for graphing purposes:<br>
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-9-image2.jpg)
 
 <br>
-<p><strong>Task3: </strong></p>
-<p>References</p>
-<p><a href="https://dbader.org/blog/monitoring-your-nodejs-app-with-datadog">https://dbader.org/blog/monitoring-your-nodejs-app-with-datadog</a></p>
-<p><a href="https://github.com/dbader/node-datadog-metrics">https://github.com/dbader/node-datadog-metrics</a></p>
-<p>&nbsp;</p>
-<p>Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.</p>
-<p>Reference <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7">Here</a></p>
-<p>&nbsp;</p>
-<p>My python my_metric script;</p>
-<p>from datadog import initialize, statsd</p>
-<p>import time,random</p>
-<p>from random import *</p>
-<p>&nbsp;</p>
-<p>options = {</p>
-<p>&nbsp;&nbsp;&nbsp; 'statsd_host':'127.0.0.1',</p>
-<p>&nbsp;&nbsp;&nbsp; 'statsd_port':8125</p>
-<p>}</p>
-<p>&nbsp;</p>
-<p>initialize(**options)</p>
-<p>&nbsp;</p>
-<p>i=0</p>
-<p>while(1):</p>
-<p>&nbsp; i += 1</p>
-<p>&nbsp; x=randint(1, 1000)</p>
-<p>&nbsp; statsd.gauge('my_metric.gauge', x, tags=["environment:my_metric"])</p>
-<p>&nbsp; print("i=",i," x=",x)</p>
-<p>&nbsp; time.sleep(10)</p>
-<p>&nbsp;</p>
+<p><strong>Task3: </strong></p><br>
+<p>References<br>
+<a href="https://dbader.org/blog/monitoring-your-nodejs-app-with-datadog">https://dbader.org/blog/monitoring-your-nodejs-app-with-datadog</a><br>
+<a href="https://github.com/dbader/node-datadog-metrics">https://github.com/dbader/node-datadog-metrics</a><br>
+<br>
+Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.<br>
+Reference <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7">Here</a><br>
+<br>
+My python my_metric script;<br>
+&nbsp;&nbsp;from datadog import initialize, statsd<br>
+&nbsp;&nbsp;import time,random<br>
+&nbsp;&nbsp;from random import *<br>
+<br>
+&nbsp;&nbsp;options = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 'statsd_host':'127.0.0.1',<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 'statsd_port':8125<br>
+&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;initialize(**options)<br>
+<br><br>
+&nbsp;&nbsp;i=0<br>
+&nbsp;&nbsp;while(1):<br>
+&nbsp;&nbsp;&nbsp; i += 1<br>
+&nbsp;&nbsp;&nbsp; x=randint(1, 1000)<br>
+&nbsp;&nbsp;&nbsp; statsd.gauge('my_metric.gauge', x, tags=["environment:my_metric"])<br>
+&nbsp;&nbsp;&nbsp; print("i=",i," x=",x)<br>
+&nbsp;&nbsp;&nbsp; time.sleep(10)<br>
+<br>
 <p>The names of the configuration and check files must match. If your check is called mycheck.py, your configuration file must be named mycheck.yaml.</p>
 
 
