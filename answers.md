@@ -42,5 +42,6 @@ Because my laptop gets shutdown frequently, I will create some machines in AWS w
 The default Datadog setup will allow access to numerous AWS services, most with read-only access.<br>
 <br><br>
 <p>Next setup AWS access</p>
+
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-4-image1.jpg)
 <br><br>
