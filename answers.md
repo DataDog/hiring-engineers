@@ -99,3 +99,33 @@ MISSING IMAGE<br>
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-5-image1.jpg)
 
 
+<p><strong><u>Helpful tip for use in the next steps:</u></strong></p>
+<p>Validate your agent config in each task below using:</p>
+<p>&ldquo;sudo -u dd-agent -- datadog-agent check &lt;your agent name&gt;&rdquo;</p>
+<p><strong>Example:</strong>&nbsp;sudo -u dd-agent -- datadog-agent check elastic</p>
+<p>&nbsp;</p>
+<p><strong>Data Collection</strong></p>
+<p><strong>&nbsp;</strong></p>
+<p><strong><u>&nbsp;</u></strong></p>
+<p><strong><u>Metric Collection Tasks</u></strong></p>
+<p><strong>Task1</strong></p>
+<p>Edit main agent config file:</p>
+<p>sudo vi /etc/datadog-agent/datadog.yaml</p>
+<p>Add:</p>
+<p>hostname: node1.YYYYY.local</p>
+<p>tags:</p>
+<p>&nbsp; - environment:laptop_vm</p>
+<p>&nbsp; - ostype:centos</p>
+<p>Uncomment</p>
+<p>histogram_aggregates:</p>
+<p>&nbsp; - max</p>
+<p>&nbsp; - median</p>
+<p>&nbsp; - avg</p>
+<p>&nbsp; - count</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Observe in Datadog gui</p>
+<p>&nbsp;</p>
+
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-1-image1.jpg)
+
