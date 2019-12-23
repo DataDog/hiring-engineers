@@ -69,7 +69,6 @@ The default Datadog setup will allow access to numerous AWS services, most with 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>Showing successful initial integration with AWS:</p>
-<br>
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-5-image1.jpg)
 <br><br><br>
