@@ -109,7 +109,7 @@ MISSING IMAGE<br>
 <strong><u>Metric Collection Tasks</u></strong><br>
 <p><strong>Task1</strong><br>
 Edit main agent config file:<br>
-&nbsp;&nbsp;sudo vi /etc/datadog-agent/datadog.yaml<br>
+&nbsp;&nbsp;sudo vi /etc/datadog-agent/datadog.yaml<br><br>
 &nbsp;Add:<br>
 &nbsp;&nbsp;hostname: node1.YYYYY.local<br>
 <p>tags:<br>
@@ -124,7 +124,7 @@ Edit main agent config file:<br>
 &nbsp;<br>
 &nbsp;<br>
   </p>
-Observe in Datadog gui<br>
+Observe collected data in Datadog gui<br>
 <p>&nbsp;</p>
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-6-image1.jpg)
