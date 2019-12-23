@@ -5,9 +5,9 @@ Your answers to the questions go here.
   <br>Be sure to specify “Datadog Recruiting Candidate”
  
   <br>
-   ---- insert images ---
-  
-   <![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-1-image1.jpg)
+     <![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-1-image1.jpg)
+  <br><br><br>
+     <![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-2-image1.jpg)
   <br><br><br>
  
   These instructions are for CentOS/RHEL 6 and above.                                                                    
