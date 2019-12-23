@@ -179,3 +179,37 @@ To generate MySQL load for graphing purposes:<br>
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-9-image2.jpg)
 
 <br>
+<p><strong>Task3: </strong></p>
+<p>References</p>
+<p><a href="https://dbader.org/blog/monitoring-your-nodejs-app-with-datadog">https://dbader.org/blog/monitoring-your-nodejs-app-with-datadog</a></p>
+<p><a href="https://github.com/dbader/node-datadog-metrics">https://github.com/dbader/node-datadog-metrics</a></p>
+<p>&nbsp;</p>
+<p>Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.</p>
+<p>Reference <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7">Here</a></p>
+<p>&nbsp;</p>
+<p>My python my_metric script;</p>
+<p>from datadog import initialize, statsd</p>
+<p>import time,random</p>
+<p>from random import *</p>
+<p>&nbsp;</p>
+<p>options = {</p>
+<p>&nbsp;&nbsp;&nbsp; 'statsd_host':'127.0.0.1',</p>
+<p>&nbsp;&nbsp;&nbsp; 'statsd_port':8125</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p>initialize(**options)</p>
+<p>&nbsp;</p>
+<p>i=0</p>
+<p>while(1):</p>
+<p>&nbsp; i += 1</p>
+<p>&nbsp; x=randint(1, 1000)</p>
+<p>&nbsp; statsd.gauge('my_metric.gauge', x, tags=["environment:my_metric"])</p>
+<p>&nbsp; print("i=",i," x=",x)</p>
+<p>&nbsp; time.sleep(10)</p>
+<p>&nbsp;</p>
+<p>The names of the configuration and check files must match. If your check is called mycheck.py, your configuration file must be named mycheck.yaml.</p>
+
+
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-10-image1.jpg)
+
+<br>
