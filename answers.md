@@ -103,15 +103,15 @@ MISSING IMAGE<br>
 <p>&ldquo;sudo -u dd-agent -- datadog-agent check &lt;your agent name&gt;&rdquo;</p>
 <p><strong>Example:</strong>&nbsp;sudo -u dd-agent -- datadog-agent check elastic</p>
 <p>&nbsp;</p>
-<p><strong>Data Collection</strong></p>
-<p><strong>&nbsp;</strong></p>
-<p><strong><u>&nbsp;</u></strong></p>
-<p><strong><u>Metric Collection Tasks</u></strong></p>
-<p><strong>Task1</strong></p>
-<p>Edit main agent config file:</p>
-<p>sudo vi /etc/datadog-agent/datadog.yaml</p>
-<p>Add:</p>
-<p>hostname: node1.YYYYY.local</p>
+<p><strong>Data Collection</strong><br>
+<strong>&nbsp;</strong><br>
+<strong><u>&nbsp;</u></strong><br>
+<strong><u>Metric Collection Tasks</u></strong><br>
+<p><strong>Task1</strong><br>
+Edit main agent config file:<br>
+sudo vi /etc/datadog-agent/datadog.yaml<br>
+Add:<br>
+hostname: node1.YYYYY.local<br>
 <p>tags:</p>
 <p>&nbsp; - environment:laptop_vm</p>
 <p>&nbsp; - ostype:centos</p>
