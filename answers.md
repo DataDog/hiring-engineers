@@ -43,25 +43,25 @@ Your answers to the questions go here.
 <p><strong>Data Collection (master agent setup)</strong></p>
 <p>&nbsp;</p>
 <p style="padding-left: 30px;"><strong><u>Metric Collection Tasks</u></strong></p>
-<p style="padding-left: 30px;"><strong>Task1</strong></p>
-<p style="padding-left: 30px;">Edit main agent config file:</p>
-<p style="padding-left: 30px;">sudo vi /etc/datadog-agent/datadog.yaml</p>
-<p style="padding-left: 30px;">Add:</p>
-<p style="padding-left: 30px;">hostname: node1.YYYYY.local</p>
-<p style="padding-left: 30px;">tags:</p>
-<p style="padding-left: 30px;">&nbsp; - environment:laptop_vm</p>
-<p style="padding-left: 30px;">&nbsp; - ostype:centos</p>
-<p style="padding-left: 30px;">Uncomment</p>
-<p style="padding-left: 30px;">histogram_aggregates:</p>
-<p style="padding-left: 30px;">&nbsp; - max</p>
-<p style="padding-left: 30px;">&nbsp; - median</p>
-<p style="padding-left: 30px;">&nbsp; - avg</p>
-<p style="padding-left: 30px;">&nbsp; - count</p>
-<p>&nbsp;</p>
-<p>Observe results in Datadog gui</p>
-<p>&nbsp;&nbsp; CGroup: /system.slice/datadog-agent.service</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └─5784 /opt/datadog-agent/bin/agent/agent run -p /opt/datadog-agent/run/a..</p>
-<p>&nbsp;</p>
+<p style="padding-left: 30px;"><strong>Task1</strong><br>
+Edit main agent config file:<br>
+sudo vi /etc/datadog-agent/datadog.yaml<br>
+Add:<br>
+hostname: node1.YYYYY.local<br>
+tags:<br>
+- environment:laptop_vm<br>
+- ostype:centos<br>
+Uncomment<br>
+<histogram_aggregates:<br>
+- max<br>
+- median<br>
+- avg<br>
+- count<br>
+</p>
+<p>Observe results in Datadog gui<br>
+CGroup: /system.slice/datadog-agent.service<br>
+ └─5784 /opt/datadog-agent/bin/agent/agent run -p /opt/datadog-agent/run/a..<br>
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>Your agent is now reporting to Datadog cloud.&nbsp;<br>
