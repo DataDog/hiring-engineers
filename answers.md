@@ -108,9 +108,9 @@ Validate your agent config in each task below using:<br>
 <strong><u>Metric Collection Tasks</u></strong><br>
 <p><strong>Task1</strong><br>
 Edit main agent config file:<br>
-&nbsp;&nbsp;sudo vi /etc/datadog-agent/datadog.yaml<br><br>
+&nbsp;&nbsp;sudo vi /etc/datadog-agent/datadog.yaml<br>
 &nbsp;Add:<br>
-&nbsp;&nbsp;hostname: node1.YYYYY.local<br>
+&nbsp;&nbsp;&nbsp;hostname: node1.YYYYY.local<br>
 <p>tags:<br>
 &nbsp; - environment:AWS_vm<br>
 &nbsp; - ostype:centos<br>
@@ -124,7 +124,6 @@ Edit main agent config file:<br>
 &nbsp;<br>
   </p>
 Observe collected data in Datadog gui<br>
-<p>&nbsp;</p>
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-6-image1.jpg)
 
