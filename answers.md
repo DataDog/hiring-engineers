@@ -95,6 +95,7 @@ Create new role using:</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>Showing successful initial integration with AWS:</p>
+MISSING IMAGE<br>
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-5-image1.jpg)
 
-<br><br><br>
+
