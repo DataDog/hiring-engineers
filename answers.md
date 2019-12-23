@@ -64,12 +64,12 @@ CGroup: /system.slice/datadog-agent.service<br>
 </p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>Your agent is now reporting to Datadog cloud.&nbsp;<br>
+<p>Your agent is now reporting to Datadog cloud.&nbsp;<br><br>
 Because my laptop gets shutdown frequently, I will create some machines in AWS which will allow continuous data flow.<br>
 The default Datadog setup will allow access to numerous AWS services, most with read-only access.<br>
 <br><br>
 <p>Next setup AWS access for Datadog</p>
-
+ MISSING IMAGE
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-4-image1.jpg)
 
 <br>
