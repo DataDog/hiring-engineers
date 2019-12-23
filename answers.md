@@ -104,9 +104,7 @@ Validate your agent config in each task below using:<br>
 &ldquo;sudo -u dd-agent -- datadog-agent check &lt;your agent name&gt;&rdquo;<br>
 <strong>Example:</strong>&nbsp;sudo -u dd-agent -- datadog-agent check elastic<br>
 <p>&nbsp;</p>
-<p><strong>Data Collection</strong><br>
-<strong>&nbsp;</strong><br>
-<strong><u>&nbsp;</u></strong><br>
+<p><strong>Data Collection (AWS machine)</strong><br>
 <strong><u>Metric Collection Tasks</u></strong><br>
 <p><strong>Task1</strong><br>
 Edit main agent config file:<br>
