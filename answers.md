@@ -9,7 +9,7 @@ Your answers to the questions go here.
  
 <p>These instructions are for CentOS/RHEL 6 and above.</p>
 <p>Use our easy one-step install.</p>
-<p>DD_API_KEY=b18a088feb147e7535796e62ad33fc42 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"</p>
+<p>DD_API_KEY=<my_DatadogAPIKey> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"</p>
 <p>This will install the YUM packages for the Datadog Agent and will prompt you for your password.<br /> If the Agent is not already installed on your machine and you don't want it to start automatically after the installation, just prepend&nbsp;</p>
 <p>DD_INSTALL_ONLY=true<br>
 &nbsp;to the above script before running it.<br>
@@ -128,36 +128,36 @@ Observe collected data in Datadog gui<br>
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-6-image1.jpg)
 
 <p><strong>Task2: </strong></p>
-<p>Install a local database and setup dd-agent to monitor and add tags.</p>
-<p>Selected MySQL.</p>
-<p>Ran MySQL setup commands to create datadog user with replication and performance metric collection permissions.</p>
-<p>&nbsp;</p>
-<p>Define MySQL user for Datadog agent to utilize.</p>
-<p>Then edit file /etc/datadog-agent/conf.d/mysql.d/conf.yaml to contain the credentials, tags and optionally any custom queries to perform.</p>
-<p>Example:</p>
-<p>init_config:</p>
-<p>&nbsp;</p>
-<p>instances:</p>
-<p>&nbsp; - server: 127.0.0.1</p>
-<p>&nbsp;&nbsp;&nbsp; user: datadog</p>
-<p>&nbsp;&nbsp;&nbsp; pass: datadog</p>
-<p>&nbsp;&nbsp;&nbsp; port: 3306</p>
-<p>&nbsp;&nbsp;&nbsp; options:</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; replication: false</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; galera_cluster: true</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra_status_metrics: true</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra_innodb_metrics: true</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra_performance_metrics: true</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; schema_size_metrics: false</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disable_innodb_metrics: false</p>
-<p>&nbsp;</p>
-<p>logs:</p>
-<p>&nbsp; - type: file</p>
-<p>&nbsp;&nbsp;&nbsp; path: /opt/mysql/logs/node1.local.err</p>
-<p>&nbsp;&nbsp;&nbsp; source: mysql</p>
-<p>&nbsp;&nbsp;&nbsp; sourcecategory: database</p>
-<p>&nbsp;&nbsp;&nbsp; service: mysql</p>
-<p>&nbsp;</p>
-<p>tags:</p>
-<p>&nbsp; - BillYYYY:Mysql_VM</p>
-<p>&nbsp; - OSType:CentOS</p>
+<p>Install a local database and setup dd-agent to monitor and add tags.<br>
+Selected MySQL.<br>
+&nbsp;&nbsp;I have run MySQL setup commands to create datadog user with replication and performance metric collection permissions.<br>
+<br>
+Define MySQL user for Datadog agent to utilize.<br>
+Then edit file /etc/datadog-agent/conf.d/mysql.d/conf.yaml to contain the credentials, tags and optionally any custom queries to perform.<br>
+&nbsp;&nbsp;Example:<br>
+&nbsp;&nbsp;init_config:<br>
+<br>
+&nbsp;&nbsp;instances:<br>
+&nbsp;&nbsp; - server: 127.0.0.1<br>
+&nbsp;&nbsp;&nbsp; user: datadog<br>
+&nbsp;&nbsp;&nbsp;&nbsp; pass: datadog<br>
+&nbsp;&nbsp;&nbsp; port: 3306<br>
+&nbsp;&nbsp;&nbsp; options:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; replication: false<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; galera_cluster: true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra_status_metrics: true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra_innodb_metrics: true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra_performance_metrics: true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; schema_size_metrics: false<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disable_innodb_metrics: false<br>
+<br>
+&nbsp;&nbsp; logs:<br>
+&nbsp;&nbsp;&nbsp; - type: file<br>
+&nbsp;&nbsp;&nbsp;&nbsp; path: /opt/mysql/logs/node1.local.err<br>
+&nbsp;&nbsp;&nbsp;&nbsp; source: mysql<br>
+&nbsp;&nbsp;&nbsp;&nbsp; sourcecategory: database<br>
+&nbsp;&nbsp;&nbsp;&nbsp; service: mysql<br>
+<br>
+&nbsp;&nbsp;tags:<br>
+&nbsp;&nbsp;&nbsp; - BillYYYY:Mysql_VM<br>
+&nbsp;&nbsp;&nbsp; - OSType:CentOS<br>
