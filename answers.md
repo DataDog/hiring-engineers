@@ -69,6 +69,7 @@ The default Datadog setup will allow access to numerous AWS services, most with 
 <br><br>
 <p>Next setup AWS access for Datadog</p>
  MISSING IMAGE
+ 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-4-image1.jpg) 
 
 <br>
@@ -94,7 +95,6 @@ Create new role using:</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>Showing successful initial integration with AWS:</p>
-MISSING IMAGE
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-5-image1.jpg)
 
