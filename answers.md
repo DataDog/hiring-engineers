@@ -40,9 +40,8 @@ Your answers to the questions go here.
 <p>&nbsp;</p>
 <p><span style="text-decoration: underline;">Example:</span>&nbsp; sudo -u dd-agent -- datadog-agent check elastic</p>
 <p>&nbsp;</p>
-<p><strong>Data Collection (master agent setup)</strong></p>
-<p>&nbsp;</p>
-<p style="padding-left: 30px;"><strong><u>Metric Collection Tasks</u></strong></p>
+<p><strong>Data Collection (master agent setup)</strong><br>
+<p style="padding-left: 30px;"><strong><u>Metric Collection Tasks</u></strong><br>
 <p style="padding-left: 30px;"><strong>Task1</strong><br>
 Edit main agent config file:<br>
 sudo vi /etc/datadog-agent/datadog.yaml<br>
