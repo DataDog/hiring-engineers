@@ -22,9 +22,9 @@ Your answers to the questions go here.
   <br>Package               Arch           Version             Repository       Size                                          <br>================================================================================                                        
   <br>Installing: datadog-agent         x86_64         1:6.15.1-1          datadog         161       
 
-<p>These instructions are for CentOS/RHEL 6 and above.</p>
-<p>Use our easy one-step install.</p>
-<p><strong>DD_API_KEY=b18a088feb147e7535796e62ad33fc42 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"</strong></p>
+<br>These instructions are for CentOS/RHEL 6 and above.
+Use our easy one-step install.
+<strong>DD_API_KEY=b18a088feb147e7535796e62ad33fc42 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"</strong>
 <p>This will install the YUM packages for the Datadog Agent and will prompt you for your password.<br /> If the Agent is not already installed on your machine and you don't want it to start automatically after the installation, just prepend&nbsp;</p>
 <p>DD_INSTALL_ONLY=true</p>
 <p>&nbsp;to the above script before running it.</p>
