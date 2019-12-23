@@ -6,6 +6,8 @@ Your answers to the questions go here.
  
   <br>
    ---- insert images ---
+  
+   <img src="https://github.com/wmc2112/datadogimages/blob/master/pg-1-image1.jpg</img>
   <br><br><br>
  
   These instructions are for CentOS/RHEL 6 and above.                                                                    
