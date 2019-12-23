@@ -11,8 +11,8 @@ Your answers to the questions go here.
   <br>Use our easy one-step install.                                                                                                                                                                                                                  
   <br> DD_API_KEY=b18a088feb147e7535796e62ad33fc42 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"                                                                                                                                                                                                             
   <br>This will install the YUM packages for the Datadog Agent and will prompt you for your password.                         
-  <br>If the Agent is not already installed on your machine and you don't want it to start automatically                      
-  <br>after the installation, just prepend DD_INSTALL_ONLY=true to the above script before running it.                                                                                                                                                
+  If the Agent is not already installed on your machine and you don't want it to start automatically                      
+  after the installation, just prepend DD_INSTALL_ONLY=true to the above script before running it.                                                                                                                                                
   <br>Run:                                                                                                                                                                                                                                            sudo 
   <br>DD_API_KEY=b18a088feb147e7535796e62ad33fc42 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"                                                                                
   <br>-> Running transaction check                                                                                            
