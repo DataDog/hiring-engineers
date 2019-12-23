@@ -71,6 +71,7 @@ The default Datadog setup will allow access to numerous AWS services, most with 
 <p>Next setup AWS access for Datadog</p>
  MISSING IMAGE
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-4-image1.jpg) 
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-1-image1.jpg)
 
 <p>Connect Datadog to your AWS account to automatically track and tag your EC2 instances, and report on all your Cloudwatch metrics.<br>
 Enter AWS credentials for each of your AWS accounts &mdash; you can find them&nbsp;<a href="https://aws-portal.amazon.com/gp/aws/developer/account/index.html?action=access-key">here</a>. Note that these credentials only require read-only access to your AWS account.</p>
@@ -84,8 +85,8 @@ Enter AWS credentials for each of your AWS accounts &mdash; you can find them&nb
 <li>See EC2 scheduled maintenance events in your stream</li>
 </ul>
 <p>&nbsp;</p>
-<p>Create linkage from your AWS account to Data Dog AWS account.</p>
-<p>Create new role using:</p>
+<p>Create linkage from your AWS account to Data Dog AWS account.<br>
+Create new role using:</p>
 <ul>
 <li>Data Dog AWS ID: 464622532012</li>
 <li>AWS External ID: &lt;my aws external id&gt;</li>
