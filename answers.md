@@ -174,3 +174,10 @@ Then edit file /etc/datadog-agent/conf.d/mysql.d/conf.yaml to contain the creden
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; done<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where file &ldquo;query.sql&rdquo; file contains: &ldquo;select * from datadog.tutorials_tbl;&rdquo;<br>
+<br><br>
+<p>Once the agent is operational, be sure to add the pre-built MySQL dashboards located under &ldquo;Integrations&rdquo;</p>
+
+
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-9-image1.jpg)
+
+<br>
