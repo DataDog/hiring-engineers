@@ -67,8 +67,8 @@ CGroup: /system.slice/datadog-agent.service<br>
 Because my laptop gets shutdown frequently, I will create some machines in AWS which will allow continuous data flow.<br>
 The default Datadog setup will allow access to numerous AWS services, most with read-only access.<br>
 <br><br>
-<p>Next setup AWS access for Datadog</p>
- MISSING IMAGE
+Next setup AWS access for Datadog<br>
+
  
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-4-image1.jpg) 
 
