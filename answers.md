@@ -71,13 +71,11 @@ The default Datadog setup will allow access to numerous AWS services, most with 
 <p>Next setup AWS access for Datadog</p>
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-4-image1.jpg)
-<br><br><br>
+
 <br<>br><br>
 <p>Connect Datadog to your AWS account to automatically track and tag your EC2 instances, and report on all your Cloudwatch metrics.</p>
 <p>Enter AWS credentials for each of your AWS accounts &mdash; you can find them&nbsp;<a href="https://aws-portal.amazon.com/gp/aws/developer/account/index.html?action=access-key">here</a>. Note that these credentials only require read-only access to your AWS account.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<br>
 <p>Connect to Amazon Web Services (AWS) in order to:</p>
 <ul>
 <li>See automatic AWS status updates in your stream</li>
