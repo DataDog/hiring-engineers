@@ -11,27 +11,27 @@ Your answers to the questions go here.
 <p>Use our easy one-step install.</p>
 <p>DD_API_KEY=b18a088feb147e7535796e62ad33fc42 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"</p>
 <p>This will install the YUM packages for the Datadog Agent and will prompt you for your password.<br /> If the Agent is not already installed on your machine and you don't want it to start automatically after the installation, just prepend&nbsp;</p>
-<p>DD_INSTALL_ONLY=true</p>
-<p>&nbsp;to the above script before running it.</p>
-<p>Run:</p>
-<p>sudo DD_API_KEY=b18a088feb147e7535796e62ad33fc42 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"</p>
-<p>-&gt; Running transaction check</p>
-<p>---&gt; Package datadog-agent.x86_64 1:6.15.1-1 will be installed</p>
-<p>--&gt; Finished Dependency Resolution</p>
-<p>Dependencies Resolved</p>
-<p>================================================================================</p>
-<p>&nbsp;Package&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Arch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Repository&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Size</p>
-<p>================================================================================</p>
-<p>Installing:</p>
-<p>&nbsp;datadog-agent&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x86_64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1:6.15.1-1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; datadog&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 161 M</p>
-<p>&nbsp;</p>
-<p>Stop, Start and check status of &nbsp;Datadog Agent using:</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; systemctl start/stop datadog-agent</p>
-<p>&nbsp;systemctl status datadog-agent</p>
-<p>datadog-agent.service - Datadog Agent</p>
-<p>&nbsp;&nbsp; Loaded: loaded (/usr/lib/systemd/system/datadog-agent.service; enabled; vendor preset: disabled)</p>
-<p>&nbsp;&nbsp; Active: active (running) since Mon 2019-12-16 20:37:16 EST; 4min 32s ago</p>
-<p>&nbsp;Main PID: 5784 (agent)</p>
+<p>DD_INSTALL_ONLY=true<br>
+&nbsp;to the above script before running it.<br>
+&nbsp;Run:<br>
+&nbsp;sudo DD_API_KEY<my_DatadogAPIKey> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"</p>
+----&gt; Running transaction check<br>
+----&gt; Package datadog-agent.x86_64 1:6.15.1-1 will be installed<br>
+----&gt; Finished Dependency Resolution<br>
+Dependencies Resolved<br>
+<p>================================================================================<br>
+&nbsp;Package&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Arch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Repository&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Size<br>
+================================================================================<br>
+<p>Installing:<br>
+&nbsp;datadog-agent&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x86_64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1:6.15.1-1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; datadog&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 161 M</p>
+&nbsp;<br>
+<p>Stop, Start and check status of &nbsp;Datadog Agent using:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; systemctl start/stop datadog-agent<br>
+&nbsp;systemctl status datadog-agent<br>
+&nbsp;datadog-agent.service - Datadog Agent<br>
+&nbsp;&nbsp; Loaded: loaded (/usr/lib/systemd/system/datadog-agent.service; enabled; vendor preset: disabled)<br>
+&nbsp;&nbsp; Active: active (running) since Mon 2019-12-16 20:37:16 EST; 4min 32s ago<br>
+&nbsp;Main PID: 5784 (agent)</p>
 <br>
 <p>&nbsp;</p>
 <p><strong><u>Helpful tip for use in the next steps:</u></strong></p>
