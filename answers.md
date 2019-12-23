@@ -173,3 +173,8 @@ To generate MySQL load for graphing purposes:<br>
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-9-image1.jpg)
 
 <br>
+<p> Observe collected data</p>
+
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-9-image2.jpg)
+
+<br>
