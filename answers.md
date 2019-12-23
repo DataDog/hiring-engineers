@@ -6,9 +6,7 @@ Your answers to the questions go here.
  
   <br>
      <![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-1-image1.jpg)
-  <br><br><br>
-     <![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-2-image1.jpg)
-  <br><br><br>
+  <br><br>br>
  
   These instructions are for CentOS/RHEL 6 and above.                                                                    
   <br>Use our easy one-step install.                                                                                                                                                                                                                  
