@@ -37,8 +37,10 @@ Your answers to the questions go here.
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>Your agent is now reporting to Datadog cloud.&nbsp;</p>
-<p>Because my laptop gets shutdown frequently, I will create some machines in AWS which will allow continuous data flow.</p>
-<p>The default Datadog setup will allow access to numerous AWS services, most with read-only access.</p>
-<p>&nbsp;</p>
+<p>Your agent is now reporting to Datadog cloud.&nbsp;<br>
+Because my laptop gets shutdown frequently, I will create some machines in AWS which will allow continuous data flow.<br>
+The default Datadog setup will allow access to numerous AWS services, most with read-only access.<br>
+<br><br>
 <p>Next setup AWS access</p>
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-4-image1.jpg)
+<br><br>
