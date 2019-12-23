@@ -94,14 +94,15 @@ Create new role using:</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>Showing successful initial integration with AWS:</p>
-MISSING IMAGE<br>
+MISSING IMAGE
+
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-5-image1.jpg)
 
 
-<p><strong><u>Helpful tip for use in the next steps:</u></strong></p>
-<p>Validate your agent config in each task below using:</p>
-<p>&ldquo;sudo -u dd-agent -- datadog-agent check &lt;your agent name&gt;&rdquo;</p>
-<p><strong>Example:</strong>&nbsp;sudo -u dd-agent -- datadog-agent check elastic</p>
+<p><strong><u>Helpful tip for use in the next steps:</u></strong><br>
+Validate your agent config in each task below using:<br>
+&ldquo;sudo -u dd-agent -- datadog-agent check &lt;your agent name&gt;&rdquo;<br>
+<strong>Example:</strong>&nbsp;sudo -u dd-agent -- datadog-agent check elastic<br>
 <p>&nbsp;</p>
 <p><strong>Data Collection</strong><br>
 <strong>&nbsp;</strong><br>
