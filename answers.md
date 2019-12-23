@@ -112,7 +112,7 @@ Edit main agent config file:<br>
 &nbsp;Add:<br>
 &nbsp;&nbsp;hostname: node1.YYYYY.local<br>
 <p>tags:<br>
-&nbsp; - environment:laptop_vm<br>
+&nbsp; - environment:AWS_vm<br>
 &nbsp; - ostype:centos<br>
 &nbsp;Uncomment<br>
 &nbsp;histogram_aggregates:<br>
