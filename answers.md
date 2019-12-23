@@ -41,7 +41,35 @@ Your answers to the questions go here.
 Because my laptop gets shutdown frequently, I will create some machines in AWS which will allow continuous data flow.<br>
 The default Datadog setup will allow access to numerous AWS services, most with read-only access.<br>
 <br><br>
-<p>Next setup AWS access</p>
+<p>Next setup AWS access for Datadog</p>
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-4-image1.jpg)
-<br><br>
+<br><br><br>
+<br<>br><br>
+<p>Connect Datadog to your AWS account to automatically track and tag your EC2 instances, and report on all your Cloudwatch metrics.</p>
+<p>Enter AWS credentials for each of your AWS accounts &mdash; you can find them&nbsp;<a href="https://aws-portal.amazon.com/gp/aws/developer/account/index.html?action=access-key">here</a>. Note that these credentials only require read-only access to your AWS account.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Connect to Amazon Web Services (AWS) in order to:</p>
+<ul>
+<li>See automatic AWS status updates in your stream</li>
+<li>Get Cloudwatch metrics for EC2 hosts without installing the Agent</li>
+<li>Tag your EC2 hosts with EC2-specific information (e.g. availability zone)</li>
+<li>Get Cloudwatch metrics for other services: ELB, RDS, EBS, AutoScaling, DynamoDB, ElastiCache, CloudFront, CloudSearch, Kinesis, Lambda, OpsWorks, Redshift, Route53, SQS, and SNS</li>
+<li>See EC2 scheduled maintenance events in your stream</li>
+</ul>
+<p>&nbsp;</p>
+<p>Create linkage from your AWS account to Data Dog AWS account.</p>
+<p>Create new role using:</p>
+<ul>
+<li>Data Dog AWS ID: 464622532012</li>
+<li>AWS External ID: &lt;my aws external id&gt;</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Showing successful initial integration with AWS:</p>
+<br>
+
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-5-image1.jpg)
+<br><br><br>
