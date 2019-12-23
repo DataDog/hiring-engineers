@@ -109,21 +109,22 @@ MISSING IMAGE<br>
 <strong><u>Metric Collection Tasks</u></strong><br>
 <p><strong>Task1</strong><br>
 Edit main agent config file:<br>
-sudo vi /etc/datadog-agent/datadog.yaml<br>
-Add:<br>
-hostname: node1.YYYYY.local<br>
-<p>tags:</p>
-<p>&nbsp; - environment:laptop_vm</p>
-<p>&nbsp; - ostype:centos</p>
-<p>Uncomment</p>
-<p>histogram_aggregates:</p>
-<p>&nbsp; - max</p>
-<p>&nbsp; - median</p>
-<p>&nbsp; - avg</p>
-<p>&nbsp; - count</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>Observe in Datadog gui</p>
+&nbsp;&nbsp;sudo vi /etc/datadog-agent/datadog.yaml<br>
+&nbsp;Add:<br>
+&nbsp;&nbsp;hostname: node1.YYYYY.local<br>
+<p>tags:<br>
+&nbsp; - environment:laptop_vm<br>
+&nbsp; - ostype:centos<br>
+&nbsp;Uncomment<br>
+&nbsp;histogram_aggregates:<br>
+&nbsp; - max<br>
+&nbsp; - median<br>
+&nbsp; - avg<br>
+&nbsp; - count<br>
+&nbsp;<br>
+&nbsp;<br>
+  </p>
+Observe in Datadog gui<br>
 <p>&nbsp;</p>
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-6-image1.jpg)
