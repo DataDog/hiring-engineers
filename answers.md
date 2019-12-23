@@ -127,3 +127,37 @@ Observe collected data in Datadog gui<br>
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-6-image1.jpg)
 
+<p><strong>Task2: </strong></p>
+<p>Install a local database and setup dd-agent to monitor and add tags.</p>
+<p>Selected MySQL.</p>
+<p>Ran MySQL setup commands to create datadog user with replication and performance metric collection permissions.</p>
+<p>&nbsp;</p>
+<p>Define MySQL user for Datadog agent to utilize.</p>
+<p>Then edit file /etc/datadog-agent/conf.d/mysql.d/conf.yaml to contain the credentials, tags and optionally any custom queries to perform.</p>
+<p>Example:</p>
+<p>init_config:</p>
+<p>&nbsp;</p>
+<p>instances:</p>
+<p>&nbsp; - server: 127.0.0.1</p>
+<p>&nbsp;&nbsp;&nbsp; user: datadog</p>
+<p>&nbsp;&nbsp;&nbsp; pass: datadog</p>
+<p>&nbsp;&nbsp;&nbsp; port: 3306</p>
+<p>&nbsp;&nbsp;&nbsp; options:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; replication: false</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; galera_cluster: true</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra_status_metrics: true</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra_innodb_metrics: true</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra_performance_metrics: true</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; schema_size_metrics: false</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disable_innodb_metrics: false</p>
+<p>&nbsp;</p>
+<p>logs:</p>
+<p>&nbsp; - type: file</p>
+<p>&nbsp;&nbsp;&nbsp; path: /opt/mysql/logs/node1.local.err</p>
+<p>&nbsp;&nbsp;&nbsp; source: mysql</p>
+<p>&nbsp;&nbsp;&nbsp; sourcecategory: database</p>
+<p>&nbsp;&nbsp;&nbsp; service: mysql</p>
+<p>&nbsp;</p>
+<p>tags:</p>
+<p>&nbsp; - BillYYYY:Mysql_VM</p>
+<p>&nbsp; - OSType:CentOS</p>
