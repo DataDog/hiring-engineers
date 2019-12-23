@@ -187,7 +187,7 @@ To generate MySQL load for graphing purposes:<br>
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.<br>
 Reference <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7">Here</a><br>
 <br>
-My python my_metric script;<br>
+<p>&nbsp; &nbsp; <strong>My python my_metric script</strong></p>
 &nbsp;&nbsp;from datadog import initialize, statsd<br>
 &nbsp;&nbsp;import time,random<br>
 &nbsp;&nbsp;from random import *<br>
@@ -196,9 +196,8 @@ My python my_metric script;<br>
 &nbsp;&nbsp;&nbsp;&nbsp; 'statsd_host':'127.0.0.1',<br>
 &nbsp;&nbsp;&nbsp;&nbsp; 'statsd_port':8125<br>
 &nbsp;&nbsp;}<br>
-<br>
 &nbsp;&nbsp;initialize(**options)<br>
-<br><br>
+<br>
 &nbsp;&nbsp;i=0<br>
 &nbsp;&nbsp;while(1):<br>
 &nbsp;&nbsp;&nbsp; i += 1<br>
