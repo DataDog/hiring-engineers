@@ -127,5 +127,5 @@ MISSING IMAGE<br>
 <p>Observe in Datadog gui</p>
 <p>&nbsp;</p>
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-1-image1.jpg)
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-6-image1.jpg)
 
