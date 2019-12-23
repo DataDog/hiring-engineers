@@ -117,10 +117,10 @@ Edit main agent config file:<br>
 &nbsp; - ostype:centos<br>
 &nbsp;Uncomment<br>
 &nbsp;histogram_aggregates:<br>
-&nbsp; - max<br>
-&nbsp; - median<br>
-&nbsp; - avg<br>
-&nbsp; - count<br>
+&nbsp;&nbsp; - max<br>
+&nbsp;&nbsp; - median<br>
+&nbsp;&nbsp; - avg<br>
+&nbsp;&nbsp; - count<br>
 &nbsp;<br>
 &nbsp;<br>
   </p>
