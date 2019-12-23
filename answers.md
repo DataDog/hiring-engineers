@@ -191,13 +191,11 @@ Reference <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=
 &nbsp;&nbsp;from datadog import initialize, statsd<br>
 &nbsp;&nbsp;import time,random<br>
 &nbsp;&nbsp;from random import *<br>
-<br>
 &nbsp;&nbsp;options = {<br>
 &nbsp;&nbsp;&nbsp;&nbsp; 'statsd_host':'127.0.0.1',<br>
 &nbsp;&nbsp;&nbsp;&nbsp; 'statsd_port':8125<br>
 &nbsp;&nbsp;}<br>
 &nbsp;&nbsp;initialize(**options)<br>
-<br>
 &nbsp;&nbsp;i=0<br>
 &nbsp;&nbsp;while(1):<br>
 &nbsp;&nbsp;&nbsp; i += 1<br>
