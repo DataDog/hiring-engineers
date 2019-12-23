@@ -32,6 +32,33 @@ Your answers to the questions go here.
 <p>&nbsp;&nbsp; Loaded: loaded (/usr/lib/systemd/system/datadog-agent.service; enabled; vendor preset: disabled)</p>
 <p>&nbsp;&nbsp; Active: active (running) since Mon 2019-12-16 20:37:16 EST; 4min 32s ago</p>
 <p>&nbsp;Main PID: 5784 (agent)</p>
+<br>
+<p>&nbsp;</p>
+<p><strong><u>Helpful tip for use in the next steps:</u></strong></p>
+<p>Validate your agent config in each task below using:</p>
+<p>&ldquo;sudo -u dd-agent -- datadog-agent check &lt;your agent name&gt;&rdquo;</p>
+<p>&nbsp;</p>
+<p><span style="text-decoration: underline;">Example:</span>&nbsp; sudo -u dd-agent -- datadog-agent check elastic</p>
+<p>&nbsp;</p>
+<p><strong>Data Collection (master agent setup)</strong></p>
+<p>&nbsp;</p>
+<p style="padding-left: 30px;"><strong><u>Metric Collection Tasks</u></strong></p>
+<p style="padding-left: 30px;"><strong>Task1</strong></p>
+<p style="padding-left: 30px;">Edit main agent config file:</p>
+<p style="padding-left: 30px;">sudo vi /etc/datadog-agent/datadog.yaml</p>
+<p style="padding-left: 30px;">Add:</p>
+<p style="padding-left: 30px;">hostname: node1.YYYYY.local</p>
+<p style="padding-left: 30px;">tags:</p>
+<p style="padding-left: 30px;">&nbsp; - environment:laptop_vm</p>
+<p style="padding-left: 30px;">&nbsp; - ostype:centos</p>
+<p style="padding-left: 30px;">Uncomment</p>
+<p style="padding-left: 30px;">histogram_aggregates:</p>
+<p style="padding-left: 30px;">&nbsp; - max</p>
+<p style="padding-left: 30px;">&nbsp; - median</p>
+<p style="padding-left: 30px;">&nbsp; - avg</p>
+<p style="padding-left: 30px;">&nbsp; - count</p>
+<p>&nbsp;</p>
+<p>Observe results in Datadog gui</p>
 <p>&nbsp;&nbsp; CGroup: /system.slice/datadog-agent.service</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └─5784 /opt/datadog-agent/bin/agent/agent run -p /opt/datadog-agent/run/a..</p>
 <p>&nbsp;</p>
