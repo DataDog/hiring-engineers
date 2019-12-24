@@ -131,12 +131,11 @@ Observe collected data in Datadog gui<br>
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-6-image1.jpg)
 
-<p><strong>Task2: </strong></p>
-Install a local database and setup dd-agent to monitor and add tags.<br>
-Selected MySQL.<br>
-&nbsp;&nbsp;I have run MySQL setup commands to create datadog user with replication and performance metric collection permissions.<br>
+<strong>Task2: </strong>
+Install a local database and setup dd-agent to monitor and add tags. I selected MySQL.<br>
+There are MySQL setup commands to create datadog user with replication and performance metric collection permissions.<br>
 <br>
-<a href="https://app.datadoghq.com/account/settings#integrations/mysql">Define MySQL user for Datadog agent to utilize</a><br>
+<a href="https://app.datadoghq.com/account/settings#integrations/mysql">Setup MySQL user for Datadog agent to utilize (click here)</a><br>
 Then edit file /etc/datadog-agent/conf.d/mysql.d/conf.yaml to contain the credentials, tags and optionally any custom queries to perform.<br>
 &nbsp;&nbsp;Example:<br>
 &nbsp;&nbsp;init_config:<br>
