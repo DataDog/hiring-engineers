@@ -97,8 +97,7 @@ Create new role using:</p>
 <li>Data Dog AWS ID: 464622532012</li>
 <li>AWS External ID: &lt;my aws external id&gt;</li>
 </ul>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+
 Showing successful initial integration with AWS:<br>
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-5-image1.jpg)
