@@ -286,7 +286,7 @@ curl&nbsp; -X POST \<br>
 <p>&nbsp;</p>
 <p>The lines which show filtering per hostname are:<br>
 &nbsp;&ldquo;<strong> q": "sum:my_metric.gauge{host:aws.YYYYY.localdomain} by {host}.rollup(sum), 3600",</strong><br>
-&nbsp;&ldquo;<strong> q": "max:mysql.performance.queries{host:aws.YYYYY.localdomain} by {host}" &ldquo;<strong></p>
+&nbsp;&ldquo;<strong> q": "max:mysql.performance.queries{host:aws.YYYYY.localdomain} by {host}" &ldquo;</strong></p>
 <p>&nbsp;</p>
 <p>Here is my curl script showing it is specifically filtered on my AWS host.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>- ----Curl script ---- </strong><br>
