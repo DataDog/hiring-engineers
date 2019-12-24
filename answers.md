@@ -283,17 +283,16 @@ curl&nbsp; -X POST \<br>
 <br>
 <br>
 <br>
-<p><strong>My specific curl script example:</strong></p>
+<strong>My specific curl script example:</strong><br>
 <p>&nbsp;</p>
-<p>The lines which show filtering per hostname are:</p>
-<p>q": "sum:my_metric.gauge{host:aws.YYYYY.localdomain} by {host}.rollup(sum), 3600",</p>
-<p>&nbsp;&nbsp; and</p>
-<p>&ldquo;q": "max:mysql.performance.queries{host:aws.YYYYY.localdomain} by {host}" &ldquo;</p>
+<p>The lines which show filtering per hostname are:<br>
+&nbsp;&ldquo; q": "sum:my_metric.gauge{host:aws.YYYYY.localdomain} by {host}.rollup(sum), 3600",<br>
+&nbsp;&ldquo; q": "max:mysql.performance.queries{host:aws.YYYYY.localdomain} by {host}" &ldquo;</p>
 <p>&nbsp;</p>
-<p>Here is my curl script showing it is specifically filtered on my AWS host.</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>- ----Curl script ---- </strong></p>
-<p>api_key=b18a088feb147e7535796e62ad33fc42</p>
-<p>app_key=97b83f906689b65bbd10e57f60529c56d539947e</p>
+<p>Here is my curl script showing it is specifically filtered on my AWS host.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>- ----Curl script ---- </strong><br>
+api_key=b18a088feb147e7535796e62ad33fc42<br>
+app_key=97b83f906689b65bbd10e57f60529c56d539947e<br>
 <p>&nbsp;</p>
 <p>curl&nbsp; -X POST \</p>
 <p>-H "Content-type: application/json" \</p>
