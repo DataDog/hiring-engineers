@@ -446,8 +446,9 @@ Answer:<br>
 <p>Install flask:</p>
 <p>pip install flask<br /> pip list | grep -i flask<br /> &nbsp;&nbsp; Flask 1.1.1</p>
 <p>Install ddtrace<br /> &nbsp;&nbsp; pip install ddtrace</p>
-<p><br />Start Flask with Datadog trace collections enabled:<br />Using environment variable configuration: DD_TRACE_ANALYTICS_ENABLED=true</p>
-<p>Create unix &ldquo;screen&rdquo; window, run &ldquo;ddtrace-run python employmentTest.py&rdquo;<br /> &nbsp;&nbsp; ddtrace-run python flask_app.py<br /> &nbsp;&nbsp; * Serving Flask app "flask_app" (lazy loading)<br /> &nbsp;&nbsp; * Environment: production<br /> &nbsp;&nbsp; WARNING: This is a development server. Do not use it in a production deployment.<br /> &nbsp;&nbsp; Use a production WSGI server instead.<br /> &nbsp;&nbsp; * Debug mode: off<br /> &nbsp;&nbsp; 2019-12-23 01:37:16,399 - werkzeug - INFO - * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)</p>
+<p><br />
+<ul><li>Start Flask with Datadog trace collections enabled:</li></ul><br />Using environment variable configuration: DD_TRACE_ANALYTICS_ENABLED=true</p>
+<p><ul><li>Create unix &ldquo;screen&rdquo; window, run &ldquo;ddtrace-run python employmentTest.py&rdquo;</li></ul><br /> &nbsp;&nbsp; ddtrace-run python flask_app.py<br /> &nbsp;&nbsp; * Serving Flask app "flask_app" (lazy loading)<br /> &nbsp;&nbsp; * Environment: production<br /> &nbsp;&nbsp; WARNING: This is a development server. Do not use it in a production deployment.<br /> &nbsp;&nbsp; Use a production WSGI server instead.<br /> &nbsp;&nbsp; * Debug mode: off<br /> &nbsp;&nbsp; 2019-12-23 01:37:16,399 - werkzeug - INFO - * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)</p>
 <br>
 <br>
 <strong>Bonus Question:</strong> What is the difference between a Service and a Resource?
