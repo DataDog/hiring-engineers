@@ -223,8 +223,8 @@ To change the collection interval of your check, use <strong>min_collection_inte
 <p><span style="text-decoration: underline;"><strong>Visualizing Data</strong></span></p>
 <strong>Utilize the Datadog API</strong> to create a Timeboard that contains the following visualizations.<hr>
 
-<p>NOTE:</p>
-<p><a href="https://docs.datadoghq.com/getting_started/api/">Datadog recommends using Postman (click here)</a></p>
+<p>NOTE:<br>
+<p><a href="https://docs.datadoghq.com/getting_started/api/">Datadog recommends using Postman (click here)</a>
 <p>&nbsp;However, curl is a suitable alternative noted.</p>
 <p><a href="https://www.datadoghq.com/blog/programmatically-manage-your-datadog-integrations/">Curl skeleton examples (click here)</a></p>
 <p>and</p>
