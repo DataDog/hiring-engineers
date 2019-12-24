@@ -268,9 +268,7 @@ Started with this visualization<br>
 <li>Create curl script as shown with API_KEY and APP_KEY</li>
 </ul>
 <p>See reference: <a href="https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard">https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard</a></p>
-<ul>
-  <li>Ran Curl script as shown <strong> RUN:  sh ./scriptName </strong></li>
-</ul>
+<br>
 <strong>Here is an example curl command:</strong><br>
 api_key=&lt;my_DatadogAPIKey&gt;<br>
 app_key=&lt;my_DatadogAPPKey&gt;<br>
@@ -286,7 +284,9 @@ curl&nbsp; -X POST \<br>
 <br>
 <br>
 <strong>Specific curl script used:</strong><br>
-<p>&nbsp;</p>
+<ul>
+  <li>&nbsp;&nbsp;Ran Curl script as shown <strong> sh ./scriptName </strong></li>
+</ul>
 <p>Calling out the lines which show filtering per hostname are:<br>
 &nbsp;&ldquo;<strong> q": "sum:my_metric.gauge{host:aws.YYYYY.localdomain} by {host}.rollup(sum), 3600",</strong><br>
 &nbsp;&ldquo;<strong> q": "max:mysql.performance.queries{host:aws.YYYYY.localdomain} by {host}" &ldquo;</strong></p>
