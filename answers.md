@@ -467,8 +467,8 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 <br>
 
 <strong>Bonus Question:</strong> What is the difference between a Service and a Resource?<br>
-o	Service: Is an api end point constructed of multiple resources. Typically providing a business value like ordering tickets. The ordering tickets API would then talk to multiple back end sources of authority to determine availability and make a record lock.<br>
-o	Resource: Is the physical or application end point which has monitoring instrumentation (such agents or synthetic transaction testing). Examples would be database, routers, web server, etc.
+o	Service: Is an api end point constructed of multiple sources of authority. Typically providing a business value like ordering tickets. The ordering tickets API would then talk to multiple back end sources of authority to determine availability and make a record lock.<br>
+o	Resource: Refers to one source of authority. Is the physical or application end point which has monitoring instrumentation (such agents or synthetic transaction testing). Examples would be database, routers, web server, etc.
 <br>
 
 <br>
