@@ -410,10 +410,10 @@ Showing solution via screen shots:<br>
 
 <br><br><br>
 
-<strong>Collecting APM Data:</strong>
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+<strong>Collecting APM Data:</strong><br>
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:<br>
 
-from flask import Flask
+<p>from flask import Flask
 import logging
 import sys
 
@@ -441,6 +441,8 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
+    </p>
+    <br><br>
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 Bonus Question: What is the difference between a Service and a Resource?
