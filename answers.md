@@ -5,7 +5,7 @@ Your answers to the questions go here.
   <br>Be sure to specify “Datadog Recruiting Candidate”
  
  ![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-1-image1.jpg)
- ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-2-image1.jpg)
+ ![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-2-image1.jpg)
  
 These instructions are for CentOS/RHEL 6 and above.<br>
 Use our easy one-step install.<br>
@@ -75,7 +75,7 @@ The default Datadog setup will allow access to numerous AWS services, most with 
 Next setup AWS access for Datadog<br>
 
  
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-4-image1.jpg) 
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-4-image1.jpg) 
 
 <br>
 
@@ -100,7 +100,7 @@ Create new role using:</p>
 
 Showing successful initial integration with AWS:<br>
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-5-image1.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-5-image1.jpg)
 
 
 <p><strong><u>Helpful tip for use in the next steps:</u></strong><br>
