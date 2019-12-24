@@ -441,7 +441,10 @@ app <span class="pl-k">=</span> Flask(<span class="pl-c1">__name__</span>)
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 <br>
 Answer:<br>
-<p>Reference: <a href="https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python">https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python</a></p>
+<p>Agent setup reference: <a href="https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python">https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python</a></p>
+<p>&nbsp;</p>
+<p>(Flask)</p>
+<p>Install Python3-dev (<a href="https://github.com/giampaolo/psutil/issues/1143">https://github.com/giampaolo/psutil/issues/1143</a>)</p>
 <p>&nbsp;</p>
 <p>(Flask)</p>
 <p>Install Python3-dev (<a href="https://github.com/giampaolo/psutil/issues/1143">https://github.com/giampaolo/psutil/issues/1143</a>)</p>
@@ -456,6 +459,8 @@ Answer:<br>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pip install ddtrace</p>
 <p>&nbsp;</p>
 <p>Start Flask:</p>
+<p>Via environment variable configuration: <strong>DD_TRACE_ANALYTICS_ENABLED=true&nbsp;</strong></p>
+<p>Create unix &ldquo;screen&rdquo; window, run &ldquo;ddtrace-run python employmentTest.py&rdquo;</p>
 <p>$ ddtrace-run python&nbsp; flask_app.py</p>
 <p>&nbsp;* Serving Flask app "flask_app" (lazy loading)</p>
 <p>&nbsp;* Environment: production</p>
@@ -463,7 +468,6 @@ Answer:<br>
 <p>&nbsp;&nbsp; Use a production WSGI server instead.</p>
 <p>&nbsp;* Debug mode: off</p>
 <p>2019-12-23 01:37:16,399 - werkzeug - INFO -&nbsp; * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)</p>
-
 <br>
 Bonus Question: What is the difference between a Service and a Resource?
 
