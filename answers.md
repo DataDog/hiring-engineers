@@ -267,7 +267,7 @@ Instructions:<br>
 </ul>
 <p>See reference: <a href="https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard">https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard</a></p>
 <ul>
-<li>Ran Curl script as shown (sh ./scriptName) :</li>
+  <li>Ran Curl script as shown <string> RUN:  sh ./scriptName) </strong></li>
 </ul>
 <p><strong>Example skeleton curl command:</strong><br>
 api_key=b18a088feb147e7535796e62ad33fc42<br>
@@ -278,6 +278,6 @@ curl&nbsp; -X POST \<br>
 -H "DD-APPLICATION-KEY: ${app_key}" \<br>
 -d '{<br>
 &nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt;&lt;&lt; dashboard json goes here &gt;&gt;&gt;&gt;<br>
-<p>}' \<br>
+<p>}' \ 
 "https://api.datadoghq.com/api/v1/dashboard"</p>
 <br>
