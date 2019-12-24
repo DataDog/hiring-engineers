@@ -47,7 +47,7 @@ Metric Collection Tasks<br>
 <p style="padding-left: 30px;"><strong>Task1</strong><br>
 Edit main agent config file:<br>
 sudo vi /etc/datadog-agent/datadog.yaml<br>
-Add:<br>
+Add:<br><br>
 hostname: node1.YYYYY.local<br>
 tags:<br>
 - environment:laptop_vm<br>
