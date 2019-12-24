@@ -444,8 +444,8 @@ Answer:<br>
 <p>Agent setup reference: <a href="https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python">https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python</a></p>
 <br>
 <p>Install flask:</p>
-<p>pip install flask<br /> pip list | grep -i flask<br /> Flask 1.1.1</p>
-<p>Install ddtrace<br /> pip install ddtrace</p>
+<p>pip install flask<br /> pip list | grep -i flask<br /> &npsp;&npsp; Flask 1.1.1</p>
+<p>Install ddtrace<br /> &npsp;&npsp; pip install ddtrace</p>
 <p><br />Start Flask with Datadog trace collections enabled:<br />Using environment variable configuration: DD_TRACE_ANALYTICS_ENABLED=true</p>
 <p>Create unix &ldquo;screen&rdquo; window, run &ldquo;ddtrace-run python employmentTest.py&rdquo;<br /> ddtrace-run python flask_app.py<br /> * Serving Flask app "flask_app" (lazy loading)<br /> * Environment: production<br /> WARNING: This is a development server. Do not use it in a production deployment.<br /> Use a production WSGI server instead.<br /> * Debug mode: off<br /> 2019-12-23 01:37:16,399 - werkzeug - INFO - * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)</p>
 <br>
