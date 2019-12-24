@@ -14,15 +14,15 @@ This will install the YUM packages for the Datadog Agent and will prompt you for
 DD_INSTALL_ONLY=true<br>
 &nbsp;to the above script before running it.<br>
 &nbsp;Run:<br>
-&nbsp;sudo DD_API_KEY=&lt;my_DatadogAPIKey&gt; bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"</p>
+&nbsp;sudo DD_API_KEY=&lt;my_DatadogAPIKey&gt; bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"<br>
 ----&gt; Running transaction check<br>
 ----&gt; Package datadog-agent.x86_64 1:6.15.1-1 will be installed<br>
 ----&gt; Finished Dependency Resolution<br>
 Dependencies Resolved<br>
-<p>=============================================================================<br>
+=============================================================================<br>
 &nbsp;Package&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Arch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Repository&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Size<br>
 =============================================================================<br>
-<p>Installing:<br>
+Installing:<br>
 &nbsp;datadog-agent&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x86_64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1:6.15.1-1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; datadog&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 161 M</p>
 &nbsp;<br>
 <p>Stop, Start and check status of &nbsp;Datadog Agent using:<br>
