@@ -26,7 +26,7 @@ Installing:<br>
 &nbsp;<br>
 Stop, Start and check status of &nbsp;Datadog Agent using:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sudo systemctl start/stop datadog-agent<br><br>
-&nbsp;systemctl status datadog-agent<br>
+&nbsp;sudo systemctl status datadog-agent<br>
 &nbsp;datadog-agent.service - Datadog Agent<br>
 &nbsp;&nbsp; Loaded: loaded (/usr/lib/systemd/system/datadog-agent.service; enabled; vendor preset: disabled)<br>
 &nbsp;&nbsp; Active: active (running) since Mon 2019-12-16 20:37:16 EST; 4min 32s ago<br>
