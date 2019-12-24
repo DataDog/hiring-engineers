@@ -251,7 +251,7 @@ Utilize the Datadog API to create a Timeboard that contains:<br>
 <br>
 <br>
 
-<p><strong>My API Create procedure used:</strong></p>
+<strong>My API Create procedure used:</strong><br>
 <ul>
 <li>Created dashboard in Datadog GUI first.</li>
 </ul>
