@@ -247,4 +247,37 @@ Instructions:<br>
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg12-image1.jpg)
  
- <br>
+<br>
+<br>
+<br>
+
+<p><strong>My API Create procedure used:</strong></p>
+<ul>
+<li>Created dashboard in Datadog GUI first.</li>
+</ul>
+<p>It&rsquo;s easier to use a gui to build the desired visualizations, then export as json, and edit the json as desired.</p>
+<ul>
+<li>Once exported as json it is one single line.</li>
+<li>Install Linux tool &ldquo;jq&rdquo; to format the single json line into human readable multi-line json</li>
+</ul>
+<p>cat SavedSingleLineDashboardJsonFile.json | jq . &gt; HumanReadableJson.json</p>
+<ul>
+<li>Edit file &ldquo;HumanReadableJson.json &ldquo; appropriately to specify custom values and remove attributes like &ldquo;id&rdquo;</li>
+<li>Create curl script as shown with API_KEY and APP_KEY</li>
+</ul>
+<p>See reference: <a href="https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard">https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard</a></p>
+<ul>
+<li>Ran Curl script as shown (sh ./scriptName) :</li>
+</ul>
+<p><strong>Example skeleton curl command:</strong></p>
+<p>api_key=b18a088feb147e7535796e62ad33fc42</p>
+<p>app_key=97b83f906689b65bbd10e57f60529c56d539947e</p>
+<p>&nbsp;</p>
+<p>curl&nbsp; -X POST \</p>
+<p>-H "Content-type: application/json" \</p>
+<p>-H "DD-API-KEY: ${api_key}" \</p>
+<p>-H "DD-APPLICATION-KEY: ${app_key}" \</p>
+<p>-d '{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt;&lt;&lt; dashboard json goes here &gt;&gt;&gt;&gt;</p>
+<p>}' \</p>
+<p>"https://api.datadoghq.com/api/v1/dashboard"</p>
