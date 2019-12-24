@@ -269,15 +269,16 @@ Instructions:<br>
 <ul>
 <li>Ran Curl script as shown (sh ./scriptName) :</li>
 </ul>
-<p><strong>Example skeleton curl command:</strong></p>
-<p>api_key=b18a088feb147e7535796e62ad33fc42</p>
-<p>app_key=97b83f906689b65bbd10e57f60529c56d539947e</p>
+<p><strong>Example skeleton curl command:</strong><br>
+api_key=b18a088feb147e7535796e62ad33fc42<br>
+app_key=97b83f906689b65bbd10e57f60529c56d539947e<br>
 <p>&nbsp;</p>
-<p>curl&nbsp; -X POST \</p>
-<p>-H "Content-type: application/json" \</p>
-<p>-H "DD-API-KEY: ${api_key}" \</p>
-<p>-H "DD-APPLICATION-KEY: ${app_key}" \</p>
-<p>-d '{</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt;&lt;&lt; dashboard json goes here &gt;&gt;&gt;&gt;</p>
+curl&nbsp; -X POST \<br>
+-H "Content-type: application/json" \<br>
+-H "DD-API-KEY: ${api_key}" \<br>
+-H "DD-APPLICATION-KEY: ${app_key}" \<br>
+-d '{<br>
+&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt;&lt;&lt; dashboard json goes here &gt;&gt;&gt;&gt;<br>
 <p>}' \</p>
-<p>"https://api.datadoghq.com/api/v1/dashboard"</p>
+"https://api.datadoghq.com/api/v1/dashboard"</p>
+<br>
