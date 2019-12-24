@@ -25,21 +25,23 @@ Dependencies Resolved<br>
 Installing:<br>
 &nbsp;datadog-agent&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x86_64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1:6.15.1-1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; datadog&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 161 M</p>
 &nbsp;<br>
-<p>Stop, Start and check status of &nbsp;Datadog Agent using:<br>
+Stop, Start and check status of &nbsp;Datadog Agent using:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; systemctl start/stop datadog-agent<br>
 &nbsp;systemctl status datadog-agent<br>
 &nbsp;datadog-agent.service - Datadog Agent<br>
 &nbsp;&nbsp; Loaded: loaded (/usr/lib/systemd/system/datadog-agent.service; enabled; vendor preset: disabled)<br>
 &nbsp;&nbsp; Active: active (running) since Mon 2019-12-16 20:37:16 EST; 4min 32s ago<br>
-&nbsp;Main PID: 5784 (agent)</p>
+&nbsp;Main PID: 5784 (agent)<br>
 <br>
 <p>&nbsp;</p>
-<p><strong><u>Helpful tip for use in the next steps:</u></strong><br>
+<br>
+<strong><u>Helpful tip for use in the next steps:</u></strong><br>
 &nbsp;&nbsp;Validate your agent config in each task below using:<br>
 &nbsp;&nbsp;&ldquo;sudo -u dd-agent -- datadog-agent check &lt;your agent name&gt;&rdquo;<br>
-&nbsp;</p>
-<p><span style="text-decoration: underline;">Example:</span>&nbsp; sudo -u dd-agent -- datadog-agent check elastic</p>
-<p>&nbsp;</p>
+&nbsp;<hr>
+<hr>
+<span style="text-decoration: underline;">Example:</span>&nbsp; sudo -u dd-agent -- datadog-agent check elastic</p>
+<p>&nbsp;<hr>
 <strong>Data Collection (master agent setup local laptop vm)</strong><br>
 <p style="padding-left: 30px;"><strong><u>Metric Collection Tasks</u></strong><br>
 <p style="padding-left: 30px;"><strong>Task1</strong><br>
