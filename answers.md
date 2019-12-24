@@ -229,7 +229,7 @@ Curl is a suitable alternative noted here: &nbsp;<a href="https://www.datadoghq.
 <a href="https://docs.datadoghq.com/api/?lang=bash#comments">https://docs.datadoghq.com/api/?lang=bash#comments</a></p>
 <br>
 Instructions:<br>
-<p>Utilize the Datadog API to create a Timeboard that contains:</p>
+Utilize the Datadog API to create a Timeboard that contains:<br>
 <ul>
 <li>Your custom metric scoped over your host.</li>
 <li>Any metric from the Integration on your Database with the anomaly function applied.</li>
