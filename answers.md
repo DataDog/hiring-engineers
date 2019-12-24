@@ -260,7 +260,7 @@ Instructions:<br>
 <li>Once exported as json it is one single line.</li>
 <li>Install Linux tool &ldquo;jq&rdquo; to format the single json line into human readable multi-line json</li>
 </ul>
-<p><strong>cat SavedSingleLineDashboardJsonFile.json | jq . &gt; HumanReadableJson.json</strong></p>
+&nbsp;&nbsp;<p><strong>RUN: cat SavedSingleLineDashboardJsonFile.json | jq . &gt; HumanReadableJson.json</strong></p>
 <ul>
 <li>Edit file &ldquo;HumanReadableJson.json &ldquo; appropriately to specify custom values and remove attributes like &ldquo;id&rdquo;</li>
 <li>Create curl script as shown with API_KEY and APP_KEY</li>
