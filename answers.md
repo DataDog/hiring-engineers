@@ -214,8 +214,7 @@ Reference <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/my_metric.jpg)
  
  <br>
-
-<p>Bonus: How do you change the agent collection interval?<br>
+<p>Bonus: <br>How do you change the agent collection interval?<br>
 <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval">Collection interval</a>
 To change the collection interval of your check, use <strong>min_collection_interval</strong> in the configuration file. The default value is 15 which means the check method from your class is invoked with the same interval as the rest of the integrations on the Agent.</p>
 
