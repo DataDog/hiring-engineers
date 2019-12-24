@@ -439,6 +439,30 @@ app <span class="pl-k">=</span> Flask(<span class="pl-c1">__name__</span>)
     app.run(<span class="pl-v">host</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>0.0.0.0<span class="pl-pds">'</span></span>, <span class="pl-v">port</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>5050<span class="pl-pds">'</span></span>)</pre>
 
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+<br>
+Answer:<br>
+<p>Reference: <a href="https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python">https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python</a></p>
+<p>&nbsp;</p>
+<p>(Flask)</p>
+<p>Install Python3-dev (<a href="https://github.com/giampaolo/psutil/issues/1143">https://github.com/giampaolo/psutil/issues/1143</a>)</p>
+<p>&nbsp;</p>
+<p>Install flask:</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;sudo yum install python-flask-0.10.1-4.el7.noarch</p>
+<p>pip install flask</p>
+<p>pip list | grep -i flask</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Flask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.1.1</p>
+<p>&nbsp;</p>
+<p>Install ddtrace</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pip install ddtrace</p>
+<p>&nbsp;</p>
+<p>Start Flask:</p>
+<p>$ ddtrace-run python&nbsp; flask_app.py</p>
+<p>&nbsp;* Serving Flask app "flask_app" (lazy loading)</p>
+<p>&nbsp;* Environment: production</p>
+<p>&nbsp;&nbsp; WARNING: This is a development server. Do not use it in a production deployment.</p>
+<p>&nbsp;&nbsp; Use a production WSGI server instead.</p>
+<p>&nbsp;* Debug mode: off</p>
+<p>2019-12-23 01:37:16,399 - werkzeug - INFO -&nbsp; * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)</p>
 
 <br>
 Bonus Question: What is the difference between a Service and a Resource?
