@@ -248,7 +248,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:<b
 For most, it&rsquo;s easier to use a gui to build the desired visualizations, then export as json, and edit the json as desired.<br>
 Started with this Timeboard<br>
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg12-image1.jpg)
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-12-image1.jpg)
  
 <br>
 <br>
