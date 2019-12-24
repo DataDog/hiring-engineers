@@ -133,7 +133,7 @@ Observe collected data in Datadog gui<br>
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-6-image1.jpg)
 
 <p><strong>Task2: </strong></p>
-<p>Install a local database and setup dd-agent to monitor and add tags.<br>
+Install a local database and setup dd-agent to monitor and add tags.<br>
 Selected MySQL.<br>
 &nbsp;&nbsp;I have run MySQL setup commands to create datadog user with replication and performance metric collection permissions.<br>
 <br>
@@ -170,7 +170,7 @@ Then edit file /etc/datadog-agent/conf.d/mysql.d/conf.yaml to contain the creden
 
 <p>Extra setup step:<br>
 To generate MySQL load for graphing purposes:<br>
-<p>Create small MySQL database, repeatedly run a simple query.<br />while true<br />do<br />&nbsp; &nbsp;mysql -uroot --password="" &lt; ~/mysql_query.sql &gt; /dev/null<br />&nbsp; &nbsp;sleep (45)<br />done<br /><br />where file &ldquo;query.sql&rdquo; file contains: &ldquo;select * from datadog.tutorials_tbl;&rdquo;</p>
+Create small MySQL database, repeatedly run a simple query.<br />while true<br />do<br />&nbsp; &nbsp;mysql -uroot --password="" &lt; ~/mysql_query.sql &gt; /dev/null<br />&nbsp; &nbsp;sleep (45)<br />done<br /><br />where file &ldquo;query.sql&rdquo; file contains: &ldquo;select * from datadog.tutorials_tbl;&rdquo;<br>
 
 <p>Once the agent is operational, be sure to add the pre-built MySQL dashboards located under &ldquo;Integrations&rdquo;</p>
 
