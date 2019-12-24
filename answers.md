@@ -442,34 +442,15 @@ Note: Using both ddtrace-run and manually inserting the Middleware has been know
 <br>
 Answer:<br>
 <p>Agent setup reference: <a href="https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python">https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python</a></p>
-<p>&nbsp;</p>
-<p>(Flask)</p>
-<p>Install Python3-dev (<a href="https://github.com/giampaolo/psutil/issues/1143">https://github.com/giampaolo/psutil/issues/1143</a>)</p>
-<p>&nbsp;</p>
-<p>(Flask)</p>
-<p>Install Python3-dev (<a href="https://github.com/giampaolo/psutil/issues/1143">https://github.com/giampaolo/psutil/issues/1143</a>)</p>
-<p>&nbsp;</p>
-<p>Install flask:</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;sudo yum install python-flask-0.10.1-4.el7.noarch</p>
-<p>pip install flask</p>
-<p>pip list | grep -i flask</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Flask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.1.1</p>
-<p>&nbsp;</p>
-<p>Install ddtrace</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pip install ddtrace</p>
-<p>&nbsp;</p>
-<p>Start Flask:</p>
-<p>Via environment variable configuration: <strong>DD_TRACE_ANALYTICS_ENABLED=true&nbsp;</strong></p>
-<p>Create unix &ldquo;screen&rdquo; window, run &ldquo;ddtrace-run python employmentTest.py&rdquo;</p>
-<p>$ ddtrace-run python&nbsp; flask_app.py</p>
-<p>&nbsp;* Serving Flask app "flask_app" (lazy loading)</p>
-<p>&nbsp;* Environment: production</p>
-<p>&nbsp;&nbsp; WARNING: This is a development server. Do not use it in a production deployment.</p>
-<p>&nbsp;&nbsp; Use a production WSGI server instead.</p>
-<p>&nbsp;* Debug mode: off</p>
-<p>2019-12-23 01:37:16,399 - werkzeug - INFO -&nbsp; * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)</p>
 <br>
-Bonus Question: What is the difference between a Service and a Resource?
+<p>Install flask:</p>
+<p>pip install flask<br /> pip list | grep -i flask<br /> Flask 1.1.1</p>
+<p>Install ddtrace<br /> pip install ddtrace</p>
+<p><br />Start Flask with Datadog trace collections enabled:<br />Using environment variable configuration: DD_TRACE_ANALYTICS_ENABLED=true</p>
+<p>Create unix &ldquo;screen&rdquo; window, run &ldquo;ddtrace-run python employmentTest.py&rdquo;<br /> ddtrace-run python flask_app.py<br /> * Serving Flask app "flask_app" (lazy loading)<br /> * Environment: production<br /> WARNING: This is a development server. Do not use it in a production deployment.<br /> Use a production WSGI server instead.<br /> * Debug mode: off<br /> 2019-12-23 01:37:16,399 - werkzeug - INFO - * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)</p>
+<br>
+<br>
+<strong>Bonus Question:</strong> What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
