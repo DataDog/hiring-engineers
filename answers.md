@@ -7,11 +7,11 @@ Your answers to the questions go here.
  ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-1-image1.jpg)
  ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-2-image1.jpg)
  
-<p>These instructions are for CentOS/RHEL 6 and above.</p>
-<p>Use our easy one-step install.</p>
-<p>DD_API_KEY=&lt;my_DatadogAPIKey&gt; bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"</p>
-<p>This will install the YUM packages for the Datadog Agent and will prompt you for your password. If the Agent is not already installed on your machine and you don't want it to start automatically after the installation, just prepend&nbsp;</p>
-<p>DD_INSTALL_ONLY=true<br>
+These instructions are for CentOS/RHEL 6 and above.<br>
+Use our easy one-step install.<br>
+DD_API_KEY=&lt;my_DatadogAPIKey&gt; bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"<br><br>
+This will install the YUM packages for the Datadog Agent and will prompt you for your password. If the Agent is not already installed on your machine and you don't want it to start automatically after the installation, just prepend&nbsp;<br>
+DD_INSTALL_ONLY=true<br>
 &nbsp;to the above script before running it.<br>
 &nbsp;Run:<br>
 &nbsp;sudo DD_API_KEY=&lt;my_DatadogAPIKey&gt; bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"</p>
