@@ -440,10 +440,11 @@ app <span class="pl-k">=</span> Flask(<span class="pl-c1">__name__</span>)
 
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 <br>
+Please include your fully instrumented app in your submission, as well.<br>
 Answer:<br>
 <p>Agent setup reference: <a href="https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python">https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python</a></p>
 <br>
-<p><strong>Install flask:</strong></p>
+<strong>Install flask:</strong><br>
 <p>&nbsp;&nbsp; pip install flask<br /> pip list | grep -i flask<br /> &nbsp;&nbsp;&nbsp;&nbsp; Flask 1.1.1</p>
 <p><strong>Install ddtrace</strong><br /> 
  &nbsp;&nbsp; pip install ddtrace</p>
@@ -459,9 +460,11 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-28-image1.jpg)
 
+<br>
+<br>
 
 <strong>Bonus Question:</strong> What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-Please include your fully instrumented app in your submission, as well.
+
