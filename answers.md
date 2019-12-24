@@ -228,7 +228,7 @@ To change the collection interval of your check, use <strong>min_collection_inte
 &nbsp;&nbsp;and<br>
 <a href="https://docs.datadoghq.com/api/?lang=bash#comments">https://docs.datadoghq.com/api/?lang=bash#comments</a></p>
 <br>
-<p>Instructions:</p>
+Instructions:<br>
 <p>Utilize the Datadog API to create a Timeboard that contains:</p>
 <ul>
 <li>Your custom metric scoped over your host.</li>
