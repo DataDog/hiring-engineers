@@ -225,9 +225,9 @@ To change the collection interval of your check, use <strong>min_collection_inte
 <br>
 
 NOTE:&nbsp;<a href="https://docs.datadoghq.com/getting_started/api/">Datadog recommends using Postman (click here)</a><br>
-Curl is a suitable alternative noted here: &nbsp;<a href="https://www.datadoghq.com/blog/programmatically-manage-your-datadog-integrations/">Curl skeleton examples (click here)</a>&nbsp;&nbsp;and<br>
-<a href="https://docs.datadoghq.com/api/?lang=bash#comments">https://docs.datadoghq.com/api/?lang=bash#comments</a><br>
-Instructions:<br>
+Curl is a suitable alternative noted here: &nbsp;<a href="https://www.datadoghq.com/blog/programmatically-manage-your-datadog-integrations/">API examples (click here)</a>&nbsp;&nbsp;and<br>
+<a href="https://docs.datadoghq.com/api/?lang=bash#comments">Curl Examples (click here)</a><br>
+<br>
 Utilize the Datadog API to create a Timeboard that contains:<br>
 <ul>
 <li>Your custom metric scoped over your host.</li>
