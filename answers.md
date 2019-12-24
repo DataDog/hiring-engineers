@@ -217,3 +217,33 @@ Reference <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=
 <p>Bonus: How do you change the agent collection interval?<br>
 <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval">Collection interval</a>
 To change the collection interval of your check, use <strong>min_collection_interval</strong> in the configuration file. The default value is 15 which means the check method from your class is invoked with the same interval as the rest of the integrations on the Agent.</p>
+
+<br><br>
+<p>&nbsp;</p>
+<p><strong>Visualizing Data</strong></p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>Utilize the Datadog API</strong> to create a Timeboard that contains the following visualizations.</p>
+<p>&nbsp;</p>
+<p>NOTE:</p>
+<p><a href="https://docs.datadoghq.com/getting_started/api/">Datadog recommends using Postman (click here)</a></p>
+<p>&nbsp;However, curl is a suitable alternative noted.</p>
+<p><a href="https://www.datadoghq.com/blog/programmatically-manage-your-datadog-integrations/">Curl skeleton examples (click here)</a></p>
+<p>and</p>
+<p><a href="https://docs.datadoghq.com/api/?lang=bash#comments">https://docs.datadoghq.com/api/?lang=bash#comments</a></p>
+<p>&nbsp;</p>
+<p>Instructions:</p>
+<p>Utilize the Datadog API to create a Timeboard that contains:</p>
+<ul>
+<li>Your custom metric scoped over your host.</li>
+<li>Any metric from the Integration on your Database with the anomaly function applied.</li>
+<li>Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket</li>
+</ul>
+<p>&nbsp;</p>
+<p>Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.</p>
+<p>Once this is created, access the Dashboard from your Dashboard List in the UI:</p>
+<ul>
+<li>Set the Timeboard's timeframe to the past 5 minutes</li>
+<li>Take a snapshot of this graph and use the @ notation to send it to yourself.</li>
+<li><strong>Bonus Question</strong>: What is the Anomaly graph displaying?</li>
+</ul>
+<p>The Anomaly graph is displaying &ldquo;anomalies(avg:mysql.performance.queries{host:aws.YYYYY.localdomain},'basic',2)&rdquo;</p>
