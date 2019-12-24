@@ -378,7 +378,7 @@ Please configure the monitor’s message so that it will:
 •	Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.<br>
 •	Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.<br>
 •	When this monitor sends you an email notification, take a screenshot of the email that it sends you.<br><br><br>
-•	Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:<br>
+•	Bonus Question: <br>Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:<br>
 o	One that silences it from 7pm to 9am daily on M-F,<br>
 o	And one that silences it all day on Sat-Sun.<br>
 o	Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.<br>
