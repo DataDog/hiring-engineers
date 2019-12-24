@@ -243,4 +243,4 @@ Instructions:<br>
 <li>Take a snapshot of this graph and use the @ notation to send it to yourself.</li>
 <li><strong>Bonus Question</strong>: What is the Anomaly graph displaying?</li>
 </ul>
-&nbsp;&nbsp; The Anomaly graph is displaying &ldquo;anomalies(avg:mysql.performance.queries{host:aws.YYYYY.localdomain},'basic',2)&rdquo;<br>
+<p style="padding-left: 30px;">The Anomaly graph is displaying &ldquo;anomalies(avg:mysql.performance.queries{host:aws.YYYYY.localdomain},'basic',2)&rdquo;</p>
