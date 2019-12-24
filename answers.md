@@ -173,12 +173,12 @@ Open Linx Screen window, create small MySQL database, repeatedly run a simple qu
 <p>Once the agent is operational, be sure to add the pre-built MySQL dashboards located under &ldquo;Integrations&rdquo;</p>
 
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-9-image1.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-9-image1.jpg)
 
 <br>
 <p> Observe collected data</p>
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-9-image2.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-9-image2.jpg)
 
 <br>
 <p><strong>Task3: </strong></p><br>
@@ -209,9 +209,9 @@ Reference <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=
 <p>The names of the configuration and check files must match. If your check is called mycheck.py, your configuration file must be named mycheck.yaml.</p>
 
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-10-image1.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-10-image1.jpg)
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/my_metric.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/my_metric.jpg)
  
  <br>
 <p>Bonus: <br>How do you change the agent collection interval?<br>
@@ -248,7 +248,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:<b
 For most, it&rsquo;s easier to use a gui to build the desired visualizations, then export as json, and edit the json as desired.<br>
 Started with this Timeboard<br>
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg12-image1.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg12-image1.jpg)
  
 <br>
 <br>
@@ -366,7 +366,7 @@ app_key=&lt;my_DatadogAPPKey&gt;<br>
 </ul>
 
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-16-image1.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-16-image1.jpg)
  
  
 <br>
@@ -390,23 +390,23 @@ o	Make sure that your email is notified when you schedule the downtime and take 
 
 Showing solution via screen shots:<br>
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-22-image1.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-22-image1.jpg)
 
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-23-image1.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-23-image1.jpg)
 
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-21-image1.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-21-image1.jpg)
 
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-24-image1.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-24-image1.jpg)
 
 <br><br>
 <strong>Bonus: Setup no alerting windows:</strong><br>
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-25-image1.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-25-image1.jpg)
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-25-image2.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-25-image2.jpg)
 
 <br><br><br>
 
@@ -463,7 +463,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 <p><a href="https://app.datadoghq.com/s/2fx55cvkwg3qhd55/7uh-5pi-q9p">AWS Flask trace requests (link)</a></p>
 
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-28-image1.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-28-image1.jpg)
 
 <br>
 <br>
