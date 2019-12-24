@@ -387,6 +387,7 @@ o	Make sure that your email is notified when you schedule the downtime and take 
 
 <br>
 <br>
+
 Showing solution via screen shots:<br>
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-21-image1.jpg)
