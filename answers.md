@@ -76,10 +76,10 @@ Next setup AWS access for Datadog<br>
 
 <br>
 
-<p>Connect Datadog to your AWS account to automatically track and tag your EC2 instances, and report on all your Cloudwatch metrics.<br>
-Enter AWS credentials for each of your AWS accounts &mdash; you can find them&nbsp;<a href="https://aws-portal.amazon.com/gp/aws/developer/account/index.html?action=access-key">here</a>. Note that these credentials only require read-only access to your AWS account.</p>
+Connect Datadog to your AWS account to automatically track and tag your EC2 instances, and report on all your Cloudwatch metrics.<br>
+Enter AWS credentials for each of your AWS accounts &mdash; you can find them&nbsp;<a href="https://aws-portal.amazon.com/gp/aws/developer/account/index.html?action=access-key">here</a>. Note that these credentials only require read-only access to your AWS account.<br>
 <br>
-<p>Connect to Amazon Web Services (AWS) in order to:</p>
+Connect to Amazon Web Services (AWS) in order to:<hr>
 <ul>
 <li>See automatic AWS status updates in your stream</li>
 <li>Get Cloudwatch metrics for EC2 hosts without installing the Agent</li>
