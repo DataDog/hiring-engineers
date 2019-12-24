@@ -234,7 +234,6 @@ Utilize the Datadog API to create a Timeboard that contains:<br>
 <li>Any metric from the Integration on your Database with the anomaly function applied.</li>
 <li>Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket</li>
 </ul>
-<p>&nbsp;</p>
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.<br>
 Once this is created, access the Dashboard from your Dashboard List in the UI:<br>
 <ul>
@@ -242,7 +241,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:<b
 <li>Take a snapshot of this graph and use the @ notation to send it to yourself.</li>
 <li><strong>Bonus Question</strong>: What is the Anomaly graph displaying?</li>
 </ul>
-<p style="padding-left: 30px;">The Anomaly graph is displaying &ldquo;anomalies(avg:mysql.performance.queries{host:aws.YYYYY.localdomain},'basic',2)&rdquo;</p>
+<p style="padding-left: 30px;"><strong>Answer:</strong> The Anomaly graph is displaying &ldquo;anomalies(avg:mysql.performance.queries{host:aws.YYYYY.localdomain},'basic',2)&rdquo;</p>
 
 <br>
 <br>
