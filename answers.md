@@ -136,7 +136,7 @@ Install a local database and setup dd-agent to monitor and add tags.<br>
 Selected MySQL.<br>
 &nbsp;&nbsp;I have run MySQL setup commands to create datadog user with replication and performance metric collection permissions.<br>
 <br>
-<a href="https://app.datadoghq.com/account/settings#integrations/mysql">Define</a> MySQL user for Datadog agent to utilize<br>
+<a href="https://app.datadoghq.com/account/settings#integrations/mysql">Define MySQL user for Datadog agent to utilize</a><br>
 Then edit file /etc/datadog-agent/conf.d/mysql.d/conf.yaml to contain the credentials, tags and optionally any custom queries to perform.<br>
 &nbsp;&nbsp;Example:<br>
 &nbsp;&nbsp;init_config:<br>
