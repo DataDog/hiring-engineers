@@ -40,7 +40,7 @@ Dependencies Resolved<br>
 &nbsp;</p>
 <p><span style="text-decoration: underline;">Example:</span>&nbsp; sudo -u dd-agent -- datadog-agent check elastic</p>
 <p>&nbsp;</p>
-<p><strong>Data Collection (master agent setup local laptop vm)</strong><br>
+<strong>Data Collection (master agent setup local laptop vm)</strong><br>
 <p style="padding-left: 30px;"><strong><u>Metric Collection Tasks</u></strong><br>
 <p style="padding-left: 30px;"><strong>Task1</strong><br>
 Edit main agent config file:<br>
