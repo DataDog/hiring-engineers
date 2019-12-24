@@ -438,10 +438,9 @@ app <span class="pl-k">=</span> Flask(<span class="pl-c1">__name__</span>)
 <span class="pl-k">if</span> <span class="pl-c1">__name__</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>__main__<span class="pl-pds">'</span></span>:
     app.run(<span class="pl-v">host</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>0.0.0.0<span class="pl-pds">'</span></span>, <span class="pl-v">port</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>5050<span class="pl-pds">'</span></span>)</pre>
 
-
-<br><br>
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
+<br>
 Bonus Question: What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
