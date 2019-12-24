@@ -37,10 +37,10 @@ Stop, Start and check status of &nbsp;Datadog Agent using:<br>
 <strong><u>Helpful tip for use in the next steps:</u></strong><br>
 &nbsp;&nbsp;Validate your agent config in each task below using:<br>
 &nbsp;&nbsp;&ldquo;sudo -u dd-agent -- datadog-agent check &lt;your agent name&gt;&rdquo;<br>
-&nbsp;<hr>
+
 <hr>
-<span style="text-decoration: underline;">Example:</span>&nbsp; sudo -u dd-agent -- datadog-agent check elastic</p>
-<p>&nbsp;<hr>
+<span style="text-decoration: underline;">Example:</span>&nbsp; sudo -u dd-agent -- datadog-agent check elastic<hr></span>
+<hr>
 <strong>Data Collection (master agent setup local laptop vm)</strong><br>
 <p style="padding-left: 30px;"><strong><u>Metric Collection Tasks</u></strong><br>
 <p style="padding-left: 30px;"><strong>Task1</strong><br>
