@@ -90,7 +90,7 @@ Connect to Amazon Web Services (AWS) in order to:<hr>
 <li>Get Cloudwatch metrics for other services: ELB, RDS, EBS, AutoScaling, DynamoDB, ElastiCache, CloudFront, CloudSearch, Kinesis, Lambda, OpsWorks, Redshift, Route53, SQS, and SNS</li>
 <li>See EC2 scheduled maintenance events in your stream</li>
 </ul>
-<p>&nbsp;</p>
+
 <p>Create linkage from your AWS account to Data Dog AWS account.<br>
 Create new role using:</p>
 <ul>
@@ -99,7 +99,7 @@ Create new role using:</p>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>Showing successful initial integration with AWS:</p>
+Showing successful initial integration with AWS:<br>
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-5-image1.jpg)
 
