@@ -10,7 +10,7 @@ Your answers to the questions go here.
 <p>These instructions are for CentOS/RHEL 6 and above.</p>
 <p>Use our easy one-step install.</p>
 <p>DD_API_KEY=&lt;my_DatadogAPIKey&gt; bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"</p>
-<p>This will install the YUM packages for the Datadog Agent and will prompt you for your password.<br /> If the Agent is not already installed on your machine and you don't want it to start automatically after the installation, just prepend&nbsp;</p>
+<p>This will install the YUM packages for the Datadog Agent and will prompt you for your password. If the Agent is not already installed on your machine and you don't want it to start automatically after the installation, just prepend&nbsp;</p>
 <p>DD_INSTALL_ONLY=true<br>
 &nbsp;to the above script before running it.<br>
 &nbsp;Run:<br>
@@ -369,7 +369,7 @@ app_key=&lt;MY_API_Key&gt;<br>
  
 <br>
 <p><strong>Monitoring Data</strong></p>
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:<br>
 •	Warning threshold of 500<br>
 •	Alerting threshold of 800<br>
 •	And also ensure that it will notify you if there is No Data for this query over the past 10m.<br>
