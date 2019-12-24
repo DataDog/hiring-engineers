@@ -254,12 +254,12 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:<b
 <ul>
 <li>Created dashboard in Datadog GUI first.</li>
 </ul>
-<p>It&rsquo;s easier to use a gui to build the desired visualizations, then export as json, and edit the json as desired.</p>
+It&rsquo;s easier to use a gui to build the desired visualizations, then export as json, and edit the json as desired.<br>
 <ul>
 <li>Once exported as json it is one single line.</li>
 <li>Install Linux tool &ldquo;jq&rdquo; to format the single json line into human readable multi-line json</li>
 </ul>
-&nbsp;&nbsp;<p><strong>RUN: cat SavedSingleLineDashboardJsonFile.json | jq . &gt; HumanReadableJson.json</strong></p>
+&nbsp;&nbsp;<strong>RUN: cat SavedSingleLineDashboardJsonFile.json | jq . &gt; HumanReadableJson.json</strong><br>
 <ul>
 <li>Edit file &ldquo;HumanReadableJson.json &ldquo; appropriately to specify custom values and remove attributes like &ldquo;id&rdquo;</li>
 <li>Create curl script as shown with API_KEY and APP_KEY</li>
@@ -268,7 +268,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:<b
 <ul>
   <li>Ran Curl script as shown <strong> RUN:  sh ./scriptName </strong></li>
 </ul>
-<p><strong>Example skeleton curl command:</strong><br>
+<strong>Example skeleton curl command:</strong><br>
 api_key=&lt;MY_API_Key&gt;<br>
 app_key=97b83f906689b65bbd10e57f60529c56d539947e<br>
 curl&nbsp; -X POST \<br>
