@@ -370,9 +370,9 @@ app_key=&lt;MY_API_Key&gt;<br>
 <br>
 <p><strong>Monitoring Data</strong></p>
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
-•	Warning threshold of 500
-•	Alerting threshold of 800
-•	And also ensure that it will notify you if there is No Data for this query over the past 10m.
+•	Warning threshold of 500<br>
+•	Alerting threshold of 800<br>
+•	And also ensure that it will notify you if there is No Data for this query over the past 10m.<br>
 Please configure the monitor’s message so that it will:
 •	Send you an email whenever the monitor triggers.
 •	Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
