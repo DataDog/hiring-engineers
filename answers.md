@@ -244,3 +244,7 @@ Instructions:<br>
 <li><strong>Bonus Question</strong>: What is the Anomaly graph displaying?</li>
 </ul>
 <p style="padding-left: 30px;">The Anomaly graph is displaying &ldquo;anomalies(avg:mysql.performance.queries{host:aws.YYYYY.localdomain},'basic',2)&rdquo;</p>
+
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-12-image1.jpg)
+ 
+ <br>
