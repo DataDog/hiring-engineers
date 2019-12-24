@@ -445,7 +445,8 @@ Answer:<br>
 <p>Agent setup reference: <a href="https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python">https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python</a></p>
 <br>
 <strong>Install flask:</strong><br>
-&nbsp;&nbsp; pip install flask<br /> pip list | grep -i flask<br> 
+pip install flask<br /> 
+&nbsp;&nbsp;pip list | grep -i flask<br> 
 &nbsp;&nbsp;&nbsp;&nbsp; Flask 1.1.1<br>
 <strong>Install ddtrace</strong><br> 
  &nbsp;&nbsp; pip install ddtrace<br>
@@ -481,7 +482,7 @@ Is there anything creative you would use Datadog for?
 
 
 <strong>[My Reply]</strong><br>
-Datadog should have a smart phone app to at least allow viewing events and controlling administrative aspects of your Datadog account
+Datadog should have a smart phone app to at least allow viewing events and controlling administrative aspects of your Datadog account<br>
 and<br>
 Datadog should have support for geographic maps with weather overlay. 
 Customers not in a cloud hosted environment, might want to insert GeoIP or Lat/Lon to have their devices appear in a geographical map.
