@@ -358,3 +358,11 @@ app_key=&lt;MY_API_Key&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "show_legend": false,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "legend_size": "0"<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+
+<ul>
+  <li>Ran Curl script as shown <strong> RUN:  sh ./scriptName </strong></li>
+</ul>
+
+
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg16-image1.jpg)
+ 
