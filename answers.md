@@ -413,20 +413,20 @@ Showing solution via screen shots:<br>
 <strong>Collecting APM Data:</strong><br>
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:<br>
 
-<p>from flask import Flask
-import logging
-import sys
-
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-
+from flask import Flask<br>
+import logging<br>
+import sys<br>
+<br>
+<strong>#Have flask use stdout as the logger</strong><br>
+main_logger = logging.getLogger()<br>
+main_logger.setLevel(logging.DEBUG)<br>
+c = logging.StreamHandler(sys.stdout)<br>
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')<br>
+c.setFormatter(formatter)<br>
+main_logger.addHandler(c)<br>
+<br>
+app = <p>Flask(__name__)</p><br>
+<br>
 @app.route('/')
 def api_entry():
     return 'Entrypoint to the Application'
