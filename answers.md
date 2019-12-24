@@ -444,10 +444,10 @@ Answer:<br>
 <p>Agent setup reference: <a href="https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python">https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python</a></p>
 <br>
 <p>Install flask:</p>
-<p>pip install flask<br /> pip list | grep -i flask<br /> &npsp;&npsp; Flask 1.1.1</p>
-<p>Install ddtrace<br /> &npsp;&npsp; pip install ddtrace</p>
+<p>pip install flask<br /> pip list | grep -i flask<br /> &nbsp;&nbsp; Flask 1.1.1</p>
+<p>Install ddtrace<br /> &nbsp;&nbsp; pip install ddtrace</p>
 <p><br />Start Flask with Datadog trace collections enabled:<br />Using environment variable configuration: DD_TRACE_ANALYTICS_ENABLED=true</p>
-<p>Create unix &ldquo;screen&rdquo; window, run &ldquo;ddtrace-run python employmentTest.py&rdquo;<br /> ddtrace-run python flask_app.py<br /> * Serving Flask app "flask_app" (lazy loading)<br /> * Environment: production<br /> WARNING: This is a development server. Do not use it in a production deployment.<br /> Use a production WSGI server instead.<br /> * Debug mode: off<br /> 2019-12-23 01:37:16,399 - werkzeug - INFO - * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)</p>
+<p>Create unix &ldquo;screen&rdquo; window, run &ldquo;ddtrace-run python employmentTest.py&rdquo;<br /> &nbsp;&nbsp; ddtrace-run python flask_app.py<br /> &nbsp;&nbsp; * Serving Flask app "flask_app" (lazy loading)<br /> &nbsp;&nbsp; * Environment: production<br /> &nbsp;&nbsp; WARNING: This is a development server. Do not use it in a production deployment.<br /> &nbsp;&nbsp; Use a production WSGI server instead.<br /> &nbsp;&nbsp; * Debug mode: off<br /> &nbsp;&nbsp; 2019-12-23 01:37:16,399 - werkzeug - INFO - * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)</p>
 <br>
 <br>
 <strong>Bonus Question:</strong> What is the difference between a Service and a Resource?
