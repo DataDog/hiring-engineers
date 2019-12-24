@@ -400,3 +400,12 @@ Showing solution via screen shots:<br>
 
 
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-24-image1.jpg)
+
+<br><br>
+<strong>Bonus: Setup no alerting windows:</strong><br>
+
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-25-image1.jpg)
+
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-25-image2.jpg)
+
+
