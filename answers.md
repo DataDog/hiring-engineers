@@ -270,7 +270,7 @@ Instructions:<br>
   <li>Ran Curl script as shown <strong> RUN:  sh ./scriptName </strong></li>
 </ul>
 <p><strong>Example skeleton curl command:</strong><br>
-api_key=b18a088feb147e7535796e62ad33fc42<br>
+api_key=&lt;MY_API_Key&gt;<br>
 app_key=97b83f906689b65bbd10e57f60529c56d539947e<br>
 curl&nbsp; -X POST \<br>
 -H "Content-type: application/json" \<br>
@@ -292,14 +292,14 @@ curl&nbsp; -X POST \<br>
 <p>Here is my curl script showing it is specifically filtered on my AWS host.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>- ----Curl script ---- </strong><br>
 api_key=b18a088feb147e7535796e62ad33fc42<br>
-app_key=97b83f906689b65bbd10e57f60529c56d539947e<br>
+app_key=&lt;MY_API_Key&gt;<br>
 <p>&nbsp;</p>
-<p>curl&nbsp; -X POST \</p>
-<p>-H "Content-type: application/json" \</p>
-<p>-H "DD-API-KEY: ${api_key}" \</p>
-<p>-H "DD-APPLICATION-KEY: ${app_key}" \</p>
-<p>-d '</p>
-<p>{</p>
+<p>curl&nbsp; -X POST \<br>
+-H "Content-type: application/json" \<br>
+-H "DD-API-KEY: ${api_key}" \<br>
+-H "DD-APPLICATION-KEY: ${app_key}" \<br>
+-d '<br>
+{<br>
 <p>&nbsp; "title": "Using CURL Created Bill YYYYY Timeboard with AWS Spend",</p>
 <p>&nbsp; "description": "Used Curl to create",</p>
 <p>&nbsp; "widgets": [</p>
