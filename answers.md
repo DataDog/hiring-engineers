@@ -215,5 +215,5 @@ Reference <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=
 
 <br><br>
 <p>Bonus: How do you change the agent collection interval?<br>
-<p><a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval">Collection interval</a><br>
-<p>&nbsp;&nbsp;To change the collection interval of your check, use min_collection_interval in the configuration file. The default value is 15 which means the check method from your class is invoked with the same interval as the rest of the integrations on the Agent.</p>
+<p><a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval">Collection interval</a>
+<p>&nbsp;&nbsp;To change the collection interval of your check, use <strong>min_collection_interval</strong> in the configuration file. The default value is 15 which means the check method from your class is invoked with the same interval as the rest of the integrations on the Agent.</p>
