@@ -412,13 +412,8 @@ Showing solution via screen shots:<br>
 
 <strong>Collecting APM Data:</strong><br>
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:<br>
-
-from flask import Flask<br>
-import logging<br>
-import sys<br>
 <br>
-
-<pre><span class="pl-c"># Have flask use stdout as the logger</span>
+<pre><span class="pl-c">from flask import Flask<br />import logging<br />import sys<br /><br /># Have flask use stdout as the logger</span>
 main_logger <span class="pl-k">=</span> logging.getLogger()
 main_logger.setLevel(logging.<span class="pl-c1">DEBUG</span>)
 c <span class="pl-k">=</span> logging.StreamHandler(sys.stdout)
@@ -442,6 +437,7 @@ app <span class="pl-k">=</span> Flask(<span class="pl-c1">__name__</span>)
 
 <span class="pl-k">if</span> <span class="pl-c1">__name__</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>__main__<span class="pl-pds">'</span></span>:
     app.run(<span class="pl-v">host</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>0.0.0.0<span class="pl-pds">'</span></span>, <span class="pl-v">port</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>5050<span class="pl-pds">'</span></span>)</pre>
+
 
 <br><br>
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
