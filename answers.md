@@ -293,8 +293,8 @@ curl&nbsp; -X POST \<br>
 <p>&nbsp;</p>
 <p>Here is my curl script showing it is specifically filtered on my AWS host.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>- ----Curl script ---- </strong><br>
-api_key=b18a088feb147e7535796e62ad33fc42<br>
-app_key=&lt;MY_API_Key&gt;<br>
+api_key=&lt;my_DatadogAPIKey&gt;<br>
+app_key=&lt;my_DatadogAPPKey&gt;<br>
 <p>&nbsp;</p>
 <p>curl&nbsp; -X POST \<br>
 -H "Content-type: application/json" \<br>
@@ -362,7 +362,7 @@ app_key=&lt;MY_API_Key&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
 
 <ul>
-  <li>Ran Curl script as shown <strong> RUN:  sh ./scriptName </strong></li>
+  <li>Results running Curl script as shown <strong> RUN:  sh ./scriptName </strong></li>
 </ul>
 
 
