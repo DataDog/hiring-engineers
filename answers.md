@@ -235,7 +235,7 @@ Utilize the Datadog API to create a Timeboard that contains:<br>
 <li>Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket</li>
 </ul>
 <p>&nbsp;</p>
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.<>r
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.<br>
 Once this is created, access the Dashboard from your Dashboard List in the UI:<br>
 <ul>
 <li>Set the Timeboard's timeframe to the past 5 minutes</li>
