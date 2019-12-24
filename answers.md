@@ -168,7 +168,7 @@ Then edit file /etc/datadog-agent/conf.d/mysql.d/conf.yaml to contain the creden
 
 <p>Extra setup step:<br>
 To generate MySQL load for graphing purposes:<br>
-Create small MySQL database, repeatedly run a simple query.<br />while true<br />do<br />&nbsp; &nbsp;mysql -uroot --password="" &lt; ~/mysql_query.sql &gt; /dev/null<br />&nbsp; &nbsp;sleep (45)<br />done<br /><br />where file &ldquo;query.sql&rdquo; file contains: &ldquo;select * from datadog.tutorials_tbl;&rdquo;<br>
+Open Linx Screen window, create small MySQL database, repeatedly run a simple query.<br />while true<br />do<br />&nbsp; &nbsp;mysql -uroot --password="" &lt; ~/mysql_query.sql &gt; /dev/null<br />&nbsp; &nbsp;sleep (45)<br />done<br /><br />where file &ldquo;query.sql&rdquo; file contains: &ldquo;select * from datadog.tutorials_tbl;&rdquo;<br>
 
 <p>Once the agent is operational, be sure to add the pre-built MySQL dashboards located under &ldquo;Integrations&rdquo;</p>
 
