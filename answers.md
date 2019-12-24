@@ -273,7 +273,7 @@ Started with this visualization<br>
 </ul>
 <strong>Example skeleton curl command:</strong><br>
 api_key=&lt;MY_API_Key&gt;<br>
-app_key=97b83f906689b65bbd10e57f60529c56d539947e<br>
+app_key=&lt;MY_APP_Key&gt;<br>
 curl&nbsp; -X POST \<br>
 -H "Content-type: application/json" \<br>
 -H "DD-API-KEY: ${api_key}" \<br>
