@@ -219,11 +219,10 @@ Reference <a href="https://docs.datadoghq.com/developers/write_agent_check/?tab=
 To change the collection interval of your check, use <strong>min_collection_interval</strong> in the configuration file. The default value is 15 which means the check method from your class is invoked with the same interval as the rest of the integrations on the Agent.</p>
 
 <br><br>
-<p>&nbsp;</p>
-<p><strong>Visualizing Data</strong></p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>Utilize the Datadog API</strong> to create a Timeboard that contains the following visualizations.</p>
-<p>&nbsp;</p>
+
+<p><span style="text-decoration: underline;"><strong>Visualizing Data</strong></span></p>
+<strong>Utilize the Datadog API</strong> to create a Timeboard that contains the following visualizations.<hr>
+
 <p>NOTE:</p>
 <p><a href="https://docs.datadoghq.com/getting_started/api/">Datadog recommends using Postman (click here)</a></p>
 <p>&nbsp;However, curl is a suitable alternative noted.</p>
