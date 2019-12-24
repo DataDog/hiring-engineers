@@ -445,10 +445,11 @@ Answer:<br>
 <p>Agent setup reference: <a href="https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python">https://app.datadoghq.com/apm/docs?architecture=host-based&amp;language=python</a></p>
 <br>
 <strong>Install flask:</strong><br>
-<p>&nbsp;&nbsp; pip install flask<br /> pip list | grep -i flask<br /> &nbsp;&nbsp;&nbsp;&nbsp; Flask 1.1.1</p>
-<p><strong>Install ddtrace</strong><br /> 
- &nbsp;&nbsp; pip install ddtrace</p>
-<br />
+&nbsp;&nbsp; pip install flask<br /> pip list | grep -i flask<br> 
+&nbsp;&nbsp;&nbsp;&nbsp; Flask 1.1.1<br>
+<strong>Install ddtrace</strong><br> 
+ &nbsp;&nbsp; pip install ddtrace<br>
+
 Start Flask with Datadog trace collections enabled: Using environment variable configuration: <strong>DD_TRACE_ANALYTICS_ENABLED=true</strong><br>
 <p><ul><li>Create unix &ldquo;screen&rdquo; window, run &ldquo;ddtrace-run python employmentTest.py&rdquo;</li></ul><br /> &nbsp;&nbsp; ddtrace-run python flask_app.py<br /> &nbsp;&nbsp; * Serving Flask app "flask_app" (lazy loading)<br /> &nbsp;&nbsp; * Environment: production<br /> &nbsp;&nbsp; WARNING: This is a development server. Do not use it in a production deployment.<br /> &nbsp;&nbsp; Use a production WSGI server instead.<br /> &nbsp;&nbsp; * Debug mode: off<br /> &nbsp;&nbsp; 2019-12-23 01:37:16,399 - werkzeug - INFO - * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)</p>
 <br>
@@ -481,7 +482,7 @@ Is there anything creative you would use Datadog for?
 
 <strong>[My Reply]</strong><br>
 Datadog should have a smart phone app to at least allow viewing events and controlling administrative aspects of your Datadog account
-and:
+and<br>
 Datadog should have support for geographic maps with weather overlay. 
 Customers not in a cloud hosted environment, might want to insert GeoIP or Lat/Lon to have their devices appear in a geographical map.
 The geographical map should also support weather overlays.
