@@ -244,6 +244,11 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:<b
 </ul>
 <p style="padding-left: 30px;">The Anomaly graph is displaying &ldquo;anomalies(avg:mysql.performance.queries{host:aws.YYYYY.localdomain},'basic',2)&rdquo;</p>
 
+<br>
+<br>
+It&rsquo;s easier to use a gui to build the desired visualizations, then export as json, and edit the json as desired.<br>
+Started with this visualization<br>
+
 ![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg12-image1.jpg)
  
 <br>
