@@ -32,7 +32,7 @@ Stop, Start and check status of &nbsp;Datadog Agent using:<br>
 &nbsp;&nbsp; Active: active (running) since Mon 2019-12-16 20:37:16 EST; 4min 32s ago<br>
 &nbsp;Main PID: 5784 (agent)<br>
 <br>
-<p>&nbsp;</p>
+
 <br>
 <strong><u>Helpful tip for use in the next steps:</u></strong><br>
 &nbsp;&nbsp;Validate your agent config in each task below using:<br>
@@ -42,8 +42,8 @@ Stop, Start and check status of &nbsp;Datadog Agent using:<br>
 <strong>Example:</strong>&nbsp; sudo -u dd-agent -- datadog-agent check elastic<hr>
 <hr>
 
-<strong>Data Collection (master agent setup local laptop vm)</strong><br>
-<p style="padding-left: 30px;"><strong><u>Metric Collection Tasks</u></strong><br>
+<strong>Data Collection</strong> (master agent setup done on local laptop vm)<br>
+Metric Collection Tasks<br>
 <p style="padding-left: 30px;"><strong>Task1</strong><br>
 Edit main agent config file:<br>
 sudo vi /etc/datadog-agent/datadog.yaml<br>
