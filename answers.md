@@ -467,21 +467,20 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 <br>
 
 <strong>Bonus Question:</strong> What is the difference between a Service and a Resource?<br>
-o	Service: Is an api end point constructed of multiple resources. Typically providing a business value like ordering tickets. The ordering tickets API would then talk to multiple back end sources of authority to determine availability and make a record lock.
+o	Service: Is an api end point constructed of multiple resources. Typically providing a business value like ordering tickets. The ordering tickets API would then talk to multiple back end sources of authority to determine availability and make a record lock.<br>
 o	Resource: Is the physical or application end point which has monitoring instrumentation (such agents or synthetic transaction testing). Examples would be database, routers, web server, etc.
 <br>
 
-
+<br>
 
 Final Question
-
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 Is there anything creative you would use Datadog for?
 
 
-[My Reply] 
+<strong>[My Reply]</strong><br>
 Datadog should have a smart phone app to at least allow viewing events and controlling administrative aspects of your Datadog account
-
+and:
 Datadog should have support for geographic maps with weather overlay. 
 Customers not in a cloud hosted environment, might want to insert GeoIP or Lat/Lon to have their devices appear in a geographical map.
 The geographical map should also support weather overlays.
