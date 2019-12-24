@@ -61,7 +61,7 @@ Uncomment<br>
 </p>
 <p>Observe results in Datadog gui<br>
 <br>
-sudo systemctl start datadog-agent<br>
+sudo systemctl restart datadog-agent<br>
 CGroup: /system.slice/datadog-agent.service<br>
  └─5784 /opt/datadog-agent/bin/agent/agent run -p /opt/datadog-agent/run/a..<br>
 </p>
