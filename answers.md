@@ -384,3 +384,14 @@ Please configure the monitor’s message so that it will:
 o	One that silences it from 7pm to 9am daily on M-F,<br>
 o	And one that silences it all day on Sat-Sun.<br>
 o	Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.<br>
+
+<br>
+<br>
+Showing solution via screen shots:<br>
+
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-21-image1.jpg)
+
+
+![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-22-image1.jpg)
+
+
