@@ -129,7 +129,7 @@ Edit main agent config file:<br>
   </p>
 Observe collected data in Datadog gui<br>
 
-![alt tag](https://github.com/wmc2112/datadogimages/blob/master/pg-6-image1.jpg)
+![alt tag](https://github.com/wmc2112/hiring-engineers/blob/master/pg-6-image1.jpg)
 
 <strong>Task2: </strong>
 Install a local database and setup Datadog agent to monitor and add tags. I selected MySQL.<br>
