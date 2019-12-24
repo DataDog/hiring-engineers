@@ -271,9 +271,9 @@ Started with this visualization<br>
 <ul>
   <li>Ran Curl script as shown <strong> RUN:  sh ./scriptName </strong></li>
 </ul>
-<strong>Example skeleton curl command:</strong><br>
-api_key=&lt;MY_API_Key&gt;<br>
-app_key=&lt;MY_APP_Key&gt;<br>
+<strong>Here is an example curl command:</strong><br>
+api_key=&lt;my_DatadogAPIKey&gt;<br>
+app_key=&lt;my_DatadogAPPKey&gt;<br>
 curl&nbsp; -X POST \<br>
 -H "Content-type: application/json" \<br>
 -H "DD-API-KEY: ${api_key}" \<br>
@@ -285,9 +285,9 @@ curl&nbsp; -X POST \<br>
 <br>
 <br>
 <br>
-<strong>My specific curl script example:</strong><br>
+<strong>Specific curl script used:</strong><br>
 <p>&nbsp;</p>
-<p>The lines which show filtering per hostname are:<br>
+<p>Calling out the lines which show filtering per hostname are:<br>
 &nbsp;&ldquo;<strong> q": "sum:my_metric.gauge{host:aws.YYYYY.localdomain} by {host}.rollup(sum), 3600",</strong><br>
 &nbsp;&ldquo;<strong> q": "max:mysql.performance.queries{host:aws.YYYYY.localdomain} by {host}" &ldquo;</strong></p>
 <p>&nbsp;</p>
