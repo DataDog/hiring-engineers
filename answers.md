@@ -417,32 +417,33 @@ from flask import Flask<br>
 import logging<br>
 import sys<br>
 <br>
-<strong>#Have flask use stdout as the logger</strong><br>
-main_logger = logging.getLogger()<br>
-main_logger.setLevel(logging.DEBUG)<br>
-c = logging.StreamHandler(sys.stdout)<br>
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')<br>
-c.setFormatter(formatter)<br>
-main_logger.addHandler(c)<br>
-<br>
-app = <p>Flask(__name__)</p><br>
-<br>
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
 
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
+<pre><span class="pl-c"># Have flask use stdout as the logger</span>
+main_logger <span class="pl-k">=</span> logging.getLogger()
+main_logger.setLevel(logging.<span class="pl-c1">DEBUG</span>)
+c <span class="pl-k">=</span> logging.StreamHandler(sys.stdout)
+formatter <span class="pl-k">=</span> logging.Formatter(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-c1">%(asctime)s</span> - <span class="pl-c1">%(name)s</span> - <span class="pl-c1">%(levelname)s</span> - <span class="pl-c1">%(message)s</span><span class="pl-pds">'</span></span>)
+c.setFormatter(formatter)
+main_logger.addHandler(c)
 
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
+app <span class="pl-k">=</span> Flask(<span class="pl-c1">__name__</span>)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
-    </p>
-    <br><br>
+<span class="pl-en">@app.route</span>(<span class="pl-s"><span class="pl-pds">'</span>/<span class="pl-pds">'</span></span>)
+<span class="pl-k">def</span> <span class="pl-en">api_entry</span>():
+    <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>Entrypoint to the Application<span class="pl-pds">'</span></span>
+
+<span class="pl-en">@app.route</span>(<span class="pl-s"><span class="pl-pds">'</span>/api/apm<span class="pl-pds">'</span></span>)
+<span class="pl-k">def</span> <span class="pl-en">apm_endpoint</span>():
+    <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>Getting APM Started<span class="pl-pds">'</span></span>
+
+<span class="pl-en">@app.route</span>(<span class="pl-s"><span class="pl-pds">'</span>/api/trace<span class="pl-pds">'</span></span>)
+<span class="pl-k">def</span> <span class="pl-en">trace_endpoint</span>():
+    <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>Posting Traces<span class="pl-pds">'</span></span>
+
+<span class="pl-k">if</span> <span class="pl-c1">__name__</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>__main__<span class="pl-pds">'</span></span>:
+    app.run(<span class="pl-v">host</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>0.0.0.0<span class="pl-pds">'</span></span>, <span class="pl-v">port</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>5050<span class="pl-pds">'</span></span>)</pre>
+
+<br><br>
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 Bonus Question: What is the difference between a Service and a Resource?
