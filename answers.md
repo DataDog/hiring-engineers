@@ -7,10 +7,8 @@
 
 Installed DataDog agent on my local Windows machine and added tags in the datadog.yaml.  It took me longer than it should've as I'm admitedly not great at coming up with naming conventions.
 
-*tags:*
-    *- "availability-zone:us-west"*
-    *- "machine:local"*
-    *- "env:test"*
+*tags: - "availability-zone:us-west" - "machine:local" - "env:test"*
+	
 	
 ![HostMap_Tags.png](assets/HostMap_Tags.png)
 
@@ -28,7 +26,7 @@ This process is almost identical to a typical OLE DB integration but the DataDog
 
 Created a custom agent by placing a python file in the checks.d repository and a matching .yaml file in the config.d repository.
 
-Uses python [random](https://docs.python.org/3/library/random.html) library (specifically the randint function) with data dog [guage](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=gauge) metric submission to submit my_metric with a random integer value between 0 and 1000.
+Uses the python [random](https://docs.python.org/3/library/random.html) library (specifically the **randint** function) with data dog [gauge](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=gauge) metric submission to submit my_metric with a random integer value between 0 and 1000.
 
 Used the **min_collection_interval** function in the yaml file to set the collection to every 45 seconds without modifying the python check file.
 
