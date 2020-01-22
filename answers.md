@@ -52,7 +52,7 @@ Unfortunately I wasn't able to, "Set the Timeboard's timeframe to the past 5 min
 [TimeBoard Notification e-mail](assets/TimeBoard_Notification.eml)
 
 ##### Error
-![Error.png](assets/Error.png)
+![Error_5min.png](assets/Error_5min.png)
 
 ##### 5 Minute Graph
 ![5mGraph.png](assets/5mGraph.png)
@@ -62,6 +62,12 @@ Unfortunately I wasn't able to, "Set the Timeboard's timeframe to the past 5 min
 
 ### **Bonus Question** What is the Anomaly graph displaying?
 
+The Anomaly graph compiles historical performance of a specific data set to flag truly "abnormal" activity.  
 
+For example a game developer may have an alert set for when their autoscaling servers eclipse a specified threshold.  If the alert gets triggered on a Friday night it's likely redundant as the majority of their users are active weekend nights and there's already set process to provision more servers.  
+
+The more relevant information might actually be the opposite, if the server count stays low through the Friday night.  The alert wouldn't go off since the threshold wasn't eclipsed but the anomaly graph would call out the unusually low server usage.  This in turn may motivate the game company to boost their marketing or run an in-game promotion the next weekend to recooperate that user base or, at the very least, scale down server usage to save costs.
+
+## Section 3 - Monitoring Data
 
 
