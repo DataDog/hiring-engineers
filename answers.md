@@ -37,5 +37,28 @@ Used the **min_collection_interval** function in the yaml file to set the collec
 
 ## Section 2 - Visualizing Data
 
+Imported the DataDog API collection into Postman.  Customized the create dashboard POST requet to track my_metric averages and sum over the past hour as well as MySQL CPU usage anomalies.  See [WK_CustomTimeBoard JSON file](configfiles/WK_CustomTimeBoard.json)
+
+### Create Dashboard API
+
+![PostmanAPI_Success.png](assets/PostmanAPI_Success.png)
+
+![TimeTable_1-21-2020.png](assets/TimeTable_1-21-2020.png)
+
+Unfortunately I wasn't able to, "Set the Timeboard's timeframe to the past 5 minutes (see screenshot below).  While I can adjust individual graphs to 5 minutes, the timeboard itself seems to be restricted to 15 minute intervals.  Not sure if this is just a limitation of the trial version or maybe this was just a trick question.
+
+### 5 Minute Snapshot
+
+[TimeBoard Notification](assets/TimeBoard_Notification.eml)
+
+![Error.png](assets/Error.png)
+
+![5mGraph.png](assets/5mGraph.png)
+
+![Notifications.png](assets/Notifications.png)
+
+### **Bonus Question** What is the Anomaly graph displaying?
+
+
 
 

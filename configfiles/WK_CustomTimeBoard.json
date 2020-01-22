@@ -1,0 +1,79 @@
+{
+    "title": "WKarges DataDog Hiring Exercise Timeboard",
+    "widgets": [
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:my_metric{host:WKARGES-10P.fourwindsinteractive.com}",
+						"display_type": "line",
+						"style": {
+							"palette": "warm",
+							"line_type": "dashed",
+							"line_width": "thick"
+						}
+                    }
+                ],
+                "title": "my_metric over host machine WKARGES-10P.fourwindsinteractive"
+            }
+        },
+		{
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+					{
+						"q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)",
+						"display_type": "line",
+						"style": {
+							"palette": "dog_classic",
+							"line_type": "solid",
+							"line_width": "thick"
+						}
+					}
+				],
+                "title": "MySQL CPU Performance w/ Anomaly Function",
+				"time": {},
+				"show_legend": false
+            }		
+		},		
+		{
+            "definition": {
+                "type": "query_value",
+                "requests": [
+					{
+						"q": "avg:my_metric{*}.rollup(sum, 1)",
+						"aggregator": "sum"
+					}
+				],
+				"text_align": "center",
+				"precision": 0,
+                "title": "Rollup sum of my_metric over past hour"
+            }		
+		}
+    ],
+    "layout_type": "ordered",
+    "description": "My Hiring Exercise Timeboard",
+    "is_read_only": false,
+    "notify_list": [
+        "@William Karges"
+    ],
+    "template_variables": [
+        {
+            "name": "host",
+            "prefix": "host",
+            "default": "WKARGES-10P.fourwindsinteractive.com"
+        }
+    ],
+    "template_variable_presets": [
+        {
+            "name": "Saved views for hostname 2",
+            "template_variables": [
+                {
+                    "name": "host",
+                    "value": "WKARGES-10P.fourwindsinteractive.com"
+                }
+            ]
+        }
+    ]
+}

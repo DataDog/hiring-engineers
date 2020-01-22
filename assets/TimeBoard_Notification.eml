@@ -1,0 +1,223 @@
+Delivered-To: willkarges@gmail.com
+Received: by 2002:a02:7158:0:0:0:0:0 with SMTP id n24csp4402166jaf;
+        Tue, 21 Jan 2020 13:46:21 -0800 (PST)
+X-Google-Smtp-Source: APXvYqzaJWfZgOV4KFIs0xSden/d4VPF6RSsl3LCA4Ik5Y6O3fzddZzVYm88YZDILIomwMp5cc+z
+X-Received: by 2002:aa7:ca57:: with SMTP id j23mr239916edt.388.1579643181670;
+        Tue, 21 Jan 2020 13:46:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579643181; cv=none;
+        d=google.com; s=arc-20160816;
+        b=i366Z+KZcUrWdag4VrdRvoPNI5qap9L2zC95sd1SszgzUAM+LUtZvfZH5XJ0LCkhU5
+         uPp1/JqRaHKI3Z2TATu2hR71i80Q4SO1uliC4zj5GKeMoPSglOD/7twSbgcNeidJlOgM
+         vaut4tdCw+EC1OmZMl0Gjbf2MXQ48uBaAkLxW7hThflHPeyUJVneqGiAibirOcWbdDZs
+         syR8w6+rRdS2RAr+7orTiUvUtqhLIeJprWczzWpavQUvHFDLDzKY5md4HUcV0KvtLD5d
+         pAA49xfSBGO/KABE4lhsjPf8soyDduG6YfODJF92slS9CHMw7UX3VbCjAFipkvZJxWod
+         YyZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:reply-to:mime-version:message-id:from:date
+         :dkim-signature:dkim-signature;
+        bh=wzBd6pd+/5R/F9w6JCHoWJMg5K8TrbCFeohC7S/gAqc=;
+        b=pusPoFXvbIKS8eDnQn5DCnH+lRHMr+trdz4Il7WYurx/tZwNnlNlva1Uz17XZy3kSy
+         ODzPwKj3vKsAZAq1h2izD4dgMZw8lPWcuWLoeVUL8Zh2JfR8oPTx89hd46gi4i2qkip3
+         gcEnNjQPGgeBktcs63FbLjgGGNPJmR5qCkHIXJc6sSO3CkzojZstsLR+LNxsiqKOEF2i
+         BxutuLGHz1U3hEPUjDhAxYTpwv3H2Fz9Yri7avBP9STFxVmn/mPcWkFtjZzEavu8ayuq
+         ThJtasZwm46dmwe4uYX575B4kuFU8AaAnlubL5KyIMQDQbJsXTf+kvYSk9KY8BgN1HhI
+         sE4g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@dtdg.co header.s=m1 header.b=py30iaQh;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=Oh8g1cES;
+       spf=pass (google.com: domain of bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co designates 167.89.26.167 as permitted sender) smtp.mailfrom="bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co"
+Return-Path: <bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co>
+Received: from o1.sendgrid.dtdg.co (o1.sendgrid.dtdg.co. [167.89.26.167])
+        by mx.google.com with ESMTPS id d22si25784358edn.253.2020.01.21.13.46.21
+        for <willkarges@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 21 Jan 2020 13:46:21 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co designates 167.89.26.167 as permitted sender) client-ip=167.89.26.167;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@dtdg.co header.s=m1 header.b=py30iaQh;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=Oh8g1cES;
+       spf=pass (google.com: domain of bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co designates 167.89.26.167 as permitted sender) smtp.mailfrom="bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dtdg.co; 
+	h=content-type:from:mime-version:reply-to:subject:to; s=m1; 
+	bh=wzBd6pd+/5R/F9w6JCHoWJMg5K8TrbCFeohC7S/gAqc=; b=py30iaQhsa6r1
+	NBwtE31wX8yySqjlSDWE8NF2u8q01wHoVyBrGuaSR+ut2IoRqcMLp5daJsrHWKNI
+	qHY8ssv0ZMGI4ekih4a826DoWOGY1CFTzODbW+1ya4UJO3VQL+/RPzH6ut6bAAaw
+	BbnKC9g6L/3s+/IjvGVu9qZkFxJtS0=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; 
+	d=sendgrid.info; 
+	h=content-type:from:mime-version:reply-to:subject:to:x-feedback-id; 
+	s=smtpapi; bh=wzBd6pd+/5R/F9w6JCHoWJMg5K8TrbCFeohC7S/gAqc=; b=Oh
+	8g1cESBAs3lGVRcGjCjy5N6XYS+L3LBt7IwoYPvnRpC579bvOW4TgUT0ZlltyAQx
+	SBtd4HbIiZDzvqzEFfLCsEoPtx5udFn4vs/WjPw7Xj1Z5iCzAEU4cbnz5oJJRltM
+	3PlMgIb4puF8g0EQxmRkcgWahBWcsSiRNQLbukzmU=
+Received: by filter0967p1iad2.sendgrid.net with SMTP id filter0967p1iad2-19558-5E27712C-4
+        2020-01-21 21:46:20.157814496 +0000 UTC m=+604315.813436627
+Received: from MTMzMDE3OA (ec2-34-204-102-208.compute-1.amazonaws.com [34.204.102.208])
+	by ismtpd0003p1iad1.sendgrid.net (SG) with HTTP id dNzhRiFiTK2fbrccjjauyA
+	for <willkarges@gmail.com>; Tue, 21 Jan 2020 21:46:20.137 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=0144d6c8e67ac5cddc1d5c3684bafb142e227aecdee6e8217b0664051654
+Date: Tue, 21 Jan 2020 21:46:20 +0000 (UTC)
+From: "Datadog" <no-reply@dtdg.co>
+Message-ID: <5291203610803376132-b1a776671b13f4b72a5d50d3ddb87355@events.datadoghq.com>
+Mime-Version: 1.0
+Reply-To: post-9716b1137b5c90e1a1938dd4576e8fac3156283e@dtdg.co
+Subject: [Datadog] Now tracking changes made to dashboard: 'WKarges DataDog Hiring Exercise...
+To: "William Karges" <willkarges@gmail.com>
+X-SG-EID: Jnbmw32bQdWXfZHnHRP2sXKkUKht8vAMSfXHCnGOpP2V+1TrRocSquefKHH7Hf1REJ33E/WMi/CTea
+ qDmWMIZv5Rfsor2mx/hzIcYe++jpF7ySc+oyxZ58ZWqqt1wiz1js9sTgpCZb7COvLnWX53ONGztco3
+ U4wTbzyuUNj1bBvTMUGxedBuTqoxyQkm+5rPz5pqh8YVPbZUFA7Ir6QhhQ==
+X-SG-ID: s22V1KmON1HJgw66D8EJCZtBan0x4eruSeTkrUidXm4=
+X-Feedback-ID: 1330178:SpZ6seGYuBYWb3oNNBJSsq2zpLsbGqUs0+BdxohR5co=:zCKWagFm9zPyXPYgcL4+bw==:SG
+
+--0144d6c8e67ac5cddc1d5c3684bafb142e227aecdee6e8217b0664051654
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+
+Now tracking changes made to dashboard: 'WKarges DataDog Hiring Exercise
+Timeboard'.
+
+Hey @willkarges@gmail.com, you just activated change notifications for
+the dashboard titled                     'WKarges DataDog Hiring
+Exercise Timeboard'. Anytime a user edits this dashboard in the future,
+you will be notified                     by a similar event in your
+stream. To stop receiving change notifications for
+this dashboard, simply remove yourself from the dashboard notify
+list.
+
+https://app.datadoghq.com/event/event?id=3D5291203610803376132
+
+--0144d6c8e67ac5cddc1d5c3684bafb142e227aecdee6e8217b0664051654
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+Mime-Version: 1.0
+
+
+<body lang=3D"en" style=3D"padding: 0; margin: 0;">
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" st=
+yle=3D"padding:0;margin:0;background-color:#F2F2F2;" background=3D"https://=
+app.datadoghq.com/static/images/graph.png">
+    <tr>
+      <td style=3D"font-family: sans-serif; font-size: 16px; color: #333333=
+; padding: 30px 0px 0px 0px;">
+
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"71=
+0" align=3D"center" style=3D"border-top:1px solid #E7E7E7;border-right:1px =
+solid #E7E7E7;border-left:1px solid #E7E7E7;">
+          <tr>
+            <td style=3D"background-color: #8960B1; color: white; font-size:
+            25px; line-height: 22px; font-weight: bold; padding: 7px 16px 6=
+px
+            16px;" background-color=3D"#774aa4" height=3D"22px">
+              <img alt=3D"Datadog" src=3D"https://app.datadoghq.com/static/=
+images/dd_logo_sm.gif" width=3D"163" height=3D"32" border=3D"0" />
+            </td>
+          </tr>
+        </table>
+
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"71=
+0" align=3D"center" style=3D"margin-bottom:80px;border-left:1px solid #E7E7=
+E7;border-right:1px solid #E7E7E7;border-bottom:1px solid #D7D7D7;">
+          <tr>
+            <td style=3D"padding: 16px 16px 16px 16px;background:#FFFFFF;">
+
+
+
+<!-- DATADOG-REPLY-TO:5291203610803376132 -->
+
+
+
+
+<h3 style=3D"margin:8px 0 24px 0;color:#666666;font-weight:normal;"><b styl=
+e=3D"color:#333333;">A Datadog event</b> mentioned you:</h3>
+
+
+<div style=3D"margin:16px 0 16px 0;padding:8px 7px 8px 7px;background:#FFFD=
+CC;border:1px solid #FFEEBB;">
+
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" styl=
+e=3D"padding:0;margin:0;">
+  <tr>
+    <td rowspan=3D"2" width=3D"42" valign=3D"top" style=3D"padding: 2px;"><=
+img src=3D"https://app.datadoghq.com/event/icon/datadog.png" width=3D"36" h=
+eight=3D"36"/></td>
+      <td valign=3D"top" style=3D"padding: 2px; font-size: 14px;"><b style=
+=3D"color:#4d4d4d">Now tracking changes made to dashboard: 'WKarges DataDog=
+ Hiring Exercise Timeboard'.</b></td>
+  </tr>
+  <tr>
+    <td valign=3D"top" style=3D"padding: 2px 5px 2px 5px; color:#222222; fo=
+nt-size: 13px">
+      <div style=3D"width: 540px; overflow: auto;">
+      Hey <span class=3D"dd-user"><a href=3D"http://outbound.dtdg.co/wf/cli=
+ck?upn=3D-2F4mdpADWUAWk9uvqkeGKKktae7H6XCvCCJh7u98yQECa4ZPSFheKVV3Kgt6YrvAI=
+bHAE1cTajS-2FRqbJ4YqH-2BtCehPlWbYe0NUA7V1sYKggY-3D_ueMTbE5ZbG2BgkGj48biENzC=
+Wt0-2FC5ejVLlV1q11icq2wk7sIF-2Bkc9BkdX47Ev9A1HPygZKMlawJWL8x7FP-2FAz8GlP5r2=
+WGdQXr4USBWDI5-2F5JPtwWyeitn8dGY1BDjGzTzRmFhp5X6ib0x50G9gX4a-2FmY3im4jyTrsJ=
+tlc1MIF6lNrCIh5vFUoiJg1g6tSFdv7wcNVbDI5raJdX8ivOP0J9yRqQlNdCvLwvyP-2ByceL6Q=
+CG4n33hc-2BhnuENjjpw4">@willkarges@gmail.com</a></span>, you just activated=
+ change notifications for the dashboard titled                     'WKarges=
+ DataDog Hiring Exercise Timeboard'. Anytime a user edits this dashboard in=
+ the future, you will be notified                     by a similar event in=
+ your stream. To stop receiving change notifications for                   =
+  this dashboard, simply remove yourself from the dashboard notify         =
+            list.
+
+      </div>
+=20=20=20=20=20=20
+<div style=3D"padding: 2px; font-size: 10px; color:#888">
+
+21 Jan, 21:46:17 UTC
+</div>
+
+    </td>
+  </tr>
+</table>
+
+</div>
+
+
+<p style=3D"margin:24px -16px 16px -16px;padding:24px 24px 0px 24px;color:#=
+666;border-top:1px solid #EEEEEE;"><a href=3D"http://outbound.dtdg.co/wf/cl=
+ick?upn=3D-2F4mdpADWUAWk9uvqkeGKKktae7H6XCvCCJh7u98yQEAYJwPp8omKJuncXDFvQto=
+myhAn181ds2Kjo7f43-2BWX9J2PThjSgR3yIIkoHgBeX3k-3D_ueMTbE5ZbG2BgkGj48biENzCW=
+t0-2FC5ejVLlV1q11icq2wk7sIF-2Bkc9BkdX47Ev9AsUqYWyCO-2FmPDi-2B4DNK0YPqSK0e9U=
+20tFgl1VTvTjcvukayuMNBojK96u-2BZK0vPZAKSbjPxwEZwujiNwEta8dtKY-2BFO-2FYEPySV=
+kW-2FhwgBDUuJwBsfi29-2B2Zf1p3geaQzu7rRRwZwOmPupabRQnHbNqyxht8aXI0-2FXwkJ7hy=
+MbR6-2Bm9IVdow6iVPexj3aEx5hM" style=3D"padding:8px 16px 8px 16px;background=
+:#47a3d1;color:#FFFFFF;text-decoration:none;border-top:1px solid #3399CC;bo=
+rder-right:1px solid #3399CC;border-left:1px solid #3399CC;border-bottom:1p=
+x solid #3399CC;">Reply on Datadog</a>&nbsp; <i style=3D"font-size:14px"></=
+i></p>
+
+
+
+
+            <p style=3D"margin-top:40px">To manage your Datadog subscriptio=
+ns, click <a href=3D"http://outbound.dtdg.co/wf/click?upn=3D-2F4mdpADWUAWk9=
+uvqkeGKKktae7H6XCvCCJh7u98yQECkg7AnUPKGn51plZlHct1NB9fwJzgmRoiq4UZtJ-2F9d6Q=
+-3D-3D_ueMTbE5ZbG2BgkGj48biENzCWt0-2FC5ejVLlV1q11icq2wk7sIF-2Bkc9BkdX47Ev9A=
+lf94uNTaDo8QO6Zc78RcQKY1eUz-2Ft-2F1Am6dv4m2dQo6iI6mUhOQcds7N4yhIMvgCMyrojT-=
+2BtnPdJXfd7DcK7dyw0zR-2B3U0wetlR89xyFi-2BkPZEBs9VxsEjtT4j6IWD7t-2BVaUOvWUkc=
+udOea6RPmkiDZ7Azj2Q7ybFwl9c-2Fnf0Pb1nok6TTQs07aXQpqoLSgP">here</a>.</p>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+<img src=3D"http://outbound.dtdg.co/wf/open?upn=3DueMTbE5ZbG2BgkGj48biENzCW=
+t0-2FC5ejVLlV1q11icq2wk7sIF-2Bkc9BkdX47Ev9ABBYcXYnJRPeT-2Fo6Aih7K9rI7piz-2F=
+P0EoZCPxxQbPT8V0dtV6D87J-2FQHkZ2mpGAs1cR57wTKAVtzBZDTasdxcuZ04O3BX1C8GC-2Bq=
+-2F6TqQL-2F2WXZDgXbp0BfqmZdrxEJnUUAMjlhlFAtZZ2Q4PUcdBdDFfF765g-2F-2FScz9JO-=
+2BLoYNmMTIY6NJm31AWtqQG-2B1aa2" alt=3D"" width=3D"1" height=3D"1" border=3D=
+"0" style=3D"height:1px !important;width:1px !important;border-width:0 !imp=
+ortant;margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !i=
+mportant;margin-left:0 !important;padding-top:0 !important;padding-bottom:0=
+ !important;padding-right:0 !important;padding-left:0 !important;"/>
+</body>
+<br>
+
+--0144d6c8e67ac5cddc1d5c3684bafb142e227aecdee6e8217b0664051654--
