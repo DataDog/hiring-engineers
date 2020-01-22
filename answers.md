@@ -83,5 +83,10 @@ Used the DataDog monitoring tool to create a monitor that tracked my_metric on m
 Tested the threshold both on average and at least once during the last five minutes.  Used conditional statements to adjust the body of the e-mail notification based on the relevant alert type.  Then immediately deleted the monitor to prevent my phone from vibrating off my desk.
 
 [Monitor JSON](configfiles/Monitor.json)
+
 [Monitor E-mails](assets/Monitors/)
+
+![Warn.png](assets/Warn.png)
+
+### Bonus Question -
 
