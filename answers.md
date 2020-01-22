@@ -86,7 +86,7 @@ Tested the threshold both on average and at least once during the last five minu
 
 [Monitor E-mails](assets/Monitors/)
 
-![Warn.png](assets/Warn.png)
+![Warn.png](assets/Monitors/Warn.png)
 
 ### Bonus Question -
 
