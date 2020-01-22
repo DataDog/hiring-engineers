@@ -101,7 +101,7 @@ Monitor alerts can be turned ad hoc via the mute button in the monitor dashboard
 ![SilenceScope.png](assets/Monitors/SilenceScope.png)
 
 #### Scheduled Downtime test e-mail
-![scheduled_downtime_email.png](assets/Montiors/scheduled_downtime_email.png)
+![scheduled_downtime_email.png](assets/Monitors/scheduled_downtime_email.png)
 
 ## Section 4 - Collecting APM Data
 
