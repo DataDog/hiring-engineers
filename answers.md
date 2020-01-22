@@ -45,16 +45,19 @@ Imported the DataDog API collection into Postman.  Customized the create dashboa
 
 ![TimeTable_1-21-2020.png](assets/TimeTable_1-21-2020.png)
 
-Unfortunately I wasn't able to, "Set the Timeboard's timeframe to the past 5 minutes (see screenshot below).  While I can adjust individual graphs to 5 minutes, the timeboard itself seems to be restricted to 15 minute intervals.  Not sure if this is just a limitation of the trial version or maybe this was just a trick question.
+Unfortunately I wasn't able to, "Set the Timeboard's timeframe to the past 5 minutes" (see screenshot below).  While I can adjust individual graphs to 5 minutes, the timeboard itself seems to be restricted to 15 minute intervals.  Not sure if this is just a limitation of the trial version or maybe this was just a trick question.
 
 ### 5 Minute Snapshot
 
-[TimeBoard Notification](assets/TimeBoard_Notification.eml)
+[TimeBoard Notification e-mail](assets/TimeBoard_Notification.eml)
 
+##### Error
 ![Error.png](assets/Error.png)
 
+##### 5 Minute Graph
 ![5mGraph.png](assets/5mGraph.png)
 
+##### Notifications
 ![Notifications.png](assets/Notifications.png)
 
 ### **Bonus Question** What is the Anomaly graph displaying?
