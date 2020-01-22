@@ -1,0 +1,232 @@
+Delivered-To: willkarges@gmail.com
+Received: by 2002:a02:7158:0:0:0:0:0 with SMTP id n24csp5493714jaf;
+        Wed, 22 Jan 2020 11:19:38 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwS1IdrxAnufGX68g9QaHaddiHC4egKUdgnaGD/4RrHAb9rB+PIP11SFtstjWu9A7L/KAlg
+X-Received: by 2002:a05:6402:1c87:: with SMTP id cy7mr4169967edb.348.1579720778073;
+        Wed, 22 Jan 2020 11:19:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579720778; cv=none;
+        d=google.com; s=arc-20160816;
+        b=NsxuPvm7mBC/X7xJ+nF+GsUJchEQevAepZDDFwYE2ZfFK4mU3YwyIo4yIidoc9MFmC
+         H5gnKM0x0D8XtbRRwf6AflLaaJB9IpsIb7rWLH/y1sX6bhCXZTHHp88jPIOvahPBQA1o
+         rPs4P8+p70avWYet07hvmkpBiManmjTfmWNiY9cLHvK8y89ZxUuEj1JjXJWyjKAJxuFg
+         Z76YMRP02+k3T+zLZapHef45NcQXLvGKEgm3CEwcW/Bgi1qKdIUfow8OvOCy4PzONYQo
+         YALFu/5Oioq2hX08Evjtp6AYfR4WA/KL+inv+oFiBq9RGwyUHiW0uK3eh3AW2YX0mbOb
+         7Vpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:to:subject:reply-to:mime-version:from:date
+         :dkim-signature:dkim-signature;
+        bh=IXMHP6bWwWRYeHCi4at9Kwx9qEKipEK+/vvkED33iqE=;
+        b=1KoaAX+kC4y0gu2IB2cD9BJFVGXed/xaPijXIovkGhriOXR7DnXr/zDieWGXEJvhhR
+         ngQo7b1cJ046cwPnAsLcqUjDjR0SuVgSdfY0/zOkZwRYbzHUDnQKcnz2PBQpXBvnaGNC
+         Wm6hZ2WE7fesw0UcjwT1OCO3MC7Erm5u4WvwVe/q7A7K62oJCwM2CBYuJIAwFdbIexFb
+         JJLUM+mu4n0qIIoXgEOrUvCP1R6IWZdT7C9qMB+rFZOsEYGheTpPaJUdyda5ylfpq+xJ
+         ynw/e4us55UW15qgcpE13bLaKlCkXh1zLv8flWK402akbjkPCHhkHQYruwNA0PyFE5KL
+         m80Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@dtdg.co header.s=m1 header.b=L4mJrhBp;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=YasClZVv;
+       spf=pass (google.com: domain of bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co designates 167.89.26.167 as permitted sender) smtp.mailfrom="bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co"
+Return-Path: <bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co>
+Received: from o1.sendgrid.dtdg.co (o1.sendgrid.dtdg.co. [167.89.26.167])
+        by mx.google.com with ESMTPS id j8si27648371edn.433.2020.01.22.11.19.37
+        for <willkarges@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 Jan 2020 11:19:38 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co designates 167.89.26.167 as permitted sender) client-ip=167.89.26.167;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@dtdg.co header.s=m1 header.b=L4mJrhBp;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=YasClZVv;
+       spf=pass (google.com: domain of bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co designates 167.89.26.167 as permitted sender) smtp.mailfrom="bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dtdg.co; 
+	h=content-type:from:mime-version:reply-to:subject:to; s=m1; 
+	bh=IXMHP6bWwWRYeHCi4at9Kwx9qEKipEK+/vvkED33iqE=; b=L4mJrhBpz9u0G
+	mZLbQyG0l5WX3T12OEhsyXoRlNFu7gFxWmLR/boVbOhIJ+NlUviXymDezmyJSoVd
+	2B4Sb5aOD8e+RdLsizUlnyfyzAg2aygJq32Eb2cbZR3gLT6AFZ77fAD8xU/T0GMQ
+	LHE77RKjIk20uLC6JYnqc8D+FsGMhA=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; 
+	d=sendgrid.info; 
+	h=content-type:from:mime-version:reply-to:subject:to:x-feedback-id; 
+	s=smtpapi; bh=IXMHP6bWwWRYeHCi4at9Kwx9qEKipEK+/vvkED33iqE=; b=Ya
+	sClZVvo+VtsYkc7BVw499GpJ27cx4pBt29CAk86uEP0GKh//fDc63tQdJ8luKAJK
+	DTP9146dpqGcklzD3U0AAyZkjOKH6dL3mM3eyZp3s6qR6vTX/LqsOzq8Katz/Xqr
+	wPr+bXRDYkxs3fdn6xOE1zqA9BPDqZIH9sttZfqR4=
+Received: by filter0871p1iad2.sendgrid.net with SMTP id filter0871p1iad2-4406-5E28A048-15
+        2020-01-22 19:19:36.569604356 +0000 UTC m=+283124.490217993
+Received: from MTMzMDE3OA (ec2-52-20-96-17.compute-1.amazonaws.com [52.20.96.17])
+	by ismtpd0015p1iad1.sendgrid.net (SG) with HTTP id XRcOApA1S1ajEMzhbROShg
+	for <willkarges@gmail.com>; Wed, 22 Jan 2020 19:19:36.538 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=d0113cd8afcfa8ea383cd6ea5ba057ed9cb01b9187e68470473a5e970c8b
+Date: Wed, 22 Jan 2020 19:19:36 +0000 (UTC)
+From: "Datadog Alerting" <alert@dtdg.co>
+Mime-Version: 1.0
+Reply-To: post-9716b1137b5c90e1a1938dd4576e8fac3156283e@dtdg.co
+Subject: [Monitor Alert] No data: [TEST] my_metric has triggered a notification
+To: "William Karges" <willkarges@gmail.com>
+Message-ID: <XRcOApA1S1ajEMzhbROShg@ismtpd0015p1iad1.sendgrid.net>
+X-SG-EID: Jnbmw32bQdWXfZHnHRP2sXKkUKht8vAMSfXHCnGOpP0LrINV6lTkAWshEvz2ZL02k9lpHVhDZXeIBj
+ ax6OTyZluvt+4eHhuzaNh88cHHUfNjjzXPzYkE5dlbbMyCGlr8jOrz3dbK0Pbr++Bq3X7ekMV8to+U
+ r9r3RC4Bp2OIj/UaK21jRYTpI5MspC7P5V2Cir/7flzg8PmLLgw7UK9UqhgcQbDDDCASRg1AhL1x2V
+ 8=
+X-SG-ID: 2lAb4VZuuSVq9qgv2PYx4EMeAgfPOB3fm3rclKH83pc=
+X-Feedback-ID: 1330178:SpZ6seGYuBYWb3oNNBJSsq2zpLsbGqUs0+BdxohR5co=:v/nQ59g6fNR0mRB3ZBT4rA==:SG
+
+--d0113cd8afcfa8ea383cd6ea5ba057ed9cb01b9187e68470473a5e970c8b
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+
+[No data] [TEST] my_metric has triggered a notification=20=20
+my_metric has missing data over 10 minutes on WKARGES-10P.fourwindsinteract=
+ive.com.=20
+
+
+@willkarges@gmail.com
+
+Test notification triggered by willkarges@gmail.com.
+
+The monitor has been missing data for the last 10m
+
+Metric value: 0.0
+
+This alert was raised by account Datadog Recruiting Candidate
+
+Monitor Status: https://app.datadoghq.com/monitors#15440717? =C2=B7 Edit Mo=
+nitor: https://app.datadoghq.com/monitors#15440717/edit =C2=B7 Event URL: h=
+ttps://app.datadoghq.com/event/event?id=3D5292505431896359269 =C2=B7 Show P=
+rocesses: https://app.datadoghq.com/process?sort=3Dmemory%2CDESC&to_ts=3DNo=
+ne&tags=3Dhost%3AWKARGES-10P.fourwindsinteractive.com&from_ts=3DNone&live=
+=3Dfalse&showSummaryGraphs=3Dtrue
+
+--d0113cd8afcfa8ea383cd6ea5ba057ed9cb01b9187e68470473a5e970c8b
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+Mime-Version: 1.0
+
+
+<body lang=3D"en" style=3D"padding: 0; margin: 0;">
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" st=
+yle=3D"padding:0;margin:0;background-color:#F2F2F2;" background=3D"https://=
+app.datadoghq.com/static/images/graph.png">
+    <tr>
+      <td style=3D"font-family: sans-serif; font-size: 16px; color: #333333=
+; padding: 30px 0px 0px 0px;">
+
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"71=
+0" align=3D"center" style=3D"border-top:1px solid #E7E7E7;border-right:1px =
+solid #E7E7E7;border-left:1px solid #E7E7E7;">
+          <tr>
+            <td style=3D"background-color: #8960B1; color: white; font-size:
+            25px; line-height: 22px; font-weight: bold; padding: 7px 16px 6=
+px
+            16px;" background-color=3D"#774aa4" height=3D"22px">
+              <img alt=3D"Datadog" src=3D"https://app.datadoghq.com/static/=
+images/dd_logo_sm.gif" width=3D"163" height=3D"32" border=3D"0" />
+            </td>
+          </tr>
+        </table>
+
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"71=
+0" align=3D"center" style=3D"margin-bottom:80px;border-left:1px solid #E7E7=
+E7;border-right:1px solid #E7E7E7;border-bottom:1px solid #D7D7D7;">
+          <tr>
+            <td style=3D"padding: 16px 16px 16px 16px;background:#FFFFFF;">
+
+
+
+<!-- DATADOG-REPLY-TO:5292505431896359269 -->
+
+<div style=3D"margin:16px 0 16px 0;padding:8px 7px 8px 7px;background:#FFFD=
+CC;border:1px solid #FFEEBB;">
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" st=
+yle=3D"padding:0;margin:0;">
+    <tr>
+      <td valign=3D"top" style=3D"padding:0; color:#222222; font-size: 13px=
+;">
+        [No data] [TEST] my_metric has triggered a notification  <br />
+<div class=3D"event_markdown">
+<p>my_metric has missing data over 10 minutes on WKARGES-10P.fourwindsinter=
+active.com. </p>
+<p><span class=3D"dd-user"><a href=3D"http://outbound.dtdg.co/wf/click?upn=
+=3D-2F4mdpADWUAWk9uvqkeGKKktae7H6XCvCCJh7u98yQECa4ZPSFheKVV3Kgt6YrvAIbHAE1c=
+TajS-2FRqbJ4YqH-2BtA-3D-3D_ueMTbE5ZbG2BgkGj48biENzCWt0-2FC5ejVLlV1q11icrvsd=
+1bYByU5swW1GiLrWpROdnTwiV1tMSEX6zrCc0ntRE-2FO9zc-2BtCIsaTXDt99hnupsmk6lK35o=
+l4-2Bo6joYA2B8yZpae-2B9WfYIH7pV5lm8Ih4yHYUdtixpt4aHnFdN0P6gJFrvnZ3vb7FtGS9C=
+3r5MXfGSvu9UQ2aQzeOAC3vfeTR-2FyrAtNsWWYHtuZyYry3jYyhtdT9-2B1aQIKOIhKMhJ9">@=
+willkarges@gmail.com</a></span></p>
+<p>Test notification triggered by willkarges@gmail.com.</p>
+<p><strong>The monitor</strong> has been missing data for the <strong>last =
+10m</strong></p>
+
+        <p>The monitor was last triggered at Wed Jan 22 2020 19:19:28 UTC.<=
+/p>
+<hr>
+<p>[<a href=3D"http://outbound.dtdg.co/wf/click?upn=3D-2F4mdpADWUAWk9uvqkeG=
+KKktae7H6XCvCCJh7u98yQEAda2JbyA1tvw63w6NFZ5moW7tcTv7wsjHrlk8f7VrwEA-3D-3D_u=
+eMTbE5ZbG2BgkGj48biENzCWt0-2FC5ejVLlV1q11icrvsd1bYByU5swW1GiLrWpRT4cLJQ5bSM=
+0M9Uww5b3w02xNSA5W7GxAeOlgK-2FA-2BM98Zsj4uWlN0qevTXZgVhhc4pm498-2B8759e8-2B=
+KOJMWv5-2F-2BwiISwraoOSGxwoBa053LM4JdYACfJvUX5cTrN-2FjozGiRRGKy1W4MoU-2BGoA=
+Zx0kMqIEuP56VBLgImn-2F4YonOFeLoqpHL2fSLYAb81-2BMalN1">Monitor Status</a>] =
+=C2=B7 [<a href=3D"http://outbound.dtdg.co/wf/click?upn=3D-2F4mdpADWUAWk9uv=
+qkeGKKktae7H6XCvCCJh7u98yQEAda2JbyA1tvw63w6NFZ5moH-2FKup-2FtE9Q7JlwmvFGdUNg=
+-3D-3D_ueMTbE5ZbG2BgkGj48biENzCWt0-2FC5ejVLlV1q11icrvsd1bYByU5swW1GiLrWpR59=
+ruTG2en4NRbD0DdNNDQN-2Fg0ERw4UPgtMH1Lw-2FpFe-2FozFxWpM4IFV-2F0yZD9GowPGAmiP=
+0OjCkCUbgsmKGIY9WxoJJ5l-2BSV3vKJPA4EPvwX-2BaJmlhyp9rHlgkCTrRxoxQ0t-2B8mARps=
+mOjYiN5KyNen4jzIGe-2Br-2FNLWtLNS2Nzik5aswFBaZ-2BwYA6wbRAqzWK">Edit Monitor<=
+/a>] =C2=B7 [<a href=3D"http://outbound.dtdg.co/wf/click?upn=3D-2F4mdpADWUA=
+Wk9uvqkeGKKktae7H6XCvCCJh7u98yQED-2FFPDBbKPsalSo1i1ufo6S-2FX4pKstbDP3BrKs5g=
+hv7117Fy41TenNV3ABgCELU-2FHchXJIcSZxnSH4TcOjFuAztoO-2B2fRqjJIB8XLjStQm3VC-2=
+FhlgoZN6FuxL-2BMVoIw-2FKGMhS0HHTWMy6vNt7bb3CrRUyhCfDHbso7uHIfxSG1stXLR2ihW3=
+1PUpxo2TDH9GEzaGj0glVMMxdj-2FsHYbjRUE_ueMTbE5ZbG2BgkGj48biENzCWt0-2FC5ejVLl=
+V1q11icrvsd1bYByU5swW1GiLrWpR6Z-2FFGIG5cZcS-2B4QfjzrYnqGUQHzl23pby7u-2Box0R=
+RNvSdFq3-2BPeMrsUXJbEmmSymrwQuzLfmxtVOIgXmEKQQqEtlQyzWaMV0DBIrCQgYrKzcbNhc8=
+iWFFN1KNAHWwdYkcMYIW0HoM94MHaL-2F1MYgbZRZ74RuF1YGtCymV-2Bzw8xCVJw83RXpVuixU=
+Cwhw4G-2FP">Show Processes</a>]</p>
+<p>This alert was raised by account Datadog Recruiting Candidate</p>
+</div>
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+<p style=3D"margin:24px -16px 16px -16px;padding:24px 24px 0px 24px;color:#=
+666;border-top:1px solid #EEEEEE;"><a href=3D"http://outbound.dtdg.co/wf/cl=
+ick?upn=3D-2F4mdpADWUAWk9uvqkeGKKktae7H6XCvCCJh7u98yQEAYJwPp8omKJuncXDFvQto=
+mSVv3TQjWcXwzgXJJMWW5BfObHAylhjQ1iVSeWl69euY-3D_ueMTbE5ZbG2BgkGj48biENzCWt0=
+-2FC5ejVLlV1q11icrvsd1bYByU5swW1GiLrWpRRErp9ZJax5RqaScFDk4CEqWVtN0Gsxo7HC9t=
+K8cNorv7GYEw4FBxWNzJULzfJ7rC-2B8e-2Bzymrl8AjVU27VMPPUXa4f7ru3R2qzORI1oXQGZj=
+MjDcXE9eavL8mTO6YLl1-2FIaUBSV4HkV4VKr9Vuf1JW36r3k5odQAL-2F5r-2Bzxkpp5LYD1M-=
+2FNv9wE3LCO05IgBw5" style=3D"padding:8px 16px 8px 16px;background:#47a3d1;c=
+olor:#FFFFFF;text-decoration:none;border-top:1px solid #3399CC;border-right=
+:1px solid #3399CC;border-left:1px solid #3399CC;border-bottom:1px solid #3=
+399CC;">Comment in Datadog</a>&nbsp; <i style=3D"font-size:14px"></i></p>
+
+
+            <p style=3D"margin-top:40px">To manage your Datadog subscriptio=
+ns, click <a href=3D"http://outbound.dtdg.co/wf/click?upn=3D-2F4mdpADWUAWk9=
+uvqkeGKKktae7H6XCvCCJh7u98yQECkg7AnUPKGn51plZlHct1NB9fwJzgmRoiq4UZtJ-2F9d6Q=
+-3D-3D_ueMTbE5ZbG2BgkGj48biENzCWt0-2FC5ejVLlV1q11icrvsd1bYByU5swW1GiLrWpRDo=
+S0-2F-2F-2BA4MrZDGhEOTiA-2FG126SWu1DAE9I9h-2FpjsnOgnnCsADM-2FZIiVhMMjsm-2Bd=
+bXX-2Bf8u3ZWhjajFMvHTpVztJDqhV7cKDJMTAKUZ0ViDIuURg1cz0-2BvlzDk1NfWD3RUCRIo8=
+ZT1MFbKa4xeu1jOSoa850UHwlP0ZnZO0vmQ0EfNG-2BfhriHygIH4HBn5PDR">here</a>.</p>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+<img src=3D"http://outbound.dtdg.co/wf/open?upn=3DueMTbE5ZbG2BgkGj48biENzCW=
+t0-2FC5ejVLlV1q11icrvsd1bYByU5swW1GiLrWpR4mtSaUHXrJzotN-2Bk5z6ZGps3ST9EtxUz=
+5HmC1UnBFVGhujMFO8cykwS5P6EKBeSiAZB1tDaWPt7yCL2icXtlrcWETp4DcDgs93vbCv14Se0=
+Y9sEXvl-2BSQpBTWGkxxruEg1PBaMVJVPoPn2Pjp5KoprrLpBFkqdyWjAjn4GgJr9Qydm0IM4KU=
+ycXXILSIkZMg" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"heigh=
+t:1px !important;width:1px !important;border-width:0 !important;margin-top:=
+0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-le=
+ft:0 !important;padding-top:0 !important;padding-bottom:0 !important;paddin=
+g-right:0 !important;padding-left:0 !important;"/>
+</body>
+<br>
+
+--d0113cd8afcfa8ea383cd6ea5ba057ed9cb01b9187e68470473a5e970c8b--

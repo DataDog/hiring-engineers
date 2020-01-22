@@ -1,0 +1,23 @@
+{
+	"name": "my_metric has triggered a notification",
+	"type": "metric alert",
+	"query": "max(last_5m):avg:my_metric{host:WKARGES-10P.fourwindsinteractive.com} > 800",
+	"message": "{{#is_alert}}my_metric has eclipsed the alert threshold on {{host.name}}.{{/is_alert}} \n{{#is_warning}}my_metric has eclipsed the warning threshold on {{host.name}}.{{/is_warning}} \n{{#is_no_data}}my_metric has missing data over 10 minutes on {{host.name}}.{{/is_no_data}} ",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}

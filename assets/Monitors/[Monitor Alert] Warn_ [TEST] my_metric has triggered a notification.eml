@@ -1,0 +1,244 @@
+Delivered-To: willkarges@gmail.com
+Received: by 2002:a02:7158:0:0:0:0:0 with SMTP id n24csp5493641jaf;
+        Wed, 22 Jan 2020 11:19:34 -0800 (PST)
+X-Google-Smtp-Source: APXvYqyMZU82g3nNE+yoFdAi+mREitslUdpJ20wILP+v8rweYY5hKwbyEkjQ0fmWhH0jY4j1xeJ4
+X-Received: by 2002:a17:906:ed1:: with SMTP id u17mr3940270eji.286.1579720774031;
+        Wed, 22 Jan 2020 11:19:34 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579720774; cv=none;
+        d=google.com; s=arc-20160816;
+        b=bw+krbtvYaRBsA2o2ULjhpNjaZHPLLggTIKTCMUWokwB1TYqH0Uhb5qkKjXSXjOUll
+         GV7Daxgzv58NWBTknA+qcGQDEiBs6yQPcDuB/H/aMzWXlePgv6HJDtjZ6/vE9Uci0h4g
+         LQgD6+Q8wHXXqmG1FO8kvqQ8I0X96mBLdfHb4ZV8pJ0urbNV3X6IC2U7+Ign9CKRkKYd
+         gp7Jm+7OlBiwf26jmKF/2ms834nbEE5gaNinfdsf/XzaZk/SL+JcqXncuvDdlF40r2by
+         uIgzfO1hpezfu6J9NBhyFNId2/+bO3ZyyvshD+t8cD6W9D3lCkMj2V2oJUDqns0Vsva9
+         Il+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:to:subject:reply-to:mime-version:from:date
+         :dkim-signature:dkim-signature;
+        bh=bTAIHC2ZLrZuDM6RWdlB6fuWATJwfNCwby/7eVvrJ6A=;
+        b=dMcgdWZWZvOnSvSFVvfQyfK+QuMJLFu4c7EVd00WUmp5AhmwFajFuS4i785QVAbbq4
+         QANBqyiYP513RaeQRUpVvZemSEFK6ZPRS0ISduJsre8lXKFNwS3P4HRtgQAY+V7KGJy0
+         ZBduRg9/YhzEi7vMFrwXkdnHS1ziuAFtPDa8xQFipW5CUO0wjrAkV1+QekvS/pTUUm/r
+         By3jkTBQ/CSiLq6t1McpsR1HrarLAkTEjkuTlxy3Ytuz4jxsUqr63S+x2nK5xltp2WC/
+         S9FjMznYYjnHwlmLy5AmsMDCbc5F9l5yWeNGPR+PIDLh70I13dPNAZAs1+isLrLjREYK
+         4FEw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@dtdg.co header.s=m1 header.b=IbjSMMV2;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=vr5Mfpq6;
+       spf=pass (google.com: domain of bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co designates 167.89.26.167 as permitted sender) smtp.mailfrom="bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co"
+Return-Path: <bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co>
+Received: from o1.sendgrid.dtdg.co (o1.sendgrid.dtdg.co. [167.89.26.167])
+        by mx.google.com with ESMTPS id u18si26342940edq.368.2020.01.22.11.19.33
+        for <willkarges@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 Jan 2020 11:19:34 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co designates 167.89.26.167 as permitted sender) client-ip=167.89.26.167;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@dtdg.co header.s=m1 header.b=IbjSMMV2;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=vr5Mfpq6;
+       spf=pass (google.com: domain of bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co designates 167.89.26.167 as permitted sender) smtp.mailfrom="bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dtdg.co; 
+	h=content-type:from:mime-version:reply-to:subject:to; s=m1; 
+	bh=bTAIHC2ZLrZuDM6RWdlB6fuWATJwfNCwby/7eVvrJ6A=; b=IbjSMMV2uZ8bE
+	DQ9munc6wxnjjUdfep6GmP7DlUCd/tkn4JVcWdhFAmH2hNWPv2Kbjz1upHfbAst0
+	Ntyvip9c8PVCpaStA8+8+jVUEInr9kh/e2LEWd5dxzdb354BqRi5XXk1IAMuQCNT
+	NkuE1aOZ0iCLYoNK/PwV+1D6luqlgE=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; 
+	d=sendgrid.info; 
+	h=content-type:from:mime-version:reply-to:subject:to:x-feedback-id; 
+	s=smtpapi; bh=bTAIHC2ZLrZuDM6RWdlB6fuWATJwfNCwby/7eVvrJ6A=; b=vr
+	5Mfpq6ghqbQYgzDAGHXSfJ63ZPPSsocFciQsef6t5ZvFfxggZo3rPYe1ILSHFE0M
+	0/Ch0HWj05+vhgs8W6zbQX3MGGBNGwyZ4xTIwYMI6HbLrIG7bifvNtodwJ1BzA0q
+	hv+u+jI2Va46m83T9XySATjZANC64rVSa7vFlKEA4=
+Received: by filter1577p1mdw1.sendgrid.net with SMTP id filter1577p1mdw1-24795-5E28A044-1E
+        2020-01-22 19:19:32.526334219 +0000 UTC m=+689179.022313916
+Received: from MTMzMDE3OA (ec2-52-20-96-17.compute-1.amazonaws.com [52.20.96.17])
+	by ismtpd0004p1iad1.sendgrid.net (SG) with HTTP id -ucP9PqmQmGPkd_x7XyvFA
+	for <willkarges@gmail.com>; Wed, 22 Jan 2020 19:19:32.520 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=9f2d4498479a7ddf251aa5d72a3bdce67faa99474abd07fc12f60e7be1f4
+Date: Wed, 22 Jan 2020 19:19:32 +0000 (UTC)
+From: "Datadog Alerting" <alert@dtdg.co>
+Mime-Version: 1.0
+Reply-To: post-9716b1137b5c90e1a1938dd4576e8fac3156283e@dtdg.co
+Subject: [Monitor Alert] Warn: [TEST] my_metric has triggered a notification
+To: "William Karges" <willkarges@gmail.com>
+Message-ID: <-ucP9PqmQmGPkd_x7XyvFA@ismtpd0004p1iad1.sendgrid.net>
+X-SG-EID: Jnbmw32bQdWXfZHnHRP2sXKkUKht8vAMSfXHCnGOpP3H2JfPCXeeXtxsV9wFv+BtQGHIRXYySTYMn0
+ aT9ifEZ/6A3Wx0sc7MZLZSEEGoeU/as1NPGLwYSWC8CQawuFlOLFoLsiRgSWHGnueaPgSq8z6M5g33
+ y72xpQ4don+7iKO8B1QzHcFFCVZBeA2V9ACODaZyBZx5wid5Qv3NdYR7KViNR1/df6r91qWv2iDx+j
+ w=
+X-SG-ID: 2lAb4VZuuSVq9qgv2PYx4EMeAgfPOB3fm3rclKH83pc=
+X-Feedback-ID: 1330178:SpZ6seGYuBYWb3oNNBJSsq2zpLsbGqUs0+BdxohR5co=:v/nQ59g6fNR0mRB3ZBT4rA==:SG
+
+--9f2d4498479a7ddf251aa5d72a3bdce67faa99474abd07fc12f60e7be1f4
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+
+[Warn] [TEST] my_metric has triggered a notification=20=20
+my_metric has eclipsed the warning threshold on WKARGES-10P.fourwindsintera=
+ctive.com.=20
+=20
+
+
+@willkarges@gmail.com
+
+Test notification triggered by willkarges@gmail.com.
+
+my_metric over host:WKARGES-10P.fourwindsinteractive.com was > 500.0 at lea=
+st once during the last 5m.
+
+Metric value: 0.0
+
+This alert was raised by account Datadog Recruiting Candidate
+
+Monitor Status: https://app.datadoghq.com/monitors#15440717? =C2=B7 Edit Mo=
+nitor: https://app.datadoghq.com/monitors#15440717/edit =C2=B7 Event URL: h=
+ttps://app.datadoghq.com/event/event?id=3D5292505430235414884 =C2=B7 Show P=
+rocesses: https://app.datadoghq.com/process?sort=3Dmemory%2CDESC&to_ts=3DNo=
+ne&tags=3Dhost%3AWKARGES-10P.fourwindsinteractive.com&from_ts=3DNone&live=
+=3Dfalse&showSummaryGraphs=3Dtrue
+
+--9f2d4498479a7ddf251aa5d72a3bdce67faa99474abd07fc12f60e7be1f4
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+Mime-Version: 1.0
+
+
+<body lang=3D"en" style=3D"padding: 0; margin: 0;">
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" st=
+yle=3D"padding:0;margin:0;background-color:#F2F2F2;" background=3D"https://=
+app.datadoghq.com/static/images/graph.png">
+    <tr>
+      <td style=3D"font-family: sans-serif; font-size: 16px; color: #333333=
+; padding: 30px 0px 0px 0px;">
+
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"71=
+0" align=3D"center" style=3D"border-top:1px solid #E7E7E7;border-right:1px =
+solid #E7E7E7;border-left:1px solid #E7E7E7;">
+          <tr>
+            <td style=3D"background-color: #8960B1; color: white; font-size:
+            25px; line-height: 22px; font-weight: bold; padding: 7px 16px 6=
+px
+            16px;" background-color=3D"#774aa4" height=3D"22px">
+              <img alt=3D"Datadog" src=3D"https://app.datadoghq.com/static/=
+images/dd_logo_sm.gif" width=3D"163" height=3D"32" border=3D"0" />
+            </td>
+          </tr>
+        </table>
+
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"71=
+0" align=3D"center" style=3D"margin-bottom:80px;border-left:1px solid #E7E7=
+E7;border-right:1px solid #E7E7E7;border-bottom:1px solid #D7D7D7;">
+          <tr>
+            <td style=3D"padding: 16px 16px 16px 16px;background:#FFFFFF;">
+
+
+
+<!-- DATADOG-REPLY-TO:5292505430235414884 -->
+
+<div style=3D"margin:16px 0 16px 0;padding:8px 7px 8px 7px;background:#FFFD=
+CC;border:1px solid #FFEEBB;">
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" st=
+yle=3D"padding:0;margin:0;">
+    <tr>
+      <td valign=3D"top" style=3D"padding:0; color:#222222; font-size: 13px=
+;">
+        [Warn] [TEST] my_metric has triggered a notification  <br />
+<div class=3D"event_markdown">
+<p>my_metric has eclipsed the warning threshold on WKARGES-10P.fourwindsint=
+eractive.com. </p>
+<p><span class=3D"dd-user"><a href=3D"http://outbound.dtdg.co/wf/click?upn=
+=3D-2F4mdpADWUAWk9uvqkeGKKktae7H6XCvCCJh7u98yQECa4ZPSFheKVV3Kgt6YrvAIbHAE1c=
+TajS-2FRqbJ4YqH-2BtA-3D-3D_ueMTbE5ZbG2BgkGj48biENzCWt0-2FC5ejVLlV1q11icp4aZ=
+LWm5Rf2DoRuv3MvRwQVgRZ2WnhXTavfYJvkhyWgNNjlqb8bR-2Bl4g4xOqF4y1RC8iRaNZqKzx4=
+jxsjbu-2BfFO0MuV4JeNYcPqgj8DxvxgReAkDTuByb7K-2FWcBhWPaGyoLc-2F02jS-2FMbFKyE=
+CzA-2FRohvU5QCraZWhBxAXcHkBExG35ByjTqeK7lAQ-2BcdwSsRYeZ-2B31DeIuxtj89V8NKkS=
+s">@willkarges@gmail.com</a></span></p>
+<p>Test notification triggered by willkarges@gmail.com.</p>
+<p><a href=3D"http://outbound.dtdg.co/wf/click?upn=3D-2F4mdpADWUAWk9uvqkeGK=
+Kktae7H6XCvCCJh7u98yQEAda2JbyA1tvw63w6NFZ5moB2E0P4VbvSKd7P4jMS8Md6FybJrj0Q2=
+fTTPE-2FFd73tc9L8nSIzyJRzKqzkchD5JA_ueMTbE5ZbG2BgkGj48biENzCWt0-2FC5ejVLlV1=
+q11icp4aZLWm5Rf2DoRuv3MvRwQ48dAeWdIf67X163J8ExiYPAlqb69Pb8Tc81gPf8oxF-2BiLF=
+Unxax-2FnCffPwjI43SXUKiwEZt0A7l4n3t6Ko1rrQIuOrP3eG7p81Jz0Ex89b7Sv4rbrpmP5q-=
+2B22uiHr-2BKNoimIdOwqPmRfTB5aY1a-2Bf-2FDa4SgyLAhgGT5-2F-2BvXQSTpKQyNojy8bxm=
+m2fEEjBn95"><img alt=3D"Metric Graph" src=3D"https://p.datadoghq.com/snapsh=
+ot/view/dd-snapshots-prod/org_372666/2020-01-22/5d78b0fe987282e8d8cd3ed9c32=
+7acde60ebf55e.png"></a></p>
+<p><strong>my_metric</strong> over <strong>host:WKARGES-10P.fourwindsintera=
+ctive.com</strong> was <strong>&gt; 500.0</strong> at least once during the=
+ <strong>last 5m</strong>.</p>
+
+        <p>The monitor was last triggered at Wed Jan 22 2020 19:19:28 UTC.<=
+/p>
+<hr>
+<p>[<a href=3D"http://outbound.dtdg.co/wf/click?upn=3D-2F4mdpADWUAWk9uvqkeG=
+KKktae7H6XCvCCJh7u98yQEAda2JbyA1tvw63w6NFZ5moW7tcTv7wsjHrlk8f7VrwEA-3D-3D_u=
+eMTbE5ZbG2BgkGj48biENzCWt0-2FC5ejVLlV1q11icp4aZLWm5Rf2DoRuv3MvRwQ-2BLJmMwJP=
+mW1-2F5qvZax1CYZ2jP-2FjHpwl9h2z8cE25g-2FzseMHBGvSCMzOzAPtUUMJmeewpiap-2Fm2u=
+5W5jQ9rM8FSdk8w2tyU8Yw6IvAZlP74VU4F89Ry1MDFpcj-2BVuk0oE-2FuQ9fYxnDOehkK-2BG=
+QLocTF6JPaDh8iSoo7Zmg-2B5GtSBTw9ONMTU5NetO-2B6B7LECP">Monitor Status</a>] =
+=C2=B7 [<a href=3D"http://outbound.dtdg.co/wf/click?upn=3D-2F4mdpADWUAWk9uv=
+qkeGKKktae7H6XCvCCJh7u98yQEAda2JbyA1tvw63w6NFZ5moH-2FKup-2FtE9Q7JlwmvFGdUNg=
+-3D-3D_ueMTbE5ZbG2BgkGj48biENzCWt0-2FC5ejVLlV1q11icp4aZLWm5Rf2DoRuv3MvRwQaO=
+D8nHLD6KfmQr2cONYplJbpk1FQiozjJ0rY-2BBLqHRX20QDe5KR8tEEFwiT8V6TCIpOcUDnW8h3=
+1iE3wbdvFhIfHGz-2BfjxknIMlI4ziy8apcg4K3g2z4aMJSAJphtWPOdJkHg610sLbGLe5Kv8NF=
+jsTvR0c-2Fn-2B38oOTD-2BwhtsYc0-2B68fR7kFyQw1CJxAQ8uj">Edit Monitor</a>] =C2=
+=B7 [<a href=3D"http://outbound.dtdg.co/wf/click?upn=3D-2F4mdpADWUAWk9uvqke=
+GKKktae7H6XCvCCJh7u98yQED-2FFPDBbKPsalSo1i1ufo6S-2FX4pKstbDP3BrKs5ghv7117Fy=
+41TenNV3ABgCELU-2FHchXJIcSZxnSH4TcOjFuAztoO-2B2fRqjJIB8XLjStQm3VC-2FhlgoZN6=
+FuxL-2BMVoIw-2FKGMhS0HHTWMy6vNt7bb3CrRUyhCfDHbso7uHIfxSG1stXLR2ihW31PUpxo2T=
+DH9GEzaGj0glVMMxdj-2FsHYbjRUE_ueMTbE5ZbG2BgkGj48biENzCWt0-2FC5ejVLlV1q11icp=
+4aZLWm5Rf2DoRuv3MvRwQEge-2Bq5SIV15MjQ4Id-2FdK50XScCplGWFOlZeGRKa8Rx5JkIM4jr=
+aUGKGPhZsMzmAfPOpmhC8ySVirz3nmQD2tX3EPyVPPraTzrzP7Zd9dXT9X3fiMdqbZPaB-2BQD1=
+c0AD4SBRQRBdvYgpKBO6yANnLXsqhhVojB58T4qm55OYQapGb-2Fu4IvI72zfJthB0mR6xg">Sh=
+ow Processes</a>]</p>
+<p>This alert was raised by account Datadog Recruiting Candidate</p>
+</div>
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+<p style=3D"margin:24px -16px 16px -16px;padding:24px 24px 0px 24px;color:#=
+666;border-top:1px solid #EEEEEE;"><a href=3D"http://outbound.dtdg.co/wf/cl=
+ick?upn=3D-2F4mdpADWUAWk9uvqkeGKKktae7H6XCvCCJh7u98yQEAYJwPp8omKJuncXDFvQto=
+m-2FfdmXb0l9Fh-2FAXAzVyOYPEfdmQ-2Ftjysh326LEDlkT1w-3D_ueMTbE5ZbG2BgkGj48biE=
+NzCWt0-2FC5ejVLlV1q11icp4aZLWm5Rf2DoRuv3MvRwQ2CuPelCqLlRZP5wnTJM4MHdwnIkxDO=
+EzwGPas7bGvZhrHFMDaKXpcrRsegpOZ24HXWsMnhiaTFdnydcVbRdXF5iRONowSP1qHWi7-2FGh=
+etTMEARPr4J8QAreH0nq6oXjMwI0z3qAW1TBX-2BNsiE3rODdPoljGbEaAMvt6SmiSz39NwKDyk=
+ez8gpWFv76I5hRaK" style=3D"padding:8px 16px 8px 16px;background:#47a3d1;col=
+or:#FFFFFF;text-decoration:none;border-top:1px solid #3399CC;border-right:1=
+px solid #3399CC;border-left:1px solid #3399CC;border-bottom:1px solid #339=
+9CC;">Comment in Datadog</a>&nbsp; <i style=3D"font-size:14px"></i></p>
+
+
+            <p style=3D"margin-top:40px">To manage your Datadog subscriptio=
+ns, click <a href=3D"http://outbound.dtdg.co/wf/click?upn=3D-2F4mdpADWUAWk9=
+uvqkeGKKktae7H6XCvCCJh7u98yQECkg7AnUPKGn51plZlHct1NB9fwJzgmRoiq4UZtJ-2F9d6Q=
+-3D-3D_ueMTbE5ZbG2BgkGj48biENzCWt0-2FC5ejVLlV1q11icp4aZLWm5Rf2DoRuv3MvRwQ8t=
+Q6TciIK353fyLez1nAoLFXITsmM7BV2pOCL8sXwrdEK96kES8i6rQq0PRaeuIrWe3c-2F5V1v-2=
+BVSxq5DbIAwoFKW9R-2FSYj8HidWqCAwqg4ZVEWjID7Gmw7-2F0k7gPcPnFWD88fC9MOWlxnrYE=
+OrmC0orFwwlmLzRnUIU-2FnztysYYgKg7Nfj3zyiwPJnSO5vxI">here</a>.</p>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+<img src=3D"http://outbound.dtdg.co/wf/open?upn=3DueMTbE5ZbG2BgkGj48biENzCW=
+t0-2FC5ejVLlV1q11icp4aZLWm5Rf2DoRuv3MvRwQmLoLHlSbbZE8lFaInk0LwXu2uVdjfaQ5W1=
+m4kVc0n4NRJoBYfqtzknwkIK6DvWVM0Z2Zqh9cY-2FjH-2F9bLst2J9o6THrXqxI-2B4fZuNmXT=
+sgQNOp2m7qj0Tnn0xDVb7HrqSSFmpc-2FrhQQsofOgGv-2BIylOiaN4WbliyLKe4V8egxOjR2ez=
+kt4hRAbKCM-2BGQa-2FMhE" alt=3D"" width=3D"1" height=3D"1" border=3D"0" styl=
+e=3D"height:1px !important;width:1px !important;border-width:0 !important;m=
+argin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important=
+;margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !import=
+ant;padding-right:0 !important;padding-left:0 !important;"/>
+</body>
+<br>
+
+--9f2d4498479a7ddf251aa5d72a3bdce67faa99474abd07fc12f60e7be1f4--

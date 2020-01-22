@@ -9,9 +9,9 @@
 
 Installed DataDog agent on my local Windows machine and added tags in the datadog.yaml.  It took me longer than it should've as I'm admitedly not great at coming up with naming conventions.
 
-'''tags: - "availability-zone:us-west" - "machine:local" - "env:test"'''
+*tags: - "availability-zone:us-west" - "machine:local" - "env:test"*
 	
-	
+[HostMap](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)
 ![HostMap_Tags.png](assets/HostMap_Tags.png)
 
 ### Relational Database Integration
@@ -43,6 +43,8 @@ Imported the DataDog API collection into Postman.  Customized the create dashboa
 
 ### Create Dashboard API
 
+[WK Timeboard](https://app.datadoghq.com/dashboard/ysn-u6q-tmg/williams-timeboard-20-jan-2020-1735?from_ts=1579721318547&to_ts=1579722218547&live=true&tile_size=m)
+
 ![PostmanAPI_Success.png](assets/PostmanAPI_Success.png)
 
 ![TimeTable_1-21-2020.png](assets/TimeTable_1-21-2020.png)
@@ -72,4 +74,14 @@ The more relevant information might actually be the opposite, if the server coun
 
 ## Section 3 - Monitoring Data
 
+Used the DataDog monitoring tool to create a monitor that tracked my_metric on my host machine and sent notifications to my e-mail if specific criteria was met:
+
+	* Warning if my_metric eclipsed the threshold of 500
+	* Alert if my_metric eclipsed the threshold of 800
+	* Notification if my_metric has missing data over 10 minutes
+
+Tested the threshold both on average and at least once during the last five minutes.  Used conditional statements to adjust the body of the e-mail notification based on the relevant alert type.  Then immediately deleted the monitor to prevent my phone from vibrating off my desk.
+
+[Monitor JSON](configfiles/Monitor.json)
+[Monitor E-mails](assets/Monitors/)
 
