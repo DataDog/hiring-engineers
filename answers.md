@@ -1,13 +1,15 @@
 
 # DataDog Hiring Exercise - William Karges Answers
 
+*Disclaimer: All code is linked in this doc, it can also be found in the config files folder.*
+
 ## Section 1 - Collecting Metrics
 
 ### Tags
 
 Installed DataDog agent on my local Windows machine and added tags in the datadog.yaml.  It took me longer than it should've as I'm admitedly not great at coming up with naming conventions.
 
-*tags: - "availability-zone:us-west" - "machine:local" - "env:test"*
+'''tags: - "availability-zone:us-west" - "machine:local" - "env:test"'''
 	
 	
 ![HostMap_Tags.png](assets/HostMap_Tags.png)
@@ -60,13 +62,13 @@ Unfortunately I wasn't able to, "Set the Timeboard's timeframe to the past 5 min
 ##### Notifications
 ![Notifications.png](assets/Notifications.png)
 
-### **Bonus Question** What is the Anomaly graph displaying?
+### Bonus Question - What is the Anomaly graph displaying?
 
-The Anomaly graph compiles historical performance of a specific data set to flag truly "abnormal" activity.  
+The Anomaly graph compiles historical performance of a specific metric to flag truly "abnormal" activity.  
 
-For example a game developer may have an alert set for when their autoscaling servers eclipse a specified threshold.  If the alert gets triggered on a Friday night it's likely redundant as the majority of their users are active weekend nights and there's already set process to provision more servers.  
+For example a game developer may have an alert set for when their autoscaling servers eclipse a specified threshold.  If the alert gets triggered on a Friday night it's likely redundant as the majority of their users are active weekend nights and there's probably an existing process to provision more servers.  
 
-The more relevant information might actually be the opposite, if the server count stays low through the Friday night.  The alert wouldn't go off since the threshold wasn't eclipsed but the anomaly graph would call out the unusually low server usage.  This in turn may motivate the game company to boost their marketing or run an in-game promotion the next weekend to recooperate that user base or, at the very least, scale down server usage to save costs.
+The more relevant information might actually be the opposite, if the server count stays unchanged or low through the Friday night.  The alert wouldn't go off since the threshold wasn't eclipsed but the anomaly graph would call out the unusually low server usage.  This in turn may motivate the game company to boost their marketing and/or run an in-game promotion the next weekend to recooperate that user base or, at the very least, scale down server usage to save costs.
 
 ## Section 3 - Monitoring Data
 
