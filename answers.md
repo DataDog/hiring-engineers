@@ -88,5 +88,21 @@ Tested the threshold both on average and at least once during the last five minu
 
 ![Warn.png](assets/Monitors/Warn.png)
 
-### Bonus Question -
+### Bonus Question - Deactivate Out of Office notifications
+
+Monitor alerts can be turned ad hoc via the mute button in the monitor dashboard or have scheduled deactivation by using the scheduled downtime feature.
+
+[Scheduled Downtime](https://app.datadoghq.com/monitors#downtime?)
+
+#### Mute
+![mute.png](assets/Monitors/mute.png)
+
+#### Scheduled Downtime configuration
+![SilenceScope.png](assets/Monitors/SilenceScope.png)
+
+#### Scheduled Downtime test e-mail
+![scheduled_downtime_email.png](assets/Montiors/scheduled_downtime_email.png)
+
+## Section 4 - Collecting APM Data
+
 

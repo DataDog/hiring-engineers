@@ -1,0 +1,253 @@
+Delivered-To: willkarges@gmail.com
+Received: by 2002:a02:7158:0:0:0:0:0 with SMTP id n24csp92327jaf;
+        Wed, 22 Jan 2020 15:00:57 -0800 (PST)
+X-Google-Smtp-Source: APXvYqxHwx2kVr/7KxpAhDJkdzQJQrfOWyVYI+3PFB05NkSjMrQ33YDEfP/ApLShABPxrtGQ2KkA
+X-Received: by 2002:aa7:df04:: with SMTP id c4mr4822103edy.385.1579734057621;
+        Wed, 22 Jan 2020 15:00:57 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579734057; cv=none;
+        d=google.com; s=arc-20160816;
+        b=HD4GTE76E0G0UXUnFNTQ+tehOtqLjlq7fPI3TyOZ0/UDKb1gCOqFX9GWZqseLmKD7e
+         U9IgOu9LsXy5Opj15kRtoCJRFdhejWAcBVD0LoLz2RL+T1+pXOU4IjJMb2JcngYLwKu4
+         r52x3DTd1qWFVdrRCxJ4MVG7lX5aOsPWv6+VtDTf7TIkedAQhGYqkUZEA300KG8FhP6m
+         CTwLqZv7gfJu+Oso8fCWxX7K623RLn+SWqzyfsfOXcx0DYqyoBzT9xtW05KJvM1k7TKX
+         YXZj/wqyAdIWK/7XWvl7SzKH1HXGQGs0ZIxnVaYERUI6I6Bw3xnDmhyey3Y8FGFTajDO
+         rkXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:reply-to:mime-version:message-id:from:date
+         :dkim-signature:dkim-signature;
+        bh=Z7aW/xQATfbvOW5uV83pPFLr0p49LC3XrrbG6B6EO20=;
+        b=YW82M89vsbfZC7glk+OqNKeBcWBeJvEHRHaPqpachtfQ2oZu67ivLTVT//WM9Ofr2f
+         rQW7BwoakOXZ2zx84KCMJFqyNRNoxO2esl1pxOeilksW5ykLzPLjYCFvQMMLw27zjKnp
+         BZNqxiKf5/hYduOR47bZLDcqm1p3vZIt8L65c39bzeDcqSl0zUcNv3ixmbgAyID2MSwI
+         Yr7xHRllnIeNd9sHnsVvL8Cfoy4fiFbOmCb2GduNeUN5iphYABhsLtU5Q5Qwt9E2Li6+
+         MyONPi9bdLyyz8rAY8kOhXuVGIjh2ytwre/6D6zBaxnR2cEH0Vf7DOMnZMavpsZTT0g0
+         blIg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@dtdg.co header.s=m1 header.b="gjzl+D/H";
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=Vu1kHwe7;
+       spf=pass (google.com: domain of bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co designates 167.89.26.167 as permitted sender) smtp.mailfrom="bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co"
+Return-Path: <bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co>
+Received: from o1.sendgrid.dtdg.co (o1.sendgrid.dtdg.co. [167.89.26.167])
+        by mx.google.com with ESMTPS id mh23si29082111ejb.388.2020.01.22.15.00.57
+        for <willkarges@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 Jan 2020 15:00:57 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co designates 167.89.26.167 as permitted sender) client-ip=167.89.26.167;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@dtdg.co header.s=m1 header.b="gjzl+D/H";
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=Vu1kHwe7;
+       spf=pass (google.com: domain of bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co designates 167.89.26.167 as permitted sender) smtp.mailfrom="bounces+1330178-09d3-willkarges=gmail.com@em830.dtdg.co"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dtdg.co; 
+	h=content-type:from:mime-version:reply-to:subject:to; s=m1; 
+	bh=Z7aW/xQATfbvOW5uV83pPFLr0p49LC3XrrbG6B6EO20=; b=gjzl+D/H70ePM
+	GCGxoeFw2qZQSuggJF+hKZLoEMGjmN3mxvkMQVvpzrwrdnh+GDwEs5bhlN/Ib/5i
+	9TY6tqpFA9QwOrrj3YFsH2y9EXKm3dWaaiZjNu1rBgdU9r22G7nyisyAy872uTqP
+	YeKnjyjvWsl4Q1697/wUU7mYiIUKjU=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; 
+	d=sendgrid.info; 
+	h=content-type:from:mime-version:reply-to:subject:to:x-feedback-id; 
+	s=smtpapi; bh=Z7aW/xQATfbvOW5uV83pPFLr0p49LC3XrrbG6B6EO20=; b=Vu
+	1kHwe7mCUza+aEeLkMBlcZld44Hkw609XIE3SEkny6H4bMbRAA1G8MKHi9if8bl4
+	BgvIeGuXTEpHjWLcNSTyCEztwRSokMheDjwDpotbtf8qdtIVzk5AyE4tpY8d5fAn
+	gFxtTpGtjDVILgI+HlXYs8CgT5kDJYInEZpu99xNo=
+Received: by filter1692p1mdw1.sendgrid.net with SMTP id filter1692p1mdw1-509-5E28D427-15
+        2020-01-22 23:00:55.476432657 +0000 UTC m=+607270.279875264
+Received: from MTMzMDE3OA (ec2-52-20-96-17.compute-1.amazonaws.com [52.20.96.17])
+	by ismtpd0018p1iad2.sendgrid.net (SG) with HTTP id 65RjfU6WQT2jygNG6rb5gA
+	for <willkarges@gmail.com>; Wed, 22 Jan 2020 23:00:55.478 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=38f432ff0f7a22f3b1ad643c8f34b4e15a3d451303410f0038bcd9c58636
+Date: Wed, 22 Jan 2020 23:00:55 +0000 (UTC)
+From: "William Karges" <no-reply@dtdg.co>
+Message-ID: <5292728245441323010-b1a776671b13f4b72a5d50d3ddb87355@events.datadoghq.com>
+Mime-Version: 1.0
+Reply-To: post-9716b1137b5c90e1a1938dd4576e8fac3156283e@dtdg.co
+Subject: [Datadog] William Karges started scheduled downtime on my_metric has triggered a...
+To: "William Karges" <willkarges@gmail.com>
+X-SG-EID: Jnbmw32bQdWXfZHnHRP2sXKkUKht8vAMSfXHCnGOpP1Wk8oefHRpCE6JNXsP4WjQjQAuV+SdMKhzBF
+ 1VrYNQ1LImI2mkCOQ6JkVnYuuUOLbu2Zfu2K+1Nr5LjfauDPK3trJMbDPOjcZqqol3s+QvgSSEh7ex
+ CkBmDFsRVz06WMnMpYnkzI+xYfIG+bxAg33T/Sv2N/ZGkBkHEC9klUUK+3/w/xerWcbzHZ9M2BC0Zi
+ A=
+X-SG-ID: s22V1KmON1HJgw66D8EJCZtBan0x4eruSeTkrUidXm4=
+X-Feedback-ID: 1330178:SpZ6seGYuBYWb3oNNBJSsq2zpLsbGqUs0+BdxohR5co=:zCKWagFm9zPyXPYgcL4+bw==:SG
+
+--38f432ff0f7a22f3b1ad643c8f34b4e15a3d451303410f0038bcd9c58636
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+
+William Karges wrote:
+
+William Karges started scheduled downtime on my_metric has triggered a
+notification over scope: {host:WKARGES-10P.fourwindsinteractive.com}
+
+%%%
+Scheduled downtime on **[my_metric has triggered a
+notification](https://app.datadoghq.com/monitors#15440717?) over scope:
+{host:WKARGES-10P.fourwindsinteractive.com}** has started.
+Alerting on **[my_metric has triggered a
+notification](https://app.datadoghq.com/monitors#15440717?) over scope:
+{host:WKARGES-10P.fourwindsinteractive.com}** will be silenced until
+**7:00PM UTC** on **January 23**.
+%%%
+%%%
+Downtime scheduled for my_metric notifications on {{host.name}}  from
+7pm MST 1/22/2020 - 7am MST 1/23/2020
+
+@willkarges@gmail.com
+%%%
+
+https://app.datadoghq.com/event/event?id=3D5292728245441323010
+
+--38f432ff0f7a22f3b1ad643c8f34b4e15a3d451303410f0038bcd9c58636
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+Mime-Version: 1.0
+
+
+<body lang=3D"en" style=3D"padding: 0; margin: 0;">
+  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" st=
+yle=3D"padding:0;margin:0;background-color:#F2F2F2;" background=3D"https://=
+app.datadoghq.com/static/images/graph.png">
+    <tr>
+      <td style=3D"font-family: sans-serif; font-size: 16px; color: #333333=
+; padding: 30px 0px 0px 0px;">
+
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"71=
+0" align=3D"center" style=3D"border-top:1px solid #E7E7E7;border-right:1px =
+solid #E7E7E7;border-left:1px solid #E7E7E7;">
+          <tr>
+            <td style=3D"background-color: #8960B1; color: white; font-size:
+            25px; line-height: 22px; font-weight: bold; padding: 7px 16px 6=
+px
+            16px;" background-color=3D"#774aa4" height=3D"22px">
+              <img alt=3D"Datadog" src=3D"https://app.datadoghq.com/static/=
+images/dd_logo_sm.gif" width=3D"163" height=3D"32" border=3D"0" />
+            </td>
+          </tr>
+        </table>
+
+        <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"71=
+0" align=3D"center" style=3D"margin-bottom:80px;border-left:1px solid #E7E7=
+E7;border-right:1px solid #E7E7E7;border-bottom:1px solid #D7D7D7;">
+          <tr>
+            <td style=3D"padding: 16px 16px 16px 16px;background:#FFFFFF;">
+
+
+
+<!-- DATADOG-REPLY-TO:5292728245441323010 -->
+
+
+
+
+	<h3 style=3D"margin:8px 0 24px 0;color:#666666;font-weight:normal;"><b sty=
+le=3D"color:#333333;">William Karges</b> (<b style=3D"color:#3399CC">@willk=
+arges@gmail.com</b>) mentioned you in a comment:</h3>
+
+
+
+
+<div style=3D"margin:16px 0 16px 0;padding:8px 7px 8px 7px;background:#FFFD=
+CC;border:1px solid #FFEEBB;">
+
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" styl=
+e=3D"padding:0;margin:0;">
+  <tr>
+    <td rowspan=3D"2" width=3D"42" valign=3D"top" style=3D"padding: 2px;"><=
+img src=3D"https://secure.gravatar.com/avatar/6d94583846345fae9e080186e7445=
+e77?s=3D48&d=3Dretro" width=3D"36" height=3D"36"/></td>
+      <td valign=3D"top" style=3D"padding: 2px; font-size: 14px;"><b style=
+=3D"color:#4d4d4d">William Karges</b></td>
+  </tr>
+  <tr>
+    <td valign=3D"top" style=3D"padding: 2px 5px 2px 5px; color:#222222; fo=
+nt-size: 13px">
+      <div style=3D"width: 540px; overflow: auto;">
+      <div class=3D"event_markdown">
+<p style=3D"margin:0">Scheduled downtime on <strong><a href=3D"http://outbo=
+und.dtdg.co/wf/click?upn=3D-2F4mdpADWUAWk9uvqkeGKKktae7H6XCvCCJh7u98yQEAda2=
+JbyA1tvw63w6NFZ5moW7tcTv7wsjHrlk8f7VrwEA-3D-3D_ueMTbE5ZbG2BgkGj48biENzCWt0-=
+2FC5ejVLlV1q11icp1mF5pmtJN-2BLzSlGa61AgU2dh8GvHOL5jnk-2FUG-2FiYD8RGWEDAuA2b=
+EAwlMhu1NKlOqmtnpvMBRwjpGNOT6HQ7ErqKpcGRREeUToqQpKastiEsRCfZGMFaYLLF8BorAYI=
+-2F7DtCARKoardmwZewZ6jKdeVxXzseuAzUKdoTvwm1lctPuso9WDHYdvy27SU8q5ERkV3D7bL5=
+JJibTiuC2aL9r">my_metric has triggered a notification</a> over scope: {host=
+:WKARGES-10P.fourwindsinteractive.com}</strong> has started.  <br>
+Alerting on <strong><a href=3D"http://outbound.dtdg.co/wf/click?upn=3D-2F4m=
+dpADWUAWk9uvqkeGKKktae7H6XCvCCJh7u98yQEAda2JbyA1tvw63w6NFZ5moW7tcTv7wsjHrlk=
+8f7VrwEA-3D-3D_ueMTbE5ZbG2BgkGj48biENzCWt0-2FC5ejVLlV1q11icp1mF5pmtJN-2BLzS=
+lGa61AgUe0uWx7ntk1PWaUved2D0i2pCrJH8W2jfTUL6gRdUoDY9MLAERt6Jq7U3fLaSc6cZp4X=
+gHROdZUFLURgOjDVOo39mf0GlMZV-2FzgrDzUidhLh8TQUHHYxOD8qknn2VjB5xN1EyLRy5naWY=
+SEr2u2VnwLrYzNFh51-2FzXOguhg5ItetXhSIO3OB0zvHRM25GjfeD">my_metric has trigg=
+ered a notification</a> over scope: {host:WKARGES-10P.fourwindsinteractive.=
+com}</strong> will be silenced until <strong>7:00PM UTC</strong> on <strong=
+>January 23</strong>.</p>
+</div>
+<div class=3D"event_markdown">
+<p style=3D"margin:0">Downtime scheduled for my_metric notifications on {{h=
+ost.name}}  from 7pm MST 1/22/2020 - 7am MST 1/23/2020</p>
+<p style=3D"margin:0"><span class=3D"dd-user"><a href=3D"http://outbound.dt=
+dg.co/wf/click?upn=3D-2F4mdpADWUAWk9uvqkeGKKktae7H6XCvCCJh7u98yQECa4ZPSFheK=
+VV3Kgt6YrvAIbHAE1cTajS-2FRqbJ4YqH-2BtCehPlWbYe0NUA7V1sYKggY-3D_ueMTbE5ZbG2B=
+gkGj48biENzCWt0-2FC5ejVLlV1q11icp1mF5pmtJN-2BLzSlGa61AgUidHvVnDLE4UOFVG1FA0=
+LviKKsWBXJO37GTj3BIl5XFUPsG55w-2BQQHoik8qcyQHGUyuG4Dj6qWicOtJWxpR-2FY4cDsrS=
+2vmVmZeb2M3Us3xFH0TuBzkj2snnqzjK2i8lkwN17JdsdFvShVfDRjdQcjA3IsVlPrTzv7Fy44a=
+09hPk-2FmvcqEbxho5xUYDPnZLMAk">@willkarges@gmail.com</a></span></p>
+</div>
+
+      </div>
+=20=20=20=20=20=20
+<div style=3D"padding: 2px; font-size: 10px; color:#888">
+
+22 Jan, 23:00:52 UTC
+</div>
+
+    </td>
+  </tr>
+</table>
+
+</div>
+
+
+<p style=3D"margin:24px -16px 16px -16px;padding:24px 24px 0px 24px;color:#=
+666;border-top:1px solid #EEEEEE;"><a href=3D"http://outbound.dtdg.co/wf/cl=
+ick?upn=3D-2F4mdpADWUAWk9uvqkeGKKktae7H6XCvCCJh7u98yQEAYJwPp8omKJuncXDFvQto=
+mSkk4TT6Xa0ehR7-2B8Gue8boq08R0fVsCGWbGS60BpNBU-3D_ueMTbE5ZbG2BgkGj48biENzCW=
+t0-2FC5ejVLlV1q11icp1mF5pmtJN-2BLzSlGa61AgUBZcyhqI-2B5JHn07Ok8Ev5Rbg1Ph2EkC=
+w3rrw88v39iFOQbbKVhkfaU8KD5DnbZ3YsUmDKDmFwT4YrPCHPPRtBnUTGKl-2FRmz6LHm7qYtW=
+c-2BhE-2FqB7EG-2BwPZWkOFJaucsesomnbPhndgmtS3b0dJGmUP-2FrQJXcHvXdGwkxjKJ-2FU=
+smPOWExEhxGy8I8AUcLuLtB0" style=3D"padding:8px 16px 8px 16px;background:#47=
+a3d1;color:#FFFFFF;text-decoration:none;border-top:1px solid #3399CC;border=
+-right:1px solid #3399CC;border-left:1px solid #3399CC;border-bottom:1px so=
+lid #3399CC;">Reply to @willkarges@gmail.com</a>&nbsp; <i style=3D"font-siz=
+e:14px"></i></p>
+
+
+
+
+            <p style=3D"margin-top:40px">To manage your Datadog subscriptio=
+ns, click <a href=3D"http://outbound.dtdg.co/wf/click?upn=3D-2F4mdpADWUAWk9=
+uvqkeGKKktae7H6XCvCCJh7u98yQECkg7AnUPKGn51plZlHct1NB9fwJzgmRoiq4UZtJ-2F9d6Q=
+-3D-3D_ueMTbE5ZbG2BgkGj48biENzCWt0-2FC5ejVLlV1q11icp1mF5pmtJN-2BLzSlGa61AgU=
+N6uY8VtMnqo5zjzCJC2jBM-2FMMj-2FGLn8sk-2Bg1dsR7ZW8qU-2BdlhZPqTtYUC8-2FBDp1Lp=
+ysce9qZi5u1T3fjLEvmpsZ1f49D6dpTbe-2B5XLQhwG0qsL5HNK2dwJN7pzaLVdKfwCpSQHqYLV=
+5K3mjpK6ujYE3Jpb-2BnFOPljUWuBd5YQSrURroS3nXbjzxHdJ1EbUs9">here</a>.</p>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+<img src=3D"http://outbound.dtdg.co/wf/open?upn=3DueMTbE5ZbG2BgkGj48biENzCW=
+t0-2FC5ejVLlV1q11icp1mF5pmtJN-2BLzSlGa61AgUH5uo-2BiG8WL3KXx1ir0pXu66RU0-2Fc=
+1HEKqqV8zyg5UjqIZQlkuZq-2BuUgkgzDBNuQJ8TrUGf-2Bo7nU8LkcVM-2B24arqZJ2kzOBaeZ=
+xF0n1wH-2FcOVzDxQTlxuxjOutsjkI7VL83Tc6uwLk8X6De7vWa2EqkfkGXGqTNj7Fd6GvRUITZ=
+ApiFa-2BvOz51gNm0iOupkHz" alt=3D"" width=3D"1" height=3D"1" border=3D"0" st=
+yle=3D"height:1px !important;width:1px !important;border-width:0 !important=
+;margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !importa=
+nt;margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !impo=
+rtant;padding-right:0 !important;padding-left:0 !important;"/>
+</body>
+<br>
+
+--38f432ff0f7a22f3b1ad643c8f34b4e15a3d451303410f0038bcd9c58636--
