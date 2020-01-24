@@ -131,5 +131,5 @@ For example the IT group might see the project managers barely tax their machine
 
 ## Resource Folders
 
-* [Assets](assets/)
+* [Assets/Screenshots](assets/)
 * [Code Commits](configfiles)
