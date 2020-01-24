@@ -119,7 +119,7 @@ Services are groups of related functions, URLs, etc. within an application.  Res
 
 The benefit of Datadog is tracking the performance of these services and make sure they're loosely coupled and new changes aren't negatively affecting each other and the application as a whole as is best practice with modern development.
 
-##Final Question - Creative use of DataDog
+## Final Question - Creative use of DataDog
 
 Outside of cloud applicaiton monitoring DataDog's agent could be used to really push the envelope in IT device management.  Organization's IT groups could image all employee devices (laptops, cell phones, etc.) with the DataDog Agent installed.
 
