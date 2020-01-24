@@ -68,9 +68,9 @@ Unfortunately I wasn't able to, "Set the Timeboard's timeframe to the past 5 min
 
 The Anomaly graph compiles historical performance of a specific metric to flag truly "abnormal" activity.  
 
-For example a game developer may have an alert set for when their autoscaling servers eclipse a specified threshold.  If the alert gets triggered on a Friday night it's likely redundant as the majority of their users are active weekend nights and there's probably an existing process to provision more servers.  
+For example a game developer may have an alert set for when their autoscaling server/instance count eclipses a specified threshold.  If the alert gets triggered on a Friday night it's likely redundant as the majority of their users are active weekend nights and there's probably an existing process to provision more servers if needed.  
 
-The more relevant information might actually be the opposite, if the server count stays unchanged or low through the Friday night.  The alert wouldn't go off since the threshold wasn't eclipsed but the anomaly graph would call out the unusually low server usage.  This in turn may motivate the game company to boost their marketing and/or run an in-game promotion the next weekend to recooperate that user base or, at the very least, scale down server usage to save costs.
+The more relevant information might actually be the opposite, if the server count stays unchanged or low through the Friday night.  The alert wouldn't go off since the threshold wasn't eclipsed but the anomaly graph would call out the unusually low server usage.  This in turn may motivate the game company to boost their marketing efforts and/or run an in-game promotion the next weekend to recooperate that user base or, at the very least, scale down server usage to save costs.
 
 ## Section 3 - Monitoring Data
 
@@ -80,7 +80,7 @@ Used the DataDog monitoring tool to create a monitor that tracked my_metric on m
 	* Alert if my_metric eclipsed the threshold of 800
 	* Notification if my_metric has missing data over 10 minutes
 
-Tested the threshold both on average and at least once during the last five minutes.  Used conditional statements to adjust the body of the e-mail notification based on the relevant alert type.  Then immediately deleted the monitor to prevent my phone from vibrating off my desk.
+Tested the threshold both on average and at least once during the last five minutes.  Used conditional statements to adjust the body of the e-mail notification based on the relevant alert type.  Then immediately turned off the monitor to prevent my phone from vibrating off my desk.
 
 * [Monitor JSON](configfiles/Monitor.json)
 
@@ -90,7 +90,7 @@ Tested the threshold both on average and at least once during the last five minu
 
 ### Bonus Question - Deactivate Out of Office notifications
 
-Monitor notifications can be turned off on the fly via the mute button in the monitor dashboard or have scheduled deactivation using the scheduled downtime feature.
+Monitor notifications can be turned off on the fly via the mute button in the monitor dashboard or you can scheduled deactivation using the scheduled downtime feature.
 
 * [Scheduled Downtime](https://app.datadoghq.com/monitors#downtime?)
 
@@ -107,9 +107,11 @@ Monitor notifications can be turned off on the fly via the mute button in the mo
 
 I was unable to get the provided Flask app to run (I believe due to compatibility issues with my Win10 OS).  I instead modified the code to form a native python application that simply prints a string.  
 
-Once the program could run on my machine all I had to do was use the tracer.wrap function to tag the relevant operation name, service, and resource.  Being an increadibly simple application, the trace showed a processing-time of near 0.
+Once the program could run on my machine all I had to do was use the tracer.wrap function to tag the relevant operation name, service, and resource.  Being an increadibly simple application, the trace recorded a processing-time of near 0.
 
 [APM & Infra Dashboard](https://app.datadoghq.com/dashboard/4nn-f4a-m48/williams-apm--metrics-dashboard?from_ts=1579795766356&to_ts=1579882166356&live=true&tile_size=m)
+
+[APM Python code](configfiles/APM-test.py)
 
 ![APM1.png](assets/APM1.png)
 
@@ -121,8 +123,8 @@ The benefit of Datadog is tracking the performance of these services and make su
 
 ## Final Question - Creative use of DataDog
 
-Outside of cloud applicaiton monitoring DataDog's agent could be used to really push the envelope in IT device management.  Organization's IT groups could image all employee devices (laptops, cell phones, etc.) with the DataDog Agent installed.
+Outside of cloud applicaiton monitoring DataDog's agent could be used to push the envelope in IT device management.  An organization's IT group could image all employee devices (laptops, cell phones, etc.) with the DataDog Agent installed.
 
 From there they could track machine performance to determine how effectively individuals/department are using their devices.  Specifically they could tag each device to the relevant individual, team, department, etc. and make better determinations on the appropriate device OS/specs for each department.
 
-For example the IT group might see the project managers barely tax their machines and then start sourcing lower powered devices to shave costs.  Conversely the creative teams may be constantly overclocking their machines so IT could source upgrades to reduce render times and improve effeciency.  For purely selfish reasons this use case would help me make the argument to upgrade my wildly under-spec'd PC.  You could track anomalies in performance that may relate to misusage/malware or other generic IT concerns.
+For example the IT group might see the project managers barely tax their machines and then start issuing lower powered devices to that department to shave costs.  Conversely the creative teams may be constantly overclocking their machines so IT could source upgraded devices to reduce render times and improve effeciency.  For purely selfish reasons this use case would help me make the argument to upgrade my wildly under-spec'd PC.  You could also track anomalies in performance that may relate to misusage/malware or other IT concerns.
