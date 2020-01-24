@@ -109,9 +109,9 @@ I was unable to get the provided Flask app to run (I believe due to compatibilit
 
 Once the program could run on my machine all I had to do was use the tracer.wrap function to tag the relevant operation name, service, and resource.  Being an increadibly simple application, the trace recorded a processing-time of near 0.
 
-[APM & Infra Dashboard](https://app.datadoghq.com/dashboard/4nn-f4a-m48/williams-apm--metrics-dashboard?from_ts=1579795766356&to_ts=1579882166356&live=true&tile_size=m)
+* [APM & Infra Dashboard](https://app.datadoghq.com/dashboard/4nn-f4a-m48/williams-apm--metrics-dashboard?from_ts=1579795766356&to_ts=1579882166356&live=true&tile_size=m)
 
-[APM Python code](configfiles/APM-test.py)
+* [APM Python code](configfiles/APM-test.py)
 
 ![APM1.png](assets/APM1.png)
 
