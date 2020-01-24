@@ -105,9 +105,9 @@ Monitor notifications can be turned off on the fly via the mute button in the mo
 
 ## Section 4 - Collecting APM Data
 
-I was unable to get the provided Flask app to run (I believe due to compatibility issues with my Win10 OS).  I instead modified the code to a native python application that simply prints a string.  
+I was unable to get the provided Flask app to run (I believe due to compatibility issues with my Win10 OS).  I instead modified the code to form a native python application that simply prints a string.  
 
-Once the program was could run my machine all I had to do was use the tracer.wrap function to tag the relevant operation name, service, and resource.  Being an increadibly simple application, the trace's recoded processing-time was near 0.
+Once the program could run on my machine all I had to do was use the tracer.wrap function to tag the relevant operation name, service, and resource.  Being an increadibly simple application, the trace showed a processing-time of near 0.
 
 [APM & Infra Dashboard](https://app.datadoghq.com/dashboard/4nn-f4a-m48/williams-apm--metrics-dashboard?from_ts=1579795766356&to_ts=1579882166356&live=true&tile_size=m)
 
