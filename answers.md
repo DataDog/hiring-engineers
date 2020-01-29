@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Today I'm going to give an overview of the various ways to track your application data through the DataDog platform.  We'll discuss some high level concepts and dive into the software to start tracking real data.  I'll also provide some context into the various ways you can make use of this data to realize benefits across your organization.
+Today I'm going to give an overview of the various ways to monitor your application data through the DataDog platform.  We'll discuss some high level concepts and dive into the software to start tracking real data.  I'll also provide some context into the various ways you can make use of this data to realize benefits across your organization.
 
 *__Disclaimer__: I will be using Windows 10 OS throughout my tutorial.  For non-windows users some of the setup, configuration, and scripting may be different but at a high level the process should be fairly similar.*
 
@@ -17,19 +17,19 @@ If you haven't already, install the relevant Datadog agent for your specific OS 
 
 As you'll soon see, the Datadog platform can provide a ton of information on your various systems.  In order to make sense of all that data and turn it into actionable information, you'll want to have a good cadence of tagging.
 
-Datadog tags let you assign properties to data so it can be filtered, grouped, and organized in relation to it's relevant components.  For example, on one of your dashboards you might simply see that one of your host machine's physical storage is running low.  Alternatively, with more tagging, you could see that in the AWS us-west-2 region in one of your Windows Server 2012 EC2 instances, the volume under serial number FAND-B0A8 is nearly full.
+Datadog tags let you assign properties to data so it can be filtered, grouped, and organized in relation to it's relevant components.  For example, on one of your dashboards you might simply see that one of your host machine's physical storage is running low.  Alternatively, with more tagging, you could see that in the AWS us-west-2 Region in one of your Windows Server 2012 EC2 instances, the volume under serial number FAND-B0A8 is nearly full.
 
 You don't necessarily have to get that granular with your tags but as any developer who's had to build a hotfix will know, the more specific information you have on the origin and root cause of your issue(s), the better.
 
 ### Defining Tags
 
-Datadog gives you freedom to tag your various application components however you like.  That said if you need a little direction in your naming conventions, DataDog best practices for tagging can be found [here](https://docs.datadoghq.com/tagging/#why-it-matters).
+Datadog gives you freedom to tag your various application components however you like.  That said, if you need a little direction in your naming conventions, DataDog best practices for tagging can be found [here](https://docs.datadoghq.com/tagging/#why-it-matters).
 
 For this example we're going to tag our host machine based off geographical location (region/availability-zone if you're using AWS), machine name, and environment (production, dev, etc.).
 
 ### Configuring Tags
 
-Let's start by tagging your host machine.  First you'll need to navigate to the `datadog.yaml` configuration file on your relevant OS (see [Agent config file paths](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7)).
+In order to tag your host machine, you'll need to navigate to the `datadog.yaml` configuration file on your relevant OS (see [Agent config file paths](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7)).
 
 Once inside the `datadog.yaml` file navigate to the `tags` key to callout your host machine's tags.  Tags can be labeled in either of two syntaxes (see [Assigning Tags](https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6v7)).  The tags and syntax I used are shown below as well as in my [datadog.yaml](configfiles/datadog.yaml) file.
 
@@ -40,7 +40,7 @@ tags:
  - "env:test"
 ```
 
-Once you've added your tags, save your `datadog.yaml` file and restart the agent.  To do so, Windows users will run `"%PROGRAMFILES%\Datadog\Datadog Agent\bin\agent.exe" restart-service` from command prompt.  For non-Windows users you'll need to search for the agent commands relevant to your OS in [Datadog Docs](https://docs.datadoghq.com/).
+Once you've added your tags, save your `datadog.yaml` file and restart the agent.  To do so, Windows users will run `"%PROGRAMFILES%\Datadog\Datadog Agent\bin\agent.exe" restart-service` from a command prompt.  For non-Windows users you'll need to search for the agent commands relevant to your OS in [Datadog Docs](https://docs.datadoghq.com/).
 
 With that done your host machine should now be visible in from the Datadog browser client.  Log into DatadogHQ, navigate to Infrastructure->Host Map, and you should see your host machine with it's relevant tags.
 
@@ -54,9 +54,9 @@ With that done your host machine should now be visible in from the Datadog brows
 
 For our first data integration exercise I'm going to be using the Datadog MySQL integration but you're welcome to choose from any of the over 350 built-in integrations available in the [Datadog platform](https://app.datadoghq.com/account/settings#integrations/activemq).
 
-Once again if you haven't already installed MySQL on your host machine go ahead and do so now.  If by some small chance you're also running Windows and prefer to manage relational databases with a UI, I'd also recommend you install [HeidiSQL](https://www.heidisql.com/download.php).
+Once again if you haven't already installed MySQL on your host machine go ahead and do so now.  If by some small chance you're also running Windows and, like me, prefer to manage relational databases with a UI, I'd also recommend you install [HeidiSQL](https://www.heidisql.com/download.php).
 
-Once MySQL is installed you can navigate to the [MySQL Integration documentation](https://app.datadoghq.com/account/settings#integrations/mysql) and follow the configuration instructions.  You'll likely notice that the integration process is nearly identical to most a typical ODBC/OLE DB integration; you just add the Datadog agent as a user and grant that user permissions to the databases you want to track.  Then navigate to the conf.d folder in your [Agent's configuration directory](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7#agent-configuration-directory) and inside the `conf.yaml` file, re-enter the credentials for your datadog user as well as your server's IP/Hostname and port.
+Once MySQL is installed you can navigate to the [MySQL Integration documentation](https://app.datadoghq.com/account/settings#integrations/mysql) and follow the configuration instructions.  You'll likely notice that the integration process is nearly identical to most a typical ODBC/OLE DB integration; you just add the Datadog agent as a user and grant that user permissions to the databases you want to track.  Then navigate to the conf.d folder in your [Agent's configuration directory](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7#agent-configuration-directory) and inside the MySQL `conf.yaml` file, re-enter the credentials for your datadog user as well as your server's IP/Hostname and port.
 
 Unlike most standard relational database integrations; once you grant the Datadog user access to the `perfromance_schema` table, you'll have full insight of the performance metrics of you're MySQL client, as opposed to the simple SELECT queries most other integrations are limited to.
 
@@ -64,20 +64,38 @@ Unlike most standard relational database integrations; once you grant the Datado
 
 ![mySQL_integration.png](assets/mySQL_integration.png)
 
-//---------------------------------------------------------------------------------------------------
+### Custom Metric collection
 
-### Custom Agent
+Next we're going to take a look at how you can collect metrics from some of the programs/services that your application uses but don't have an existing DataDog integration.  It's important to note this is more for smaller programs and/or prioprietary systems.  If you're trying to collect metrics from recognized/open source applications, it's recommended you create a [full Agent Integration](https://docs.datadoghq.com/developers/integrations/new_check_howto/).
 
-Created a custom agent by placing a python file in the checks.d repository and a matching .yaml file in the config.d repository.
+For this example we're going to write a simple Agent check that submits a metric with a random value between 0 and 1000.  To get started you'll need to navigate to the `checks.d` in your Agent's configuration directory and create a new python file called `<YOUR_CUSTOM_AGENT_NAME>.py` (I'm using [`custom_ac1.py`](configfiles/custom_ac1.py) in my example.  Within your python file it's always best practice to make sure your check is compatible with any Agent version.  To do so simply copy/paste the following try/except block into your python file (I've included the comments from Datadog's [custom agent documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) so you can better understand what the script is doing).
 
-Uses the python [random](https://docs.python.org/3/library/random.html) library (specifically the **randint** function) with data dog [gauge](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=gauge) metric submission to submit my_metric with a random integer value between 0 and 1000.
+```
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+```
 
-Used the **min_collection_interval** function in the yaml file to set the collection to every 45 seconds without modifying the python check file.
+Next we'll just need to create the AgentCheck class to submit our metric.  To do so we'll use the DataDog [`gauge()`](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=gauge) function that submits the value of a metric with a timestamp (so we can better track historical data).  Using this `gauge()` function we can give our metric the name `my_metric`, we can give the metric a random value using the python [random](https://docs.python.org/3/library/random.html) library (specifcally the `randint` function), and finally assign the relevant tags to give context to the metric.
 
-[PythonFile](configfiles/custom_ac1.py)
-[YamlFile](configfiles/custom_ac1.yaml)
+#### Example completed AgentCheck class
+
+```
+class myCheck(AgentCheck):
+	def check(self, instance):
+		self.gauge('my_metric', random.randint(0, 1000), tags=['env:test','ac:mycheck','checktype:guage'])
+```
+
+That's the hard part done.  Now all you have to do is navigate back to the conf.d directory and create a yaml file called `<YOUR_CUSTOM_AGENT_NAME>.yaml`.  *__Important:__ your .yaml file name must exactly match the name of your custom agent .py file to work.*  If you just want to get your Agent working all you have to do is put in an empty instance script `instances: [{}]`.  For our example we're also going to add the `min_collection_interval` function to set the agent check to run every 45 seconds.  For better reference, you can see my whole exapmle .yaml file [here](configfiles/custom_ac1.yaml).
+
+Make sure and save both your .py and .yaml files then once again restart your agent using the relevant OS command.  You should now be able to see your custom metric, as well as your MySQL integration, attached to your host machine in the Datadog Hostmap.
 
 ![my_metric.png](assets/my_metric.png)
+
+//------------------------------------------------------------------------------------------------------
 
 ## Section 2 - Visualizing Data
 
