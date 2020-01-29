@@ -33,7 +33,12 @@ Let's start by tagging your host machine.  First you'll need to navigate to the 
 
 Once inside the `datadog.yaml` file navigate to the `tags` key to callout your host machine's tags.  Tags can be labeled in either of two syntaxes (see [Assigning Tags](https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6v7)).  The tags and syntax I used are shown below as well as in my [datadog.yaml](configfiles/datadog.yaml) file.
 
-`tags: - "availability-zone:us-west" - "machine:local" - "env:test"`
+```
+tags: 
+ - "availability-zone:us-west" 
+ - "machine:local" 
+ - "env:test"
+```
 
 Once you've added your tags, save your `datadog.yaml` file and restart the agent.  To do so, Windows users will run `"%PROGRAMFILES%\Datadog\Datadog Agent\bin\agent.exe" restart-service` from command prompt.  For non-Windows users you'll need to search for the agent commands relevant to your OS in [Datadog Docs](https://docs.datadoghq.com/).
 
