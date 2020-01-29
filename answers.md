@@ -13,11 +13,11 @@ If you haven't already, install the relevant DataDog agent for your specific OS.
 
 ## Section 1 - Collecting Metrics
 
-### Tags
+### What are Tags?
 
 As you'll soon see, the DataDog platform can provide a ton of information on your various systems.  In order to make sense of all that data and turn it into actionable information, you'll want to build a good cadence of tagging.
 
-DataDog tags let you assign properties to data so it can be filtered, grouped, and organized in relation to it's relevant components.  For example you might see on a dashboard that one of your host machine's physical storage is running low.  Alternatively with more tagging you could see that in the AWS us-west-2 region in one of your Windows Server 2012 EC2 instances, the volume with serial number FAND-B0A8 is nearly full.
+DataDog tags let you assign properties to data so it can be filtered, grouped, and organized in relation to it's relevant components.  For example, on one of your dashboards you might simply see that one of your host machine's physical storage is running low.  Alternatively, with more tagging, you could see that in the AWS us-west-2 region in one of your Windows Server 2012 EC2 instances, the volume under serial number FAND-B0A8 is nearly full.
 
 You don't necessarily have to get that granular with your tags but the latter example hopefully gives you an idea the value tags can provide when trying to manage applications of varying complexity.
 
@@ -31,7 +31,7 @@ For this example we're going to tag our host machine based off geographical loca
 
 Let's start by tagging your host machine.  First you'll need to navigate to the `datadog.yaml` configuration file on your relevant OS (instructions [here](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7)).
 
-Once inside the `datadog.yaml` file navigate to the `tags` key to callout your host machine's tags.  Tags can be labeled in either of two syntaxes documented [here](https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6v7).  The tags I listed are shown below as well as in my [datadog.yaml](configfiles/datadog.yaml) file.
+Once inside the `datadog.yaml` file navigate to the `tags` key to callout your host machine's tags.  Tags can be labeled in either of two syntaxes (see [Assigning Tags](https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6v7)).  The tags I listed are shown below as well as in my [datadog.yaml](configfiles/datadog.yaml) file.
 
 `tags: - "availability-zone:us-west" - "machine:local" - "env:test"`
 
