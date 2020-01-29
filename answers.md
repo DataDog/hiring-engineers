@@ -9,7 +9,7 @@ Today I'm going to give an overview of the various ways to track your applicatio
 
 ### Getting Started
 
-If you haven't already, install the relevant Datadog agent for your specific OS (see [README.md](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer)).  If you're using Docker or Kubernetes you can simply install and configure the Datadog Agent for that container service rather than the agent specifc to your containers' OS kernel.
+If you haven't already, install the relevant Datadog agent for your specific OS (see the [README](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md)).  If you're using Docker or Kubernetes you can simply install and configure the Datadog Agent for that container service rather than the agent specifc to your containers' OS kernel.
 
 ## Section 1 - Collecting Metrics
 
@@ -51,7 +51,7 @@ For our first data integration exercise I'm going to be using the Datadog MySQL 
 
 Once again if you haven't already installed MySQL on your host machine go ahead and do so now.  If by some small chance you're also running Windows and prefer to manage relational databases with a UI, I'd also recommend you install [HeidiSQL](https://www.heidisql.com/download.php).
 
-Once MySQL is installed you can navigate to the [MySQL Integration documentation](https://app.datadoghq.com/account/settings#integrations/mysql) and follow the configuration instructions.  You'll likely notice that the integration process is nearly identical to most a typical ODBC/OLE DB integration; you just add the Datadog agent as a user and grant that user permissions to the databases you want to track.  Then navigate to the conf.d folder in your [Agent's configuration directory](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7#agent-configuration-directory) and re-enter the credentials for your datadog user as well as your server's IP/Hostname and port.
+Once MySQL is installed you can navigate to the [MySQL Integration documentation](https://app.datadoghq.com/account/settings#integrations/mysql) and follow the configuration instructions.  You'll likely notice that the integration process is nearly identical to most a typical ODBC/OLE DB integration; you just add the Datadog agent as a user and grant that user permissions to the databases you want to track.  Then navigate to the conf.d folder in your [Agent's configuration directory](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7#agent-configuration-directory) and inside the `conf.yaml` file, re-enter the credentials for your datadog user as well as your server's IP/Hostname and port.
 
 Unlike most standard relational database integrations; once you grant the Datadog user access to the `perfromance_schema` table, you'll have full insight of the performance metrics of you're MySQL client, as opposed to the simple SELECT queries most other integrations are limited to.
 
