@@ -62,7 +62,7 @@ Unlike most standard relational database integrations; once you grant the Datado
 
 [Sample `conf.yaml`](configfiles/conf.yaml)
 
-![mySQL_integration.png](assets/mySQL_integration.png)
+![MySQL_overview.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/MySQL_overview.png)
 
 ### Custom Metric collection
 
@@ -81,7 +81,7 @@ except ImportError:
 
 Next we'll just need to create the AgentCheck class to submit our metric.  To do so we'll use the DataDog [`gauge()`](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=gauge) function that submits the value of a metric with a timestamp (so we can better track historical data).  Using this `gauge()` function we can give our metric the name `my_metric`, we can give the metric a random value using the python [random](https://docs.python.org/3/library/random.html) library (specifcally the `randint` function), and finally assign the relevant tags to give context to the metric.
 
-#### Example completed AgentCheck class
+#### Example Agent Check class
 
 ```
 class myCheck(AgentCheck):
@@ -93,7 +93,7 @@ Now all you have to do is navigate back to the conf.d directory and create a yam
 
 Make sure and save both your .py and .yaml files then once again restart your agent using the relevant OS command.  You should now be able to see your custom metric, as well as your MySQL integration, attached to your host machine in the Datadog Hostmap.
 
-![my_metric.png](assets/my_metric.png)
+![my_metric_andHostMap.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/my_metric_andHostMap.png)
 
 //------------------------------------------------------------------------------------------------------
 
