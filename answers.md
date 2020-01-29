@@ -40,7 +40,12 @@ Once you've added your tags, save your `datadog.yaml` file and restart the agent
 With that done your host machine should now be visible in from the Datadog browser client.  Log into Datadoghq, navigate to Infrastructure->Host Map, and you should see your host machine with it's relevant tags.
 
 [HostMap](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)
-![HostMap_Tags.png](assets/HostMap_Tags.png)
+
+![HostMap_Tags.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/hostmaptags_v2.png)
+
+...And it's that easy!  By just installing the Datadog agent and adding the relevant tags, you can track all kinds of metrics on any number of host machines through the Datadog platform!  In the next module we'll configure our first data integration and you'll start to see the different types of application data we can track beyond just machine performance.
+
+//----------------------------------------------------------------------------------------------------
 
 ### Relational Database Integration
 
