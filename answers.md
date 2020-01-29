@@ -9,13 +9,13 @@ Today I'm going to give an overview of the various ways to track your applicatio
 
 ### Getting Started
 
-If you haven't already, install the relevant Datadog agent for your specific OS.  If you're using Docker or Kubernetes you can simply install and configure the Datadog Agent for that container service rather than the agent specifc to your containers' OS kernel (see [README.md](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer) for full instructions).
+If you haven't already, install the relevant Datadog agent for your specific OS (see [README.md](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer)).  If you're using Docker or Kubernetes you can simply install and configure the Datadog Agent for that container service rather than the agent specifc to your containers' OS kernel.
 
 ## Section 1 - Collecting Metrics
 
 ### What are Tags?
 
-As you'll soon see, the Datadog platform can provide a ton of information on your various systems.  In order to make sense of all that data and turn it into actionable information, you'll want to build a good cadence of tagging.
+As you'll soon see, the Datadog platform can provide a ton of information on your various systems.  In order to make sense of all that data and turn it into actionable information, you'll want to have a good cadence of tagging.
 
 Datadog tags let you assign properties to data so it can be filtered, grouped, and organized in relation to it's relevant components.  For example, on one of your dashboards you might simply see that one of your host machine's physical storage is running low.  Alternatively, with more tagging, you could see that in the AWS us-west-2 region in one of your Windows Server 2012 EC2 instances, the volume under serial number FAND-B0A8 is nearly full.
 
@@ -37,25 +37,29 @@ Once inside the `datadog.yaml` file navigate to the `tags` key to callout your h
 
 Once you've added your tags, save your `datadog.yaml` file and restart the agent.  To do so, Windows users will run `"%PROGRAMFILES%\Datadog\Datadog Agent\bin\agent.exe" restart-service` from command prompt.  For non-Windows users you'll need to search for the agent commands relevant to your OS in [Datadog Docs](https://docs.datadoghq.com/).
 
-With that done your host machine should now be visible in from the Datadog browser client.  Log into Datadoghq, navigate to Infrastructure->Host Map, and you should see your host machine with it's relevant tags.
+With that done your host machine should now be visible in from the Datadog browser client.  Log into DatadogHQ, navigate to Infrastructure->Host Map, and you should see your host machine with it's relevant tags.
 
-[HostMap](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)
+[Sample HostMap](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host)
 
 ![HostMap_Tags.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/hostmaptags_v2.png)
 
-...And it's that easy!  By just installing the Datadog agent and adding the relevant tags, you can track all kinds of metrics on any number of host machines through the Datadog platform!  In the next module we'll configure our first data integration and you'll start to see the different types of application data we can track beyond just machine performance.
+...And it's that easy!  By just installing the Datadog agent and adding the relevant tags, you can track all kinds of performance metrics on any number of host machines through the Datadog platform!  In the next module we'll configure our first data integration and you'll start to see the different types of application data we can track beyond just machine performance.
 
-//----------------------------------------------------------------------------------------------------
+### Configuring your first Integration
 
-### Relational Database Integration
+For our first data integration exercise I'm going to be using the Datadog MySQL integration but you're welcome to choose from any of the over 350 built-in integrations available in the [Datadog platform](https://app.datadoghq.com/account/settings#integrations/activemq).
 
-Installed MySQL and HeidiSQL (so I could have a UI) on my local Windows machine.  Added the datadog user to the MySQL DB to grant access for the DD Agent.  Configured the MySQL conf.yaml file to pass the appropriate database credentials.
+Once again if you haven't already installed MySQL on your host machine go ahead and do so now.  If by some small chance you're also running Windows and prefer to manage relational databases with a UI, I'd also recommend you install [HeidiSQL](https://www.heidisql.com/download.php).
 
-This process is almost identical to a typical OLE DB integration but the DataDog agent gives you the ability for far more detailed machine & database monitoring as opposed to a simple SELECT query that you see in most relational DB integrations.
+Once MySQL is installed you can navigate to the [MySQL Integration documentation](https://app.datadoghq.com/account/settings#integrations/mysql) and follow the configuration instructions.  You'll likely notice that the integration process is nearly identical to most a typical ODBC/OLE DB integration; you just add the Datadog agent as a user and grant that user permissions to the databases you want to track.  Then navigate to the conf.d folder in your [Agent's configuration directory]/(https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7#agent-configuration-directory) and re-enter the credentials for your datadog user as well as your server's IP/Hostname and port.
 
-[conf.yaml](configfiles/conf.yaml)
+Unlike most standard relational database integrations; once you grant the Datadog user access to the `perfromance_schema` table, you'll have full insight of the performance metrics of you're MySQL client--opposed to the simple SELECT query most other integrations are limited to.
+
+[Sample conf.yaml](configfiles/conf.yaml)
 
 ![mySQL_integration.png](assets/mySQL_integration.png)
+
+//---------------------------------------------------------------------------------------------------
 
 ### Custom Agent
 
