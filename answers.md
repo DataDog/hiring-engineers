@@ -5,7 +5,7 @@
 
 Today I'm going to give an overview of the various ways to track your application data through the DataDog platform.  We'll discuss some high level concepts and dive into the software to start tracking real data.  I'll also provide some context into the various ways you can make use of this data to realize benefits across your organization.
 
-*Disclaimer: I will be using Windows 10 OS throughout my tutorial.  For non-windows users some of the setup, configuration, and scripting may be different but at a high level the process should be fairly similar.*
+*__Disclaimer__: I will be using Windows 10 OS throughout my tutorial.  For non-windows users some of the setup, configuration, and scripting may be different but at a high level the process should be fairly similar.*
 
 ### Getting Started
 
