@@ -19,7 +19,7 @@ As you'll soon see, the Datadog platform can provide a ton of information on you
 
 Datadog tags let you assign properties to data so it can be filtered, grouped, and organized in relation to it's relevant components.  For example, on one of your dashboards you might simply see that one of your host machine's physical storage is running low.  Alternatively, with more tagging, you could see that in the AWS us-west-2 region in one of your Windows Server 2012 EC2 instances, the volume under serial number FAND-B0A8 is nearly full.
 
-You don't necessarily have to get that granular with your tags but the latter example hopefully gives you an idea the value tags can provide when trying to manage applications of varying complexity.
+You don't necessarily have to get that granular with your tags but as any developer who's had to build a hotfix will know, the more specific information you have on the origin and root cause of your issue(s), the better.
 
 ### Defining Tags
 
