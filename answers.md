@@ -31,9 +31,12 @@ For this example we're going to tag our host machine based off geographical loca
 
 Let's start by tagging your host machine.  First you'll need to navigate to the `datadog.yaml` configuration file on your relevant OS (instructions [here](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7)).
 
-Once inside the `datadog.yaml` file navigate to the `tags` key to callout your host machine's tags.  Tags can be labeled in either of two syntaxes (see [Assigning Tags](https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6v7)).  The tags I listed are shown below as well as in my [datadog.yaml](configfiles/datadog.yaml) file.
+Once inside the `datadog.yaml` file navigate to the `tags` key to callout your host machine's tags.  Tags can be labeled in either of two syntaxes (see [Assigning Tags](https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6v7)).  The tags and syntax I used are shown below as well as in my [datadog.yaml](configfiles/datadog.yaml) file.
 
-`tags: - "availability-zone:us-west" - "machine:local" - "env:test"`
+`tags:`
+    `- "availability-zone:us-west"`
+    `- "machine:local"`
+    `- "env:test"`
 
 //-------------------------------------------------------------------------------------
 
