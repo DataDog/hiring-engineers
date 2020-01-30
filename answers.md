@@ -167,9 +167,15 @@ For this example we're going to monitor the custom metric, `my_metric`, that we 
 Once inside of the monitor editor you'll need to do a few things:
 
 1. Set the detection method: for this example we'll be using the default `Threshold Alert`
-1. Define the Metric: choose `my_metric` from the dropdown and set your hostmachine as the source.
-1. Set the alert conditions:
-
+1. Define the metric: choose `my_metric` from the dropdown and set your hostmachine as the source.
+1. Set the alert conditions: Datadog gives you the ability to both define the threshold and the severity of the issue.  For this example we're going to set a few different alert conditions:
+	* Warning if my_metric eclipses a threshold of 500.
+	* Alert if my_metric eclipses a threshold of 800.
+	* Notification if my_metric returns no data for more than 10 minutes.
+![monitormethod.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/monitormethod.png)
+1. Define the message you wanted to send.  You can use markdown to conditionally format the message to pair with the relevant criteria.
+![monitorrecipients.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/monitorrecipients.png)
+1. 
 
 //---------------------------------------------------------------------------------
 
