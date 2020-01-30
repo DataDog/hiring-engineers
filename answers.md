@@ -114,6 +114,8 @@ To get started you'll need to:
 
 ![APIKeys.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/APIKeys.png)
 
+With Postman configured we can now use the Create Dashboard `POST` request to build our first timeboard.  The request should be available in your collections dropdown, 
+
 //-----------------------------------------------------------------------------
 
 Imported the DataDog API collection into Postman.  Customized the create dashboard POST requet to track my_metric averages and sum over the past hour as well as MySQL CPU usage anomalies.  See [WK_CustomTimeBoard JSON file](configfiles/WK_CustomTimeBoard.json)
