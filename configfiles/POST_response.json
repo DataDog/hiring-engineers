@@ -1,0 +1,88 @@
+{
+    "notify_list": [
+        "willkarges@gmail.com"
+    ],
+    "description": "My Hiring Exercise Timeboard",
+    "author_name": "William Karges",
+    "template_variable_presets": [
+        {
+            "template_variables": [
+                {
+                    "name": "host",
+                    "value": "WKARGES-10P.fourwindsinteractive.com"
+                }
+            ],
+            "name": "Saved views for hostname 2"
+        }
+    ],
+    "template_variables": [
+        {
+            "default": "WKARGES-10P.fourwindsinteractive.com",
+            "prefix": "host",
+            "name": "host"
+        }
+    ],
+    "is_read_only": false,
+    "id": "srm-ite-z29",
+    "title": "WKarges DataDog Hiring Exercise Timeboard",
+    "url": "/dashboard/srm-ite-z29/wkarges-datadog-hiring-exercise-timeboard",
+    "created_at": "2020-01-30T02:44:17.937613+00:00",
+    "modified_at": "2020-01-30T02:44:17.937613+00:00",
+    "author_handle": "willkarges@gmail.com",
+    "widgets": [
+        {
+            "definition": {
+                "requests": [
+                    {
+                        "q": "avg:my_metric{host:WKARGES-10P.fourwindsinteractive.com}",
+                        "style": {
+                            "line_width": "thick",
+                            "palette": "warm",
+                            "line_type": "dashed"
+                        },
+                        "display_type": "line"
+                    }
+                ],
+                "type": "timeseries",
+                "title": "my_metric over host machine WKARGES-10P.fourwindsinteractive"
+            },
+            "id": 2213443956649403
+        },
+        {
+            "definition": {
+                "requests": [
+                    {
+                        "q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)",
+                        "style": {
+                            "line_width": "thick",
+                            "palette": "dog_classic",
+                            "line_type": "solid"
+                        },
+                        "display_type": "line"
+                    }
+                ],
+                "time": {},
+                "type": "timeseries",
+                "show_legend": false,
+                "title": "MySQL CPU Performance w/ Anomaly Function"
+            },
+            "id": 3849465453153044
+        },
+        {
+            "definition": {
+                "requests": [
+                    {
+                        "q": "avg:my_metric{*}.rollup(sum, 1)",
+                        "aggregator": "sum"
+                    }
+                ],
+                "title": "Rollup sum of my_metric over past hour",
+                "type": "query_value",
+                "text_align": "center",
+                "precision": 0
+            },
+            "id": 6239798748993258
+        }
+    ],
+    "layout_type": "ordered"
+}

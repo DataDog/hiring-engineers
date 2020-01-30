@@ -128,6 +128,10 @@ A full description of each of the JSON arguments can be found in the [API Docume
 	* Rollup sum of my_metric over the past hour -> `avg:my_metric{*}.rollup(sum, 1)`
 	* Anomalies in MySQL's CPU usage -> `anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)`
 
+Once you've filled out the necessary arguments in your JSON body (see my [completed example](configfiles/WK_CustomTimeBoard.json), you can submit the `POST` request.  You should see a response similar to this: [success](configfiles/POST_response.json).
+
+![POST_Success.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/POST_Success.png)
+
 
 
 //-----------------------------------------------------------------------------
