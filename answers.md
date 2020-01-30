@@ -62,7 +62,7 @@ Unlike most standard relational database integrations; once you grant the Datado
 
 With the [`conf.yaml`](configfiles/conf.yaml) file updated, go ahead and restart your agent.  Once that's done you'll see MySQL listed as Installed in your integrations tab.
 
-![MySQL_Installed.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/MySQL_Installed.png)
+![MySQL_Installed2.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/MySQL_Installed.png)
 
 Navigate back to your Hostmap where the MySQL integration should now display on your host machine.  Click on mysql then *mysql dashboard* to pull up your [MySQL Overview dashboard](https://app.datadoghq.com/dash/integration/12/MySQL%20-%20Overview?tpl_var_scope=host%3AWKARGES-10P.fourwindsinteractive.com&from_ts=1580339619368&to_ts=1580343219368&live=true&tile_size=m).
 
