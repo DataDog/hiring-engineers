@@ -125,7 +125,7 @@ A full description of each of the JSON arguments can be found in the [API Docume
 	* Anomalies in MySQL's CPU usage -> `anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)`
 * `type` refers to how you want your data to display.  The type of graph you use directly correlates with the function you're applying to your data.  
 	* For example we'll be using the `timeseries` visualization for average and anomalies graphs so we can see how those metrics perform over time.
-	* Conversely we'll use `query_value` for our rollup as it's designed to show a single value and we're wanting to see the sum of our metric.
+	* Conversely we'll use `query_value` for our rollup as it's designed to show a single value and we're wanting to see only the sum of our metric.
 	* A full list of the different widgets can be found [here](https://docs.datadoghq.com/dashboards/widgets/).
 
 Once you've filled out the necessary arguments in your JSON body (see my [completed example](configfiles/WK_CustomTimeBoard.json)), you can submit the `POST` request.  You should see a response similar to [this](configfiles/POST_response.json).
@@ -156,9 +156,15 @@ For example a game developer may have an alert set for when their autoscaling se
 
 The more relevant information might actually be the opposite, if the server count stays unchanged or low through the Friday night.  The normal alert wouldn't go off since the threshold wasn't eclipsed but the anomaly graph would flag the unusually low server usage.  This in turn may motivate the game company to boost their marketing efforts and/or run an in-game promotion the next weekend to recooperate that user base or, at the very least, scale down server usage to save costs.
 
-//---------------------------------------------------------------------------------
-
 ## Section 3 - Monitoring Data
+
+We've successfully built some functional graphs but no matter how nice they look you probably don't want to sit and stare and them 24 hours a day waiting for something to happen.  Luckily Datadog provides a comprehensive monitoring tool where you can configure automated alerts to notify yourself and your relevant team members when your data meets specified criteria.
+
+For this example we're going to monitor the custom metric (`my_metric`) that we created earlier.  To get started, navigate to the manage monitors tab, select 'New Monitor', and select 'Metric'.
+
+![CreateMonitor.gif](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/CreateMonitor.gif)
+
+//---------------------------------------------------------------------------------
 
 Used the DataDog monitoring tool to create a monitor that tracked my_metric on my host machine and sent notifications to my e-mail if specific criteria was met:
 
