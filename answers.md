@@ -123,7 +123,7 @@ A full description of each of the JSON arguments can be found in the [API Docume
 	* For example we'll be using the timeseries visualization for average and anomalies graphs so we can see how those metrics perform over time.
 	* Conversely we'll use query_value as it's designed to show a single value and we're wanting to see the sum of our metric.
 	* A full list of the different widgets can be found [here](https://docs.datadoghq.com/dashboards/widgets/).
-* `q` refers to the metric(s) you want to view and any manipulation you want to perform on them.  These are the metric functions for my example timeboard:
+* `q` refers to the metric(s) you want to view and any manipulation you want to perform on them.  For this example we're going to map three different metrics:
 	* Average of my_metric on my host machine -> `avg:my_metric{host:WKARGES-10P.fourwindsinteractive.com}`
 	* Rollup sum of my_metric over the past hour -> `avg:my_metric{*}.rollup(sum, 1)`
 	* Anomalies in MySQL's CPU usage -> `anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)`
@@ -132,7 +132,7 @@ Once you've filled out the necessary arguments in your JSON body (see my [comple
 
 ![POST_Success.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/POST_Success.png)
 
-After submitting the request, navigate the Dashboard List where you should see your newly created timeboard.  Open it up to ensure all your graphs are created and appearing as you specified.
+After submitting the request, navigate the Dashboard List where you should see your newly created timeboard.  Open it up to ensure all your graphs were created and appearing as you specified.
 
 ![TimeTable_1-21-2020.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/TimeTable_1-21-2020.png)
 
@@ -140,7 +140,15 @@ Now open up one of your graphs and set the timeframe to the past five minutes.
 
 ![past5minutes.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/past5minutes.png)
 
+Once again, it's that easy.  Through just a simple post request you can create as many Timeboards as you like each of which containing graphs that can display your data in endless ways.
 
+When referencing the API documentation you may have also noticed each call can be written in Python and Ruby as well.  This means you could write any of the Datadog APIs directly into your code.
+
+For example you could tie the `Create a Dashboard` API into your autoscaling instances.  Everytime your server count increased due to demand you would automatically have dashboards created for you letting you track all the important metrics of those instances.  As the instance count scaled back in, you could use the `Delete a Dashboard` API to ensure all your no-longer needed dashboards were automatically deleted.
+
+### Anomalies
+
+Before we move onto the next section I wanted to make sure and callout the Anomaly graph that we created earlier.  
 
 //-----------------------------------------------------------------------------
 
