@@ -132,7 +132,7 @@ Once you've filled out the necessary arguments in your JSON body (see my [comple
 
 ![POST_Success.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/POST_Success.png)
 
-After submitting the request, navigate the Dashboard List where you should see your newly created timeboard.  Open it up to ensure all your graphs were created and appearing as you specified.
+After submitting the request, navigate the Dashboard List where you should see your [newly created timeboard](https://app.datadoghq.com/dashboard/tt5-dey-zu6/wkarges-datadog-hiring-exercise-timeboard?from_ts=1580423907246&to_ts=1580424807246&live=true&tile_size=m).  Open it up to ensure all your graphs were created and appearing as you specified.
 
 ![TimeTable_1-21-2020.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/TimeTable_1-21-2020.png)
 
@@ -144,15 +144,15 @@ Once again, it's that easy.  Through just a simple post request you can create a
 
 When referencing the API documentation you may have also noticed each call can be written in Python and Ruby as well.  This means you could write any of the Datadog APIs directly into your code.
 
-For example you could tie the `Create a Dashboard` API into your autoscaling instances.  Everytime your server count increased due to demand you would automatically have dashboards created for you letting you track all the important metrics of those instances.  As the instance count scaled back in, you could use the `Delete a Dashboard` API to ensure all your no-longer needed dashboards were automatically deleted.
+For example you could tie the `Create a Dashboard` API into your autoscaling instances.  Everytime your server count increased due to demand you would automatically have dashboards created with them tracking all their metrics.  As the instance count scaled back in, you could use the `Delete a Dashboard` API to ensure all your no-longer needed dashboards were automatically deleted.
 
 ### Anomalies
 
-Before we move on I wanted to make sure and callout the Anomaly graph that we created earlier, as it's one of Datadog's biggest differentiators.  In the next section you'll see how you can monitor your data and create alerts when the data you're monitoring meets specified criteria.
+Before we move on I wanted to make sure and callout the Anomaly graph that we created earlier, as it's one of Datadog's biggest differentiators.  
 
-While almost any monitoring software can trigger an alert when a certain threshold is eclipsed, the Datadog anomaly graph is unique in how it compiles historical performance of a specific metric to flag truly "abnormal" activity.
+In the next section you'll see how you can monitor your data and create alerts when the data you're monitoring meets specified criteria.  While almost any monitoring software can trigger an alert when a certain threshold is eclipsed, the Datadog anomaly graph is unique in how it compiles historical performance of a specific metric to flag truly "abnormal" activity.
 
-For example a game developer may have an alert set for when their autoscaling server/instance count eclipses a specified threshold.  If the alert gets triggered on a Friday night it's likely redundant as the majority of their users are active weekend nights and there's probably an existing process to provision more servers if needed.  
+Building off the example of autoscaling instances, a game developer may have an alert set for when their autoscaling server/instance count eclipses a specified threshold.  If the alert gets triggered on a Friday night it's likely redundant as the majority of their users are active weekend nights and there's probably an existing process to provision more servers if needed.  
 
 The more relevant information might actually be the opposite, if the server count stays unchanged or low through the Friday night.  The normal alert wouldn't go off since the threshold wasn't eclipsed but the anomaly graph would flag the unusually low server usage.  This in turn may motivate the game company to boost their marketing efforts and/or run an in-game promotion the next weekend to recooperate that user base or, at the very least, scale down server usage to save costs.
 
@@ -160,7 +160,7 @@ The more relevant information might actually be the opposite, if the server coun
 
 We've successfully built some functional graphs but no matter how nice they look you probably don't want to sit and stare and them 24 hours a day waiting for something to happen.  Luckily Datadog provides a comprehensive monitoring tool where you can configure automated alerts to notify yourself and your relevant team members when your data meets specified criteria.
 
-For this example we're going to monitor the custom metric, `my_metric`, that we created earlier.  To get started, navigate to the manage monitors tab, select 'New Monitor', and select 'Metric'.
+For this example we're going to monitor the custom metric, `my_metric`, that we created earlier.  To get started, navigate to the [manage monitors](https://app.datadoghq.com/monitors/manage) tab, select 'New Monitor', and then select 'Metric'.
 
 ![CreateMonitor.gif](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/CreateMonitor.gif)
 
@@ -184,48 +184,23 @@ You can reference my complete [monitor JSON here](configfiles/Monitor.json).  Sh
 
 As you'll soon realize, these monitor e-mails can quickly fill up your inbox.  Fortunately Datadog also provides the ability to mute e-mails for set durations or scheduled periods of time (such as off work hours).
 
+### Muting Notifications
+
 If you want to hault your notifications immediately for a specific duration, you can simply use the mute botton in the top right of your monitor's dashboard.
 
 ![MuteMonitor](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/MuteMonitor.gif)
 
-If you instead want to schedule your notifications to turn off after work hours, you can do so using the [scheduled downtime feature](https://app.datadoghq.com/monitors#downtime?).  
+If you instead want to schedule your notifications to turn off after work hours, you can do so using the [Scheduled Downtime feature](https://www.datadoghq.com/blog/mute-datadog-alerts-planned-downtime/).  
 
-Navigate to the Manage Downtime tab, select 'Scedule Downtime', and define the duration for which you want monitors muted.  You can schedule as many downtimes in needed, in this case you'll need one for nights and one for weekends.
+Navigate to the [Manage Downtime](https://app.datadoghq.com/monitors#downtime) tab, select 'Schedule Downtime', and define the duration for which you want monitor(s) muted.  You can schedule as many downtimes as needed, in this case you'll need one for nights and one for weekends.
 
 ![ScheduleMute.gif](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/ScheduleMute.gif)
 
-//---------------------------------------------------------------------------------
-
-Used the DataDog monitoring tool to create a monitor that tracked my_metric on my host machine and sent notifications to my e-mail if specific criteria was met:
-
-	* Warning if my_metric eclipsed the threshold of 500
-	* Alert if my_metric eclipsed the threshold of 800
-	* Notification if my_metric has missing data over 10 minutes
-
-Tested the threshold both on average and at least once during the last five minutes.  Used conditional statements to adjust the body of the e-mail notification based on the relevant alert type.  Then immediately turned off the monitor to prevent my phone from vibrating off my desk.
-
-* [Monitor JSON](configfiles/Monitor.json)
-
-* [Monitor E-mails](assets/Monitors/)
-
-![Warn.png](assets/Monitors/Warn.png)
-
-### Bonus Question - Deactivate Out of Office notifications
-
-Monitor notifications can be turned off on the fly via the mute button in the monitor dashboard or you can scheduled deactivation using the scheduled downtime feature.
-
-* [Scheduled Downtime](https://app.datadoghq.com/monitors#downtime?)
-
-#### Mute
-![mute.png](assets/Monitors/mute.png)
-
-#### Scheduled Downtime configuration
-![SilenceScope.png](assets/Monitors/SilenceScope.png)
-
-#### Scheduled Downtime test e-mail
-![scheduled_downtime_email.png](assets/Monitors/scheduled_downtime_email.png)
-
 ## Section 4 - Collecting APM Data
+
+
+
+//---------------------------------------------------------------------------------
 
 I was unable to get the provided Flask app to run (I believe due to compatibility issues with my Win10 OS).  I instead modified the code to form a native python application that simply prints a string.  
 
