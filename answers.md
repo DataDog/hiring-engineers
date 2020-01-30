@@ -114,7 +114,22 @@ To get started you'll need to:
 
 ![APIKeys.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/APIKeys.png)
 
-With Postman configured we can now use the Create Dashboard `POST` request to build our first timeboard.  The request should be available in your collections dropdown, 
+With Postman configured we can now use the Create Dashboard `POST` request to build our first timeboard.  The request should be available in your collections dropdown, you'll notice it's already inherited your API/APP key headers.  Navigate to the body where we'll use the JSON script to design how your timeboard will look and function.
+
+For this example we're going to add three different graphs to our timeboard:
+
+* Average of my_metric on my host machine
+* Rollup sum of my_metric over the past hour
+* Anomalies in MySQL's CPU usage
+
+A full description of each of the JSON arguments can be found in the [API Documentation](https://docs.datadoghq.com/api/?lang=bash#dashboards), for now I'll just callout some of the more important fields:
+
+* `title` is required to help you identify your Timeboard and the graph(s) within it.
+* `type` refers to how you want your data to display.  The type of graph you use directly correlates with the function you're applying to your data.  
+	* For example we'll be using the timeseries visualization for average and anomalies graphs so we can see how those metrics perform over time.
+	* Conversely we'll use query_value as it's designed to show a single value and we're wanting to see the sum of our metric.
+	* A full list of the different widgets can be found [here](https://docs.datadoghq.com/dashboards/widgets/).
+* 'q' refers to the metric(s) you want to view and any manipulation you want to perform on them.
 
 //-----------------------------------------------------------------------------
 
