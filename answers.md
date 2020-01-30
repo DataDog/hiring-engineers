@@ -148,44 +148,9 @@ For example you could tie the `Create a Dashboard` API into your autoscaling ins
 
 ### Anomalies
 
-Before we move onto the next section I wanted to make sure and callout the Anomaly graph that we created earlier.  
+Before we move on I wanted to make sure and callout the Anomaly graph that we created earlier, as it's one of Datadog's biggest differentiators.  In the next section you'll see how you can monitor your data and create alerts when the data you're monitoring meets specified criteria.
 
-//-----------------------------------------------------------------------------
-
-For this example we're going to add three different graphs to our timeboard:
-
-* Average of my_metric on my host machine
-* Rollup sum of my_metric over the past hour
-* Anomalies in MySQL's CPU usage
-
-Imported the DataDog API collection into Postman.  Customized the create dashboard POST requet to track my_metric averages and sum over the past hour as well as MySQL CPU usage anomalies.  See [WK_CustomTimeBoard JSON file](configfiles/WK_CustomTimeBoard.json)
-
-### Create Dashboard API
-
-[WK Timeboard](https://app.datadoghq.com/dashboard/ysn-u6q-tmg/williams-timeboard-20-jan-2020-1735?from_ts=1579721318547&to_ts=1579722218547&live=true&tile_size=m)
-
-![PostmanAPI_Success.png](assets/PostmanAPI_Success.png)
-
-![TimeTable_1-21-2020.png](assets/TimeTable_1-21-2020.png)
-
-Unfortunately I wasn't able to, "Set the Timeboard's timeframe to the past 5 minutes" (see screenshot below).  While I can adjust individual graphs to 5 minutes, the timeboard itself seems to be restricted to 15 minute intervals.  Not sure if this is just a limitation of the trial version or if I'm doing something wrong or maybe this was just a trick question?
-
-### 5 Minute Snapshot
-
-[TimeBoard Notification e-mail](assets/TimeBoard_Notification.eml)
-
-##### Error
-![Error_5min.png](assets/Error_5min.png)
-
-##### 5 Minute Graph
-![5mGraph.png](assets/5mGraph.png)
-
-##### Notifications
-![Notifications.png](assets/Notifications.png)
-
-### Bonus Question - What is the Anomaly graph displaying?
-
-The Anomaly graph compiles historical performance of a specific metric to flag truly "abnormal" activity.  
+While almost any monitoring software can trigger an alert when a certain threshold is eclipsed, the Datadog anomaly graph is unique in how it compiles historical performance of a specific metric to flag truly "abnormal" activity.
 
 For example a game developer may have an alert set for when their autoscaling server/instance count eclipses a specified threshold.  If the alert gets triggered on a Friday night it's likely redundant as the majority of their users are active weekend nights and there's probably an existing process to provision more servers if needed.  
 
