@@ -128,7 +128,7 @@ A full description of each of the JSON arguments can be found in the [API Docume
 	* Rollup sum of my_metric over the past hour -> `avg:my_metric{*}.rollup(sum, 1)`
 	* Anomalies in MySQL's CPU usage -> `anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)`
 
-Once you've filled out the necessary arguments in your JSON body (see my [completed example](configfiles/WK_CustomTimeBoard.json), you can submit the `POST` request.  You should see a response similar to [this](configfiles/POST_response.json).
+Once you've filled out the necessary arguments in your JSON body (see my [completed example](configfiles/WK_CustomTimeBoard.json)), you can submit the `POST` request.  You should see a response similar to [this](configfiles/POST_response.json).
 
 ![POST_Success.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/POST_Success.png)
 
@@ -155,6 +155,8 @@ While almost any monitoring software can trigger an alert when a certain thresho
 For example a game developer may have an alert set for when their autoscaling server/instance count eclipses a specified threshold.  If the alert gets triggered on a Friday night it's likely redundant as the majority of their users are active weekend nights and there's probably an existing process to provision more servers if needed.  
 
 The more relevant information might actually be the opposite, if the server count stays unchanged or low through the Friday night.  The alert wouldn't go off since the threshold wasn't eclipsed but the anomaly graph would call out the unusually low server usage.  This in turn may motivate the game company to boost their marketing efforts and/or run an in-game promotion the next weekend to recooperate that user base or, at the very least, scale down server usage to save costs.
+
+//---------------------------------------------------------------------------------
 
 ## Section 3 - Monitoring Data
 
