@@ -123,10 +123,12 @@ A full description of each of the JSON arguments can be found in the [API Docume
 	* For example we'll be using the timeseries visualization for average and anomalies graphs so we can see how those metrics perform over time.
 	* Conversely we'll use query_value as it's designed to show a single value and we're wanting to see the sum of our metric.
 	* A full list of the different widgets can be found [here](https://docs.datadoghq.com/dashboards/widgets/).
-* `q` refers to the metric(s) you want to view and any manipulation you want to perform on them.  The requests I'm making are as follows:
+* `q` refers to the metric(s) you want to view and any manipulation you want to perform on them.  These are the metric functions for my example timeboard:
 	* Average of my_metric on my host machine -> `avg:my_metric{host:WKARGES-10P.fourwindsinteractive.com}`
 	* Rollup sum of my_metric over the past hour -> `avg:my_metric{*}.rollup(sum, 1)`
 	* Anomalies in MySQL's CPU usage -> `anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)`
+
+
 
 //-----------------------------------------------------------------------------
 
