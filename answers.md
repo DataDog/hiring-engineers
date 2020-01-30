@@ -93,7 +93,7 @@ class myCheck(AgentCheck):
 		self.gauge('my_metric', random.randint(0, 1000), tags=['env:test','ac:mycheck','checktype:guage'])
 ```
 
-Now all you have to do is navigate back to the `conf.d` directory and create a yaml file called `<YOUR_CUSTOM_AGENT_NAME>.yaml`.  *__Important:__ your .yaml file name must __exactly match__ the name of your custom agent .py file to work.*  If you just want to get your Agent working all you have to do is put in an empty instance script `instances: [{}]`.  For our example we're also going to add the `min_collection_interval` function to set the agent check to run every 45 seconds.  For better reference, you can see my whole example .yaml file [here](configfiles/custom_ac1.yaml).
+Now all you have to do is navigate back to the `conf.d` directory and create a yaml file called `<YOUR_CUSTOM_AGENT_NAME>.yaml`.  *__Important:__ your .yaml file name must __exactly match__ the name of your custom agent .py file to work.*  If you just want to get your Agent working all you have to do is put in an empty instance script `instances: [{}]`.  For our example we're also going to add the `min_collection_interval` function to set the agent check to run every 45 seconds.  For reference, you can see my whole example .yaml file [here](configfiles/custom_ac1.yaml).
 
 Make sure and save both your .py and .yaml files then once again restart your agent using the relevant OS command.  You should now be able to see your custom metric, as well as your MySQL integration, attached to your host machine in the Datadog Hostmap.
 
@@ -119,14 +119,14 @@ With Postman configured we can now use the Create Dashboard `POST` request to bu
 A full description of each of the JSON arguments can be found in the [API Documentation](https://docs.datadoghq.com/api/?lang=bash#dashboards), for now I'll just callout some of the more important fields:
 
 * `title` is required to help you identify your Timeboard and the graph(s) within it.
-* `type` refers to how you want your data to display.  The type of graph you use directly correlates with the function you're applying to your data.  
-	* For example we'll be using the `timeseries` visualization for average and anomalies graphs so we can see how those metrics perform over time.
-	* Conversely we'll use `query_value` as it's designed to show a single value and we're wanting to see the sum of our metric.
-	* A full list of the different widgets can be found [here](https://docs.datadoghq.com/dashboards/widgets/).
 * `q` refers to the metric(s) you want to view and any manipulation you want to perform on them.  For this example we're going to map three different metrics:
 	* Average of my_metric on my host machine -> `avg:my_metric{host:WKARGES-10P.fourwindsinteractive.com}`
 	* Rollup sum of my_metric over the past hour -> `avg:my_metric{*}.rollup(sum, 1)`
 	* Anomalies in MySQL's CPU usage -> `anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)`
+* `type` refers to how you want your data to display.  The type of graph you use directly correlates with the function you're applying to your data.  
+	* For example we'll be using the `timeseries` visualization for average and anomalies graphs so we can see how those metrics perform over time.
+	* Conversely we'll use `query_value` for our rollup as it's designed to show a single value and we're wanting to see the sum of our metric.
+	* A full list of the different widgets can be found [here](https://docs.datadoghq.com/dashboards/widgets/).
 
 Once you've filled out the necessary arguments in your JSON body (see my [completed example](configfiles/WK_CustomTimeBoard.json)), you can submit the `POST` request.  You should see a response similar to [this](configfiles/POST_response.json).
 
@@ -154,7 +154,7 @@ While almost any monitoring software can trigger an alert when a certain thresho
 
 For example a game developer may have an alert set for when their autoscaling server/instance count eclipses a specified threshold.  If the alert gets triggered on a Friday night it's likely redundant as the majority of their users are active weekend nights and there's probably an existing process to provision more servers if needed.  
 
-The more relevant information might actually be the opposite, if the server count stays unchanged or low through the Friday night.  The alert wouldn't go off since the threshold wasn't eclipsed but the anomaly graph would call out the unusually low server usage.  This in turn may motivate the game company to boost their marketing efforts and/or run an in-game promotion the next weekend to recooperate that user base or, at the very least, scale down server usage to save costs.
+The more relevant information might actually be the opposite, if the server count stays unchanged or low through the Friday night.  The normal alert wouldn't go off since the threshold wasn't eclipsed but the anomaly graph would flag the unusually low server usage.  This in turn may motivate the game company to boost their marketing efforts and/or run an in-game promotion the next weekend to recooperate that user base or, at the very least, scale down server usage to save costs.
 
 //---------------------------------------------------------------------------------
 
