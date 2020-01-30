@@ -160,9 +160,16 @@ The more relevant information might actually be the opposite, if the server coun
 
 We've successfully built some functional graphs but no matter how nice they look you probably don't want to sit and stare and them 24 hours a day waiting for something to happen.  Luckily Datadog provides a comprehensive monitoring tool where you can configure automated alerts to notify yourself and your relevant team members when your data meets specified criteria.
 
-For this example we're going to monitor the custom metric (`my_metric`) that we created earlier.  To get started, navigate to the manage monitors tab, select 'New Monitor', and select 'Metric'.
+For this example we're going to monitor the custom metric, `my_metric`, that we created earlier.  To get started, navigate to the manage monitors tab, select 'New Monitor', and select 'Metric'.
 
 ![CreateMonitor.gif](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/CreateMonitor.gif)
+
+Once inside of the monitor editor you'll need to do a few things:
+
+1. Set the detection method: for this example we'll be using the default `Threshold Alert`
+1. Define the Metric: choose `my_metric` from the dropdown and set your hostmachine as the source.
+1. Set the alert conditions:
+
 
 //---------------------------------------------------------------------------------
 
