@@ -120,8 +120,8 @@ A full description of each of the JSON arguments can be found in the [API Docume
 
 * `title` is required to help you identify your Timeboard and the graph(s) within it.
 * `type` refers to how you want your data to display.  The type of graph you use directly correlates with the function you're applying to your data.  
-	* For example we'll be using the timeseries visualization for average and anomalies graphs so we can see how those metrics perform over time.
-	* Conversely we'll use query_value as it's designed to show a single value and we're wanting to see the sum of our metric.
+	* For example we'll be using the `timeseries` visualization for average and anomalies graphs so we can see how those metrics perform over time.
+	* Conversely we'll use `query_value` as it's designed to show a single value and we're wanting to see the sum of our metric.
 	* A full list of the different widgets can be found [here](https://docs.datadoghq.com/dashboards/widgets/).
 * `q` refers to the metric(s) you want to view and any manipulation you want to perform on them.  For this example we're going to map three different metrics:
 	* Average of my_metric on my host machine -> `avg:my_metric{host:WKARGES-10P.fourwindsinteractive.com}`
