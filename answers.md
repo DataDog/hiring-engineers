@@ -101,7 +101,20 @@ Make sure and save both your .py and .yaml files then once again restart your ag
 
 ## Section 2 - Visualizing Data
 
+Now that we've got a variety of data integrated with Datadog, let's make it look pretty!
 
+In this example we're going to create a custom timeboard so we can view all our different metrics in any specified timeframe.  Since manual creation of dashboards is fairly self-explanitory (see the [dashboard docs](https://docs.datadoghq.com/dashboards/) for reference), we're going to create our timeboard using the DataDog API.
+
+To get started you'll need to:
+
+* If you haven't already, download [Postman](https://www.getpostman.com/downloads/)
+* Download the [Datadog Postman collection](https://docs.datadoghq.com/resources/json/datadog_collection.json)
+* Follow the [instructions](https://docs.datadoghq.com/getting_started/api/) for getting the Datadog Postman collection imported.
+* Navigate to the API tab in DatadogHQ to retrieve your API and application keys.  Then once again follow the [instructions](https://docs.datadoghq.com/getting_started/api/) to set those variables in Postman.
+
+![APIKeys.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/APIKeys.png)
+
+//-----------------------------------------------------------------------------
 
 Imported the DataDog API collection into Postman.  Customized the create dashboard POST requet to track my_metric averages and sum over the past hour as well as MySQL CPU usage anomalies.  See [WK_CustomTimeBoard JSON file](configfiles/WK_CustomTimeBoard.json)
 
