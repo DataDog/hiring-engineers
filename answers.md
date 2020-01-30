@@ -180,7 +180,19 @@ Once inside of the monitor editor you'll need to do a few things:
 1. Finally define the team members you want to notify.  You can individually add users or simply select `all` to send it to all the users in your Datadog company account.
 ![monitorrecipients.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/monitorrecipients.png)
 
+You can reference my complete [monitor JSON here](configfiles/Monitor.json).  Shortly after you save your monitor you should start recieving warning and alert e-mails like [these](assets/Monitors/E-mails/).  You can also use the 'Test Notifications' feature in the monitor editing tool to make sure they're sending correctly.
 
+As you'll soon realize, these monitor e-mails can quickly fill up your inbox.  Fortunately Datadog also provides the ability to mute e-mails for set durations or scheduled periods of time (such as off work hours).
+
+If you want to hault your notifications immediately for a specific duration, you can simply use the mute botton in the top right of your monitor's dashboard.
+
+![MuteMonitor](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/MuteMonitor.gif)
+
+If you instead want to schedule your notifications to turn off after work hours, you can do so using the [scheduled downtime feature](https://app.datadoghq.com/monitors#downtime?).  
+
+Navigate to the Manage Downtime tab, select 'Scedule Downtime', and define the duration for which you want monitors muted.  You can schedule as many downtimes in needed, in this case you'll need one for nights and one for weekends.
+
+![ScheduleMute.gif](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/ScheduleMute.gif)
 
 //---------------------------------------------------------------------------------
 
