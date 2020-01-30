@@ -60,7 +60,11 @@ Once MySQL is installed you can navigate to the [MySQL Integration documentation
 
 Unlike most standard relational database integrations; once you grant the Datadog user access to the `perfromance_schema` table, you'll have full insight of the performance metrics of you're MySQL client, as opposed to the simple SELECT queries most other integrations are limited to.
 
-[Sample `conf.yaml`](configfiles/conf.yaml)
+With the [`conf.yaml`](configfiles/conf.yaml) file updated, go ahead and restart your agent.  Once that's done you'll see MySQL listed as Installed in your integrations tab.
+
+[MySQL_Installed.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/MySQL_Installed.png)
+
+Navigate back to your Hostmap where the MySQL integration should now display on your host machine.  Click on mysql then *mysql dashboard* to pull up your [MySQL Overview dashboard](https://app.datadoghq.com/dash/integration/12/MySQL%20-%20Overview?tpl_var_scope=host%3AWKARGES-10P.fourwindsinteractive.com&from_ts=1580339619368&to_ts=1580343219368&live=true&tile_size=m).
 
 ![MySQL_overview.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/MySQL_overview.png)
 
@@ -81,7 +85,7 @@ except ImportError:
 
 Next we'll just need to create the AgentCheck class to submit our metric.  To do so we'll use the DataDog [`gauge()`](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=gauge) function that submits the value of a metric with a timestamp (so we can better track historical data).  Using this `gauge()` function we can give our metric the name `my_metric`, we can give the metric a random value using the python [random](https://docs.python.org/3/library/random.html) library (specifcally the `randint` function), and finally assign the relevant tags to give context to the metric.
 
-#### Example Agent Check class
+#### Example Agent Check python class
 
 ```
 class myCheck(AgentCheck):
@@ -89,15 +93,15 @@ class myCheck(AgentCheck):
 		self.gauge('my_metric', random.randint(0, 1000), tags=['env:test','ac:mycheck','checktype:guage'])
 ```
 
-Now all you have to do is navigate back to the conf.d directory and create a yaml file called `<YOUR_CUSTOM_AGENT_NAME>.yaml`.  *__Important:__ your .yaml file name must __exactly match__ the name of your custom agent .py file to work.*  If you just want to get your Agent working all you have to do is put in an empty instance script `instances: [{}]`.  For our example we're also going to add the `min_collection_interval` function to set the agent check to run every 45 seconds.  For better reference, you can see my whole exapmle .yaml file [here](configfiles/custom_ac1.yaml).
+Now all you have to do is navigate back to the `conf.d` directory and create a yaml file called `<YOUR_CUSTOM_AGENT_NAME>.yaml`.  *__Important:__ your .yaml file name must __exactly match__ the name of your custom agent .py file to work.*  If you just want to get your Agent working all you have to do is put in an empty instance script `instances: [{}]`.  For our example we're also going to add the `min_collection_interval` function to set the agent check to run every 45 seconds.  For better reference, you can see my whole example .yaml file [here](configfiles/custom_ac1.yaml).
 
 Make sure and save both your .py and .yaml files then once again restart your agent using the relevant OS command.  You should now be able to see your custom metric, as well as your MySQL integration, attached to your host machine in the Datadog Hostmap.
 
 ![my_metric_andHostMap.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/my_metric_andHostMap.png)
 
-//------------------------------------------------------------------------------------------------------
-
 ## Section 2 - Visualizing Data
+
+
 
 Imported the DataDog API collection into Postman.  Customized the create dashboard POST requet to track my_metric averages and sum over the past hour as well as MySQL CPU usage anomalies.  See [WK_CustomTimeBoard JSON file](configfiles/WK_CustomTimeBoard.json)
 
