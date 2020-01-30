@@ -174,8 +174,13 @@ Once inside of the monitor editor you'll need to do a few things:
 	* Notification if my_metric returns no data for more than 10 minutes.
 ![monitormethod.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/monitormethod.png)
 1. Define the message you wanted to send.  You can use markdown to conditionally format the message to pair with the relevant criteria.
+	* Use `{{#is_alert}}<YOUR_MESSAGE>{{/is_alert}}` to define your alert message.
+	* Use `{{#is_warning}}<YOUR_MESSAGE>{{/is_warning}}` to define your warning message.
+	* Use `{{#is_no_data}}<YOUR_MESSAGE>{{/is_no_data}}`to define your missing data message.
+1. Finally define the team members you want to notify.  You can individually add users or simply select `all` to send it to all the users in your Datadog company account.
 ![monitorrecipients.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/monitorrecipients.png)
-1. 
+
+
 
 //---------------------------------------------------------------------------------
 
