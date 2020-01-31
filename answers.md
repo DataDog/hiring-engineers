@@ -17,7 +17,7 @@ If you haven't already, install the relevant Datadog agent for your specific OS 
 
 As you'll soon see, the Datadog platform can provide a ton of information on your various systems.  In order to make sense of all that data and turn it into actionable information, you'll want to have a good cadence of tagging.
 
-Datadog tags let you assign properties to data so it can be filtered, grouped, and organized in relation to it's relevant components.  For example, on one of your dashboards you might simply see that one of your host machine's physical storage is running low.  Alternatively, with more tagging, you could see that in the AWS us-west-2 Region in one of your Windows Server 2012 EC2 instances, the volume under serial number FAND-B0A8 is nearly full.
+Datadog tags let you assign properties to data so it can be filtered, grouped, and organized in relation to it's relevant components.  For example, on one of your dashboards you might see that one of your host machine's physical storage is running low.  Alternatively, with more tagging, you could instead see that in the AWS us-west-2 Region in one of your Windows Server 2012 EC2 instances, the volume under serial number FAND-B0A8 is nearly full.
 
 You don't necessarily have to get that granular with your tags but as any developer who's had to build a hotfix will know, the more specific information you have on the origin and root cause of your issue(s), the better.
 
@@ -200,7 +200,7 @@ Navigate to the [Manage Downtime](https://app.datadoghq.com/monitors#downtime) t
 
 ## Section 4 - Collecting APM Data
 
-Earlier I mentioned the importance of granular information for monitoring, troubleshooting, and working to improve the overall performance of your application.  Arguably the greatest tool for accomplishing this is Datadog's Application Performance Monitoring (APM).
+Earlier I mentioned the importance of granular information for monitoring, troubleshooting, and working to improve the overall performance of your application.  The last tool we'll look at is instrumental for accomplishing this, Datadog's Application Performance Monitoring (APM).
 
 With APM you can integrate Datadog directly into your code to create [traces](https://docs.datadoghq.com/tracing/visualization/#trace) which track the amount of time your applications spend processing requests.  For mission critical applications where data needs to be served up to users in near-real time, this kind of functionality is invaluable.
 
@@ -251,18 +251,18 @@ You can also view APM metrics through a [standard dashboard](https://app.datadog
 
 ## Section 5 - Closing Thoughts
 
+Before we finish I wanted to leave you with a thought exercise.  By now your mind is hopefully racing with all the different ways you can utilize Datadog's monitoring to improve your organization's operating, development, and support efficiency.  For this exercise; however, I want you to try and think of some more creative ways Datadog can be used apart from monitoring applications/infrastructure.
 
-
-//---------------------------------------------------------------------------------
-
-
-## Final Question - Creative use of DataDog
-
-Outside of cloud applicaiton monitoring DataDog's agent could be used to push the envelope in IT device management.  An organization's IT group could image all employee devices (laptops, cell phones, etc.) with the DataDog Agent installed.
+My idea would be to use Datadog's agent to push the envelope in IT device management.  An organization's IT group could easily image all employee devices (laptops, cell phones, etc.) with the DataDog Agent installed.
 
 From there they could track machine performance to determine how effectively individuals/department are using their devices.  Specifically they could tag each device to the relevant individual, team, department, etc. and make better determinations on the appropriate device OS/specs for each department.
 
-For example the IT group might see the project managers barely tax their machines and then start issuing lower powered devices to that department to shave costs.  Conversely the creative teams may be constantly overclocking their machines so IT could source upgraded devices to reduce render times and improve effeciency.  For purely selfish reasons this use case would help me make the argument to upgrade my wildly under-spec'd PC.  You could also track anomalies in performance that may relate to misusage/malware or other IT concerns.
+For example the IT group might see the project managers barely tax their machines and then start issuing lower powered devices to that department to shave costs.  Conversely the creative teams may be constantly overclocking their machines so IT could source upgraded devices to reduce render times and improve effeciency.  You could also track anomalies in performance that may relate to misusage/malware or other IT concerns.
+
+
+We've barely scratched the surface of the Datadog platform and you've already seen how Datadog can improve application performance reducing architecture cost, provide automated monitoring to your autoscaling infrastructure, and reduce the number of bugs as well as development time spent fixing them.  When you start to total up all those potential cost savings, can you really afford not to implement the Datadog solution?
+
+## Thanks for your consideration!!
 
 ## Resource Folders
 
