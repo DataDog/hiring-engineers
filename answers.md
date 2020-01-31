@@ -62,7 +62,7 @@ Once MySQL is installed you can navigate to the [MySQL Integration documentation
 
 Unlike most standard relational database integrations; once you grant the Datadog user access to the `perfromance_schema` table, you'll have full insight of the performance metrics of you're MySQL client, as opposed to the simple SELECT queries most other integrations are limited to.
 
-With the [`conf.yaml`](configfiles/conf.yaml) file updated, go ahead and restart your agent.  Once that's done you'll see MySQL listed as Installed in your integrations tab.
+With the [`conf.yaml`](configfiles/conf.yaml) file updated, go ahead and restart your agent.  Once that's done you'll see MySQL listed as Installed in your [integrations tab](https://app.datadoghq.com/account/settings).
 
 ![MySQL_Installed2.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/MySQL_Installed2.png)
 
@@ -72,9 +72,11 @@ Navigate back to your Hostmap where the MySQL integration should now display on 
 
 ### Custom Metric collection
 
-Next we're going to take a look at how you can collect metrics from some of the programs/services that your application uses but don't have an existing DataDog integration.  It's important to note this is more for smaller programs and/or prioprietary systems.  If you're trying to collect metrics from recognized/open source applications, it's recommended you create a [full Agent Integration](https://docs.datadoghq.com/developers/integrations/new_check_howto/).
+Next we're going to take a look at how you can collect metrics from some of the programs/services that your application uses that don't have an existing DataDog integration.  It's important to note this is more for smaller programs and/or prioprietary systems.  If you're trying to collect metrics from recognized/open source applications, it's recommended you create a [full Agent Integration](https://docs.datadoghq.com/developers/integrations/new_check_howto/).
 
-For this example we're going to write a simple Agent check that submits a metric with a random value between 0 and 1000.  To get started you'll need to navigate to the `checks.d` in your Agent's configuration directory and create a new python file called `<YOUR_CUSTOM_AGENT_NAME>.py` (I'm using [`custom_ac1.py`](configfiles/custom_ac1.py) in my example.  Within your python file it's always best practice to make sure your check is compatible with any Agent version.  To do so simply copy/paste the following try/except block into your python file (I've included the comments from Datadog's [custom agent documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) so you can better understand what the script is doing).
+For this example we're going to write a simple Agent check that submits a metric with a random value between 0 and 1000.  To get started you'll need to navigate to the `checks.d` in your Agent's configuration directory and create a new python file called `<YOUR_CUSTOM_AGENT_NAME>.py` (I'm using [`custom_ac1.py`](configfiles/custom_ac1.py) in my example).  
+
+Within your python file it's always best practice to make sure your check is compatible with any Agent version.  To do so simply copy/paste the following try/except block into your python file (I've included the comments from Datadog's [custom agent documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) so you can better understand what the script is doing).
 
 ```
 try:
@@ -95,9 +97,9 @@ class myCheck(AgentCheck):
 		self.gauge('my_metric', random.randint(0, 1000), tags=['env:test','ac:mycheck','checktype:guage'])
 ```
 
-Now all you have to do is navigate back to the `conf.d` directory and create a yaml file called `<YOUR_CUSTOM_AGENT_NAME>.yaml`.  *__Important:__ your .yaml file name must __exactly match__ the name of your custom agent .py file to work.*  If you just want to get your Agent working all you have to do is put in an empty instance script `instances: [{}]`.  For our example we're also going to add the `min_collection_interval` function to set the agent check to run every 45 seconds.  For reference, you can see my whole example .yaml file [here](configfiles/custom_ac1.yaml).
+Now all you have to do is navigate back to the `conf.d` directory and create a yaml file called `<YOUR_CUSTOM_AGENT_NAME>.yaml`.  *__Important:__ your .yaml file name must __exactly match__ the name of your custom agent .py file to work.*  If you just want to get your Agent working all you have to do is put in an empty instance script: `instances: [{}]`.  For our example we're also going to add the `min_collection_interval` function to set the agent check to run every 45 seconds.  For reference, you can see my whole example .yaml file [here](configfiles/custom_ac1.yaml).
 
-Make sure and save both your .py and .yaml files then once again restart your agent using the relevant OS command.  You should now be able to see your custom metric, as well as your MySQL integration, attached to your host machine in the Datadog Hostmap.
+Make sure and save both your .py and .yaml files then once again restart your agent using the relevant OS command.  You should now be able to see your custom metric, as well as your MySQL integration, attached to your host machine in the [Datadog Hostmap](https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host).
 
 ![my_metric_andHostMap.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/my_metric_andHostMap.png)
 
@@ -116,7 +118,7 @@ To get started you'll need to:
 
 ![APIKeys.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/APIKeys.png)
 
-With Postman configured we can now use the Create Dashboard `POST` request to build our first timeboard.  The request should be available in your collections dropdown, you'll notice it's already inherited your API/APP key headers.  Navigate to the body where we'll use the JSON script to design how your timeboard will look and function.
+With Postman configured we can now use the Create Dashboard `POST` request to build our first timeboard.  The request should be available in your collections dropdown, you'll notice it's already inherited your API & App key headers.  Navigate to the body where we'll use the JSON script to design how your timeboard will look and function.
 
 A full description of each of the JSON arguments can be found in the [API Documentation](https://docs.datadoghq.com/api/?lang=bash#dashboards), for now I'll just callout some of the more important fields:
 
@@ -125,10 +127,10 @@ A full description of each of the JSON arguments can be found in the [API Docume
 	* Average of my_metric on my host machine -> `avg:my_metric{host:WKARGES-10P.fourwindsinteractive.com}`
 	* Rollup sum of my_metric over the past hour -> `avg:my_metric{*}.rollup(sum, 1)`
 	* Anomalies in MySQL's CPU usage -> `anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)`
-* `type` refers to how you want your data to display.  The type of graph you use directly correlates with the function you're applying to your data.  
+* `type` refers to how you want your data to display.  The type of graph you use usually correlates with the function you're applying to your data.  
 	* For example we'll be using the `timeseries` visualization for average and anomalies graphs so we can see how those metrics perform over time.
 	* Conversely we'll use `query_value` for our rollup as it's designed to show a single value and we're wanting to see only the sum of our metric.
-	* A full list of the different widgets can be found [here](https://docs.datadoghq.com/dashboards/widgets/).
+	* A full list and descriptions of the different widgets can be found [here](https://docs.datadoghq.com/dashboards/widgets/).
 
 Once you've filled out the necessary arguments in your JSON body (see my [completed example](configfiles/WK_CustomTimeBoard.json)), you can submit the `POST` request.  You should see a response similar to [this](configfiles/POST_response.json).
 
@@ -142,7 +144,7 @@ Now open up one of your graphs and set the timeframe to the past five minutes.
 
 ![past5minutes.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/past5minutes.png)
 
-Once again, it's that easy.  Through just a simple post request you can create as many Timeboards as you like each of which containing graphs that can display your data in endless ways.
+Once again, it's that easy.  Through just a simple `POST` request you can create as many Timeboards as you like each of which containing graphs that can display your data in endless ways.
 
 When referencing the API documentation you may have also noticed each call can be written in Python and Ruby as well.  This means you could write any of the Datadog APIs directly into your code.
 
@@ -183,6 +185,8 @@ Once inside of the monitor editor you'll need to do a few things:
 ![monitorrecipients.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/monitorrecipients.png)
 
 You can reference my complete [monitor JSON here](configfiles/Monitor.json).  Shortly after you save your monitor you should start recieving warning and alert e-mails like [these](assets/Monitors/E-mails/).  You can also use the 'Test Notifications' feature in the monitor editing tool to make sure they're sending correctly.
+
+![Warn.png](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/Warn.png)
 
 As you'll soon realize, these monitor e-mails can quickly fill up your inbox.  Fortunately Datadog also provides the ability to mute e-mails for set durations or scheduled periods of time (such as off work hours).
 
