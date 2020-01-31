@@ -249,21 +249,12 @@ You can also view APM metrics through a [standard dashboard](https://app.datadog
 
 ![APM1](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/APM1.png)
 
+## Section 5 - Closing Thoughts
+
+
+
 //---------------------------------------------------------------------------------
 
-Once the program could run on my machine all I had to do was use the tracer.wrap function to tag the relevant operation name, service, and resource.  Being an increadibly simple application, the trace recorded a processing-time of near 0.
-
-* [APM & Infra Dashboard](https://app.datadoghq.com/dashboard/4nn-f4a-m48/williams-apm--metrics-dashboard?from_ts=1579795766356&to_ts=1579882166356&live=true&tile_size=m)
-
-* [APM Python code](configfiles/APM-test.py)
-
-![APM1.png](assets/APM1.png)
-
-### Bonus Question - What is the difference between a Service and a Resource?
-
-Services are groups of related functions, URLs, etc. within an application.  Resources are the specifc endpoints (URL IP, DB Query, etc.) within that service.
-
-The benefit of Datadog is tracking the performance of these services and make sure they're loosely coupled and new changes aren't negatively affecting each other and the application as a whole as is best practice with modern development.
 
 ## Final Question - Creative use of DataDog
 
