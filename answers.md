@@ -245,7 +245,7 @@ Then once again restart your Datadog agent and navigate to the APM module to vie
 
 ![APM.gif](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/APM.gif)
 
-You can also view APM metrics through a [standard dashboard](https://app.datadoghq.com/dashboard/4nn-f4a-m48/williams-apm--metrics-dashboard?from_ts=1579795766356&to_ts=1579882166356&live=true&tile_size=m)).
+You can also view APM metrics through a [standard dashboard](https://app.datadoghq.com/dashboard/4nn-f4a-m48/williams-apm--metrics-dashboard?from_ts=1579795766356&to_ts=1579882166356&live=true&tile_size=m).
 
 ![APM1](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/APM1.png)
 
