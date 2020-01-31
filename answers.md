@@ -40,7 +40,7 @@ tags:
  - "env:test"
 ```
 
-*__Disclaimer__: If you're using Datadog in Europe you'll also need to be sure to the `dd_url` from `intake.logs.datadoghq.com` to `tcp-intake.logs.datadoghq.eu`*
+*__Additional Disclaimer__: If you're using Datadog in Europe you'll also need to be sure to change the `dd_url` node value from `intake.logs.datadoghq.com` to `tcp-intake.logs.datadoghq.eu`*
 
 Once you've added your tags, save your `datadog.yaml` file and restart the agent.  To do so, Windows users will run `"%PROGRAMFILES%\Datadog\Datadog Agent\bin\agent.exe" restart-service` from a command prompt.  For non-Windows users you'll need to search for the agent commands relevant to your OS in [Datadog Docs](https://docs.datadoghq.com/).
 
@@ -204,7 +204,46 @@ Earlier I mentioned the importance of granular information for monitoring, troub
 
 With APM you can integrate Datadog directly into your code to create [traces](https://docs.datadoghq.com/tracing/visualization/#trace) which track the amount of time your applications spend processing requests.  For mission critical applications where data needs to be served up to users in near-real time, this kind of functionality is invaluable.
 
+For this exercise you'll need an application to track.  You can use any application you like within the [officially supported languages](https://docs.datadoghq.com/tracing/setup/), or this [sample Flask app](configfiles/SampleFlaskApp.py).  For my example I'm going to use a simple python app that just prints a string.
 
+Before we get into the code, you'll want to make sure you have all the necessary libraries installed.  Open a command prompt (or the equivelant tool for your relevant OS) and run a `pip install` command to import the `ddtrace` library.
+
+You'll need to reference that same library in your python file.  We'll also use the native Python logging API.  You can reference both with the following commands:
+
+```
+from ddtrace import patch_all; patch_all(logging=True)
+import logging
+from ddtrace import tracer
+```
+
+Next you'll need to format the python logger messages to match the Datadog APM required sytax.
+
+```
+FORMAT = ('%(asctime)s %(levelname)s [%(name)s] [%(filename)s:%(lineno)d] '
+          '[dd.trace_id=%(dd.trace_id)s dd.span_id=%(dd.span_id)s] '
+          '- %(message)s')
+logging.basicConfig(format=FORMAT)
+log = logging.getLogger(__name__)
+log.level = logging.INFO
+```
+
+Finally you'll need to use the 	`@tracer.wrap()` function to define your `object name`, `service`, and `resource`.  
+* `Object name` refers to the python function you've written, for this example I've identified named my object in relation to it's use, `printstring`.
+* `Service` refers to the group of endpoints/queries that your microservice is composed of.  An example would be an API that retrieves data from a variety of SQL tables that collectively equate to your service.
+* `Resource` essentially refers to the network location of your application.  A resource could be a web address, database query, or task running in the background.
+The `@tracer.wrap()` function includes arguments for you to appropriately identify these fields.  You can see mine below:
+
+```
+@tracer.wrap('testApp.printstring', service='hiring_exercise-service', resource='testApp-response')
+```
+
+Once you've [finished writting your application](configfiles/APM-test.py), use the [`ddtrace-run`](https://docs.datadoghq.com/tracing/setup/python/) command to run your application and log your trace.  
+
+`ddtrace-run python APM-test.py`
+
+Then once again restart your Datadog agent and navigate to the APM module to view your newly recorded trace and all it's properties.
+
+![APM.gif](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/APM.gif)
 
 //---------------------------------------------------------------------------------
 
