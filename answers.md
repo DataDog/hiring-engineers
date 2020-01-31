@@ -249,7 +249,7 @@ You can also view APM metrics through a [standard dashboard](https://app.datadog
 
 ![APM1](https://ddhiringexercise.s3-us-west-2.amazonaws.com/assetsv2/APM1.png)
 
-## Section 5 - Closing Thoughts
+## Section 5 - Creative Use
 
 Before we finish I wanted to leave you with a thought exercise.  By now your mind is hopefully racing with all the different ways you can utilize Datadog's monitoring to improve your organization's operating, development, and support efficiency.  For this exercise; however, I want you to try and think of some more creative ways Datadog can be used apart from monitoring applications/infrastructure.
 
@@ -259,10 +259,11 @@ From there they could track machine performance to determine how effectively ind
 
 For example the IT group might see the project managers barely tax their machines and then start issuing lower powered devices to that department to shave costs.  Conversely the creative teams may be constantly overclocking their machines so IT could source upgraded devices to reduce render times and improve effeciency.  You could also track anomalies in performance that may relate to misusage/malware or other IT concerns.
 
+## Closing Thoughts
 
 We've barely scratched the surface of the Datadog platform and you've already seen how Datadog can improve application performance reducing architecture cost, provide automated monitoring to your autoscaling infrastructure, and reduce the number of bugs as well as development time spent fixing them.  When you start to total up all those potential cost savings, can you really afford not to implement the Datadog solution?
 
-## Thanks for your consideration!!
+## Thank you for your consideration!!
 
 ## Resource Folders
 
