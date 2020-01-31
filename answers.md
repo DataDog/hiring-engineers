@@ -40,6 +40,8 @@ tags:
  - "env:test"
 ```
 
+*__Disclaimer__: If you're using Datadog in Europe you'll also need to be sure to the `dd_url` from `intake.logs.datadoghq.com` to `tcp-intake.logs.datadoghq.eu`*
+
 Once you've added your tags, save your `datadog.yaml` file and restart the agent.  To do so, Windows users will run `"%PROGRAMFILES%\Datadog\Datadog Agent\bin\agent.exe" restart-service` from a command prompt.  For non-Windows users you'll need to search for the agent commands relevant to your OS in [Datadog Docs](https://docs.datadoghq.com/).
 
 With that done your host machine should now be visible in from the Datadog browser client.  Log into DatadogHQ, navigate to Infrastructure->Host Map, and you should see your host machine with it's relevant tags.
@@ -198,11 +200,13 @@ Navigate to the [Manage Downtime](https://app.datadoghq.com/monitors#downtime) t
 
 ## Section 4 - Collecting APM Data
 
+Earlier I mentioned the importance of granular information for monitoring, troubleshooting, and working to improve the overall performance of your application.  Arguably the greatest tool for accomplishing this is Datadog's Application Performance Monitoring (APM).
+
+With APM you can integrate Datadog directly into your code to create [traces](https://docs.datadoghq.com/tracing/visualization/#trace) which track the amount of time your applications spend processing requests.  For mission critical applications where data needs to be served up to users in near-real time, this kind of functionality is invaluable.
+
 
 
 //---------------------------------------------------------------------------------
-
-I was unable to get the provided Flask app to run (I believe due to compatibility issues with my Win10 OS).  I instead modified the code to form a native python application that simply prints a string.  
 
 Once the program could run on my machine all I had to do was use the tracer.wrap function to tag the relevant operation name, service, and resource.  Being an increadibly simple application, the trace recorded a processing-time of near 0.
 
