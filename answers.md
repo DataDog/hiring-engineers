@@ -4,7 +4,9 @@
 ___
 
 ## Prerequisites - Setup the environment
-Notes
+I'm reasonably comfortable with Docker, so I opted to follow the [Docker Agent](https://docs.datadoghq.com/agent/docker/?tab=standard) documentation to get a Docker Agent up and running.
+
+The command I used to start up the container is in [`run_datadog_docker.sh`](run_datadog_docker.sh) ([`docker_ssh`](docker_ssh.sh) is just the command I used to SSH into the Docker Agent's container).
 
 ___
 
@@ -16,12 +18,12 @@ ___
 * [Assigning Tags](https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6v7)
 * [Agent Configuration Files](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7)
 
-Tags can be assigned easily to Datadog Agents with a few lines in their `datadog.yaml` config files. In addition to the reserved tags (`host`, `device`, `source`, and `service`), I figured two more might be useful:
+Tags can be assigned easily to Datadog Agents by adding/modifying a few lines in their `datadog.yaml` config files. In addition to the reserved tags (`host`, `device`, `source`, and `service`), I figured two more might be useful:
 
 * `owner` to indicate who owns/manages the Agent
 * `environment` to indicate the environment in which that particular Agent is running
 
-The sky is the limit with tags. They're used nearly everywhere in the Datadog platform to [provide more granularity to dashboards, monitors, and more](https://docs.datadoghq.com/tagging/#using-tags). This hiring assignment didn't have me spinning up multiple Datadog Agents. But if it did, tags would allow me to easily differentiate between Agents throughout the assignment.
+The sky is the limit with tags. They're used nearly everywhere in the Datadog platform to [provide further granularity to dashboards, monitors, and more](https://docs.datadoghq.com/tagging/#using-tags). This hiring assignment didn't have me spinning up multiple Datadog Agents. But if it did, tags would allow me to easily differentiate between Agents throughout the assignment.
 
 Contents of `/etc/datadog-agent/datadog.yaml`:
 ```yaml
@@ -57,7 +59,7 @@ After adding these tags to `datadog.yaml`, I restarted the Agent's Docker contai
 **Key documentation**:
 * [Integrations > MySQL](https://docs.datadoghq.com/integrations/mysql/#setup)
 
-Time to give my Agent some more infrastructure to report on! I went ahead MySQL by installing MySQL Community Server 8.0.19 and creating a database called `datadog_db`. Following the MySQL Integration instructions was straightforward and just required creation of a config file for MySQL (`/etc/datadog-agent/conf.d/mysql.d/conf.yaml`). 
+Time to give my Agent some more infrastructure to report on! I went ahead with MySQL by installing MySQL Community Server 8.0.19 and creating a database called `datadog_db`. Following the MySQL Integration instructions was straightforward and just required creation of a config file for MySQL (`/etc/datadog-agent/conf.d/mysql.d/conf.yaml`). 
 
 Since my Datadog agent was running in a Docker container, I configured the server as `host.docker.internal`, rather than the `127.0.0.1` recommended in the documentation (though I may have just been able to use port mapping to successfully use `127.0.0.1`).
 
@@ -89,7 +91,7 @@ After another Agent restart, I could see a new app running labeled `mysql` along
 **Key documentation**:
 * [Writing a custom agent check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
 
-This is really where doors started opening in my head. While this assignment had me reporting nearly the simplest possible metric from a Python script (integer between 0-1000), I could imagine potential uses for custom checks, like process/memory information via the `os` library.
+This is really where doors started opening in my head. While this assignment had me reporting perhaps the simplest possible metric from a Python script (integer between 0-1000), I could imagine potential uses for custom checks, like process/memory information via the `os` library.
 
 To implement the simple 0-1000 check, I created a "test_check" prefixed with `custom_` (per best practices in the documentation) by first adding a `custom_test_check.yaml` config file to the `conf.d` directory of the Agent:
 
@@ -126,7 +128,7 @@ The time-series graph is exactly what we should expect, bouncing randomly betwee
 
 > 1.4 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-Tweaking the minimum collection interval of a custom check was as simple as modifying the `.yaml` configuration file already created in the task above:
+Tweaking the minimum collection interval of a custom check was as simple as modifying the `.yaml` configuration file already created in the task above.
 
 Revised contents of `/etc/datadog-agent/conf.d/custom_test_check.yaml`:
 ```yaml
@@ -136,7 +138,7 @@ instances:
   - min_collection_interval: 45
 ```
 
-After another Agent restart, the `my_metric` reporting interval changed in the same graph as above from 15 seconds to 45 seconds. Two screenshots showing the timestamps of two subsequent checks illustrate the new, longer interval:
+After another Agent restart, the `my_metric` reporting interval changed in the same graph as above from 15 seconds to 45 seconds. Two screenshots showing the timestamps of subsequent checks illustrate the updated, longer interval:
 
 ![my_metric data point 1](img/1.4_my_metric_1.png "my_metric 45-second interval, data point #1") ![my_metric data point 2](img/1.4_my_metric_2.png "my_metric 45-second interval, data point #2")
 
