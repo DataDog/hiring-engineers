@@ -52,7 +52,7 @@ jmx_use_container_support: true
 
 After adding these tags to `datadog.yaml`, I restarted the Agent's Docker container and saw the changes propagate to my host in the Host Map:
 
-![Custom Agent tags](img/1.1_tags.png "Custom Agent tags (owner, environment)")
+![Custom Agent tags](https://jp495.s3.amazonaws.com/sales-engineering-jp495/1.1_tags.png "Custom Agent tags (owner, environment)")
 
 > 1.2 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
@@ -84,7 +84,7 @@ instances:
 
 After another Agent restart, I could see a new app running labeled `mysql` along with dozens of new metrics:
 
-![MySQL App](img/1.2_mysql_install.png "mySQL App reporting on docker-desktop")
+![MySQL App](https://jp495.s3.amazonaws.com/sales-engineering-jp495/1.2_mysql_install.png "mySQL App reporting on docker-desktop")
 
 > 1.3 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
@@ -122,7 +122,7 @@ More tags, too!
 
 With another Agent restart, I immediately started seeing `my_metric` reporting within Datadog in the Metrics Explorer:
 
-![my_metric](img/1.3_my_metric.png "Custom my_metric showing 15-second random integers between 0-1000")
+![my_metric](https://jp495.s3.amazonaws.com/sales-engineering-jp495/1.3_my_metric.png "Custom my_metric showing 15-second random integers between 0-1000")
 
 The time-series graph is exactly what we should expect, bouncing randomly between its 0-1000 bounds every 15 seconds (the default reporting period).
 
@@ -140,7 +140,7 @@ instances:
 
 After another Agent restart, the `my_metric` reporting interval changed in the same graph as above from 15 seconds to 45 seconds. Two screenshots showing the timestamps of subsequent checks illustrate the updated, longer interval:
 
-![my_metric data point 1](img/1.4_my_metric_1.png "my_metric 45-second interval, data point #1") ![my_metric data point 2](img/1.4_my_metric_2.png "my_metric 45-second interval, data point #2")
+![my_metric data point 1](https://jp495.s3.amazonaws.com/sales-engineering-jp495/1.4_my_metric_1.png "my_metric 45-second interval, data point #1") ![my_metric data point 2](https://jp495.s3.amazonaws.com/sales-engineering-jp495/1.4_my_metric_2.png "my_metric 45-second interval, data point #2")
 
 > 1.5 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
@@ -168,7 +168,7 @@ Two of the items on the timeboard are fairly self explanatory. One simply shows 
 
 To see how I created this particular Timeboard, refer to [`code/2.1/timeboard.py`](code/2.1/timeboard.py). [Here's a link to the dashboard](https://app.datadoghq.com/dashboard/jaf-7v3-m9t/21-dashboard-via-api), and here are the results:
 
-![Dashboard via API](img/2.1_dashboard.png "Dashboard created via Datadog's Python API")
+![Dashboard via API](https://jp495.s3.amazonaws.com/sales-engineering-jp495/2.1_dashboard.png "Dashboard created via Datadog's Python API")
 
 Since no application is actually using the database (resulting in the vast majority of MySQL metrics flatlined by 99% of the time), I artificially created "anomalies" by creating a dummy table with an auto-incrementing primary key and spamming it occasionally with `INSERT`s.
 
@@ -180,11 +180,11 @@ Since no application is actually using the database (resulting in the vast major
 Anomalies are hardly ever a good thing (at least in the IT infrastructure and DevOps sense). Thanks to anomaly monitoring and share features, responding in near real time to an anomalous event is simple and easy.
 
 **Note**: *From the Dashboard, I was able to set the timeframe for all widgets to that last 5 minutes by manually grabbing 5-minute portions of the screen (and ensuring results were coming in "live", rather than stuck in "paused"). However, I wasn't able to find the **Annotate** feature from within that dashboard. Following along in the [Sharing documentation](https://docs.datadoghq.com/dashboards/sharing/), while all of the graphs on my Timeboard had the "pencil" icon, it only led to Sharing options for the two `my_metric` graphs -- not the MySQL Anomaly graph. I have a feeling this is due to the MySQL Anomaly graph being from a **monitor** rather than a **metric**.*
-![5-min Dashboard window](img/2.2_5min_timeframe.png "5-minute time frame live display in the Dashboard (with no annotation option)")
+![5-min Dashboard window](https://jp495.s3.amazonaws.com/sales-engineering-jp495/2.2_5min_timeframe.png "5-minute time frame live display in the Dashboard (with no annotation option)")
 
 That said, I was able to annotate any of the graphs in the **Metrics Explorer**, and it was ridiculously easy. Point, click, drag, type a comment/mention. That's the kind of simplicity I would really appreciate when an important service I own appears to be on fire and I'm trying to quickly engage my team. For example:
 
-![graph annotation](img/2.2_annotation.png "Annotated graph from within Metrics Explorer")
+![graph annotation](https://jp495.s3.amazonaws.com/sales-engineering-jp495/2.2_annotation.png "Annotated graph from within Metrics Explorer")
 
 In theory, the **Anomaly graph** is displaying a few things:
     1. Some metric (in this case, `mysql.innnodb.data_writes`)
@@ -262,11 +262,11 @@ ___
 Just a few minutes later, `my_metric` reported a value that met "Alert" conditions (800-1000):
 
 Result:
-![email alert](img/3.1_alert_email.png "Example email generated when my_metric went above 'alert' threshold to 973.0")
+![email alert](https://jp495.s3.amazonaws.com/sales-engineering-jp495/3.1_alert_email.png "Example email generated when my_metric went above 'alert' threshold to 973.0")
 
 Considering how frequently this alert is expected to fire off, Datadog mercifully provides flexible, transparent "downtime" scheduling. While downtime can be scheduled ad-hoc, for this exercise, I configured recurring downtime for weekdays outside working hours and weekends:
 
-![weekday downtime](img/3.1_downtime_weekday.png "Email notification of downtime being scheduled for the `my_metric` alert for weekdays 7pm-9am") ![weekend downtime](img/3.1_downtime_weekday.png "Email notification of downtime being scheduled for the `my_metric` alert for weekends")
+![weekday downtime](https://jp495.s3.amazonaws.com/sales-engineering-jp495/3.1_downtime_weekday.png "Email notification of downtime being scheduled for the `my_metric` alert for weekdays 7pm-9am") ![weekend downtime](https://jp495.s3.amazonaws.com/sales-engineering-jp495/3.1_downtime_weekday.png "Email notification of downtime being scheduled for the `my_metric` alert for weekends")
 
 ___
 
@@ -286,11 +286,11 @@ The Datadog Python API made it dead simple to enable tracing for this sample Fla
 
 [Link to **Flask** APM](https://app.datadoghq.com/apm/service/flask/flask.request?end=1580675399533) (the interesting bits occur between 14:36:00 2-Feb - 16:36:00 2-Feb)
 
-![Flask APM](img/4.1_flask_APM.png "View of the Flask app's APM console")
+![Flask APM](https://jp495.s3.amazonaws.com/sales-engineering-jp495/4.1_flask_APM.png "View of the Flask app's APM console")
 
 While this setup wasn't sophisticated enough to highlight other Datadog features like metric correlation, it was enough to show off its core tracing feature (in this case, for an "Error"):
 
-![Flask error trace](img/4.1_error_trace.png "flask GET /api/trace error trace")
+![Flask error trace](https://jp495.s3.amazonaws.com/sales-engineering-jp495/4.1_error_trace.png "flask GET /api/trace error trace")
 
 In a broad (likely oversimplified) sense, *resources* make up *services*, which make up *applications*. Resources offer the most granular insight into how the various components, or "domains," of a service are performing. A Flask application ("service"), for example, has many "resources", e.g. a request-handling resources, a user-exception handling resource, authorization resource, etc. This Flask service in turn is (likely) part of a broader application's microservice architecture."
 
