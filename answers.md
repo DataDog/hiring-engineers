@@ -114,7 +114,7 @@ Please configure the monitor’s message so that it will:
 * monitor downtime email recepient
 <img alt="answers-heroku.app.downtime.email.png" src="assets/answers-heroku.app.downtime.email.png" width="" height="" >
 * nodata monitor triggered (to setup email/team)
-frin the triggered view:
+from the triggered view:
 The monitor has been missing data for the last 10m
 
 The monitor was last triggered at Fri Feb 21 2020 15:55:30 UTC.
