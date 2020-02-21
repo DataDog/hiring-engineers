@@ -1,5 +1,6 @@
 Your answers to the questions go here.
 ## Answers by Christoph Berlin - Thank you
+* Below in-line after the Questions section
 
 Questions:
 ## Collecting Metrics:
@@ -14,8 +15,11 @@ Questions:
 * **Answers**:
 
 <https://github.com/DataDog/heroku-buildpack-datadog>
-* created using ruby heroku app entirely the stack, against the EU location, given the trend towards cloud native and less infrastructure, and ease of code deployment / services lik database to save time.
+* created using ruby heroku app entirely the stack, against the EU location, given the trend towards cloud native and less infrastructure, and ease of code deployment / services like database to save time. the associated ruby app contains also
+the scripts for testing, and is self contained - so anyone can run through this
+exercise and just deploy.
 
+* latest Heroku Free Dyno Stack and PostgreSQL
 * heroku config variables
 DD_DYNO_HOST:true
 DD_SERVICE_NAME: datadog-test-christ
@@ -27,7 +31,7 @@ Addons:         heroku-postgresql:hobby-dev
 
 <img alt="answers-hostmap.png" src="assets/answers-hostmap.png" width="" height="" >
 
-* postgres Integration
+* postgres Integration - required PostgreSQL Logic in Pre-Run
 
 <img alt="answers-postgresdatabaseintegration.png" src="assets/answers-postgresdatabaseintegration.png" width="" height="" >
 
@@ -39,6 +43,8 @@ Addons:         heroku-postgresql:hobby-dev
 issues      
        https://github.com/DataDog/dd-agent/issues/3864
        https://github.com/DataDog/heroku-buildpack-datadog/issues/175
+       discrepancy initially loading old 6.x version agent, cleaned up with slug
+       purging and re-deployed with verison 7.x Datadog Agent. Maintainer is aware.
 
 
 
@@ -100,6 +106,8 @@ Please configure the monitor’s message so that it will:
 * monitor customisation of warning 800 / 500 through the Monitoring UI
 <img alt="answers-heroku.my_metric.thresholds.png" src="assets/answers-heroku.my_metric.thresholds.png" width="" height="" >
 
+* monitor configuration (for the sake of reducing emails, and screenshots - only included the main emails for downtime, and scheduling, everything works, conditioning, different levels of warning etc).
+<img alt="answers-monitor.configurion.heroku.png" src="assets/answers-monitor.configurion.heroku.png" width="" height="" >
 
 * monitor downtime email
 <img alt="answers-heroku.monitor.downtime.png" src="assets/answers-heroku.monitor.downtime.png" width="" height="" >
@@ -118,7 +126,7 @@ The monitor was last triggered at Fri Feb 21 2020 15:55:30 UTC.
 ## Collecting APM Data:
 * **Answers**:
 
-* for APM i used the ruby app with dogstatd and ddtrace (Ruby Gems)for the sinatra web request , the heroku app is supplied (i refactored a ruby  demo cloud foundry app to run on Heroku) stimulated the Web GET requests for some Latency Measurement. The Heroku App is included here and easily pushed for testing - sernice name is hello-datadog-heroku-ruby. You will find the repo as part of my answers containing
+* for APM i used the ruby app with dogstatd and ddtrace (Ruby Gems)for the sinatra web request , the heroku app is supplied (i refactored a ruby  demo cloud foundry app to run on Heroku) stimulated the Web GET requests for some Latency Measurement. The Heroku App is included here and easily pushed for testing - service name is hello-datadog-heroku-ruby. You will find the repo as part of my answers containing
 the ruby app named "datadog-test-christ" inside the hello-datadog-heroku-ruby-app asset - anyone can repurpose it.
 
 * overview of service and resources fetching pages with GET/
