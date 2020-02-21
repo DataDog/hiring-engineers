@@ -10,11 +10,11 @@ export app_key=
 curl -X POST -H "Content-type: application/json" \
 -d '{
   "title": "heroku timeboard",
-  "description": "heroku timeboard metrics",
+  "description": "heroku timeboard metrics and graphs",
   "graphs" :
   [
     {
-      "title": "heroku.my_metric scoped host",
+      "title": "heroku.my_metric scoped host (app dyno)",
       "definition": {
         "events": [],
         "requests": [
@@ -25,7 +25,7 @@ curl -X POST -H "Content-type: application/json" \
 
     },
     {
-      "title": "Heroku Collection Anomaly",
+      "title": "heroku collection Anomaly w/ deviation 3",
       "definition": {
         "events": [],
         "requests": [
@@ -35,7 +35,7 @@ curl -X POST -H "Content-type: application/json" \
       "viz": "timeseries"
     },
     {
-      "title": "Custom heroku.my_metric rollup sum of collection over an hour",
+      "title": "Custom heroku.my_metric rollup sum of collection",
       "definition": {
         "events": [],
         "requests": [
