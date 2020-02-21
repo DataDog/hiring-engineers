@@ -145,7 +145,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 * **Answer**: a way to monitor cloud native applications and their respective data center / power / energy consumption based on geographic locality would be nice - given the trend to sustainability, and running applications with the planet in mind.
 
-Thanks for the exercise - it was a nice refresher, there is not much infrastructure on the Heroku Dyno as it's ephemeral Infrastructre  (basic CPU,Disk,Network)
+Thanks for the exercise - it was a nice refresher, there is not much infrastructure on the Heroku Dyno as it's ephemeral Infrastructre  (basic CPU,Disk,Network), most of the time is spent on Application and Business Logic (with ddtrace and dogstatd)
 
 * infra listing summary for a dyno based web app
 <img alt="answers-heroku.infra.list.png" src="assets/answers-heroku.infra.list.png" width="" height="" >
