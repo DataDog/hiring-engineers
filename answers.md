@@ -66,7 +66,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * **Answers**:
 * used https://docs.datadoghq.com/dashboards/guide/timeboard-api-doc/?tab=bash
- used the example timebaord shell script to wrap around curl and set my api and app keys up, and then build 3 graphs into the heroku timeboard from the my_metric setup in the my_metric.py custom agent check with random values, then edited the dashboards according to the alert timeframe. Anomaly is displaying basic algorithm, and deviation of 3 from the heroku my_metric set earlier in the exerchise.
+ used the example timebaord shell script to wrap around curl and set my api and app keys up, and then build 3 graphs into the heroku timeboard from the my_metric setup in the my_metric.py custom agent check with random values, then edited the dashboards according to the alert timeframe. Anomaly is displaying basic algorithm, and deviation of 3 from the heroku my_metric set earlier in the exercise.
 
  * timeboard
   <img alt="answers-heroku.timeboard.png" src="assets/answers-heroku.timeboard.png" width="" height="" >
