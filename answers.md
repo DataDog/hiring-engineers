@@ -129,11 +129,11 @@ The monitor was last triggered at Fri Feb 21 2020 15:55:30 UTC.
 * for APM i used the ruby app with dogstatd and ddtrace (Ruby Gems)for the sinatra web request , the heroku app is supplied (i refactored a ruby  demo cloud foundry app to run on Heroku) stimulated the Web GET requests for some Latency Measurement. The Heroku App is included here and easily pushed for testing - service name is hello-datadog-heroku-ruby. You will find the repo as part of my answers containing
 the ruby app named "datadog-test-christ" inside the hello-datadog-heroku-ruby-app asset - anyone can repurpose it.
 
-* overview of service and resources fetching pages with GET/
+* overview of (micro) service and resources fetching pages with endpoint GET/
 <img alt="answers-custom.apm.app.overview.png" src="assets/answers-custom.apm.app.overview.png" width="" height="" >
 * traces dashboard
 <img alt="answers-custom.metrics.traces.png" src="assets/answers-custom.metrics.traces.png" width="" height="" >
-* sinatra traces oview (triggered with HTTP requests / browser)
+* sinatra traces overview (triggered with HTTP requests / browser)
 <img alt="answers-custom.service.heroku.sinatra.requests.png" src="assets/answers-custom.service.heroku.sinatra.requests.png" width="" height="" >
 * satus codes and durations
 
