@@ -21,11 +21,11 @@ exercise and just deploy.
 
 * latest Heroku Free Dyno Stack and PostgreSQL
 * heroku config variables
-DD_DYNO_HOST:true
-DD_SERVICE_NAME: datadog-test-christ
-DD_SITE: datadoghq.eu
-DD_TAGS: env:datadog-test-app
-Addons:         heroku-postgresql:hobby-dev
+1. DD_DYNO_HOST:true
+2. DD_SERVICE_NAME: datadog-test-christ
+3. DD_SITE: datadoghq.eu
+4. DD_TAGS: env:datadog-test-app
+5. Addons:         heroku-postgresql:hobby-dev
 
 * hostmap
 
@@ -40,7 +40,7 @@ Addons:         heroku-postgresql:hobby-dev
 <img alt="answers-heroku.mymetric.png" src="assets/answers-heroku.mymetric.png" width="" height="" >
 
 * see scripts assets and issues around UX and Documentation, also some caching and purging issues to load the latest buildpack version into the ephemeral dynos
-issues      
+issues
        https://github.com/DataDog/dd-agent/issues/3864
        https://github.com/DataDog/heroku-buildpack-datadog/issues/175
        discrepancy initially loading old 6.x version agent, cleaned up with slug
@@ -66,7 +66,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * **Answers**:
 * used https://docs.datadoghq.com/dashboards/guide/timeboard-api-doc/?tab=bash
- used the example timebaord shell script to wrap around curl and set my api and app keys up, and then build 3 graphs into the heroku timeboard from the my_metric setup in the my_metric.py custom agent check with random values, then edited the dashboards according to the alert timeframe. Anomaly is displaying basic algorithm, and deviation of 3 from the heroku my_metric set earlier in the exercise.
+ the example timebaord shell script to wrap around curl and set my api and app keys up, and then build 3 graphs into the heroku timeboard from the my_metric setup in the my_metric.py custom agent check with random values, then edited the dashboards according to the alert timeframe. Anomaly is displaying basic algorithm, and deviation of 3 from the heroku my_metric set earlier in the exercise.
 
  * timeboard
   <img alt="answers-heroku.timeboard.png" src="assets/answers-heroku.timeboard.png" width="" height="" >
@@ -121,7 +121,7 @@ The monitor was last triggered at Fri Feb 21 2020 15:55:30 UTC.
 
 
 <img alt="answers-heroku.monitor.nodata.trigger.png" src="assets/answers-heroku.monitor.nodata.trigger.png" width="" height="" >
-* i muted the alerts for week in the manage monitor tool and edited accordingly, scheduling it as requested in the UI.
+* i muted the alerts for a week in the manage monitor tool and edited accordingly, scheduling it as requested in the UI.
 
 ## Collecting APM Data:
 * **Answers**:
@@ -149,3 +149,6 @@ Thanks for the exercise - it was a nice refresher, there is not much infrastruct
 
 * infra listing summary for a dyno based web app
 <img alt="answers-heroku.infra.list.png" src="assets/answers-heroku.infra.list.png" width="" height="" >
+- source repo : [Repository with Scripts and Ruby App - Click Here][83a4d31b]
+
+  [83a4d31b]: https://github.com/christx2/hiring-engineers "Source Code used in this Document"
