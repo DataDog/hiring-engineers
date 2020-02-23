@@ -5,6 +5,8 @@
   #DISABLE_DATADOG_AGENT="true"
 #fi
 # Include application's datadog configs
+# moves things into place for Heroku Runtime correctly so the App has all the right
+# things self contained to go through the exercise repeatedly 
 APT_DIR="$HOME/.apt"
 DD_DIR="$APT_DIR/opt/datadog-agent"
 DD_RUN_DIR="$DD_DIR/run"

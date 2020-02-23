@@ -149,6 +149,7 @@ Thanks for the exercise - it was a nice refresher, there is not much infrastruct
 
 * infra listing summary for a dyno based web app
 <img alt="answers-heroku.infra.list.png" src="assets/answers-heroku.infra.list.png" width="" height="" >
-- source repo : [Repository with Scripts and Ruby App - Click Here][83a4d31b]
 
-  [83a4d31b]: https://github.com/christx2/hiring-engineers "Source Code used in this Document"
+[Source Heroku Application and Source Repo for this exercise][a059a91d]
+
+  [a059a91d]: https://github.com/christx2/hiring-engineers "Source Repo for this Document with Scripts / Assets"
