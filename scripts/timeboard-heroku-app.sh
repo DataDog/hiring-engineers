@@ -5,7 +5,7 @@
 #app_key=<DATADOG_APPLICATION_KEY>
 # screen_id=
 #replace host with dyno (app server name) and API endpoint with EU or US
-export api_key=<YOUR APP KEY HERE>
+export api_key=<YOUR API KEY HERE>
 export app_key=<YOUR APP KEY HERE>
 
 curl -X POST -H "Content-type: application/json" \
