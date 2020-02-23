@@ -4,12 +4,14 @@
 #api_key=<DATADOG_API_KEY>
 #app_key=<DATADOG_APPLICATION_KEY>
 # screen_id=
-export api_key=
-export app_key=
+#replace host with dyno (app server name) and API endpoint with EU or US
+export api_key=<YOUR APP KEY HERE>
+export app_key=<YOUR APP KEY HERE>
 
 curl -X POST -H "Content-type: application/json" \
 -d '{
   "title": "heroku timeboard",
+  "name": "heroku test application",
   "description": "heroku timeboard metrics and graphs",
   "graphs" :
   [
@@ -25,7 +27,7 @@ curl -X POST -H "Content-type: application/json" \
 
     },
     {
-      "title": "heroku collection Anomaly w/ deviation 3",
+      "title": "heroku collection basic anomaly w/ deviation 3",
       "definition": {
         "events": [],
         "requests": [
