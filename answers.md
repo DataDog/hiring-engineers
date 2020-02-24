@@ -12,7 +12,7 @@ Questions:
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 
-* **Answers**:
+###  **Answers**:
 
 <https://github.com/DataDog/heroku-buildpack-datadog>
 * created using ruby heroku app entirely the stack, against the EU location, given the trend towards cloud native and less infrastructure, and ease of code deployment / services like database to save time. the associated ruby app contains also
@@ -20,7 +20,7 @@ the scripts for testing, and is self contained - so anyone can run through this
 exercise and just deploy.
 
 * latest Heroku Free Dyno Stack and PostgreSQL
-* heroku config variables
+* heroku config variables and tags for my production app
 1. DD_DYNO_HOST:true
 2. DD_SERVICE_NAME: datadog-test-christ
 3. DD_SITE: datadoghq.eu
@@ -64,7 +64,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-* **Answers**:
+###  **Answers**:
 * used https://docs.datadoghq.com/dashboards/guide/timeboard-api-doc/?tab=bash
  the example timebaord shell script to wrap around curl and set my api and app keys up, and then build 3 graphs into the heroku timeboard from the my_metric setup in the my_metric.py custom agent check with random values, then edited the dashboards according to the alert timeframe. Anomaly is displaying basic algorithm, and deviation of 3 from the heroku my_metric set earlier in the exercise.
 
@@ -102,7 +102,7 @@ Please configure the monitor’s message so that it will:
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-* **Answers**:
+ ### **Answers**:
 * monitor customisation of warning 800 / 500 through the Monitoring UI
 <img alt="answers-heroku.my_metric.thresholds.png" src="assets/answers-heroku.my_metric.thresholds.png" width="" height="" >
 
@@ -124,7 +124,7 @@ The monitor was last triggered at Fri Feb 21 2020 15:55:30 UTC.
 * i muted the alerts for a week in the manage monitor tool and edited accordingly, scheduling it as requested in the UI.
 
 ## Collecting APM Data:
-* **Answers**:
+###  **Answers**:
 
 * for APM i used the ruby app with dogstatd and ddtrace (Ruby Gems)for the sinatra web request , the heroku app is supplied (i refactored a ruby  demo cloud foundry app to run on Heroku) stimulated the Web GET requests for some Latency Measurement. The Heroku App is included here and easily pushed for testing - service name is hello-datadog-heroku-ruby. You will find the repo as part of my answers containing
 the ruby app named "datadog-test-christ" inside the hello-datadog-heroku-ruby-app asset - anyone can repurpose it.
@@ -143,7 +143,9 @@ the ruby app named "datadog-test-christ" inside the hello-datadog-heroku-ruby-ap
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-* **Answer**: a way to monitor cloud native applications and their respective data center / power / energy consumption based on geographic locality would be nice - given the trend to sustainability, and running applications with the planet in mind.
+### * **Answers**:
+
+   a way to monitor cloud native applications and their respective data center / power / energy consumption based on geographic locality would be nice - given the trend to sustainability, and running applications with the planet in mind.
 
 Thanks for the exercise - it was a nice refresher, there is not much infrastructure on the Heroku Dyno as it's ephemeral Infrastructre  (basic CPU,Disk,Network), most of the time is spent on Application and Business Logic (with ddtrace and dogstatd)
 
