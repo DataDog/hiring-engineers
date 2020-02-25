@@ -11,68 +11,67 @@ Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then inst
 
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 ![45 second metric][metric-45sec]
 
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 * yes, I'm sure you can. 
 
-
 **Here is the call for creating the metrics timeboard, via cURL calls:**
-```
-	curl -X POST \
-	  https://api.datadoghq.eu/api/v1/dashboard \
-	  -H 'Accept: */*' \
-	  -H 'Accept-Encoding: gzip, deflate' \
-	  -H 'Cache-Control: no-cache' \
-	  -H 'Connection: keep-alive' \
-	  -H 'Content-Length: 873' \
-	  -H 'Content-Type: application/json' \
-	  -H 'Cookie: DD-PSHARD=0' \
-	  -H 'DD-API-KEY: 437d9105259c57d96777863ec874a66a' \
-	  -H 'DD-APPLICATION-KEY: e05e811f455fec453783c8f6e47fe97d914ce7bd' \
-	  -H 'Host: api.datadoghq.eu' \
-	  -H 'Postman-Token: 96d26c4b-106e-4973-a678-a36abc49a6fb,a5d52257-ff3c-4002-b8c9-76a005d028fe' \
-	  -H 'User-Agent: PostmanRuntime/7.20.1' \
-	  -H 'cache-control: no-cache' \
-	  -d '{
-		"title": "My Metric Visualizer Shell",
-		"widgets": [
-			{
-				"definition": {
-					"type": "timeseries",
-					"title": "The Metric Visualizer",
-					"requests": [
-						{
-							"q": "sum:my_metric{host:vagrant}.rollup(sum, 60)"
-						}
-					]
-				}
-			},
-			{
-				"definition": {
-					"type": "timeseries",
-					"requests": [
-						{
-							"q": "avg:system.mem.free{host:vagrant}"
-						}
-					],
-					"title": "Vagrant Memory Free"
-				}
+```curl
+curl -X POST \
+  https://api.datadoghq.eu/api/v1/dashboard \
+  -H 'Accept: */*' \
+  -H 'Accept-Encoding: gzip, deflate' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Length: 873' \
+  -H 'Content-Type: application/json' \
+  -H 'Cookie: DD-PSHARD=0' \
+  -H 'DD-API-KEY: 437d9105259c57d96777863ec874a66a' \
+  -H 'DD-APPLICATION-KEY: e05e811f455fec453783c8f6e47fe97d914ce7bd' \
+  -H 'Host: api.datadoghq.eu' \
+  -H 'Postman-Token: 96d26c4b-106e-4973-a678-a36abc49a6fb,a5d52257-ff3c-4002-b8c9-76a005d028fe' \
+  -H 'User-Agent: PostmanRuntime/7.20.1' \
+  -H 'cache-control: no-cache' \
+  -d '{
+	"title": "My Metric Visualizer Shell",
+	"widgets": [
+		{
+			"definition": {
+				"type": "timeseries",
+				"title": "The Metric Visualizer",
+				"requests": [
+					{
+						"q": "sum:my_metric{host:vagrant}.rollup(sum, 60)"
+					}
+				]
 			}
-		],
-		"layout_type": "ordered",
-		"description": "The required API-Created Timeline for the test",
-		"is_read_only": true,
-		"notify_list": [
-			"datadog@barbon.ca"
-		]
-	}'
-	```
-*********************
-Here is the cURL call for creating the anomaly monitor to watch the custom metric.	
+		},
+		{
+			"definition": {
+				"type": "timeseries",
+				"requests": [
+					{
+						"q": "avg:system.mem.free{host:vagrant}"
+					}
+				],
+				"title": "Vagrant Memory Free"
+			}
+		}
+	],
+	"layout_type": "ordered",
+	"description": "The required API-Created Timeline for the test",
+	"is_read_only": true,
+	"notify_list": [
+		"datadog@barbon.ca"
+	]
+}'
 ```
+	
+Here is the cURL call for creating the anomaly monitor to watch the custom metric.	
+
+```curl
   curl -X POST \
   https://api.datadoghq.eu/api/v1/monitor \
   -H 'Accept: */*' \
@@ -99,9 +98,8 @@ Here is the cURL call for creating the anomaly monitor to watch the custom metri
     "type": "metric alert"
 }'
 ```
-~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
-## Visualizing Data
 
+## Visualizing Data
 Utilize the Datadog API to create a Timeboard that contains:
 
 Your custom metric scoped over your host.
@@ -154,8 +152,7 @@ Make sure that your email is notified when you schedule the downtime and take a 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 ![][]
 
-_Please include your fully instrumented app in your submission, as well_
-This can be found at https://github.com/Barbog/hiring-engineers/blob/master/apm_flask.py
+Fully instrumented app for this submission can be found at https://github.com/Barbog/hiring-engineers/blob/master/apm_flask.py
 
 ## APM Data
 the python flask file used can be found at https://github.com/Barbog/hiring-engineers/blob/master/apm_flask.py
