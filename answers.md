@@ -136,10 +136,13 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 ![notify](./Metrics-Last-5-min.JPG)
+
+Some extra validation screenshots.
 ![metric-validation]:(./Metrics-Validation.JPG)
 
-**Bonus Question:** What is the Anomaly graph displaying?
-* What this Alert checks is to see if the sum of the 'my_metric' value is less than 500, when checked each five minutes. 
+**Bonus Question:** 
+* What is the Anomaly graph displaying?
+What this Alert checks is to see if the sum of the 'my_metric' value is less than 500, when checked each five minutes. 
 (and if it is, that we should alert about it). However, given it is based upon a pseudo-random number, this should not happen. If it did, we'd definitely want to check our number generator).
 
 ********************
@@ -176,6 +179,7 @@ FLASK CODE
 ```
 
 * Bonus Question: What is the difference between a Service and a Resource?
+According to the online docs, "Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of scaling instances"  while Resources "represent a particular domain of a customer application".
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 * Fully instrumented app for this submission can be found at https://github.com/Barbog/hiring-engineers/blob/master/apm_flask.py
@@ -186,9 +190,8 @@ A listing of logged APM endpoints: ![APM endpoints](./APM-endpoints.JPG)
 
 ### Final Question:
 _Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!_
-
 _Is there anything creative you would use Datadog for?_
 
-* The main area which would most interest me for use with Datadog's capabilities would be in the monitoring of use actions in games, such as individual button presses and heatmaps. 
+* Given I have a background in games development, the main area which would most interest me for use with Datadog's capabilities would be in the monitoring of use actions in first person games, such as heatmaps, weapon changes, and testing times. At BioWare we made a custom system to moniter these things, but I have the feeling that such metrics could be more elegantly harvested with Datadog tech.
 
  
