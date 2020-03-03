@@ -190,11 +190,10 @@ And, because we have a DynamoDB to support our webapp(deployment not covered in 
 ### Analizing our Monitor
 The monitor we created was once again based on the my_metric custom metric we created in the previous step.
 With this monitor we are creating alerts when:
+...Warning threshold of 500
+...Alerting threshold of 800
+...And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-    * Warning threshold of 500
-    * Alerting threshold of 800
-    * And also ensure that it will notify you if there is No Data for this query over the past 10m.
-    
 
 ![Monitor specs](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/monitor-definition.png)
 
