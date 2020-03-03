@@ -1,0 +1,5 @@
+region = "your-region"
+subnet1 = "subnet1-id"
+subnet2 = "subnet2-id"
+cluster_name = "datadog"
+instance_type = "t3.small"

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+      name: myapp
+    spec:
+      containers:
+      - image: your-remote-registry/webapp:image-version
+        imagePullPolicy: Always
+        name: webapp
+        ports:
+          - containerPort: 5050
+            hostPort: 5050
+            name: flaskport
+            protocol: TCP
+        env:
+          - name: DD_TAGS
+            value: "env:eks-dev name:webapp"
+          - name: DD_AGENT_HOST
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP
+
+      - name: mymetric
+        image: your-remote-registry/mymetric:image-version
+        imagePullPolicy: Always
+        env:
+          - name: interval
+            value: "45"
+          - name: DD_TAGS
+            value: "env:eks-dev name:mymetric"
+          - name: DD_AGENT_HOST
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP
