@@ -84,7 +84,7 @@ In this section we will go through the process of creating the two container ima
 We will use a Dockerfile to create the required container images and push these images to a private Docker Registry.
 
 #### Building the custom metric image
-To build the custom metrics image we use this [Dockerfile](https://github.com/affoliveira/hiring-engineers/tree/solutions-engineer/myapp/mymetric/my-metric.py).
+To build the custom metrics image we use this [Dockerfile](https://github.com/affoliveira/hiring-engineers/tree/solutions-engineer/myapp/mymetric/Dockerfile).
 We can build the image moving into the myapp/my-metrics folder and running
 
 ```bash
