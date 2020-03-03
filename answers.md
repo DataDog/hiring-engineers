@@ -200,5 +200,5 @@ We have configured the monitor to send a notification message with a specific me
 As we can see in the email message bellow
 ![Monitor email](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/monitor-message.png)
 
-Now, because this is not a critical system and we don't want to be notified outside of our working ours, we have also created a couple of [Downtimes](https://docs.datadoghq.com/monitors/downtimes/), one for weekends and another for weedays
+Now, because this is not a critical system and we don't want to be notified outside of our working ours, we have also created a couple of [Downtimes](https://docs.datadoghq.com/monitors/downtimes/), one for weekends and another for weekdays
 ![Downtime](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/downtime.png)
