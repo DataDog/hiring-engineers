@@ -134,13 +134,16 @@ And once again, an output similar to this should result signaling that the image
 Now that we have both container images stored in a remote registry, we can deploy our application to our EKS cluster.
 To do so we will use this [deployment manifest](https://github.com/affoliveira/hiring-engineers/tree/solutions-engineer/cluster/kubernetes/myapp.yaml).
 Before being able to deploy the sample application we need to update the deployment manifest with the proper container images.
+
 ![deployment images](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/deployment-images.png)
 
 We also need to ensure our Deployment manifest has the environment variable required to enable the Datadog APM to properly send the trace data to the Datadog agents running in each node of the cluster and to so we use the "DD_AGENT_HOST" environment variable.
+
 ![webapp apm env var](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/webapp-apm.png)
 
 We can also change the default custom metric reporting interval by changing the "interval" environment variable(in this case we are setting it to a 45 seconds interval).  
-![mymetric interval env var](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/webapp-apm.png)
+
+![mymetric interval env var](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/mymetric-interval.png)
 
 Once we have reviewed the manifest and are happy with it we can run the following command to deploy our application
 ```bash
