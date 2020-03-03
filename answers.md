@@ -177,7 +177,11 @@ terraform apply -auto-approve
 ```
 
 Once the execution completes we should see a total of 4 resources being created and at this stage we can navigate to the [Dashboard List](https://app.datadoghq.eu/dashboard/lists) where our newly created Timeboard should be visible
+
+
 ![Dashboard](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/dashboard.png)
+
+
 As well as navigate to our [Monitor list](https://app.datadoghq.eu/monitors/manage) where our new Monitor can also be viewed
 ![Monitor](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/monitor.png)
 
