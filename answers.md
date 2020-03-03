@@ -64,11 +64,11 @@ Assuming everything is working as expected we should see an output similar to th
 
 ![kubectl get all --all-namespaces](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/eks-get.png)
 
-We can see in the image above that we have 2 "datadog-agent" pods running(1 for each workwr node).
+We can see in the image above that we have 2 "datadog-agent" pods running(1 for each worker node).
 
 
 #### Datadog agent reporting
-If we have a look at the [Datadog HostMap page](https://app.datadoghq.eu/infrastructure/map) we can see that the agents are reporting and we can see the tags we defined in the daemonset manifest are present.
+If we have a look at the [Datadog HostMap page](https://app.datadoghq.eu/infrastructure/map) we can see that the agents are reporting and we can see the tags we defined in the Daemonset manifest are present.
  ![HostMap Agents](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/ddog-hostmap.png)
 
 
@@ -102,7 +102,7 @@ docker tag mymetric remote-registry.registrydomain.com/mymetric:v.01
 docker push remote-registry.registrydomain.com/mymetric:v.01
 ```
 
-An output similar to this should result signaling that the image was correctly uploaded to the remote registry
+An output similar to this should result signalling that the image was correctly uploaded to the remote registry
 ![mymetric docker push](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/mymetric-dockerpush.png)
 
 #### Building the webapp image
@@ -126,11 +126,11 @@ docker tag webapp remote-registry.registrydomain.com/webapp:v.01
 docker push remote-registry.registrydomain.com/webapp:v.01
 ```
 
-And once again, an output similar to this should result signaling that the image was correctly uploaded to the remote registry
+And once again, an output similar to this should result signalling that the image was correctly uploaded to the remote registry
 ![webapp docker push](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/webapp-dockerpush.png)
 
 
-### Deployng our sample application
+### Deploying our sample application
 Now that we have both container images stored in a remote registry, we can deploy our application to our EKS cluster.
 To do so we will use this [deployment manifest](https://github.com/affoliveira/hiring-engineers/tree/solutions-engineer/cluster/kubernetes/myapp.yaml).
 Before being able to deploy the sample application we need to update the deployment manifest with the proper container images.
@@ -159,7 +159,7 @@ We should see an output similar to the one below which will our application runn
 ![kubectl get deployments myapp](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/myapp-getdep.png)
 
 ## Timeboards Monitors and Downtimes
-Now that we have our application deployed in our cluster we can focus on creating [Timeboards](https://docs.datadoghq.com/dashboards/timeboards/) so we can aggregate and filter data as we please, [Monitors](https://docs.datadoghq.com/monitors/) so we can get notifications in case of any abnormality in our infra-structure and [Downtimes](https://docs.datadoghq.com/monitors/downtimes/) so we can supress notifications during non-business hours.
+Now that we have our application deployed in our cluster we can focus on creating [Timeboards](https://docs.datadoghq.com/dashboards/timeboards/) so we can aggregate and filter data as we please, [Monitors](https://docs.datadoghq.com/monitors/) so we can get notifications in case of any abnormality in our infra-structure and [Downtimes](https://docs.datadoghq.com/monitors/downtimes/) so we can suppress notifications during non-business hours.
 We will use once again terraform to automate the creation of a custom Timeboard, a Monitor and two Downtimes(weekdays and weekends).
 
 ### Terraform execution
@@ -185,13 +185,13 @@ Once the execution completes we should see a total of 4 resources being created 
 As well as navigate to our [Monitor list](https://app.datadoghq.eu/monitors/manage) where our new Monitor can also be viewed
 ![Monitor](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/monitor.png)
 
-### Analazing Data using our Timeboard
+### Analyzing Data using our Timeboard
 If we look at the Timeboard created, we will be able to see our custom metric scoped over our 2 EKS worker nodes.
 We will also be able to see our custom metric with the rollup function applied to sum up all the points for the past hour.
 And, because we have a DynamoDB to support our webapp(deployment not covered in this document) we also have a graph of the table items with the anomaly function applied which allows DataDog to algorithmically identify a metric that is behaving differently than it has in the past.
 ![Timeboard](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/timeboard.png)
 
-### Analizing our Monitor
+### Analyzing our Monitor
 The monitor we created was once again based on the my_metric custom metric we created in the previous step.
 With this monitor we are creating alerts when:
 
