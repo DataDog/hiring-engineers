@@ -158,9 +158,9 @@ kubectl get deployments
 We should see an output similar to the one below which will our application running as expected
 ![kubectl get deployments myapp](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/myapp-getdep.png)
 
-## Timeboards and Monitors
+## Timeboards Monitors and Downtimes
 Now that we have our application deployed in our cluster we can focus on creating [Timeboards](https://docs.datadoghq.com/dashboards/timeboards/) so we can aggregate and filter data as we please and [Monitors](https://docs.datadoghq.com/monitors/) so we can get notification in case of any abnormality in our infra-structure
-We will use once again terraform to automate the creation of a custom Timeboard and Monitor.
+We will use once again terraform to automate the creation of a custom Timeboard, a Monitor and two [Downtimes](https://docs.datadoghq.com/monitors/downtimes/).
 
 ### Terraform execution
 Similarly to what we did in the initial section, to be able to execute the automation, we need to download the [source code folder](https://github.com/affoliveira/hiring-engineers/tree/solutions-engineer/boards).
@@ -202,5 +202,5 @@ We have configured the monitor to send a notification message with a specific me
 As we can see in the email message bellow
 ![Monitor email](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/monitor-message.png)
 
-Now, because this is not a critical system and we don't want to be notified outside of our working ours, we have also created a couple of [Downtimes](https://docs.datadoghq.com/monitors/downtimes/), one for weekends and another for weekdays
+Now, because this is not a critical system and we don't want to be notified outside of our working ours, which is why we have also created a couple of Downtimes, one for weekends and another for weekdays
 ![Downtime](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/downtime.png)
