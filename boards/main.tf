@@ -93,8 +93,8 @@ resource "datadog_monitor" "mymetric" {
 # Create a new daily 1700-0900 Datadog downtime for a specific monitor id
 resource "datadog_downtime" "weekend_downtime" {
   scope = ["*"]
-  start = 1583348400
-  end   = 1583398800
+  start = 1583539200
+  end   = 1583625600
   monitor_id = datadog_monitor.mymetric.id
 
   recurrence {
