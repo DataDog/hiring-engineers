@@ -188,8 +188,7 @@ As well as navigate to our [Monitor list](https://app.datadoghq.eu/monitors/mana
 ### Analyzing Data using our Timeboard
 If we look at the Timeboard created, we will be able to see our custom metric scoped over our 2 EKS worker nodes.
 We will also be able to see our custom metric with the rollup function applied to sum up all the points for the past hour.
-And, because we have a DynamoDB to support our webapp(deployment not covered in this document) we also have a graph of the table items with the **anomaly function applied which allows DataDog to algorithmically identify a metric that is behaving differently than it has in the past**.
-In our case, because the DynamoDB table is new, Datadog doesn't have enough historic information to provide any data.
+And, because we have a DynamoDB to support our webapp(deployment not covered in this document) we also have a graph of the table items with the **anomaly function applied which allows DataDog to algorithmically identify a metric that is behaving differently than it has in the past, in our case, because the DynamoDB table is new, Datadog doesn't have enough historic information to provide any data.**
 ![Timeboard](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/timeboard.png)
 
 ### Analyzing our Monitor
