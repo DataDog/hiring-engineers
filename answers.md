@@ -188,7 +188,8 @@ As well as navigate to our [Monitor list](https://app.datadoghq.eu/monitors/mana
 ### Analyzing Data using our Timeboard
 If we look at the Timeboard created, we will be able to see our custom metric scoped over our 2 EKS worker nodes.
 We will also be able to see our custom metric with the rollup function applied to sum up all the points for the past hour.
-And, because we have a DynamoDB to support our webapp(deployment not covered in this document) we also have a graph of the table items with the anomaly function applied which allows DataDog to algorithmically identify a metric that is behaving differently than it has in the past.
+And, because we have a DynamoDB to support our webapp(deployment not covered in this document) we also have a graph of the table items with the **anomaly function applied which allows DataDog to algorithmically identify a metric that is behaving differently than it has in the past**.
+In our case, because the DynamoDB table is new, Datadog doesn't have enough historic information to provide any data.
 ![Timeboard](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/timeboard.png)
 
 ### Analyzing our Monitor
@@ -208,3 +209,24 @@ As we can see in the email message bellow
 
 Now, because this is not a critical system and we don't want to be notified outside of our working ours, which is why we have also created a couple of Downtimes, one for weekends and another for weekdays
 ![Downtime](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/downtime.png)
+
+## Using Datadog APM
+Now that we have our Timeboard our Monitor and Downtimes configured, we can start having a look at Application specific data.
+As we configured our EKS Cluster Datadog agents to support APM and we instrumented our webapp application to send all the trace information to Datadog, we can now have a detailed look at our application performance details.
+
+If we navigate to the [APM section](https://app.datadoghq.eu/apm/services) we will have a global view of all our [Services](https://docs.datadoghq.com/tracing/visualization/service/).
+**A Service is a set of processes that do the same job**, in our case, the flask process running on our pods is our Service
+![Service](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/service.png)
+
+Once we select the "flask" service we will see a detailed view of data related to our webapp, such as "Total Requests", "Total Errors", "Latency".
+This information is available because Datadog provides [Out of the Box](https://docs.datadoghq.com/tracing/visualization/service/#out-of-the-box-graphs) a set of graphs for any service.
+
+As we scroll down on this dashboard, we will see our Service [Resources](https://docs.datadoghq.com/tracing/visualization/resource/).
+**Resources are particular actions or endpoints for a given Service**, in our flask webapp case, our Resources are the endpoints we have configured
+![Resources](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/resources.png)
+
+
+
+Now that we have an infra-structure and an application being monitored by Datadog what else could we do with Datadog?
+I live in Dublin and currently the vast majority of domestic electricity meters are "dumb" devices but ESB(the electric infra-structure provider for Ireland) is starting to roll out new "Smart" devices.
+We could use Datadog to monitor these new smart devices and provide aggregated information in case of power outages to help pin point the source of the power outage based on all the devices affected.
