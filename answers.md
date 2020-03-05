@@ -160,7 +160,18 @@ We should see an output similar to the one below which will our application runn
 
 ## Timeboards Monitors and Downtimes
 Now that we have our application deployed in our cluster we can focus on creating [Timeboards](https://docs.datadoghq.com/dashboards/timeboards/) so we can aggregate and filter data as we please, [Monitors](https://docs.datadoghq.com/monitors/) so we can get notifications in case of any abnormality in our infra-structure and [Downtimes](https://docs.datadoghq.com/monitors/downtimes/) so we can suppress notifications during non-business hours.
-We will use once again terraform to automate the creation of a custom Timeboard, a Monitor and two Downtimes(weekdays and weekends).
+Because Datadog provides a public [API](https://docs.datadoghq.com/api/?lang=bash#api-reference), we can leverage this API to perform programmatic actions such as the creation of Timeboards, Monitors, Downtimes and other resources.
+Because we've already used terraform to create our infra-structure and there is a [Datadog provider](https://www.terraform.io/docs/providers/datadog/index.html) available, we will once again use terraform to automate the creation of a custom Timeboard, a Monitor and two Downtimes(weekdays and weekends).
+
+### Defining the Timeboard in terraform
+As an example of how to use terraform to create Datadog resources, in this section we will go through the process of defining the Timeboard that will be created later.
+The first thing we need to do is, define the appropriate credentials for the provider by providing the "api_key" and "app_key" arguments, as a side note, the Datadog provider uses the US site as the default, as such if we are using the EU site we also need to define the "api_url" argument.
+After defining the provider, we will leverage the [datadog_timeboard](https://www.terraform.io/docs/providers/datadog/r/timeboard.html) resource where we will need to define at least, the "title"and "description" arguments as well as at least one "graph"  block.
+Inside a "graph" block is where we can define the details of that specific graph, to do that we need to define the "title" for the graph as well as the "viz" argument which defines the type of visualization we want to use in the graph.
+We also need to define the "request" block which is where we can set the query(defined by the "q" argument) we want the graph to display.
+Bellow is the "graph" definition used for the line graph displaying the average value of the custom metric(mymetric) we created earlier across both our worker nodes
+![Terraform Timeboard Graph](https://github.com/affoliveira/hiring-engineers/blob/solutions-engineer/images/graph-definition.png)
+
 
 ### Terraform execution
 Similarly to what we did in the initial section, to be able to execute the automation, we need to download the [source code folder](https://github.com/affoliveira/hiring-engineers/tree/solutions-engineer/boards).
