@@ -161,7 +161,8 @@ We should see an output similar to the one below which will our application runn
 ## Timeboards Monitors and Downtimes
 Now that we have our application deployed in our cluster we can focus on creating [Timeboards](https://docs.datadoghq.com/dashboards/timeboards/) so we can aggregate and filter data as we please, [Monitors](https://docs.datadoghq.com/monitors/) so we can get notifications in case of any abnormality in our infra-structure and [Downtimes](https://docs.datadoghq.com/monitors/downtimes/) so we can suppress notifications during non-business hours.
 Because Datadog provides a public [API](https://docs.datadoghq.com/api/?lang=bash#api-reference), we can leverage this API to perform programmatic actions such as the creation of Timeboards, Monitors, Downtimes and other resources.
-Because we've already used terraform to create our infra-structure and there is a [Datadog provider](https://www.terraform.io/docs/providers/datadog/index.html) available, we will once again use terraform to automate the creation of a custom Timeboard, a Monitor and two Downtimes(weekdays and weekends).
+
+As we've already used terraform to create our infra-structure and there is a [Datadog provider](https://www.terraform.io/docs/providers/datadog/index.html) available, we will once again use terraform to automate the creation of a custom Timeboard, a Monitor and two Downtimes(weekdays and weekends).
 
 ### Defining the Timeboard in terraform
 As an example of how to use terraform to create Datadog resources, in this section we will go through the process of defining the Timeboard that will be created later.
