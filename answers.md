@@ -8,16 +8,16 @@ I used [multipass](https://multipass.run/) instead of vagrant as I was already f
 
 * Tagged Agent and screenshot of the Host Map page in Datadog.
 
-  <img src="https://i.ibb.co/QkwBPQL/host-map.jpg"></a>
+  <img src="img/1_host_map.jpg?raw=true" width="600"></a>
 * PostgreSQL Installed in ddx-psql and Datadog integration enabled for that database.
 
-  <img src="https://i.ibb.co/THLr0nd/psql-metrics.jpg"></a>  
+  <img src="img/2_psql_metrics.jpg?raw=true" width="600"></a>  
   [Dashboard Link](https://app.datadoghq.eu/dash/integration/58/postgres---metrics)
 * Custom Agent check created, submitting a metric named my_metric with a random value between 0 and 1000
 
-  <img src="https://i.ibb.co/r7Fqxff/custom-check.jpg"></a>
+  <img src="img/3_custom_check.jpg?raw=true"></a>
 
-  <img src="https://i.ibb.co/7jmLDj8/my-metric-chart.jpg"></a>
+  <img src="img/4_my_metric_chart.jpg?raw=true"></a>
 * Changed the check's collection interval to 45 seconds, without modifying the python check code, this includes the **Bonus Question's** answer.  
 
   **How it was done:** Modified the minimum collection interval in the configuration file of the check. This means that the collection will try to run the check every 45 seconds, but not guaranteeing the delivery of the metric to datadoghq.eu, as it might need to wait in line for other integrations enabled on the same agent [as specified here.](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval)
@@ -28,14 +28,14 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 * Custom metric chart scoped over the host.
 
-  <img src="https://i.ibb.co/nbPzQ7M/custom-metric-scoped-chart.png"></a>
+  <img src="img/5_custom_metric_scoped_chart.png?raw=true"></a>
 * PostgreSQL System Load chart with the anomaly function applied.
 
-  <img src="https://i.ibb.co/NK3gFvk/psql-anomaly-chart.png"></a>
+  <img src="img/6_psql_anomaly_chart.png?raw=true"></a>
 * Custom metric chart with the rollup function applied to sum up all the points for the past hour into one bucket  
   _I didn't have enough data to do 1h rollups so they are 120s sums instead of 3600s, but I got the idea_
 
-  <img src="https://i.ibb.co/kStqW9n/custom-metric-rolledup-chart.png"></a>
+  <img src="img/7_custom_metric_rolledup_chart.png?raw=true"></a>
 
 Script used to create this located in `./src/create_timeboard.py`
 
@@ -45,7 +45,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
   * The lowest timeframe available through the UI for Timeboards (or ordered dashboards) is 15min
 * Take a snapshot of this graph and use the @ notation to send it to yourself. ✔️
 
-  <img src="https://i.ibb.co/CJHXC29/snapshot-shared.png" width="450"></a>
+  <img src="img/8_snapshot_shared.png?raw=true" width="450"></a>
 * **Bonus Question**: What is the Anomaly graph displaying?
   * It is displaying that the metric values go above or below the expected range based on past trends.
 
@@ -87,7 +87,7 @@ Please configure the monitor’s message so that it will:
     ```
 * Email sent by monitor (for Alert):
 
-  <img src="https://i.ibb.co/3m7nFFd/monitor-alert.png" width="450"></a>
+  <img src="img/9_monitor_alert.png?raw=true" width="450"></a>
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, we don’t want to be alerted when we are out of the office. Two scheduled downtimes for this monitor:
 
@@ -95,7 +95,7 @@ Please configure the monitor’s message so that it will:
   * And one that silences it all day on Sat-Sun ✔️
   * Email notification received:
   
-    <img src="https://i.ibb.co/T1jjvW2/downtime-schedule-email.png" width="450"></a>
+    <img src="img/10_downtime_schedule_email.png?raw=true" width="450"></a>
 
 ## Collecting APM Data:
 
@@ -139,7 +139,7 @@ if __name__ == '__main__':
 
 Dashboard with APM & Infrastructure Metrics:
 
-  <img src="https://i.ibb.co/8MR712X/apm-and-infra-dashboard.png" width="600"></a>  
+  <img src="img/11_apm_and_infra_dashboard.png?raw=true" width="600"></a>  
 
   [Dashboard Link](https://app.datadoghq.eu/dashboard/sfj-ibb-vif/apm--infrastructure-dashboard)
 
@@ -155,9 +155,7 @@ I have also made a pull request to this repo so it can support other endpoints, 
 
 The results are a simple dashboard that shows all I want to know about the `status`, `hashrate` (power), and `results` of my miner, in real-time, divided by `miner type`, `miner name`, `algorithm`, and `coin name`:  
 
-![Prohashing Dashboard](img/12_prohashing_dashboard.png.jpg?raw=true)
-
-<img src="https://i.ibb.co/DtkRrG3/prohashing-dashboard.png" width="600"></a>  
+<img src="img/12_prohashing_dashboard.png?raw=true" width="600"></a>  
 
 [Dashboard Link](https://app.datadoghq.eu/dashboard/jmf-mrf-b3w/prohashing-mining-dashboard)
 
