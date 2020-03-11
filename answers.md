@@ -4,3 +4,11 @@ My answers to the questions are here !!!
 Prior to the interview I had already signed up for Datadog to play along the tool and interfaces with my own company name Cogitos Consulting. After the interview I have changed the company name to “Datadog Recruiting Candidate” and start to write down this document.
 
 I've gone with the ready captive environmet of mine and used one of my linux installs with Ubuntu distrubution with version 18.04 Bionic on VirtualBox.
+
+# Collecting Metrics:
+
+* Adding tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+My host prior to adding tags
+
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/187392514@N02/49649359148/in/dateposted-public/" title="hostmap_00"><img src="https://live.staticflickr.com/65535/49649359148_0765ebd057_k.jpg" width="1918" height="966" alt="hostmap_00"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
