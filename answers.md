@@ -113,10 +113,11 @@ class MyClass(AgentCheck):
 
 sudo systemctl stop datadog-agent
 sudo systemctl start datadog-agent
+
 sudo systemctl status datadog-agent
   datadog-agent.service - Datadog Agent
    Loaded: loaded (/lib/systemd/system/datadog-agent.service; enabled; vendor preset: enabled)
-   # Active: active # (running) since Thu 2020-03-12 02:24:26 UTC; 15min ago
+   Active: active (running) since Thu 2020-03-12 02:24:26 UTC; 15min ago
  Main PID: 18050 (agent)
     Tasks: 8 (limit: 4660)
    CGroup: /system.slice/datadog-agent.service
