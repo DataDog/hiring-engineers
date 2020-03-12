@@ -36,7 +36,7 @@ My Datadog web page after adding tags:
 
 * Installing a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-I installed PostgreSQL
+installed PostgreSQL
 
 ```
       cogito@devops01:~$ sudo apt update
@@ -48,20 +48,33 @@ I installed PostgreSQL
       postgres=#
 
 ```
+Installed PostgreSQL Integration using detailed descriptions on the Integration Menu. 
 
-I used pgbench to create some metrics
+* Created PostgreSQL user "datadog" for Datadog, 
+* Granted pg_monitor permissions for the user and check the permissions. 
+* Edited /etc/datadog-agent/conf.d/postgres.d/conf.yaml file and entered the user credidentials created in the previous step to file.
+* Restarted the Datadog Agent on server
+
+<img src="https://live.staticflickr.com/65535/49649548993_0e8b934f61_c.jpg" width="800" height="403"></a>
+
+
+
+
+
+Used pgbench to create some metrics
 
 ```
-         postgres@devops01:~$ pgbench -c 25 -T 60 -S -n
-         transaction type: <builtin: select only>
-         scaling factor: 1
-         query mode: simple
-         number of clients: 25
-         number of threads: 1
-         duration: 60 s
-         number of transactions actually processed: 411962
-         latency average = 3.643 ms
-         tps = 6861.908486 (including connections establishing)
-         tps = 6862.216178 (excluding connections establishing)
-         postgres@devops01:~$
+      postgres@devops01:~$ pgbench -c 25 -T 60 -S -n
+      transaction type: <builtin: select only>
+      scaling factor: 1
+      query mode: simple
+      number of clients: 25
+      number of threads: 1
+      duration: 60 s
+      number of transactions actually processed: 411962
+      latency average = 3.643 ms
+      tps = 6861.908486 (including connections establishing)
+      tps = 6862.216178 (excluding connections establishing)
+      postgres@devops01:~$
 ```
+
