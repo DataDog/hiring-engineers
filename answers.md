@@ -155,3 +155,8 @@ Collector
 Newly added "my_metric" is present on the Host Map Menu
 
 <img src="https://live.staticflickr.com/65535/49650279746_4e246fe57c_c.jpg" width="800" height="407">
+
+
+cont...
+
+
