@@ -28,6 +28,12 @@ tags:
 ```
 
 
-<img src="https://live.staticflickr.com/65535/49649939656_e1a86822f6_c.jpg" width="800" height="129"></a>
+<img src="https://live.staticflickr.com/65535/49649939656_36421f2927_c.jpg" width="800" height="121"></a>
+
+My Datadog web page after adding tags:
+
+<img src="https://live.staticflickr.com/65535/49649511328_a7dbd50269_c.jpg" width="800" height="405" alt="002_tags_on_datadog_web"></a>
+
+
 
 
