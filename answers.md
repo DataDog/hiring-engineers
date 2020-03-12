@@ -51,4 +51,17 @@ I installed PostgreSQL
 
 I used pgbench to create some metrics
 
-
+```
+         postgres@devops01:~$ pgbench -c 25 -T 60 -S -n
+         transaction type: <builtin: select only>
+         scaling factor: 1
+         query mode: simple
+         number of clients: 25
+         number of threads: 1
+         duration: 60 s
+         number of transactions actually processed: 411962
+         latency average = 3.643 ms
+         tps = 6861.908486 (including connections establishing)
+         tps = 6862.216178 (excluding connections establishing)
+         postgres@devops01:~$
+```
