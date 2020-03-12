@@ -83,4 +83,61 @@ Here we go, we have some meaningfull info on the Datadog page for PostgreSQL
 <img src="https://live.staticflickr.com/65535/49650123566_d62bcab201_c.jpg" width="800" height="403">
 
 
+* Createing a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+1. Created the directory metrics_example.d/ in the conf.d/ folder at the root of your Agent’s configuration directory.
+2. In metrics_example.d/ folder, created an empty configuration file named metrics_example.yaml with the following content:
+```
+instances: [{}]
+```
+3. Up one level from the conf.d/ folder, went to the checks.d/ folder. Created a custom check file named metrics_example.py with the content below:
+
+```
+import random
+
+from datadog_checks.base import AgentCheck
+
+__version__ = "1.0.0"
+
+class MyClass(AgentCheck):
+    def check(self, instance):
+        self.gauge(
+            "my_metric.gauge",
+            random.randint(0, 1001),
+            tags=["env:dev","metric_submission_type:gauge","hostname:devops01","environment:dev"],
+        )
+```
+4. Restart the Agent.
+
+```
+sudo systemctl stop datadog-agent
+sudo systemctl start datadog-agent
+
+```
+5. Checked the agent status for newly added metric
+```
+sudo datadog-agent status
+```
+In the result of the command above, looked for the Collector and Running Checks
+
+```
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+
+    metrics_example (1.0.0)
+    -----------------------
+      Instance ID: metrics_example:d884b5186b651429 [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/metrics_example.d/metrics_example.yaml
+      Total Runs: 1
+      Metric Samples: Last Run: 1, Total: 1
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 2ms
+
+```
+
 
