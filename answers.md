@@ -107,11 +107,22 @@ class MyClass(AgentCheck):
             tags=["env:dev","metric_submission_type:gauge","hostname:devops01","environment:dev"],
         )
 ```
-4. Restart the Agent.
+4. Restart the Agent and cheked if the service started correctly
 
 ```
+
 sudo systemctl stop datadog-agent
 sudo systemctl start datadog-agent
+sudo systemctl status datadog-agent
+  datadog-agent.service - Datadog Agent
+   Loaded: loaded (/lib/systemd/system/datadog-agent.service; enabled; vendor preset: enabled)
+   # Active: active # (running) since Thu 2020-03-12 02:24:26 UTC; 15min ago
+ Main PID: 18050 (agent)
+    Tasks: 8 (limit: 4660)
+   CGroup: /system.slice/datadog-agent.service
+           └─18050 /opt/datadog-agent/bin/agent/agent run -p /opt/datadog-agent/run/agent.pid
+
+
 
 ```
 5. Checked the agent status for newly added metric
@@ -140,4 +151,7 @@ Collector
 
 ```
 
+My Metrics page after the configuration
+
+<img src="https://live.staticflickr.com/65535/49650279746_8f4e063f9a_c.jpg" width="800" height="403"></a>
 
