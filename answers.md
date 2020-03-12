@@ -86,12 +86,12 @@ Here we go, we have some meaningfull info on the Datadog page for PostgreSQL
 
 * Createing a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-1. Created the directory metrics_example.d/ in the conf.d/ folder at the root of your Agent’s configuration directory.
-2. In metrics_example.d/ folder, created an empty configuration file named metrics_example.yaml with the following content:
+1. Created the directory my_metric.d/ in the conf.d/ folder at the root of your Agent’s configuration directory.
+2. In my_metric.d/ folder, created an empty configuration file named my_metric.yaml with the following content:
 ```
 instances: [{}]
 ```
-3. Up one level from the conf.d/ folder, went to the checks.d/ folder. Created a custom check file named metrics_example.py with the content below:
+3. Up one level from the conf.d/ folder, went to the checks.d/ folder. Created a custom check file named my_metric.py with the content below:
 
 ```
 import random
@@ -141,23 +141,45 @@ Collector
   Running Checks
   ==============
 
-    metrics_example (1.0.0)
-    -----------------------
-      Instance ID: metrics_example:d884b5186b651429 [OK]
-      Configuration Source: file:/etc/datadog-agent/conf.d/metrics_example.d/metrics_example.yaml
-      Total Runs: 1
-      Metric Samples: Last Run: 1, Total: 1
+    my_check (1.0.0)
+    ----------------
+      Instance ID: my_check:d884b5186b651429 [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/my_check.d/my_check.yaml
+      Total Runs: 13
+      Metric Samples: Last Run: 1, Total: 13
       Events: Last Run: 0, Total: 0
       Service Checks: Last Run: 0, Total: 0
-      Average Execution Time : 2ms
+      Average Execution Time : 0s
+
+
 
 ```
 
-Newly added "my_metric" is present on the Host Map Menu
+Newly added "my_metric1" is present on the Host Map Menu
 
 <img src="https://live.staticflickr.com/65535/49650279746_4e246fe57c_c.jpg" width="800" height="407">
 
 * Changing my check's collection interval so that it only submits the metric once every 45 seconds.
 
+I edited my_check.yaml file and added min collection interval and restarted the agent, checked agent and collectors
+
+```
+init_config:
+
+instances:
+    - min_collection_interval: 45
+
+```
+My metric's values as after change
+
+<img src="https://live.staticflickr.com/65535/49651848572_a9f633f33e_c.jpg" width="800" height="316">
+
+After 45 seconds another metric is collected:
+
+<img src="https://live.staticflickr.com/65535/49651574516_87a0af4b32_c.jpg" width="800" height="335">
+
+Bonus Alternatively you can edit it from the metrics summary page
+
+<img src="https://live.staticflickr.com/65535/49651574586_afdd4653cb_c.jpg" width="800" height="401">
 
 
