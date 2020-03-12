@@ -15,17 +15,17 @@ My host shown on the Datadog Inventory Hostmap page prior to adding tags
 
 I remove the comment out and added three tags to my host via editing datadog.yaml file
 
-```
-## @param tags  - list of key:value elements - optional
-## List of host tags. Attached in-app to every metric, event, log, trace, and service check emitted by this Agent.
-##
-## Learn more about tagging: https://docs.datadoghq.com/tagging/
-#
-tags:
-         - environment:dev
-         - hostdbapp:pgsql
-         - hostwebapp:tomcat
-```
+>```
+>## @param tags  - list of key:value elements - optional
+>## List of host tags. Attached in-app to every metric, event, log, trace, and service check emitted by this Agent.
+>##
+>## Learn more about tagging: https://docs.datadoghq.com/tagging/
+>#
+>tags:
+>         - environment:dev
+>         - hostdbapp:pgsql
+>         - hostwebapp:tomcat
+>```
 
 
 <img src="https://live.staticflickr.com/65535/49649939656_36421f2927_c.jpg" width="800" height="121"></a>
