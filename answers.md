@@ -34,7 +34,7 @@ My Datadog web page after adding tags:
 
 <img src="https://live.staticflickr.com/65535/49649511328_a7dbd50269_c.jpg" width="800" height="405"></a>
 
-* Installing a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+# * Installing a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 installed PostgreSQL
 
@@ -83,7 +83,7 @@ Here we go, we have some meaningfull info on the Datadog page for PostgreSQL
 <img src="https://live.staticflickr.com/65535/49650123566_d62bcab201_c.jpg" width="800" height="403">
 
 
-* Createing a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+# * Createing a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 1. Created the directory metrics_example.d/ in the conf.d/ folder at the root of your Agent’s configuration directory.
 2. In metrics_example.d/ folder, created an empty configuration file named metrics_example.yaml with the following content:
