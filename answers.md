@@ -183,3 +183,10 @@ Bonus Alternatively you can edit it from the metrics summary page
 <img src="https://live.staticflickr.com/65535/49651574586_afdd4653cb_c.jpg" width="800" height="401">
 
 
+
+## Visualizing Data:
+
+Utilizing the Datadog API to create a Timeboard that contains following information:
+
+* My custom metric scoped over my host.
+
