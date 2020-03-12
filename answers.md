@@ -278,6 +278,18 @@ curl --location --request POST 'https://api.datadoghq.EU/api/v1/dashboard' \
 
 ```
 
+My newly created dashboard's API request
 
+<img src="https://live.staticflickr.com/65535/49652656767_edf5c53561_c.jpg" width="800" height="421">
 
+Timeboards timefreame to set to 5 mins.
 
+<img src="https://live.staticflickr.com/65535/49651915358_aa403aff90_c.jpg" width="800" height="394">
+
+Sending snapshot of a graph to @myself
+
+<img src="https://live.staticflickr.com/65535/49652465296_901590f393_c.jpg" width="800" height="509">
+
+Mail I have received
+
+<img src="https://live.staticflickr.com/65535/49652738647_105c2dd488_c.jpg" width="800" height="397" >
