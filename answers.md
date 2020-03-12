@@ -293,3 +293,24 @@ Sending snapshot of a graph to @myself
 Mail I have received
 
 <img src="https://live.staticflickr.com/65535/49652738647_105c2dd488_c.jpg" width="800" height="397" >
+
+Bonus answer; I created a monitor on my PostgreSQL installation with anormaly dedection. To do that I looked for an anormaly on the number of connections within the last 5 mins. So if the number of connections are above the bounds for the last 5 mins it will create an alert to me. I used basic anormaly dedection. It's name is "Connections on PostgreSQL is too high".
+
+<img src="https://live.staticflickr.com/65535/49652789542_67d8e4b3a0_c.jpg" width="800" height="403">
+
+I need to generate the anormaly I designed in the previous step so With the pgbench utility I have created more than 50 connections.
+
+```
+
+pgbench -c 50 -T 300 -S -n -d postgres
+
+```
+
+As a result Datadog catched the anormaly and notified me via an e-mail.
+
+<img src="https://live.staticflickr.com/65535/49651995528_e0f980c0cf_c.jpg" width="800" height="392">
+
+After anormaly recovered Datadog catched the recovery and notified me via an e-mail
+
+<img src="https://live.staticflickr.com/65535/49652531741_d7c9752d7e_c.jpg" width="800" height="396">
+
