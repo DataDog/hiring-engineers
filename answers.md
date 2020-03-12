@@ -32,8 +32,23 @@ tags:
 
 My Datadog web page after adding tags:
 
-<img src="https://live.staticflickr.com/65535/49649511328_a7dbd50269_c.jpg" width="800" height="405" alt="002_tags_on_datadog_web"></a>
+<img src="https://live.staticflickr.com/65535/49649511328_a7dbd50269_c.jpg" width="800" height="405"></a>
 
+* Installing a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
+I installed PostgreSQL
+
+```
+      cogito@devops01:~$ sudo apt update
+      cogito@devops01:~$ sudo apt install postgresql postgresql-contrib
+      cogito@devops01:~$ sudo -u postgres psql
+      [sudo] password for cogito:
+      psql (10.12 (Ubuntu 10.12-0ubuntu0.18.04.1))
+      Type "help" for help.
+      postgres=#
+
+```
+
+I used pgbench to create some metrics
 
 
