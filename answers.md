@@ -78,3 +78,9 @@ Used pgbench to create some metrics
       postgres@devops01:~$
 ```
 
+Here we go, we have some meaningfull info on the Datadog page for PostgreSQL
+
+<img src="https://live.staticflickr.com/65535/49650123566_d62bcab201_c.jpg" width="800" height="403">
+
+
+
