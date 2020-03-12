@@ -152,7 +152,6 @@ Collector
 
 ```
 
-My Metrics page after the configuration
+Newly added "my_metric" is present on the Host Map Menu
 
-<img src="https://live.staticflickr.com/65535/49650279746_8f4e063f9a_c.jpg" width="800" height="403"></a>
-
+<img src="https://live.staticflickr.com/65535/49650279746_4e246fe57c_c.jpg" width="800" height="407">
