@@ -190,3 +190,94 @@ Utilizing the Datadog API to create a Timeboard that contains following informat
 
 * My custom metric scoped over my host.
 
+```
+
+curl --location --request POST 'https://api.datadoghq.EU/api/v1/dashboard' \
+--header 'Content-Type: application/json' \
+--header 'DD-API-KEY: <API_KEY_VALUE>' \
+--header 'DD-APPLICATION-KEY: <APPLICATION_KEY_VALUE>' \
+--data-raw '{
+    "title": "EXAMPLE TIMEBOARD",
+    "widgets": [
+               {
+            "definition": {
+                "title": "My Metric Graph",
+                "yaxis": {
+                    "max": "auto",
+                    "include_zero": true,
+                    "scale": "linear",
+                    "min": "auto",
+                    "label": ""
+                },
+                "show_legend": false,
+                "time": {},
+                "requests": [
+                    {
+                        "q": "avg:my_metric.gauge{host:devops01}",
+                        "style": {
+                            "line_width": "normal",
+                            "palette": "dog_classic",
+                            "line_type": "solid"
+                        },
+                        "display_type": "line"
+                    }
+                ],
+                "type": "timeseries",
+                "legend_size": "0"
+            }
+        },
+        {
+            "definition": {
+                "alert_id": "113834",
+                "type": "alert_graph",
+                "viz_type": "timeseries",
+                "title": ""
+            }
+        },
+                {
+            "definition": {
+                "title": "Sum of my_metric.gauge over host:devops01",
+                "text_align": "right",
+                "precision": 0,
+                "time": {},
+                "requests": [
+                    {
+                        "q": "hour_before(sum:my_metric.gauge{host:devops01})",
+                        "aggregator": "sum"
+                    }
+                ],
+                "type": "query_value"
+            }
+        }
+    ],
+    "layout_type": "ordered",
+    "description": "Dashboard creation utilisin API test",
+    "is_read_only": true,
+    "notify_list": [
+        "voltran13@gmail.com"
+    ],
+    "template_variables": [
+        {
+            "name": "host",
+            "prefix": "host",
+            "default": "<HOSTNAME_1>"
+        }
+    ],
+    "template_variable_presets": [
+        {
+            "name": "Saved views for hostname 2",
+            "template_variables": [
+                {
+                    "name": "host",
+                    "value": "<HOSTNAME_2>"
+                }
+            ]
+        }
+    ]
+}'
+
+```
+
+
+
+
