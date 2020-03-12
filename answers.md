@@ -15,14 +15,15 @@ My host prior to adding tags
 
 I added three tags to my host via editing datadog.yaml file
 
-</pre class="contents "><span class="cmd command">edit /etc/datadog-agent/datadog.yaml file </span>
-</span class="output computeroutput">tag edit
+
+<div class="screen"><pre class="contents "><span class="cmd command">edit</span>
+<span class="output computeroutput">Settings for eth4:
 tags:
          - environment:dev
          - hostdbapp:pgsql
          - hostwebapp:tomcat
 </span>
-</pre>
+</pre></div>
 
 
 
