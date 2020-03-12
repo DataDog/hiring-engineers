@@ -15,8 +15,8 @@ My host prior to adding tags
 
 I added three tags to my host via editing datadog.yaml file
 
-<pre class="contents "><span class="cmd command">edit /etc/datadog-agent/datadog.yaml file </span>
-<span class="output computeroutput">tag edit
+</pre class="contents "><span class="cmd command">edit /etc/datadog-agent/datadog.yaml file </span>
+</span class="output computeroutput">tag edit
 tags:
          - environment:dev
          - hostdbapp:pgsql
