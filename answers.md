@@ -11,7 +11,9 @@ I've gone with the ready captive environmet of mine and used one of my linux ins
 
 My host prior to adding tags
 
-<a data-flickr-embed="true" href="https://www.flickr.com/photos/187392514@N02/49649359148/in/dateposted-public/" title="hostmap_00"><img src="https://live.staticflickr.com/65535/49649359148_8620b9abcb_c.jpg" width="800" height="403" alt="hostmap_00">
+
+
+<img src="https://live.staticflickr.com/65535/49649359148_8620b9abcb_c.jpg" width="800" height="403"></a>
 
 I added three tags to my host via editing datadog.yaml file
 
