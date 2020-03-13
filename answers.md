@@ -345,3 +345,15 @@ I have added downtimes for Monday to Friday 19:00 to 09:00 and for weekends. The
 Also added another scheduled downtime for tonight so I won't get any messages until morning ;)
 
 ## Collecting APM Data:
+
+I used ddtrace for the given flask app and collected APM metrics. Below is a screenshot of flask service on my APM. To gather some meaningfull values I used a http stress tool to generate metrics like http status codes, durations, requests per second ect. My http stress tool worked prety well, as can be seen all graphs have some values.
+
+<img src="https://live.staticflickr.com/65535/49655169687_e50f57116f.jpg" width="500" height="262">
+
+<img src="https://live.staticflickr.com/65535/49655169707_3ccc007f8b.jpg" width="500" height="259">
+
+Please find link and a screenshot of a new Dashboard with both APM and Infrastructure Metrics.
+
+https://app.datadoghq.eu/dashboard/8sk-mqv-ajw/devops01-cloned?from_ts=1584100159575&live=true&tile_size=m&to_ts=1584103759575
+
+<img src="https://live.staticflickr.com/65535/49654342408_dfd7d3edff.jpg" width="500" height="265">
