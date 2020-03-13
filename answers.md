@@ -333,3 +333,15 @@ Recovery Mail
 <img src="https://live.staticflickr.com/65535/49652957708_02decf44bf.jpg" width="500" height="237">
 
 Bonus:
+I have added downtimes for Monday to Friday 19:00 to 09:00 and for weekends. The muting of monitor notifications are carried out via downtime configuration. Hence downtime configuration can be made with a starting date of future and a time frame after the start time, one needs to make two reoccuring downtime configuration to cover these time frames:
+
+1. Schedule Downtime weekly on Mon, Tue, Wed, Thur, Friday and Sunday from 19:00 with a duration of 14 hours.
+<img src="https://live.staticflickr.com/65535/49653642646_ee6e79fc8f.jpg">
+
+2. Schedule Downtime weekly on Sat and Sunday, from 00:00 with a duration of 24 hours. This will cover a scheduled downtime until Sunday midnight. After midnight the first scheduled downtime will work as I already added a downtime at Sunday 19:00 + 14hrs there.
+
+<img src="https://live.staticflickr.com/65535/49653642631_f3d6abedea.jpg" width="500" height="251">
+
+Also added another scheduled downtime for tonight so I won't get any messages until morning ;)
+
+## Collecting APM Data:
