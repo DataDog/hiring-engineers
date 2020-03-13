@@ -320,4 +320,16 @@ Alert in my Timeboard graph seen as below:
 
 ## Monitoring Data
 
-cont....
+I have created the Metric Monitor for my previously created custom metric
+
+<img src="https://live.staticflickr.com/65535/49653506491_b7ecc6f75e.jpg" width="500" height="252">
+
+Received warning and recovery mails afterwards:
+
+Warning Mail
+<img src="https://live.staticflickr.com/65535/49653773952_77f3c52d55.jpg" width="500" height="239">
+
+Recovery Mail
+<img src="https://live.staticflickr.com/65535/49652957708_02decf44bf.jpg" width="500" height="237">
+
+Bonus:
