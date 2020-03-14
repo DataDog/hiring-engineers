@@ -357,3 +357,10 @@ Please find link and a screenshot of a new Dashboard with both APM and Infrastru
 https://app.datadoghq.eu/dashboard/8sk-mqv-ajw/devops01-cloned?from_ts=1584100159575&live=true&tile_size=m&to_ts=1584103759575
 
 <img src="https://live.staticflickr.com/65535/49654342408_dfd7d3edff.jpg" width="500" height="265">
+
+## Final Question:
+I would suggest a Covid-19 (Corona virus ) Dashboard with Cases, Deaths, Recovers with anomaly detection applied to all counters. I would also like to add heatmap with geographic location as gov.uk page (they made it with ArcGIS). I couldn't find a map integration in the documents. I have seen IASM RFP's from customers that asks for map integration or datacenter floorplan integration (infrastructure). 
+Geographic information would be great for giving web site hit info with geo coordinates. 
+
+
+
