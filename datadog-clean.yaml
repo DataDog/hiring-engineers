@@ -1,0 +1,10 @@
+api_key: 21f04e5395da3b006b4dc9c1ad2802b4
+hostname: vagrant
+tags:
+  - environment:dev
+  - hosttype:vagrant
+apm_config:
+  enabled: true
+  env: vagrant
+  receiver_port: 8126
+  apm_non_local_traffic: true
