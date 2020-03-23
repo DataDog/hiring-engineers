@@ -1,3 +1,5 @@
+#!/usr/bin/env
+
 from flask import Flask
 import logging
 import sys
