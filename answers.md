@@ -426,7 +426,7 @@ Finally, we add our app to our `docker-compose.yml` file:
 
 ```yaml
 services:
-	pingpong-server:
+    pingpong-server:
         build: 
             context: ./ping-pong-app/server
             dockerfile: Dockerfile
@@ -445,7 +445,7 @@ You can generate some traffic using the client in the same folder as the server.
 
 ```yaml
 services:
-	pingpong-client:
+    pingpong-client:
         build: 
             context: ./ping-pong-app/client
             dockerfile: Dockerfile
