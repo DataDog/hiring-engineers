@@ -193,7 +193,7 @@ sudo service datadog-agent status
 
 # Visualizing Data
 
-## Create New Dashboard with 3 widgets and See screenshot 'API_Timeboard'
+## Create New Dashboard with 3 widgets
 ``` curl
 
 api_key="21f04e5395da3b006b4dc9c1ad2802b4"
@@ -268,9 +268,9 @@ curl  -X POST \
 
 # Monitoring Data
 
-#Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+## Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-#Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+## Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
 {{#is_alert}}
   Mymetric is greater than 800
@@ -344,11 +344,11 @@ ddtrace.config.analytics_enabled = True
  https://app.datadoghq.com/apm/service/flask/flask.request?end=1584744734988&env=vagrant&paused=false&start=1584741134988
 
 
-#Bonus Question: What is the difference between a Service and a Resource?
-An example of service would be a group of MariaDB queries whereas resource is a specific database query on MariaDB.
+## Bonus Question: What is the difference between a Service and a Resource?
+### An example of service would be a group of MariaDB queries whereas resource is a specific database query on MariaDB.
 
 
-##Final Question##
-COVID-19 is on everyone's minds so I think it could be beneficial to show wait times/load in the ER, number of available beds by each hospital, overall number of COVD-19 tests by each state.
+## Final Question
+### COVID-19 is on everyone's minds so I think it could be beneficial to show wait times/load in the ER, number of available beds by each hospital, overall number of COVD-19 tests by each state.
 
-A happier idea would be to monitor the number of times my dog goes outside. I would need to put a tracker on our doggie door but definitely think it could work.  It would be interesting to see if seasonality impacts (I assume it does) how much she goes outside or perhaps day of the week or time of day.
+### A happier idea would be to monitor the number of times my dog goes outside. I would need to put a tracker on our doggie door but definitely think it could work.  It would be interesting to see if seasonality impacts (I assume it does) how much she goes outside or perhaps day of the week or time of day.
