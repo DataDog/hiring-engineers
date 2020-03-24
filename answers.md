@@ -1,37 +1,52 @@
-#**Download VM and download Vagrant
+# **Download VM and download Vagrant
 
  (https://github.com/sararidder/hiring-engineers/blob/master/Downloading_VM.png "Downloading_VM") 
  (https://github.com/sararidder/hiring-engineers/blob/master/VM.png "VM")
  (https://github.com/sararidder/hiring-engineers/blob/master/Vagrant_Download.png "Vagrant_Download")
 
 
-#**Install Datadog Agent Ubuntu and use API Key
+# **Install Datadog Agent Ubuntu and use API Key
 ```
 DD_AGENT_MAJOR_VERSION=7 
 DD_API_KEY=21f04e5395da3b006b4dc9c1ad2802b4 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
   ```
   
-#**Collecting Metrics
-##Copy file and see datadog.yamal.2 for example file
+# **Collecting Metrics
+## Copy  datadog.yaml file and see datadog.yamal.2 for full example file. Only need to add in api_key, hostname, and tags in the datadog.yaml file
+(https://github.com/sararidder/hiring-engineers/blob/master/datadog.yaml.2)
+
+```
   sudo vi datadog.yaml
   cat datadog.yaml.example
   sudo vi datadog.yaml
-#Insert datadog.yamal.2 file (see datadog.yaml.2 for insertion of tags)
-  sudo vi datadog.yaml
-#type "i" for insert mode then hit escape to get out of insert mode
-#type ":wq" to save
-#see screenshot "host" and "host map" for tags
+  ```
+  ```
+  api_key: 21f04e5395da3b006b4dc9c1ad2802b4
+hostname: vagrant
+tags:
+  - environment:dev
+  - hosttype:vagrant
+  ```
+  
+### see screenshot of tags
+### (https://github.com/sararidder/hiring-engineers/blob/master/Host%20.png "host") 
+### (https://github.com/sararidder/hiring-engineers/blob/master/Host%20Map.png "host map") 
 
-#Restart the agent to send updated tags to Datadog UI
+##Restart the agent to send updated tags to Datadog UI
+  ```
   sudo service datadog-agent restart
   sudo service datadog-agent status
   sudo apt-get update
+  ```
 
-#Installing MySql Database (aka mariadb)
+# **Installing MySql Database (aka mariadb)
+```
   sudo apt-get install -y mariadb-server
   sudo service mariadb status
+  ```
 
-#Install Datadog Ingeration for MySQL Database
+## Install Datadog Ingeration for MySQL Database
+```
 vagrant@vagrant:/etc/datadog-agent/conf.d/mysql.d$ sudo mysql
 
 MariaDB [(none)]>  CREATE USER 'datadogB'@'localhost' IDENTIFIED BY '<Data1234>';
@@ -55,6 +70,7 @@ MariaDB [(none)]> GRANT SELECT ON performance_schema.* TO 'datadogB'@'localhost'
 Query OK, 0 rows affected (0.00 sec)
 
 exit
+```
 
 #Copy file and see mysql.d:conf.yaml.example for example file
 vagrant@vagrant:cd /etc/datadog-agent/conf.d/mysql.d
