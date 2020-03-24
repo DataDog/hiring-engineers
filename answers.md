@@ -1,3 +1,4 @@
+# Setup the environment 
 ## **Download VM and download Vagrant
 
  (https://github.com/sararidder/hiring-engineers/blob/master/Downloading_VM.png) 
@@ -11,9 +12,9 @@ DD_AGENT_MAJOR_VERSION=7
 DD_API_KEY=21f04e5395da3b006b4dc9c1ad2802b4 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
   ```
   
-## **Collecting Metrics
+# **Collecting Metrics
+## Add tags in the agent config file 
 ### Copy  datadog.yaml file and you only need to edit api_key, hostname, and tags within the datadog.yaml file. 
-
 
 ```
   sudo vi datadog.yaml
@@ -40,7 +41,7 @@ tags:
 ### (https://github.com/sararidder/hiring-engineers/blob/master/Host%20.png "host") 
 ### (https://github.com/sararidder/hiring-engineers/blob/master/Host%20Map.png "host map") 
 
-## **Installing MySql Database (aka mariadb)
+## **Instal MySql Database (aka mariadb)
 ```
   sudo apt-get install -y mariadb-server
   sudo service mariadb status
@@ -73,18 +74,77 @@ Query OK, 0 rows affected (0.00 sec)
 exit
 ```
 
-#Copy file and see mysql.d:conf.yaml.example for example file
+### Insert updated MySQL Datadog user and password into the mysql.d/conf.yaml.example
+```
 vagrant@vagrant:cd /etc/datadog-agent/conf.d/mysql.d
 ls conf.yaml.example
 
 sudo vi conf.yaml.example
-#type "i" for insert mode and paste in the mysql.d:conf.yaml.example then hit "escape" to get out of insert mode
-#type ":wq" to save
+
+init_config:
+
+instances:
+  - server: 127.0.0.1
+    user: datadogB
+    pass: 'Data1234'
+    port: 3306
+    options:
+     replication: false
+     galera_cluster: false
+     extra_status_metrics: true
+     extra_innodb_metrics: true
+     extra_performance_metrics: true
+     schema_size_metrics: false
+     disable_innodb_metrics: false
+
+
+## Log Section (Available for Agent >=6.0)
+##
+## type - mandatory - Type of log input source (tcp / udp / file / windows_event)
+## port / path / channel_path - mandatory - Set port if type is tcp or udp. Set path if type is file. Set channel_path if type is windows_event
+## service - mandatory - Name of the service that generated the log
+## source  - mandatory - Attribute that defines which Integration sent the logs
+## sourcecategory - optional - Multiple value attribute. Used to refine the source attribute
+## tags: - optional - Add tags to the collected logs
+##
+## Discover Datadog log collection: https://docs.datadoghq.com/logs/log_collection/
+#
+# logs:
+#   - type: file
+#     path: "<ERROR_LOG_FILE_PATH>"
+#     source: mysql
+#     sourcecategory: database
+#     service: "<SERVICE_NAME>"
+#
+#   - type: file
+#     path: "<SLOW_QUERY_LOG_FILE_PATH>"
+#     source: mysql
+#     sourcecategory: database
+#     service: "<SERVICE_NAME>"
+#     log_processing_rules:
+#       - type: multi_line
+#         name: new_slow_query_log_entry
+#         pattern: "# Time:"
+#         # If mysqld was started with `--log-short-format`, use:
+#         # pattern: "# Query_time:"
+#
+#   - type: file
+#     path: "<GENERAL_LOG_FILE_PATH>"
+#     source: mysql
+#     sourcecategory: database
+#     service: "<SERVICE_NAME>"
+## For multiline logs, if they start by the date with the format yyyy-mm-dd uncomment the following processing rule
+#     log_processing_rules:
+#       - type: multi_line
+#         name: new_log_start_with_date
+#         pattern: \d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])
+
 sudo service datadog-agent restart
 sudo service datadog-agent status
+```
 
-#Create Custom Agent my_metric
-#Create py file (see mymetric.py) and a yaml file (mymetric.yaml)
+## Create Custom Agent "my_metric"
+### Create python file (see mymetric.py) and a yaml file (mymetric.yaml)
 cd  /etc/datadog-agent/checks.d
 sudo vi /etc/datadog-agent/checks.d/mymetric.py
 
