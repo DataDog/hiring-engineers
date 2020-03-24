@@ -40,7 +40,7 @@ tags:
 (https://github.com/sararidder/hiring-engineers/blob/master/Host%20.png) 
 (https://github.com/sararidder/hiring-engineers/blob/master/Host%20Map.png) 
 
-## Instal MySql Database on your machine (aka mariadb)
+## Install MySql Database on your machine (aka mariadb)
 ```
   sudo apt-get install -y mariadb-server
   sudo service mariadb status
@@ -143,46 +143,67 @@ sudo service datadog-agent status
 ```
 
 ## Create Custom Agent "my_metric"
-### Create python file (see mymetric.py) and a yaml file (mymetric.yaml)
+### Create python file and create custom agent and a yaml file
+```
 cd  /etc/datadog-agent/checks.d
 sudo vi /etc/datadog-agent/checks.d/mymetric.py
-
-#paste in code from mymetric.py
+```
+```python
+import random
+from checks import AgentCheck
+class RandomCheck(AgentCheck):
+ def check(self, instance):
+   self.gauge('my_metric', random.randint(0, 1000))
+```
+```
 cd /etc/datadog-agent/conf.d
 sudo vi /etc/datadog-agent/conf.d/mymetric.yaml
-
-#paste in code from mymetric.yaml
+```
+```
+init_config:
+instances:
+  - min_collection_interval: 45
+instances:
+ [{}]
+ ```
+ ```
 sudo service datadog-agent restart
 sudo service datadog-agent status
-
-#Change collection interval to 45 seconds
-#Edit config file
+```
+### Change collection interval to 45 seconds by editing yaml file
+```
 sudo vi /etc/datadog-agent/conf.d/mymetric.yaml
-#change min_collection_interval: 45
+```
+```
+init_config:
+instances:
+  - min_collection_interval: 45
+instances:
+ [{}]
+ ```
+```
 sudo service datadog-agent restart
 sudo service datadog-agent status
+```
+### Screenshot (https://github.com/sararidder/hiring-engineers/blob/master/My_Metric.png)
 
-#Go into Datadog UI > Metrics > Explorer > In graph type "my_metric"
-  See screenshot 'My_Metric'
+## Bonus Question
+### Can you change the collection interval without modifying the Python check file you created?
+  ### Answer: Yas you only need to change the yaml file.
 
+# Visualizing Data
 
-#Bonus Question
-#Can you change the collection interval without modifying the Python check file you created?
-  Answer: Yas you only need to change the yaml file.
-
-##Visualizing Data##
-  Create Timeboard
-  https://app.datadoghq.com/dashboard/6j3-cgq-8h3/datadog-dashboard-v4?from_ts=1584649021785&live=true&tile_size=m&to_ts=1584652621785
-  Mymetric Scoped by Host
-  https://app.datadoghq.com/graph/embed?token=adb9a4ba5c3b0902f429d1f7d63da44fa93290b046ad8fe3e8c4227eba028788&height=300&width=600&legend=true
-  MyMetric RollUp by Hour
-  https://app.datadoghq.com/graph/embed?token=0feeefd97e3f19c6567b0473fa62b53c2d8fbb3aefc53ad4544fb2c16b4a7264&height=300&width=600&legend=true
-  Anomalies MySql Max System CPU
-  https://app.datadoghq.com/graph/embed?token=916d1baa31164655cbbab3458967a3279cbc8470e2acdc82df40bf477be0d528&height=300&width=600&legend=true
+  ## Create Timeboard (https://app.datadoghq.com/dashboard/6j3-cgq-8h3/datadog-dashboard-v4?from_ts=1584649021785&live=true&tile_size=m&to_ts=1584652621785)
+  
+  ## Mymetric Scoped by Host(https://app.datadoghq.com/graph/embed?token=adb9a4ba5c3b0902f429d1f7d63da44fa93290b046ad8fe3e8c4227eba028788&height=300&width=600&legend=true)
+  
+  ## MyMetric RollUp by Hour (https://app.datadoghq.com/graph/embed?token=0feeefd97e3f19c6567b0473fa62b53c2d8fbb3aefc53ad4544fb2c16b4a7264&height=300&width=600&legend=true)
+  
+  ## Anomalies MySql Max System CPU (https://app.datadoghq.com/graph/embed?token=916d1baa31164655cbbab3458967a3279cbc8470e2acdc82df40bf477be0d528&height=300&width=600&legend=true)
 
 
-#Create New Dashboard with 3 widgets and See screenshot 'API_Timeboard'
-
+## Create New Dashboard with 3 widgets and See screenshot 'API_Timeboard'
+``` curl
 
 api_key="21f04e5395da3b006b4dc9c1ad2802b4"
 app_key="5e36d12e1847e5192eb7f7c358e6c5042f8e6b6e"
@@ -233,6 +254,7 @@ curl  -X POST \
   ]
 }' \
 "https://api.datadoghq.com/api/v1/dashboard"
+```
 
 #Set Timeboard's timeframe to the past 5 mins
   See screenshot 'Timeframe_5_min'
