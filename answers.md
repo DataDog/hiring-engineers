@@ -185,22 +185,13 @@ instances:
 sudo service datadog-agent restart
 sudo service datadog-agent status
 ```
-### Screenshot (https://github.com/sararidder/hiring-engineers/blob/master/My_Metric.png)
+ ### Screenshot (https://github.com/sararidder/hiring-engineers/blob/master/My_Metric.png)
 
 ## Bonus Question
-### Can you change the collection interval without modifying the Python check file you created?
+ ### Can you change the collection interval without modifying the Python check file you created?
   ### Answer: Yas you only need to change the yaml file.
 
 # Visualizing Data
-
-  ## Create Timeboard (https://app.datadoghq.com/dashboard/6j3-cgq-8h3/datadog-dashboard-v4?from_ts=1584649021785&live=true&tile_size=m&to_ts=1584652621785)
-  
-  ## Mymetric Scoped by Host(https://app.datadoghq.com/graph/embed?token=adb9a4ba5c3b0902f429d1f7d63da44fa93290b046ad8fe3e8c4227eba028788&height=300&width=600&legend=true)
-  
-  ## MyMetric RollUp by Hour (https://app.datadoghq.com/graph/embed?token=0feeefd97e3f19c6567b0473fa62b53c2d8fbb3aefc53ad4544fb2c16b4a7264&height=300&width=600&legend=true)
-  
-  ## Anomalies MySql Max System CPU (https://app.datadoghq.com/graph/embed?token=916d1baa31164655cbbab3458967a3279cbc8470e2acdc82df40bf477be0d528&height=300&width=600&legend=true)
-
 
 ## Create New Dashboard with 3 widgets and See screenshot 'API_Timeboard'
 ``` curl
@@ -256,16 +247,26 @@ curl  -X POST \
 "https://api.datadoghq.com/api/v1/dashboard"
 ```
 
-#Set Timeboard's timeframe to the past 5 mins
-  See screenshot 'Timeframe_5_min'
+## Dashboard Links 
+  ### Create Timeboard (https://app.datadoghq.com/dashboard/6j3-cgq-8h3/datadog-dashboard-v4?from_ts=1584649021785&live=true&tile_size=m&to_ts=1584652621785)
+  
+  ### Mymetric Scoped by Host(https://app.datadoghq.com/graph/embed?token=adb9a4ba5c3b0902f429d1f7d63da44fa93290b046ad8fe3e8c4227eba028788&height=300&width=600&legend=true)
+  
+  ### MyMetric RollUp by Hour (https://app.datadoghq.com/graph/embed?token=0feeefd97e3f19c6567b0473fa62b53c2d8fbb3aefc53ad4544fb2c16b4a7264&height=300&width=600&legend=true)
+  
+  ### Anomalies MySql Max System CPU (https://app.datadoghq.com/graph/embed?token=916d1baa31164655cbbab3458967a3279cbc8470e2acdc82df40bf477be0d528&height=300&width=600&legend=true)
+  
+## Screenshots 
+ ### API Timeboard (https://github.com/sararidder/hiring-engineers/blob/master/API_Timeboard.png)
 
-#Snapshot and Annotation
-  See screenshot 'Snapshot_Annotation'
+ ### Set Timeboard's timeframe to the past 5 mins (https://github.com/sararidder/hiring-engineers/blob/master/Timeframe_5_min.png)
 
-#Bonus Question - What is the Anomaly graph displaying?
-  Answer: The gray band shows us what is expected behavior on previous trends. If the traffic goes outside the gray bands then the trend goes outside of the expected behavior and can be considered an anomaly.
+ ### Snapshot and Annotation (https://github.com/sararidder/hiring-engineers/blob/master/Snapshot_Annotation.png)
 
-##Monitoring Data##
+## Bonus Question - What is the Anomaly graph displaying?
+ ### Answer: The gray band shows us what is expected behavior on previous trends. If the traffic goes outside the gray bands then the trend goes outside of the expected behavior and can be considered an anomaly.
+
+# Monitoring Data
 
 #Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
