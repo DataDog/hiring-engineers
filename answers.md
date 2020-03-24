@@ -1,26 +1,21 @@
-#Download VM and download vagrant
-  See screenshot 'Downloading_VM' and 'VM'
-  See screenshot 'Vagrant_Download'
+#**Download VM and download Vagrant
+
+ (https://github.com/sararidder/hiring-engineers/blob/master/Downloading_VM.png "Downloading_VM") 
+ (https://github.com/sararidder/hiring-engineers/blob/master/VM.png "VM")
+ (https://github.com/sararidder/hiring-engineers/blob/master/Vagrant_Download.png "Vagrant_Download")
 
 
-#Install Datadog Agent Ubuntu and use API Key
-DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=21f04e5395da3b006b4dc9c1ad2802b4 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
-  ~/etc/datadog-agent/datadog.yaml
-  cd /etc/datadog-agent/conf.d/
-  ~/etc/datadog-agent/datadog.yaml
-  ~/.datadog-agent/datadog.conf
-  /etc/dd-agent/datadog.conf
-  ~//etc/datadog-agent/conf.d/datadog.yaml
-  cd /etc/datadog-agent/conf.d/datadog.yaml
-  ls
-  ~/datadog.yaml
-  cd ..
-  ls
-##Collecting Metrics##
-#Copy file and see datadog.yamal.2 for example file
-  vi datadog.yaml
+#**Install Datadog Agent Ubuntu and use API Key
+```
+DD_AGENT_MAJOR_VERSION=7 
+DD_API_KEY=21f04e5395da3b006b4dc9c1ad2802b4 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+  ```
+  
+#**Collecting Metrics
+##Copy file and see datadog.yamal.2 for example file
+  sudo vi datadog.yaml
   cat datadog.yaml.example
-  vi datadog.yaml
+  sudo vi datadog.yaml
 #Insert datadog.yamal.2 file (see datadog.yaml.2 for insertion of tags)
   sudo vi datadog.yaml
 #type "i" for insert mode then hit escape to get out of insert mode
@@ -97,7 +92,7 @@ sudo service datadog-agent status
 
 #Bonus Question
 #Can you change the collection interval without modifying the Python check file you created?
-  Answer: Yes you only need to change the yaml file.
+  Answer: Yas you only need to change the yaml file.
 
 ##Visualizing Data##
   Create Timeboard
