@@ -1,27 +1,26 @@
 # Setup the environment 
-## **Download VM and download Vagrant
+## Download VM and download Vagrant
 
  (https://github.com/sararidder/hiring-engineers/blob/master/Downloading_VM.png) 
  (https://github.com/sararidder/hiring-engineers/blob/master/VM.png)
  (https://github.com/sararidder/hiring-engineers/blob/master/Vagrant_Download.png)
 
 
-## **Install Datadog Agent Ubuntu and use API Key
+## Install Datadog Agent Ubuntu and use API Key
 ```
 DD_AGENT_MAJOR_VERSION=7 
 DD_API_KEY=21f04e5395da3b006b4dc9c1ad2802b4 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
   ```
   
-# **Collecting Metrics
-## Add tags in the agent config file 
-### Copy  datadog.yaml file and you only need to edit api_key, hostname, and tags within the datadog.yaml file. 
+# Collecting Metrics
+## Add tags in the agent config file  
 
 ```
   sudo vi datadog.yaml
   cat datadog.yaml.example
   sudo vi datadog.yaml
   ```
-  ### See datadog.yamal.2 for full example file 
+### Copy  datadog.yaml file and edit api_key, hostname, and tags within the datadog.yaml file.
 (https://github.com/sararidder/hiring-engineers/blob/master/datadog.yaml.2)
   ```
   api_key: 21f04e5395da3b006b4dc9c1ad2802b4
@@ -38,10 +37,10 @@ tags:
   sudo apt-get update
   ```
 ### See screenshot of tags
-### (https://github.com/sararidder/hiring-engineers/blob/master/Host%20.png "host") 
-### (https://github.com/sararidder/hiring-engineers/blob/master/Host%20Map.png "host map") 
+(https://github.com/sararidder/hiring-engineers/blob/master/Host%20.png) 
+(https://github.com/sararidder/hiring-engineers/blob/master/Host%20Map.png) 
 
-## **Instal MySql Database (aka mariadb)
+## Instal MySql Database on your machine (aka mariadb)
 ```
   sudo apt-get install -y mariadb-server
   sudo service mariadb status
@@ -74,7 +73,7 @@ Query OK, 0 rows affected (0.00 sec)
 exit
 ```
 
-### Insert updated MySQL Datadog user and password into the mysql.d/conf.yaml.example
+## Insert updated MySQL Datadog user and password into the mysql.d/conf.yaml.example
 ```
 vagrant@vagrant:cd /etc/datadog-agent/conf.d/mysql.d
 ls conf.yaml.example
