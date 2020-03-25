@@ -313,19 +313,19 @@ Notify sara.ridder77@gmail.com
 ## When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 ### See screenshots:
-- [Is_Warning_500] (https://github.com/sararidder/hiring-engineers/blob/master/Is_Warning_500.png)
-- [No_Data_Alert] (https://github.com/sararidder/hiring-engineers/blob/master/No_Data_Alert.png)
-- [Alert_Threshold_800] (https://github.com/sararidder/hiring-engineers/blob/master/Alert_Threshold_800.png)
+- [Is_Warning_500](https://github.com/sararidder/hiring-engineers/blob/master/Is_Warning_500.png)
+- [No_Data_Alert](https://github.com/sararidder/hiring-engineers/blob/master/No_Data_Alert.png)
+- [Alert_Threshold_800](https://github.com/sararidder/hiring-engineers/blob/master/Alert_Threshold_800.png)
 
 
 ## Bonus Question:
 Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 ### See screenshots:
-- [Weekend_Downtime] (https://github.com/sararidder/hiring-engineers/blob/master/Weekend_Downtime.png)
-- [Email_Downtime] (https://github.com/sararidder/hiring-engineers/blob/master/Email_Downtime.png)
-- [Daily_Downtime] (https://github.com/sararidder/hiring-engineers/blob/master/Daily_Downtime.png)
-- [Email_Downtime_Daily] (https://github.com/sararidder/hiring-engineers/blob/master/Email_Downtime_Daily.png)
+- [Weekend_Downtime](https://github.com/sararidder/hiring-engineers/blob/master/Weekend_Downtime.png)
+- [Email_Downtime](https://github.com/sararidder/hiring-engineers/blob/master/Email_Downtime.png)
+- [Daily_Downtime](https://github.com/sararidder/hiring-engineers/blob/master/Daily_Downtime.png)
+- [Email_Downtime_Daily](https://github.com/sararidder/hiring-engineers/blob/master/Email_Downtime_Daily.png)
 
 ## Collecting APM Data
 
@@ -405,7 +405,7 @@ sudo ddtrace-run python /vagrant/app.py
 
 #### See screenshot & Dashboard:
 - [APM_Infrastructure_Metrics](https://github.com/sararidder/hiring-engineers/blob/master/APM_Infrastructure_Metrics.png)
-- [Flask Dashboard] (https://app.datadoghq.com/apm/service/flask/flask.request?end=1584744734988&env=vagrant&paused=false&start=1584741134988)
+- [Flask Dashboard](https://app.datadoghq.com/apm/service/flask/flask.request?end=1584744734988&env=vagrant&paused=false&start=1584741134988)
 
 
 ## Bonus Question:
