@@ -1,5 +1,4 @@
 
-
 Setting up the DataDog Trial Account
 
 ![image1](https://drive.google.com/uc?export=view&id=1UDn3pfUH4bWpkDQuc0MC6NpB2sfQmkrN)
