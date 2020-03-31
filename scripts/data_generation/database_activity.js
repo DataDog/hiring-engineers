@@ -6,10 +6,10 @@ const pool = new Pool({
   host: 'localhost',
   database: 'billdb',
   password: config.database_password,
-  port: 5050,
+  port: 5432,
 })
 
-pool.query('CREATE TABLE IF NOT EXISTS dummy_data (user string, action string, reason string);', (err, res) => {
+pool.query('CREATE TABLE IF NOT EXISTS dummy_data (user_info string, action string, reason string);', (err, res) => {
   if (err) {
     console.log(err.stack)
   } else {
@@ -18,7 +18,7 @@ pool.query('CREATE TABLE IF NOT EXISTS dummy_data (user string, action string, r
 })
 
 function insertData(){
-	pool.query('INSERT INTO dummy_data (user, action, reason) VALUES (bill, wrote code, solve problem);', (err, res) => {
+	pool.query('INSERT INTO dummy_data (user_info, action, reason) VALUES (bill, wrote code, solve problem);', (err, res) => {
  		if (err) {
    			console.log(err.stack)
   		} else {
