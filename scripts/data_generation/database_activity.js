@@ -18,7 +18,7 @@ pool.query('CREATE TABLE IF NOT EXISTS dummy_data(user_info text, action text, r
 })
 
 function insertData(){
-	pool.query("INSERT INTO dummy_data(user_info, action, reason)VALUES('billsinfo', 'wrotecode', 'solvedproblem);", (err, res) => {
+	pool.query("INSERT INTO dummy_data(user_info, action, reason)VALUES('billsinfo', 'wrotecode', 'solvedproblem');", (err, res) => {
  		if (err) {
    			console.log(err.stack)
   		} else {
@@ -48,7 +48,7 @@ function recursiveLoop() {
 	} else {
 		queryData()
 	} 
-	setTimeout(recursiveLoop, 3000);
+	setTimeout(recursiveLoop, 30000);
 }
 
 recursiveLoop()

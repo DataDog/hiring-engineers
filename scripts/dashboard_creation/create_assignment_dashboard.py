@@ -18,7 +18,7 @@
 from datadog import initialize, api
 import json
 
-with open("../config.json") as f:
+with open("../../config.json") as f:
     config = json.load(f)
 
 options = {
@@ -29,36 +29,23 @@ options = {
 initialize(**options)
 
 
-title = 'Average Memory Free Shell'
-widgets = [{
-    'definition': {
+title = 'Bills Second Dashboard'
+widgets = [
+    {'definition': {
         'type': 'timeseries',
         'requests': [
-            {'q': 'avg:system.mem.free{*}'}
+            {'q': 'my_metric.rollup(sum,3600)'}
         ],
-        'title': 'Average Memory Free'
+        'title': 'Custom Metric, Randomly Generated Numbers'
     }
 }]
 layout_type = 'ordered'
-description = 'A dashboard with memory info.'
-is_read_only = True
-notify_list = ['user@domain.com']
-template_variables = [{
-    'name': 'host1',
-    'prefix': 'host',
-    'default': 'my-host'
-}]
+description = 'A dashboard with metric information'
+notify_list = ['sheltowt@gmail.com']
 
-saved_view = [{
-    'name': 'Saved views for hostname 2',
-    'template_variables': [{'name': 'host', 'value': '<HOSTNAME_2>'}]}
-]
 
 api.Dashboard.create(title=title,
                      widgets=widgets,
                      layout_type=layout_type,
                      description=description,
-                     is_read_only=is_read_only,
-                     notify_list=notify_list,
-                     template_variables=template_variables,
-                     template_variable_presets=saved_views)
+                     notify_list=notify_list)
