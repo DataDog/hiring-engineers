@@ -9,7 +9,7 @@ const pool = new Pool({
   port: 5432,
 })
 
-pool.query('CREATE TABLE IF NOT EXISTS dummy_data (user_info text, action text, reason text);', (err, res) => {
+pool.query('CREATE TABLE IF NOT EXISTS dummy_data(user_info text, action text, reason text);', (err, res) => {
   if (err) {
     console.log(err.stack)
   } else {
@@ -18,7 +18,7 @@ pool.query('CREATE TABLE IF NOT EXISTS dummy_data (user_info text, action text, 
 })
 
 function insertData(){
-	pool.query('INSERT INTO dummy_data (user_info, action, reason) VALUES (bill, wrotecode, solvedproblem);', (err, res) => {
+	pool.query("INSERT INTO dummy_data(user_info, action, reason)VALUES('billsinfo', 'wrotecode', 'solvedproblem);", (err, res) => {
  		if (err) {
    			console.log(err.stack)
   		} else {
