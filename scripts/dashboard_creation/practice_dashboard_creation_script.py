@@ -1,4 +1,3 @@
-import json
 from datadog import initialize, api
 
 with open("../../config.json") as f:
@@ -31,7 +30,7 @@ template_variables = [{
     'default': 'my-host'
 }]
 
-saved_views = [{
+saved_view = [{
     'name': 'Saved views for hostname 2',
     'template_variables': [{'name': 'host', 'value': '<HOSTNAME_2>'}]}
 ]

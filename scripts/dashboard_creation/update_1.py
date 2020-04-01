@@ -53,7 +53,8 @@ saved_views = [{
     'template_variables': [{'name': 'host', 'value': '<HOSTNAME_2>'}]}
 ]
 
-api.Dashboard.create(title=title,
+api.Dashboard.update("u9p-a2u-tib",
+                     title=title,
                      widgets=widgets,
                      layout_type=layout_type,
                      description=description,

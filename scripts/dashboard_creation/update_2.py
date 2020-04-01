@@ -28,20 +28,29 @@ options = {
 
 initialize(**options)
 
-title = 'Average of My Metric'
-widgets = [{
-    'definition': {
+title = 'Custom Assignment Dashboard'
+widgets = [{'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': "anomalies(avg:postgresql.rows_inserted{*}, 'basic', 2)"}
+        ], 
+        'title': 'Average Rows Inserted'}},
+        {'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:my_metric{*}.rollup(3600)'}
+        ], 
+        'title': 'Hourly Average of My Metric'}},
+        {'definition': {
         'type': 'timeseries',
         'requests': [
             {'q': 'avg:my_metric{*}'}
         ],
-        'title': 'Average of My Metric'
-    }
-}]
+        'title': 'Average of My Metric'}}]
 layout_type = 'ordered'
 description = 'A dashboard with memory info.'
 is_read_only = False
-notify_list = ['user@domain.com']
+notify_list = ['sheltowt@domain.com']
 template_variables = [{
     'name': 'host1',
     'prefix': 'host',
@@ -53,7 +62,8 @@ saved_views = [{
     'template_variables': [{'name': 'host', 'value': '<HOSTNAME_2>'}]}
 ]
 
-api.Dashboard.create(title=title,
+api.Dashboard.update("u9p-a2u-tib",
+                     title=title,
                      widgets=widgets,
                      layout_type=layout_type,
                      description=description,
