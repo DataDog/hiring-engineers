@@ -1,9 +1,14 @@
 from datadog import initialize, api
 import random
 
-options = {'api_key': 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-           'app_key': ' XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+
+with open("../config.json") as f:
+    config = json.load(f)
+
+options = {'api_key': config["api_key"],
+           'app_key': config["app_key"],
            'api_host': 'https://api.datadoghq.com'}
+
 initialize(**options)
 
 random_value = random.randint(0,1000)
