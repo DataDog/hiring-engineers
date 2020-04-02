@@ -38,6 +38,11 @@ tags:
         - "version:1"
 ```
 
+After adding this to your agent configuration, log in to the datadog site and you'll be able to see that the tags have been added to your host by going to the [host map](https://app.datadoghq.com/infrastructure/map).
+
+Here's what mine looks like:
+![host map](./HostMap.png)
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
