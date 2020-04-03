@@ -6,7 +6,9 @@ DataDog Trial Account Set Up
 
 Setting up the environment 
 1.	First spin up a vagrant virtual box or another container environment, then install the Agent. One way to do this is the quick install Ubuntu method shown here: 
+
 ![image2](Images/Picture2.png)
+
 ![image3](Images/Picture3.png)
 
 You may see an install output message “No datadog.yaml file detected, not starting the agent.” Running the install a 2nd time should resolve this. Verify the Agent status using $ sudo datadog-agent status. 
@@ -40,7 +42,9 @@ $ sudo apt install postgresql postgresql-contrib
 -	=# create user datadog with password '<PASSWORD>';
 -	=# grant pg_monitor to datadog;
 - Then set up the logging configuration
+
  ![image11](Images/Picture11.png)
+
  ![image12](Images/Picture12.png)
 
 - Use ‘sudo datadog-agent status’ command to verify the PostgreSQL connection. You can also use this command to debug the config file at any time (look out for those tricky indentations). 
@@ -169,9 +173,9 @@ if __name__ == '__main__':
  
 •	Bonus Question: What is the difference between a Service and a Resource?
 - Service is the concept of many endpoints or queries grouped into one, easy to identify process. An example is a group of database queries grouped together within one database service. Resource is a particular domain or singular query or endpoint. 
+
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
- 
-Link: https://app.datadoghq.com/dashboard/76t-xki-ht8?from_ts=1585438756487&to_ts=1585439056487&live=true&tile_size=m
+ - Link: https://app.datadoghq.com/dashboard/76t-xki-ht8?from_ts=1585438756487&to_ts=1585439056487&live=true&tile_size=m
 
 ![image32](Images/Picture32.png)
 
