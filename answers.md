@@ -1,7 +1,7 @@
 
 Setting up the DataDog Trial Account
 
-![image1](images/Picture1.png)
+![image1](Images/Picture1.png)
 
 
 Setting up the environment 
