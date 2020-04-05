@@ -33,4 +33,4 @@ Here's what mine looks like:
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[Next: Install a database and monitor it](./database.md)
+[Next: Create a Custom Check](./custom_check.md)
