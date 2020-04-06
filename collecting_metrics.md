@@ -32,5 +32,6 @@ Here's what mine looks like:
 ![host map](./HostMap.png)
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[Previous: Home](./answer.md)
 
 [Next: Create a Custom Check](./custom_check.md)

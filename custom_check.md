@@ -4,9 +4,12 @@ Let's try this with a database. First step is to find the integration [here](htt
 
 I'm using MySQL, which has the check already installed with the agent.
 
+After follwing [the steps for setting up the integration](https://app.datadoghq.com/account/settings#integrations/mysql) on my VM, I get a whole bunch of metrics now available to me:
+![mysql metrics](./mysql.png)
+
 # Creating a Custom Agent Check
 
-It isn't typicallyalways necessary to create a custom agent check and you should reference [the documentation about custom checks](https://docs.datadoghq.com/developers/write_agent_check/) to decide if you should create one. However, I'll make one here just to show you how it works anyway.
+It isn't typically necessary to create a custom agent check and you should reference [the documentation about custom checks](https://docs.datadoghq.com/developers/write_agent_check/) to decide if you should create one. However, I'll make one here just to show you how it works anyway.
 
 First we'll create the configuration file for the check at conf.d/firstcheck.yaml. There isn't much required for this file but, at a minimum, this file needs a sequence called `instances` containing at least one mapping, which can be empty. We'll modify this file later to change the collection interval but for now, you can create the file with one line that looks like this:
 
@@ -46,3 +49,5 @@ instances:
   - min_collection_interval: 30
 ```
 
+
+[Previous: Collecting Metrics](./collecting_metrics.md)
