@@ -83,7 +83,30 @@ rite_time |          stats_reset
 (1 row)
 ```
 
+Now on to configuring the DD Agent to connect to Postgres
 
+```bash
+# cp /etc/datadog-agent/conf.d/postgres.d/conf.yaml.example /etc/datadog-agent/conf.d/postgres.d/conf.yaml
+# vi /etc/datadog-agent/conf.d/postgres.d/conf.yaml
+# diff conf.yaml conf.yaml.example 
+27c27
+<     password: myddpass 
+---
+>     password: <UNIQUEPASSWORD>
+60,64c60,62
+<     tags:
+<       - environment:dev
+<       - stage:evaluation
+<       - type:database
+<       - dbtype:postgre
+---
+>     # tags:
+>     #   - <KEY_1>:<VALUE_1>
+>     #   - <KEY_2>:<VALUE_2>
+# systemctl restart datadog-agent
 ```
+
+After that I can see postgres showing up in the datadog infrastructre map :
+![Fedora with PostgreSQL](/images/host-with-postgres.png)
 
 
