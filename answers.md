@@ -49,6 +49,41 @@ Apr 10 13:35:00 f31 agent[1249]: 2020-04-10 13:35:00 CEST | CORE | INFO | (pkg/c
 Apr 10 13:35:08 f31 agent[1249]: 2020-04-10 13:35:08 CEST | CORE | ERROR | (pkg/collector/runner/runner.go:292 in work) | Error running check disk: [{"message": "not sure how to interpret line '  11       0 sr0 7 0 2 0 0 0 0 0 0 5 0 0 0 0 0 0 0\\n'", "traceback": "Traceback (most recent call last):\n  File \"/opt/datadog-agent/embedded/lib/python3.8/site-packages/datadog_checks/base/checks/base.py\", line 713, in run\n    self.check(instance)\n  File \"/opt/datadog-agent/embedded/lib/python3.8/site-packages/datadog_checks/disk/disk.py\", line 121, in check\n    self.collect_latency_metrics()\n  File \"/opt/datadog-agent/embedded/lib/python3.8/site-packages/datadog_checks/disk/disk.py\", line 244, in collect_latency_metrics\n    for disk_name, disk in iteritems(psutil.disk_io_counters(True)):\n  File \"/opt/datadog-agent/embedded/lib/python3.8/site-packages/psutil/__init__.py\", line 2168, in disk_io_counters\n    rawdict = _psplatform.disk_io_counters(**kwargs)\n  File \"/opt/datadog-agent/embedded/lib/python3.8/site-packages/psutil/_pslinux.py\", line 1125, in disk_io_counters\n    for entry in gen:\n  File \"/opt/datadog-agent/embedded/lib/python3.8/site-packages/psutil/_pslinux.py\", line 1098, in read_procfs\n    raise ValueError(\"not sure how to interpret line %r\" % line)\nValueError: not sure how to interpret line '  11       0 sr0 7 0 2 0 0 0 0 0 0 5 0 0 0 0 0 0 0\\n'\n"}]
 ```
 
-It looks like the disk check has trouble with my installation. And it just took a few minutes for the tags and hostname change to be visible in the UI
+It looks like the disk check has trouble with my installation. I'll ignore that for now. And it just took a few minutes for the tags and hostname change to be visible in the UI:
 ![Host with Tags](images/host-with-tags.png)
+
+On to the next task. Installing PostgreSQL :
+```bash
+# dnf install postgresql-server.x86_64 postgresql.x86_64 -y
+# /usr/bin/postgresql-setup --initdb
+# systemctl start postgresql
+# sudo -u postgres -i
+postgres=# postgres=# create user datadog with password 'myddpass';
+CREATE ROLE
+postgres=# grant pg_monitor to datadog;
+GRANT ROLE
+```
+
+I had to change the authentication rules for Postgres in order to let the test command work. These are the final, unsecure clear text password settings. But since this is a localhost only example and a simple demo cleartext passwords over unencryted channels locally will suffice. :
+
+```bash
+# grep password$ /var/lib/pgsql/data/pg_hba.conf 
+local   all             all                                     password
+host    all             all             127.0.0.1/32            password
+host    all             all             ::1/128                 password
+# systemctl reload postgresl
+# psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);" && echo -e "\e[0;32mPostgres connection - OK\e[0m" || echo -e "\e[0;31mCannot connect to Postgres\e[0m"
+Password for user datadog: 
+ datid | datname  | numbackends | xact_commit | xact_rollback | blks_read | blks_hit | tup_returned | tup_fetched | tup_inserted | tup_updated | tup_deleted | conflicts | temp_files | temp_bytes | deadlocks | blk_read_time | blk_w
+rite_time |          stats_reset          
+-------+----------+-------------+-------------+---------------+-----------+----------+--------------+-------------+--------------+-------------+-------------+-----------+------------+------------+-----------+---------------+------
+----------+-------------------------------
+ 14101 | postgres |           1 |          44 |             7 |       127 |     3386 |        19302 |        1369 |            0 |           0 |           0 |         0 |          0 |          0 |         0 |             0 |      
+        0 | 2020-04-10 14:52:19.620935+02
+(1 row)
+```
+
+
+```
+
 
