@@ -109,4 +109,11 @@ Now on to configuring the DD Agent to connect to Postgres
 After that I can see postgres showing up in the datadog infrastructre map :
 ![Fedora with PostgreSQL](/images/host-with-postgres.png)
 
+And I can also find the PostgreSQL Dashboard with metrics : 
+![PostgreSQL Dashboard](images/Postgres-dashboard.png)
+
+Looking at the host dashboard, I can also see the disk issue that I mentioned obove. :
+![Host Dashboard with Disk Issue](images/Host-with-Disk-issue.png)
+
+
 
