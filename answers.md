@@ -138,7 +138,8 @@ Now we need to implement the custom check. Python script for this.
 vim /etc/datadog-agent/checks.d/my_metric.py
 ```
 ```python
- the following try/except block will make the custom check compatible with any Agent version
+#!/usr/bin/python
+# the following try/except block will make the custom check compatible with any Agent version
 try:
     # first, try to import the base class from new versions of the Agent...
     from datadog_checks.base import AgentCheck
@@ -158,7 +159,7 @@ class MyCheck(AgentCheck):
 
 Lets verify that the custom check is working
 ```bash
-sudo -u dd-agent -- datadog-agent check my_metric
+# sudo -u dd-agent -- datadog-agent check my_metric
 === Series ===
 {
   "series": [
@@ -202,7 +203,14 @@ Collector
 
 Check has run only once, if some metrics are missing you can try again with --check-rate to see any other metric if available.
 ```
+Now restart the Agent and check the logs for my_metric :
+```bash
+# systemctl stop datadog-agent; systemctl start datadog-agent; journalctl -f -u datadog-agent | grep --color my_metric
+Apr 15 13:44:53 f31 agent[885097]: 2020-04-15 13:44:53 CEST | CORE | INFO | (pkg/collector/scheduler/scheduler.go:83 in Enter) | Scheduling check my_metric with an interval of 45s
+Apr 15 13:44:54 f31 agent[885097]: 2020-04-15 13:44:54 CEST | CORE | INFO | (pkg/collector/runner/runner.go:261 in work) | Running check my_metric
+Apr 15 13:44:54 f31 agent[885097]: 2020-04-15 13:44:54 CEST | CORE | INFO | (pkg/collector/runner/runner.go:327 in work) | Done running check my_metric
 
+```
 
-
-
+Now I can find the my_metric in the [Data Dog Metrics Section](https://app.datadoghq.eu/metric/explorer?from_ts=1586950778833&to_ts=1586951678833&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my_metric&exp_agg=avg&exp_row_type=metric)
+![my_metric](/images/my_metric.png)
