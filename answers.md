@@ -124,4 +124,85 @@ Looking at the [host dashboard](https://app.datadoghq.eu/infrastructure?hostname
 
 ## Create custom Agent checks
 
+[Documentation Link](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
+
+First we create a config file for the new custom metric "my_metric" in the dd agent config directory. 
+
+```bash
+# cat /etc/datadog-agent/conf.d/my_metric.yaml
+instances: [{}]
+```
+
+Now we need to implement the custom check. Python script for this. 
+```bash
+vim /etc/datadog-agent/checks.d/my_metric.py
+```
+```python
+ the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class MyCheck(AgentCheck):
+    def check(self, instance):
+        from random import randrange
+        value = randrange(1000)
+        self.gauge('my_metric', value, tags=['environment:dev'])
+```
+
+Lets verify that the custom check is working
+```bash
+sudo -u dd-agent -- datadog-agent check my_metric
+=== Series ===
+{
+  "series": [
+    {
+      "metric": "my_metric",
+      "points": [
+        [
+          1586950622,
+          723
+        ]
+      ],
+      "tags": [
+        "environment:dev"
+      ],
+      "host": "fedora31.berlin.local",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    }
+  ]
+}
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+    
+    my_metric (1.0.0)
+    -----------------
+      Instance ID: my_metric:5ba864f3937b5bad [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/my_metric.yaml
+      Total Runs: 1
+      Metric Samples: Last Run: 1, Total: 1
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2020-04-15 13:37:02.000000 CEST
+      Last Successful Execution Date : 2020-04-15 13:37:02.000000 CEST
+      
+
+Check has run only once, if some metrics are missing you can try again with --check-rate to see any other metric if available.
+```
+
+
+
 
