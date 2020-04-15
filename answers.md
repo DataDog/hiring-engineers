@@ -228,3 +228,22 @@ Now I can find the my_metric in the [Data Dog Metrics Section](https://app.datad
 
 ## Bonus Question
 I'm a bit confused by the Bonus question. I did not change the python check file my_metrics.py to change the inverval. I can't see how changing the Python file will have any effect on the interval. The interval is configured through the conf.d/my_metrics.yaml file and thus through settings at the agent. The logical answer here is in short : <b>Yes</b>. 
+
+# Visualizing Data
+
+First in needed to install Postman for Linux. 
+```bash
+$ wget https://dl.pstmn.io/download/latest/linux64 --output-document - | tar xvzf -
+cd Postman
+./Postman
+```
+
+I loaded the Postman Datadoc Collection into Postman through the Import function.
+
+Next I generated the [API and Application API Key](https://app.datadoghq.eu/account/settings#api).
+
+These were added to Postman through the [creation of an Environment](https://docs.datadoghq.com/getting_started/api/#postman-environment-setup). I did set the datadog_api_key, datadog_application_key and datadog_site vars for my environment "Datadog Trial".
+
+You can verify that it work by running a simple API Call like this : 
+![Running an Authentication Check](/images/Auth_Check.png)
+
