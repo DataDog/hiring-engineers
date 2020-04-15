@@ -247,3 +247,7 @@ These were added to Postman through the [creation of an Environment](https://doc
 You can verify that it work by running a simple API Call like this : 
 ![Running an Authentication Check](/images/Auth_Check.png)
 
+For creating the Dashboard. I did copy the Create Dashboard Template and adjusted the body of the Request. After creating the inital dashboard, I was wondering how to inlude a metric with the anomaly function applied. I found this info in the [Datadog UI for the database metrics](https://app.datadoghq.eu/dash/integration/58/postgres---metrics?fullscreen_end_ts=1586961432506&fullscreen_paused=false&fullscreen_section=overview&fullscreen_start_ts=1586356632506&fullscreen_widget=1997745826335092). 
+![System_IO_Wait with anomaly](/images/db_metric_anomaly.png).
+
+
