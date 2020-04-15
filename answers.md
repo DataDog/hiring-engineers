@@ -74,12 +74,12 @@ GRANT ROLE
 I had to change the authentication rules for Postgres in order to let the test command work. These are the final, unsecure clear text password settings. But since this is a localhost only example and a simple demo cleartext passwords over unencryted channels locally will suffice. :
 
 ```bash
-# grep password$ /var/lib/pgsql/data/pg_hba.conf 
+$ grep password$ /var/lib/pgsql/data/pg_hba.conf 
 local   all             all                                     password
 host    all             all             127.0.0.1/32            password
 host    all             all             ::1/128                 password
-# systemctl reload postgresl
-# psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);" && echo -e "\e[0;32mPostgres connection - OK\e[0m" || echo -e "\e[0;31mCannot connect to Postgres\e[0m"
+$ sudo systemctl reload postgresl
+$ psql -h localhost -U datadog postgres -c "select * from pg_stat_database LIMIT(1);" && echo -e "\e[0;32mPostgres connection - OK\e[0m" || echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 Password for user datadog: 
  datid | datname  | numbackends | xact_commit | xact_rollback | blks_read | blks_hit | tup_returned | tup_fetched | tup_inserted | tup_updated | tup_deleted | conflicts | temp_files | temp_bytes | deadlocks | blk_read_time | blk_w
 rite_time |          stats_reset          
@@ -129,16 +129,26 @@ Looking at the [host dashboard](https://app.datadoghq.eu/infrastructure?hostname
 First we create a config file for the new custom metric "my_metric" in the dd agent config directory. 
 
 ```bash
-# cat /etc/datadog-agent/conf.d/my_metric.yaml
+$ sudo cat /etc/datadog-agent/conf.d/my_metric.yaml
 instances: [{}]
+```
+
+If we want to run this check in other than the default 30s intervals we can change this configuration file and specify the new interval : 
+```bash
+$ sudo cat /etc/datadog-agent/conf.d/my_metric.yaml
+init_config:
+
+instances:
+  - min_collection_interval: 45
 ```
 
 Now we need to implement the custom check. Python script for this. 
 ```bash
-vim /etc/datadog-agent/checks.d/my_metric.py
+sudo vim /etc/datadog-agent/checks.d/my_metric.py
 ```
 ```python
- the following try/except block will make the custom check compatible with any Agent version
+#!/usr/bin/python
+# the following try/except block will make the custom check compatible with any Agent version
 try:
     # first, try to import the base class from new versions of the Agent...
     from datadog_checks.base import AgentCheck
@@ -158,7 +168,8 @@ class MyCheck(AgentCheck):
 
 Lets verify that the custom check is working
 ```bash
-sudo -u dd-agent -- datadog-agent check my_metric
+$ sudo -i
+# sudo -u dd-agent -- datadog-agent check my_metric
 === Series ===
 {
   "series": [
@@ -202,7 +213,18 @@ Collector
 
 Check has run only once, if some metrics are missing you can try again with --check-rate to see any other metric if available.
 ```
+Now restart the Agent and check the logs for my_metric :
+```bash
+$ sudo -i
+# systemctl stop datadog-agent; systemctl start datadog-agent; journalctl -f -u datadog-agent | grep --color my_metric
+Apr 15 13:44:53 f31 agent[885097]: 2020-04-15 13:44:53 CEST | CORE | INFO | (pkg/collector/scheduler/scheduler.go:83 in Enter) | Scheduling check my_metric with an interval of 45s
+Apr 15 13:44:54 f31 agent[885097]: 2020-04-15 13:44:54 CEST | CORE | INFO | (pkg/collector/runner/runner.go:261 in work) | Running check my_metric
+Apr 15 13:44:54 f31 agent[885097]: 2020-04-15 13:44:54 CEST | CORE | INFO | (pkg/collector/runner/runner.go:327 in work) | Done running check my_metric
 
+```
 
+Now I can find the my_metric in the [Data Dog Metrics Section](https://app.datadoghq.eu/metric/explorer?from_ts=1586950778833&to_ts=1586951678833&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my_metric&exp_agg=avg&exp_row_type=metric)
+![my_metric](/images/my_metrics.png)
 
-
+## Bonus Question
+I'm a bit confused by the Bonus question. I did not change the python check file my_metrics.py to change the inverval. I can't see how changing the Python file will have any effect on the interval. The interval is configured through the conf.d/my_metrics.yaml file and thus through settings at the agent. The logical answer here is in short : <b>Yes</b>. 
