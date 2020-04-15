@@ -225,3 +225,6 @@ Apr 15 13:44:54 f31 agent[885097]: 2020-04-15 13:44:54 CEST | CORE | INFO | (pkg
 
 Now I can find the my_metric in the [Data Dog Metrics Section](https://app.datadoghq.eu/metric/explorer?from_ts=1586950778833&to_ts=1586951678833&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my_metric&exp_agg=avg&exp_row_type=metric)
 ![my_metric](/images/my_metrics.png)
+
+## Bonus Question
+I'm a bit confused by the Bonus question. I did not change the python check file my_metrics.py to change the inverval. I can't see how changing the Python file will have any effect on the interval. The interval is configured through the conf.d/my_metrics.yaml file and thus through settings at the agent. The logical answer here is in short : <b>Yes</b>. 
