@@ -106,13 +106,13 @@ Now on to configuring the DD Agent to connect to Postgres
 # systemctl restart datadog-agent
 ```
 
-After that I can see postgres showing up in the datadog infrastructre map :
+After that I can see postgres showing up in the [datadog infrastructre map](https://app.datadoghq.eu/infrastructure/map?host=19442128&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host) :
 ![Fedora with PostgreSQL](/images/host-with-postgres.png)
 
-And I can also find the PostgreSQL Dashboard with metrics : 
+And I can also find the [PostgreSQL Dashboard](https://app.datadoghq.eu/dash/integration/58/Postgres%20-%20Metrics?tpl_var_scope=host%3Afedora31.berlin.local&from_ts=1586343656315&to_ts=1586948456315&live=true&tile_size=m) with metrics : 
 ![PostgreSQL Dashboard](images/Postgres-dashboard.png)
 
-Looking at the host dashboard, I can also see the disk issue that I mentioned obove. :
+Looking at the [host dashboard](https://app.datadoghq.eu/infrastructure?hostname=fedora31.berlin.local), I can also see the disk issue that I mentioned obove. :
 ![Host Dashboard with Disk Issue](images/Host-with-Disk-issue.png)
 
 
