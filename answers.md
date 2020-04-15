@@ -133,6 +133,16 @@ First we create a config file for the new custom metric "my_metric" in the dd ag
 instances: [{}]
 ```
 
+If we want to run this check in other than the default 30s intervals we can change this configuration file and specify the new interval : 
+```bash
+# cat /etc/datadog-agent/conf.d/my_metric.yaml
+cat /etc/datadog-agent/conf.d/my_metric.yaml 
+init_config:
+
+instances:
+  - min_collection_interval: 45
+```
+
 Now we need to implement the custom check. Python script for this. 
 ```bash
 vim /etc/datadog-agent/checks.d/my_metric.py
