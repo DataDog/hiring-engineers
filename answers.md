@@ -1,5 +1,9 @@
 Your answers to the questions go here.
 
+# Collecting Metrics
+
+## Deploy of the Agent
+
 I did setup a Fedora 31 virtual machine using Virt-Manager on my Fedora 31 Notebook.
 
 When It came up, I used the one line install to install the DD Agent :
@@ -7,6 +11,7 @@ When It came up, I used the one line install to install the DD Agent :
 ```bash
 DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=2a6eee5aaca2d5b447f71e746277e2ff DD_SITE="datadoghq.eu" bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 ```
+## Add Tags to the Agent Config
 
 I trieds setting up some tags but the dd agent did not come up again.
 
@@ -49,8 +54,10 @@ Apr 10 13:35:00 f31 agent[1249]: 2020-04-10 13:35:00 CEST | CORE | INFO | (pkg/c
 Apr 10 13:35:08 f31 agent[1249]: 2020-04-10 13:35:08 CEST | CORE | ERROR | (pkg/collector/runner/runner.go:292 in work) | Error running check disk: [{"message": "not sure how to interpret line '  11       0 sr0 7 0 2 0 0 0 0 0 0 5 0 0 0 0 0 0 0\\n'", "traceback": "Traceback (most recent call last):\n  File \"/opt/datadog-agent/embedded/lib/python3.8/site-packages/datadog_checks/base/checks/base.py\", line 713, in run\n    self.check(instance)\n  File \"/opt/datadog-agent/embedded/lib/python3.8/site-packages/datadog_checks/disk/disk.py\", line 121, in check\n    self.collect_latency_metrics()\n  File \"/opt/datadog-agent/embedded/lib/python3.8/site-packages/datadog_checks/disk/disk.py\", line 244, in collect_latency_metrics\n    for disk_name, disk in iteritems(psutil.disk_io_counters(True)):\n  File \"/opt/datadog-agent/embedded/lib/python3.8/site-packages/psutil/__init__.py\", line 2168, in disk_io_counters\n    rawdict = _psplatform.disk_io_counters(**kwargs)\n  File \"/opt/datadog-agent/embedded/lib/python3.8/site-packages/psutil/_pslinux.py\", line 1125, in disk_io_counters\n    for entry in gen:\n  File \"/opt/datadog-agent/embedded/lib/python3.8/site-packages/psutil/_pslinux.py\", line 1098, in read_procfs\n    raise ValueError(\"not sure how to interpret line %r\" % line)\nValueError: not sure how to interpret line '  11       0 sr0 7 0 2 0 0 0 0 0 0 5 0 0 0 0 0 0 0\\n'\n"}]
 ```
 
-It looks like the disk check has trouble with my installation. I'll ignore that for now. And it just took a few minutes for the tags and hostname change to be visible in the UI:
+It looks like the disk check has trouble with Fedora 31. I'll ignore that for now. And it just took a few minutes for the tags and hostname change to be visible in the UI:
 ![Host with Tags](images/host-with-tags.png)
+
+## Database installation and Monitoring
 
 On to the next task. Installing PostgreSQL :
 ```bash
@@ -112,8 +119,9 @@ After that I can see postgres showing up in the [datadog infrastructre map](http
 And I can also find the [PostgreSQL Dashboard](https://app.datadoghq.eu/dash/integration/58/Postgres%20-%20Metrics?tpl_var_scope=host%3Afedora31.berlin.local&from_ts=1586343656315&to_ts=1586948456315&live=true&tile_size=m) with metrics : 
 ![PostgreSQL Dashboard](images/Postgres-dashboard.png)
 
-Looking at the [host dashboard](https://app.datadoghq.eu/infrastructure?hostname=fedora31.berlin.local), I can also see the disk issue that I mentioned obove. :
+Looking at the [host dashboard](https://app.datadoghq.eu/infrastructure?hostname=fedora31.berlin.local), I can also see the disk issue that I mentioned above. :
 ![Host Dashboard with Disk Issue](images/Host-with-Disk-issue.png)
 
+## Create custom Agent checks
 
 
