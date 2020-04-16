@@ -456,7 +456,7 @@ The only way I found for this was through the URL. I did take the 2nd timestamp 
 
 ## Take a snapshot of this graph and use the @ notation to send it to yourself
 
-I could not find the snapshot functionality. I found a [blog post from 5 years ago](https://www.datadoghq.com/blog/real-time-graph-annotations/) that showed the feature. I found another reference in the [DataDag API](https://docs.datadoghq.com/api/?lang=bash#graph-snapshot). I could net get the Snapshot feature within the Dashboard.
+I could not find the snapshot functionality. I found a [blog post from 5 years ago](https://www.datadoghq.com/blog/real-time-graph-annotations/) that showed the feature. I found another reference in the [DataDag API](https://docs.datadoghq.com/api/?lang=bash#graph-snapshot). I could not get to a snapshot feature within the Dashboard.
 
 The only place in the UI that showed this feature for me was the Metrics Explorer.
 ![Metrics Explorer Snapshot creation](images/Metrics-Explorer-Snapshot.png)
@@ -464,7 +464,7 @@ The only place in the UI that showed this feature for me was the Metrics Explore
 I did set up a Slack Integration and Datadog successfully pushed the message through. But I was missing the marking that I made on it.
 ![Slack Message](images/Slack-Message.png)
 
-## Bonus Queston : What is the Anomaly graph displying?
+## Bonus Queston : What is the Anomaly graph displaying?
 
 I found a good explanation in the [documentation](https://docs.datadoghq.com/monitors/monitor_types/anomaly/)
 
