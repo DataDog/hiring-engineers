@@ -31,8 +31,7 @@ The first widget ends up looking like this:
 				}],
 				"title": "My Metric per Host"
 			}
-		}
-        ```
+		}```
 
 You can see this is a pretty straightforward snippet of JSON. The meat of this is in the `requests` attribute which takes a comma separated array of queries. Here you can see that the query is pretty simple and takes the form of `metric_name{scope}` where metric name here is the name of the custom metric we created earlier and `hostname` is the tag we created earlier and `ramy.abdelazim` is the value assigned to that tag.
 
