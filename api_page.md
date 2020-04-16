@@ -53,8 +53,15 @@ The difference between each of the anomoly detection functions can be found [her
 
 The basic algorithm is just a moving average that's commonly found on any analysis of timeseries data. This algorithm allows for smoothing of the average line. The longer the moving window, the smoother the line becomes, but the less granular it is. The shorter the window, the more representative of the moment the line becomes but is more affected by any one value.
 
+A couple of points of interest worth noting:
+You can use the gear at the top right of the dashboard screen to set up notifications:
+![gear](./dash-gear.png)
 
-Finally, using the above API call will result in a dashboard that looks like this:
+This will bring up a popup that will take any user as input for notification:
+![notification](./notification.png)
+
+
+Finally, using the above API call will result in a dashboard that looks like this (note that you can click on the last datapoint in the graph to change the time window to 5 minutes):
 ![dash](./dash.png)
 
 [Previous: Create a Custom Check](./custom_check.md)  |  [Next: Monitors](./monitors.md)
