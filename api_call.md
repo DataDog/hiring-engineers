@@ -18,7 +18,7 @@ curl  -X POST \
 			}
 		},
 		{
-			"definition": {
+			"Definition": {
 				"type": "timeseries",
 				"requests": [{
 					"q": "anomalies(mysql.innodb.rows_read{*}, \"basic\", 2)"
@@ -30,7 +30,7 @@ curl  -X POST \
 			"definition": {
 				"type": "timeseries",
 				"requests": [{
-					"q": "avg:my_metric{host:ramy.abdelazim}.rollup(sum, 3600)"
+					"q": "sum:my_metric{host:ramy.abdelazim}.rollup(sum, 3600)"
 				}],
 				"title": "My Metric Rollup"
 			}
