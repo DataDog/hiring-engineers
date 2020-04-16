@@ -50,4 +50,4 @@ instances:
 ```
 
 
-[Previous: Collecting Metrics](./collecting_metrics.md)  |  [Next: Datadog APIs](./api_page)
+[Previous: Collecting Metrics](./collecting_metrics.md)  |  [Next: Datadog APIs](./api_page.md)
