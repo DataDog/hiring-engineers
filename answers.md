@@ -327,9 +327,21 @@ while true; do
     sleep 0.5
 done
 ```
-
 I did start 2 screen session one for inserts, one for checks and now we have some traffic.
 ![postgresql with traffic](/images/postgres-traffic-1.png)
+
+Looking at the last 15 min of PostgreSQL Rows Returned shows that the number is going up and up. This will strain resources eventually. 
+![postgresql returned rows going up](/images/postgres-traffic-increasing.png)
+
+This is why I need a final script that clears the checkin table in reqular intervals :
+```bash
+while true; do
+  sleep 600
+  psql sampledb -h localhost -c 'DELETE from checkin;' 2>/dev/null
+done
+```
+
+
 
 
 
