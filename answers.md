@@ -474,6 +474,8 @@ I found a good explanation in the [documentation](https://docs.datadoghq.com/mon
 
 I used the [Documentation on Notifications to built the Monitor](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert).
 
+Using templates vars in the subject line of a Monitor is not a good idea. They do work for the actual alerts and are replaced with values. But this line as also used to name the Monitor. It will get a very awkward name that is difficult to handle. Also Downtime messages look very wierd :
+
 
 
 # APM
