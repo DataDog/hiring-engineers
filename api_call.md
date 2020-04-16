@@ -7,18 +7,18 @@ curl  -X POST \
 -H "DD-API-KEY: ${api_key}" \
 -H "DD-APPLICATION-KEY: ${app_key}" \
 -d '{
-	"title": "API-Defined Dashboard",
+	"title": "My API-Defined Dashboard 0416201906", 
 	"widgets": [{
 			"definition": {
 				"type": "timeseries",
 				"requests": [{
-					"q": "my_metric{hostname:ramy.abdelazim}"
+					"q": "avg:my_metric{host:ramy.abdelazim}"
 				}],
 				"title": "My Metric per Host"
 			}
 		},
 		{
-			"Definition": {
+			"definition": {
 				"type": "timeseries",
 				"requests": [{
 					"q": "anomalies(mysql.innodb.rows_read{*}, \"basic\", 2)"

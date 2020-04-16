@@ -27,7 +27,7 @@ The first widget ends up looking like this:
 			"definition": {
 				"type": "timeseries",
 				"requests": [{
-					"q": "my_metric{hostname:ramy.abdelazim}"
+					"q": "avg:my_metric{host:ramy.abdelazim}"
 				}],
 				"title": "My Metric per Host"
 			}
@@ -53,5 +53,8 @@ The difference between each of the anomoly detection functions can be found [her
 
 The basic algorithm is just a moving average that's commonly found on any analysis of timeseries data. This algorithm allows for smoothing of the average line. The longer the moving window, the smoother the line becomes, but the less granular it is. The shorter the window, the more representative of the moment the line becomes but is more affected by any one value.
 
+
+Finally, using the above API call will result in a dashboard that looks like this:
+![dash](./dash.png)
 
 [Previous: Create a Custom Check](./custom_check.md)  |  [Next: Monitors](./monitors.md)
