@@ -250,13 +250,9 @@ You can verify that it work by running a simple API Call like this :
 For creating the Dashboard. I did copy the Create Dashboard Template and adjusted the body of the Request. After creating the inital dashboard, I was wondering how to inlude a metric with the anomaly function applied. I found this info in the [Datadog UI for the database metrics](https://app.datadoghq.eu/dash/integration/58/postgres---metrics?fullscreen_end_ts=1586961432506&fullscreen_paused=false&fullscreen_section=overview&fullscreen_start_ts=1586356632506&fullscreen_widget=1997745826335092). 
 ![System_IO_Wait with anomaly](/images/db_metric_anomaly.png).
 
-I noticed that the Postgres Dashboard and Metrics are quite empty except for the Shown System Level Metrics. This is easily explained. There is no load on the database. So lets generate some : 
+I noticed that the Postgres Dashboard and Metrics are quite empty except for the some system Level Metrics as shown above. This is easily explained. There is no load on the database. So lets generate some : 
 
-```bash
-https://app.datadoghq.eu/dashboard/td4-pbd-abz/myboard-with-bars?from_ts=1587022657959&live=true&tile_size=m&to_ts=1587022957959
-
-anomalies(postgresql.rows_returned,'basic',2)
-```
+## Tangent - generating load on the Postgres DB
 
 First I create a new user "joe" and a new database "sampledb" :
 ```bash
@@ -292,7 +288,7 @@ CREATE TABLE
 sampledb=> \q
 ```
 
-It would be nice to get some traffic. The idea is to insert data into checkins, recording the current timestamp. I did write a quick bash script called insert for this :
+The idea is to insert data into the checkins table, recording the current timestamp. I did write a quick bash script called [insert.sh](https://github.com/LutzLange/hiring-engineers/blob/master/bash-skripts/inserts.sh) for this :
 ```bash
 [joe@f31 bash-skripts]$ cat inserts.sh 
 #!/bin/bash
@@ -320,7 +316,7 @@ INSERT 0 1
 INSERT 0 1
 ^C
 ```
-Now we have some insert traffic on sampledb. But we can also do selects as easy as inserts. I did write a checker.sh bash script for this :
+Now we have some insert traffic on sampledb. But we can also do selects as easy as inserts. I did write a [checker.sh](https://github.com/LutzLange/hiring-engineers/blob/master/bash-skripts/checker.sh) bash script for this :
 ```bash
 while true; do
     psql sampledb -th localhost -c 'select COUNT(*) from checkin;' 2>/dev/null | grep -v -e '^$'
@@ -333,7 +329,7 @@ I did start 2 screen session one for inserts, one for checks and now we have som
 Looking at the last 15 min of PostgreSQL Rows Returned shows that the number is going up and up. This will strain resources eventually. 
 ![postgresql returned rows going up](/images/postgres-traffic-increasing.png)
 
-This is why I need a final script that clears the checkin table in reqular intervals :
+This is why I needed a final script [delayed_clear.sh](https://github.com/LutzLange/hiring-engineers/blob/master/bash-skripts/delayed_clear.sh) that clears the checkin table in reqular intervals :
 ```bash
 while true; do
   sleep 600
@@ -341,10 +337,51 @@ while true; do
 done
 ```
 
+I did start the delayed clear in another screen session. And soon after that the 4h view on my Dashboard looks like this :
+![MyBoard with bars](images/postgres-traffic-with-delayed-clear.png)
 
+Ideas for expansion : 
+* move to python instead of bash
+  * use python threads
+  * use python postgres intergration
+* create a new custom metric my_checkins
+  * let datadog pull the number of checkins 
+  * needs my_checkin.py
+  * needs my_checkin.conf
 
+Lets go back to the the task now. 
 
+## Custom metric scoped over your host
 
+I do have that in the dashboard above, but here it is again :
+![Custom my_metric over host](images/custom-metric-over-host.png)
+
+## Any metric from the Integration on your Database with the anomaly function applied.
+
+I found the [documentation for the anomaly function](https://docs.datadoghq.com/dashboards/functions/algorithms/#anomalies). I settled for postgresql.rows_returned as a metric to show.
+![Postgres_rows returned with anomaly detection](images/db-metric-rows-returned.png)
+
+## Custom metric with the rollup function applied 
+
+I did include this twice as I do think bars look nicer on this than a line graph. My hope was that the line graph would have a line for short time spans but it is empty for these as well.
+
+![custom metric rollup 1h line graph](images/custom-metric-rollup-bar.png)
+![custom metric rollup 1h bar graph](images/custom-metric-rollup-bar.png)
+
+## Include the Script that was used to create the Dashboard
+
+The Postman Collection Export that holds the Request that was uset to create "MyBoard with bars" in [here](postman/Datadog-Dashboard-Solution.postman_collection.json).
+
+## Set the Timeboard's timeframe to the past 5 minutes
+
+The only way I found for this was through the URL. I did take the 2nd timestamp and substracted 300000 to get to the start value for a 5min time frame as you can see here :
+[5min Timeframe on MyBoard with bars](images/5min-view.png)
+
+## Take a snapshot of this graph and use the @ notation to send it to yourself
+
+I could not find the snapshot functionality. I found a [blog post from 5 years ago](https://www.datadoghq.com/blog/real-time-graph-annotations/) that showed the feature. I found another reference in the [DataDag API](https://docs.datadoghq.com/api/?lang=bash#graph-snapshot). I could net get the Snapshot feature within the Dashboard.
+
+The only place in the UI that showed this feature for me was the Metrics Explorer.
 
 
 
