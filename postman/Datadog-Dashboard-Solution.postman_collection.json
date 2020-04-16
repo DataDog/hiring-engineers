@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "6ae6ed9d-9700-40cc-a9cf-feb7585e2ad9",
+		"name": "Datadog-Dashboard-Solution",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create MyDashboard",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"description": "Your Datadog API key",
+						"key": "DD-API-KEY",
+						"type": "text",
+						"value": "{{datadog_api_key}}"
+					},
+					{
+						"description": "Your Datadog application key",
+						"key": "DD-APPLICATION-KEY",
+						"type": "text",
+						"value": "{{datadog_application_key}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"MYBoard with bars\",\n    \"widgets\": [\n        {\n            \"definition\": {\n                \"type\": \"timeseries\",\n                \"requests\": [\n                    {\n                        \"q\": \"avg:my_metric{*}\"\n                    }\n                ],\n                \"title\": \"my_metric\"\n            }\n        },\n        {\n            \"definition\": {\n                \"type\": \"timeseries\",\n                \"requests\": [\n                    {\n                        \"q\": \"anomalies(postgresql.rows_returned{*},'basic',2)\"\n                    }\n                ],\n                \"title\": \"PostgreSQL Rows returned\"\n            }\n        },\n        {\n            \"definition\": {\n                \"type\": \"timeseries\",\n                \"requests\": [\n                    {\n                        \"q\": \"my_metric{*}.rollup(sum,3600)\"\n                    }\n                ],\n                \"title\": \"my_metric rollup per hour\"\n            }\n        },\n        {\n            \"definition\": {\n                \"type\": \"timeseries\",\n                \"requests\": [\n                    {\n                        \"q\": \"my_metric{*}.rollup(sum,3600)\",\n                        \"display_type\": \"bars\",\n                        \"style\": {\n                        \t\"palette\": \"dog_classic\",\n                        \t\"line_type\": \"solid\",\n                        \t\"line_width\": \"normal\"\n                        }\n          \n                    }\n                ],\n                \"title\": \"my_metric rollup per hour as bars\"\n            }\n        }\n    ],\n    \"layout_type\": \"ordered\",\n    \"description\": \"This is my first DataDag Dashboard\",\n    \"is_read_only\": true,\n    \"notify_list\": [\n        \"lutzinberlin@gmail.com\"\n    ],\n    \"template_variables\": [\n        {\n            \"name\": \"host\",\n            \"prefix\": \"host\",\n            \"default\": \"fedora31.berlin.local\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "https://api.datadoghq.{{datadog_site}}/api/v1/dashboard",
+					"protocol": "https",
+					"host": [
+						"api",
+						"datadoghq",
+						"{{datadog_site}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"dashboard"
+					]
+				},
+				"description": "I used this function to create my \"MyBoard with Bars\" Dashboard."
+			},
+			"response": [
+				{
+					"name": "200 - OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"<DASHBOARD_TITLE>\",\n    \"widgets\": [\n        {\n            \"definition\": {\n                \"type\": \"timeseries\",\n                \"requests\": [\n                    {\n                        \"q\": \"avg:system.mem.free{*}\"\n                    }\n                ],\n                \"title\": \"Average Memory Free\"\n            }\n        }\n    ],\n    \"layout_type\": \"ordered\",\n    \"description\": \"<DASHBOARD_DESCRIPTION>\",\n    \"is_read_only\": true,\n    \"notify_list\": [\n        \"test@datadoghq.com\"\n    ],\n    \"template_variables\": [\n        {\n            \"name\": \"host1\",\n            \"prefix\": \"host\",\n            \"default\": \"myhost\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.datadoghq.com/api/v1/dashboard?api_key={{datadog_api_key}}&application_key={{datadog_application_key}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"datadoghq",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"dashboard"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "{{datadog_api_key}}",
+									"description": "Your Datadog API key"
+								},
+								{
+									"key": "application_key",
+									"value": "{{datadog_application_key}}",
+									"description": "Your Datadog application key"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 19 Apr 2019 12:35:20 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "DD-PSHARD=211; Max-Age=604800; Path=/; expires=Fri, 26-Apr-2019 12:35:20 GMT; secure; HttpOnly"
+						},
+						{
+							"key": "X-DD-VERSION",
+							"value": "35.1246853"
+						},
+						{
+							"key": "X-DD-Debug",
+							"value": "ZpWsACBQpgzv2VsU5CX0YAFtJeXHfdBGLwHJddPqzsfv7Pqmq24zCPBMypS9HlbJ"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "DD-POOL",
+							"value": "dogweb_sameorig"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15724800;"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"notify_list\": [],\n    \"description\": \"<DASHBOARD_DESCRIPTION>\",\n    \"template_variables\": [\n        {\n            \"default\": \"myhost\",\n            \"prefix\": \"host\",\n            \"name\": \"host1\"\n        }\n    ],\n    \"is_read_only\": true,\n    \"id\": \"civ-zbj-ag5\",\n    \"title\": \"<DASHBOARD_TITLE>\",\n    \"url\": \"/dashboard/civ-zbj-ag5/dashboardtitle\",\n    \"created_at\": \"2019-04-19T12:35:20.490074+00:00\",\n    \"modified_at\": \"2019-04-19T12:35:20.490074+00:00\",\n    \"author_handle\": \"test@datadoghq.com\",\n    \"widgets\": [\n        {\n            \"definition\": {\n                \"requests\": [\n                    {\n                        \"q\": \"avg:system.mem.free{*}\"\n                    }\n                ],\n                \"type\": \"timeseries\",\n                \"title\": \"Average Memory Free\"\n            },\n            \"id\": 8618605446924544\n        }\n    ],\n    \"layout_type\": \"ordered\"\n}"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}
