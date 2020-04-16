@@ -55,6 +55,7 @@ The basic algorithm is just a moving average that's commonly found on any analys
 
 A couple of points of interest worth noting:
 You can use the gear at the top right of the dashboard screen to set up notifications:
+
 ![gear](./dash-gear.png)
 
 This will bring up a popup that will take any user as input for notification:
