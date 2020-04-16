@@ -365,7 +365,10 @@ I found the [documentation for the anomaly function](https://docs.datadoghq.com/
 
 I did include this twice as I do think bars look nicer on this than a line graph. My hope was that the line graph would have a line for short time spans but it is empty for these as well.
 
-![custom metric rollup 1h line graph](images/custom-metric-rollup-bar.png)
+Here is the line graph :
+![custom metric rollup 1h line graph](images/custom-metric-rollup-lines.png)
+
+Here is the bar graph :
 ![custom metric rollup 1h bar graph](images/custom-metric-rollup-bar.png)
 
 ## Include the Script that was used to create the Dashboard
@@ -382,6 +385,12 @@ The only way I found for this was through the URL. I did take the 2nd timestamp 
 I could not find the snapshot functionality. I found a [blog post from 5 years ago](https://www.datadoghq.com/blog/real-time-graph-annotations/) that showed the feature. I found another reference in the [DataDag API](https://docs.datadoghq.com/api/?lang=bash#graph-snapshot). I could net get the Snapshot feature within the Dashboard.
 
 The only place in the UI that showed this feature for me was the Metrics Explorer.
+![Metrics Explorer Snapshot creation](images/Metrics-Explorer-Snapshot.png)
+
+I did set up a Slack Integration and Datadog successfully pushed the message through. But I was missing the marking that I made on it.
+![Slack Message](images/Slack-Message.png)
+
+
 
 
 
