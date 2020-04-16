@@ -54,3 +54,4 @@ The difference between each of the anomoly detection functions can be found [her
 The basic algorithm is just a moving average that's commonly found on any analysis of timeseries data. This algorithm allows for smoothing of the average line. The longer the moving window, the smoother the line becomes, but the less granular it is. The shorter the window, the more representative of the moment the line becomes but is more affected by any one value.
 
 
+[Previous: Create a Custom Check](./custom_check.md)  |  [Next: Monitors](./monitors.md)
