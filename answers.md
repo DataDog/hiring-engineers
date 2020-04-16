@@ -250,4 +250,56 @@ You can verify that it work by running a simple API Call like this :
 For creating the Dashboard. I did copy the Create Dashboard Template and adjusted the body of the Request. After creating the inital dashboard, I was wondering how to inlude a metric with the anomaly function applied. I found this info in the [Datadog UI for the database metrics](https://app.datadoghq.eu/dash/integration/58/postgres---metrics?fullscreen_end_ts=1586961432506&fullscreen_paused=false&fullscreen_section=overview&fullscreen_start_ts=1586356632506&fullscreen_widget=1997745826335092). 
 ![System_IO_Wait with anomaly](/images/db_metric_anomaly.png).
 
+I noticed that the Postgres Dashboard and Metrics are quite empty except for the Shown System Level Metrics. This is easily explained. There is no load on the database. So lets generate some : 
+
+```bash
+https://app.datadoghq.eu/dashboard/td4-pbd-abz/myboard-with-bars?from_ts=1587022657959&live=true&tile_size=m&to_ts=1587022957959
+
+anomalies(postgresql.rows_returned,'basic',2)
+```
+
+First I create a new user "joe" and a new database "sampledb" :
+```bash
+[lutz@f31 ~]$ sudo -i
+[root@f31 ~]# sudo -u postgres -i
+[postgres@f31 ~]$ createuser --interactive --pwprompt
+Enter name of role to add: joe
+Enter password for new role: 
+Enter it again: 
+Shall the new role be a superuser? (y/n) n
+Shall the new role be allowed to create databases? (y/n) n
+Shall the new role be allowed to create more new roles? (y/n) n
+[postgres@f31 ~]$ createdb -O joe sampledb
+[postgres@f31 ~]$ logout
+[root@f31 ~]# useradd joe
+[root@f31 ~]# passwd joe
+Changing password for user joe.
+New password: 
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+```
+
+Now lets switch to joe and create a table checkin that takes date values. 
+
+```bash
+[root@f31 ~]# sudo -iu joe
+[joe@f31 ~]$ psql sampledb
+psql (11.7)
+Type "help" for help.
+
+sampledb=> create table checkin ( time DATE );
+CREATE TABLE
+sampledb=> \q
+```
+
+It would be nice to get some regular traffic. The idea is to insert data into checkins, recording the current timestamp. I did write a quick bash script called insert for this :
+```bash
+[joe@f31 bash-skripts]$ cat inserts.sh 
+#!/bin/bash
+
+while true; do
+   psql sampledb -h localhost -c 'INSERT into checkin VALUES (now());' 2>/dev/null
+   sleep 0.2
+done
+```
 
