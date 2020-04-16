@@ -366,14 +366,16 @@ I found the [documentation for the anomaly function](https://docs.datadoghq.com/
 I did include this twice as I do think bars look nicer on this than a line graph. My hope was that the line graph would have a line for short time spans but it is empty for these as well.
 
 Here is the line graph :
-![custom metric rollup 1h line graph](images/custom-metric-rollup-lines.png)
+
+![custom metric rollup 1h line graph](images/custom-metric-rollup-line.png)
 
 Here is the bar graph :
+
 ![custom metric rollup 1h bar graph](images/custom-metric-rollup-bar.png)
 
 ## Include the Script that was used to create the Dashboard
 
-The Postman Collection Export that holds the Request that was uset to create "MyBoard with bars" in [here](postman/Datadog-Dashboard-Solution.postman_collection.json). I include the Body of the Request here for easy review :
+I have the Postman Collection Export [here](postman/Datadog-Dashboard-Solution.postman_collection.json). I include the Body of the Request for easy review :
 ```json
 {
     "title": "MYBoard with bars",
@@ -461,6 +463,56 @@ The only place in the UI that showed this feature for me was the Metrics Explore
 
 I did set up a Slack Integration and Datadog successfully pushed the message through. But I was missing the marking that I made on it.
 ![Slack Message](images/Slack-Message.png)
+
+## Bonus Queston : What is the Anomaly graph displying?
+
+I found a good explanation in the [documentation](https://docs.datadoghq.com/monitors/monitor_types/anomaly/)
+
+"Anomaly detection is an algorithmic feature that identifies when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard to monitor with threshold-based alerting."
+
+# Monitoring Data
+
+I used the [Documentation on Notifications to built the Monitor](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert).
+
+
+
+# APM
+
+First step is to get the Flask Demo App up and running
+
+```bash
+mkdir ~/bin
+vi ~/bin/fapp.py
+vi bin/fapp.py 
+sudo dnf install python3-flask.noarch -y
+[joe@f31 ~]$ ./bin/fapp.py
+ * Serving Flask app "fapp" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2020-04-16 20:01:01,893 - werkzeug - INFO -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+2020-04-16 20:02:08,333 - werkzeug - INFO - 127.0.0.1 - - [16/Apr/2020 20:02:08] "GET / HTTP/1.1" 200 -
+```
+
+Localhost access worked but I could not get to the service from the Host System. Iptables was identified as blocking the access. I used the following commands to change this and allow access. The Fedora default Firewall is setup to use the iptables state module..
+
+```bash
+iptables -nvL --line-numbers
+iptables -A IN_FedoraServer_allow -p tcp --dport 5050 -m state --state NEW -j ACCEPT
+```
+
+After this Access was possible from the Host System as well.
+
+```bash
+[lutz@socke hiring-engineers]$ curl http://f31:5050/
+Entrypoint to the Application
+```
+
+Next Step is instrumenting the Application.
+
+
+
 
 
 
