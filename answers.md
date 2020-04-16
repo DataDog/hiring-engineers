@@ -373,12 +373,84 @@ Here is the bar graph :
 
 ## Include the Script that was used to create the Dashboard
 
-The Postman Collection Export that holds the Request that was uset to create "MyBoard with bars" in [here](postman/Datadog-Dashboard-Solution.postman_collection.json).
+The Postman Collection Export that holds the Request that was uset to create "MyBoard with bars" in [here](postman/Datadog-Dashboard-Solution.postman_collection.json). I include the Body of the Request here for easy review :
+```json
+{
+    "title": "MYBoard with bars",
+    "widgets": [
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:my_metric{*}"
+                    }
+                ],
+                "title": "my_metric"
+            }
+        },
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(postgresql.rows_returned{*},'basic',2)"
+                    }
+                ],
+                "title": "PostgreSQL Rows returned"
+            }
+        },
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "my_metric{*}.rollup(sum,3600)"
+                    }
+                ],
+                "title": "my_metric rollup per hour"
+            }
+        },
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "my_metric{*}.rollup(sum,3600)",
+                        "display_type": "bars",
+                        "style": {
+                        	"palette": "dog_classic",
+                        	"line_type": "solid",
+                        	"line_width": "normal"
+                        }
+          
+                    }
+                ],
+                "title": "my_metric rollup per hour as bars"
+            }
+        }
+    ],
+    "layout_type": "ordered",
+    "description": "This is my first DataDag Dashboard",
+    "is_read_only": true,
+    "notify_list": [
+        "lutzinberlin@gmail.com"
+    ],
+    "template_variables": [
+        {
+            "name": "host",
+            "prefix": "host",
+            "default": "fedora31.berlin.local"
+        }
+    ]
+}
+```
+
 
 ## Set the Timeboard's timeframe to the past 5 minutes
 
 The only way I found for this was through the URL. I did take the 2nd timestamp and substracted 300000 to get to the start value for a 5min time frame as you can see here :
-[5min Timeframe on MyBoard with bars](images/5min-view.png)
+![5min Timeframe on MyBoard with bars](images/5min-view.png)
 
 ## Take a snapshot of this graph and use the @ notation to send it to yourself
 
