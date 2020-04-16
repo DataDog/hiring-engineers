@@ -1,0 +1,24 @@
+{
+	"id": 17706183,
+	"name": "my_metric value threshold event",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:my_metric{host:vagrant} > 800",
+	"message": "EMAIL-REDACTED \n\n{{#is_alert}} my_metric alert threshold of 800 has been exceeded for more than 5 minutes! {{/is_alert}} \n\n{{#is_alert_recovery}} my_metric has recovered from an alert state{{/is_alert_recovery}} \n\n{{#is_warning}} my_metric has exceeded 500 for more than 5 minutes and is in a warning state! {{/is_warning}} \n\n{{#is_recovery}} my_metric has recovered from a warning state {{/is_recovery}} \n\n{{#is_no_data}} my_metric has not reported data for the last 10 minutes! {{/is_no_data}} \n\nmy_metric value of {{value}} has caused this monitor to trigger. The host IP of the alert is {{host.ip}}",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}
