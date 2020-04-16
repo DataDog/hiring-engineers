@@ -58,7 +58,7 @@ You can use the gear at the top right of the dashboard screen to set up notifica
 ![gear](./dash-gear.png)
 
 This will bring up a popup that will take any user as input for notification:
-![notification](./notification.png)
+![notification](./notifications.png)
 
 
 Finally, using the above API call will result in a dashboard that looks like this (note that you can click on the last datapoint in the graph to change the time window to 5 minutes):
