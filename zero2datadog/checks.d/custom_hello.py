@@ -11,7 +11,9 @@ __version__ = "0.1.0"
 
 """Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+    Thank you, https://datadoghq.dev/summit-training-session/handson/customagentcheck/
 """
 class HelloCheck(AgentCheck):
     def check(self, instance):
-        self.gauge('hello.world', 1, tags=['TAG_KEY:TAG_VALUE'])
+        self.gauge('hello.world', 1, tags=['admin_email:jitkelme@gmail.com'])
+

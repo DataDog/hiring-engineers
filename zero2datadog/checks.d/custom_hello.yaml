@@ -1,4 +1,8 @@
 ---
+init-config:
+
 instances:
-  - min_collection_interval: 30
+[{}]
+
+#  - min_collection_interval: 30
 
