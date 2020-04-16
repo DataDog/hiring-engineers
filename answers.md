@@ -292,7 +292,7 @@ CREATE TABLE
 sampledb=> \q
 ```
 
-It would be nice to get some regular traffic. The idea is to insert data into checkins, recording the current timestamp. I did write a quick bash script called insert for this :
+It would be nice to get some traffic. The idea is to insert data into checkins, recording the current timestamp. I did write a quick bash script called insert for this :
 ```bash
 [joe@f31 bash-skripts]$ cat inserts.sh 
 #!/bin/bash
@@ -302,4 +302,38 @@ while true; do
    sleep 0.2
 done
 ```
+
+There is still the password issue, joe is an interactive user and psql prompts for a password. Lets fix that and test the inserts :
+
+```bash
+[joe@f31 bash-skripts]$ ./inserts.sh 
+Password for user joe: 
+[joe@f31 bash-skripts]$ vim ~/.pgpass 
+localhost:5432:sampledb:joe:joejoejoe
+[joe@f31 bash-skripts]$ chmod 600 ~/.pgpass
+[lutz@f31 bash-skripts]$ ./inserts.sh 
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+^C
+```
+Now we have some insert traffic on sampledb. But we can also do selects as easy as inserts. I did write a checker.sh bash script for this :
+```bash
+while true; do
+    psql sampledb -th localhost -c 'select COUNT(*) from checkin;' 2>/dev/null | grep -v -e '^$'
+    sleep 0.5
+done
+```
+
+I did start 2 screen session one for inserts, one for checks and now we have some traffic.
+![postgresql with traffic](/images/postgres-traffic-1.png)
+
+
+
+
+
+
 
