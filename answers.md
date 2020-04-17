@@ -316,20 +316,20 @@ INSERT 0 1
 INSERT 0 1
 ^C
 ```
-Now we have some insert traffic on sampledb. But we can also do selects as easy as inserts. I did write a [checker.sh](https://github.com/LutzLange/hiring-engineers/blob/master/bash-skripts/checker.sh) bash script for this :
+Now we have some insert traffic on sampledb. But we can also do <b>SELECTS</b> as easy as inserts. I did write a [checker.sh](https://github.com/LutzLange/hiring-engineers/blob/master/bash-skripts/checker.sh) bash script for this :
 ```bash
 while true; do
     psql sampledb -th localhost -c 'select COUNT(*) from checkin;' 2>/dev/null | grep -v -e '^$'
     sleep 0.5
 done
 ```
-I did start 2 screen session one for inserts, one for checks and now we have some traffic.
+I used screen session one for inserts.sh and one for checkers.sh and now we have some traffic.
 ![postgresql with traffic](/images/postgres-traffic-1.png)
 
 Looking at the last 15 min of PostgreSQL Rows Returned shows that the number is going up and up. This will strain resources eventually. 
 ![postgresql returned rows going up](/images/postgres-traffic-increasing.png)
 
-This is why I needed a final script [delayed_clear.sh](https://github.com/LutzLange/hiring-engineers/blob/master/bash-skripts/delayed_clear.sh) that clears the checkin table in reqular intervals :
+Let's clear the database from time to time. I wrote a final script [delayed_clear.sh](https://github.com/LutzLange/hiring-engineers/blob/master/bash-skripts/delayed_clear.sh) that clears the checkin table in reqular intervals :
 ```bash
 while true; do
   sleep 600
