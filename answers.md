@@ -623,7 +623,9 @@ I did extend my board to include trace.fask.request.hits :
 
 ![Dashboard with Trace data](images/board-with-trace-graph.png)
 
-# Something more interesting
+# Final Question
+
+I did look at a virtual machine and a classic database in this excercise. This feels a bit old fashioned. Most companies are looking at or are implementing Kubernetes and Containerized services. Microservices Infrastructures and DevOps processes are en vogue to speed up App Delivery and there is a trend to use Public Cloud instead of local Datacenters. What I want to look at is how DataDog fells in this environment. 
 
 DevOps, Containers and Kubernetes are domiating the New Stack. So lets take a quick look at that. 
 
