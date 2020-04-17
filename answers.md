@@ -466,7 +466,7 @@ I did set up a Slack Integration and Datadog successfully pushed the message thr
 
 ## Bonus Queston : What is the Anomaly graph displaying?
 
-I found a good explanation in the [documentation](https://docs.datadoghq.com/monitors/monitor_types/anomaly/)
+I found a good explanation in the [documentation](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) :
 
 "Anomaly detection is an algorithmic feature that identifies when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard to monitor with threshold-based alerting."
 
@@ -474,7 +474,7 @@ I found a good explanation in the [documentation](https://docs.datadoghq.com/mon
 
 I used the [Documentation on Notifications to built the Monitor](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert).
 
-Using templates vars in the subject line of a monitor is not ideal. The interpretation work for alerts, but the subject line gets used to name the Monitor as well. This makes for hard to read Monitor names. Also Downtime messages are difficult to read with these VARS still in :
+Using templates vars in the subject line of a monitor is not ideal. The interpretation works for alerts, but the subject line gets used to name the Monitor. This makes it hard to read monitor names. Also downtime messages are difficult to read with these VARS still in :
 
 On Slack :
 
@@ -491,7 +491,7 @@ The Alert Mails and Messages are fine though :
 
 # APM
 
-First step is to get the Flask Demo App up and running
+I'm using the example flask python app here. First step is to get the Flask Demo App up and running
 
 ```bash
 mkdir ~/bin
@@ -508,14 +508,14 @@ sudo dnf install python3-flask.noarch -y
 2020-04-16 20:02:08,333 - werkzeug - INFO - 127.0.0.1 - - [16/Apr/2020 20:02:08] "GET / HTTP/1.1" 200 -
 ```
 
-Localhost access worked but I could not get to the service from the Host System. Iptables was identified as blocking the access. I used the following commands to change this and allow access. The Fedora default Firewall is setup to use the iptables state module..
+Localhost access worked, but I could not get to the service from the host system. Iptables was identified as blocking the access. I used the following commands to allow access. Fedoras default firewall is setup to use the iptables state module..
 
 ```bash
 iptables -nvL --line-numbers
 iptables -A IN_FedoraServer_allow -p tcp --dport 5050 -m state --state NEW -j ACCEPT
 ```
 
-After this Access was possible from the Host System as well.
+Now access was possible from the host system as well.
 
 ```bash
 [lutz@socke hiring-engineers]$ curl http://f31:5050/
@@ -524,7 +524,7 @@ Entrypoint to the Application
 
 ## Activating Tracing
 
-Dynatrace Agents from version 6 on have APM active per default.
+Dynatrace Agents from version 6 on have APM active per default. Next up is the installing the dynatrace python tracer :
 
 ```bash
 [root@f31 ~]# pip install ddtrace
@@ -614,19 +614,27 @@ And this is what it looks like in the [live trail](https://app.datadoghq.eu/apm/
 
 ![flask live trail](images/live-trail.png)
 
+Here comes the service view :
+
 ![flask_service](images/flash-service.png)
+
+And now the request view :
 
 ![flask_requests](images/flask-requests.png)
 
 ## Dashboard with APM and Infrastructure Metrics
 
-I did extend [my board](https://app.datadoghq.eu/dashboard/td4-pbd-abz/myboard-with-bars?from_ts=1587098905529&live=true&to_ts=1587113305529) to include trace.fask.request.hits :
+I did extend [my board](https://app.datadoghq.eu/dashboard/td4-pbd-abz/myboard-with-bars?from_ts=1587098905529&live=false&to_ts=1587113305529) to include trace.fask.request.hits :
 
 ![Dashboard with Trace data](images/board-with-trace-graph.png)
 
+## Bonus Question 
+ 
+[As the Documentation states](https://docs.datadoghq.com/tracing/visualization/resource/#pagetitle)) "A resource is a particular action for a given service (typically an individual endpoint or query)." A service can have multiple essources.
+
 # Final Question
 
-I did look at a virtual machine and a classic database in this excercise. This feels a bit old fashioned. Most companies are looking at or are implementing Kubernetes and Containerized services. Microservices Infrastructures and DevOps processes are en vogue to speed up App Delivery and there is a trend to use Public Cloud instead of local Datacenters. What I want to look at is how DataDog fells in this environment. 
+I did look at a virtual machine and a classic database in this excercise. This feels a bit old fashioned. Most companies are contemplating using or are using Kubernetes and Containerized services. Microservices Infrastructures and DevOps processes are en vogue to speed up app delivery and there is a trend to use Public Cloud instead of local Datacenters. What I want to look at is how DataDog feels in this environment. 
 
 DevOps, Containers and Kubernetes are domiating the New Stack. So lets take a quick look at that. 
 
