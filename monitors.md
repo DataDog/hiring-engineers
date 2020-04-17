@@ -6,7 +6,7 @@ Monitors are your gateway to making the metrics about your infrastructure action
 
 We'll start by navigating to the Monitor screen by going to `Manage Monitors`:
 
-![Manage Monitors](./new_monitor)
+![Manage Monitors](./new_monitor.png)
 
 At the top right you'll see a big blue `New Monitor` button.* Go ahead and click that to go to the Monitor Selection page. There's a whole menagerie of [Monitor types](https://docs.datadoghq.com/monitors/) to choose from but I'll focus on the Metric Monitor. Go ahead and select the Metric monitor to start creating an alert.
 
