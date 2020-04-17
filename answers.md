@@ -664,6 +664,8 @@ gke-hipstercluster-default-pool-ec086288-n6rq   Ready    <none>   2m3s   v1.14.1
 gke-hipstercluster-default-pool-ec086288-nj3j   Ready    <none>   2m6s   v1.14.10-gke.27
 ```
 
+## Install Helm
+
 Next up we install helm locally and use helm to deploy the datadog agent.
 
 ```bash
@@ -677,6 +679,8 @@ linux-amd64/LICENSE
 [lutz@socke testdir]$ helm version
 version.BuildInfo{Version:"v3.2.0-rc.1", GitCommit:"7bffac813db894e06d17bac91d14ea819b5c2310", GitTreeState:"clean", GoVersion:"go1.13.10"}
 ```
+
+## Deploy the Datadog Agent
 
 Now that we got helm 3.2 we move on to deploying the Datadog Agent on  to the GKE cluster :
 
@@ -726,5 +730,59 @@ datadog-agent-rs7cz                                 3/3     Running   0         
 datadog-agent-vz974                                 3/3     Running   0          3m39s
 ```
 
+The Infrastructure Host Maps looks more interesting now :
 
+![Infrastructure with Kubernetes](images/host-map-with-kube.png)
+
+## Lets get the Hipster Shop up and running
+
+I did for the Google Hipster Shop and did a local clone :
+
+```bash
+$ cd ~/git
+$ git clone https://github.com/LutzLange/microservices-demo.git
+$ cd microservices-demo
+```
+The Hipster Shop comes with skaffold as a build automation tool. Let first deploy the shop as is to see if everything works fine.
+
+```bash
+$ kubectl create namespace hipstershop
+$ skaffold run -n hipstershop --default-repo=gcr.io/[Project-ID]
+```
+For this to work, a local Docker Daemon has to run and all the required build tools need to be installed as well. It takes time and space and a fast enough Internet connection as the images that are built are pushed into the Google Registry. It took ~20 min for me.
+
+Lets check if the shop is up and running :
+
+```bash
+[lutz@socke microservices-demo]$ kubectl get pods -n hipstershop
+NAME                                     READY   STATUS    RESTARTS   AGE
+adservice-8575676798-xxz82               1/1     Running   0          8m57s
+cartservice-746d8b99b6-g88xs             1/1     Running   2          8m56s
+checkoutservice-5dd747f779-cmt7x         1/1     Running   0          8m55s
+currencyservice-578bd86d58-fbc6m         1/1     Running   0          8m54s
+emailservice-5d589cf847-wstt6            1/1     Running   0          8m53s
+frontend-745bfd854b-2964q                1/1     Running   0          8m51s
+loadgenerator-7659d55875-tj886           1/1     Running   3          8m50s
+paymentservice-84cddbdbfd-hqznt          1/1     Running   0          8m49s
+productcatalogservice-6c7cf995f-cj54t    1/1     Running   0          8m48s
+recommendationservice-597cbd7c88-qcrpx   1/1     Running   0          8m47s
+redis-cart-6b4747985c-lww55              1/1     Running   0          8m46s
+shippingservice-7d698979b8-5kwcw         1/1     Running   0          8m45s
+```
+
+This looks good, lets look up the External IP :
+
+```bash
+$ kubectl get service frontend-external -n hipstershop
+NAME                TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)        AGE
+frontend-external   LoadBalancer   10.67.246.5   35.224.29.184   80:31311/TCP   10m
+```
+
+And now we can call the shop with the browser : 
+
+![Hipster Shop](images/hipster-shop.png)
+
+## Instrument Google Hipster Shop to be traced by Datadog
+
+There is a big list of microservices involved in Hipster Shop and it would be too considerable effort to instrument them all. I'll stick to the frontend service for this excercise.
 
