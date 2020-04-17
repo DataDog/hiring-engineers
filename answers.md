@@ -8,7 +8,7 @@ https://guides.github.com/features/mastering-markdown/
 
 ## Collecting Metrics:
 
-1) Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+**1) Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
 
 ```
 #inside /etc/datadog-agent.yaml
@@ -20,8 +20,7 @@ tags:
 ![image screenshot](datadog_image1.png)
 
 
-
-2) Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+**2) Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
 
 ```
 #install c*
@@ -36,30 +35,58 @@ sudo apt-get install cassandra
 ![image screenshot](datadog_image2.png)
 
 
+**3)Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.  Change your check's collection interval so that it only submits the metric once every 45 seconds.**
+
+```
+cat /etc/datadog-agent/checks.d/custom_int_check.py
+import random
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('great_app.chris_metric', random.randint(0,1000), tags=['TAG_KEY:TAG_VALUE'])
+
+cat /etc/datadog-agent/conf.d/custom_int_check.yaml
+init_config:
+
+instances:
+  - host: datadog
+  - min_collection_interval: 45
+
+sudo chmod 755 /etc/datadog-agent/checks.d/custom_int_check.py
+```
+
+![image screenshot](datadog_image3.png)
 
 
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+**Bonus Question Can you change the collection interval without modifying the Python check file you created?**
 
-Change your check's collection interval so that it only submits the metric once every 45 seconds.
-
-Bonus Question Can you change the collection interval without modifying the Python check file you created?
-
-
+(TO DO STILL)
 
 
 ## Visualizing Data:
-Utilize the Datadog API to create a Timeboard that contains:
 
-Your custom metric scoped over your host.
-Any metric from the Integration on your Database with the anomaly function applied.
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+**1) Utilize the Datadog API to create a Timeboard that contains: **
+
+* Your custom metric scoped over your host.
+* Any metric from the Integration on your Database with the anomaly function applied.
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+* Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-Set the Timeboard's timeframe to the past 5 minutes
-Take a snapshot of this graph and use the @ notation to send it to yourself.
-Bonus Question: What is the Anomaly graph displaying?
+* Set the Timeboard's timeframe to the past 5 minutes
+* Take a snapshot of this graph and use the @ notation to send it to yourself.
+* Bonus Question: What is the Anomaly graph displaying?
 
 
 
