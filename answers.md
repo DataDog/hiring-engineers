@@ -821,7 +821,11 @@ I'll refer to the git commit.
 
 As we are running on Kubernetes, each node gets one DataDog Agent. It is best if workloads talk to the Agent that they are deployed on. 
 
+## Success 
 
+We can now see the Hipster Shop as a Service as we are getting [traces from the frontend](https://app.datadoghq.eu/apm/service/hipstershop/http.request?end=1587125629679&env=none&paused=false&start=1587124729679).
+
+![Screeshopt HipsterShop Traces](images/Hipster-Shop-Traces.png)
 
 
 
