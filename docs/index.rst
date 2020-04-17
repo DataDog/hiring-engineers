@@ -10,7 +10,7 @@ Welcome to Zero to DataDog's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-	index
+	answers
 	custom_check
 
 
