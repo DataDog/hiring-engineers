@@ -695,9 +695,36 @@ Lets look for the changes that I did :
 [lutz@socke datadog-agent]$ egrep -v '^$|^ *#' datadog-values.yaml > /tmp/clean-datadog-values.yaml
 [lutz@socke datadog-agent]$ gvimdiff -c 'set diffopt=filler,context:1' /tmp/clean-values.yaml /tmp/clean-datadog-values.yaml
 ```
-[datadog-values.yaml changes](images/datadog-values-diff.png)
+![datadog-values.yaml changes](images/datadog-values-diff.png)
 
+Now lets deploy the Datadog agent :
 
+```bash
+lutz@socke datadog-agent]$ helm install datadog-agent -f datadog-values.yaml  --set datadog.apiKey=c34e0ee156dd06bf503762cde2a7fe13 stable/datadog
+NAME: datadog-agent
+LAST DEPLOYED: Fri Apr 17 11:41:19 2020
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+Datadog agents are spinning up on each node in your cluster. After a few
+minutes, you should see your agents starting in your event stream:
+    https://app.datadoghq.com/event/stream
+The Datadog Agent is listening on port 8126 for APM service.
+```
+
+Lets check if the pods are up : 
+
+```bash
+[lutz@socke hiring-engineers]$ kubectl get pods
+NAME                                                READY   STATUS    RESTARTS   AGE
+datadog-agent-f6ql8                                 3/3     Running   0          3m39s
+datadog-agent-gcdf5                                 3/3     Running   0          3m39s
+datadog-agent-kube-state-metrics-588b774bdd-xhprk   1/1     Running   0          3m39s
+datadog-agent-rs7cz                                 3/3     Running   0          3m39s
+datadog-agent-vz974                                 3/3     Running   0          3m39s
+```
 
 
 
