@@ -486,6 +486,7 @@ Via Mail :
 
 The Alert Mails and Messages are fine though :
 
+![Alert](images/Alert-Message.png)
 
 
 # APM
@@ -815,6 +816,10 @@ on these projects, if they happen to be transitive dependencies.
 The message above indicated that we still have to do some code changes for this to work. The dep tool is verifying that all packages listed in the toml file are actually used / imported.
 
 I'll refer to the git commit.
+
+## Configure the application pod to get the right DD Agent IP
+
+As we are running on Kubernetes, each node gets one DataDog Agent. It is best if workloads talk to the Agent that they are deployed on. 
 
 
 
