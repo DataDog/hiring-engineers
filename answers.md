@@ -829,5 +829,7 @@ We can now see the Hipster Shop as a Service as we are getting [traces from the 
 
 ![Screeshopt HipsterShop Traces](images/Hipster-Shop-Traces.png)
 
+The instrumented ( partially instrumented ) Hipster Shop can be found here : [https://github.com/LutzLange/microservices-demo/tree/datadog](https://github.com/LutzLange/microservices-demo/tree/datadog)
+
 
 
