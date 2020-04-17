@@ -75,7 +75,8 @@ sudo chmod 755 /etc/datadog-agent/checks.d/custom_int_check.py
 
 ## Visualizing Data:
 
-**1) Utilize the Datadog API to create a Timeboard that contains: **
+
+**1) Utilize the Datadog API to create a Timeboard that contains:**
 
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
