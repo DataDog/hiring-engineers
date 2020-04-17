@@ -619,7 +619,7 @@ And this is what it looks like in the [live trail](https://app.datadoghq.eu/apm/
 
 ## Dashboard with APM and Infrastructure Metrics
 
-I did extend my board to include trace.fask.request.hits :
+I did extend [my board](https://app.datadoghq.eu/dashboard/td4-pbd-abz/myboard-with-bars?from_ts=1587098905529&live=true&to_ts=1587113305529) to include trace.fask.request.hits :
 
 ![Dashboard with Trace data](images/board-with-trace-graph.png)
 
@@ -629,14 +629,73 @@ I did look at a virtual machine and a classic database in this excercise. This f
 
 DevOps, Containers and Kubernetes are domiating the New Stack. So lets take a quick look at that. 
 
-* Setup GKE Kubernetes Cluster
+* Setup GKE Cluster
 * Install Helm
 * Install Datadog Agent
 * Deploy the Google Hipster Shop (microservices-demo) 
 * Instrument Google Hipster Shop to be traced by Datadog.
 
+## Prerequisites
 
+* Install Skaffold https://skaffold.dev/docs/getting-started/#installing-skaffold
+* Install Google Cloud SDK 
+* Install docker-ce and docker-ce-cli > 19.03 and start the daemon
+* I do recommended Goland IDE
 
+## Setup GKE Cluster
+
+Can be done easily from the UI. But CLI works as well :
+
+```bash
+$ gcloud auth login
+$ gcloud services enable container.googleapis.com
+$ gcloud container clusters create hipstercluster --machine-type=n1-standard-4 --enable-autoscaling --min-nodes=3 --max-nodes=10 --num-nodes=5 --no-enable-ip-alias --zone=us-central1-a
+```
+This did setup a 5 node cluster on GKE. We can check on the nodes with kubectl. :
+
+```bash
+$ kubectl get nodes 
+[lutz@socke microservices-demo]$ kubectl get nodes 
+NAME                                            STATUS   ROLES    AGE    VERSION
+gke-hipstercluster-default-pool-ec086288-1drk   Ready    <none>   2m4s   v1.14.10-gke.27
+gke-hipstercluster-default-pool-ec086288-b7t3   Ready    <none>   2m6s   v1.14.10-gke.27
+gke-hipstercluster-default-pool-ec086288-cw1l   Ready    <none>   2m6s   v1.14.10-gke.27
+gke-hipstercluster-default-pool-ec086288-n6rq   Ready    <none>   2m3s   v1.14.10-gke.27
+gke-hipstercluster-default-pool-ec086288-nj3j   Ready    <none>   2m6s   v1.14.10-gke.27
+```
+
+Next up we install helm locally and use helm to deploy the datadog agent.
+
+```bash
+[lutz@socke ~]$ cd testdir/
+[lutz@socke testdir]$ tar xvzf ~/Downloads/helm-v3.2.0-rc.1-linux-amd64.tar.gz 
+linux-amd64/
+linux-amd64/README.md
+linux-amd64/helm
+linux-amd64/LICENSE
+[lutz@socke testdir]$ sudo cp ~lutz/testdir/linux-amd64/helm /usr/local/bin/
+[lutz@socke testdir]$ helm version
+version.BuildInfo{Version:"v3.2.0-rc.1", GitCommit:"7bffac813db894e06d17bac91d14ea819b5c2310", GitTreeState:"clean", GoVersion:"go1.13.10"}
+```
+
+Now that we got helm 3.2 we move on to deploying the Datadog Agent on  to the GKE cluster :
+
+[Documentation on Datadog and Kubernetes deployemnt with helm](https://docs.datadoghq.com/agent/kubernetes/?tab=helm).
+
+```bash
+$ helm repo add stable https://kubernetes-charts.storage.googleapis.com/ && helm repo update
+$ wget https://raw.githubusercontent.com/helm/charts/master/stable/datadog/values.yaml
+$ cp values.yaml datadog-values.yaml
+$ vi datadog-values.yaml
+```
+Lets look for the changes that I did :
+
+```bash
+[lutz@socke datadog-agent]$ egrep -v '^$|^ *#' values.yaml > /tmp/clean-values.yaml
+[lutz@socke datadog-agent]$ egrep -v '^$|^ *#' datadog-values.yaml > /tmp/clean-datadog-values.yaml
+[lutz@socke datadog-agent]$ gvimdiff -c 'set diffopt=filler,context:1' /tmp/clean-values.yaml /tmp/clean-datadog-values.yaml
+```
+[datadog-values.yaml changes](images/datadog-values-diff.png)
 
 
 
