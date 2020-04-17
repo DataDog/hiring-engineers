@@ -820,6 +820,7 @@ I'll refer to the git commit.
 ## Configure the application pod to get the right DD Agent IP
 
 As we are running on Kubernetes, each node gets one DataDog Agent. It is best if workloads talk to the Agent that they are deployed on. 
+![commit](https://github.com/LutzLange/microservices-demo/commit/adcb2f6e3796223b0994d5b98d34d9f78cc35dc3)
 
 ## Success 
 
