@@ -476,6 +476,16 @@ I used the [Documentation on Notifications to built the Monitor](https://docs.da
 
 Using templates vars in the subject line of a Monitor is not a good idea. They do work for the actual alerts and are replaced with values. But this line as also used to name the Monitor. It will get a very awkward name that is difficult to handle. Also Downtime messages look very wierd :
 
+On Slack :
+
+![Downtime over on Slack](images/slack-downtime-end-odd-name.png)
+
+Via Mail :
+
+![Downtime over via E-Mail](images/mail-downtime-end-odd-name.png)
+
+The Alert Mails are fine though :
+
 
 
 # APM
