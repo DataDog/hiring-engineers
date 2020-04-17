@@ -786,3 +786,37 @@ And now we can call the shop with the browser :
 
 There is a big list of microservices involved in Hipster Shop and it would be too considerable effort to instrument them all. I'll stick to the frontend service for this excercise.
 
+We need to include the DataDog Google Tracer
+```bash
+[lutz@socke microservices-demo]$ cd src/frontend
+[lutz@socke frontend]$ vi Gopkg.toml
+...
+[[constraint]]
+  name = "gopkg.in/DataDog/dd-trace-go.v1"
+  version = "v1.23.1"
+...
+[lutz@socke frontend] cd ../..
+[lutz@socke microservices-demo]$ export GOPATH=$(pwd)
+[lutz@socke microservices-demo]$ cd src/frontend
+[lutz@socke frontend]$ dep ensure
+Warning: the following project(s) have [[constraint]] stanzas in Gopkg.toml:
+
+  ✗  gopkg.in/DataDog/dd-trace-go.v1
+
+However, these projects are not direct dependencies of the current project:
+they are not imported in any .go files, nor are they in the 'required' list in
+Gopkg.toml. Dep only applies [[constraint]] rules to direct dependencies, so
+these rules will have no effect.
+
+Either import/require packages from these projects so that they become direct
+dependencies, or convert each [[constraint]] to an [[override]] to enforce rules
+on these projects, if they happen to be transitive dependencies.
+```
+The message above indicated that we still have to do some code changes for this to work. The dep tool is verifying that all packages listed in the toml file are actually used / imported.
+
+I'll refer to the git commit.
+
+
+
+
+
