@@ -12,7 +12,7 @@ At the top right you'll see a big blue `New Monitor` button.* Go ahead and click
 
 ![Metric Monitor](./metric_monitor.png)
 
-This will bring you to the alert page where you can configure your alert. Let's walk through each part. First we need to choose the detection method. For our goals of alerting and warning above certain values, we can just use the basic `Threshold Alert`. Here we'll set the `Alert threshold` to `800` and the `Warning threshold` to `500`. And before we leave this part of the page, make sure to set the drop down setting for missing data to `Notify` (the default is `Do not notify`) and set the lookback window to 10 minutes
+This will bring you to the alert page where you can configure your alert. Let's walk through each part. First we need to choose the detection method. For our goals of alerting and warning above certain values, we can just use the basic `Threshold Alert`. Here we'll set the `Alert threshold` to `800` and the `Warning threshold` to `500`. And before we leave this part of the page, make sure to set the drop down setting for missing data to `Notify` (the default is `Do not notify`) and set the lookback window to 10 minutes.
 
 ![step one](./detection_method.png)
 
