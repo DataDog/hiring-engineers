@@ -815,12 +815,13 @@ on these projects, if they happen to be transitive dependencies.
 ```
 The message above indicated that we still have to do some code changes for this to work. The dep tool is verifying that all packages listed in the toml file are actually used / imported.
 
-I'll refer to the git commit.
+I'll refer to the [git commit](https://github.com/LutzLange/microservices-demo/commit/a2d9b42be37a26f49bfb1239b77623e1b4227026).
+
+It took a while to figure out how to do it, as the documentation was refering to something called "muxrouter" but that was not defined anywhere. The trick was to comment out the original gorilla/mux include and use the datadog mux instead.
 
 ## Configure the application pod to get the right DD Agent IP
 
-As we are running on Kubernetes, each node gets one DataDog Agent. It is best if workloads talk to the Agent that they are deployed on. 
-![commit](https://github.com/LutzLange/microservices-demo/commit/adcb2f6e3796223b0994d5b98d34d9f78cc35dc3)
+As we are running on Kubernetes, each node gets one DataDog Agent. It is best if workloads talk to the Agent that they are deployed on. [Here is the link to the changes for the frontend.yml](https://github.com/LutzLange/microservices-demo/commit/adcb2f6e3796223b0994d5b98d34d9f78cc35dc3)
 
 ## Success 
 
