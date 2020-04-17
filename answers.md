@@ -87,10 +87,104 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
-* Bonus Question: What is the Anomaly graph displaying?
 
+![image screenshot](datadog_image4.png)
 
+![image screenshot](datadog_image5.png)
 
+![image screenshot](datadog_image6.png)
+
+**Bonus Question: What is the Anomaly graph displaying?**
+
+The anomly graph uses an algorithm to determine the "normal" range of the given metric, and then provides color indicating when the metric strays from this normal range.
+
+```
+{
+    "title": "Great App Dashboard for SE Exercise",
+    "widgets": [
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "max:great_app.chris_metric{host:datadog}"
+                    }
+                ],
+                "title": "Great App - Chris Metric!"
+            }
+        },
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "max:great_app.chris_metric{host:datadog}.rollup(sum, 3600)"
+                    }
+                ],
+                "title": "Great App - Chris Metric! - Rollup(sum, 3600)"
+            }
+        },       
+       {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(avg:cassandra.db.droppable_tombstone_ratio{*}, 'basic', 0.5)"
+                    }
+                ],
+                "title": "Cassandra Droppable Tombstone Ratio - Anomalies"
+            }
+        },        
+             {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(max:cassandra.latency.75th_percentile{*}, 'basic', 2)"
+                    }
+                ],
+                "title": "Cassandra Client Request Latency 75th - Anomalies"
+            }
+        },
+           {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(max:jvm.thread_count{*}, 'basic', 2)"
+                    }
+                ],
+                "title": "JVM Thread Count - Anomalies"
+            }
+        }
+        
+    ],
+    "layout_type": "ordered",
+    "description": "Chris Dashboard via API",
+    "is_read_only": true,
+    "notify_list": [
+        "chris.gerlt@gmail.com"
+    ],
+    "template_variables": [
+        {
+            "name": "host",
+            "prefix": "host",
+            "default": "<HOSTNAME_1>"
+        }
+    ],
+    "template_variable_presets": [
+        {
+            "name": "Saved views for hostname 2",
+            "template_variables": [
+                {
+                    "name": "host",
+                    "value": "<HOSTNAME_2>"
+                }
+            ]
+        }
+    ]
+}
+```
 
 ## Monitoring Data
 
