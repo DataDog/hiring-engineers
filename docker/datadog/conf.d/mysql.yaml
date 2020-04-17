@@ -1,0 +1,6 @@
+init_config:
+
+instances:
+  - host: mysql
+    port: 3306/tcp
+
