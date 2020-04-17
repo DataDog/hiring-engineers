@@ -10,19 +10,19 @@ We'll start by navigating to the Monitor screen by going to `Manage Monitors`:
 
 At the top right you'll see a big blue `New Monitor` button.* Go ahead and click that to go to the Monitor Selection page. There's a whole menagerie of [Monitor types](https://docs.datadoghq.com/monitors/) to choose from but I'll focus on the Metric Monitor. Go ahead and select the Metric monitor to start creating an alert.
 
-![Metric Monitor](./metric_monitor)
+![Metric Monitor](./metric_monitor.png)
 
 This will bring you to the alert page where you can configure your alert. Let's walk through each part. First we need to choose the detection method. For our goals of alerting and warning above certain values, we can just use the basic `Threshold Alert`. Here we'll set the `Alert threshold` to `800` and the `Warning threshold` to `500`. And before we leave this part of the page, make sure to set the drop down setting for missing data to `Notify` (the default is `Do not notify`) and set the lookback window to 10 minutes
 
-![step one](./detection_method)
+![step one](./detection_method.png)
 
 In the next section (labeled `#4 Say what's happening`) we can define who will be alerted under the various conditions. We'll also send different messages based on whether the monitor is in an Alert, Warning, or in the No Data state and include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state for easy troubleshooting. There are lots of conditional variables to use and you can learn more about the conditional formatting by clicking the question mark next to `Use message template variables`. For now we'll just use the `#is_alert`, `#is_warning` and `#is_no_data` variables.
 
-![step four](./4thstep)
+![step four](./4thstep.png)
 
 And lastly, we can define who will be notified when the alerts (and other states) are triggered.
 
-![set five](./finalstep)
+![set five](./finalstep.png)
 
 
 
