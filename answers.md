@@ -88,69 +88,9 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 ****Timeboard Script:
 
-import os
-from datadog import initialize, api
-
-options = {
-#    'api_key': os.getenv("37474ab2e85b7514a8a41d131ce2b351"),
-#    'app_key': os.getenv("5705503ca76be6ce1100251f93ed6bc86acc9848")
-    'api_key': os.getenv("API_KEY"),
-     'app_key': os.getenv("APP_KEY")
-}
-
-initialize(**options)
-
-custom_metrics_graph = {
-    "title": "Example Graph",
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "avg:example.graph{*}"}
-        ],
-        "viz": "timeseries"
-    }
-}
-anomaly_graph = {
-    "title": "Anomaly Graph",
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "anomalies(avg:postgresql.bgwriter.write_time{*}.as_count(), 'basic', 2)"}
-        ],
-        "viz": "timeseries"
-    }
-}
-custom_rollup_graph = {
-    "title": "Rollup of Example for past hour",
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "avg:example{*}.rollup(sum, 3600)"}
-        ],
-        "viz": "timeseries"
-    }
-}
-title       = "DataDog SE"
-description = "A dashboard for DataDog SE"
-graphs      = []
-
-graphs.append(custom_metrics_graph)
-graphs.append(anomaly_graph)
-graphs.append(custom_rollup_graph)
-
-template_variables = [{
-    "name": "Tim",
-    "prefix": "host",
-    "default": "host:tim-cronin"
-}]
-
-
-read_only = True
-api.Timeboard.create(title=title,
-                     description=description,
-                     graphs=graphs,
-                     template_variables=template_variables,
-                     read_only=read_only)
+![Timeboard 1](/images/timeboard_script1.png)
+![Timeboard 2](/images/timeboard_script2.png)
+![Timeboard 3](/images/timeboard_script3.png)
                      
 Timeboard dashboard: https://app.datadoghq.com/dashboard/wqm-fvz-k3t/datadog-se?from_ts=1587140772834&live=true&to_ts=1587141672834
 
