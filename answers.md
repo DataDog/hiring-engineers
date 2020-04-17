@@ -116,7 +116,7 @@ Now on to configuring the DD Agent to connect to Postgres
 After that I can see postgres showing up in the [datadog infrastructre map](https://app.datadoghq.eu/infrastructure/map?host=19442128&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host) :
 ![Fedora with PostgreSQL](/images/host-with-postgres.png)
 
-And I can also find the [PostgreSQL Dashboard](https://app.datadoghq.eu/dash/integration/58/Postgres%20-%20Metrics?tpl_var_scope=host%3Afedora31.berlin.local&from_ts=1586343656315&to_ts=1586948456315&live=true&tile_size=m) with metrics : 
+And I can also find the [PostgreSQL Dashboard](https://app.datadoghq.eu/dash/integration/58/Postgres%20-%20Metrics?tpl_var_scope=host%3Afedora31.berlin.local&from_ts=1586343656315&to_ts=1586948456315&live=false&tile_size=m) with metrics : 
 ![PostgreSQL Dashboard](images/Postgres-dashboard.png)
 
 Looking at the [host dashboard](https://app.datadoghq.eu/infrastructure?hostname=fedora31.berlin.local), I can also see the disk issue that I mentioned above. :
@@ -223,7 +223,7 @@ Apr 15 13:44:54 f31 agent[885097]: 2020-04-15 13:44:54 CEST | CORE | INFO | (pkg
 
 ```
 
-Now I can find the my_metric in the [Data Dog Metrics Section](https://app.datadoghq.eu/metric/explorer?from_ts=1586950778833&to_ts=1586951678833&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my_metric&exp_agg=avg&exp_row_type=metric)
+Now I can find the my_metric in the [Data Dog Metrics Section](https://app.datadoghq.eu/metric/explorer?from_ts=1586950778833&to_ts=1586951678833&live=false&page=0&is_auto=false&tile_size=m&exp_metric=my_metric&exp_agg=avg&exp_row_type=metric)
 ![my_metric](/images/my_metrics.png)
 
 ## Bonus Question
@@ -610,7 +610,7 @@ As you can see above a trace has been recorded. Lets fire more requests :
 while true; do sleep $(echo "scale=2; $RANDOM/10000" | bc); curl http://f31:5050/ &>/dev/null; done
 ```
 
-And this is what it looks like in the [live trail](https://app.datadoghq.eu/apm/livetail?from_ts=1587109640066&index=apm-search&live=true&query=service%3Aflask+env%3Anone+operation_name%3Aflask.request&to_ts=1587110540066) : 
+And this is what it looks like in the [live trail](https://app.datadoghq.eu/apm/livetail?from_ts=1587109640066&index=apm-search&live=false&query=service%3Aflask+env%3Anone+operation_name%3Aflask.request&to_ts=1587110540066) : 
 
 ![flask live trail](images/live-trail.png)
 
@@ -630,7 +630,7 @@ I did extend [my board](https://app.datadoghq.eu/dashboard/td4-pbd-abz/myboard-w
 
 ## Bonus Question 
  
-[As the Documentation states](https://docs.datadoghq.com/tracing/visualization/resource/#pagetitle)) "A resource is a particular action for a given service (typically an individual endpoint or query)." A service can have multiple essources.
+[As the Documentation states](https://docs.datadoghq.com/tracing/visualization/resource/#pagetitle)) "A <b>resource<\b> is a particular action for a given service (typically an individual endpoint or query)." A <b>service<\b> can have multiple ressources.
 
 # Final Question
 
@@ -745,14 +745,14 @@ The Infrastructure Host Maps looks more interesting now :
 
 ## Lets get the Hipster Shop up and running
 
-I did for the Google Hipster Shop and did a local clone :
+I forked the [Google Hipster Shop](https://github.com/GoogleCloudPlatform/microservices-demo) and did a local clone :
 
 ```bash
 $ cd ~/git
 $ git clone https://github.com/LutzLange/microservices-demo.git
 $ cd microservices-demo
 ```
-The Hipster Shop comes with skaffold as a build automation tool. Let first deploy the shop as is to see if everything works fine.
+The Hipster Shop comes with skaffold as a build automation tool. Let's first deploy the shop as is to see if everything works fine.
 
 ```bash
 $ kubectl create namespace hipstershop
@@ -793,9 +793,9 @@ And now we can call the shop with the browser :
 
 ## Instrument Google Hipster Shop to be traced by Datadog
 
-There is a big list of microservices involved in Hipster Shop and it would be too considerable effort to instrument them all. I'll stick to the frontend service for this excercise.
+There is a big list of microservices involved in Hipster Shop and it would take long to instrument them all. I'll stick to the frontend service for this excercise.
 
-We need to include the DataDog Google Tracer
+We need to include the DataDog Go Tracer
 ```bash
 [lutz@socke microservices-demo]$ cd src/frontend
 [lutz@socke frontend]$ vi Gopkg.toml
@@ -821,11 +821,11 @@ Either import/require packages from these projects so that they become direct
 dependencies, or convert each [[constraint]] to an [[override]] to enforce rules
 on these projects, if they happen to be transitive dependencies.
 ```
-The message above indicated that we still have to do some code changes for this to work. The dep tool is verifying that all packages listed in the toml file are actually used / imported.
+The message above indicated that we still have to change code changes for this to work. The dep tool is verifying that all packages listed in the toml file are actually used / imported.
 
-I'll refer to the [git commit](https://github.com/LutzLange/microservices-demo/commit/a2d9b42be37a26f49bfb1239b77623e1b4227026).
+I'll refer to the [git commit](https://github.com/LutzLange/microservices-demo/commit/a2d9b42be37a26f49bfb1239b77623e1b4227026). The changes in src/frontend/main.go are the ones that were required for this to work.
 
-It took a while to figure out how to do it, as the documentation was refering to something called "muxrouter" but that was not defined anywhere. The trick was to comment out the original gorilla/mux include and use the datadog mux instead.
+It took a while to figure out how to do it, as [the documentation example](https://godoc.org/gopkg.in/DataDog/dd-trace-go.v1/contrib/gorilla/mux) was refering to something called "muxrouter" but that was not defined anywhere. The trick was to comment out the original gorilla/mux include and use the datadog mux instead.
 
 ## Configure the application pod to get the right DD Agent IP
 
