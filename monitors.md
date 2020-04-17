@@ -16,6 +16,8 @@ This will bring you to the alert page where you can configure your alert. Let's 
 
 ![step one](./detection_method.png)
 
+![step two and three](./define_alert.png)
+
 In the next section (labeled `#4 Say what's happening`) we can define who will be alerted under the various conditions. We'll also send different messages based on whether the monitor is in an Alert, Warning, or in the No Data state and include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state for easy troubleshooting. There are lots of conditional variables to use and you can learn more about the conditional formatting by clicking the question mark next to `Use message template variables`. For now we'll just use the `#is_alert`, `#is_warning` and `#is_no_data` variables.
 
 ![step four](./4thstep.png)
