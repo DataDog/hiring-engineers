@@ -26,7 +26,46 @@ And lastly, we can define who will be notified when the alerts (and other states
 
 ![set five](./finalstep.png)
 
+Before we go let's test our notifications to see what they look like when they're triggered. At the very bottom of the Monitor page, before you `Save` or `Cancel`, you can click the `Test Notifications` button that will bring up a prompt asking you for which states you want to have sent out.
+
+![Test](./test_notifications)
+
+After you click the `Run Test` button, go to your inbox associated with the email address you configured for your account. You should see somnething like the screenshots below.
+
+Triggered Alert:
+
+![Alert](./test_alert.png)
+
+Triggered Warning:
+
+![Warn](./test_warn.png)
+
+Triggered No Data:
+
+![No Data](./test_nodata.png)
+
+One last bonus tip: since this alert is goign to be pretty noisy (and literally random) let's set up some scheduled downtimes for 7pm to 9am daily on M-F and all day on Sat-Sun. You may have already noticed that the place to schedule the downtime for your alerts is in the same place that you set the alerts up, under Monitor.
+
+![scheduled](./downtime.png)
+
+Once you get into the downtime scheduling page, you'll set up two downtimes taht look like the below:
+
+Weekday Downtime:
+
+![weekday](./weekday_downtime.png)
+
+Weekend Downtime:
+
+![weekend](./weekend_downtime.png)
+
+Once you schedule your downtime, you should get an email confirmation that looks like the below:
+
+![Confirmation](./confirmation.png)
+
 
 
 
 *The astute reader will notice that you can go directly to the New Monitor page by selecting 'New Monitor' from the drop down/pull out menu instead 'Manage Monitor'. You get extra points for saving a click.
+
+
+[Previous: Datadog APIs](./api_page.md)  |  [Next: APM](./apm.md) 
