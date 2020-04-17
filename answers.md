@@ -8,13 +8,35 @@ https://guides.github.com/features/mastering-markdown/
 
 ## Collecting Metrics:
 
-Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+1) Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+```
+#inside /etc/datadog-agent.yaml
+tags:
+  - env:vagrant-vm
+  - created-by:chris-gerlt
+```
 
 ![image screenshot](datadog_image1.png)
 
 
 
-Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+2) Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+```
+#install c*
+echo "deb https://downloads.apache.org/cassandra/debian 36x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+
+curl https://downloads.apache.org/cassandra/KEYS | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install cassandra
+#set the listen_address and seeds to 192.168.50.50 in cassandra.yaml
+```
+
+![image screenshot](datadog_image2.png)
+
+
+
 
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
