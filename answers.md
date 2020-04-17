@@ -70,8 +70,13 @@ sudo chmod 755 /etc/datadog-agent/checks.d/custom_int_check.py
 
 **Bonus Question Can you change the collection interval without modifying the Python check file you created?**
 
-(TO DO STILL)
+This can be done by changing the global default to another value.  The default is located below.
 
+```
+vagrant@datadog:~$ sudo cat /etc/datadog-agent/datadog.yaml | grep jmx_check_period
+## @param jmx_check_period - integer - optional - default: 15000
+# jmx_check_period: 15000
+```
 
 ## Visualizing Data:
 
@@ -211,7 +216,15 @@ One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
+![image screenshot](datadog_image7.png)
 
+![image screenshot](datadog_image8.png)
+
+![image screenshot](datadog_image9.png)
+
+![image screenshot](datadog_image10.png)
+
+![image screenshot](datadog_image11.png)
 
 
 ## Collecting APM Data:
