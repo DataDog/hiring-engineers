@@ -609,13 +609,29 @@ As you can see above a trace has been recorded. Lets fire more requests :
 while true; do sleep $(echo "scale=2; $RANDOM/10000" | bc); curl http://f31:5050/ &>/dev/null; done
 ```
 
-And this is what it looks like in the live trail : 
+And this is what it looks like in the [live trail](https://app.datadoghq.eu/apm/livetail?from_ts=1587109640066&index=apm-search&live=true&query=service%3Aflask+env%3Anone+operation_name%3Aflask.request&to_ts=1587110540066) : 
 
 ![flask live trail](images/live-trail.png)
 
+![flask_service](images/flash-service.png)
 
+![flask_requests](images/flask-requests.png)
 
+## Dashboard with APM and Infrastructure Metrics
 
+I did extend my board to include trace.fask.request.hits :
+
+![Dashboard with Trace data](images/board-with-trace-graph.png)
+
+# Something more interesting
+
+DevOps, Containers and Kubernetes are domiating the New Stack. So lets take a quick look at that. 
+
+* Setup GKE Kubernetes Cluster
+* Install Helm
+* Install Datadog Agent
+* Deploy the Google Hipster Shop (microservices-demo) 
+* Instrument Google Hipster Shop to be traced by Datadog.
 
 
 
