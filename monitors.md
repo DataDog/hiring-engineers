@@ -48,7 +48,7 @@ One last bonus tip: since this alert is goign to be pretty noisy (and literally 
 
 ![scheduled](./downtime.png)
 
-Once you get into the downtime scheduling page, you'll set up two downtimes taht look like the below:
+Once you get into the downtime scheduling page, you'll set up two downtimes that look like the below:
 
 Weekday Downtime:
 
@@ -68,4 +68,4 @@ Once you schedule your downtime, you should get an email confirmation that looks
 *The astute reader will notice that you can go directly to the New Monitor page by selecting 'New Monitor' from the drop down/pull out menu instead 'Manage Monitor'. You get extra points for saving a click.
 
 
-[Previous: Datadog APIs](./api_page.md)  |  [Next: APM](./apm.md) 
+[Previous: Datadog APIs](./api_page.md)  |  [Next: Application Performance Monitoring](./apm.md) 
