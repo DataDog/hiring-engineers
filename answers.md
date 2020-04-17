@@ -474,7 +474,7 @@ I found a good explanation in the [documentation](https://docs.datadoghq.com/mon
 
 I used the [Documentation on Notifications to built the Monitor](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert).
 
-Using templates vars in the subject line of a Monitor is not a good idea. They do work for the actual alerts and are replaced with values. But this line as also used to name the Monitor. It will get a very awkward name that is difficult to handle. Also Downtime messages look very wierd :
+Using templates vars in the subject line of a monitor is not ideal. The interpretation work for alerts, but the subject line gets used to name the Monitor as well. This makes for hard to read Monitor names. Also Downtime messages are difficult to read with these VARS still in :
 
 On Slack :
 
@@ -484,7 +484,7 @@ Via Mail :
 
 ![Downtime over via E-Mail](images/mail-downtime-end-odd-name.png)
 
-The Alert Mails are fine though :
+The Alert Mails and Messages are fine though :
 
 
 
@@ -521,7 +521,100 @@ After this Access was possible from the Host System as well.
 Entrypoint to the Application
 ```
 
-Next Step is instrumenting the Application.
+## Activating Tracing
+
+Dynatrace Agents from version 6 on have APM active per default.
+
+```bash
+[root@f31 ~]# pip install ddtrace
+WARNING: Running pip install with root privileges is generally not a good idea. Try `pip install --user` instead.
+Collecting ddtrace
+  Downloading https://files.pythonhosted.org/packages/63/c7/81bbcb44e75f0f828ec7ef49535d5799b5545de27344ef9ab03c70b1bf4e/ddtrace-0.36.1-cp37-cp37m-manylinux2010_x86_64.whl (891kB)
+     |████████████████████████████████| 901kB 1.2MB/s 
+Collecting msgpack>=0.5.0 (from ddtrace)
+  Downloading https://files.pythonhosted.org/packages/d2/9f/5a6805e7e745531da7acc882f9ba4550ffd7d6f05a668a22b385f52741ee/msgpack-1.0.0-cp37-cp37m-manylinux1_x86_64.whl (275kB)
+     |████████████████████████████████| 276kB 15.5MB/s 
+Installing collected packages: msgpack, ddtrace
+Successfully installed ddtrace-0.36.1 msgpack-1.0.0
+```
+
+Now on to starting the fapp with ddtrace-run, and lets see if we can generate a trace.
+
+```bash
+[joe@f31 ~]$ ddtrace-run python3 ./bin/fapp.py
+ * Serving Flask app "fapp" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2020-04-17 09:41:24,007 DEBUG [ddtrace.internal.import_hooks] [import_hooks.py:136] - No hooks registered for module 'termcolor'
+2020-04-17 09:41:24,007 - ddtrace.internal.import_hooks - DEBUG - No hooks registered for module 'termcolor'
+2020-04-17 09:41:24,015 INFO [werkzeug] [_internal.py:88] -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+2020-04-17 09:41:24,015 - werkzeug - INFO -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+2020-04-17 09:41:27,156 DEBUG [ddtrace.tracer] [tracer.py:466] - Updating constant tags ['lang:python', 'lang_interpreter:CPython', 'lang_version:3.7.6', 'tracer_version:0.36.1', 'service:flask']
+2020-04-17 09:41:27,156 - ddtrace.tracer - DEBUG - Updating constant tags ['lang:python', 'lang_interpreter:CPython', 'lang_version:3.7.6', 'tracer_version:0.36.1', 'service:flask']
+2020-04-17 09:41:27,166 DEBUG [ddtrace.tracer] [tracer.py:590] - writing 8 spans (enabled:True)
+2020-04-17 09:41:27,166 - ddtrace.tracer - DEBUG - writing 8 spans (enabled:True)
+2020-04-17 09:41:27,167 DEBUG [ddtrace.tracer] [tracer.py:592] - 
+      name flask.request
+        id 6204824835974983533
+  trace_id 4092179553333047855
+ parent_id None
+   service flask
+  resource GET /
+      type web
+     start 1587109287.1550071
+       end 1587109287.1659303
+  duration 0.010923s
+     error 0
+      tags 
+           flask.endpoint:api_entry
+           flask.url_rule:/
+           flask.version:1.0.2
+           http.method:GET
+           http.status_code:200
+           http.url:http://f31:5050/
+2020-04-17 09:41:27,167 - ddtrace.tracer - DEBUG - 
+      name flask.request
+        id 6204824835974983533
+  trace_id 4092179553333047855
+ parent_id None
+   service flask
+  resource GET /
+      type web
+     start 1587109287.1550071
+       end 1587109287.1659303
+  duration 0.010923s
+     error 0
+      tags 
+           flask.endpoint:api_entry
+           flask.url_rule:/
+           flask.version:1.0.2
+           http.method:GET
+           http.status_code:200
+           http.url:http://f31:5050/
+2020-04-17 09:41:27,169 DEBUG [ddtrace._worker] [_worker.py:52] - Starting AgentWriter thread
+2020-04-17 09:41:27,169 - ddtrace._worker - DEBUG - Starting AgentWriter thread
+2020-04-17 09:41:27,172 INFO [werkzeug] [_internal.py:88] - 192.168.122.1 - - [17/Apr/2020 09:41:27] "GET / HTTP/1.1" 200 -
+2020-04-17 09:41:27,172 - werkzeug - INFO - 192.168.122.1 - - [17/Apr/2020 09:41:27] "GET / HTTP/1.1" 200 -
+2020-04-17 09:41:28,177 DEBUG [ddtrace.api] [api.py:236] - reported 1 traces in 0.00366s
+2020-04-17 09:41:28,177 - ddtrace.api - DEBUG - reported 1 traces in 0.00366s
+2020-04-17 09:41:28,178 DEBUG [ddtrace.sampler] [sampler.py:59] - initialized RateSampler, sample 100% of traces
+2020-04-17 09:41:28,178 - ddtrace.sampler - DEBUG - initialized RateSampler, sample 100% of traces
+```
+
+As you can see above a trace has been recorded. Lets fire more requests :
+
+```bash
+while true; do sleep $(echo "scale=2; $RANDOM/10000" | bc); curl http://f31:5050/ &>/dev/null; done
+```
+
+And this is what it looks like in the live trail : 
+
+![flask live trail](images/live-trail.png)
+
+
+
 
 
 
