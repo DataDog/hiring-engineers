@@ -28,7 +28,7 @@ And lastly, we can define who will be notified when the alerts (and other states
 
 Before we go let's test our notifications to see what they look like when they're triggered. At the very bottom of the Monitor page, before you `Save` or `Cancel`, you can click the `Test Notifications` button that will bring up a prompt asking you for which states you want to have sent out.
 
-![Test](./test_notifications)
+![Test](./test_notifications.png)
 
 After you click the `Run Test` button, go to your inbox associated with the email address you configured for your account. You should see somnething like the screenshots below.
 
