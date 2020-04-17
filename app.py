@@ -1,5 +1,3 @@
-```python
-
 from flask import Flask
 import logging
 import sys
@@ -28,4 +26,4 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
-```
+
