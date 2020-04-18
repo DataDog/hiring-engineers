@@ -283,8 +283,10 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
+The difference between a service and a resource is a service is a system process where a resource is an endpoint for an api.
+
 ## Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
 
-**It would be interesting to monitor the drone deliveries by amazon once that comes a reality!**
+**It would be interesting to monitor drone deliveries by amazon once that becomes a reality!**
