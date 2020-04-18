@@ -234,11 +234,52 @@ Bonus Question: What is the difference between a Service and a Resource? Provide
 
 Dashboard Link: 
 
-![image screenshot](datadog_image11.png)
+![image screenshot](datadog_image12.png)
 
 ```
-APP CODE
-```
+from flask import Flask
+import logging
+import sys
+from ddtrace import tracer
+from ddtrace.constants import ANALYTICS_SAMPLE_RATE_KEY
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    span = tracer.current_span()
+    span.set_tag(ANALYTICS_SAMPLE_RATE_KEY, True)
+    return 'Posting Traces'
+
+@app.route('/shopping_cart/<int:customer_id>')
+#@login_required
+def shopping_cart(customer_id):
+    # Get the active span
+    current_span = tracer.current_span()
+    current_span.set_tag(ANALYTICS_SAMPLE_RATE_KEY, True)
+    if current_span:
+        # customer_id -> 254889
+        current_span.set_tag('customer.id', customer_id)
+        return "Hello Customer  %s" % customer_id
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')```
 
 ## Final Question:
 
