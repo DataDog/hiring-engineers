@@ -232,7 +232,8 @@ Make sure that your email is notified when you schedule the downtime and take a 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 Bonus Question: What is the difference between a Service and a Resource? Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.  Please include your fully instrumented app in your submission, as well.
 
-Dashboard Link: 
+Dashboard Link: https://p.datadoghq.com/sb/mmlfs8396gbzdg4y-789b5d6f3f5b9c70f6840ac662c6db6f
+
 
 ![image screenshot](datadog_image12.png)
 
@@ -279,13 +280,11 @@ def shopping_cart(customer_id):
         return "Hello Customer  %s" % customer_id
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')```
+    app.run(host='0.0.0.0', port='5050')
+```
 
 ## Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
 
 **It would be interesting to monitor the drone deliveries by amazon once that comes a reality!**
-
-
-## Extra Credit
