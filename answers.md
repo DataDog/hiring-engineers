@@ -40,7 +40,7 @@ So I tried to start manually to see what the problem would be :
 Error: Failed to setup config unable to load Datadog config file: While parsing config: yaml: line 63: did not find expected key
 Error: unable to set up global agent configuration: unable to load Datadog config file: While parsing config: yaml: line 63: did not find expected key
 ```
-I found a space charachter in front of the Tags line that prevented startup. Fixing that the agent came up again. But did not show the new tags in the infrastructure map immediatly. That prompted me to look at the logs a bit deeper : 
+I found a space character in front of the Tags line that prevented startup. Fixing that the agent came up again. But did not show the new tags in the infrastructure map immediatly. That prompted me to look at the logs a bit deeper : 
 
 ```bash
 journalctl -f -u datadog-agent
@@ -119,7 +119,8 @@ After that I can see postgres showing up in the [datadog infrastructre map](http
 And I can also find the [PostgreSQL Dashboard](https://app.datadoghq.eu/dash/integration/58/Postgres%20-%20Metrics?tpl_var_scope=host%3Afedora31.berlin.local&from_ts=1586343656315&to_ts=1586948456315&live=false&tile_size=m) with metrics : 
 ![PostgreSQL Dashboard](images/Postgres-dashboard.png)
 
-Looking at the [host dashboard](https://app.datadoghq.eu/infrastructure?hostname=fedora31.berlin.local), I can also see the disk issue that I mentioned above. :
+Looking at the [host dashboard](https://app.datadoghq.eu/infrastructure?hostname=fedora31.berlin.local), I can also see the disk issue that I mentioned above. I did create a ticket with DD Support for this. [#332524](https://help.datadoghq.com/hc/requests/332524) :
+
 ![Host Dashboard with Disk Issue](images/Host-with-Disk-issue.png)
 
 ## Create custom Agent checks
