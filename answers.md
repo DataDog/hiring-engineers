@@ -289,10 +289,10 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 It would be interesting to monitor drone deliveries by amazon once that becomes a reality!
 
+
 ## Some Extra Stuff ##
 
-
-**k8s in AWS **
+**k8s in AWS**
 
 ![image screenshot](datadog_image13.png)
 
