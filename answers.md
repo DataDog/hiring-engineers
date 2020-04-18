@@ -1,5 +1,3 @@
-https://guides.github.com/features/mastering-markdown/
-
 # Answers
 
 **Name: Christopher Gerlt**
@@ -289,4 +287,14 @@ The difference between a service and a resource is a service is a system process
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
 
-**It would be interesting to monitor drone deliveries by amazon once that becomes a reality!**
+It would be interesting to monitor drone deliveries by amazon once that becomes a reality!
+
+## Some Extra Stuff ##
+
+**k8s in AWS **
+
+![image screenshot](datadog_image13.png)
+
+**k8s in Google Cloud**
+
+![image screenshot](datadog_image14.png)
