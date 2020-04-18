@@ -294,9 +294,13 @@ It would be interesting to monitor drone deliveries by amazon once that becomes 
 
 **k8s in AWS**
 
-![image screenshot](datadog_image13.png)
+![image screenshot](datadog_aws1.png)
+![image screenshot](datadog_aws2.png)
 
 
 **k8s in Google Cloud**
 
-![image screenshot](datadog_image14.png)
+![image screenshot](datadog_google1.png)
+![image screenshot](datadog_google2.png)
+
+![image screenshot](datadog_infra.png)
