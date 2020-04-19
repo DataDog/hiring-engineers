@@ -1,0 +1,253 @@
+Getting the status from the agent.
+
+===============
+Agent (v7.18.0)
+===============
+
+  Status date: 2020-04-12 17:11:24.330376 PDT
+  Agent start: 2020-04-09 21:58:26.924922 PDT
+  Pid: 77058
+  Go Version: go1.12.5
+  Python Version: 3.8.1
+  Build arch: amd64
+  Check Runners: 6
+  Log Level: info
+
+  Paths
+  =====
+    Config File: /opt/datadog-agent/etc/datadog.yaml
+    conf.d: /opt/datadog-agent/etc/conf.d
+    checks.d: /opt/datadog-agent/etc/checks.d
+
+  Clocks
+  ======
+    NTP offset: 1.292649s
+    System UTC time: 2020-04-12 17:11:24.330376 PDT
+
+  Host Info
+  =========
+    bootTime: 2020-02-24 20:01:57.000000 PST
+    kernelVersion: 18.7.0
+    os: darwin
+    platform: darwin
+    platformVersion: 10.14.6
+    procs: 434
+    uptime: 1080h56m33s
+
+  Hostnames
+  =========
+    hostname: Trials-MacBook-Pro.local
+    socket-fqdn: Trials-MacBook-Pro.local
+    socket-hostname: Trials-MacBook-Pro.local
+    hostname provider: os
+    unused hostname providers:
+      aws: not retrieving hostname from AWS: the host is not an ECS instance, and other providers already retrieve non-default hostnames
+      configuration/environment: hostname is empty
+      gce: unable to retrieve hostname from GCE: Get http://169.254.169.254/computeMetadata/v1/instance/hostname: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+
+  Metadata
+  ========
+    hostname_source: os
+
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+    
+    cpu
+    ---
+      Instance ID: cpu [OK]
+      Configuration Source: file:/opt/datadog-agent/etc/conf.d/cpu.d/conf.yaml.default
+      Total Runs: 11,272
+      Metric Samples: Last Run: 6, Total: 67,626
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2020-04-12 17:11:20.000000 PDT
+      Last Successful Execution Date : 2020-04-12 17:11:20.000000 PDT
+      
+    
+    disk (2.7.0)
+    ------------
+      Instance ID: disk:e5dffb8bef24336f [OK]
+      Configuration Source: file:/opt/datadog-agent/etc/conf.d/disk.d/conf.yaml.default
+      Total Runs: 11,271
+      Metric Samples: Last Run: 34, Total: 495,746
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 5ms
+      Last Execution Date : 2020-04-12 17:11:12.000000 PDT
+      Last Successful Execution Date : 2020-04-12 17:11:12.000000 PDT
+      
+    
+    io
+    --
+      Instance ID: io [OK]
+      Configuration Source: file:/opt/datadog-agent/etc/conf.d/io.d/conf.yaml.default
+      Total Runs: 11,271
+      Metric Samples: Last Run: 13, Total: 292,697
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2020-04-12 17:11:19.000000 PDT
+      Last Successful Execution Date : 2020-04-12 17:11:19.000000 PDT
+      
+    
+    load
+    ----
+      Instance ID: load [OK]
+      Configuration Source: file:/opt/datadog-agent/etc/conf.d/load.d/conf.yaml.default
+      Total Runs: 11,271
+      Metric Samples: Last Run: 6, Total: 67,626
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 6ms
+      Last Execution Date : 2020-04-12 17:11:11.000000 PDT
+      Last Successful Execution Date : 2020-04-12 17:11:11.000000 PDT
+      
+    
+    memory
+    ------
+      Instance ID: memory [OK]
+      Configuration Source: file:/opt/datadog-agent/etc/conf.d/memory.d/conf.yaml.default
+      Total Runs: 11,271
+      Metric Samples: Last Run: 9, Total: 101,439
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 6ms
+      Last Execution Date : 2020-04-12 17:11:18.000000 PDT
+      Last Successful Execution Date : 2020-04-12 17:11:18.000000 PDT
+      
+    
+    network (1.14.0)
+    ----------------
+      Instance ID: network:e0204ad63d43c949 [OK]
+      Configuration Source: file:/opt/datadog-agent/etc/conf.d/network.d/conf.yaml.default
+      Total Runs: 11,271
+      Metric Samples: Last Run: 24, Total: 270,504
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 20ms
+      Last Execution Date : 2020-04-12 17:11:10.000000 PDT
+      Last Successful Execution Date : 2020-04-12 17:11:10.000000 PDT
+      
+    
+    ntp
+    ---
+      Instance ID: ntp:d884b5186b651429 [OK]
+      Configuration Source: file:/opt/datadog-agent/etc/conf.d/ntp.d/conf.yaml.default
+      Total Runs: 188
+      Metric Samples: Last Run: 1, Total: 187
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 1, Total: 188
+      Average Execution Time : 3.022s
+      Last Execution Date : 2020-04-12 16:58:57.000000 PDT
+      Last Successful Execution Date : 2020-04-12 16:58:57.000000 PDT
+      
+    
+    uptime
+    ------
+      Instance ID: uptime [OK]
+      Configuration Source: file:/opt/datadog-agent/etc/conf.d/uptime.d/conf.yaml.default
+      Total Runs: 11,271
+      Metric Samples: Last Run: 1, Total: 11,271
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2020-04-12 17:11:17.000000 PDT
+      Last Successful Execution Date : 2020-04-12 17:11:17.000000 PDT
+      
+========
+JMXFetch
+========
+
+  Initialized checks
+  ==================
+    no checks
+    
+  Failed checks
+  =============
+    no checks
+    
+=========
+Forwarder
+=========
+
+  Transactions
+  ============
+    CheckRunsV1: 11,275
+    Dropped: 23,207
+    DroppedOnInput: 0
+    Events: 0
+    HostMetadata: 0
+    IntakeV1: 658
+    Metadata: 0
+    Requeued: 5,433
+    Retried: 592
+    RetryQueueSize: 0
+    Series: 0
+    ServiceChecks: 0
+    SketchSeries: 0
+    Success: 0
+    TimeseriesV1: 11,275
+
+  Transaction Errors
+  ==================
+    Total number: 79
+    Errors By Type:
+      ConnectionErrors: 675
+      TLSErrors: 19
+
+  HTTP Errors
+  ==================
+    Total number: 23076
+    HTTP Errors By Code:
+      403: 23,076
+
+  API Keys status
+  ===============
+    API key ending with PIKEY: API Key invalid
+
+==========
+Endpoints
+==========
+  https://app.datadoghq.com - API Key ending with:
+      - PIKEY
+
+==========
+Logs Agent
+==========
+
+  Logs Agent is not running
+
+=========
+Aggregator
+=========
+  Checks Metric Sample: 1,465,267
+  Dogstatsd Metric Sample: 789,102
+  Event: 1
+  Events Flushed: 1
+  Number Of Flushes: 11,275
+  Series Flushed: 1,701,399
+  Service Check: 79,274
+  Service Checks Flushed: 90,549
+
+=========
+DogStatsD
+=========
+  Event Packets: 0
+  Event Parse Errors: 0
+  Metric Packets: 789,101
+  Metric Parse Errors: 0
+  Service Check Packets: 0
+  Service Check Parse Errors: 0
+  Udp Bytes: 50,902,166
+  Udp Packet Reading Errors: 0
+  Udp Packets: 789,102
+  Uds Bytes: 0
+  Uds Origin Detection Errors: 0
+  Uds Packet Reading Errors: 0
+  Uds Packets: 0
+
