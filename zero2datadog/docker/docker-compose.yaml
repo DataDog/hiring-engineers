@@ -1,0 +1,30 @@
+version: "3"
+services:
+  db:
+    container_name: mysql
+    image: mariadb:10
+    volumes:
+      - /Users/bpabon/projects/datadog/:/var/lib/mysql
+    ports:
+      - "3306:3306/tcp"
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=True
+    labels:
+      com.datadoghq.ad.check_names: '[mysql]'
+      com.datadoghq.ad.init_configs: ''
+      com.datadoghq.ad.instances: '{"server": "%%host%%", "user": "datadog","pass": "%%env_$MYSQL_PASSWORD%%"}'
+# agent section
+  datadog:
+      container_name: datadog
+      build: datadog
+      links:
+        - db
+      restart: always
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock:ro
+        - /proc/:/host/proc/:ro
+        - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+        - /Users/bpabon/projects/datadog:/etc/datadog-agent
+      environment:
+        - DD_API_KEY=${DD_API_KEY}
+        - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=1

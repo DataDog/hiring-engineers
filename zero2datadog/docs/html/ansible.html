@@ -1,0 +1,262 @@
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="title" content="Zero to DataDog">
+        <meta name="version" content="">
+        <meta name="copyright" content="2020, Blaise Pabon">
+        
+        
+        
+        <!-- Favicon Icon -->
+        
+
+        
+        <title>Using Ansible</title>
+        
+
+        <script type="text/javascript" src="_static/js/jquery.min.js"></script>
+       
+        
+    <link rel="stylesheet" href="_static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="_static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="_static/css/hover-min.css">
+    <!--<link rel="stylesheet" href="_static/octicons/lib/octicons.css">-->
+    <!--<link rel="stylesheet" href="_static/primer-markdown/lib/user-content.min.css">-->
+    <link rel="stylesheet" href="_static/css/syntax.css" type="text/css" />
+
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    
+
+    
+
+    
+    <style>
+    .jumbotron.geopattern {
+         background-image: url('./');
+         }
+    </style>
+    
+
+    <script type="text/javascript" src="_static/js/bootstrap.min.js"></script>
+    
+    
+
+
+        
+        
+        
+        
+        
+        <!-- Genindex Linktag -->
+        <link rel="index" title="Index" href="genindex.html" />
+        
+        
+        <!-- Search Linktag -->
+        <link rel="search" title="Search" href="search.html" />
+        
+        
+        
+        
+        
+        
+        
+    </head>
+    <body>
+        
+        <header class="site-header">
+            <div class="container">
+                <a id="site-header-brand" href="/" title="Zero to DataDog">
+                    <i class="fa fa-book" aria-hidden="true"></i> Zero to DataDog
+                </a>
+                <nav class="site-header-nav" role="navigation">
+                
+                    <a href="index.html" class=" site-header-nav-item hvr-underline-from-center"
+               target="_self"
+               title="Zero to DataDog">
+                        Documentation
+                    </a>
+                
+                </nav>
+            </div>
+        </header>
+        
+        <section class="jumbotron geopattern" data-pattern-id="ansible">
+            <div class="container">
+                <div id="jumbotron-meta-info">
+                    <h1>Using Ansible</h1>
+                    <span class="meta-info">
+                        
+                        
+                        
+                        
+                        
+                        
+                    </span>
+                </div>
+            </div>
+        </section>
+        
+        <article class="post container" itemscope itemtype="http://schema.org/BlogPosting">
+            <div class="row">
+                <div class="col-md-8 markdown-body">
+                    
+  <div class="section" id="using-ansible">
+<h1>Using Ansible<a class="headerlink" href="#using-ansible" title="Permalink to this headline">¶</a></h1>
+<dl>
+<dt>From:</dt><dd><p><a class="reference external" href="https://docs.ansible.com/ansible/latest/modules/datadog_monitor_module.html">https://docs.ansible.com/ansible/latest/modules/datadog_monitor_module.html</a></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">init</span> <span class="pre">roles/zero2datadog</span></code> produces a directory structure like this::</dt><dd><p>roles
+└── zero2datadog</p>
+<blockquote>
+<div><p>├── README.md
+├── defaults
+│   └── main.yml
+├── files
+├── handlers
+│   └── main.yml
+├── meta
+│   └── main.yml
+├── tasks
+│   └── main.yml
+├── templates
+├── tests
+│   ├── inventory
+│   └── test.yml
+└── vars</p>
+<blockquote>
+<div><p>└── main.yml</p>
+</div></blockquote>
+</div></blockquote>
+</dd>
+</dl>
+<p># Create a metric monitor
+- datadog_monitor:</p>
+<blockquote>
+<div><p>type: “metric alert”
+name: “Test monitor”
+state: “present”
+query: “datadog.agent.up.over(‘host:host1’).last(2).count_by_status()”
+message: “Host [[host.name]] with IP [[host.ip]] is failing to report to datadog.”
+api_key: “9775a026f1ca7d1c6c5af9d94d9595a4”
+app_key: “87ce4a24b5553d2e482ea8a8500e71b8ad4554ff”</p>
+</div></blockquote>
+<p># Deletes a monitor
+- datadog_monitor:</p>
+<blockquote>
+<div><p>name: “Test monitor”
+state: “absent”
+api_key: “9775a026f1ca7d1c6c5af9d94d9595a4”
+app_key: “87ce4a24b5553d2e482ea8a8500e71b8ad4554ff”</p>
+</div></blockquote>
+<p># Mutes a monitor
+- datadog_monitor:</p>
+<blockquote>
+<div><p>name: “Test monitor”
+state: “mute”
+silenced: ‘{“*”:None}’
+api_key: “9775a026f1ca7d1c6c5af9d94d9595a4”
+app_key: “87ce4a24b5553d2e482ea8a8500e71b8ad4554ff”</p>
+</div></blockquote>
+<p># Unmutes a monitor
+- datadog_monitor:</p>
+<blockquote>
+<div><p>name: “Test monitor”
+state: “unmute”
+api_key: “9775a026f1ca7d1c6c5af9d94d9595a4”
+app_key: “87ce4a24b5553d2e482ea8a8500e71b8ad4554ff”</p>
+</div></blockquote>
+</div>
+
+
+                    <!-- Comments -->
+                    
+                </div>
+                <div class="col-md-4 toc">
+                    <h3>Table Of Contents</h3>
+                    <div id="toc">
+                        
+                        <ul>
+<li><a class="reference internal" href="#">Using Ansible</a></li>
+</ul>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </article>
+        
+        
+        <footer class="container">
+            <div class="site-footer">
+                <div class="copyright pull-left">
+                    
+                    &#169; Copyright 2020, Blaise Pabon.
+                    
+                </div>
+                <div class="source_code">
+                    
+                    <a href="javascript:window.scrollTo(20,20)">
+                        <i class="fa fa-arrow-up" title="To The Top" aria-hidden="true"></i>
+                    </a>
+                    
+                </div>
+                
+                <div class="sphinx pull-right">
+                    
+                    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.1
+                    
+                </div>
+                
+            </div>
+            
+        </footer>
+        
+        
+        
+     
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script> 
+    <script src="_static/jquery.js"></script> 
+    <script src="_static/underscore.js"></script> 
+    <script src="_static/doctools.js"></script> 
+    <script src="_static/language_data.js"></script> 
+     
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+    <script type="text/javascript" src="_static/js/script.js"></script>
+    <script type="text/javascript" src="_static/js/underscore-min.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+
+    
+    <script type="text/javascript" src="_static/js/geopattern.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.geopattern').each(function(){
+                var pattern = GeoPattern.generate($(this).data('pattern-id'));
+                $(this).css('background-image', pattern.toDataUrl());
+                //$(this).geopattern($(this).data('pattern-id'));
+            });
+        });
+    </script>
+    
+
+        
+    </body>
+</html>
