@@ -1,4 +1,7 @@
 .. glossary::
+	APM
+		Application Performance Monitoring: |about_APM|
+
 	Autodiscovery
 		https://docs.datadoghq.com/agent/faq/template_variables/
 
@@ -7,3 +10,10 @@
 
 	Timeboard
 		https://docs.datadoghq.com/dashboards/timeboards/#pagetitle
+
+
+.. Substitutions
+
+.. |about_APM| https://docs.datadoghq.com/tracing/visualization/#pagetitle
+
+

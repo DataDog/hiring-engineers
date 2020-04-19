@@ -11,8 +11,5 @@ Dockerhub has images of production and experimental releases of the agent. I run
 		-v /proc/:/host/proc/:ro \
 		-v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
 		-e DD_API_KEY=$DD_API_KEY \
-		datadog/agent:7  # The road to hell is paved with the 'latest' tag.
+		datadog/agent:7  # I pin the image version because the road to hell is paved with the 'latest' tag.
 
-I use ``docker-compose`` to combine the agent with Mariadb and also to isolate this experiment from the rest of my local machine.
-
-.. include:: ../docker/docker-compose.yaml
