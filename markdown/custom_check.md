@@ -1,6 +1,6 @@
 Now that we've set up an agent on our host and added some custom tags, lets add a custom check to monitor it. The basic workflow for doing this is to install the Datadog integration that corresponds to your service.
 
-Let's try this with a database. First step is to find the integration [here](https://docs.datadoghq.com/integrations/#cat-data-store} and follow the instructions to install it. Many of the datastore integrations come with the Agent installation so you might not even need to do anything for the installation step.
+Let's try this with a database. First step is to find the integration [here](https://docs.datadoghq.com/integrations/#cat-data-store) and follow the instructions to install it. Many of the datastore integrations come with the Agent installation so you might not even need to do anything for the installation step.
 
 I'm using MySQL, which has the check already installed with the agent.
 

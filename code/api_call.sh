@@ -1,4 +1,3 @@
-```
 api_key="XXXXX"
 app_key="XXXX"
 

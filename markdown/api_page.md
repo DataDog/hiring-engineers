@@ -4,9 +4,9 @@ Datadog offeres a lot of modern APIs for accessing and modifying the Datadog bac
 
 Let's take a look at a sample API call that creates a dashboard with:
 
-1.) The custom metric we created earlier scoped over the host we're running.
-2.) A metric from the Integration on the Database we set up with the anomaly function applied.
-3.) The custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
+1. The custom metric we created earlier scoped over the host we're running.
+2. A metric from the Integration on the Database we set up with the anomaly function applied.
+3. The custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
 
 [Here is a bash script](../code/api_call.sh) that does all of the above.
 
@@ -23,15 +23,15 @@ The first thing to notice in the call to `curl` are the widgets. The widgets att
 The first widget ends up looking like this:
 
 ```javascript
-       {
-			"definition": {
-				"type": "timeseries",
-				"requests": [{
-					"q": "avg:my_metric{host:ramy.abdelazim}"
-				}],
-				"title": "My Metric per Host"
-			}
+{
+	"definition": {
+		"type": "timeseries",
+		"requests": [{
+			"q": "avg:my_metric{host:ramy.abdelazim}"
+		}],
+		"title": "My Metric per Host"
 		}
+}
 ```
 
 You can see this is a pretty straightforward snippet of JSON. The meat of this is in the `requests` attribute which takes a comma separated array of queries. Here you can see that the query is pretty simple and takes the form of `metric_name{scope}` where metric name here is the name of the custom metric we created earlier and `hostname` is the tag we created earlier and `ramy.abdelazim` is the value assigned to that tag.
@@ -59,7 +59,7 @@ You can use the gear at the top right of the dashboard screen to set up notifica
 ![gear](../images/dash-gear.png)
 
 This will bring up a popup that will take any user as input for notification:
-![notification](./notifications.png)
+![notification](../images/notifications.png)
 
 
 Finally, using the above API call will result in a dashboard that looks like this (note that you can click on the last datapoint in the graph to change the time window to 5 minutes):

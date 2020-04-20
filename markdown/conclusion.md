@@ -1,6 +1,6 @@
 Well that was a lot of fun! We took a really quick tour of Datadog's functionality. We covered a lot of ground in a very short amount of time so now might be a good time to checkout [the very excellent documenation](https://docs.datadoghq.com) that Datadog offers.
 
-First we saw how to prepare your infrastructure for monitoring through [the use of tags](./collecting_metrics.com). We then saw how to use the tags we set up to [visualize the data](./collectig_metrics.md) and then set up [alerting on the data via monitors](./monitors.md) to be notified when something out of the ordinary happens.
+First we saw how to prepare your infrastructure for monitoring through [the use of tags](./collecting_metrics.com). We then saw how to use the tags we set up to [visualize the data](./collecting_metrics.md) and then set up [alerting on the data via monitors](./monitors.md) to be notified when something out of the ordinary happens.
 
 Finally we looked at Datadog [Application Performance Monitoring (APM) offering](./apm_page.md) where we saw how to do some basic tracing of an application with minimal instrumentation. 
 
