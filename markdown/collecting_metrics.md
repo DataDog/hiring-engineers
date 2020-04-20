@@ -32,4 +32,4 @@ Here's what mine looks like:
 ![host map](./images/HostMap.png)
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-[Previous: Home](./markdown/answers.md)  |  [Next: Create a Custom Check](./markdown/custom_check.md)
+[Previous: Home](../answers.md)  |  [Next: Create a Custom Check](./custom_check.md)

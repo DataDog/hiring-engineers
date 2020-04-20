@@ -14,4 +14,4 @@ If you have any trouble with that last step you can refer to [the excellent data
 Now that that's out of the way, let's dive in!
 
 
-[Next: Collecting Metrics](./markdown/collecting_metrics.md) 
+[Next: Collecting Metrics](./collecting_metrics.md) 
