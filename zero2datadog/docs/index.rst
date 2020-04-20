@@ -23,11 +23,11 @@ The unofficial and free (as in beer) example project to show you how to get up a
 	References <refs>
 
 
-Indices and tables
-==================
+Glossary and Resources
+=======================
 
 * :ref:`genindex`
-.. * :ref:`glossary`
+* :ref:`glossary`
 * :ref:`search`
 
 

@@ -1,3 +1,8 @@
+.. _glossary:
+
+Glossary
+========
+
 .. glossary::
 
 	APM
