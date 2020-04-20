@@ -4,7 +4,7 @@
 First and foremost, Datadog is a metrics collection tool. Everything else flows from the data that you've collected. So let's start by collecting some data!
 
 In order to slice up our data in different ways, we'll use [tagging](https://docs.datadoghq.com/tagging/). The tags that come out of the box are as follows:
-![default tags](./tags.png)
+![default tags](./images/tags.png)
 
 It's worth looking over the [guidelines for leveraging tags](https://docs.datadoghq.com/tagging/#defining-tags) but you don't need to read that to get started.
 
@@ -26,10 +26,10 @@ tags:
 After adding this to your agent configuration, log in to the datadog site and you'll be able to see that the tags have been added to your host by going to the [host map](https://app.datadoghq.com/infrastructure/map).
 
 
-![infrastructure](./hostmaplocation.png)
+![infrastructure](./images/hostmaplocation.png)
 
 Here's what mine looks like:
-![host map](./HostMap.png)
+![host map](./images/HostMap.png)
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-[Previous: Home](./answers.md)  |  [Next: Create a Custom Check](./custom_check.md)
+[Previous: Home](./markdown/answers.md)  |  [Next: Create a Custom Check](./markdown/custom_check.md)
