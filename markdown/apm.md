@@ -5,7 +5,7 @@ Finally the last piece of the Datadog puzzle is something that really sets the o
 
 Datadog's APM offering is extremely robust and I'll only scratch the surface here. APM allows you to set up traces within your codebase to monitor the performance of your code in production with all of the visualizations, anomoly detection algorithms and alerting capabilities we've already discussed so far.
 
-You can use any application you'd like for this as long as you know the language it was written in and have a way of starting the application yourself. For the purposes of this demo, let's take a very small `Flask` application with three routes that just returns a 200 with every request. You can [get the code here](./app.py). Be sure to have [flask](https://flask.palletsprojects.com/en/1.1.x/) installed on your system.
+You can use any application you'd like for this as long as you know the language it was written in and have a way of starting the application yourself. For the purposes of this demo, let's take a very small `Flask` application with three routes that just returns a 200 with every request. You can [get the code here](../code/app.py). Be sure to have [flask](https://flask.palletsprojects.com/en/1.1.x/) installed on your system.
 
 Start by going into the APM section of the Datadog portal 
 
@@ -31,7 +31,9 @@ Another great thing about APM metrics is that they can be used exactly the same 
 
 All of this only scratches the surface of the APM capabilities. I won't get into it here but you can also instrument your application with lots of different kinds of traces that can be added directly into your code. You can learn more about that [here](https://docs.datadoghq.com/tracing/setup/python/)
 
+*I wrote a small bash script to hit my local webserver a random number (between 1-1000) of times and set it to run every minute in a cron. You can find that script [here](../code/requestor.sh)
+
 [Previous: Monitors](./monitors.md)  |  [Next: Conclusion](./conclusion.md)
 
 
-*I wrote a small bash script to hit my local webserver a random number (between 1-1000) of times and set it to run every minute in a cron. You can find that script [here](../code/requestor.sh)
+
