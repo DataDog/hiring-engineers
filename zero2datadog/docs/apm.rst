@@ -4,7 +4,8 @@ Performance Monitoring: Collecting APM Data
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-.. code-block::python
+.. code-block:: python
+
 	from flask import Flask
 	import logging
 	import sys

@@ -23,7 +23,8 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 .. figure:: ./_images/bits.png
 	:align: center
-	:caption: Five Minute Timeboard
+
+	Timeboard with five-minute intervals
 
 
 Bonus: What is the Anomaly graph displaying?

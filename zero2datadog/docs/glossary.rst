@@ -1,4 +1,5 @@
 .. glossary::
+
 	APM
 		Application Performance Monitoring: |about_APM|
 
@@ -14,6 +15,6 @@
 
 .. Substitutions
 
-.. |about_APM| https://docs.datadoghq.com/tracing/visualization/#pagetitle
+.. |about_APM| replace:: https://docs.datadoghq.com/tracing/visualization/#pagetitle
 
 

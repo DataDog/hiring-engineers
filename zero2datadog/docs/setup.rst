@@ -153,21 +153,21 @@ In this exercise, I use the auto-discovery template to pass credentials as envir
 This reduces the risk of leaks when the files get checked into version control.
 The stanza for Mariadb in my docker-compose.yaml looks like this:
 
-.. code-block::
+.. code-block:: yaml
 
-  mariadb10:
-	image: mariadb:10
-	ports:
-	 - "3310:3306/tcp"
-	environment:
-	  - MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}"
-	  - MYSQL_USER="${MYSQL_USER}"
-	  - MYSQL_PASSWORD="${MYSQL_PASSWORD}"
-	  - MYSQL_DATABASE=my_db
-	labels:
-	  com.datadoghq.ad.check_names: '[mysql]'
-	  com.datadoghq.ad.init_configs: ''
-	  com.datadoghq.ad.instances: '{"server": "%%host%%", "user": "datadog","pass": "%%env_$MYSQL_PASSWORD%%"}'
+	mariadb10:
+		image: mariadb:10
+		ports:
+		 - "3310:3306/tcp"
+		environment:
+		  - MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}"
+		  - MYSQL_USER="${MYSQL_USER}"
+		  - MYSQL_PASSWORD="${MYSQL_PASSWORD}"
+		  - MYSQL_DATABASE=my_db
+		labels:
+		  com.datadoghq.ad.check_names: '[mysql]'
+		  com.datadoghq.ad.init_configs: ''
+		  com.datadoghq.ad.instances: '{"server": "%%host%%", "user": "datadog","pass": "%%env_$MYSQL_PASSWORD%%"}'
 
 Extend the Agent's Python environment
 '''''''''''''''''''''''''''''''''''''
@@ -175,7 +175,7 @@ Extend the Agent's Python environment
 The Agent includes a complete Python environment, which you can extend with `pip install ...`.
 This is what that looks like using a Linux host:
 
-.. code-block::bash
+.. code-block:: bash
 
 	$ sudo -Hu dd-agent /opt/datadog-agent/embedded/bin/pip install -U httpx fastapi
 
