@@ -3,19 +3,20 @@
 `datadog-agent` Docker container
 --------------------------------
 
-Dockerhub has images of production and experimental releases of the agent. I run the image from the shell using:
+It's possible to do this exercise using just a single agent running on the host, however I like using different combinations of packages,
+and I can more easily keep a portable collection of files. To keep my local config outside of source
+control, I set up a local config directory:
 
-.. code-block::bash
-	DOCKER_CONTENT_TRUST=1 \
-	docker run -d --name=dd_docker \
-		-v /var/run/docker.sock:/var/run/docker.sock:ro \
-		-v /proc/:/host/proc/:ro \
-		-v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
-		-e DD_API_KEY=$DD_API_KEY \
-		datadog/agent:7  # I pin the image version because the road to hell is paved with the 'latest' tag.
+.. literalinclude:: local_tree.txt
 
 
-Orchestrating multiple Containers
+ and insert it using an environment variable ``DD_CONFIG_HOME``:
+
+.. literalinclude:: ../docker/datadog/Dockerfile
+
+
+
+Orchestrating multiple containers
 ----------------------------------
 
 
@@ -32,25 +33,8 @@ For more complex arrangements of containers, such as testing the :term:APM featu
 Configure Auto-discovery for Docker containers
 '''''''''''''''''''''''''''''''''''''''''''''''
 
-https://docs.datadoghq.com/agent/docker/integrations/?tab=docker describes how to prepare the agent for discovering processes
-running inside containers.
 In this exercise, I use the auto-discovery template to pass credentials as environment variables and avoid including them in the file.
 This reduces the risk of leaks when the files get checked into version control.
-The stanza for Mariadb in my docker-compose.yaml looks like this:
-
-.. code-block:: yaml
-
-	mariadb10:
-		image: mariadb:10
-		ports:
-		 - "3310:3306/tcp"
-		environment:
-		  - MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}"
-		  - MYSQL_USER="${MYSQL_USER}"
-		  - MYSQL_PASSWORD="${MYSQL_PASSWORD}"
-		  - MYSQL_DATABASE=my_db
-		labels:
-		  com.datadoghq.ad.check_names: '[mysql]'
-		  com.datadoghq.ad.init_configs: ''
-		  com.datadoghq.ad.instances: '{"server": "%%host%%", "user": "datadog","pass": "%%env_$MYSQL_PASSWORD%%"}'
+https://docs.datadoghq.com/agent/docker/integrations/?tab=docker describes how to prepare the agent for discovering processes
+running inside containers.
 

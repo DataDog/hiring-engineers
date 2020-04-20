@@ -8,7 +8,10 @@ services:
     ports:
       - "3306:3306/tcp"
     environment:
-      - MYSQL_RANDOM_ROOT_PASSWORD=True
+      - MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}"
+      - MYSQL_USER="${MYSQL_USER}"
+      - MYSQL_PASSWORD="${MYSQL_PASSWORD}"
+      - MYSQL_DATABASE=my_db
     labels:
       com.datadoghq.ad.check_names: '[mysql]'
       com.datadoghq.ad.init_configs: ''
@@ -24,7 +27,8 @@ services:
         - /var/run/docker.sock:/var/run/docker.sock:ro
         - /proc/:/host/proc/:ro
         - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
-        - /Users/bpabon/projects/datadog:/etc/datadog-agent
+        - $DD_CONFIG_HOME/:/etc/datadog-agent
       environment:
         - DD_API_KEY=${DD_API_KEY}
+        - DD_CONFIG_HOME=${DD_CONFIG_HOME}
         - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=1

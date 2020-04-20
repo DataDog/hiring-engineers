@@ -1,0 +1,10 @@
+local/
+├── auth_token
+├── checks.d
+│   └── metrics_example.py
+├── conf.d
+│   ├── docker_daemon.yaml
+│   └── metrics_example.d
+│       └── metrics_example.yaml
+└── datadog.yaml
+
