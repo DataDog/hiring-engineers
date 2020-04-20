@@ -8,7 +8,7 @@ Add tags in the agent config file
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-On OS X the config file for the :term:datadog-agent<Agent> is at ``~/.datadog-agent/datadog.yaml``
+On OS X the config file for the :term:`datadog-agent<Agent>` is at ``~/.datadog-agent/datadog.yaml``
 For now, the contents of the file can be limited to:
 
 .. code-block::yaml
@@ -24,7 +24,7 @@ For now, the contents of the file can be limited to:
 
 Restart the agent after updating this file and you will begin to see data in your Host Map:
 
-.. figure:: ./_images/bits.png
+.. figure:: ./_images/1_host_tags.png
 	:align: center
 	:width: 100px
 	:height: 100px
