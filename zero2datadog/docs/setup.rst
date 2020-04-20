@@ -26,8 +26,7 @@ Restart the agent after updating this file and you will begin to see data in you
 
 .. figure:: ./_images/1_host_tags.png
 	:align: center
-	:width: 100px
-	:height: 100px
+	:scale: 75 %
 
 	 Web UI Host Map with agent-provided tags.
 

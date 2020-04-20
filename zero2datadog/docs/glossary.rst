@@ -5,6 +5,9 @@ Glossary
 
 .. glossary::
 
+	Agent
+		The current package is called `datadog-agent` and is at version 7.x https://docs.datadoghq.com/agent/#overview
+
 	APM
 		Application Performance Monitoring: |about_APM|
 
