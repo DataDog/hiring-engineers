@@ -5,7 +5,7 @@ Let's try this with a database. First step is to find the integration [here](htt
 I'm using MySQL, which has the check already installed with the agent.
 
 After follwing [the steps for setting up the integration](https://app.datadoghq.com/account/settings#integrations/mysql) on my VM, I get a whole bunch of metrics now available to me:
-![mysql metrics](./images/mysql.png)
+![mysql metrics](../images/mysql.png)
 
 # Creating a Custom Agent Check
 
