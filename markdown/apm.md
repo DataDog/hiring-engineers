@@ -25,7 +25,7 @@ After running the command above, you just need to set an environment variable to
 
 Your dashboard will look like* the screenshot below.
 
-![dash](../images/apm_dash.png)
+![dash](../images/apm_dashboard.png)
 
 Another great thing about APM metrics is that they can be used exactly the same way you'd use any other metrics you've collected in datadog. So you could have a dashboard with a graph of your APM metrics along side, say, a custom metric as in [this dashboard](https://app.datadoghq.com/dashboard/qgp-qjj-7ap?from_ts=1587139760095&live=true&to_ts=1587143360095).
 
@@ -34,4 +34,4 @@ All of this only scratches the surface of the APM capabilities. I won't get into
 [Previous: Monitors](./monitors.md)  |  [Next: Conclusion](./conclusion.md)
 
 
-*I wrote a small bash script to hit my local webserver a random number (between 1-1000) of times and set it to run every minute in a cron. You can find that script [here](./code/requestor.sh)
+*I wrote a small bash script to hit my local webserver a random number (between 1-1000) of times and set it to run every minute in a cron. You can find that script [here](../code/requestor.sh)
