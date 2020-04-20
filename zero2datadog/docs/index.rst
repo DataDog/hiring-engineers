@@ -26,8 +26,10 @@ The unofficial and free (as in beer) example project to show you how to get up a
 Glossary and Resources
 =======================
 
-* :ref:`genindex`
+Use the glossary to find definitions of terms that might be specific to DataDog.
+
 * :ref:`glossary`
+* :ref:`genindex`
 * :ref:`search`
 
 

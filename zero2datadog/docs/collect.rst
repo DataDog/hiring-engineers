@@ -38,6 +38,8 @@ The directory structure is important, so I copy the files from my repo directory
 If you have an IDE like PyCharm or VS Code, you can synchronize the file transfer.
 
 .. figure:: ./_images/02_agent_paths.png
+	:width: 100px
+	:height: 100px
 	:align: center
 
 	Image courtesy of `Brandon Roche <https://www.reddit.com/r/datadog/comments/91hezx/custom_agent_check_help/>`_

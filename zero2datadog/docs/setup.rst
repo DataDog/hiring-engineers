@@ -26,7 +26,10 @@ Restart the agent after updating this file and you will begin to see data in you
 
 .. figure:: ./_images/bits.png
 	:align: center
-	:alt: Web UI Host Map with agent-provided tags.
+	:width: 100px
+	:height: 100px
+
+	 Web UI Host Map with agent-provided tags.
 
 
 Add an integration for MySQL
