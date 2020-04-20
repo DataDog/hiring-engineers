@@ -8,15 +8,15 @@ Let's take a look at a sample API call that creates a dashboard with:
 2.) A metric from the Integration on the Database we set up with the anomaly function applied.
 3.) The custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
 
-[Here is a bash script](./api_call.md) that does all of the above.
+[Here is a bash script](../code/api_call.sh) that does all of the above.
 
 We can get both the `api_key` and `app_key` that we use on the first two lines from the `Integrations` menu item. Here's a screenshot:
 
-![keys](./keys.png)
+![keys](../images/keys.png)
 
 From the account settings page, you have to create a key for both the API and the application. This allows you granular control over which applications have access to different APIs.
 
-![keys2](./keys2.png)
+![keys2](../images/keys2.png)
 
 The first thing to notice in the call to `curl` are the widgets. The widgets attribute in our API call takes a comma separated array of widgets that will be displayed. This is the meat of the call. Here we define each of the widgets we want to display. I simplified things a bit by using the `timeseries` widget for all three of items listed above we're adding to the dashboard.
 
@@ -56,13 +56,13 @@ The basic algorithm is just a moving average that's commonly found on any analys
 A couple of points of interest worth noting:
 You can use the gear at the top right of the dashboard screen to set up notifications:
 
-![gear](./dash-gear.png)
+![gear](../images/dash-gear.png)
 
 This will bring up a popup that will take any user as input for notification:
 ![notification](./notifications.png)
 
 
 Finally, using the above API call will result in a dashboard that looks like this (note that you can click on the last datapoint in the graph to change the time window to 5 minutes):
-![dash](./dash.png)
+![dash](../images/dash.png)
 
 [Previous: Create a Custom Check](./custom_check.md)  |  [Next: Monitors](./monitors.md)
