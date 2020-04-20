@@ -2,7 +2,7 @@
 Performance Monitoring: Collecting APM Data
 ===========================================
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+* *Given the following Flask app, instrument this using Datadog’s APM solution*:
 
 .. code-block:: python
 
@@ -41,18 +41,21 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 Bonus: Service vs Resource?
 ----------------------------
 
-What is the difference between a Service and a Resource?
+* *What is the difference between a Service and a Resource?*
 
 Dashboard: Unified APM and Metrics
 ===================================
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+* *Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.*
 
 .. figure:: _images/bits.png
 	:align: center
-	:caption: APM and Infrastructure Metrics
+	:height: 100 px
+	:width: 100 px
 
-.. pending
+	APM and Infrastructure Metrics
+
+.. in progress
 
 Please include your fully instrumented app in your submission, as well.
 

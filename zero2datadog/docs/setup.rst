@@ -6,7 +6,7 @@ Setup the DataDog project
 Add tags in the agent config file
 ----------------------------------
 
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+* *Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
 
 On OS X the config file for the :term:`datadog-agent<Agent>` is at ``~/.datadog-agent/datadog.yaml``
 For now, the contents of the file can be limited to:
@@ -24,9 +24,8 @@ For now, the contents of the file can be limited to:
 
 Restart the agent after updating this file and you will begin to see data in your Host Map:
 
-.. figure:: ./_images/1_host_tags.png
+.. figure:: ./_images/01_host_scaled.png
 	:align: center
-	:scale: 75 %
 
 	 Web UI Host Map with agent-provided tags.
 
@@ -34,7 +33,7 @@ Restart the agent after updating this file and you will begin to see data in you
 Add an integration for MySQL
 -----------------------------
 
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+* *Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.*
 
 Use the instructions at the Documentation site (https://docs.datadoghq.com/integrations/mysql/) because they are closer
 to what you will find on your desktop machine.

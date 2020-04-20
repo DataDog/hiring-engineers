@@ -8,7 +8,7 @@ Welcome to the Zero-to-DataDog Guide
 
 The unofficial and free (as in beer) example project to show you how to get up and running with several of the most popular features.
 
-.. note:: Once this is considered complete, the version number will get bumped to `1.x`, stay tuned.
+.. note:: This exercise is a work-in-progress. Once this is considered complete, this notice will disappear.
 
 .. toctree::
    :maxdepth: 1

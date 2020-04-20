@@ -1,15 +1,16 @@
 Collecting Metrics
 ==================
 
-
-
 Create a custom Agent check
 ---------------------------
 
-First, create a custom agent :term:check using the Web UI.
+* *First, create a custom agent :term:`check <Check>` using the Web UI.*
+
 Next, configure the check to submit a metric named ``my_metric`` with a random value between 0 and 1000.
 
 .. code-block::python
+
+	""" Submit a metric with a random value between 0 and 1000."""
 	class MyClass(AgentCheck):
 		   self.monotonic_count(
 				"my_metric",
@@ -18,15 +19,7 @@ Next, configure the check to submit a metric named ``my_metric`` with a random v
 			)
 
 
-Custom Agent Check
-------------------
-
-Here we create a custom Agent :term:`check <Check>` that submits a metric named my_metric with a random value between 0 and 1000.
-
-.. note:: This involves some manual deployment steps at the moment.
-
-Since I'm deploying on a remote host, I commit my ``custom_hello`` files to git,
-push the feature branch so that I can pull them onto the remote host.
+Since I'm deploying on a remote host, I commit my  files to git, and push the feature branch so that I can pull them onto the remote host.
 The directory structure is important, so I copy the files from my repo directory to the agent's ``conf.d`` and
 ``checks.d`` locations.
 
@@ -42,7 +35,7 @@ If you have an IDE like PyCharm or VS Code, you can synchronize the file transfe
 	:height: 100px
 	:align: center
 
-	Image courtesy of `Brandon Roche <https://www.reddit.com/r/datadog/comments/91hezx/custom_agent_check_help/>`_
+	Image courtesy of `Brendan Roche <https://www.reddit.com/r/datadog/comments/91hezx/custom_agent_check_help/>`_
 
 .. note:: This post clarifies the directory structure: https://www.reddit.com/r/datadog/comments/91hezx/custom_agent_check_help/
 
@@ -57,11 +50,12 @@ The ``custom_hello`` check
 Change the check's collection interval
 ----------------------------------------
 
-Change your check's collection interval so that it only submits the metric once every 45 seconds.
+* *Change your check's collection interval so that it only submits the metric once every 45 seconds.*
 
-Bonus: Can you change the collection interval without modifying the Python check file you created?
---------------------------------------------------------------------------------------------------
+Bonus:
+------
 
-Can you change the collection interval without modifying the Python check file you created?
+* *Can you change the collection interval without modifying the Python check file you created?*
+
 
 

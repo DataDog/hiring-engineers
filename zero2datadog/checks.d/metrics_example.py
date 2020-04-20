@@ -12,7 +12,10 @@ class MyClass(AgentCheck):
        self.monotonic_count(
             "my_metric",
            random.randint(0, 1000),
-            tags=["env:dev", "metric_submission_type:monotonic_count"],
+            tags=["env:dev",
+                  "admin_email:jitkelme@gmail.com",
+                  "project:zero2datadog",
+                  "metric_submission_type:monotonic_count"],
         )
 
 
