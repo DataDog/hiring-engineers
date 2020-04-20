@@ -8,4 +8,4 @@ Finally we looked at Datadog [Application Performance Monitoring (APM) offering]
 
 Datadog is an infrastucture and application monitoring platform and so much more. Beyond all things discussed previously, you can collect, visualize and monitor any data that you can pull into Datadog.
 
-I hope this brief introduction has whet your appetite to learn more!
+I hope this brief introduction has whet your appetite to learn more! If you have any further questions or are interested in upgrading your access to Datadog, don't hesitate to email me at ramy.abdelazim@datadoghq.com and I'd be happy to help!
