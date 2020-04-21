@@ -308,14 +308,12 @@ Now, we can access the new Dashboard just created on the Datadog Website, naviga
 
 You can learn how to further customize your dashboards by checking the [Timeboard](https://docs.datadoghq.com/dashboards/timeboards/) and [Widget](https://docs.datadoghq.com/dashboards/widgets/) documentations.
 
-On the Dashboard, we can leverage this information to take actions based on them, and also alert co-works and start discussions based on the data. Using the UI, you can easily annotate the graphs, mention people and filter the timefrime.
+On the Dashboard, we can leverage this information to take actions based on them, and also alert co-workers and start discussions based on the data. Using the UI, you can easily annotate the graphs, mention people and filter the timeframe.
 
 ![dashboard-annotate](./img/3.5-dashboard-annotate.png "dashboard-annotate")
-
 Actions on the graph.
 
 ![dashboard-discussion](./img/3.6-dashboard-discussion.png "dashboard-discussion")
-
 Thread to discuss the information
 
 
