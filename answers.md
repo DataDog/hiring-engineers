@@ -1,5 +1,5 @@
 # Quick Datadog agent Setup with Docker
-If you never used Datadog Agent and website before, just like me, this tutorial will help you quickly understand the capabilities of this poweful tool.
+If you never used Datadog Agent and website before, just like me, this tutorial will help you quickly understand the capabilities of this powerful tool.
 
 ## Table of contents
 1. [Basic Prerequisites Checks](#prerequisites)
@@ -15,7 +15,7 @@ If you never used Datadog Agent and website before, just like me, this tutorial 
 Have [Postman API](https://www.postman.com/) client installed
 
 
-We will be using Docker, so before moving forward, we need to make sure we have docker up and running on our environment.
+We will be using Docker, so before moving forward, we need to make sure we have docker up and running in our environment.
 If this is your first time with docker, [check their website and follow the installation instructions](https://docs.docker.com/get-docker/), it's super simple.
 
 
@@ -27,7 +27,7 @@ Now that you have docker, we need to setup your Data Dog account. If you already
 ![your-stack](./img/1.2-your-stack.png "your-stack")
 
 - Now is the time to choose how we want to setup our agent. For this tutorial, we will use the Docker Agent approach.
-Select Docker on the left menu, and you will see a screen just like shown bellow.
+Select Docker on the left menu, and you will see a screen just like shown below.
 ![docker-agent-setup](./img/1.3-docker-agent-setup.png "docker-agent-setup")
 
 At this stage, you should have access to the docker command pre-filled with your KEY, something like this:
@@ -35,7 +35,7 @@ At this stage, you should have access to the docker command pre-filled with your
 DOCKER_CONTENT_TRUST=1 docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=<YOUR-KEY-GOES-HERE> -e DD_SITE="datadoghq.eu" datadog/agent:7
 ```
 Further reading on the [documentation regarding APM](https://docs.datadoghq.com/agent/docker/apm/?tab=python), at this stage we will require to add more parameters at the end of the above docker command.
-Those 2 parameters will enable the integration with the APM metrics and port forwarding for tracing, that we will explain on the following steps.
+Those 2 parameters will enable the integration with the APM metrics and port forwarding for tracing, which we will go through on the following steps.
 ```shell script
 -e DD_APM_ENABLED=true -p 8126:8126/tcp
 ```
@@ -119,17 +119,17 @@ docker restart dd-agent
 docker exec -it dd-agent /bin/bash
 ```
 
-After restarting the agent, yon can navigate to [Infrastructure -> Hostmap](https://app.datadoghq.eu/infrastructure/map) and check the tags applied to your host.
+After restarting the agent, you can navigate to [Infrastructure -> Hostmap](https://app.datadoghq.eu/infrastructure/map) and check the tags applied to your host.
 ![tags-applied](./img/2.3-tags-applied.png "tags-applied")
 
 
 ### Database Integration
 We have the MariaDB database running on a container, but to be able to read the metrics, we need to enable the Datadog Integration.
-You can do that on yor New Stuff! home page, you navigating to [Integrations](https://app.datadoghq.eu/account/settings) and selecting the MySQL interface integration
+You can do that on the New Stuff! home page, you navigating to [Integrations](https://app.datadoghq.eu/account/settings) and selecting the MySQL interface integration
 ![database-integration](./img/2.4-database-integration.png "database-integration")
 PS: MariaDB is a fork of MySQL.
 
-By clicking the `+ Add` button, you will receive a set of instructions to enable the MySQL integration ([you can also check them here](https://docs.datadoghq.com/integrations/mysql/)). For this tutorial, I'll skip the user/credentials creation as we are using a test Database, so you can follow the instructions bellow:
+By clicking the `+ Add` button, you will receive a set of instructions to enable the MySQL integration ([you can also check them here](https://docs.datadoghq.com/integrations/mysql/)). For this tutorial, I'll skip the user/credentials creation as we are using a test Database, so you can follow the instructions below:
 
 To enable the MySQL integration on the agent, and to do that we first need to navigate to the `mysql.d` folder.
 ```shell script
@@ -178,7 +178,7 @@ echo "instances: [{}]" > "/etc/datadog-agent/conf.d/my_metric.yaml"
 ```
 This will create a file called `my_metric.yaml` with `instances: [{}]` as its contents, on the `conf.d` folder as required by the documentation.
 
-The next step is create the metric itself. 
+The next step is to create the metric itself. 
 The names of the configuration and check files must match, so in this case, our check file will be called `my_metric.py`, and it must be created inside the `checks.d` folder. 
 ```shell script
 vim /etc/datadog-agent/checks.d/my_metric.py
@@ -331,7 +331,7 @@ Let's start by creating a new Metric Monitor on the Datadog Website by navigatin
 ![new-monitor](./img/4.1-new-monitor.png "new-monitor")
 
 On the following step, we can do as follows:
-- Ont the Detection Method, select Threshold Alert
+- On the Detection Method, select Threshold Alert
 - Select our custom metric `my_metric` on the Metric Definition
 - Choose **Multi Alert** so we can filter the alerts by host
 - Set the alert condition to be: Trigger when the metric is above the threshold on average  during the last 5 minutes for any host
@@ -483,7 +483,7 @@ And with that information, we can create dashboards mixing APM, Infra, Custom an
 
 [dashboard link](https://app.datadoghq.eu/dashboard/us3-fmf-5ds/apm--infra?from_ts=1587469829269&to_ts=1587473429269&live=true)
 
-If you are wondering whats difference between Service, Resource, or any other therms, you can use [APM Glossary](https://docs.datadoghq.com/tracing/visualization/) to learn more, and you will learn that:
+If you are wondering what is difference between Service, Resource, or any other therms, you can use [APM Glossary](https://docs.datadoghq.com/tracing/visualization/) to learn more, and you will learn that:
 - Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of scaling instances.
 - Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
 
