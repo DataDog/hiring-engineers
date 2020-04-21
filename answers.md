@@ -490,4 +490,9 @@ If you are wondering what is difference between Service, Resource, or any other 
 
 ## 42
 
-TODO
+For answering the last question about creative ways of using Datadog, as a geek and a Adult Fan Of Lego (AFOL LOL), I could use Datadog for tracking prices of Lego Sets.
+Some lego sets are really rare and pricey, but from time to time they can appear on market places for a no-brainer price. 
+I could integrate multiple price sources, APIs and crawlers, like Adverts, eBay, Bricklink and other marketplaces to monitor specific set prices, and create alerts to notify when the prices are below the trend, so that way I could get really good deals tailored using smart detection tools. =D
+
+
+On a more serious approach, another way to use Datadog, is to monitor trends on the Covid-19 infection rate (using data sources like https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6) so we could identify spikes in cases, and also match with social isolation rate data to verify its efficiency level of that measure in order to use this information to convince people to stay at home, so we can get back to normal, whatever normal is nowadays, as soon as possible, 
