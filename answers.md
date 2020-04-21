@@ -1,12 +1,12 @@
 # Quick Datadog agent Setup with Docker
 
 ## Table of contents
-1. Basic Prerequisites Checks
-2. Collecting Metrics, using integration and custom created check
-3. Visualizing Data, creating dashboards using the API and Manually
-4. Monitoring Data
-5. Collecting APM Data (Application Performance Management)
-42. Answer to the Ultimate Question of Life, the Universe, and Everything
+1. [Basic Prerequisites Checks](#prerequisites)
+2. [Collecting Metrics, using integration and custom created check](#collecting-metrics)
+3. [Visualizing Data, creating dashboards using the API and Manually](#visualizing-data)
+4. [Monitoring Data](#monitoring-data)
+5. [Collecting APM Data (Application Performance Management)](#collecting-apm-data)
+42. [Answer to the Ultimate Question of Life, the Universe, and Everything](#42)
 
 
 
