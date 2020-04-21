@@ -149,7 +149,7 @@ vim conf.yaml
 Use the configs as follows:
 ```yaml
 # this is the internal route for docker containers
-server: host host.docker.internal
+server: host.docker.internal
 
 # using root credentials for this test server only.
 user: root
