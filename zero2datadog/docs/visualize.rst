@@ -1,7 +1,7 @@
 Visualize Data with the Python API
 =====================================
 
-Utilize the Datadog API to create a :term:`Timeboard <Timeboard>`
+Utilize the DataDog API to create a :term:`Timeboard <Timeboard>`
 -----------------------------------------------------------------
 
 * Your custom metric scoped over your host.
