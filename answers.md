@@ -67,7 +67,7 @@ The basic setup is done. Now we can start configuring the Datadog Agent on the n
 In this part of the tutorial, we will learn about the integration with external services that we can monitor, and also how to create a custom check, and how we can use tags to filter those metrics while monitoring.
 
 
-###Tags
+### Tags
 Before we start collecting metrics, let's [add some Tags](https://docs.datadoghq.com/tagging/) to our infrastructure so we can differentiate metrics from hosts. 
 
 To do that, we will need to access the `dd-agent` container via ssh, using the following command:
