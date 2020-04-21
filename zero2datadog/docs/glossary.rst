@@ -8,6 +8,12 @@ Glossary
 	Agent
 		The current package is called `datadog-agent` and is at version 7.x https://docs.datadoghq.com/agent/#overview
 
+	``app_key``
+		Needed for READ access
+
+	``api_key``
+		Needed for WRITE access
+
 	APM
 		Application Performance Monitoring: |about_APM|
 
