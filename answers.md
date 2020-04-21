@@ -1,4 +1,5 @@
 # Quick Datadog agent Setup with Docker
+If you never used Datadog Agent and website before, just like me, this tutorial will help you quickly understand the capabilities of this poweful tool.
 
 ## Table of contents
 1. [Basic Prerequisites Checks](#prerequisites)
