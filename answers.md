@@ -162,6 +162,9 @@ port: 33061
 After doing this step, save the file and restart the agent one more time. After a few moments, we can check the integration on the Datadog Website to see that it is working. You can also see on the [Infrastructure Host Map](https://app.datadoghq.eu/infrastructure/map)
 ![database-success](./img/2.6-database-success.png "database-success")
 
+We can also go to [Dashboard -> List](https://app.datadoghq.eu/dashboard/lists) and select `MySQL - Overview` on the list
+![database-metrics](./img/2.7-database-metrics.png "database-metrics")
+
 
 ### Custom Agent
 
@@ -197,7 +200,7 @@ class MyMetric(AgentCheck):
 This file will generate a random number from 0 to 1000, and assign the value to a metric called `my_metric`
 
 Restart the agent one more time, and then navigate to the [Metrics -> Explorer](https://app.datadoghq.eu/metric/explorer) on the Datadog Website so we can validate the new metric was created correctly:
-![my_metric-created-success](./img/2.7-my_metric-created.png "my_metric-created-success")
+![my_metric-created-success](./img/2.8-my_metric-created.png "my_metric-created-success")
 
 Or you can simply run the following command to achieve the same result:
 ```shell script
