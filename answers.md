@@ -172,7 +172,7 @@ In order to create a new metric check, that we will call `my_metric`, first we n
 ```shell script
 echo "instances: [{}]" > "/etc/datadog-agent/conf.d/my_metric.yaml"
 ```
-This will create a file called `my_metric.yaml` with `instances: [{}]` as its contents, as required by the documentation.
+This will create a file called `my_metric.yaml` with `instances: [{}]` as its contents, on the `conf.d` folder as required by the documentation.
 
 The next step is create the metric itself. 
 The names of the configuration and check files must match, so in this case, our check file will be called `my_metric.py`, and it must be created inside the `checks.d` folder. 
