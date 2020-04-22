@@ -465,6 +465,8 @@ The only place in the UI that showed this feature for me was the Metrics Explore
 I did set up a Slack Integration and Datadog successfully pushed the message through. But I was missing the marking that I made on it.
 ![Slack Message](images/Slack-Message.png)
 
+I did open an [issue 879](https://github.com/DataDog/hiring-engineers/issues/879) for this. It turs out that the feature is now a bit hidden and called annotation.
+
 ## Bonus Queston : What is the Anomaly graph displaying?
 
 I found a good explanation in the [documentation](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) :
