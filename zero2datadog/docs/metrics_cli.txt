@@ -1,0 +1,25 @@
+bpabon@gbox09:/etc/datadog-agent$ sudo datadog-agent check metrics_example
+=== Series ===
+{
+  "series": [
+    {
+      "metric": "my_metric",
+      "points": [
+        [
+          1587577491,
+          111
+        ]
+      ],
+      "tags": [
+        "admin_email:jitkelme@gmail.com",
+        "env:dev",
+        "metric_submission_type:gauge",
+        "project:zero2datadog"
+      ],
+      "host": "gearbox09.dev.controlplane.info",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    }
+  ]
+}

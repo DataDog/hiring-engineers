@@ -9,13 +9,13 @@ __version__ = "1.0.0"
 """
 class MyClass(AgentCheck):
     def check(self, instance):
-       self.monotonic_count(
+       self.gauge(
             "my_metric",
            random.randint(0, 1000),
             tags=["env:dev",
                   "admin_email:jitkelme@gmail.com",
                   "project:zero2datadog",
-                  "metric_submission_type:monotonic_count"],
+                  "metric_submission_type:gauge"],
         )
 
 

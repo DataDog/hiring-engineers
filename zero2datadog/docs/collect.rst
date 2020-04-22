@@ -1,6 +1,69 @@
 Collecting Metrics
 ==================
 
+
+Add tags in the agent config file
+----------------------------------
+
+* *Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
+
+On OS X the config file for the :term:`datadog-agent <Agent>` is at ``~/.datadog-agent/datadog.yaml``
+For now, the contents of the file can be limited to:
+
+.. literalinclude:: ./docker/datadog/datadog.yaml
+
+Restart the agent after updating this file and you will begin to see data in your Host Map:
+
+.. figure:: ./_images/01_host_tags.png
+	:align: center
+
+	 Web UI Host Map with agent-provided tags.
+
+
+Add an integration for MySQL
+-----------------------------
+
+* *Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.*
+
+
+
+Use the instructions at the Documentation site (https://docs.datadoghq.com/integrations/mysql/) because they are closer
+to what you will find on your desktop machine.
+
+
+Configure the DataDog agent
+---------------------------
+
+Provide the agent with the details it needs to receive data from MariaDB. Edit the ``~/.datadog-agent/etc/conf.d/mysql.d/conf.yaml``.
+In my case, it looks like this:
+
+.. code-block::yaml
+
+	init_config:
+	instances:
+	  - server: 127.0.0.1
+		user: datadog
+	pass: <READACTED>
+		tags:
+		  - environment:dev
+		  - admin_email:jitkelme@gmail.com
+		  - expires:20200630
+		options:
+		  replication: false
+		  galera_cluster: false
+		  extra_status_metrics: true
+		  extra_innodb_metrics: true
+		  extra_performance_metrics: true
+		  schema_size_metrics: false
+		  disable_innodb_metrics: false
+
+
+.. figure:: ./_images/04_mysql_metrics.png
+	:align: center
+
+	Web UI with MySQL metrics
+
+
 Create a custom Agent check
 ---------------------------
 
