@@ -81,7 +81,7 @@ services:
             - DD_API_KEY=invalid_key_but_this_is_fine
             - DD_APM_RECEIVER_SOCKET=/tmp/ddagent/trace.sock
         ports:
-            - "127.0.0.1:8126:8126"
+            - "127.0.0.1:8126:8126" # to receive traces from all hosts, change to  8126:8126
         volumes:
           - ddagent:/tmp/ddagent
 

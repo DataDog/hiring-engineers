@@ -8,10 +8,11 @@ Add tags in the agent config file
 
 * *Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
 
-On OS X the config file for the :term:`datadog-agent<Agent>` is at ``~/.datadog-agent/datadog.yaml``
+On OS X the config file for the :term:`datadog-agent <Agent>` is at ``~/.datadog-agent/datadog.yaml``
 For now, the contents of the file can be limited to:
 
-.. code-block::yaml
+.. literalinclude:: ./docker/datadog/datadog.yaml
+
 	api_key: <REDACTED>
 	hostname: Trials-MacBook-Pro.local
 	hostname_fqdn: true
@@ -24,7 +25,7 @@ For now, the contents of the file can be limited to:
 
 Restart the agent after updating this file and you will begin to see data in your Host Map:
 
-.. figure:: ./_images/01_host_scaled.png
+.. figure:: ./_images/01_host_tags.png
 	:align: center
 
 	 Web UI Host Map with agent-provided tags.

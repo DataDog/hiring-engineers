@@ -1,7 +1,8 @@
-hostname: dl380.dev.controlplane.info
+hostname: gearbox09.dev.controlplane.info
 tags:
   - environment: dev
   - admin_email: jitkelme@gmail.com
+  - os: ubuntu-bionic
+  - host: gearbox09
 env: dev
-logs_enabled: true
 log_level: 'info'

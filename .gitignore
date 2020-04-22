@@ -158,3 +158,4 @@ $RECYCLE.BIN/
 
 /docs/_build/
 /docs/html/
+/zero2datadog/docker/datadog/auth_token

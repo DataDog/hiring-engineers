@@ -1,10 +1,13 @@
 version: "3"
 services:
   db:
+    image: library/mariadb:10-bionic
     container_name: mysql
-    image: mariadb:10
+    restart: always
     volumes:
-      - /Users/bpabon/projects/datadog/:/var/lib/mysql
+      - /Users/bpabon/projects/datadog/mysql/var:/var/lib/mysql
+      - /Users/bpabon/projects/datadog/mysql/conf.d:/etc/mysql/conf.d
+      - /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock
     ports:
       - "3306:3306/tcp"
     environment:
@@ -15,7 +18,15 @@ services:
     labels:
       com.datadoghq.ad.check_names: '[mysql]'
       com.datadoghq.ad.init_configs: ''
-      com.datadoghq.ad.instances: '{"server": "%%host%%", "user": "datadog","pass": "%%env_$MYSQL_PASSWORD%%"}'
+      com.datadoghq.ad.instances: '{"server": "%%host%%", "user": "%%env_$MYSQL_USER","pass": "%%env_$MYSQL_PASSWORD%%"}'
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    links:
+      - db
+    ports:
+      - "8080:8080"
 # agent section
   datadog:
       container_name: datadog
@@ -27,8 +38,9 @@ services:
         - /var/run/docker.sock:/var/run/docker.sock:ro
         - /proc/:/host/proc/:ro
         - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
-        - $DD_CONFIG_HOME/:/etc/datadog-agent
+        - /Users/bpabon/projects/datadog/hiring-engineers/zero2datadog/docker/datadog:/etc/datadog-agent
       environment:
         - DD_API_KEY=${DD_API_KEY}
         - DD_CONFIG_HOME=${DD_CONFIG_HOME}
         - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=1
+        - DD_APM_ENABLED=true  # Uncomment for APM tracing
