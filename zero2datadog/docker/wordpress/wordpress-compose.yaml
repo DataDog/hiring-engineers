@@ -1,0 +1,22 @@
+version: '3'
+services:
+  db:
+    image: 'mariadb:latest'
+    volumes:
+      - ./mydb:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+    restart: always
+  wordpress:
+    image: 'wordpress:latest'
+    volumes:
+      - ./mywordpress:/var/www/html
+    ports:
+      - "8082:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_PASSWORD: rootpass
+    restart: on-failure
+

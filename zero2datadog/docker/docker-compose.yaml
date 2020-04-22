@@ -7,9 +7,9 @@ services:
     volumes:
       - /Users/bpabon/projects/datadog/mysql/var:/var/lib/mysql
       - /Users/bpabon/projects/datadog/mysql/conf.d:/etc/mysql/conf.d
-      - /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock
     ports:
-      - "3306:3306/tcp"
+      - 127.0.0.1:3306:3306
+      # - "3306:3306/tcp"
     environment:
       - MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}"
       - MYSQL_USER="${MYSQL_USER}"

@@ -20,6 +20,7 @@ project = 'Zero to DataDog'
 copyright = '2020, Blaise Pabon'
 author = 'Blaise Pabon'
 release = '2020-04'
+source_suffix = '.rst'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

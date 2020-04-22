@@ -1,9 +1,16 @@
 Collecting Metrics
 ==================
 
+Objectives:
+
+* *Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
+* *Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.*
+* *Create a custom agent check.*
 
 Add tags in the agent config file
 ----------------------------------
+
+
 
 * *Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
 
@@ -64,21 +71,19 @@ In my case, it looks like this:
 	Web UI with MySQL metrics
 
 
-Create a custom Agent check
----------------------------
+Create a custom :term:`Agent` check
+-------------------------------------
 
-* *First, create a custom agent :term:`check <Check>` using the Web UI.*
-
-Next, configure the check to submit a metric named ``my_metric`` with a random value between 0 and 1000.
+* *Create a custom agent check configured to submit a metric named ``my_metric`` with a random value between 0 and 1000.
 
 .. code-block::python
 
 	""" Submit a metric with a random value between 0 and 1000."""
 	class MyClass(AgentCheck):
-		   self.monotonic_count(
+		   self.gauge(
 				"my_metric",
 				random.randint(0, 1000),
-				tags=["env:dev", "metric_submission_type:monotonic_count", "admin_email:jikelme@gmail.com],
+				tags=["env:dev", "metric_submission_type:gauge", "admin_email:jikelme@gmail.com],
 			)
 
 
@@ -93,21 +98,12 @@ The directory structure is important, so I copy the files from my repo directory
 
 If you have an IDE like PyCharm or VS Code, you can synchronize the file transfer.
 
+This image `courtesy of Brendan Roche <https://www.reddit.com/r/datadog/comments/91hezx/custom_agent_check_help/>`_
+illustrates the paths for the check files and for the configuration files in Agents v6 and above.
+
 .. figure:: ./_images/02_agent_paths.png
-	:width: 600px
-	:height: 600px
 	:align: center
 
-	Image courtesy of `Brendan Roche <https://www.reddit.com/r/datadog/comments/91hezx/custom_agent_check_help/>`_
-
-.. note:: This post clarifies the directory structure: https://www.reddit.com/r/datadog/comments/91hezx/custom_agent_check_help/
-
-The ``custom_hello`` check
-''''''''''''''''''''''''''
-
-.. automodule:: zero2datadog
-.. autoclass:: custom_hello
-   :inherited-members:
 
 
 Change the check's collection interval
@@ -115,10 +111,19 @@ Change the check's collection interval
 
 * *Change your check's collection interval so that it only submits the metric once every 45 seconds.*
 
+The collection interval for this check can be controlled using the ``conf.d/metrics_example.yaml`` file.
+
 Bonus:
 ------
 
 * *Can you change the collection interval without modifying the Python check file you created?*
 
+Yes, the interval can be set by changing the instance description in the yaml file, like this:
+
+.. code-block:: yaml
+
+	init_config:
+	instances:
+		- min_collection_interval: 45
 
 

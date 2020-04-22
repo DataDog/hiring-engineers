@@ -10,7 +10,7 @@ control, I set up a local config directory:
 .. literalinclude:: local_tree.txt
 
 
- and insert it using an environment variable ``DD_CONFIG_HOME``:
+and refer to it using an environment variable ``$DD_CONFIG_HOME``:
 
 .. literalinclude:: ../docker/datadog/Dockerfile
 
@@ -25,7 +25,7 @@ I use ``docker-compose`` to combine the agent with Mariadb and also to isolate t
 .. literalinclude:: ../docker/docker-compose.yaml
 
 
-For more complex arrangements of containers, such as testing the :term:APM features, the compose file can be much longer.
+For more complex arrangements of containers, such as testing the :term:`APM` features, the compose file can be much longer.
 
 .. literalinclude:: ../docker/ddtrace-compose.yaml
 

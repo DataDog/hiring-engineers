@@ -1,0 +1,31 @@
+{
+  "title": "Metrics Examples",
+  "description": "A custom agent check configured to submit a metric named `my_metric` with a random value between 0 and 1000.\r\n",
+  "widgets": [
+	{
+	  "id": 0,
+	  "definition": {
+		"type": "timeseries",
+		"requests": [
+		  {
+			"q": "my_metric{$scope}"
+		  }
+		],
+		"title": "my_metric",
+		"show_legend": false,
+		"legend_size": "0"
+	  }
+	}
+  ],
+  "template_variables": [
+	{
+	  "name": "scope",
+	  "default": "*",
+	  "prefix": null
+	}
+  ],
+  "layout_type": "ordered",
+  "is_read_only": false,
+  "notify_list": [],
+  "id": "694-ph8-bnj"
+}

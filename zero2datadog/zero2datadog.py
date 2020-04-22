@@ -29,6 +29,9 @@ widgets = [{
         'title': 'Average Memory Free'
     }
 }]
+
+
+
 layout_type = 'ordered'
 description = 'A Timeboard with a custom metric.'
 is_read_only = True

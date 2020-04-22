@@ -1,29 +1,36 @@
-Visualize Data with the Python API
+Visualize Data with the DataDog API
 =====================================
 
 Utilize the DataDog API to create a :term:`Timeboard <Timeboard>`
 -----------------------------------------------------------------
 
-* Your custom metric scoped over your host.
+Create timeboard with these features:
+	* Your custom metric scoped over your host.
+	* Any metric from the Integration on your Database with the anomaly function applied.
+	* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+	* Include the script you've used to create the board
 
-* Any metric from the Integration on your Database with the anomaly function applied.
 
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+.. figure:: ./_images/05_my_timeboard.png
+	:align: center
 
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+This board was created using the PostMan API editor using the content of this curl command.
+
+.. literalinclude:: ./timeboard_hourly.txt
+
+
 
 Visualize Data with the Web UI
 =================================
 
-* *Once this is created, access the Dashboard from your Dashboard List in the UI:*
+Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the ``@`` notation to send it to yourself.
+	* Set the Timeboard's timeframe to the past 5 minutes
+	* Take a snapshot of this graph and use the ``@`` notation to send it to yourself.
 
-.. figure:: ./_images/bits.png
+.. figure:: ./_images/06_5m_anomalies.png
 	:align: center
-	:scale: 40 %
 
 	Timeboard with five-minute intervals
 
@@ -31,3 +38,5 @@ Visualize Data with the Web UI
 Bonus: What is the Anomaly graph displaying?
 ---------------------------------------------
 
+The anomaly graph is displaying observations that are more than two standard deviations from the norm. It is using the
+:term:`basic` algorithm, based on a lagging rolling quantile.
