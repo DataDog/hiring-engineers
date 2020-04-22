@@ -525,7 +525,7 @@ Entrypoint to the Application
 
 ## Activating Tracing
 
-Dynatrace Agents from version 6 on have APM active per default. Next up is the installing the dynatrace python tracer :
+Datadog Agents from version 6 on have APM active per default. Next up is the installing the datadog python tracer :
 
 ```bash
 [root@f31 ~]# pip install ddtrace
