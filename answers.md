@@ -123,6 +123,17 @@ Looking at the [host dashboard](https://app.datadoghq.eu/infrastructure?hostname
 
 ![Host Dashboard with Disk Issue](images/Host-with-Disk-issue.png)
 
+Update on 23-April :
+
+Datadog Support is not looking at Trials from Hiring Candidates. So I looked more closely at this myself. The datadog Agent is using psutil 5.6.7. [This issue](!https://github.com/giampaolo/psutil/issues/1697) in psutil on github is very similar.  As the issue is fixed in a newer psutil version. So it tested the update :
+
+```bash
+[dd-agent@f31 ~]$ pip3 install -t /opt/datadog-agent/embedded/lib/python3.8/ psutil==5.7.0
+[root@f31 ~]# systemctl restart datadog-agent
+```
+
+After that the issue disappears.
+
 ## Create custom Agent checks
 
 [Documentation Link](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
