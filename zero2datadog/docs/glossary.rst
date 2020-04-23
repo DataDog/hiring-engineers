@@ -1,7 +1,7 @@
 .. _glossary:
 
-Glossary
-========
+Glossary of DataDog concepts
+============================
 
 .. glossary::
 
@@ -27,6 +27,14 @@ Glossary
 
 	Check
 		Custom agent check: https://docs.datadoghq.com/developers/write_agent_check
+
+	Resource
+		A resource is a particular action for a given service (typically an individual endpoint or query). A helpful
+		mnemonic could be: *A service...provides (serves) a resource*
+
+	Service
+		Services are the building blocks of modern microservice architectures.
+		Broadly speaking, a service groups together endpoints, queries, or jobs for the purposes of scaling instances
 
 	Timeboard
 		https://docs.datadoghq.com/dashboards/timeboards/#pagetitle

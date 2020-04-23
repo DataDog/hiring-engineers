@@ -34,9 +34,18 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 	Timeboard with five-minute intervals
 
+When you receive an email notice of the snapshot, it includes a thumbnail, and also buttons that take you directly to
+the item in the DataDog panel.
+
+.. figure:: ./_images/07_snapshot.png
 
 Bonus: What is the Anomaly graph displaying?
 ---------------------------------------------
 
 The anomaly graph is displaying observations that are more than two standard deviations from the norm. It is using the
 :term:`basic` algorithm, based on a lagging rolling quantile.
+
+In fact, when an anomaly alert is triggered, the email notification automatically describes  some of these details, as you
+can see in this image:
+
+.. figure:: ./_images/08_anomaly_alert.png

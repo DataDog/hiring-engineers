@@ -43,6 +43,13 @@ Bonus: Service vs Resource?
 
 * *What is the difference between a Service and a Resource?*
 
+	:term:`Resource`
+		A resource is a particular action for a given service (typically an individual endpoint or query). A helpful
+		mnemonic could be: *A service...provides (serves) a resource*
+
+	:term:`Service`
+		Services are the building blocks of modern microservice architectures.
+		Broadly speaking, a service groups together endpoints, queries, or jobs for the purposes of scaling instances
 Dashboard: Unified APM and Metrics
 ===================================
 
