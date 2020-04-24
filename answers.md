@@ -18,6 +18,7 @@ I chose to use the provided flask app.
 ## Challenge 1: Collecting Metrics
 ### Part 1: Adding tags to the Datadog Agent config file
 #### 1.1.1: List of tags added
+I chose to add the following tags to the config file to help manage environment sprawl and provide the ability to group resources by common attributes, such as the running workload, the team responsible, or the environment classification. 
 
 tags:
 * platform:vagrant
@@ -33,8 +34,16 @@ tags:
 ![1.1.3](answers-attachments/1.1.3.png)
 ### Part 2: Database install and integration: Postgres
 #### 1.2.1: Screenshot of datadog-agent status showing Postgres integration install
+I chose to use Postgres as my installed database due to its prevalence and maturity. I found it extremely easy to install the Postgres integration and love the built-in instructions in the GUI.
+
+After I set up the integration, I used the "datadog-agent status" command to show me the integration was up and running successfully! I verified in the SaaS console that the agent was feeding me data and all the applicable metrics were coming in properly.
+
 ![1.2.1](answers-attachments/1.2.1.png)
-### Part 3: Custom Agent Check with my_metric custom random value submission, 45 second submission interval, and bonus question
+### Part 3: Custom Agent Check with my_metric custom random value submission and 45 second submission interval
+I set up a custom agent check called my_metric that submits a random value between 0 and 1000 every 45 seconds. I found it very convenient to create a custom check simply by creating a config file in conf.d and a corresponding check file in the checks.d directory.
+
+Once again, I verified that my custom check file was running with an "datadog-agent status" and began to see custom metrics in the console every 45 seconds as configured in the my_metric config file.
+
 #### 1.3.1: Screenshot of custom metric my_metric dashboard
 ![1.3.1](answers-attachments/1.3.1.png)
 #### 1.3.2: Code for my_metric from checks.d
@@ -67,14 +76,15 @@ tags:
 #### 1.3.3: Snapshot of config file for my_metric from conf.d which submits my_metric only once every 45 seconds
 ![1.3.3](answers-attachments/1.3.3.png)
 
-#### 1.3.4: **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-Did not attempt, asked a clarifying question and did not hear back from my point of contact.
-
-
-
 ## Challenge 2: Visualizing Data
 ### Part 1: Datadog API Timeboard Creation
 #### 2.1.1 Screenshot of created Timeboard with three widgets - custom metric scoped over host, Postgres metric with anomaly function applied, and custom metric with rollup function to sum all points from the past hour
+I used Postman to create a timeboard via the Datadog API. I downloaded the Datadog Postman collection and used it as I worked through my API call creation. After generating a new application key for use with Postman, I loaded all of my environment variables in and tested connectivity. 
+
+I built three different timeboards to validate that each JSON element worked properly individually, and then combined them into one list along with the rest of the timeboard creation syntax.
+
+I read through the documentation to get information on how to scope to a specific host for a given metric, how to configure a metric with the anomalies function applied, and how to use the rollup function over a given period of time.
+
 ![2.1.1](answers-attachments/2.1.1.png)
 [Public Dashboard Link](https://p.datadoghq.com/sb/cgguwls3kat23rz0-7a254a2965b947296b834b69cd962fa0)
 
@@ -92,6 +102,8 @@ Did not attempt, asked a clarifying question and did not hear back from my point
 [link to the script](answers-attachments/2.1.2.sh)
 ### Part 2: Dashboard Interaction
 #### 2.2.1 Snapshot of API created Timeboard scoped to the last 5 minutes
+I set the timeframe to show the last 5 minutes per the instructions and took a snapshot through the console.
+
 ![2.2.1](answers-attachments/2.2.1.png)
 
 #### 2.2.2 What is the Anomaly graph displaying?
@@ -101,6 +113,12 @@ The Anomaly graph is showing any substantial deviations from the "normal" behavi
 ### Part 1: Created Metric Monitor to watch my_metric average with thresholds set (Warning:500:5 minutes, Alerting:800:5 minutes, NO DATA:10 minutes), configured to send an email whenever the monitor triggers with different messages based on whether the monitor is in an Alert, Warning, or No Data state. 
 ### Email includes the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state. Email sample included.
 #### 3.1.1 Screenshot of custom Metric Monitor
+I created a Metric Monitor interactively using the console and set all of the appropriate parameters. I then researched the appropriate syntax to use in the "Message" field so that the message would change based on the type of event and provide more rich information (I know in my experience, it's extremely frustrating to get notifications that tell you to look somewhere else for the context). 
+
+I received an email almost immediately after configuring the Metric Monitor and saw that all of my syntax worked properly. I then went in to the console and sent all of the test alerts to make sure the messages changed appropriately, which they fortunately did. 
+
+After verifying all my notifications were working properly, I muted the monitor in the console because my email was blowing up with alerts. I then scheduled my downtimes as specified. I think this part of the console could use some improvement, the wizard that I was working with was somewhat hard to follow - especially around the duration of the scheduled downtime (how long that downtime would be in effect before expiring) as opposed to the actual details of what the downtime would consist of when it is in effect. I received an email informing me that a change had been made to my scheduled downtime each time that I made any tweaks to it.
+
 ![3.1.1](answers-attachments/3.1.1.png)
 #### 3.1.2 JSON to create custom Metric Monitor
     '''
@@ -141,6 +159,10 @@ The Anomaly graph is showing any substantial deviations from the "normal" behavi
 ### Part 1: Instrument the Python Flask App. 
 #### 4.1.1 I confirmed that Trace Collection was enabled by default in my version of the Datadog Agent, and installed then ran ddtrace with my Flask application. I enabled App Analytics in the Flask code base.
 
+I enjoyed this part of the exercise the most. It was painless to follow the integration steps and I'm very impressed with how simple and straightforward it is to run ddtrace with my app and instantly get tracing information in the SaaS console. 
+
+Additionally, the fact that Trace Collection is enabled in the agent by default for current versions is a nice touch and helped me get up and running immediately. On top of that, having a one-liner to get App Analytics enabled either in the code or through an environment variable is super convenient. When I initially read this portion, I thought it would be the most difficult one but I was very impressed to breeze through it. The team did a great job with ease of use and I found that the APM documentation was the strongest of all of them (from my point of view). 
+
     '''
     from flask import Flask
     import logging
@@ -177,6 +199,10 @@ The Anomaly graph is showing any substantial deviations from the "normal" behavi
 [link to the script](answers-attachments/4.1.1.py)
 
 #### 4.1.2 Link and Screenshot of APM/Infrastructure Metrics Dashboard. 
+I decided to use four different metrics for this dashboard. First, CPU and disk-in-use as an indicator of overall host health. Secondly, the Trace Agent CPU percentage gives a specific data point on CPU usage in cores for more context-rich data. I chose to include the Trace Agent Trace Writer bytes estimate to give details on the Agent's internal algorithm. Lastly, I included a time-series plot of the Postgres database's percentage of max connections in use.
+
+This dashboard will give me a broader view into the health of the Datadog Agent, my application, database, and host.
+
 [Public Dashboard Link](https://p.datadoghq.com/sb/cgguwls3kat23rz0-9238448f1d7b74ee26540f6ba377e2d4)
 ![4.1.2](answers-attachments/4.1.2.png)
 
