@@ -41,7 +41,13 @@ Apr 23 21:11:12 raj-replicated systemd[1]: Started PostgreSQL RDBMS.
 
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+The custom agent check is shown below:
+
+<img src="cm4.png">
+
+
 ## Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
 
 
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
