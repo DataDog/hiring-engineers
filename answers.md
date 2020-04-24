@@ -41,15 +41,56 @@ Apr 23 21:11:12 raj-replicated systemd[1]: Started PostgreSQL RDBMS.
 
 ## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-The custom agent check is shown below:
+This is a 2 step process as shown below.
+
+**First I created the following file in /etc/datadog-agent/checks.d/mymetric.py 
+
+>>>
+```
+import random
+
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class mymetric(AgentCheck):
+    def check(self, instance):
+        self.gauge('goawaycovid19.my_metric', random.randint(0,1000), tags=['TAG_KEY:TAG_VALUE'])
+```
+
+>>>>>>
+
+## Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+**Second is to create a corresponding file in /etc/datadog-agent/conf.d/mymetric.yaml
+
+```
+init_config:
+
+instances:
+   - host: datadograj
+   - min_collection_interval: 45
+```
+
+>>>>>>>
 
 <img src="cm4.png">
 
 
-## Change your check's collection interval so that it only submits the metric once every 45 seconds.
-
-
-
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+This can be accomplished by changing the jmx_check_period parameter in the /etc/datadog-agent/datadog.yaml as shown below.
+```
+raj@raj-replicated:/etc/datadog-agent/conf.d$ sudo cat /etc/datadog-agent/datadog.yaml | grep jmx_check
+## @param jmx_check_period - integer - optional - default: 15000
+# jmx_check_period: 15000
+```
 
 
