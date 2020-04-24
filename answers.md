@@ -111,11 +111,12 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 <img src="vd3.png">
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
-
 Set the Timeboard's timeframe to the past 5 minutes
-
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 
+See below:
 
-Bonus Question: What is the Anomaly graph displaying?
+<img src="vd3.png">
 
+**Bonus Question: What is the Anomaly graph displaying?
+** Need to answer
