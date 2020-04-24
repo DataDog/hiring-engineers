@@ -10,8 +10,6 @@ Objectives:
 Add tags in the agent config file
 ----------------------------------
 
-
-
 * *Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.*
 
 On OS X the config file for the :term:`datadog-agent <Agent>` is at ``~/.datadog-agent/datadog.yaml``
@@ -123,6 +121,7 @@ Yes, the interval can be set by changing the instance description in the yaml fi
 .. code-block:: yaml
 
 	init_config:
+
 	instances:
 		- min_collection_interval: 45
 

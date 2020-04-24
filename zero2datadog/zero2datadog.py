@@ -1,6 +1,3 @@
-import typer
-import httpx
-from datadog import initialize, api
 from settings import options
 
 """ Create a timeboard with custom metrics.

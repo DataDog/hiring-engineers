@@ -4,7 +4,7 @@ PYTHON ?= python3
 
 # You can set these variables from the command line.
 SPHINXOPTS   =
-SPHINXBUILD  = $(PYTHON) ../sphinx/cmd/build.py
+SPHINXBUILD  = $(PYTHON)
 SOURCEDIR    = .
 BUILDDIR     = _build
 

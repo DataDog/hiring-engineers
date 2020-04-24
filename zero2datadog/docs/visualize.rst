@@ -1,8 +1,8 @@
 Visualize Data with the DataDog API
 =====================================
 
-Utilize the DataDog API to create a :term:`Timeboard <Timeboard>`
------------------------------------------------------------------
+Utilize the DataDog API to create a :term:`Timeboard`
+----------------------------------------------------
 
 Create timeboard with these features:
 	* Your custom metric scoped over your host.
@@ -38,6 +38,8 @@ When you receive an email notice of the snapshot, it includes a thumbnail, and a
 the item in the DataDog panel.
 
 .. figure:: ./_images/07_snapshot.png
+	:align: center
+
 
 Bonus: What is the Anomaly graph displaying?
 ---------------------------------------------
@@ -49,3 +51,5 @@ In fact, when an anomaly alert is triggered, the email notification automaticall
 can see in this image:
 
 .. figure:: ./_images/08_anomaly_alert.png
+	:align: center
+

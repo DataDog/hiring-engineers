@@ -67,7 +67,7 @@ Since this monitor is going to alert pretty often, you don’t want to be alerte
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-.. figure:: ./_images/10_bonus_downntime.png
+.. figure:: ./_images/10_bonus_downtime.png
 	:align: center
 
 

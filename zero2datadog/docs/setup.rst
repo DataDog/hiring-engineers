@@ -35,10 +35,3 @@ In my case, it looks like this:
 		  disable_innodb_metrics: false
 
 
-
-Using Docker containers
------------------------------
-
-.. include:: docker.rst
-
-
