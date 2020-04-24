@@ -108,7 +108,7 @@ Any metric from the Integration on your Database with the anomaly function appli
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-<img src="vd3.png">
+<img src="vd3a.png">
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 Set the Timeboard's timeframe to the past 5 minutes
@@ -116,7 +116,7 @@ Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 See below:
 
-<img src="vd3.png">
+<img src="vd4.png">
 
 **Bonus Question: What is the Anomaly graph displaying?
 ** Need to answer
