@@ -15,14 +15,24 @@ Add tags in the agent config file
 On OS X the config file for the :term:`datadog-agent <Agent>` is at ``~/.datadog-agent/datadog.yaml``
 For now, the contents of the file can be limited to:
 
-.. literalinclude:: ./docker/datadog/datadog.yaml
+.. code-block:: yaml
+
+	hostname: gearbox09.dev.controlplane.info
+	tags:
+	  - environment: dev
+	  - admin_email: jitkelme@gmail.com
+	  - os: ubuntu-bionic
+	  - host: gearbox09
+	env: dev
+	log_level: 'info'
+
 
 Restart the agent after updating this file and you will begin to see data in your Host Map:
 
 .. figure:: ./_images/01_host_tags.png
 	:align: center
 
-	 Web UI Host Map with agent-provided tags.
+	Web UI Host Map with agent-provided tags.
 
 
 Add an integration for MySQL
@@ -72,7 +82,7 @@ In my case, it looks like this:
 Create a custom :term:`Agent` check
 -------------------------------------
 
-* *Create a custom agent check configured to submit a metric named ``my_metric`` with a random value between 0 and 1000.
+* *Create a custom agent check configured to submit a metric named ``my_metric`` with a random value between 0 and 1000.*
 
 .. code-block::python
 

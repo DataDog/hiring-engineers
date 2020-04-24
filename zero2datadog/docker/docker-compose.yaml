@@ -9,7 +9,6 @@ services:
       - /Users/bpabon/projects/datadog/mysql/conf.d:/etc/mysql/conf.d
     ports:
       - 127.0.0.1:3306:3306
-      # - "3306:3306/tcp"
     environment:
       - MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}"
       - MYSQL_USER="${MYSQL_USER}"

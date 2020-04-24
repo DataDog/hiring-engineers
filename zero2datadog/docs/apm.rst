@@ -4,23 +4,14 @@ Performance Monitoring: Collecting APM Data
 
 * *Given the following Flask app, instrument this using Datadog’s APM solution*:
 
+To produce a substantial body of transactions, I used a database-intensive Flask app called eNMS (https://enms.readthedocs.io/en/latest/ ) to produce a burst of transactions.
+in that case, I leveraged the automatic instrumentation provided by the Flask integration using ``ddtrace-run`` from the shell:
+``$ ddtrace-run gunicorn --config gunicorn.py app:app``
+In the case of Flask, the ``ddtrace`` module automatically registers hooks and wraps tracers around functions that have requests.
+
+
 Because using both ``ddtrace-run`` and manually inserting the Middleware has been known to cause issues,
 I have included an example of a manually-instrumented app below.
-In the case of Flask, the ddtrace module automatically registers hooks and wraps tracers around functions that have requests.
-
-Dashboard: Unified APM and Metrics
-===================================
-
-* *Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.*
-
-.. figure:: _images/11_apm_dash.png
-
-
-This dashboard illustrates network traffic levels in conjunction with database queries (e.g. ``trace.sqlite.query.duration``).
-The dashboard is accessible at:
-https://p.datadoghq.com/sb/tete840uvd9y7dkj-1f06d1c161aec5dd0c7c306ead78ab2e
-
-I used a database-intensive Flask app called eNMS (https://enms.readthedocs.io/en/latest/ ) to produce a burst of transactions.
 
 .. code-block:: python
 
@@ -53,6 +44,19 @@ I used a database-intensive Flask app called eNMS (https://enms.readthedocs.io/e
 
 	if __name__ == '__main__':
 		app.run(host='0.0.0.0', port='5050')
+
+
+Dashboard: Unified APM and Metrics
+===================================
+
+* *Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.*
+
+.. figure:: _images/11_apm_dash.png
+
+
+This dashboard illustrates network traffic levels in conjunction with database queries (e.g. ``trace.sqlite.query.duration``).
+The dashboard is accessible at:
+https://p.datadoghq.com/sb/tete840uvd9y7dkj-1f06d1c161aec5dd0c7c306ead78ab2e
 
 
 Bonus: Service vs Resource?

@@ -23,7 +23,7 @@ Glossary of DataDog concepts
 	Basic
 		This anomaly detection algorithm uses a simple lagging rolling quantile computation to determine the range of expected values.
 		It uses very little data and adjusts quickly to changing conditions but has no knowledge of seasonal behavior or longer trends.
-		`See also<https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms>`_
+		See also https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms
 
 	Check
 		Custom agent check: https://docs.datadoghq.com/developers/write_agent_check
