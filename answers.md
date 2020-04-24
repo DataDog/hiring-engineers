@@ -81,9 +81,6 @@ instances:
 
 >>>>>>>
 
-<img src="cm4.png">
-
-
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 This can be accomplished by changing the jmx_check_period parameter in the /etc/datadog-agent/datadog.yaml as shown below.
@@ -93,4 +90,23 @@ raj@raj-replicated:/etc/datadog-agent/conf.d$ sudo cat /etc/datadog-agent/datado
 # jmx_check_period: 15000
 ```
 
+<hr>
+
+#Visualizing Data:
+Utilize the Datadog API to create a Timeboard that contains:
+
+Your custom metric scoped over your host.
+
+<img src="cm4.png">
+
+
+Any metric from the Integration on your Database with the anomaly function applied.
+Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+Set the Timeboard's timeframe to the past 5 minutes
+Take a snapshot of this graph and use the @ notation to send it to yourself.
+Bonus Question: What is the Anomaly graph displaying?
 
