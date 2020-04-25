@@ -141,6 +141,9 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 Warning threshold of 500
 Alerting threshold of 800
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+<img src="vd3.png">
+
 Please configure the monitor’s message so that it will:
 
 Send you an email whenever the monitor triggers.
@@ -151,8 +154,9 @@ Include the metric value that caused the monitor to trigger and host ip when the
 
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-<img src="vd3.png">
-
+<p>
+   
+<img src="md1.png">
 <p>
 <p>
 
