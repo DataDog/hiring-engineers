@@ -175,3 +175,22 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+Please see below of the screenshots for the above bonus question.
+
+<img src="mdbonus1.png">
+<hr>
+<p>
+<p>
+<img src="mdbonus2.png">
+<hr>
+<p>
+<p>
+<img src="mdbonus3.png">
+<hr>
+<p>
+<p>
+<img src="mdbonus4.png">
+<hr>
+<p>
+<p>
