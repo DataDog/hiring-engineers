@@ -21,7 +21,7 @@ tags:
 ## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 I installed PostgreSQL on my Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-96-generic x86_64) VM
-
+```
 raj@raj-replicated:~$ sudo service postgresql status
 ● postgresql.service - PostgreSQL RDBMS
    Loaded: loaded (/lib/systemd/system/postgresql.service; enabled; vendor preset: enabled)
@@ -32,6 +32,7 @@ raj@raj-replicated:~$ sudo service postgresql status
 
 Apr 23 21:11:12 raj-replicated systemd[1]: Starting PostgreSQL RDBMS...
 Apr 23 21:11:12 raj-replicated systemd[1]: Started PostgreSQL RDBMS.
+```
 
 <img src="cm2.png">
 
@@ -128,7 +129,8 @@ See below:
 <img src="vd4.png">
 
 **Bonus Question: What is the Anomaly graph displaying?
-** Need to answer
+
+The anomaly graph shows the change in the given metric when it is outside the normal range. This is a quick way to quickly identify any strange behavior 
 
 <hr>
 
