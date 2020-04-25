@@ -159,12 +159,15 @@ Include the metric value that caused the monitor to trigger and host ip when the
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 <p>
-   
+Triggered alert:
+
 <img src="md1.png">
 <p>
 <p>
 
+Warning alert:
 
+<img src="mdwarn.png">
 <hr>
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
