@@ -149,6 +149,8 @@ Please configure the monitor’s message so that it will:
 Send you an email whenever the monitor triggers.
 
 Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+<p>
+<img src="mdnodata.png">
 
 Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
