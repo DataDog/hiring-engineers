@@ -207,6 +207,7 @@ Note: Using both ddtrace-run and manually inserting the Middleware has been know
 <img src="apm1.png">
 
 Bonus Question: What is the difference between a Service and a Resource?
+** A Resource is an API endpoint Vs Service is a system process
 
 ## Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
@@ -279,3 +280,16 @@ if __name__ == '__main__':
   duration 0.001961s
      error 0
 ```
+<hr>
+<P>
+
+# Final Question:
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+Given the pandemic situation I would use Datadog to provide a County by County update on recoveries, death rates and ventilators available so each county can monitor thier progress. This would help the local authorities immensely as they plan their strategy to flatten the curve (that would be a Datadog Dashboard as well).
+
+# Extra stuff:
+
+
