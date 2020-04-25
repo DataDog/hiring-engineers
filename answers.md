@@ -194,3 +194,88 @@ Please see below of the screenshots for the above bonus question.
 <hr>
 <p>
 <p>
+<hr>
+<p>
+<p>
+# Collecting APM Data:
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
+<p>
+<p>
+<img src="apm1.png">
+
+Bonus Question: What is the difference between a Service and a Resource?
+
+## Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+APM and Infrastructure Metrics Dashboard
+https://p.datadoghq.com/sb/oi8rtjdn7iubo6f6-66e64659c2711c8592fdc3b13994a225
+
+Please include your fully instrumented app in your submission, as well.
+
+My flaskapp.py:
+
+```
+raj@raj-replicated:~/my_flask_app$ sudo cat flaskapp.py
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+## Running instance of the flask application with ddtrace-run command on my Ubuntu VM
+
+```
+(venv) raj@raj-replicated:~/my_flask_app$  ddtrace-run python flaskapp.py
+ * Serving Flask app "flaskapp" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2020-04-25 08:40:01,922 DEBUG [ddtrace.internal.import_hooks] [import_hooks.py:136] - No hooks registered for module 'stringprep'
+2020-04-25 08:40:01,922 - ddtrace.internal.import_hooks - DEBUG - No hooks registered for module 'stringprep'
+2020-04-25 08:40:01,923 INFO [werkzeug] [_internal.py:113] -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+2020-04-25 08:40:01,923 - werkzeug - INFO -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+2020-04-25 08:43:16,885 DEBUG [ddtrace.tracer] [tracer.py:466] - Updating constant tags ['lang:python', 'lang_interpreter:CPython', 'lang_version:3.6.9', 'tracer_version:0.36.1', 'service:flask']
+2020-04-25 08:43:16,885 - ddtrace.tracer - DEBUG - Updating constant tags ['lang:python', 'lang_interpreter:CPython', 'lang_version:3.6.9', 'tracer_version:0.36.1', 'service:flask']
+2020-04-25 08:43:16,887 DEBUG [ddtrace.tracer] [tracer.py:590] - writing 8 spans (enabled:True)
+2020-04-25 08:43:16,887 - ddtrace.tracer - DEBUG - writing 8 spans (enabled:True)
+2020-04-25 08:43:16,887 DEBUG [ddtrace.tracer] [tracer.py:592] -
+      name flask.request
+        id 9115686373042409972
+  trace_id 6873940170630977248
+ parent_id None
+   service flask
+  resource GET /
+      type web
+     start 1587822196.885013
+       end 1587822196.886974
+  duration 0.001961s
+     error 0
+```
