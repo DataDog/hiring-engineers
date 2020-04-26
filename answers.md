@@ -96,10 +96,91 @@ raj@raj-replicated:/etc/datadog-agent/conf.d$ sudo cat /etc/datadog-agent/datado
 #Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
 
-Your custom metric scoped over your host.
+Your custom metric scoped over your host. Here is the output of my dashboard12.py file that generates my custom Timeboard.
 
-<img src="cm4.png">
+```
+cat dashboard12.py
+from datadog import initialize, api
 
+options = {
+    'api_key': '157cc4550a8154f7cec37203159cdb09',
+    'app_key': '7f47056451b99c1418ae4dcb42f3b7fdf28fb390'
+}
+
+initialize(**options)
+
+title = 'Raj Timeboard API'
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:system.mem.free{*}'}
+        ],
+        'title': 'Average Memory Free host'
+    }
+},
+{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'max:goawaycovid19.my_metric{host:datadograj}'}
+        ],
+        'title': 'Go Away Covid19 metric by Raj!'
+    }
+},
+{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'max:goawaycovid19.my_metric{host:datadograj}.rollup(sum, 3600)'}
+        ],
+        'title': 'Go Away Covid19 metric by Raj and Summed up!!'
+    }
+},
+{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {"q": "anomalies(postgresql.bgwriter.checkpoints_timed{*},'agile',2,direction='both',alert_window='last_15m',interval=60,count_default_zero='true',seasonality='hourly')"}
+        ],
+        'title': 'Anomaly function applied to PostgresDB bgwriter checkpoint'
+    }
+}
+]
+
+layout_type = 'ordered'
+description = 'Raj API Timeboard'
+is_read_only = True
+notify_list = ['sanstorage@gmail.com']
+template_variables = [{
+    'name': 'host',
+    'prefix': 'host',
+    'default': 'my-host'
+}]
+
+saved_view = [{
+    'name': 'Saved views for hostname 2',
+    'template_variables': [{'name': 'host', 'value': '<HOSTNAME_2>'}]}
+]
+
+response = api.Dashboard.create(title=title,
+                     widgets=widgets,
+                     layout_type=layout_type,
+                     description=description,
+                     is_read_only=is_read_only,
+                     notify_list=notify_list,
+                     template_variables=template_variables,
+                     template_variable_presets=saved_view)
+print(response)
+```
+
+<HR>
+<img src="timeboard4.png">
+
+<HR>
+<img src="timeboard15.png">
+
+<HR>
 
 Any metric from the Integration on your Database with the anomaly function applied.
 
