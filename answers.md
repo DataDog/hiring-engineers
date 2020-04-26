@@ -93,18 +93,19 @@ raj@raj-replicated:/etc/datadog-agent/conf.d$ sudo cat /etc/datadog-agent/datado
 
 <hr>
 
-#Visualizing Data:
+# Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
 
 Your custom metric scoped over your host. Here is the output of my dashboard12.py file that generates my custom Timeboard.
 
 ```
-cat dashboard12.py
+$cat dashboard12.py
+
 from datadog import initialize, api
 
 options = {
-    'api_key': '157cc4550a8154f7cec37203159cdb09',
-    'app_key': '7f47056451b99c1418ae4dcb42f3b7fdf28fb390'
+    'api_key': 'my_api_key',
+    'app_key': 'my_app_key'
 }
 
 initialize(**options)
@@ -184,13 +185,9 @@ print(response)
 
 Any metric from the Integration on your Database with the anomaly function applied.
 
-<img src="vd2.png">
-
-
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-<img src="vdrollup.png">
 <p>
 <p>
 <img src="vd3a.png">
@@ -201,9 +198,8 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-https://p.datadoghq.com/sb/oi8rtjdn7iubo6f6-a00d4174f148e1d6e895652be63d98aa
+https://p.datadoghq.com/sb/oi8rtjdn7iubo6f6-c3da500948b38d345ea82f38ea070c3c
 
-<img src="vdtboard.png">
 
 See below:
 
@@ -376,6 +372,6 @@ Is there anything creative you would use Datadog for?
 
 Given the pandemic situation I would use Datadog to provide a County by County update on recoveries, death rates and ventilators available so each county can monitor thier progress. This would help the local authorities immensely as they plan their strategy to flatten the curve (that would be a Datadog Dashboard as well).
 
-# Extra stuff:
+# LinkedIn: https://www.linkedin.com/in/rseshadri1/
 
 
