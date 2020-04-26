@@ -157,7 +157,12 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+<p>
+Email alert:
 
+<img src="Downtimeschemail.png">
+<p>
+<p>
 <p>
 Triggered alert:
 
