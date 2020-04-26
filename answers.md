@@ -96,7 +96,13 @@ raj@raj-replicated:/etc/datadog-agent/conf.d$ sudo cat /etc/datadog-agent/datado
 # Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
 
-Your custom metric scoped over your host. Here is the output of my dashboard12.py file that generates my custom Timeboard.
+Your custom metric scoped over your host. 
+Any metric from the Integration on your Database with the anomaly function applied.
+
+Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+Here is the output of my dashboard12.py file that generates my custom Timeboard.
 
 ```
 $cat dashboard12.py
@@ -182,16 +188,6 @@ print(response)
 <img src="timeboard15.png">
 
 <HR>
-
-Any metric from the Integration on your Database with the anomaly function applied.
-
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-
-<p>
-<p>
-<img src="vd3a.png">
-
 
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
