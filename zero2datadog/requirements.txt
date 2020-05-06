@@ -80,6 +80,7 @@ sphinxcontrib-htmlhelp==1.0.3
 sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.4
+sphinxcontrib.asciinema
 texttable==1.6.2
 toml==0.10.0
 tox==3.14.6
