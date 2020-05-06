@@ -1,0 +1,28 @@
+# Create a cluster from scratch if you don't already have one,
+# This can take ten minutes.... get up and stretch
+doctl kubernetes cluster create openfaas-arkadedog   \
+    --access-token=$DO_TOKEN   \
+    --region="sfo2"   \
+    --node-pool="name=main;size=s-1vcpu-2gb;count=2;tag=openfaas;tag=datadog"   \
+    --auto-upgrade="true"
+# You may need to update DNS records if you want to have public end points:
+arkade install metrics-server
+arkade install kube-state-metrics
+arkade install nginx-ingress
+arkade install cert-manager
+arkade install  docker-registry --wait
+# arkade will wait for the health checks before proceeding
+arkade install  docker-registry-ingress \
+    --domain="registry.do.controlplane.info" \
+    --email="jitkelme@gmail.com"
+arkade install openfaas --load-balancer --ingress-operator --wait
+# The various containers will take a few minutes to initialize
+arkade install openfaas-ingress \
+  --domain i.do.controlplane.info \
+  --email jitkelme@gmail.com
+# This takes care of the data dog agents, note the use of env vars:
+arkade install chart --repo-name stable/datadog \
+    --set datadog.apiKey=$DD_API_KEY \
+    --set datadog.apm.enabled="true" \
+    --set datadog.clusterAgent.enabled="true" \
+    --set datadog.clusterAgent.token=$DD_CLUSTER_KEY

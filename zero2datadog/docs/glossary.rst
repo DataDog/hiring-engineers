@@ -17,6 +17,9 @@ Glossary of DataDog concepts
 	APM
 		Application Performance Monitoring: |about_APM|
 
+	Arkade
+		The package installer for Kubernetes https://blog.heyal.co.uk/introducing-arkade/
+
 	Autodiscovery
 		https://docs.datadoghq.com/agent/faq/template_variables/
 

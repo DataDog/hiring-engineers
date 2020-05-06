@@ -12,7 +12,14 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
     'sphinx.ext.viewcode',
+    'sphinxcontrib.asciinema'
 ]
+sphinxcontrib_asciinema_defaults = {
+    'theme': 'solarized-light',
+    'preload': 1,
+    'font-size': '15px'
+}
+
 # -- Project information -----------------------------------------------------
 
 project = 'Zero to DataDog'

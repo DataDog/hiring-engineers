@@ -18,6 +18,7 @@ The unofficial and free (as in beer) example project to show you how to get up a
 	Monitoring Data <monitor>
 	Collecting Performance (:term:`APM`) Data <apm>
 	Final Question <next_steps>
+	Arkade & OpenFaaS <faas>
 	References <refs>
 
 
