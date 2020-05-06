@@ -71,7 +71,11 @@ a small code block that gets you to the point where you can deploy serverless fu
 
 This process will take five to 10 minutes, which you can spend doing something useful instead of editing config files.
 
-.. asciinema:: 327397
+.. raw:: html
+
+	<script id="asciicast-327397" src="https://asciinema.org/a/327397.js" async></script>
+
+.. .. asciinema:: 327397
 
 One click DataDog Agent
 ------------------------
@@ -89,7 +93,11 @@ No more dealing with Helm vs Tiller, RBAC, serviceaccount, clusterrole bindings,
 
 It's gratifying to sit back and watch how arkade does all the busywork for you:
 
-.. asciinema:: 327393
+.. raw:: html
+
+	<script id="asciicast-327393" src="https://asciinema.org/a/327393.js" async></script>
+
+.. .. asciinema:: 327393
 
 
 
