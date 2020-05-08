@@ -26,6 +26,7 @@ Using Datadog to collect metrics from our specific system
 2. Visualizing Data
 
 Once collected, how can we create case-needed visualizations to suit our requirements or inform us further?
+
 3. Monitoring Data
 
 Once appropriately visualized, what tools can we use so that we can be alerted for regularities or anomalies in the data?
