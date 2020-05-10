@@ -435,9 +435,9 @@ flask:
 
 ### Final Question
 - **Is there anything creative you would use Datadog for?**
-    - A lot of companies today are exploring the implementation of chatbots to handle certain aspects of their       business. Chatbots have many use cases from internal(employee facing) to external (customer facing). For example, a chatbot could be deployed internally within a company to handle common human resource inquiries or process request such as an expense form. A chatbot could also be used externally to handle customer service.
+    - A lot of companies today are exploring the implementation of chatbots to handle certain aspects of their       business.       Chatbots have many use cases from internal(employee facing) to external (customer facing). For example, a chatbot could       be deployed internally within a company to handle common human resource inquiries or process request such as an expense       form. A chatbot could also be used externally to handle customer service.
 
-    Deploying a chatbot is an iterative development process. Developers need to refine and manage the training data as the chatbot interacts with inputs in order to maximize success. Utilizing the Datadog platform, I could see this process being streamlined. Developers would be able to track performance in real time and make parameter changes accordingly. Along with monitoring the chatbot performance, you can also collect data on user behavior which has great value for a business.
+      Deploying a chatbot is an iterative development process. Developers need to refine and manage the training data as the         chatbot interacts with inputs in order to maximize success. Utilizing the Datadog platform, I could see this process           being streamlined. Developers would be able to track performance in real time and make parameter changes accordingly.         Along with monitoring the chatbot performance, you can also collect data on user behavior which has great value for a         business.
 
 
 
@@ -463,4 +463,3 @@ flask:
 
 
 
----
