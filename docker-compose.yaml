@@ -1,0 +1,46 @@
+version: "3"
+services:
+
+  postgres:
+    image: postgres:10-alpine
+    environment:
+        - POSTGRES_DB=postgres
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  flask:
+    build:
+      context: ./apm
+      dockerfile: Dockerfile
+    environment:
+      - DD_AGENT_HOST=datadog
+      - DD_TRACE_AGENT_PORT=8126
+    ports:
+      - "5050:5050"
+
+  load-generator:
+    build:
+      context: ./load-generator
+      dockerfile: Dockerfile
+
+  datadog:
+    build:
+      context: ./agent
+      dockerfile: Dockerfile
+    environment:
+     - DD_APM_ENABLED=true
+     - DD_APM_NON_LOCAL_TRAFFIC=true
+     - DD_API_KEY=166778f02f524bf7e00573d19a7d5ae1
+     - DD_TAGS="tag1:value1 tag2:value2 tag3:value3"
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /proc/:/host/proc/:ro
+     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+    labels:
+      com.datadoghq.ad.check_names: '["postgres"]'
+      com.datadoghq.ad.init_configs: '[{}]'
+      com.datadoghq.ad.instances: '[{"host": "postgres","port":"5432","username":"datadog","password":"datadog"}]'

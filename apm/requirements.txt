@@ -1,0 +1,4 @@
+ddtrace
+flask
+gunicorn
+psycopg2
