@@ -1,11 +1,11 @@
-![alt text](https://github.com/bruno-lin/test/blob/master/images/logousage_white.png "Title")
+![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/logousage_white.png "Title")
 
 # Datadog Beginner's Guide
 
 > This repository is a self-guided walkthrough that covers the main features of the Datadog product offering.
 
 
-![alt text](https://github.com/bruno-lin/test/blob/master/images/overview.png "Title")
+![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/overview.png "Title")
 
 
 ## Table of Contents
@@ -36,7 +36,7 @@
 5. Take note of your Datadog API and APP key (Integrations > APIs in the console)
     - you'll need these keys for the various examples in this repo
 
-    ![alt text](https://github.com/bruno-lin/test/blob/master/images/apikey.png "title")
+    ![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/apikey.png "title")
 
 
 
@@ -68,11 +68,11 @@
     - Host tags enable you to observe aggregate performance across a number of hosts
     - Host tags are defined with the ```DD_TAGS``` environment variable in the ```docker-compose.yaml```
 
-![alt text](https://github.com/bruno-lin/test/blob/master/images/tagsnew.png "title")
+![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/tagsnew.png "title")
 
 #### You can see that a postgres database container is running within the host
 
-![alt text](https://github.com/bruno-lin/test/blob/master/images/postgresnew.png "title")
+![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/postgresnew.png "title")
 
 - this is done by running the agent container as sidecar to postgres through the ```docker-compose.yaml```
 
@@ -132,13 +132,13 @@ labels:
 - Complete the Postgres integration by
     - entering into the ```integrations``` menu
 
-    ![alt text](https://github.com/bruno-lin/test/blob/master/images/postgres1.png "text")
+    ![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/postgres1.png "text")
 
     - search ```postgres```
 
     - Scroll down and click
 
-    ![alt text](https://github.com/bruno-lin/test/blob/master/images/postgres2.png "text")
+    ![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/postgres2.png "text")
 
     (Ignore the configuration instructions since thats handled in the ```init.sql``` )
 
@@ -146,7 +146,7 @@ labels:
 
 [Postgres Metrics](https://p.datadoghq.com/sb/rzjjh1tim3wtvb6p-e07484dcaa4560f7856d5b5cb999bb6f) - link to dashboard
 
-![alt text](https://github.com/bruno-lin/test/blob/master/images/postgres4.png "text")
+![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/postgres4.png "text")
 
  ---
 
@@ -229,7 +229,7 @@ options = {
 
 [Example Timeboard](https://p.datadoghq.com/sb/rzjjh1tim3wtvb6p-b93d4c22346e4bb3638cf99dbb853063) - - link to timeboard
 
-![alt text](https://github.com/bruno-lin/test/blob/master/images/timeboard.png "text")
+![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/timeboard.png "text")
 
    - the Example Timeboard consists of three visualizations
         - My Metric scoped over the docker host
@@ -243,7 +243,7 @@ options = {
 
      ![Recordit GIF](http://g.recordit.co/jqI6danbdT.gif)
 
-     ![alt text](https://github.com/bruno-lin/test/blob/master/images/newemail.png "text")
+     ![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/newemail.png "text")
 
 ---
 
@@ -260,12 +260,12 @@ options = {
     - An alert for values above 800
     - A notification when there's no data for this metric in the last 10 minutes
 
-![alt text](https://github.com/bruno-lin/test/blob/master/images/monitor1.png "text")
+![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/monitor1.png "text")
 
 - the monitor can be configured  to send the message to an email
 
-![alt text](https://github.com/bruno-lin/test/blob/master/images/monitor2.png "text")
-![alt text](https://github.com/bruno-lin/test/blob/master/images/alert.png "text")
+![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/monitor2.png "text")
+![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/alert.png "text")
 
 
 ####  You can also schedule downtime to silence the alerts on your monitors
@@ -273,20 +273,20 @@ options = {
 - To schedule downtime hover over **Monitors** in the main menu and click **Manage Downtime** in the sub-menu.
     - scheduled downtime on weekdays from 7PM to 9AM
 
-    ![alt text](https://github.com/bruno-lin/test/blob/master/images/downtime1.png "text")
+    ![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/downtime1.png "text")
 
     - scheduled downtime on weekends
 
 
-    ![alt text](https://github.com/bruno-lin/test/blob/master/images/downtime2.png "text")
+    ![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/downtime2.png "text")
 
     - email notification for weekend downtime:
 
-    ![alt text](https://github.com/bruno-lin/test/blob/master/images/email1.png "text")
+    ![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/email1.png "text")
 
     - email notification for weekday downtime
 
-    ![alt text](https://github.com/bruno-lin/test/blob/master/images/email2.png "text")
+    ![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/email2.png "text")
 
 ---
 
@@ -404,7 +404,7 @@ flask:
 
 [Example Custom APM Dashboard](https://p.datadoghq.com/sb/rzjjh1tim3wtvb6p-6bbf5e190686293e502578155990064c) - link to dashboard
 
-![alt text](https://github.com/bruno-lin/test/blob/master/images/apm.png "Title")
+![alt text](https://github.com/bruno-lin/hiring-engineers/blob/solutions-engineer/images/apm.png "Title")
 
 > See the FAQ on the differences between a service and a resource
 
