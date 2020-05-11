@@ -13,7 +13,7 @@ B. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then i
 
 I haven't ever installed a database, so this ended up being an interesting exercise that may have resulted in some mild anxiety! I chose PostgreSQL as I have experience with using it in both my current and my previous company. I found instructions on how to install it via aptget and that went smoothly. At first, Datadog's dashboard did not see it, so I tried out any kind of status check I could find to verify the connection. Eventually the dashboard showed it as an active and installed integration:
 
-<img src="https://i.imgur.com/ZNuBWNt.png" width=50%>
+<img src="https://i.imgur.com/1bFs8nb.png" width=50%>
 
 
 C. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. 
@@ -34,7 +34,7 @@ A. Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-Using the instructions posted <a href="https://docs.datadoghq.com/getting_started/api/">here</a>, I imported the Datadog collection into Postman and set up the environment with my Datadog API and Application keys. I completed the above piecemeal by testing each metric visualization first, understanding what it was doing and how, and then combining them together with the below request:
+Using the instructions posted <a href="https://docs.datadoghq.com/getting_started/api/">here</a>, I imported the Datadog collection into Postman and set up the environment with my Datadog API and Application keys. I completed the full dashboard piecemeal by testing each metric visualization first, understanding what it was doing and how, and then combining them together into one <a href="https://p.datadoghq.com/sb/8a8s43cygzstwdcw-59659872326c732ad4eea553f2e4a8b4">dashboard</a> with the below request:
 
 ```json
 {
@@ -102,7 +102,7 @@ Using the instructions posted <a href="https://docs.datadoghq.com/getting_starte
 }
 ```
 
-<img src="https://i.imgur.com/hVzm2jN.png" width=50%>
+<a href="https://p.datadoghq.com/sb/8a8s43cygzstwdcw-59659872326c732ad4eea553f2e4a8b4" title="Click to see the dashboard"><img src="https://i.imgur.com/hVzm2jN.png" width=50%></a>
 
 B. Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -137,7 +137,7 @@ B. Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-Monitor notification email setup message example:
+Monitor notification email message setup including different messages for alerts, warnings, and no data, highlighting the host:
 
 <img src="https://i.imgur.com/RHGG8l8.png" width=50%>
 
@@ -149,11 +149,11 @@ C. **Bonus Question**: Since this monitor is going to alert pretty often, you do
 
 One that silences it from 7pm to 9am daily on M-F.
 
-<img src="https://i.imgur.com/tuYEEvx.png" width=50%>
+<img src="https://i.imgur.com/DPaqQBq.png" width=50%>
 
 And one that silences it all day on Sat-Sun.
 
-<img src="https://i.imgur.com/DPaqQBq.png" width=50%>
+<img src="https://i.imgur.com/tuYEEvx.png" width=50%>
 
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
@@ -222,7 +222,7 @@ vagrant@vagrant:~$ curl 127.0.0.1:5050/api/trace
 
 Once the data was in, I created a dashboard of some metrics to demonstrate a joint APM/Infrastructure monitoring dashboard. I used Flask's Hit Requests and Request Duration alongside the System CPU Usage and Unused Memory, and charted them over time to help illustrate the effects of higher usage on my system. You can find the dashboard <a href="https://p.datadoghq.com/sb/8a8s43cygzstwdcw-72477159821af6c64d8cba2a91c57c3d">here</a>, and a screenshot of it below. 
 
-<img src="https://i.imgur.com/c6kms54.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/c6kms54.png" width=50% />
 
 
 B. **Bonus Question**: What is the difference between a Service and a Resource?
