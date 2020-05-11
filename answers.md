@@ -149,7 +149,7 @@ C. **Bonus Question**: Since this monitor is going to alert pretty often, you do
 
 One that silences it from 7pm to 9am daily on M-F.
 
-<img src="https://i.imgur.com/DPaqQBq.png" width=50%>
+<img src="https://i.imgur.com/1RuSOtU.png" width=50%>
 
 And one that silences it all day on Sat-Sun.
 
