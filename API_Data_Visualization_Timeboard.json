@@ -1,0 +1,60 @@
+
+curl -X POST https://api.datadoghq.eu/api/v1/dashboard \
+-H "Content-Type: application/json" \
+-H "DD-API-KEY: fc215eb4da6720b7acb1538134aff790" \
+-H "DD-APPLICATION-KEY: 4e95a7285207d4a24fb15089ad565eace5099222" \
+-d @- << EOF
+{
+    "title": "API Data Visualization Timeboard",
+    "widgets": [
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:my_metric{*}"
+                    }
+                ],
+                "title": "Custom metric my_metric"
+            }
+        },
+		{
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(avg:mysql.performance.cpu_time{host:osboxes}, 'basic', 2)"
+                    }
+                ],
+                "title": "Anomalies: CPU load is very high on MySQL"
+            }
+        },
+		{
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q":"sum:my_metric{*}.rollup(sum,3600)"
+					}
+                ],
+                "title": "Custom metric my_metric Rollup by hour Timeline"
+            }
+        },
+		{
+            "definition": {
+                "type": "distribution",
+                "requests": [
+                    {
+                        "q":"sum:my_metric{*}.rollup(sum,3600)"
+					}
+                ],
+                "title": "Custom metric my_metric Rollup by hour Distribution"
+            }
+        }
+	],
+    "layout_type": "ordered",
+    "description": "API Data Visualization",
+    "is_read_only": false,
+    "notify_list": []
+}
+EOF
