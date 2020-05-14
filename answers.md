@@ -81,3 +81,20 @@ Additionally, I saw metrics flowing into the app for the DB:
   ![Downtime2](https://i.imgur.com/S3qFzTe.png)
   
 <h2>Collecting APM Data</h2>
+
+ * You can find the provided Flask app fully instrumented [here](https://github.com/nysyr/hiring-engineers/tree/solutions-engineer/datadogApm).
+ 
+ Since the Flask app instruments mostly with the CLI wrapper, the code isn't much to look at -- here's a screenshot of what I was doing too:
+ 
+  ![APM](https://i.imgur.com/q3rvO5P.png)
+ 
+ You can see some of the trace information [here](https://app.datadoghq.com/apm/service/flask/flask.request?end=1589489647326&env=none&paused=false&start=1589486047326).
+ 
+ And [here](https://app.datadoghq.com/dashboard/ypv-i2e-3nm/hiring-timeboard--apm?from_ts=1589317057564&live=true&to_ts=1589489857564) is a dashboard including both this trace info and infrastructure metrics! I reused the API call from earlier to create a new dashboard quickly, so it may look familiar.
+
+![APM on Dash](https://i.imgur.com/kVRytL5.png)
+
+ * A service is the whole application or microservice as a whole -- for instance, my ddtest.py app. A resource would be a specific action under that service, such as an endpoint or a query. 
+ 
+<h2>Final Question</h2>
+
