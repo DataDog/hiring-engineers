@@ -1,4 +1,4 @@
-```bash
+```
 ##Below are example shell commands to prepare the database for integration with the DD Agent
 
 ##From bash
