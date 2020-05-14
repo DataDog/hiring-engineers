@@ -98,3 +98,10 @@ Additionally, I saw metrics flowing into the app for the DB:
  
 <h2>Final Question</h2>
 
+I imagine that Datadog could be especially useful during the current COVID-19 crisis. Both for infrastructure monitoring at stressed (and usually vulnerable, security-wise) healthcare systems and also for tracking and tracing patient symptoms and ongoing cases. I can imagine a self-check in application that people who think they may be ill could use to screen their own symptoms and log symptom changes over time that you could monitor with Datadog, creating custom checks to watch for geographic hotspots or movements through an area, as well as anomolous areas indicating something like a super-spreader. Being able to create really custom checks and place incoming data within useful perspectives could provide a really vital top-down view of viral spread that isn't necessarily being captured by the healthcare system.
+
+<h2>Closing Thoughts</h2>
+
+Thanks for giving me the opportunity to play around with this and work through the challenge. It was fun, and I feel like, if nothing else, I now have a solid base-level understanding of Datadog and its capabilities that I can carry forward with me wherever I end up. That being said, if this is the kind of work I'd be doing day to day I'd love to be doing it at Datadog.
+
+-Iain
