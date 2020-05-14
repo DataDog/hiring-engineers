@@ -2,27 +2,27 @@ Hello!
 
 For the purposes of this exercise, I'll be using Ubuntu 18.04 running on two t2.medium in AWS. I installed the Datadog agent and all related technologies both directly on the host and as dockerized containers.
 
-![Host Map](https://i.imgur.com/XzeqMpk.png)
+  ![Host Map](https://i.imgur.com/XzeqMpk.png)
 
 <h2> Collecting Metrics </h2>
   
   * On the host install, I passed the following tags in through datadog.yaml:
   
- ![Tags in .yaml](https://i.imgur.com/nO8EvJb.png)
+  ![Tags in .yaml](https://i.imgur.com/nO8EvJb.png)
  
  They passed into the app successfully!
  
- ![Tags in app](https://i.imgur.com/HCfNhL5.png)
+  ![Tags in app](https://i.imgur.com/HCfNhL5.png)
  
   * I decided to use a MySQL database for the Integration demonstration. You can find my MySQL conf file [here](https://github.com/nysyr/hiring-engineers/blob/solutions-engineer/mysql.d/conf.yaml).
  
  After adding the Datadog user and giving it the [necessary permissions in the database](https://github.com/nysyr/hiring-engineers/blob/solutions-engineer/mysql.d/mysqlCommandsExample.txt) I restarted the DD Agent and saw that the check was integrated:
  
-![MySQL Check](https://i.imgur.com/tCueAVk.png)
+ ![MySQL Check](https://i.imgur.com/tCueAVk.png)
 
 Additionally, I saw metrics flowing into the app for the DB:
 
-![MySQL Metrics](https://i.imgur.com/D2RAtKP.png)
+ ![MySQL Metrics](https://i.imgur.com/D2RAtKP.png)
 
  * I then created a rudimentary custom agent check to push a gauge value of 777 and set the interval to 45 seconds in the .yaml file.
    Here it is coming in:
@@ -44,12 +44,13 @@ Additionally, I saw metrics flowing into the app for the DB:
    I also made it in one graph [here](https://app.datadoghq.com/dashboard/bm2-ej7-8ds/hiring-metric?from_ts=1589482320066&to_ts=1589483220066&live=true), by wrapping all the definitions in one <widget> clause. I wasn't sure, per the instructions in the challenge, which way you were looking for but it was easy enough to swap between.
   
  * I readjusted the timeboards timeframe to 5 minutes by dragging over a period on one of the graphs:
- ![Timeboard Timeframe](https://i.imgur.com/icvBlo0.png)
+ 
+  ![Timeboard Timeframe](https://i.imgur.com/icvBlo0.png)
  
  * And created a snapshot to send to myself of the aggregated graph (because it's more interesting to look at):
 
- ![Snapshot Notification](https://i.imgur.com/BEcdqtb.png)
- ![Snapshot Email](https://i.imgur.com/TKjRhRi.png)
+  ![Snapshot Notification](https://i.imgur.com/BEcdqtb.png)
+  ![Snapshot Email](https://i.imgur.com/TKjRhRi.png)
  
  * The anomaly graph is looking for instances of outlier behavior from the selected metric, i.e. any time the received value of the metric exceeds a set of normal bounds. It's a great way to look for problem areas when debugging infrastructure issues, because theoretically it should never trigger if things are working as they normally do. As such, my graph looks a little boring since I'm not doing anything interesting with my MySQL reads.
 
@@ -57,7 +58,7 @@ Additionally, I saw metrics flowing into the app for the DB:
 
  * First I created a new monitor:
  
- ![Monitor Setup](https://i.imgur.com/seM3ssz.png)
+  ![Monitor Setup](https://i.imgur.com/seM3ssz.png)
  
   Then, adjusted the notification messages:
   
