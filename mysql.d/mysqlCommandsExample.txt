@@ -1,0 +1,19 @@
+##Below are example shell commands to prepare the database for integration with the DD Agent
+
+##From bash
+
+mysql -uroot -p
+
+mysql> create user 'datadog'@"127.0.0.1' identified by '$PASS';
+
+mysql> grant replication client on *.* to 'datadog'@'127.0.0.1' with max_user_connections 5;
+
+mysql> grant process on *.* to 'datadog'@'127.0.0.1';
+
+mysql> grant select on performance_schema.* to 'datadog'@'127.0.0.1';
+
+flush privileges
+
+exit
+
+$service restart mysql
