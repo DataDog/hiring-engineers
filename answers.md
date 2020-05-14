@@ -13,6 +13,21 @@ For the purposes of this exercise, I'll be using Ubuntu 18.04 running on two t2.
  They passed into the app successfully!
  
   ![Tags in app](https://i.imgur.com/HCfNhL5.png)
+  
+  I also tried tagging the containerized agent by passing them in as environment variables when starting the container:
+  
+  ```DOCKER_CONTENT_TRUST=1 \
+docker run -d -v /var/run/docker.sock:/var/run/docker.sock:ro \
+              -v /proc/:/host/proc/:ro \
+              -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+              --name="datadog_dummy" \
+              -e DD_API_KEY="$APIKEY" \
+              -e DD_HOSTNAME="strikingDummy" \
+              -e DD_TAGS="keytest:valuetest testkey:valuekey" \
+              datadog/agent:latest
+  ```
+  
+  ![Docker tags in-app](https://i.imgur.com/IDL4gpy.png)
  
 * I decided to use a MySQL database for the Integration demonstration. You can find my MySQL conf file [here](https://github.com/nysyr/hiring-engineers/blob/solutions-engineer/mysql.d/conf.yaml).
  
