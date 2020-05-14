@@ -3,7 +3,7 @@ init_config:
 instances:
 - server: 127.0.0.1
   user: datadog
-  pass: "ddgaribaldi$" # from the CREATE USER step earlier
+  pass: "$PASS" # from the CREATE USER step earlier
   port: "3306" # e.g. 3306
   options:
     replication: false
