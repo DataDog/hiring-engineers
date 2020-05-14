@@ -33,4 +33,24 @@ Additionally, I saw metrics flowing into the app for the DB:
  
  ![Changing the Interval in App](https://imgur.com/a/LToSIyq)
  
- <h1>Visualizing Data</h1>
+<h1>Visualizing Data</h1>
+
+ * I imported the Datadog Collection into Postman (I love that this is available, by the way) and created a Timeboard with [this API call](https://github.com/nysyr/hiring-engineers/blob/solutions-engineer/dashboardPOST.md). 
+ 
+ ![API Call in Postman]()
+   
+   Here it is [in-app](https://app.datadoghq.com/dashboard/3u6-g3j-ehc/hiring-timeboard-2?from_ts=1589479564404&to_ts=1589483164404&live=true)
+   
+   I also made it in one graph [here](https://app.datadoghq.com/dashboard/bm2-ej7-8ds/hiring-metric?from_ts=1589482320066&to_ts=1589483220066&live=true), by wrapping all the definitions in one <widget> clause. I wasn't sure, per the instructions in the challenge, which way you were looking for but it was easy enough to swap between.
+  
+ * I readjusted the timeboards timeframe to 5 minutes by dragging over a period on one of the graphs:
+ ![Timeboard Timeframe]()
+ 
+ * And created a snapshot to send to myself of the aggregated graph (because it's more interesting to look at):
+
+ ![Snapshot Notification]()
+ ![Snapshot Email]()
+ 
+ * The anomaly graph is looking for instances of outlier behavior from the selected metric, i.e. any time the received value of the metric exceeds a set of normal bounds. It's a great way to look for problem areas when debugging infrastructure issues, because theoretically it should never trigger if things are working as they normally do. As such, my graph looks a little boring since I'm not doing anything interesting with my MySQL reads.
+
+<h1>Monitoring Data</h1>
