@@ -27,17 +27,17 @@ Additionally, I saw metrics flowing into the app for the DB:
  * I then created a rudimentary custom agent check to push a gauge value of 777 and set the interval to 45 seconds in the .yaml file.
    Here it is coming in:
    
-   ![my_metric in app](https://i.imgur.com/TlKq57d.png)
+  ![my_metric in app](https://i.imgur.com/TlKq57d.png)
  
  * Then I changed the interval to 30 seconds in the Metric Summary:
  
- ![Changing the Interval in App](https://i.imgur.com/MRskJ9W.png)
+  ![Changing the Interval in App](https://i.imgur.com/MRskJ9W.png)
  
 <h2>Visualizing Data</h2>
 
  * I imported the Datadog Collection into Postman (I love that this is available, by the way) and created a Timeboard with [this API call](https://github.com/nysyr/hiring-engineers/blob/solutions-engineer/dashboardPOST.md). 
  
- ![API Call in Postman]()
+  ![API Call in Postman](https://i.imgur.com/yQ9ngVo.png)
    
    Here it is [in-app](https://app.datadoghq.com/dashboard/3u6-g3j-ehc/hiring-timeboard-2?from_ts=1589479564404&to_ts=1589483164404&live=true)
    
