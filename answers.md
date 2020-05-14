@@ -4,7 +4,7 @@ For the purposes of this exercise, I'll be using Ubuntu 18.04 running on two t2.
 
 ![Host Map](https://imgur.com/a/5S39oqe)
 
-<h1> Collecting Metrics </h1>
+<h2> Collecting Metrics </h2>
   
   * On the host install, I passed the following tags in through datadog.yaml:
   
@@ -33,7 +33,7 @@ Additionally, I saw metrics flowing into the app for the DB:
  
  ![Changing the Interval in App](https://imgur.com/a/LToSIyq)
  
-<h1>Visualizing Data</h1>
+<h2>Visualizing Data</h2>
 
  * I imported the Datadog Collection into Postman (I love that this is available, by the way) and created a Timeboard with [this API call](https://github.com/nysyr/hiring-engineers/blob/solutions-engineer/dashboardPOST.md). 
  
@@ -53,4 +53,30 @@ Additionally, I saw metrics flowing into the app for the DB:
  
  * The anomaly graph is looking for instances of outlier behavior from the selected metric, i.e. any time the received value of the metric exceeds a set of normal bounds. It's a great way to look for problem areas when debugging infrastructure issues, because theoretically it should never trigger if things are working as they normally do. As such, my graph looks a little boring since I'm not doing anything interesting with my MySQL reads.
 
-<h1>Monitoring Data</h1>
+<h2>Monitoring Data</h2>
+
+ * First I created a new monitor:
+ 
+ ![Monitor Setup](https://i.imgur.com/seM3ssz.png)
+ 
+  Then, adjusted the notification messages:
+  
+  ![Notification Setup](https://i.imgur.com/8vxGj0r.png)
+  
+  I received the following emails:
+  
+  ![Alert](https://i.imgur.com/eRhs1v1.png)
+  ![Warn](https://i.imgur.com/AbK8h3E.png)
+  ![NoData](https://i.imgur.com/iFNsVTz.png)
+  
+  Then, I scheduled some downtime for these alerts:
+  
+  ![EveDowntime](https://i.imgur.com/RRlvVUT.png)
+  ![WeekendDowntime]()
+  
+  And received these emails:
+  
+  ![]()
+  ![]()
+  
+  
