@@ -1,0 +1,135 @@
+ * Serving Flask app "ddtest.py"
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2020-05-13 21:12:44,746 DEBUG [ddtrace.internal.import_hooks] [import_hooks.py:136] - No hooks registered for module 'ddtest'
+2020-05-13 21:12:44,746 - ddtrace.internal.import_hooks - DEBUG - No hooks registered for module 'ddtest'
+Traceback (most recent call last):
+  File "/home/datadogApm/venv/bin/flask", line 8, in <module>
+    sys.exit(main())
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/flask/cli.py", line 967, in main
+    cli.main(args=sys.argv[1:], prog_name="python -m flask" if as_module else None)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/flask/cli.py", line 586, in main
+    return super(FlaskGroup, self).main(*args, **kwargs)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 782, in main
+    rv = self.invoke(ctx)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 1259, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 1066, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 610, in invoke
+    return callback(*args, **kwargs)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/decorators.py", line 73, in new_func
+    return ctx.invoke(f, obj, *args, **kwargs)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 610, in invoke
+    return callback(*args, **kwargs)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/flask/cli.py", line 860, in run_command
+    extra_files=extra_files,
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/werkzeug/serving.py", line 1052, in run_simple
+    inner()
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/werkzeug/serving.py", line 1005, in inner
+    fd=fd,
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/werkzeug/serving.py", line 848, in make_server
+    host, port, app, request_handler, passthrough_errors, ssl_context, fd=fd
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/werkzeug/serving.py", line 740, in __init__
+    HTTPServer.__init__(self, server_address, handler)
+  File "/usr/lib/python3.6/socketserver.py", line 456, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.6/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.6/socketserver.py", line 470, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+2020-05-13 21:12:44,753 DEBUG [ddtrace._worker] [_worker.py:58] - Stopping AgentWriter thread
+2020-05-13 21:12:44,753 - ddtrace._worker - DEBUG - Stopping AgentWriter thread
+ * Serving Flask app "ddtest.py"
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2020-05-13 21:13:01,083 DEBUG [ddtrace.internal.import_hooks] [import_hooks.py:136] - No hooks registered for module 'ddtest'
+2020-05-13 21:13:01,083 - ddtrace.internal.import_hooks - DEBUG - No hooks registered for module 'ddtest'
+Traceback (most recent call last):
+  File "/home/datadogApm/venv/bin/flask", line 8, in <module>
+    sys.exit(main())
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/flask/cli.py", line 967, in main
+    cli.main(args=sys.argv[1:], prog_name="python -m flask" if as_module else None)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/flask/cli.py", line 586, in main
+    return super(FlaskGroup, self).main(*args, **kwargs)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 782, in main
+    rv = self.invoke(ctx)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 1259, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 1066, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 610, in invoke
+    return callback(*args, **kwargs)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/decorators.py", line 73, in new_func
+    return ctx.invoke(f, obj, *args, **kwargs)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 610, in invoke
+    return callback(*args, **kwargs)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/flask/cli.py", line 860, in run_command
+    extra_files=extra_files,
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/werkzeug/serving.py", line 1052, in run_simple
+    inner()
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/werkzeug/serving.py", line 1005, in inner
+    fd=fd,
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/werkzeug/serving.py", line 848, in make_server
+    host, port, app, request_handler, passthrough_errors, ssl_context, fd=fd
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/werkzeug/serving.py", line 740, in __init__
+    HTTPServer.__init__(self, server_address, handler)
+  File "/usr/lib/python3.6/socketserver.py", line 456, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.6/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.6/socketserver.py", line 470, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+2020-05-13 21:13:01,090 DEBUG [ddtrace._worker] [_worker.py:58] - Stopping AgentWriter thread
+2020-05-13 21:13:01,090 - ddtrace._worker - DEBUG - Stopping AgentWriter thread
+ * Serving Flask app "ddtest.py"
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2020-05-13 21:15:31,159 DEBUG [ddtrace.internal.import_hooks] [import_hooks.py:136] - No hooks registered for module 'ddtest'
+2020-05-13 21:15:31,159 - ddtrace.internal.import_hooks - DEBUG - No hooks registered for module 'ddtest'
+Traceback (most recent call last):
+  File "/home/datadogApm/venv/bin/flask", line 8, in <module>
+    sys.exit(main())
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/flask/cli.py", line 967, in main
+    cli.main(args=sys.argv[1:], prog_name="python -m flask" if as_module else None)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/flask/cli.py", line 586, in main
+    return super(FlaskGroup, self).main(*args, **kwargs)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 782, in main
+    rv = self.invoke(ctx)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 1259, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 1066, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 610, in invoke
+    return callback(*args, **kwargs)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/decorators.py", line 73, in new_func
+    return ctx.invoke(f, obj, *args, **kwargs)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/click/core.py", line 610, in invoke
+    return callback(*args, **kwargs)
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/flask/cli.py", line 860, in run_command
+    extra_files=extra_files,
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/werkzeug/serving.py", line 1052, in run_simple
+    inner()
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/werkzeug/serving.py", line 1005, in inner
+    fd=fd,
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/werkzeug/serving.py", line 848, in make_server
+    host, port, app, request_handler, passthrough_errors, ssl_context, fd=fd
+  File "/home/datadogApm/venv/lib/python3.6/site-packages/werkzeug/serving.py", line 740, in __init__
+    HTTPServer.__init__(self, server_address, handler)
+  File "/usr/lib/python3.6/socketserver.py", line 456, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.6/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.6/socketserver.py", line 470, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+2020-05-13 21:15:31,165 DEBUG [ddtrace._worker] [_worker.py:58] - Stopping AgentWriter thread
+2020-05-13 21:15:31,165 - ddtrace._worker - DEBUG - Stopping AgentWriter thread
