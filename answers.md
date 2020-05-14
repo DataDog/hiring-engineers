@@ -1,6 +1,6 @@
 Hello!
 
-For the purposes of this exercise, I'll be using Ubuntu 18.04 running on two t2.medium in AWS. I installed the Datadog agent and all related technologies both directly on the host and as dockerized containers.
+For the purposes of this exercise, I'll be using Ubuntu 18.04 running on two t2.medium in AWS. I installed the Datadog agent and all related technologies both directly on the host and as a container via Docker.
 
   ![Host Map](https://i.imgur.com/XzeqMpk.png)
 
