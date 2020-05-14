@@ -103,7 +103,7 @@ Additionally, I saw metrics flowing into the app for the DB:
  
   ![APM](https://i.imgur.com/q3rvO5P.png)
  
- You can see some of the trace information [here](https://app.datadoghq.com/apm/service/flask/flask.request?end=1589489647326&env=none&paused=false&start=1589486047326).
+ You can see some of the trace information [here](https://app.datadoghq.com/apm/service/flask/flask.request?end=1589492429352&env=none&paused=false&start=1588887629352).
  
  And [here](https://app.datadoghq.com/dashboard/ypv-i2e-3nm/hiring-timeboard--apm?from_ts=1589317057564&live=true&to_ts=1589489857564) is a dashboard including both this trace info and infrastructure metrics! I reused the API call from earlier to create a new dashboard quickly, so it may look familiar.
 
