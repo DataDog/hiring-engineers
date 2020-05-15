@@ -14,3 +14,5 @@ tags:
    - os:galliumos3.1
    - kernel:linux4.16.18
 ```
+
+![My host with tags](host_with_tags.png)
