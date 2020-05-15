@@ -13,6 +13,7 @@ Datadog Agent installation with API Key
 ![Agent](2-DDagent.JPG)
 
 Agent is installed
+
 ![Agent](3-DDagent.JPG)
 
 Check the Datadog UI to verify that the client is reporting correctly
