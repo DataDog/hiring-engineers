@@ -7,9 +7,6 @@ Next, I added the below tags into the tags section of my agent configuration fil
 
 ```
 ## @param tags  - list of key:value elements - optional
-## List of host tags. Attached in-app to every metric, event, log, trace, and service check emitted by this Agent.
-##
-## Learn more about tagging: https://docs.datadoghq.com/tagging/
 #
 tags:
    - environment:dev
@@ -18,7 +15,7 @@ tags:
    - kernel:linux4.16.18
 ```
 
-Here is my host, named `katelyn.localhost`, and its tags, shown bottom right, on the Host Map page in DataDog.
+Here is my host, named `katelyn.localhost`, and its tags, shown bottom right, on the Host Map page in Datadog.
 
 ![My host with tags](host_with_tags.png)
 
