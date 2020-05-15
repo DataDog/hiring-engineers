@@ -7,7 +7,9 @@ Server is installed and Datadog Agent as well
 
 
 ![Image of EC2](EC2-UP.JPG)
-
+![Agent](2-DDagent.JPG)
+![Agent](3-DDagent.JPG)
+![Agent](4-DDagent.JPG)
 
 ## Collecting Metrics
 
