@@ -86,3 +86,14 @@ The output of a call to `sudo datadog-agent status`, shown below, verifies that 
 
 Click [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/conf-files/postgres.d_conf.yaml) for my full `postgres.d/conf.yaml` file and [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/conf-files/postgresql.conf) for my full `postgresql.conf` file.  
 
+I then introduced my own metric to begin tracking over my host.  I created a new check called `custom_check` from the script `custom_check.py`, which can be found [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/scripts/custom_check.py).  To change the check's collection interval without modifing this Python file, I altered the check configuration file, `custom_check.yaml`, as shown below:
+```
+init_config:
+
+instances:
+  - min_collection_interval: 45
+```
+
+Now, my check is up and running as expected, submitting a random value between 0 and 1000 every 45 seconds.  
+
+
