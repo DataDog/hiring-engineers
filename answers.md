@@ -17,11 +17,11 @@ tags:
 
 Here is my host, named `katelyn.localhost`, and its tags, shown bottom right, on the Host Map page in Datadog.
 
-![My host with tags](host_with_tags.png)
+![My host with tags](screenshots/host_with_tags.png)
 
 Then I opted to download a PostgreSQL database on my machine and install the corresponding Datadog integration to begin collecting those metrics and logs.  After creating user `datadog` and granting the role `pg_monitor` to that user,  here is a verification of the correct permissioning on my PostgreSQL database:
 
-![Postgres connection OK](postgres_connection_ok.png)
+![Postgres connection OK](screenshots/postgres_connection_ok.png)
 
 To make this integration more meaningful, I wanted to allow for metric collection and log integration.  To do so, I altered my `postgres.d/conf.yaml` configuration file to point to my host/port and to configure logging, shown here: 
 ```
@@ -80,9 +80,9 @@ After a quick change to `logs_enabled: true` in my Datadog agent configuration f
 
 The output of a call to `sudo datadog-agent status`, shown below, verifies that the PostgreSQL integration and logging is functioning.  
 
-![Postgres status](postgres_status.png)
-![Logs status](logs_status.png)
+![Postgres status](screenshots/postgres_status.png)
+![Logs status](screenshots/logs_status.png)
 
 
-Click [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/postgres.d_conf.yaml) for my full `postgres.d/conf.yaml` file and [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/postgresql.conf) for my full `postgresql.conf` file.  
+Click [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/conf-files/postgres.d_conf.yaml) for my full `postgres.d/conf.yaml` file and [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/conf-files/postgresql.conf) for my full `postgresql.conf` file.  
 
