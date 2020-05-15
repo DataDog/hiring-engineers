@@ -18,6 +18,6 @@ tags:
    - kernel:linux4.16.18
 ```
 
-Here are my host and its tags on the Host Map page in DataDog.
+Here is my host, named `katelyn.localhost`, and its tags on the Host Map page in DataDog.
 
 ![My host with tags](host_with_tags.png)
