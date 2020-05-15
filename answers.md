@@ -84,5 +84,5 @@ The output of a call to `sudo datadog-agent status`, shown below, verifies that 
 ![Logs status](logs_status.png)
 
 
-Click [here](link!) for my full `postgres.d/conf.yaml` file and [here](link!) for my full `postgresql.conf` file.  
+Click [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/postgres.d_conf.yaml) for my full `postgres.d/conf.yaml` file and [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/postgresql.conf) for my full `postgresql.conf` file.  
 
