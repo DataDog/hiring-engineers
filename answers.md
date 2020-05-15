@@ -63,10 +63,10 @@ logs:
 and altered my machine's `postgresql.conf` file to configure logging, shown here:
 
 ```
-logging_collector = on                  # Enable capturing of stderr and csvlog
-                                        # into log files. Required to be on for
-                                        # csvlogs.
-                                        # (change requires restart)
+logging_collector = on                          # Enable capturing of stderr and csvlog
+                                                # into log files. Required to be on for
+                                                # csvlogs.
+                                                # (change requires restart)
 
 # These are only used if logging_collector is on:
 log_directory = 'pg_log'                        # directory where log files are written,
