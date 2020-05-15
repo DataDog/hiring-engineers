@@ -30,7 +30,7 @@ instances:
     ## @param host - string - required
     ## The hostname to connect to.
     #
-  - host: localhost
+  - host: katelyn.localhost
 
     ## @param port - integer - required
     ## Port to use when connecting to PostgreSQL.
@@ -76,12 +76,13 @@ log_filename = 'pg.log'                         # log file name pattern,
 log_file_mode = 0644                            # creation mode for log files
 ```
 
-Click [here](link!) for my full `postgres.d/conf.yaml` file and [here](link!) for my full `postgresql.conf` file.  
-
 After a quick change to `logs_enabled: true` in my Datadog agent configuration file, my setup was ready to begin log collection. 
 
 The output of a call to `sudo datadog-agent status`, shown below, verifies that the PostgreSQL integration and logging is functioning.  
 
-pic! 
+![Postgres status](postgres_status.png)
+![Logs status](logs_status.png)
 
+
+Click [here](link!) for my full `postgres.d/conf.yaml` file and [here](link!) for my full `postgresql.conf` file.  
 
