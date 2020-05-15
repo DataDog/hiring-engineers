@@ -18,6 +18,24 @@ tags:
    - kernel:linux4.16.18
 ```
 
-Here is my host, named `katelyn.localhost`, and its tags on the Host Map page in DataDog.
+Here is my host, named `katelyn.localhost`, and its tags, shown bottom right, on the Host Map page in DataDog.
 
 ![My host with tags](host_with_tags.png)
+
+Then I opted to download a PostgreSQL database on my machine and install the corresponding Datadog integration to begin collecting those metrics and logs.  After creating user `datadog` and granting the role `pg_monitor` to that user,  here is a verification of the correct permissioning on my PostgreSQL database:
+
+To make this integration more meaningful, I wanted to allow for metric collection and log integration.  To do so, I altered my `postgres.d/conf.yaml` configuration file to point to my host/port and configure logging, shown here: 
+pic!
+
+and altered my machine's `postgresql.conf` file to configure logging, shown here:
+
+pic!
+
+Click [here](link!) for my full `postgres.d/conf.yaml` file and [here](link!) for my full `postgresql.conf` file.  
+My full PostgreSQL configuration file can be found [here](http://link.here).  
+
+The output of a call to `sudo datadog-agent status`, shown below, verifies that the PostgreSQL integration and logging is functioning.  
+
+pic! 
+
+
