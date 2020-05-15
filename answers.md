@@ -1,3 +1,7 @@
+# Prerequisites
+
+write about the prereqs I completed 
+
 ```
 ## @param tags  - list of key:value elements - optional
 ## List of host tags. Attached in-app to every metric, event, log, trace, and service check emitted by this Agent.
