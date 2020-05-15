@@ -20,5 +20,9 @@ Check the Datadog UI to verify that the client is reporting correctly
 ![Agent](4-DDagent.JPG)
 
 ## Collecting Metrics
+* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+![Agent](5-TagsConfig.JPG)
+
+![Agent](6-TagsCheck.JPG)
 
