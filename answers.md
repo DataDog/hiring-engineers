@@ -81,6 +81,7 @@ After a quick change to `logs_enabled: true` in my Datadog agent configuration f
 The output of a call to `sudo datadog-agent status`, shown below, verifies that the PostgreSQL integration and logging is functioning.  
 
 ![Postgres status](screenshots/postgres_status.png)
+
 ![Logs status](screenshots/logs_status.png)
 
 
@@ -117,6 +118,7 @@ And the sum of my custom metric in buckets of one hour, which does not appear an
 ![Sum of my metric](screenshots/my_metric_sum_5m.png)
 
 I took a snapshot of my virst visual here and wrote a notification for myself:
+
 ![Snapshot](screenshots/snapshot.png)
 
 And confirmed receipt to my Gmail:
