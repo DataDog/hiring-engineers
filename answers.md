@@ -154,3 +154,24 @@ graphs = [
 
 api.Timeboard.create(title=title, description=description, graphs=graphs)
 ```
+-Set the Timeboard's timeframe to the past 5 minutes
+-Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+Drag To select custom time frame on dashboard:
+
+![Optional Text](https://github.com/LordNykon/hiring-engineers/blob/solutions-engineer/images/dragtoselectcustomtime.jpg)
+
+Select Send Snap shot
+
+![Optional Text](https://github.com/LordNykon/hiring-engineers/blob/solutions-engineer/images/SendSnapShot.jpg)
+
+@ The users you would like to notify
+
+![Optional Text](https://github.com/LordNykon/hiring-engineers/blob/solutions-engineer/images/snapshotat5minterval.jpg)
+
+Example of the Notification email:
+
+![Optional Text](https://github.com/LordNykon/hiring-engineers/blob/solutions-engineer/images/Snapshotemail.jpg)
+
+
+
