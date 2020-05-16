@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import random
 
 # the following try/except block will make the custom check compatible with any Agent version
