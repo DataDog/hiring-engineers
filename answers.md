@@ -105,7 +105,7 @@ Next, I used the Datadog API to generate some visualizations in the form of a Ti
 * I prompt for a title and a description of the Timeboard to be created.
 * I then pass my API key and app key and make the connection.
 
-Voila! Here is the view of my new timeboard, Katelyn's Timeboard, upon creation with this script:
+Voila! Here is the view of my new timeboard, [Katelyn's Timeboard](https://app.datadoghq.com/dashboard/vas-prc-xq8/katelyns-timeboard?from_ts=1589597791299&live=true&to_ts=1589612191299), upon creation with this script:
 
 ![My Timeboard](screenshots/my_timeboard.png)
 
