@@ -4,8 +4,9 @@ from flask import Flask
 import logging
 import sys
 import ddtrace
+import random
 
-#Enabing app and postgres analytics
+#Enabing app analytics
 ddtrace.config.analytics_enabled = True
 ddtrace.config.postgres.analytics_enabled = True
 
@@ -19,9 +20,14 @@ main_logger.addHandler(c)
 
 app = Flask(__name__)
 
+#Setting app entry to fail one in ten times
 @app.route('/')
 def api_entry():
-    return 'Entrypoint to the Application'
+    val = random.randrange(0,10)
+    if val == 7:
+        sys.exit(1)
+    else:
+        return 'Entrypoint to the Application'
 
 @app.route('/api/apm')
 def apm_endpoint():
@@ -30,6 +36,14 @@ def apm_endpoint():
 @app.route('/api/trace')
 def trace_endpoint():
     return 'Posting Traces'
+
+@app.route('/api/user/<userid>')
+def user_endpoint(userid):
+    valid_userids = ['1','2','3']
+    if userid in valid_userids:
+        return 'Profile page for user %s' % userid
+    else:
+        raise ValueError
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
