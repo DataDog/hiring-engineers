@@ -115,7 +115,7 @@ My custom metric scoped over katelyn.localhost:
 ![My metric](screenshots/my_metric_5m.png)
 My Postgres buffer hit:
 ![Postgres anomaly](screenshots/postgres_anomaly_5m.png)
-And the sum of my custom metric in buckets of one hour, which does not appear to be an informative visual at this timeframe:
+And the sum of my custom metric in buckets of one hour, which does not appear to be an informative visual at this 5 minute timeframe:
 ![Sum of my metric](screenshots/my_metric_sum_5m.png)
 
 I took a snapshot of my first graph  and wrote a notification for myself:
