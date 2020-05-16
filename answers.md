@@ -105,7 +105,7 @@ Next, I used the Datadog API to generate some visualizations in the form of a Ti
 * I prompt for a title and a description of the Timeboard to be created.
 * I then pass my API key and app key and make the connection.
 
-Here is the view of my new timeboard, [Katelyn's Timeboard](https://app.datadoghq.com/dashboard/vas-prc-xq8/katelyns-timeboard?from_ts=1589597791299&live=true&to_ts=1589612191299), upon creation with my script:
+Here is the view of my new timeboard, [Katelyn's Timeboard](https://app.datadoghq.com/dashboard/vas-prc-xq8/), upon creation with my script:
 
 ![My Timeboard](screenshots/my_timeboard.png)
 
@@ -158,18 +158,18 @@ Below are the email notifications of the upcoming downtimes.  The notifications 
 
 
 ## Collecting APM Data
-I spun up a simple Flask application on my machine and installed ddtrace for Python.  After enabling the app analytics in my Flask app, I was able to begin using Datadog's APM solution and posting traces. Some features of my application:
-* I configured the application to silently fail upon entry 1 in 10 times.
-* I added a user page that validates a userID and fails on a ValueError if the userID is invalid, yielding a 500 error on the application.  
+I spun up a simple [Flask application](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/scripts/my_flask_app.py) on my machine and installed ddtrace for Python.  After enabling app analytics for the application, I was able to begin using Datadog's APM solution and posting traces. Some features of my application:
+* I configured the application to randomly fail upon entry 1 in 10 times and exit. 
+* I added a user page that validates userID and fails on a ValueError if the userID is invalid, yielding a 500 error on the application.  
 
 I was now gathering meaningful analytics on my application in the Datadog APM solution.  Here are some APM and infrastructure metrics I gathered and compiled in a dashboard:
 * A sum of the number of hits and errors to my application.
-* A breakdown of the error count by error code - 500 Internal Server Error, or SystemExit Exception.
-* Latency on my application.
+* A breakdown of the error count by error type - 500 Internal Server Error, or SystemExit Exception.
+* Latency on my application, in milliseconds.
 * The percent of time my machine's CPU spent running the kernel, with a warning marker at 10%.
-* My machine's memory availabile, and the amount physical RAM used as shared memory, in MiB.
+* My machine's memory availabile, and the amount physical RAM used as shared memory, in mebibytes.
 
-Here is my custom dashboard showing each of these metrics:
+Here is [my custom dashboard](https://app.datadoghq.com/dashboard/uex-3bk-mzq/) showing each of these metrics:
 
 ![APM Infra Dashboard](screenshots/apm_infrastructure_timeboard.png)
 
