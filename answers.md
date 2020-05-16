@@ -2,7 +2,11 @@ Your answers to the questions go here.
 Below are the solutions for Michael Ahearn, yes I watched hackers way to many times as a kid and even though its terrible, but the handle stuck.
 <h2>PART - 1 (Collecting metrics)</h2>
 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog:
+
+
 ![](https://github.com/LordNykon/hiring-engineers/blob/solutions-engineer/Datadoghostmaptagging.jpg)
+
+
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 Postgres was used for this exercise: (instructions for setup :https://www.datadoghq.com/blog/collect-postgresql-data-with-datadog/)
