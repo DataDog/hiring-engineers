@@ -131,3 +131,6 @@ And confirmed receipt to my Gmail:
 # Monitoring Data
 After making my Timeboard, I initialized a monitor to watch the average value of `my_metric` over the past 5 minutes.  Below are the configurations I used to set up this monitor:
 
+[Monitor](screenshots/monitor1.png)
+
+[Monitor](screenshots/monitor2.png)
