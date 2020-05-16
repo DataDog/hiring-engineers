@@ -128,3 +128,6 @@ And confirmed receipt to my Gmail:
 **Bonus Question**: My anomaly graph shows when the buffer hit count to my PostgreSQL database is greater than 2 standard deviations from the average buffer hit count. 
 
 
+# Monitoring Data
+After making my Timeboard, I initialized a monitor to watch the average value of `my_metric` over the past 5 minutes.  Below are the configurations I used to set up this monitor:
+
