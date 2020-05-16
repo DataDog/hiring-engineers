@@ -125,4 +125,6 @@ And confirmed receipt to my Gmail:
 ![Email notif](screenshots/email_notif.png)
 
 
+**Bonus Question**: My anomaly graph shows when the buffer hit count to my PostgreSQL database is greater than 2 standard deviations from the average value over the timeframe. 
+
 
