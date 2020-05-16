@@ -105,7 +105,7 @@ Next, I used the Datadog API to generate some visualizations in the form of a Ti
 * I prompt for a title and a description of the Timeboard to be created.
 * I then pass my API key and app key and make the connection.
 
-Voila! Here is the view of my new timeboard, [Katelyn's Timeboard](https://app.datadoghq.com/dashboard/vas-prc-xq8/katelyns-timeboard?from_ts=1589597791299&live=true&to_ts=1589612191299), upon creation with this script:
+Here is the view of my new timeboard, [Katelyn's Timeboard](https://app.datadoghq.com/dashboard/vas-prc-xq8/katelyns-timeboard?from_ts=1589597791299&live=true&to_ts=1589612191299), upon creation with my script:
 
 ![My Timeboard](screenshots/my_timeboard.png)
 
@@ -115,18 +115,18 @@ My custom metric scoped over katelyn.localhost:
 ![My metric](screenshots/my_metric_5m.png)
 My Postgres buffer hit:
 ![Postgres anomaly](screenshots/postgres_anomaly_5m.png)
-And the sum of my custom metric in buckets of one hour, which does not appear an informative visual at this timeframe:
+And the sum of my custom metric in buckets of one hour, which does not appear to be an informative visual at this timeframe:
 ![Sum of my metric](screenshots/my_metric_sum_5m.png)
 
-I took a snapshot of my virst visual here and wrote a notification for myself:
+I took a snapshot of my first graph  and wrote a notification for myself:
 
 ![Snapshot](screenshots/snapshot.png)
 
-And confirmed receipt to my Gmail:
+and confirmed receipt to my Gmail:
 ![Email notif](screenshots/email_notif.png)
 
 
-**Bonus Question**: My anomaly graph shows when the buffer hit count to my PostgreSQL database is greater than 2 standard deviations from the average buffer hit count over the given timeframe. 
+**Bonus Question**: My anomaly graph shows when the buffer hit count to my PostgreSQL database is greater than 2 standard deviations from the average buffer hit count over the given 5 minute timeframe. 
 
 
 # Monitoring Data
