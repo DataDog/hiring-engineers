@@ -4,19 +4,19 @@ from datadog import initialize, api
 
 
 def initialize_connection():
-	options = {
-		'api_key': '********************************',
-		'app_key': '**************************************'
-	}
-	initialize(**options)
+    options = {
+		'api_key': '*******************************',
+		'app_key': '***************************************'
+    }
+    initialize(**options)
 
 def get_timeboard_title():
-	title = raw_input('Please enter a title for your timeboard: ')
-	return title
+    title = raw_input('Please enter a title for your timeboard: ')
+    return title
 
 def get_timeboard_description():
-	description = raw_input('Please enter a brief description for your timeboard: ')
-	return description
+    description = raw_input('Please enter a brief description for your timeboard: ')
+    return description
 
 def get_widgets():
     widgets = [{
@@ -50,19 +50,19 @@ def get_widgets():
 	
 	
 def create_timeboard(title,widgets,description):
-	layout_type = 'ordered'
-	is_read_only = True
-	notify_list = ['kglassman18@gmail.com']
-	template_variables = [{
+    layout_type = 'ordered'
+    is_read_only = True
+    notify_list = ['kglassman18@gmail.com']
+    template_variables = [{
     'name': 'host',
     'prefix': 'host',
     'default': 'katelyn.localhost'}]
     
-	saved_view = [{
+    saved_view = [{
     'name': 'Saved views for hostname',
     'template_variables': [{'name': 'host', 'value': 'localhost'}]}]
 	
-	api.Dashboard.create(title=title,
+    api.Dashboard.create(title=title,
                      widgets=widgets,
                      layout_type=layout_type,
                      description=description,
@@ -73,11 +73,11 @@ def create_timeboard(title,widgets,description):
                      
 
 def main():
-	initialize_connection()
-	title = get_timeboard_title()
-	description = get_timeboard_description()
-	widgets = get_widgets() 
-	create_timeboard(title,widgets,description)
+    initialize_connection()
+    title = get_timeboard_title()
+    description = get_timeboard_description()
+    widgets = get_widgets() 
+    create_timeboard(title,widgets,description)
 	
 if __name__ == '__main__':
-	main()
+    main()
