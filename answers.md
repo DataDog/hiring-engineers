@@ -141,6 +141,18 @@ These configurations allowed my email notifications to be customized depending o
 
 ![Monitor alert](screenshots/monitor_alert.png)
 
-**Bonus Question**:
+**Bonus Question**: I set up two recurring downtimes for my monitor.  One for 7pm-9am ET Monday to Fridays:
+
+![Downtime](screenshots/schedule_downtime1.png)
+
+and one all day Saturdays and Sundays, also in ET:
+
+![Downtime](screenshots/schedule_downtime2.png)
+
+Below are the email notifications of the upcoming downtimes.  The notifications express the downtimes in UTC, not ET, so there is a 4-hour offset.
+
+![Downtime email](screenshots/downtime_email1.png)
+
+![Downtime email](screenshots/downtime_email2.png)
 
 
