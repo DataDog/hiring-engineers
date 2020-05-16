@@ -5,8 +5,8 @@ from datadog import initialize, api
 
 def initialize_connection():
 	options = {
-		'api_key': 'bfe6403b626fd36d7568c4895745c8a4',
-		'app_key': 'c9608fcb58fb7ef08750a1a24dd3e2e5a96f5878'
+		'api_key': '********************************',
+		'app_key': '**************************************'
 	}
 	initialize(**options)
 
