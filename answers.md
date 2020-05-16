@@ -18,7 +18,7 @@ sudo su - postgres
 psql
 ```
 
-User Creation:
+User Creation: ##password removed for security
 ```
 create user datadog with password '<PASSWORD>';
 grant SELECT ON pg_stat_database to datadog;
@@ -84,8 +84,10 @@ Yes you can update the collection interval by inside of the yaml file for the ch
 Python script used to create the timeboard.
 
 ```
+## I removed the API and APP keys from the documentation for security
+
 from datadog import initialize, api
-options = dict(api_key='<DD_API_KEY>', app_key='<DD_APP_KEY') ## I removed the APIs from the documentation for security
+options = dict(api_key='<DD_API_KEY>', app_key='<DD_APP_KEY') 
 initialize(**options)
 title = "Michael Ahearn Dashboards"
 description = "Dash/timeboard creation via api"
