@@ -173,5 +173,5 @@ Here is [my custom dashboard](https://app.datadoghq.com/dashboard/uex-3bk-mzq/) 
 
 ![APM Infra Dashboard](screenshots/apm_infrastructure_timeboard.png)
 
-
+**Bonus Question**: A **resource** is a feature of an application that represents a single action or function, such as a web endpoint, databse query, or other job.  A **service** is a self-contained grouping of resources joined together by a broader business function.  
 
