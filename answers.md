@@ -151,7 +151,7 @@ and one all day Saturdays and Sundays, also in ET:
 
 Below are the email notifications of the upcoming downtimes.  The notifications express the downtimes in UTC, not ET, so there is a 4-hour offset.
 
-![Downtime email](screenshots/downtime_email1.png)
+![Downtime email](screenshots/downtime_email.png)
 
 ![Downtime email](screenshots/downtime_email2.png)
 
