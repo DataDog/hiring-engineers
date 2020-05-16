@@ -131,6 +131,11 @@ And confirmed receipt to my Gmail:
 # Monitoring Data
 After making my Timeboard, I initialized a monitor to watch the average value of `my_metric` over the past 5 minutes.  Below are the configurations I used to set up this monitor:
 
-[Monitor](screenshots/monitor1.png)
+![Monitor](screenshots/monitor1.png)
 
-[Monitor](screenshots/monitor2.png)
+![Monitor](screenshots/monitor2.png)
+
+This configuration allowed my email notifications to be customized depending on the condition of the monitor trigger - Warning, Alert, or No Data.  Here is an example of the Alert notification, as received by email:
+
+
+
