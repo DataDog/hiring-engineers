@@ -169,5 +169,9 @@ I was now gathering meaningful analytics on my application in the Datadog APM so
 * The percent of time my machine's CPU spent running the kernel, with a warning marker at 10%.
 * My machine's memory availabile, and the amount physical RAM used as shared memory, in MiB.
 
+Here is my custom dashboard showing each of these metrics:
+
+![APM Infra Dashboard](screenshots/apm_infrastructure_timeboard.png)
+
 
 
