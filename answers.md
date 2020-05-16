@@ -3,7 +3,7 @@
 To begin this exercise, I assesed the options for a development environment to effectively model Datadog’s functionality that's also feasible within the confines of my Chromebook running Chrome OS. I opted to dual-boot my machine to run [GalliumOS](https://galliumos.org/), a lightweight Linux distribution based on Xubuntu, partitioned alongside the Chrome OS. From my new VM, I was easily able to sign up for Datadog and begin running the agent.  
 
 # Collecting Metrics 
-Next, I added the below tags into the `tags` block of my agent configuration file to add some more details on my machine.
+Next, I added the below tags into the `tags` block of my agent configuration file to add some more details about my machine.
 
 ```
 ## @param tags  - list of key:value elements - optional
@@ -79,7 +79,7 @@ log_file_mode = 0644                            # creation mode for log files
 
 After a quick change to `logs_enabled: true` in my Datadog agent configuration file, my setup was ready to begin log collection. 
 
-The output of a call to `sudo datadog-agent status`, shown below, verifies that the PostgreSQL integration and logging is functioning.  
+The output of a call to `sudo datadog-agent status`, shown below, verifies that the PostgreSQL integration and logging are functioning.  
 
 ![Postgres status](screenshots/postgres_status.png)
 
