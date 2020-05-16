@@ -203,6 +203,8 @@ Warning Example:
 -Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 Daily:
+
+
 ![Optional Text](https://github.com/LordNykon/hiring-engineers/blob/solutions-engineer/7pmdowntimealert.jpg)
 
 
