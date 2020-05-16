@@ -19,11 +19,12 @@ Here is my host, named `katelyn.localhost`, and its tags, shown bottom right, on
 
 ![My host with tags](screenshots/host_with_tags.png)
 
-Then I opted to download a PostgreSQL database on my machine and install the corresponding Datadog integration to begin collecting those metrics and logs.  After creating user `datadog` and granting the role `pg_monitor` to that user,  here is a verification of the correct permissioning on my PostgreSQL database:
+
+I opted to download a PostgreSQL database on my machine and install the corresponding Datadog integration to begin collecting those metrics and logs.  After creating user `datadog` and granting the role `pg_monitor` to that user,  here is a verification of the correct permissioning on my PostgreSQL database:
 
 ![Postgres connection OK](screenshots/postgres_connection_ok.png)
 
-To make this integration more meaningful, I wanted to allow for metric collection and log integration.  To do so, I altered my `postgres.d/conf.yaml` configuration file to point to my host/port and to configure logging, shown here: 
+To make this integration more meaningful, I wanted to allow for metric collection and log integration.  To do so, I altered my `postgres.d/conf.yaml` [configuration file](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/conf-files/postgres.d_conf.yaml) to point to my host/port and to configure logging, shown here: 
 ```
 instances:
 
@@ -60,7 +61,7 @@ logs:
    service: pslogservice
 ```
 
-and altered my machine's `postgresql.conf` file to configure logging, shown here:
+and altered my machine's `postgresql.conf` [configuration file](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/conf-files/postgresql.conf) to configure logging, shown here:
 
 ```
 logging_collector = on                          # Enable capturing of stderr and csvlog
@@ -85,9 +86,9 @@ The output of a call to `sudo datadog-agent status`, shown below, verifies that 
 ![Logs status](screenshots/logs_status.png)
 
 
-Click [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/conf-files/postgres.d_conf.yaml) for my full `postgres.d/conf.yaml` file and [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/conf-files/postgresql.conf) for my full `postgresql.conf` file.  
+I then introduced my own metric to begin tracking on my host.  I created a new check called `custom_check` using the script `custom_check.py`, which can be found [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/scripts/custom_check.py).  
 
-I then introduced my own metric to begin tracking over my host.  I created a new check called `custom_check` from the script `custom_check.py`, which can be found [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/scripts/custom_check.py).  To change the check's collection interval without modifing this Python file, I altered the check configuration file, `custom_check.yaml`, as shown below:
+**Bonus question**: To change the check's collection interval without modifing this Python file, I altered the check [configuration file](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/conf-files/custom_check.yaml), `custom_check.yaml`, as shown below:
 ```
 init_config:
 
@@ -100,7 +101,7 @@ Now, my check is up and running as expected, submitting a random value between 0
 # Visualizing Data
 
 Next, I used the Datadog API to generate some visualizations in the form of a Timeboard.  The script I used can be found [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/scripts/timeboard.py).  Some highlights of the script:
-* I set the paremeters for my three timeseries visualizations each within the `widgets` parameter.
+* I set the parameters for my three timeseries visualizations each within the `widgets` parameter.
 * I prompt for a title and a description of the Timeboard to be created.
 * I then pass my API key and app key and make the connection.
 
@@ -125,7 +126,7 @@ And confirmed receipt to my Gmail:
 ![Email notif](screenshots/email_notif.png)
 
 
-**Bonus Question**: My anomaly graph shows when the buffer hit count to my PostgreSQL database is greater than 2 standard deviations from the average buffer hit count. 
+**Bonus Question**: My anomaly graph shows when the buffer hit count to my PostgreSQL database is greater than 2 standard deviations from the average buffer hit count over the given timeframe. 
 
 
 # Monitoring Data
@@ -156,3 +157,4 @@ Below are the email notifications of the upcoming downtimes.  The notifications 
 ![Downtime email](screenshots/downtime_email2.png)
 
 
+## Collecting APM Data
