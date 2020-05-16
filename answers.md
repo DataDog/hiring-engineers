@@ -117,7 +117,7 @@ And the sum of my custom metric in buckets of one hour, which does not appear an
 ![Sum of my metric](screenshots/my_metric_sum_5m.png)
 
 I took a snapshot of my virst visual here and wrote a notification for myself:
-![Snapshot](Screenshots/snapshot.png)
+![Snapshot](screenshots/snapshot.png)
 
 And confirmed receipt to my Gmail:
 ![Email notif](screenshots/email_notif.png)
