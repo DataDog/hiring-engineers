@@ -142,7 +142,7 @@ These configurations allowed my email notifications to be customized depending o
 
 ![Monitor alert](screenshots/monitor_alert.png)
 
-**Bonus Question**: I set up two recurring downtimes for my monitor.  One for 7pm-9am ET Monday to Fridays:
+**Bonus Question**: I set up two recurring downtimes for my monitor.  One for 7pm-9am ET Mondays to Fridays:
 
 ![Downtime](screenshots/schedule_downtime1.png)
 
