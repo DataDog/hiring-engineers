@@ -98,14 +98,29 @@ Now, my check is up and running as expected, submitting a random value between 0
 
 # Visualizing Data
 
-Next, I used the Datadog API to generate some visualizations in the form of a Timeboard.  The script I used can be found here.  Some highlights of the script:
+Next, I used the Datadog API to generate some visualizations in the form of a Timeboard.  The script I used can be found [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/scripts/timeboard.py).  Some highlights of the script:
 * I set the paremeters for my three timeseries visualizations each within the `widgets` parameter.
 * I prompt for a title and a description of the Timeboard to be created.
 * I then pass my API key and app key and make the connection.
 
 Voila! Here is the view of my new timeboard, Katelyn's Timeboard, upon creation with this script:
 
+![My Timeboard](screenshots/my_timeboard.png)
 
+Here are each of my visuals after I set the timeframe to the last 5 minutes.
+
+My custom metric scoped over katelyn.localhost:
+![My metric](screenshots/my_metric_5m.png)
+My Postgres buffer hit:
+![Postgres anomaly](screenshots/postgres_anomaly_5m.png)
+And the sum of my custom metric in buckets of one hour, which does not appear an informative visual at this timeframe:
+![Sum of my metric](screenshots/my_metric_sum_5m.png)
+
+I took a snapshot of my virst visual here and wrote a notification for myself:
+![Snapshot](Screenshots/snapshot.png)
+
+And confirmed receipt to my Gmail:
+![Email notif](screenshots/email_notif.png)
 
 
 
