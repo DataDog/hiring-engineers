@@ -95,4 +95,25 @@ https://app.datadoghq.com/metric/explorer
 
 ![Metric](12-Custom.JPG)
 
+* Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+By default, metric interval is 15 sec, to change this i am editing the check configuration file
+`sudo vi my_metric.yaml`
+
+`init_config:
+
+instances:
+  - min_collection_interval: 45`
+restart the agent
+` sudo systemctl restart datadog-agent`
+
+Check the logs for updated time interval
+
+`2020-05-17 21:14:32 UTC | CORE | INFO | (pkg/collector/scheduler/scheduler.go:83 in Enter) | Scheduling check my_metric with an interval of 45s`
+
+Metric](13-Custom.JPG)
+
+* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+## Visualizing Data:
 
