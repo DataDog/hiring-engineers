@@ -162,12 +162,12 @@ I spun up a simple [Flask application](https://github.com/kmglassman/hiring-engi
 * I configured the application to randomly fail upon entry 1 in 10 times and exit. 
 * I added a user page that validates userID and fails on a ValueError if the userID is invalid, yielding a 500 error on the application.  
 
-I was now gathering meaningful analytics on my application in the Datadog APM solution.  Here are some APM and infrastructure metrics I gathered and compiled in a dashboard:
+I now am gathering meaningful analytics on my application in the Datadog APM solution.  Here are some APM and infrastructure metrics I gathered and compiled in a dashboard:
 * A sum of the number of hits and errors to my application.
-* A breakdown of the error count by error type - 500 Internal Server Error, or SystemExit Exception.
+* A breakdown of the error count by error type - 500 Internal Server Error and SystemExit Exception.
 * Latency on my application, in milliseconds.
 * The percent of time my machine's CPU spent running the kernel, with a warning marker at 10%.
-* My machine's memory availabile, and the amount physical RAM used as shared memory, in mebibytes.
+* My machine's availabile memory, and the amount of physical RAM used as shared memory, in mebibytes.
 
 Here is [my custom dashboard](https://app.datadoghq.com/dashboard/uex-3bk-mzq/) showing each of these metrics:
 
