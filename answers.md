@@ -3,7 +3,7 @@
 To begin this exercise, I assesed the options for a development environment to effectively model Datadog’s functionality that's also feasible within the confines of my Chromebook running Chrome OS. I opted to dual-boot my machine to run [GalliumOS](https://galliumos.org/), a lightweight Linux distribution based on Xubuntu, partitioned alongside the Chrome OS. From my new VM, I was easily able to sign up for Datadog and begin running the agent. 
 
 # Collecting Metrics 
-Next, I added the below tags into the `tags` block of my agent configuration file to add some more details about my machine.
+Next, I added the below tags into the `tags` block of my agent [configuration file](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/conf-files/datadog.yaml) to add some more details about my machine.
 
 ```
 ## @param tags  - list of key:value elements - optional
