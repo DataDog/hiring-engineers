@@ -5,24 +5,22 @@ MySQL DB installed to same host
 Collecting Metrics:
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 - The following tags were added to the /etc/datadog-agent/datadog.yaml file 
-tags:
-        - testtag1:test1
-        - testtag2:test2
-        - testtag3:test3
+![tags](https://github.com/mqbui1/hiring-engineers/blob/master/tags.PNG)
 
 ![tags_dashboard](https://github.com/mqbui1/hiring-engineers/blob/master/Datadog_Dashboard.PNG)
 
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 - MySQL database is installed on the same host as where the Datadog Agent is installed
 - Datadog integration with the MySQL was done by following the documentation: https://docs.datadoghq.com/integrations/mysql/
-
 ![mysql_image](https://github.com/mqbui1/hiring-engineers/blob/master/mysqldb_hostmap.PNG)
 
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 - custom_my_metric.py was created at /etc/datadog-agent/checks.d
+
 [custom_my_metric.py](https://github.com/mqbui1/hiring-engineers/blob/master/custom_my_metric.py)
 
 - custom_my_metric.yaml was created at /etc/datadog-agent/conf.d
+
 [custom_my_metric.yaml](https://github.com/mqbui1/hiring-engineers/blob/master/custom_my_metric.yaml)
 
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
