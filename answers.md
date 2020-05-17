@@ -10,7 +10,7 @@ tags:
         - testtag2:test2
         - testtag3:test3
 
-The uploaded screenshot (Datadog_Dashboard.PNG) shows these tags on the Host Map page of Datadog.
+![tags_dashboard](https://github.com/mqbui1/hiring-engineers/blob/master/Datadog_Dashboard.PNG)
 
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 - MySQL database is installed on the same host as where the Datadog Agent is installed
@@ -134,8 +134,11 @@ Bonus Question: What is the difference between a Service and a Resource?
 - Service: building blocks of modern microservice architecutres-- a service groups together endpoints, queries, or jobs for the purposes of scaling instances
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-- Please find screenshot uploaded (apmdashboard.png)
+https://app.datadoghq.com/apm/service/flask/flask.request?end=1589738974858&env=flask_test&paused=false&start=1589735374858
 ![flaskapp image](https://github.com/mqbui1/hiring-engineers/blob/master/flaskapp.PNG)
+
+Command used to start tracing on flask app: FLASK_APP=flaskapp.py DATADOG_ENV=flask_test ddtrace-run flask run --port=4999
+In order for the monitor status to show on the dashboard, curl command needed to be ran to trigger the application: curl -v http://127.0.0.1:4999
 
 Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
