@@ -33,7 +33,7 @@ instances:
         
      
 Utilize the Datadog API to create a Timeboard that contains:
-![timeboard1_image](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard1.PNG)
+![timeboard1_image](https://github.com/mqbui1/hiring-engineers/blob/master/maintimeboard.PNG)
 
 Your custom metric scoped over your host.
 ![timeboard2_image](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard2.PNG)
@@ -42,7 +42,7 @@ Any metric from the Integration on your Database with the anomaly function appli
 ![timeboard4_image](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard4.PNG)
 
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-![timeboard3_image](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard3.PNG)
+![timeboard3_image](https://github.com/mqbui1/hiring-engineers/blob/master/rollup.PNG)
 
 Script executed: [timeboard.py](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard.py)
 
