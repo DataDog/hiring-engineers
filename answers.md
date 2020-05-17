@@ -71,4 +71,28 @@ Finally Check that integration is working properly and MongoDB is detected
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+Create a new yaml file in /etc/datadog-agent/conf.d for my_metric config :
+`init_config:
+
+instances:
+  [{}]
+`
+create my_metric.py
+```python
+import random
+
+from checks import AgentCheck
+class HelloCheck(AgentCheck):
+  def check(self, instance):
+    self.gauge('my_metric', random.randint(0,1000))
+```
+restart agent
+
+`sudo systemctl restart datadog-agent`
+
+Now lets check if the new metric is being received in the metrics explorer
+https://app.datadoghq.com/metric/explorer
+
+![Metric](12-Custom.JPG)
+
 
