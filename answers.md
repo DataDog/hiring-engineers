@@ -10,12 +10,15 @@ Server is installed with latest packages
 ![Image of EC2](EC2-UP.JPG)
 
 
-I have signed up for Datadog with email jgdesanti@yahoo.com, copied my API key and instaling the latest agent
+I have signed up for Datadog with email jgdesanti@yahoo.com, copied my API key and installed the latest agent
+
 
 
 ![Agent](2-DDagent.JPG)
 
+
 Agent is installed
+
 
 ![Agent](3-DDagent.JPG)
 
@@ -29,6 +32,7 @@ First step is complete
 
 ## Collecting Metrics
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
 
 I am adding tags to the agent configuration file and restarting the agent
 
