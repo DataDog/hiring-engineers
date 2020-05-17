@@ -1,10 +1,6 @@
 # Prerequisites
 
-To begin this exercise, I assesed my options for a development environment to effectively model Datadog’s functionality that's also feasible within the confines of my Chromebook running Chrome OS. I opted to dual-boot my machine to run [GalliumOS](https://galliumos.org/), a lightweight Linux distribution based on Xubuntu, partitioned alongside the Chrome OS. From my new VM, I was easily able to sign up for Datadog and begin running the agent. 
-
-<p align="center">
-  <img src="https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/screenshots/welcome_to_datadog.png">
-</p>
+To begin this exercise, I assesed the options for a development environment to effectively model Datadog’s functionality that's also feasible within the confines of my Chromebook running Chrome OS. I opted to dual-boot my machine to run [GalliumOS](https://galliumos.org/), a lightweight Linux distribution based on Xubuntu, partitioned alongside the Chrome OS. From my new VM, I was easily able to sign up for Datadog and begin running the agent. 
 
 # Collecting Metrics 
 Next, I added the below tags into the `tags` block of my agent configuration file to add some more details about my machine.
