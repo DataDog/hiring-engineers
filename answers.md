@@ -111,7 +111,7 @@ Check the logs for updated time interval
 
 `2020-05-17 21:14:32 UTC | CORE | INFO | (pkg/collector/scheduler/scheduler.go:83 in Enter) | Scheduling check my_metric with an interval of 45s`
 
-Metric](13-Custom.JPG)
+![Metric](13-Custom.JPG)
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
