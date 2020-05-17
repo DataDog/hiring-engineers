@@ -16,8 +16,10 @@ Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then inst
 - MySQL database is installed on the same host as where the Datadog Agent is installed
 - Datadog integration with the MySQL was done by following the documentation: https://docs.datadoghq.com/integrations/mysql/
 
+![mysql_image](https://github.com/mqbui1/hiring-engineers/blob/master/mysqldb_hostmap.PNG)
+
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-- my_metric.py was created at /etc/datadog-agent/checks.d with following content:
+- custom_my_metric.py was created at /etc/datadog-agent/checks.d with following content:
 try:
     from datadog_checks.base import AgentCheck
 except ImportError:
@@ -29,81 +31,33 @@ class HelloCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric.gauge', random.randint(0, 1000))
 
-- my_metric.yaml was created at /etc/datadog-agent/conf.d with following content:
+- custom_my_metric.yaml was created at /etc/datadog-agent/conf.d with following content:
 instances: [{}]
 
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
-- The my_metric.yaml was updated so the collection interval would be 45 seconds:
+- The custom_my_metric.yaml was updated so the collection interval would be 45 seconds:
 init_config:
 instances:
         - min_collection_interval: 45
+
+![metric_dashboard](https://github.com/mqbui1/hiring-engineers/blob/master/custom_my_metric.PNG)
+        
         
 Utilize the Datadog API to create a Timeboard that contains:
+![timeboard1_image](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard1.PNG)
 
 Your custom metric scoped over your host.
+![timeboard2_image](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard2.PNG)
+
 Any metric from the Integration on your Database with the anomaly function applied.
+![timeboard4_image](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard4.PNG)
+
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+[timeboard3_image](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard3.PNG)
 
-Script used below (createtimeboard.py), executed from:
-/opt/datadog-agent/embedded/bin$ python3 createtimeboard.py
+Script executed: [timeboard.py!](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard.py)
+Execution command: /opt/datadog-agent/embedded/bin$ python3 timeboard.py
 
-from datadog import initialize, api
-
-options = {
-    'api_key': '77be3ef7547da187cd332cfc691bb304',
-    'app_key': '3637663eeefed92bca57ad351d4da62b358f3162'
-}
-
-initialize(**options)
-
-title = "MT1"
-description = "Marc Test Timeboard2"
-graphs = [
-{
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "avg:system.mem.free{*}"}
-        ],
-        "viz": "timeseries"
-    },
-    "title": "My Metric"
-},
-{
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "avg:system.mem.free{*} by {host}.rollup(sum, 3600)"}
-        ],
-        "viz": "timeseries"
-    },
-    "title": "My Metric Rollup"
-},
-{
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "anomalies(mysql.innodb.buffer_pool_total{*}, 'basic' ,3)"}
-        ],
-        "viz": "timeseries"
-    },
-    "title": "MySQL Buffer Pool Total Anomaly"
-}
-]
-
-template_variables = [{
-    "name": "host1",
-    "prefix": "host",
-    "default": "host:my-host"
-}]
-
-read_only = True
-api.Timeboard.create(title=title,
-                     description=description,
-                     graphs=graphs,
-                     template_variables=template_variables,
-                     read_only=read_only)
-                     
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 - Screenshot attached of timeboard dashboard set to past 5 minutes (timeboard5min.png)
@@ -135,7 +89,8 @@ Bonus Question: What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 https://app.datadoghq.com/apm/service/flask/flask.request?end=1589738974858&env=flask_test&paused=false&start=1589735374858
-![flaskapp image](https://github.com/mqbui1/hiring-engineers/blob/master/flaskapp.PNG)
+![flaskapp image](https://github.com/mqbui1/hiring-engineers/blob/master/flaskapp2.PNG)
+![flaskapp image2](https://github.com/mqbui1/hiring-engineers/blob/master/flaskapp3.PNG)
 
 Command used to start tracing on flask app: FLASK_APP=flaskapp.py DATADOG_ENV=flask_test ddtrace-run flask run --port=4999
 In order for the monitor status to show on the dashboard, curl command needed to be ran to trigger the application: curl -v http://127.0.0.1:4999
