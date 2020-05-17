@@ -77,7 +77,7 @@ log_filename = 'pg.log'                         # log file name pattern,
 log_file_mode = 0644                            # creation mode for log files
 ```
 
-After a quick change to `logs_enabled: true` in my Datadog agent configuration file, my setup was ready to begin log collection. 
+After a quick change to `logs_enabled: true` in my Datadog agent [configuration file](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/conf-files/datadog.yaml), my setup was ready to begin log collection. 
 
 The output of a call to `sudo datadog-agent status`, shown below, verifies that the PostgreSQL integration and logging are functioning.  
 
