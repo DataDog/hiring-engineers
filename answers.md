@@ -86,7 +86,7 @@ The output of a call to `sudo datadog-agent status`, shown below, verifies that 
 ![Logs status](screenshots/logs_status.png)
 
 
-I then introduced my own metric to begin tracking on my host.  I created a new check called `custom_check` using the script `custom_check.py`, which can be found [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/scripts/custom_check.py).  
+I then introduced my own custom metric to begin tracking on my host.  I created a new check called `custom_check`, which generates a random value between 0 and 1000, using the [script](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/scripts/custom_check.py) `custom_check.py`.  
 
 **Bonus question**: To change the check's collection interval without modifing this Python file, I altered the check [configuration file](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/conf-files/custom_check.yaml), `custom_check.yaml`, as shown below:
 ```
