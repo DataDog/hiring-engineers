@@ -1,4 +1,5 @@
-Dashboard link: https://app.datadoghq.com/dashboard/lists
+Dashboard link: https://app.datadoghq.com/
+Account: mqbui1@gmail.com
 Datadog agent installed to host running on Vagrant VM
 MySQL DB installed to same host
 
@@ -49,10 +50,10 @@ Script executed: [timeboard.py](https://github.com/mqbui1/hiring-engineers/blob/
 Execution command: /opt/datadog-agent/embedded/bin$ python3 timeboard.py
 
 Set the Timeboard's timeframe to the past 5 minutes
-![5min_image]https://github.com/mqbui1/hiring-engineers/blob/master/5min.PNG
+![5min_image](https://github.com/mqbui1/hiring-engineers/blob/master/5min.PNG)
 
 Take a snapshot of this graph and use the @ notation to send it to yourself.
-![snapshot_image]https://github.com/mqbui1/hiring-engineers/blob/master/snapshot.PNG
+![snapshot_image](https://github.com/mqbui1/hiring-engineers/blob/master/snapshot.PNG)
 
 Bonus Question: What is the Anomaly graph displaying?
 - Anomaly detection checks to see when a metric is behaving differently than it has in the past through consideration of trends, seasonal day-of-week, and time-of-day patterns.
