@@ -20,7 +20,7 @@ Here is my host, named `katelyn.localhost`, and its tags, shown bottom right, on
 ![My host with tags](screenshots/host_with_tags.png)
 
 
-I opted to download a PostgreSQL database on my machine and install the corresponding Datadog integration to begin collecting those metrics and logs.  After creating user `datadog` and granting the role `pg_monitor` to that user,  here is a verification of the correct permissioning on my PostgreSQL database:
+I downloaded a PostgreSQL database on my machine and installed the corresponding Datadog integration to begin collecting those metrics and logs.  After creating user `datadog` and granting the role `pg_monitor` to that user,  here is a verification of the correct permissioning on my PostgreSQL database:
 
 ![Postgres connection OK](screenshots/postgres_connection_ok.png)
 
