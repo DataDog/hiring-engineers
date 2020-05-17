@@ -19,20 +19,11 @@ Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then inst
 ![mysql_image](https://github.com/mqbui1/hiring-engineers/blob/master/mysqldb_hostmap.PNG)
 
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-- custom_my_metric.py was created at /etc/datadog-agent/checks.d with following content:
-try:
-    from datadog_checks.base import AgentCheck
-except ImportError:
-    from checks import AgentCheck
+- custom_my_metric.py was created at /etc/datadog-agent/checks.d
+[custom_my_metric.py](https://github.com/mqbui1/hiring-engineers/blob/master/custom_my_metric.py)
 
-__version__ = "1.0.0"
-
-class HelloCheck(AgentCheck):
-    def check(self, instance):
-        self.gauge('my_metric.gauge', random.randint(0, 1000))
-
-- custom_my_metric.yaml was created at /etc/datadog-agent/conf.d with following content:
-instances: [{}]
+- custom_my_metric.yaml was created at /etc/datadog-agent/conf.d
+[custom_my_metric.yaml](https://github.com/mqbui1/hiring-engineers/blob/master/custom_my_metric.yaml)
 
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 - The custom_my_metric.yaml was updated so the collection interval would be 45 seconds:
@@ -42,7 +33,7 @@ instances:
 
 ![metric_dashboard](https://github.com/mqbui1/hiring-engineers/blob/master/custom_my_metric.PNG)
         
-        
+     
 Utilize the Datadog API to create a Timeboard that contains:
 ![timeboard1_image](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard1.PNG)
 
@@ -53,9 +44,10 @@ Any metric from the Integration on your Database with the anomaly function appli
 ![timeboard4_image](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard4.PNG)
 
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-[timeboard3_image](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard3.PNG)
+![timeboard3_image](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard3.PNG)
 
-Script executed: [timeboard.py!](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard.py)
+Script executed: [timeboard.py](https://github.com/mqbui1/hiring-engineers/blob/master/timeboard.py)
+
 Execution command: /opt/datadog-agent/embedded/bin$ python3 timeboard.py
 
 Set the Timeboard's timeframe to the past 5 minutes
@@ -74,13 +66,18 @@ Send you an email whenever the monitor triggers.
 Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-- Please find screenshot uploaded (metricmonitor.png)
+![monitor1](https://github.com/mqbui1/hiring-engineers/blob/master/monitor1.PNG)
+![monitor2](https://github.com/mqbui1/hiring-engineers/blob/master/monitor2.PNG)
+![monitor3](https://github.com/mqbui1/hiring-engineers/blob/master/monitor3.PNG)
+![monitor4](https://github.com/mqbui1/hiring-engineers/blob/master/monitor4.PNG)
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-- Please find screenshot uploaded (scheduleddowntime.png)
+![monitor5](https://github.com/mqbui1/hiring-engineers/blob/master/monitor5.PNG)
+![monitor6](https://github.com/mqbui1/hiring-engineers/blob/master/monitor6.PNG)
+![monitor7](https://github.com/mqbui1/hiring-engineers/blob/master/monitor7.PNG)
 
 Collecting APM Data:
 Bonus Question: What is the difference between a Service and a Resource?
