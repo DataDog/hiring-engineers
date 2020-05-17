@@ -143,7 +143,7 @@ Timeboards :
 * Your custom metric scoped over your host.
 
 Code :
-`
+```
 curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 --header 'Content-Type: application/json' \
 --header 'DD-API-KEY: 80411968469bd7a7b902ccdddc935bf6' \
@@ -190,5 +190,5 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
         }
     ]
 }'
-`
+```
 
