@@ -114,6 +114,16 @@ Check the logs for updated time interval
 ![Metric](13-Custom.JPG)
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+My understanding is that only modifying the config yaml file is needed, not the python check file, variable min_collection_interval and the value is seconds
+
 
 ## Visualizing Data:
+Utilize the Datadog API to create a Timeboard that contains:
 
+First lets create and API and Application key with name API
+
+Now, I am using Python to write a script to generate the timeboard
+
+
+
+* Your custom metric scoped over your host.
