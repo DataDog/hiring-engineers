@@ -26,3 +26,14 @@ Check the Datadog UI to verify that the client is reporting correctly
 
 ![Agent](6-TagsCheck.JPG)
 
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+![MongoDB](7-MongoDB.JPG)
+
+![MongoDB](8-MongoDB.JPG)
+
+![MongoDB](9-MongoDB.JPG)
+
+![MongoDB](10-MongoDB.JPG)
+
+![MongoDB](11-MongoDB.JPG)
