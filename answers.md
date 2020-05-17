@@ -28,12 +28,32 @@ Check the Datadog UI to verify that the client is reporting correctly
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
+I am installing MongoDB 4.2.6 on my machine
+
 ![MongoDB](7-MongoDB.JPG)
+
+Check the Mongo logs
 
 ![MongoDB](8-MongoDB.JPG)
 
+Configure the MongoDB integration in /etc/datadog-agent/conf.d/mongo.d
+
 ![MongoDB](9-MongoDB.JPG)
 
+Check that integration is working properly and MongoDB is detected
+
 ![MongoDB](10-MongoDB.JPG)
+
+Finally check Datadog Log File
+`cat /var/log/datadog/agent.log | grep mongo`
+
+`
+2020-05-17 02:47:15 UTC | CORE | INFO | (pkg/collector/runner/runner.go:327 in work) | Done running check mongo
+2020-05-17 02:47:30 UTC | CORE | INFO | (pkg/collector/runner/runner.go:261 in work) | Running check mongo
+2020-05-17 02:47:30 UTC | CORE | INFO | (pkg/collector/runner/runner.go:327 in work) | Done running check mongo, next runs will be logged every 500 runs
+`
+
+
+
 
 ![MongoDB](11-MongoDB.JPG)
