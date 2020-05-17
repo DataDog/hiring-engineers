@@ -122,8 +122,73 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 First lets create and API and Application key with name API
 
-Now, I am using Python to write a script to generate the timeboard
+![Metric](14-API.JPG)
 
+Now, I created a curl script to check my credentials
 
+` ./dd_api_validate.sh`
+{"valid":true}ubuntu@ip-172-31-31-136:~$
+
+`curl "https://api.datadoghq.com/api/v1/validate" \
+    -H "DD-API-KEY: xxx" \
+    -H "DD-APPLICATION-KEY: xxx"`
+    
+  As suggested in the referecnes I am using this link https://docs.datadoghq.com/api/
+  And building my queries with Postman
+  
+  ![API](15-API.JPG)
+  
+Timeboards :
 
 * Your custom metric scoped over your host.
+
+Code :
+
+curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
+--header 'Content-Type: application/json' \
+--header 'DD-API-KEY: 80411968469bd7a7b902ccdddc935bf6' \
+--header 'DD-APPLICATION-KEY: d0c1e0c4f0d2c05d2b3d187fff288bebbc9b8f5e' \
+--header 'Content-Type: text/plain' \
+--header 'Cookie: DD-PSHARD=198' \
+--data-raw '{
+    "title": "my_metric",
+    "widgets": [
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "my_metric{*}"
+                    }
+                ],
+                "title": "custom metric"
+            }
+        }
+    ],
+    "layout_type": "ordered",
+    "description": "My custom metric",
+    "is_read_only": true,
+    "notify_list": [
+        "jgdesanti@yahoo.com"
+    ],
+    "template_variables": [
+        {
+            "name": "host",
+            "prefix": "host",
+            "default": "i-0447418a43d6de5db"
+        }
+    ],
+    "template_variable_presets": [
+        {
+            "name": "Saved views for hostname 2",
+            "template_variables": [
+                {
+                    "name": "host",
+                    "value": "<HOSTNAME_2>"
+                }
+            ]
+        }
+    ]
+}'
+
+
