@@ -7,14 +7,14 @@ options = {
 
 initialize(**options)
 
-title = "Marc's Timeboard"
+title = "Marc's Timeboard2"
 description = "Marc's Timeboard"
 graphs = [
 {
     "definition": {
         "events": [],
         "requests": [
-            {"q": "avg:my_metric.gauge{*}"}
+            {"q": "avg:my_metric.gauge{*} by {host}"}
         ],
         "viz": "timeseries"
     },
