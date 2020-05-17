@@ -138,7 +138,7 @@ After making my Timeboard, I initialized a monitor to watch the average value of
 ![Monitor](screenshots/monitor2.png)
 
 
-These configurations allowed my email notifications to be customized depending on the condition of the monitor trigger - Warning, Alert, or No Data.  Here is an example of the Alert notification, as received by email:
+These configurations allow my email notifications to be customized depending on the condition of the monitor trigger - Warning, Alert, or No Data.  Here is an example of the Alert notification, as received by email:
 
 ![Monitor alert](screenshots/monitor_alert.png)
 
