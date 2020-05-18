@@ -282,6 +282,24 @@ metric value is : {{value}} from host {{host.ip}}
 
  
  
+ * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+  * One that silences it from 7pm to 9am daily on M-F,
+  * And one that silences it all day on Sat-Sun.
+  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  
+  For this we are using the https://app.datadoghq.com/monitors#/downtime section
+  
+  see screenshot for weeknight silence
+     ![Monitor](21-monitor-alert.JPG)
+  
+  see screenshot for weekend silence
+   ![Monitor](22-monitor-alert.JPG)
+   
+   
+   ## Collecting APM Data:
+  
+  
 
 
 
