@@ -299,7 +299,53 @@ metric value is : {{value}} from host {{host.ip}}
    
    ## Collecting APM Data:
   
-  
+  Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+For this step I am running the flask app within my EC2 machine and had to resolve some dependencies issues before installing the ddtrace pacckage (used the following for reference : https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog
+
+the following fixed dependencies :
 
 
+```
+sudo apt-get install python3 python-dev python3-dev \
+     build-essential libssl-dev libffi-dev \
+     libxml2-dev libxslt1-dev zlib1g-dev \
+     python-pip
+```
+```
+pip install ddtrace
+pip install cython
+pip install wheel
+```
+
+Once all installed i am running the Flask app with :
+
+```(venv) ubuntu@ip-172-31-31-136:~/my_flask_app$ DATADOG_ENV=flask_test ddtrace-run flask run --port 8000 --host=0.0.0.0
+```
+
+see screenshosts below :
+
+ ![flask](23-flask.JPG)
+  ![flask](24-flask.JPG)
+
+* **Bonus Question**: What is the difference between a Service and a Resource?
+
+a service contains multiple resources, each resource can be an individual endpoints or queries for that service.
+
+
+Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+Dashboard : 
+
+  ![dashboard](25-dash.JPG)
+
+Link : https://p.datadoghq.com/sb/bgawohmddftjb2m9-85b284b7e9ccfea5f6c390ddaf43bca1
+
+## Final Question:
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+Unofrtunately right now i can only think about a Covid tracker dashboard, tracking cases, individual tracing, contamination risks and exposures.
 
