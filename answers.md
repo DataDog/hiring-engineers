@@ -168,7 +168,7 @@ I now am gathering meaningful analytics on my application in the Datadog APM sol
 * A breakdown of the error count by error type - 500 Internal Server Error and SystemExit Exception.
 * Latency on my application, in milliseconds.
 * The percent of time my machine's CPU spent running the kernel, with a warning marker at 10%.
-* My machine's availabile memory, and the amount of physical RAM used as shared memory, in mebibytes.
+* My machine's available memory, and the amount of physical RAM used as shared memory, in mebibytes.
 
 Here is [my custom dashboard](https://app.datadoghq.com/dashboard/uex-3bk-mzq/) showing each of these metrics:
 
