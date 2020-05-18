@@ -27,6 +27,26 @@ Now lets check the Datadog UI to verify that the agent is reporting correctly an
 
 ![Agent](4-DDagent.JPG)
 
+I am also adding log collection in my config file (datadog.yaml)
+
+
+```
+##################################
+## Log collection Configuration ##
+##################################
+
+## @param logs_enabled - boolean - optional - default: false
+## Enable Datadog Agent log collection by setting logs_enabled to true.
+#
+logs_enabled: true
+
+```
+
+logs are coming into Datadog (screenshot below)
+![log](1-log.JPG)
+
+
+
 First step is complete
 
 
