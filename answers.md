@@ -150,8 +150,8 @@ Code :
 ```
 curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 --header 'Content-Type: application/json' \
---header 'DD-API-KEY: 80411968469bd7a7b902ccdddc935bf6' \
---header 'DD-APPLICATION-KEY: d0c1e0c4f0d2c05d2b3d187fff288bebbc9b8f5e' \
+--header 'DD-API-KEY: xxx' \
+--header 'DD-APPLICATION-KEY: xxx' \
 --header 'Content-Type: text/plain' \
 --header 'Cookie: DD-PSHARD=198' \
 --data-raw '{
@@ -219,3 +219,14 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 ```
 
 Sending the API POST
+  ![API](16-API.JPG)
+
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+  ![API](17-API.JPG)
+
+
+* Set the Timeboard's timeframe to the past 5 minutes
+* Take a snapshot of this graph and use the @ notation to send it to yourself.
+* **Bonus Question**: What is the Anomaly graph displaying?
