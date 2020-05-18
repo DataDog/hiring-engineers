@@ -1,12 +1,18 @@
 #!/usr/bin/python
 
 from datadog import initialize, api
+from cryptography.fernet import Fernet
 
-
-def initialize_connection():
+def decrypt_key(encrypted_key):
+    fernet_key=b'kLBTXhXvcUqVYbdZ7yE59C8GMoKbU9qsrWE3LO-xR7I='
+    dc=Fernet(fernet_key)
+    res=dc.decrypt(encrypted_key)
+    return res.decode("utf-8")
+    
+def initialize_connection(api_key, app_key):
     options = {
-		'api_key': '*******************************',
-		'app_key': '***************************************'
+		'api_key': api_key, 
+		'app_key': app_key 
     }
     initialize(**options)
 
@@ -46,8 +52,6 @@ def get_widgets():
     }]
 
     return widgets
-
-	
 	
 def create_timeboard(title,widgets,description):
     layout_type = 'ordered'
@@ -73,7 +77,11 @@ def create_timeboard(title,widgets,description):
                      
 
 def main():
-    initialize_connection()
+    encrypted_api_key = 'gAAAAABewdqJm8Mn4Svz1G7unkksRZz89dIRv74bpqcnFjofgguloVPuC0O-K527neTE3X6PrvAWEZJv-oQQ9i9bVkhfttLKKZW_KPcQDW30C144MFdByFZ-Ld6ZEsobOTwicvY7kfp8' 
+    encrypted_app_key = 'gAAAAABewdky86ngsNurE7mZdjYM7PXsDEl4prLIpzW5mYC346RJ1mukkqrlMVjy4u6zbG_mZneFnBhpa5QtqC2PpI8ruAchnalh6qj6UBzXaljZNNF-ryvjN0n2Rm-DO1lwPH0TQPML'
+    api_key = decrypt_key(encrypted_api_key)
+    app_key = decrypt_key(encrypted_app_key)  
+    initialize_connection(api_key,app_key)
     title = get_timeboard_title()
     description = get_timeboard_description()
     widgets = get_widgets() 
