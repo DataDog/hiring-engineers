@@ -14,8 +14,6 @@ I have signed up for Datadog with email jgdesanti@yahoo.com, copied my API key a
 
 
 
-![Agent](2-DDagent.JPG)
-
 
 Agent is installed
 
