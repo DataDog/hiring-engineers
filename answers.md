@@ -229,4 +229,25 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+  ![API](18-API.JPG)
+
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+
+The anomaly graph is displaying activites out of the ordinary for metrics it is applied to. On my dashboard the Mongo metric is pretty flat therefore not triggered, once applied to the custom metric (generated randomly) we can see the anomalies getting highlited.
+
+See screenshot below :
+  ![API](19-anomaly.JPG)
+
+
+## Monitoring Data
+
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
