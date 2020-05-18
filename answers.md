@@ -251,3 +251,37 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+For that step I am using the Monitor feature
+https://app.datadoghq.com/monitors/manage
+
+Creating "My Metric Alert"
+
+with the following settings
+1. Threshold alert
+2. monitor "my_metric"
+3. alert condition of >=800 and warning threshold of >=500
+4. following action :
+```{{#is_alert}} My metric is in alert mode (avg >=800) {{/is_alert}}
+
+{{#is_warning}} My metric is in warning mode (avg >=500) {{/is_warning}}
+
+{{#is_no_data}} My metric is not sending data {{/is_no_data}} 
+
+metric value is : {{value}} from host {{host.ip}}
+
+ @jgdesanti@yahoo.com
+ ```
+ 5.email to jgdesanti@yahoo.com
+ 
+  ![Monitor](19-5-monitor-config.JPG)
+ 
+ 
+ see screenshots below for email notification
+ 
+   ![Monitor](20-monitor-alert.JPG)
+
+ 
+ 
+
+
+
