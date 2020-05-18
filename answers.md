@@ -103,7 +103,7 @@ Now, my check is up and running as expected, submitting a random value between 0
 Next, I used the Datadog API to generate some visualizations in the form of a Timeboard.  The script I used can be found [here](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/scripts/timeboard.py).  Some highlights of the script:
 * I set the parameters for my three timeseries visualizations each within the `widgets` parameter.
 * I prompt for a title and a description of the Timeboard to be created.
-* My API key and app are encrypted key with Fernet key encryption, using this [script](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/scripts/enc_key.py) I created, `enc_key.py`.
+* My API key and app key are encrypted with Fernet key encryption, using this [script](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/scripts/enc_key.py) I created, `enc_key.py`.
 * I then decrypt and pass my API key and app key and make the connection.
 
 Here is the view of my new timeboard, [Katelyn's Timeboard](https://app.datadoghq.com/dashboard/vas-prc-xq8/), upon creation with my script:
