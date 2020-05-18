@@ -88,7 +88,7 @@ The output of a call to `sudo datadog-agent status`, shown below, verifies that 
 
 I then introduced my own custom metric to begin tracking on my host.  I created a new check called `custom_check`, which generates a random value between 0 and 1000, using the [script](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/scripts/custom_check.py) `custom_check.py`.  
 
-**Bonus question**: To change the check's collection interval without modifing this Python file, I altered the check [configuration file](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/conf-files/custom_check.yaml), `custom_check.yaml`, as shown below:
+**Bonus question**: To change the check's collection interval without modifying this Python file, I altered the check [configuration file](https://github.com/kmglassman/hiring-engineers/blob/kmglassman-answers-test/conf-files/custom_check.yaml), `custom_check.yaml`, as shown below:
 ```
 init_config:
 
@@ -182,7 +182,7 @@ In normal global circumstances, I use Citi Bike everyday.  There are Citi Bike s
 
 Citi Bike publishes rich, realtime system data according to the General Bikeshare Feed Specification [(GBFS)](https://github.com/NABSA/gbfs/blob/master/gbfs.md) formatting.  As a data enthusiast and active bikeshare user, I was very excited to learn that this exists.  The full Citi Bike GBFS feed can be found [here](http://gbfs.citibikenyc.com/gbfs/gbfs.json), and [here](https://gbfs.citibikenyc.com/gbfs/en/station_status.json) is an example of realtime station status information that is published as a JSON.  
 
-I would love to use Datadog to monitor this data.  One specific case I had in mind is tracking the electric bike availability.  It's always an exciting treat to see an electric bike available at a station, and I would love to be able to monitor their availabiity.  This value is published in the key `num_ebikes_available` in the station status JSON.  To start, I could isolate a few station IDs of stations close to my apartment, and I could build a check that creates a metric for the number of electric bikes available in my area throughout the day. 
+I would love to use Datadog to monitor this data.  One specific case I had in mind is tracking the electric bike availability.  It's always an exciting treat to see an electric bike available at a station, and I would love to be able to monitor their availability.  This value is published in the key `num_ebikes_available` in the station status JSON.  To start, I could isolate a few station IDs of stations close to my apartment, and I could build a check that creates a metric for the number of electric bikes available in my area throughout the day. 
 
 Expanding this, I could build a check that tags by neighborhood and creates metrics on available electric bikes, general available bikes, and available docks.  I would love to see if there are any trends by neighborhood on density of electric bikes or bike and dock availability - this would certainly impact me if I were facing a decision to move neighborhoods! 
 
