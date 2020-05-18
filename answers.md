@@ -141,6 +141,10 @@ Now, I created a curl script to check my credentials
 Timeboards :
 
 * Your custom metric scoped over your host.
+* Any metric from the Integration on your Database with the anomaly function applied.
+Using this as a reference : https://docs.datadoghq.com/dashboards/functions/algorithms/#anomalies
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
 
 Code :
 ```
@@ -151,7 +155,7 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 --header 'Content-Type: text/plain' \
 --header 'Cookie: DD-PSHARD=198' \
 --data-raw '{
-    "title": "my_metric",
+    "title": "JG Dashboard",
     "widgets": [
         {
             "definition": {
@@ -161,12 +165,34 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
                         "q": "my_metric{*}"
                     }
                 ],
-                "title": "custom metric"
+                "title": "Custom Metric"
+            }
+        },
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(mongodb.stats.objects{*}, '\''basic'\'', 2)"
+                    }
+                ],
+                "title": "Mongo objects anomalies"
+            }
+        },
+         {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:my_metric{*}.rollup(sum, 3600)"
+                    }
+                ],
+                "title": "Custom metric rollup"
             }
         }
     ],
     "layout_type": "ordered",
-    "description": "My custom metric",
+    "description": "My dashboard",
     "is_read_only": true,
     "notify_list": [
         "jgdesanti@yahoo.com"
@@ -192,3 +218,4 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 }'
 ```
 
+Sending the API POST
