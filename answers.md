@@ -92,11 +92,12 @@ Finally Check that integration is working properly and MongoDB is detected
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 Create a new yaml file in /etc/datadog-agent/conf.d for my_metric config :
-`init_config:
+```
+init_config:
 
 instances:
   [{}]
-`
+```
 create my_metric.py
 ```python
 import random
@@ -117,43 +118,57 @@ https://app.datadoghq.com/metric/explorer
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-By default, metric interval is 15 sec, to change this i am editing the check configuration file
+By default, metric interval is 15 sec, to change this I am editing the check configuration file
+
 `sudo vi my_metric.yaml`
 
-`init_config:
+```
+init_config:
 
 instances:
-  - min_collection_interval: 45`
+  - min_collection_interval: 45
+  ```
+
 restart the agent
 ` sudo systemctl restart datadog-agent`
 
 Check the logs for updated time interval
 
-`2020-05-17 21:14:32 UTC | CORE | INFO | (pkg/collector/scheduler/scheduler.go:83 in Enter) | Scheduling check my_metric with an interval of 45s`
+```
+2020-05-17 21:14:32 UTC | CORE | INFO | (pkg/collector/scheduler/scheduler.go:83 in Enter) | Scheduling check my_metric with an interval of 45s
+```
 
 ![Metric](13-Custom.JPG)
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
 My understanding is that only modifying the config yaml file is needed, not the python check file, variable min_collection_interval and the value is seconds
+
+
 
 
 ## Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
 
-First lets create and API and Application key with name API
+First lets create an API and Application key with name API
 
 ![Metric](14-API.JPG)
 
 Now, I created a curl script to check my credentials
 
-` ./dd_api_validate.sh`
-{"valid":true}ubuntu@ip-172-31-31-136:~$
+```
+./dd_api_validate.sh`
+
 
 `curl "https://api.datadoghq.com/api/v1/validate" \
     -H "DD-API-KEY: xxx" \
     -H "DD-APPLICATION-KEY: xxx"`
-    
-  As suggested in the referecnes I am using this link https://docs.datadoghq.com/api/
+
+{"valid":true}ubuntu@ip-172-31-31-136:~$
+```
+
+
+  As suggested in the references I am using this link https://docs.datadoghq.com/api/
   And building my queries with Postman
   
   ![API](15-API.JPG)
@@ -239,6 +254,7 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 ```
 
 Sending the API POST
+
   ![API](16-API.JPG)
 
 
@@ -255,7 +271,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-The anomaly graph is displaying activites out of the ordinary for metrics it is applied to. On my dashboard the Mongo metric is pretty flat therefore not triggered, once applied to the custom metric (generated randomly) we can see the anomalies getting highlited.
+The anomaly graph is displaying activites out of the ordinary for metrics it is applied to. On my dashboard the Mongo metric is pretty flat therefore not triggered, once applied to the custom metric (generated randomly) we can see the anomalies getting highlighted.
 
 See screenshot below :
   ![API](19-anomaly.JPG)
@@ -278,9 +294,9 @@ Creating "My Metric Alert"
 
 with the following settings
 1. Threshold alert
-2. monitor "my_metric"
-3. alert condition of >=800 and warning threshold of >=500
-4. following action :
+2. Monitor "my_metric"
+3. Alert condition of >=800 and warning threshold of >=500
+4. Following action :
 ```{{#is_alert}} My metric is in alert mode (avg >=800) {{/is_alert}}
 
 {{#is_warning}} My metric is in warning mode (avg >=500) {{/is_warning}}
@@ -291,12 +307,12 @@ metric value is : {{value}} from host {{host.ip}}
 
  @jgdesanti@yahoo.com
  ```
- 5.email to jgdesanti@yahoo.com
+ 5.Email to jgdesanti@yahoo.com
  
   ![Monitor](19-5-monitor-config.JPG)
  
  
- see screenshots below for email notification
+ See screenshot below for email notification
  
    ![Monitor](20-monitor-alert.JPG)
 
@@ -310,10 +326,10 @@ metric value is : {{value}} from host {{host.ip}}
   
   For this we are using the https://app.datadoghq.com/monitors#/downtime section
   
-  see screenshot for weeknight silence
+  See screenshot for weeknight silence
      ![Monitor](21-monitor-alert.JPG)
   
-  see screenshot for weekend silence
+  See screenshot for weekend silence
    ![Monitor](22-monitor-alert.JPG)
    
    
@@ -321,9 +337,9 @@ metric value is : {{value}} from host {{host.ip}}
   
   Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-For this step I am running the flask app within my EC2 machine and had to resolve some dependencies issues before installing the ddtrace pacckage (used the following for reference : https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog
+For this step I am running the flask app within my EC2 machine and had to resolve some dependencies issues before installing the ddtrace package (used the following for reference : https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog)
 
-the following fixed dependencies :
+Following fixed dependencies :
 
 
 ```
@@ -340,17 +356,19 @@ pip install wheel
 
 Once all installed i am running the Flask app with :
 
-```(venv) ubuntu@ip-172-31-31-136:~/my_flask_app$ DATADOG_ENV=flask_test ddtrace-run flask run --port 8000 --host=0.0.0.0
+```
+(venv) ubuntu@ip-172-31-31-136:~/my_flask_app$ DATADOG_ENV=flask_test ddtrace-run flask run --port 8000 --host=0.0.0.0
+
 ```
 
-see screenshosts below :
+see screenshots below :
 
  ![flask](23-flask.JPG)
   ![flask](24-flask.JPG)
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-a service contains multiple resources, each resource can be an individual endpoints or queries for that service.
+A service contains multiple resources, each resource can be an individual endpoints or queries for that service.
 
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
@@ -367,5 +385,5 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-Unofrtunately right now i can only think about a Covid tracker dashboard, tracking cases, individual tracing, contamination risks and exposures.
+Unfortunately right now i can only think about a Covid tracker dashboard, tracking cases, individual tracing, contamination risks and exposures.
 
