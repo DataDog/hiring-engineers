@@ -1,0 +1,39 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: apm-python-sample
+  namespace: datadog
+spec:
+  selector:
+    matchLabels:
+      app: apm-python-sample
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: apm-python-sample
+    spec:
+      containers:
+      - name: apm-python-sample
+        image: yourhubusername/apm-python-sample:latest
+        ports:
+        - containerPort: 5050
+        env:
+          - name: DD_AGENT_HOST
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apm-python-sample
+  namespace: datadog
+spec:
+  ports:
+  - port: 5050
+    protocol: TCP
+  selector:
+    app: apm-python-sample
+
+
