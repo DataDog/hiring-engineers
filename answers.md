@@ -17,7 +17,7 @@ The key things I changed are as follows:
 * Include my mysql monitor
 * Include my custom check
 
-The file I used is here (less the apiKey and mysql passwords): [datadog_values.yaml](datadog_values.yaml)
+The file I used is here (less the apiKey and mysql passwords): [datadog-values.yaml](datadog-values.yaml)
 
 Original source is from the [Datadog Helm Chart values.yaml](https://raw.githubusercontent.com/helm/charts/master/stable/datadog/values.yaml)
 
