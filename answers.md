@@ -71,7 +71,7 @@ Your custom metric scoped over your host. Any metric from the Integration on you
 
 from datadog import initialize, api
 
-options = { 'api_key': '16cf069063214b66b17d904a7e2e260d', 'app_key': '30e8506a0efd45a860d19a83ad6eba1c7313c44e' }
+options = { 'api_key': 'xxxxx', 'app_key': 'xxxxx' }
 
 initialize(**options)
 
