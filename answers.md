@@ -13,7 +13,7 @@ I set up a VPS using Amazon EC2. Ubuntu server.
 
 **![](https://lh5.googleusercontent.com/kk9hFEeGs9ABJRzL5eBx4EXG_dVeNw9DsOw5E1tgxvvpHmB4wWlq2xzJ9onEfIhY7YlrgEHCb9Xdok37STe3i48w0I-19CaJB2HM77e56gu8o7uAfjbtxYW2uDSE0pp41xnRMuib)**
 
-Took a while for the tase to propagate to the from end UI:
+Took a while for the stats to propagate to the front end UI:
 
 **![](https://lh5.googleusercontent.com/NiAlf3AgOvtH8Lj67SUaJbhjj0YbfGm-ruAG5fuQt2mSqFK52y44i0xa5hQ1GlUuc2oUpHyhyBRtkzgCopT80Zg6ZRTvSpCqEdYC8uIEBspPID1jkEkjF3pGpjY4O8SFPFWc7GNH)**
 
@@ -35,9 +35,9 @@ create User
 
 grant permissions as per: https://docs.datadoghq.com/integrations/mysql/
 
-edit mysql conf file as per [https://docs.datadoghq.com/integrations/mysql/](https://docs.datadoghq.com/integrations/mysql/)
+edit mysql conf file as per: [https://docs.datadoghq.com/integrations/mysql/](https://docs.datadoghq.com/integrations/mysql/)
 
-enable logs as per [https://docs.datadoghq.com/integrations/mysql/](https://docs.datadoghq.com/integrations/mysql/)
+enable logs as per: [https://docs.datadoghq.com/integrations/mysql/](https://docs.datadoghq.com/integrations/mysql/)
 
 mySQL installed, visible in Datadog:
 **![](https://lh4.googleusercontent.com/kvcqypmLdTktOC8sdmb8q7W3hPrDkEXlhO12COhzDU0cOZ0gvFKlrzTpiWg2gqEz_tFeOFGFmC84ZGlge7YW991ERVXK5HnEmHblSfYOsL_3kXIv8WYzRknzKmlnpfJ2XmT4uG_F)**
