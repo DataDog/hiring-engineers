@@ -23,7 +23,7 @@ tags:
 
  - I created a [Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) using the following Python script in `/etc/datadog-agent/checks.d` to submit a metric named my_metric, consisting of a random value between 0 and 1000.
 
- custom_check.py
+ __custom_check.py__
  ```python
 import random
 
@@ -44,7 +44,7 @@ class MyCheck(AgentCheck):
  ```
  I added the following configuration file to `/etc/datadog-agent/conf.d` to configure the check and set the minimum collection interval to 45 seconds.
 
-custom_check.yaml
+__custom_check.yaml__
 ```yaml
 init_config:
 
@@ -59,7 +59,7 @@ instances:
  # Visualizing Data:
 I used the following JSON and cURL command to create a timeboard with the 3 required graphs.
 
-dashboard.json
+__dashboard.json__
 ```json
 {
     "notify_list": null,
@@ -150,6 +150,7 @@ I implemented the given Flask application on my VPS so that it would be open to 
 
 Then I tried out instrumenting the app manually to see if I could get more details into the traces. I created a [custom span](http://pypi.datadoghq.com/trace/docs/advanced_usage.html#opentracing) using the [opentracing](https://opentracing.io/guides/python/) and [ddtrace](http://pypi.datadoghq.com/trace/docs/) libraries. I added a custom tag to the span to grab the `utm_source` from the request params if it is there, and added a random delay to simulate a long running process. Below is the code for this application.
 
+__ddapp.py__
 ```python
 from flask import Flask
 from flask import request
