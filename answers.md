@@ -1,7 +1,13 @@
 # datadog tech exercise 
 
 
-##  Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+## Prerequisites - Setup the environment
+
+I set up a VPN using Amazon EC2. Ubuntu server.
+
+## Collecting Metrics:
+
+###  Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 - Edit the datadog.yaml file to add some tags
 - Datadog install location can found here: https://docs.datadoghq.com/agent/basic_agent_usage
 
