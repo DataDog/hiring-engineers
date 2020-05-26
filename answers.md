@@ -3,7 +3,7 @@
 
 ## Prerequisites - Setup the environment
 
-I set up a VPN using Amazon EC2. Ubuntu server.
+I set up a VPS using Amazon EC2. Ubuntu server.
 
 ## Collecting Metrics:
 
