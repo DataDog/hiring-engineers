@@ -5,7 +5,7 @@ Your answers to the questions go here.
  * Vagrant <img src="https://github.com/j3rath/hiring-engineers/blob/master/pre-req-vagrant.png" width="1000" height="332"></a>
  * Docker <img src="https://github.com/j3rath/hiring-engineers/blob/master/docker_install.png" width="1000" height="332"></a>
  * Minikube <img src="https://github.com/j3rath/hiring-engineers/blob/master/minikube.png" width="1000" height="332"></a>
- <img src="https://github.com/j3rath/hiring-engineers/blob/master/minikube%20container%20monitoring.png" width="1000" height="332"></a>
+ <img src="https://github.com/j3rath/hiring-engineers/blob/master/minikube%20container%20monitoring.png"></a>
        
   
   
