@@ -2,10 +2,10 @@ Your answers to the questions go here.
 
 ## Pre-reqs:
   1. Decided to have a little fun with this and went the vagrant route, as I had a bit of experience here. I decided to install kube,     docker, and then use minikube to create a 'hello-world'-esque web application to better mimic monitoring a real world app.
- * Vagrant <img src="/Prereqs/pre-req-vagrant.png?raw=true" width="1000" height="332"></a>
- * Docker <img src="/Prereqs/docker_install.png?raw=true" width="1000" height="332"></a>
- * Minikube <img src="/Prereqs/minikube.png?raw=true" width="1000" height="332"></a>
- * Container monitoring in datadog after configuring docker agent conf.d yaml file: <img src="/Prereqs/minikube%20container%20monitoring.png?raw=true"></a>
+ * Vagrant <img src="/pre-req-vagrant.png?raw=true" width="1000" height="332"></a>
+ * Docker <img src="/docker_install.png?raw=true" width="1000" height="332"></a>
+ * Minikube <img src="/minikube.png?raw=true" width="1000" height="332"></a>
+ * Container monitoring in datadog after configuring docker agent conf.d yaml file: <img src="/minikube%20container%20monitoring.png?raw=true"></a>
 
 ## Collecting Metrics
  * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
@@ -123,4 +123,82 @@ api.Dashboard.create(title=title,
 #### * Bonus Question: What is the Anomaly graph displaying?
 ```
 It appears to be showing the current data (as I selected timeseries for viz_type) and the status of the monitor (ok,trigged [alert, warn, no data(?)]) in the same pane.
+```
+
+# Monitoring Data
+#### * Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+####   * Warning threshold of 500
+####   * Alerting threshold of 800
+####   * And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+<img src="/MonitoringData/settings.png?raw=true"></a>
+
+#### * Please configure the monitor’s message so that it will:
+####   * Send you an email whenever the monitor triggers.
+####   * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+
+* Alert
+```
+{{#is_alert}}
+@john.rath202@gmail.com
+Host {{host.name}} with IP [{{host.ip}}] is experiencing a severe performance degradation.
+Current value is {{value}} which violates the alert threshold of {{threshold}}. This is a violation of over {{eval "int(value) - int(threshold)"}}.
+{{/is_alert}}
+```
+
+* Warning
+```
+{{#is_warning}}
+@john.rath202@gmail.com
+Host {{host.name}} is experiencing a severe performance degradation.
+Current value is {{value}} which violates the warning threshold of {{warn_threshold}}. This is a violation of over {{eval "int(value) - int(warn_threshold)"}}.
+{{/is_warning}}
+```
+
+* No Data
+```
+{{#is_no_data}}
+@john.rath202@gmail.com
+No data received for 10 or more minutes.
+{{/is_no_data}}
+```
+
+####   * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+```
+Host {{host.name}} with IP [{{host.ip}}] is experiencing a severe performance degradation.
+```
+
+####   * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+<img src="/MonitoringData/test_alert.png?raw=true"></a>
+<img src="/MonitoringData/test_alert.png?raw=true"></a>
+
+####   * Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+####      * One that silences it from 7pm to 9am daily on M-F,
+
+<img src="/MonitoringData/downtime_1.png?raw=true"></a>
+
+####      * And one that silences it all day on Sat-Sun.
+<img src="/MonitoringData/downtime_2.png?raw=true"></a>
+
+* Monitoring notification markdown below, in full.
+```
+Alert!
+
+{{#is_alert}}
+@john.rath202@gmail.com
+Host {{host.name}} with IP [{{host.ip}}] is experiencing a severe performance degradation.
+Current value is {{value}} which violates the alert threshold of {{threshold}}. This is a violation of over {{eval "int(value) - int(threshold)"}}.
+{{/is_alert}}
+
+{{#is_warning}}
+@john.rath202@gmail.com
+Host {{host.name}} is experiencing a severe performance degradation.
+Current value is {{value}} which violates the warning threshold of {{warn_threshold}}. This is a violation of over {{eval "int(value) - int(warn_threshold)"}}.
+{{/is_warning}}
+
+{{#is_no_data}}
+@john.rath202@gmail.com
+No data received for 10 or more minutes.
+{{/is_no_data}}
 ```
