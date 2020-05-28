@@ -2,10 +2,10 @@ Your answers to the questions go here.
 
 ## Pre-reqs:
   1. Decided to have a little fun with this and went the vagrant route, as I had a bit of experience here. I decided to install kube,     docker, and then use minikube to create a 'hello-world'-esque web application to better mimic monitoring a real world app.
- * Vagrant <img src="/pre-req-vagrant.png?raw=true" width="1000" height="332"></a>
- * Docker <img src="/docker_install.png?raw=true" width="1000" height="332"></a>
- * Minikube <img src="/minikube.png?raw=true" width="1000" height="332"></a>
- * Container monitoring in datadog after configuring docker agent conf.d yaml file: <img src="/minikube%20container%20monitoring.png?raw=true"></a>
+ * Vagrant <img src="/Prereqs/pre-req-vagrant.png?raw=true" width="1000" height="332"></a>
+ * Docker <img src="/Prereqs/docker_install.png?raw=true" width="1000" height="332"></a>
+ * Minikube <img src="/Prereqs/minikube.png?raw=true" width="1000" height="332"></a>
+ * Container monitoring in datadog after configuring docker agent conf.d yaml file: <img src="/Prereqs/minikube%20container%20monitoring.png?raw=true"></a>
 
 ## Collecting Metrics
  * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
