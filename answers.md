@@ -25,7 +25,7 @@ Your answers to the questions go here.
   <img src="/CollectingMetrics/metric_config_yaml_interval.png?raw=true"></a>
   <img src="/CollectingMetrics/agentcheck_status_and_code.png?raw=true"></a>
   <img src="/CollectingMetrics/my_metric_showing.png?raw=true"></a>
-  <img src="/CollectingMetricsmy_metric_showing2.png?raw=true"></a>
+  <img src="/CollectingMetrics/my_metric_showing2.png?raw=true"></a>
 
 #### Change your check's collection interval so that it only submits the metric once every 45 seconds.
 #### Bonus Question Can you change the collection interval without modifying the Python check file you created?
