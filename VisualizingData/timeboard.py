@@ -7,28 +7,72 @@ options = {
 
 initialize(**options)
 
-title = "My Timeboard"
-description = "An informative timeboard."
-graphs = [{
-    "definition": {
-        "events": [],
-        "requests": [
-            {"q": "avg:system.mem.free{*}"}
+# Create a new monitor
+monitor_options = {
+    "notify_no_data": True,
+    "no_data_timeframe": 20
+}
+tags = ["app:minikube", "vagrant"]
+api.Monitor.create(
+    type="query alert",
+    query="avg(last_4h):anomalies(avg:postgresql.max_connections{host:vagrant,env:ddogeval}, 'basic', 2, direction='both', alert_window='last_15m', interval=60, count_default_zero='true') >= 1",
+    name="Postgresql sync time",
+    message="IDK this is a demo.",
+    tags=tags,
+    options=monitor_options
+)
+
+title = 'JRath My_Metric_Final'
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:my_metric{host:vagrant}'}
         ],
-        "viz": "timeseries"
-    },
-    "title": "Average Memory Free"
+        'title': 'Value (Gauge)'
+    }
+},
+    {
+    'definition': {
+        'type': 'alert_graph',
+        'alert_id': '18827755',
+        'viz_type': 'timeseries',
+        #'requests': [
+        #    {'q': 'avg:postgresql.max_connections{*}'}
+       #],
+        'title': 'Postgresql max connections with alert graph'
+    }
+},
+    {
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:my_metric{host:vagrant}.rollup(sum, 3600)'}
+        ],
+        'title': 'Rollup - Summed over 1 hour'
+    }
 }]
 
+layout_type = 'ordered'
+description = 'A dashboard with custom metric info.'
+is_read_only = True
+notify_list = ['john.rath202@gmail.com']
 template_variables = [{
-    "name": "host1",
-    "prefix": "host",
-    "default": "host:my-host"
+    'name': 'vagrant',
+    'prefix': 'host',
+    'default': 'vagrant'
 }]
 
-read_only = True
-api.Timeboard.create(title=title,
+saved_view = [{
+    'name': 'Saved views for my_metric',
+    'template_variables': [{'name': 'host', 'value': 'vagrant'}]}
+]
+
+api.Dashboard.create(title=title,
+                     widgets=widgets,
+                     layout_type=layout_type,
                      description=description,
-                     graphs=graphs,
+                     is_read_only=is_read_only,
+                     notify_list=notify_list,
                      template_variables=template_variables,
-                     read_only=read_only)
+                     template_variable_presets=saved_view)
