@@ -42,6 +42,7 @@ Your answers to the questions go here.
 
 <img src="/VisualizingData/vis_dash_1.png?raw=true"></a>
 <img src="/VisualizingData/postgres_anomaly_creation.png"></a>
+
 * Additionally, the instructions asked for a timeboard but the documentation showed that as deprecated, so I used the dashboard API. All of my work can be found in the associated timeboard.py file. Code below as well.
 ```
 from datadog import initialize, api
