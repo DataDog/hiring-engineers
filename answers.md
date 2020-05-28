@@ -1,6 +1,6 @@
 Your answers to the questions go here.
 
-## Pre-reqs:
+# Pre-reqs:
   1. Decided to have a little fun with this and went the vagrant route, as I had a bit of experience here. I decided to install kube,     docker, and then use minikube to create a 'hello-world'-esque web application to better mimic monitoring a real world app.
  * Vagrant <img src="/Prereqs/pre-req-vagrant.png?raw=true" width="1000" height="332"></a>
  * Docker <img src="/Prereqs/docker_install.png?raw=true" width="1000" height="332"></a>
@@ -25,7 +25,7 @@ Your answers to the questions go here.
   <img src="/CollectingMetrics/metric_config_yaml_interval.png?raw=true"></a>
   <img src="/CollectingMetrics/agentcheck_status_and_code.png?raw=true"></a>
   <img src="/CollectingMetrics/my_metric_showing.png?raw=true"></a>
-  <img src="/CollectingMetricsmy_metric_showing2.png?raw=true"></a>
+  <img src="/CollectingMetrics/my_metric_showing2.png?raw=true"></a>
 
 #### Change your check's collection interval so that it only submits the metric once every 45 seconds.
 #### Bonus Question Can you change the collection interval without modifying the Python check file you created?
@@ -39,7 +39,7 @@ Your answers to the questions go here.
 #### Your custom metric scoped over your host.
 #### Any metric from the Integration on your Database with the anomaly function applied.
 #### Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-* I really struggled with the anomaly monitor for the intregration. I eventually got it to work though programmatically.
+
 <img src="/VisualizingData/vis_dash_1.png?raw=true"></a>
 <img src="/VisualizingData/postgres_anomaly_creation.png"></a>
 * Additionally, the instructions asked for a timeboard but the documentation showed that as deprecated, so I used the dashboard API. All of my work can be found in the associated timeboard.py file. Code below as well.
@@ -208,3 +208,58 @@ Current value is {{value}} which violates the warning threshold of {{warn_thresh
 No data received for 10 or more minutes.
 {{/is_no_data}}
 ```
+# Collecting APM Data
+
+* Below is the code I ended up with for the flask app instrumentation. Validated metrics coming in through APM > Services
+```
+from flask import Flask
+import logging
+import sys
+import os
+import ddtrace.profile.auto
+from ddtrace import tracer
+
+tracer.configure(
+        hostname=os.environ['DD_AGENT_HOST'],
+        )
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@tracer.wrap()
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@tracer.wrap()
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@tracer.wrap()
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='8080')
+```
+
+* Hitting the app via curl
+
+<img src="/APM/flask_app_hit_url.png?raw=true"></a>
+
+* Profiling data coming through via ddtrace.profile.auto and some other work
+
+<img src="/APM/flask-app-profiling.png?raw=true"></a>
+
+* Service level data from Flask app in UI
+
+<img src="/APM/flask-dash.png?raw=true"></a>
