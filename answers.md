@@ -280,7 +280,12 @@ A resource would be a service level action, so a specific endpoint or query.
 * Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
 
 ```
-As a bit of a fitness geek, I would love to see a broad approach to data ingestion around personal health metrics. Granted - I know certain services already claim to do this. However, none of those other products have the level of sophistication seen in this tool for data analysis. Using datadog in the healthcare industry, if it's not already ingrained there, could easily save lives by doing real-time analysis on micro-level metrics. Those metrics could feed into a larger, macro-scale dataset (while obviously needing to abide by HIPPA and other regulations for anonymity, etc.) that could have broad implications on things like public health. I can only imagine the fun epidemiologists could have with something like that.
+As a bit of a fitness geek, I would love to see a broad approach to data ingestion around personal health metrics. 
+Granted - I know certain services already claim to do this. 
+However, none of those other products have the level of sophistication seen in this tool for data analysis. 
+Using datadog in the healthcare industry, if it's not already ingrained there, could easily save lives by doing real-time analysis on micro-level metrics. 
+Those metrics could feed into a larger, macro-scale dataset (while obviously needing to abide by HIPPA and other regulations for anonymity, etc.) that could have broad implications on things like public health. 
+I can only imagine the fun epidemiologists could have with something like that.
 
 Anyways, thank you for the time. I had fun working through these exercises. I look forward to hearing from you.
 ```
