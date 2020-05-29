@@ -1,6 +1,6 @@
 ## Prerequisites - Setup the environment
 
-NOTE: All answers are fully supported inline with images and code. If you need to refer to my dashboard, you can find it here: [Erich Jaeckel's Dashboard](https://app.datadoghq.com/dashboard/kbk-zmi-nr9/timeboard-for-the-solution-engineer-exercise?from_ts=1590126493906&live=true&to_ts=1590731293906) 
+NOTE: All answers are fully supported inline with images and code. If you need to refer to my dashboard, you can find it here: [Erich Jaeckel's Dashboard](https://p.datadoghq.com/sb/f37pwfimkgawnc34-6f7d4f179b266c324c182de1e83b7bde) 
 
 For the prerequisites, I decided to utilize a mix of OS/Hosts to install the Datadog agent and integrations on:
 * Ubuntu Linux VM via Vagrant
