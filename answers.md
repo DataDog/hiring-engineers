@@ -211,6 +211,10 @@ if __name__ == '__main__':
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
+_Services are what make up modern microservice architectures - services consist of groupings of things like endpoints, database queries, and jobs to help one build an application._
+
+_Resources on the other hand represent a particular domain of an application such as a particular action for a service (like an individual endpoint or specific db query)._
+
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 ![image](https://user-images.githubusercontent.com/10134849/83226272-986d2700-a14f-11ea-9fe4-420d1d754302.png)
