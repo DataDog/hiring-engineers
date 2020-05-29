@@ -60,8 +60,8 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 from datadog import initialize, api
 
 options = {
-    'api_key': 'cb21aceba5e3abc987afc33e8c3205a0',
-    'app_key': '80a31b1e4994584160fdfaf5ee46bf9a41aa9853'
+    'api_key': 'REDACTED',
+    'app_key': 'REDACTED'
 }
 
 initialize(**options)
