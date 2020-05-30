@@ -108,59 +108,20 @@ Bonus Question Can you change the collection interval without modifying the Pyth
 Utilize the Datadog API to create a Timeboard that contains:
 
 Your custom metric scoped over your host.
+Check CustomMetricAvgHost.py
 
 Any metric from the Integration on your Database with the anomaly function applied.
-```
-from datadog import initialize, api
+Check AnyMetricAnomalyOverDB.py
 
-options = {
-    'api_key': '***',
-    'app_key': '***'
-}
-
-initialize(**options)
-
-title = 'Anomalies in MongoDB'
-widgets = [{
-    'definition': {
-        'type': 'timeseries',
-        'requests': [
-            {'q': "anomalies(avg:mongodb.asserts{*},'basic',2)"}
-        ],
-        'title': 'Anomalies in MongoDB'
-    }
-}]
-
-layout_type = 'ordered'
-description = 'A dashboard with memory info.'
-is_read_only = True
-notify_list = ['user@domain.com']
-template_variables = [{
-    'name': 'host1',
-    'prefix': 'host',
-    'default': 'my-host'
-}]
-
-saved_views = [{
-    'name': 'Saved views for hostname 2',
-    'template_variables': [{'name': 'host', 'value': '<HOSTNAME_2>'}]}
-]
-
-api.Dashboard.create(title=title,
-                     widgets=widgets,
-                     layout_type=layout_type,
-                     description=description,
-                     is_read_only=is_read_only,
-                     notify_list=notify_list,
-                     template_variables=template_variables,
-                     template_variable_presets=saved_views)
-```
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+Check rollupsumdashboard.py
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+In the repo!
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 Set the Timeboard's timeframe to the past 5 minutes
+
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 Bonus Question: What is the Anomaly graph displaying?
