@@ -1,26 +1,26 @@
-# Answers
+## Answers 
 
-# Prerequisites - Setup the environment
+
+## 1. Prerequisites - Setup the environment
 
 **Choose an environment!**
 Decided to spin up a fresh linux VM via Vagrant.
 Then signed up for  Datadog (used “Datadog Recruiting Candidate” in the “Company” field).
 
-# Collecting Metrics!
+## 2. Collecting Metrics!
 
-## Task: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+**Task: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
 
-**What is an agent?**
+###### What is an agent? ######
 The agent is the software that reports back to the Data Dog tool. 
 
-**Where is it's config file?**
+###### Where is it's config file? ######
 The config file is the file datadog.yaml in the /etc/datadog-agent folder. 
 
 ###### Resources used: 
 Two helpful guides https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6v7#configuration-files & https://docs.datadoghq.com/tagging/ 
 
 **Add tags to your agents config file aka datadog.yaml Search for "tags" and add them there.**
-
 I added :
 environment:staging
 app:Postgres
