@@ -61,32 +61,33 @@ I then restarted the agent.
 
 ## Task: Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 In order for you to create a custom Agent, you need to create two files. 
+** Make sure the name of the files are the same in both directories. **
 
-/etc/datadog-agent/conf.d/custom_mymetric.yaml
+Create /etc/datadog-agent/conf.d/custom_mymetric.yaml containing the following: 
 ```
 init_config:
 instances:
           - min_collection_interval: 45
  ```
- and /etc/datadog-agent/checks.d
+ and created custom_mymetric.py in /etc/datadog-agent/checks.d containing the following:
  
  ```
-  the following try/except block will make the custom check compatible with any Agent version
+ ## the following try/except block will make the custom check compatible with any Agent version
 try:
-     first, try to import the base class from new versions of the Agent...
+    # first, try to import the base class from new versions of the Agent...
     from datadog_checks.base import AgentCheck
 except ImportError:
-     ...if the above failed, the check is running in Agent version < 6.6.0
+    # ...if the above failed, the check is running in Agent version < 6.6.0
     from checks import AgentCheck
 
- content of the special variable __version__ will be shown in the Agent status page
+# content of the special variable __version__ will be shown in the Agent status page
 __version__ = "1.0.0"
 
 import random 
 
 class HelloCheck(AgentCheck):
     def check(self, instance):
-        self.gauge('my_metric', random.randrange(0,1000), tags=['TAG_KEY:TAG_VALUE'])
+        self.gauge('my_metric', random.randrange(0,1000), tags=['TAG_KEY:TAG_VALUE']) 
 ```
         
 ## Task: Change your check's collection interval so that it only submits the metric once every 45 seconds.
