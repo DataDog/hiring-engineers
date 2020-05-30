@@ -267,3 +267,5 @@ Take a snapshot of this graph and use the @ notation to send it to yourself.
 ![](Images/annotategrapgemail.png)
 
 Bonus Question: What is the Anomaly graph displaying? It's displaying nothing for me! 
+
+## 3. Visualizing Data!
