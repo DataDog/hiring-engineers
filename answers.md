@@ -1,8 +1,8 @@
-Your answers to the questions go here.
+# Answers
 
-# Prerequisites - Setup the environment
+## Prerequisites - Setup the environment
 
-## Choose an environment!
+######  Choose an environment!
 Decided to spin up a fresh linux VM via Vagrant.
 Then signed up for  Datadog (used “Datadog Recruiting Candidate” in the “Company” field).
 
