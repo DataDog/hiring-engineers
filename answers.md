@@ -1,6 +1,6 @@
 Your answers to the questions go here.
 
-###Prerequisites - Setup the environment###
+#Prerequisites - Setup the environment
 
 Decided to spin up a fresh linux VM via Vagrant.
 
