@@ -41,16 +41,19 @@ https://app.datadoghq.com/account/settings#integrations/mongodb
 
 First step was creating the Data Dog user to the database.
 
-## On MongoDB 3.x or higher, use the createUser command.
-## db.createUser({
- ##  "user":"datadog",
-##  "pwd": "abc123",
-##  "roles" : [
- ##   {role: 'read', db: 'admin' },
-  ##  {role: 'clusterMonitor', db: 'admin'},
-  ##  {role: 'read', db: 'local' }
-##  ]
-## })
+On MongoDB 3.x or higher, use the createUser command.
+
+```
+ db.createUser({
+   "user":"datadog",
+  "pwd": "abc123",
+  "roles" : [
+    {role: 'read', db: 'admin' },
+    {role: 'clusterMonitor', db: 'admin'},
+    {role: 'read', db: 'local' }
+  ]
+ })
+ ```
 
 ![](Images/successfullycreatedatadogmongodbuser.png)
 
