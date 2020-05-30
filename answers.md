@@ -8,7 +8,7 @@ Then signed up for  Datadog (used “Datadog Recruiting Candidate” in the “C
 
 ##Collecting Metrics!##
 Task: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-![](Images/configTags.png)
+![](Images/TagConfigFile.png)
 
 Task: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
