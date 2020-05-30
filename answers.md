@@ -95,4 +95,11 @@ class HelloCheck(AgentCheck):
         
 ## Task: Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
+```
+init_config:
+instances:
+          - min_collection_interval: 45
+```
+###### Resource used: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
+     
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
