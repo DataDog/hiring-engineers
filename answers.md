@@ -62,8 +62,9 @@ Second step was to create a new mongo.d/conf.yaml file in the conf.d folder and 
 
 I then restarted the agent. 
 
-## Task: Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+**Task: Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
 In order for you to create a custom Agent, you need to create two files. 
+
 ** Make sure the name of the files are the same in both directories. **
 
 Create /etc/datadog-agent/conf.d/custom_mymetric.yaml containing the following: 
@@ -91,7 +92,7 @@ class HelloCheck(AgentCheck):
         self.gauge('my_metric', random.randrange(0,1000), tags=['TAG_KEY:TAG_VALUE']) 
 ```
         
-## Task: Change your check's collection interval so that it only submits the metric once every 45 seconds.
+**Task: Change your check's collection interval so that it only submits the metric once every 45 seconds.**
 
 ```
 init_config:
@@ -101,3 +102,18 @@ instances:
 ###### Resource used: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
      
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+
+## Visualizing Data: ##
+Utilize the Datadog API to create a Timeboard that contains:
+
+Your custom metric scoped over your host.
+Any metric from the Integration on your Database with the anomaly function applied.
+Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+Set the Timeboard's timeframe to the past 5 minutes
+Take a snapshot of this graph and use the @ notation to send it to yourself.
+Bonus Question: What is the Anomaly graph displaying?
