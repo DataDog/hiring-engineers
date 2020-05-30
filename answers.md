@@ -120,9 +120,11 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 In the repo!
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
-FullDashboard.py
+![](Images/FullDashboard.py)
 
 Set the Timeboard's timeframe to the past 5 minutes
 
 Take a snapshot of this graph and use the @ notation to send it to yourself.
+![](Images/5minFullDashboard.png)
+
 Bonus Question: What is the Anomaly graph displaying?
