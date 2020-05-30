@@ -39,7 +39,7 @@ https://gist.github.com/shimar/13381bce5c5cbeb72d801d74099ba2ec
 After making sure MongoDB was running I proceeded to set up the integration for it following the instructions here: 
 https://app.datadoghq.com/account/settings#integrations/mongodb
 
-First step was creating the Data Dog user to the database.
+First step was creating the Data Dog user to the database!
 
 On MongoDB 3.x or higher, use the createUser command.
 
@@ -101,7 +101,7 @@ instances:
 ```
 ###### Resource used: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
      
-Bonus Question Can you change the collection interval without modifying the Python check file you created?
+Bonus Question Can you change the collection interval without modifying the Python check file you created? Edit the yaml file.
 
 
 ## Visualizing Data: ##
