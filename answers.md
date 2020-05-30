@@ -68,9 +68,7 @@ In order for you to create a custom Agent, you need to create two files.
 
 Create /etc/datadog-agent/conf.d/custom_mymetric.yaml containing the following: 
 ```
-init_config:
-instances:
-          - min_collection_interval: 45
+instances: [{}]
  ```
  and created custom_mymetric.py in /etc/datadog-agent/checks.d containing the following:
  
