@@ -126,5 +126,7 @@ Set the Timeboard's timeframe to the past 5 minutes
 
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 ![](Images/5minFullDashboard.png)
+![](Images/annotate.png)
+![](Images/annotategrapgemail.png)
 
-Bonus Question: What is the Anomaly graph displaying?
+Bonus Question: What is the Anomaly graph displaying? It's displaying nothing for me! 
