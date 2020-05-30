@@ -21,9 +21,7 @@ The config file is the file datadog.yaml in the /etc/datadog-agent folder.
 Two helpful guides https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6v7#configuration-files & https://docs.datadoghq.com/tagging/ 
 
 **Add tags to your agents config file aka datadog.yaml Search for "tags" and add them there.**
-I added :
-environment:staging
-app:Postgres
+*I added : environment:staging & app:Postgres
 
 ![](Images/TagConfigFile.png)
 
@@ -33,6 +31,7 @@ app:Postgres
 
 **Task: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
 I installed MongoDB. 
+
 ###### Resources:
 https://gist.github.com/shimar/13381bce5c5cbeb72d801d74099ba2ec 
 
