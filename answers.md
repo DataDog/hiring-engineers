@@ -105,7 +105,7 @@ instances:
 Bonus Question Can you change the collection interval without modifying the Python check file you created? Edit the yaml file.
 
 
-## Visualizing Data: ##
+## 3. Visualizing Data!
 Utilize the Datadog API to create a Timeboard that contains:
 
 Your custom metric scoped over your host.
@@ -268,4 +268,3 @@ Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 Bonus Question: What is the Anomaly graph displaying? It's displaying nothing for me! 
 
-## 3. Visualizing Data!
