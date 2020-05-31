@@ -303,6 +303,25 @@ When this monitor sends you an email notification, take a screenshot of the emai
 **No Data Email**
 ![](Images/Nodata.png)
 
+**Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+One that silences it from 7pm to 9am daily on M-F,
+
+Click on "Manage Downtime" when you're on the "Manage Monitors" page
+![](Images/ScheduleDowntimeConfiguration.png)
+
+And one that silences it all day on Sat-Sun.
+![](Images/EveryweekendDowntime.png)
+
+Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+After you are done configuring the downtimes. You can see them on the Manage Downtime page. 
+![](Images/Downtime.png)
+
+![](Images/ScheduleDowntimeEmail7pm9am.png)
+
+![](WeekendsDowntimeEmail)
+
 ## 5. Collecting APM Data:
 
 ## 6. Final Question:
