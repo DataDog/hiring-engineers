@@ -275,6 +275,25 @@ Warning threshold of 500
 Alerting threshold of 800
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+**On the DataDog menu, click on "Manage Monitors"**
+![](Images/ManageMonitors.png)
+
+**Set up your configuration**
+![](Images/ConfigMonitoring.png)
+
+Please configure the monitor’s message so that it will:
+***
+Send you an email whenever the monitor triggers.
+![](Images/ConfigMonitoring.png)
+
+Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+![](Images/ConfigMonitoring.png)
+
+Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+![](Images/ConfigMonitoring.png)
+
+When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+![](Images/ConfigMonitoring.png)
 
 ## 5. Collecting APM Data:
 
