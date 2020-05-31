@@ -320,7 +320,7 @@ After you are done configuring the downtimes. You can see them on the Manage Dow
 
 ![](Images/ScheduleDowntimeEmail7pm9am.png)
 
-![](WeekendsDowntimeEmail)
+![](WeekendsDowntimeEmail.png)
 
 ## 5. Collecting APM Data:
 
