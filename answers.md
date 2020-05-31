@@ -282,7 +282,7 @@ And also ensure that it will notify you if there is No Data for this query over 
 ![](Images/ConfigMonitoring.png)
 
 Please configure the monitor’s message so that it will:
-***
+
 Send you an email whenever the monitor triggers.
 ![](Images/EmailSetupMonitoring.png)
 
