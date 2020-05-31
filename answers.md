@@ -284,16 +284,24 @@ And also ensure that it will notify you if there is No Data for this query over 
 Please configure the monitor’s message so that it will:
 ***
 Send you an email whenever the monitor triggers.
-![](Images/ConfigMonitoring.png)
+![](Images/EmailSetupMonitoring.png)
 
 Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-![](Images/ConfigMonitoring.png)
+![](Images/MonitoringDiffMessage.png)
 
 Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-![](Images/ConfigMonitoring.png)
+![](Images/metricvalueandipmonitoring.png)
 
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-![](Images/ConfigMonitoring.png)
+
+**Alert Email**
+![](Images/AlertIPValueMonitoringEmail.png.png)
+
+**Warn Email**
+![](Images/WarningEmail.png)
+
+**No Data Email**
+![](Images/Nodata.png)
 
 ## 5. Collecting APM Data:
 
