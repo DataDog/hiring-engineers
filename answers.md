@@ -295,7 +295,7 @@ Include the metric value that caused the monitor to trigger and host ip when the
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 **Alert Email**
-![](Images/AlertIPValueMonitoringEmail.png.png)
+![](Images/AlertIPValueMonitoringEmail.png)
 
 **Warn Email**
 ![](Images/WarningEmail.png)
