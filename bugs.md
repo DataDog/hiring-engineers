@@ -26,3 +26,11 @@ Tv mode does not work in firefox. In safari it does.
 `MacOS Firefox 76.0 (64-bit)`
 
 `MacOS Safari Version 13.1 (14609.1.20.111.8)`
+
+# 4. container agent host disk util 
+
+When deploying container agent the disk size was incorrectly measure.
+
+![IMG 04](/images/bug-003-container_agent_disk_info_incorrect.png)
+
+
