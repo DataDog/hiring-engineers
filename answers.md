@@ -325,9 +325,11 @@ Make sure that your email is notified when you schedule the downtime and take a 
 ![](Images/Downtime.png)
 
 **Downtime Email 7pm-9am Every Day
+
 ![](Images/ScheduleDowntimeEmail7pm9am.png)
 
 **Weekends Downtime Email
+
 ![](WeekendsDowntimeEmail.png)
 
 Resources:
