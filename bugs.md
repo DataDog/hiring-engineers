@@ -6,7 +6,7 @@
 
 # 2. Dashboard "Flask & System Infra Monitoring"
 
-Issue seen where "Trace Flask Request Hits" widget is refreshing incorrectly.  Resolved by refreshing page in browser.  Occurs frequently.
+Issue seen where "Trace Flask Request Hits" widget is refreshing incorrectly.  Resolved by refreshing page in browser.  
 
 `MacOS Firefox 76.0 (64-bit)`
 
