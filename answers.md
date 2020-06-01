@@ -14,10 +14,10 @@ Then signed up for  Datadog (used “Datadog Recruiting Candidate” in the “C
 **Task: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
 
 ###### What is an agent? ######
-The agent is the software that reports back to the Data Dog tool. 
+* The agent is the software that reports back to the Data Dog tool. 
 
 ###### Where is it's config file? ######
-The config file is the file datadog.yaml in the /etc/datadog-agent folder. 
+* The config file is the file datadog.yaml in the /etc/datadog-agent folder. 
 
 ###### Resources used: 
 * https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6v7#configuration-files 
@@ -35,7 +35,7 @@ The config file is the file datadog.yaml in the /etc/datadog-agent folder.
 
 
 **Task: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
-I installed MongoDB and followed the instructions on the Mongodb Integrations set up page.
+* I installed MongoDB and followed the instructions on the Mongodb Integrations set up page.
 
 ###### Resources used:
 * https://docs.datadoghq.com/integrations/mongo/
