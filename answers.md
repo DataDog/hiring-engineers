@@ -322,11 +322,45 @@ After you are done configuring the downtimes. You can see them on the Manage Dow
 
 ![](WeekendsDowntimeEmail.png)
 
+Resources:
+https://docs.datadoghq.com/monitors/notifications/?tab=is_alert
+
+https://docs.datadoghq.com/monitors/notifications/?tab=is_alert
+
+https://www.datadoghq.com/blog/mute-datadog-alerts-planned-downtime/
+
 ## 5. Collecting APM Data:
 Enable Logs in the agents config file (datadog.yaml)
 ![](EnableLogsinConfigFile.png)
+
+Make a python.d directory in the conf.d directory.
+Make a conf.yaml file in the python.d directory. 
+
+```
+init_config:
+
+instances:
+
+logs:
+
+  - type: file
+    path: /var/log/log.log
+    service: flask
+    source: python
+    sourcecategory: sourcecode
+```
+Install python, Flask, ddtrace
+
+Setting up profiling
+export DD_PROFILING_TAGS=env:shirleyswork,service:flask,version:<YOUR_VERSION>
+
+Resources used: 
+https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/
+https://docs.datadoghq.com/tracing/profiling/?tab=python 
+https://docs.datadoghq.com/tracing/setup/python/
 
 
 ## 6. Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 Is there anything creative you would use Datadog for?
+
