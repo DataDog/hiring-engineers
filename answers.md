@@ -18,12 +18,13 @@ The agent is the software that reports back to the Data Dog tool.
 The config file is the file datadog.yaml in the /etc/datadog-agent folder. 
 
 ###### Resources used: 
-Two helpful guides https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6v7#configuration-files & https://docs.datadoghq.com/tagging/ 
+* https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6v7#configuration-files 
+* https://docs.datadoghq.com/tagging/ 
 
 **Add tags to your agents config file aka datadog.yaml Search for "tags" and add them there.**
-I added :
-* staging 
-* app:Postgres
+* I added :
+   * staging 2a
+   * app:Postgres 2b
 
 ![](Images/TagConfigFile.png)
 
