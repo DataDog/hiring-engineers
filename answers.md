@@ -196,17 +196,17 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 `[Note: request below has personal email hidden for security reasons but used full address in actual request]`
 
 
-`https://api.datadoghq.{{datadog_site}}/api/v1/graph/snapshot?metric_query=anomalies(avg:mysql.net.max_connections{*}, 'basic', 2)&start=1591044560&end=1591044860&title=anomalies avg mysql net max connectoins&notification=m******z@yahoo.com`
+`https://api.datadoghq.{{datadog_site}}/api/v1/graph/snapshot?metric_query=anomalies(avg:mysql.net.max_connections{*}, 'basic', 2)&start=1591044560&end=1591044860&title=anomalies avg mysql net max connections&notification=m******z@yahoo.com`
 
 ```
 {
     "graph_def": "{\"requests\": [{\"q\": \"anomalies(avg:mysql.net.max_connections{*}, 'basic', 2)\"}]}",
-    "snapshot_url": "https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_421262/2020-06-01/8d26c55db4977b169280e8dea8945190055243a6.png",
+    "snapshot_url": "https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_421262/2020-06-01/9db6ba5fe565d8a45375d7b09251727a32cb6b29.png",
     "metric_query": "anomalies(avg:mysql.net.max_connections{*}, 'basic', 2)"
 }
 ```
 
-![anomaly](https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_421262/2020-06-01/8d26c55db4977b169280e8dea8945190055243a6.png)
+![anomaly](https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_421262/2020-06-01/9db6ba5fe565d8a45375d7b09251727a32cb6b29.png)
 
 **Bonus Question**: What is the Anomaly graph displaying?
 
