@@ -258,8 +258,8 @@ api.Dashboard.create(title=title,
                      template_variable_presets=saved_views)
 ```
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-The files are in the repo!
+******Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.****** 
+* The files are in the repo!
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 ![](Images/FullDashboard.py)
@@ -271,7 +271,8 @@ Take a snapshot of this graph and use the @ notation to send it to yourself.
 ![](Images/annotate.png)
 ![](Images/annotategrapgemail.png)
 
-Bonus Question: What is the Anomaly graph displaying? It's displaying nothing for me! 
+Bonus Question: What is the Anomaly graph displaying?
+The anomaly graph is showing what's normal and what's happpening. It helps detect something that deviates from what is standard.
 
 ## 4. Monitoring Data:
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
