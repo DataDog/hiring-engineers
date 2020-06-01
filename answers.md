@@ -376,6 +376,10 @@ export DD_PROFILING_TAGS=env:shirleyswork,service:flask,version:<YOUR_VERSION>
 Flask App Profiling Page
 ![](Images/FlaskProfiling.png)
 
+Running the flask app
+using 
+![](Images/RunningFlaskApp.png)
+
 Resources used: 
 * https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/
 * https://docs.datadoghq.com/tracing/profiling/?tab=python 
