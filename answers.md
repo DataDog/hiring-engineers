@@ -6,6 +6,8 @@
 **Choose an environment!**
 Decided to spin up a fresh linux VM via Vagrant.
 Then signed up for  Datadog (used “Datadog Recruiting Candidate” in the “Company” field).
+###### Resources used:
+* https://www.vagrantup.com/intro/getting-started
 
 ## 2. Collecting Metrics!
 
@@ -23,8 +25,8 @@ The config file is the file datadog.yaml in the /etc/datadog-agent folder.
 
 **Add tags to your agents config file aka datadog.yaml Search for "tags" and add them there.**
 * I added :
-   * staging 2a
-   * app:Postgres 2b
+   * staging 
+   * app:Postgres
 
 ![](Images/TagConfigFile.png)
 
@@ -33,10 +35,11 @@ The config file is the file datadog.yaml in the /etc/datadog-agent folder.
 
 
 **Task: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
-I installed MongoDB. 
+I installed MongoDB and followed the instructions on the Mongodb Integrations set up page.
 
-###### Resources:
-https://gist.github.com/shimar/13381bce5c5cbeb72d801d74099ba2ec 
+###### Resources used:
+* https://docs.datadoghq.com/integrations/mongo/
+* https://gist.github.com/shimar/13381bce5c5cbeb72d801d74099ba2ec 
 
 After making sure MongoDB was running I proceeded to set up the integration for it following the instructions here: 
 https://app.datadoghq.com/account/settings#integrations/mongodb
@@ -110,6 +113,7 @@ Bonus Question Can you change the collection interval without modifying the Pyth
 Utilize the Datadog API to create a Timeboard that contains:
 
 Your custom metric scoped over your host.
+
 Check CustomMetricAvgHost.py
 ```
 from datadog import initialize, api
@@ -255,7 +259,7 @@ api.Dashboard.create(title=title,
 ```
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-The file are in the repo!
+The files are in the repo!
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 ![](Images/FullDashboard.py)
@@ -284,16 +288,16 @@ And also ensure that it will notify you if there is No Data for this query over 
 
 Please configure the monitor’s message so that it will:
 
-Send you an email whenever the monitor triggers.
+**Send you an email whenever the monitor triggers.
 ![](Images/EmailSetupMonitoring.png)
 
-Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+**Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 ![](Images/MonitoringDiffMessage.png)
 
-Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+**Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 ![](Images/metricvalueandipmonitoring.png)
 
-When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+**When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 **Alert Email**
 ![](Images/AlertIPValueMonitoringEmail.png)
@@ -306,29 +310,32 @@ When this monitor sends you an email notification, take a screenshot of the emai
 
 **Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-One that silences it from 7pm to 9am daily on M-F,
+**One that silences it from 7pm to 9am daily on M-F,
 
-Click on "Manage Downtime" when you're on the "Manage Monitors" page
+Click on "Manage Downtime" when you're on the "Manage Monitors" page 
 ![](Images/ScheduleDowntimeConfiguration.png)
 
-And one that silences it all day on Sat-Sun.
+**And one that silences it all day on Sat-Sun.
 ![](Images/EveryweekendDowntime.png)
 
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-After you are done configuring the downtimes. You can see them on the Manage Downtime page. 
+**After you are done configuring the downtimes. You can see them on the Manage Downtime page. 
+
 ![](Images/Downtime.png)
 
+**Downtime Email 7pm-9am Every Day
 ![](Images/ScheduleDowntimeEmail7pm9am.png)
 
+**Weekends Downtime Email
 ![](WeekendsDowntimeEmail.png)
 
 Resources:
-https://docs.datadoghq.com/monitors/notifications/?tab=is_alert
+* https://docs.datadoghq.com/monitors/notifications/?tab=is_alert
 
-https://docs.datadoghq.com/monitors/notifications/?tab=is_alert
+* https://docs.datadoghq.com/monitors/notifications/?tab=is_alert
 
-https://www.datadoghq.com/blog/mute-datadog-alerts-planned-downtime/
+* https://www.datadoghq.com/blog/mute-datadog-alerts-planned-downtime/
 
 ## 5. Collecting APM Data:
 Enable Logs in the agents config file (datadog.yaml)
@@ -356,9 +363,9 @@ Setting up profiling
 export DD_PROFILING_TAGS=env:shirleyswork,service:flask,version:<YOUR_VERSION>
 
 Resources used: 
-https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/
-https://docs.datadoghq.com/tracing/profiling/?tab=python 
-https://docs.datadoghq.com/tracing/setup/python/
+* https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/
+* https://docs.datadoghq.com/tracing/profiling/?tab=python 
+* https://docs.datadoghq.com/tracing/setup/python/
 
 
 ## 6. Final Question:
