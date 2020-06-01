@@ -341,6 +341,15 @@ Resources:
 * https://www.datadoghq.com/blog/mute-datadog-alerts-planned-downtime/
 
 ## 5. Collecting APM Data:
+
+Install python, Flask, ddtrace
+
+```
+pip install ddtrace
+```
+
+Save the flask app FlaskApp.py
+
 Enable Logs in the agents config file (datadog.yaml)
 ![](EnableLogsinConfigFile.png)
 
@@ -360,7 +369,6 @@ logs:
     source: python
     sourcecategory: sourcecode
 ```
-Install python, Flask, ddtrace
 
 Setting up profiling
 export DD_PROFILING_TAGS=env:shirleyswork,service:flask,version:<YOUR_VERSION>
