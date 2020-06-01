@@ -29,7 +29,7 @@ Tv mode does not work in firefox. In safari it does.
 
 # 4. container agent host disk util 
 
-When deploying container agent the disk size was incorrectly measured. Appears to ~doubling actuall disk size of 10GB.
+When deploying container agent the disk size was incorrectly measured. Appears to ~doubling actual disk size of 10GB.
 
 ![IMG 04](/images/bug-003-container_agent_disk_info_incorrect.png)
 
