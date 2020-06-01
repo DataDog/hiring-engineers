@@ -323,6 +323,9 @@ After you are done configuring the downtimes. You can see them on the Manage Dow
 ![](WeekendsDowntimeEmail.png)
 
 ## 5. Collecting APM Data:
+Enable Logs in the agents config file (datadog.yaml)
+![](EnableLogsinConfigFile.png)
+
 
 ## 6. Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
