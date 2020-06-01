@@ -341,6 +341,9 @@ Resources:
 * https://www.datadoghq.com/blog/mute-datadog-alerts-planned-downtime/
 
 ## 5. Collecting APM Data:
+I wasn't able to successfully collect the APM Data. 
+
+This is how far I got: 
 
 Install python, Flask, ddtrace
 
