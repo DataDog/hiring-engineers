@@ -330,7 +330,7 @@ Make sure that your email is notified when you schedule the downtime and take a 
 
 **Weekends Downtime Email
 
-![](WeekendsDowntimeEmail.png)
+![](Images/WeekendsDowntimeEmail.png)
 
 Resources:
 * https://docs.datadoghq.com/monitors/notifications/?tab=is_alert
