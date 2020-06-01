@@ -132,7 +132,7 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 
 **https://p.datadoghq.com/sb/dpsd42bam3zstxxy-1bbf5a8ae97bfe274edf84f8df2b6453**
 
-`[note: that notify email was hiden in the code below for security reasons, dashboard has full user email address]`
+`[note: that notify email was hidden in the code below for security reasons, dashboard has full user email address]`
 ```
 {
     "title": "My Timeseries Demo Dash",
