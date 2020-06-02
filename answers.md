@@ -210,7 +210,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 **Bonus Question**: What is the Anomaly graph displaying?
 
-`The anomaly graph is displaying a noticed change for the measured "normal" max connections. The metric had been stable at one connection but then jumped from one to three.  As configured, after two minutes three becomes the new "normal" for measuring anomalies.`
+```The anomaly graph is displaying a noticed change for the measured "normal" max connections. The metric had been stable at one connection but then jumped from one to three.  As configured, after two minutes three becomes the new "normal" for measuring anomalies.```
 
 ## Monitoring Data
 
