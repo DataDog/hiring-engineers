@@ -193,8 +193,8 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-```[Note: I was unable to figure out how to use @ notation in the snapshot request, tried key "notification"]```
-```[Note: request below has personal email hidden for security reasons but used full address in actual request]```
+`[Note: I was unable to figure out how to use @ notation in the snapshot request, tried key "notification"]`
+`[Note: request below has personal email hidden for security reasons but used full address in actual request]`
 
 
 ```https://api.datadoghq.{{datadog_site}}/api/v1/graph/snapshot?metric_query=anomalies(avg:mysql.net.max_connections{*}, 'basic', 2)&start=1591044560&end=1591044860&title=anomalies avg mysql net max connections&notification=m******z@yahoo.com```
