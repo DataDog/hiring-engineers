@@ -132,7 +132,7 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 
 **https://p.datadoghq.com/sb/dpsd42bam3zstxxy-1bbf5a8ae97bfe274edf84f8df2b6453**
 
-```[note: notify email was hidden in the code below for security reasons, dashboard has full user email address]```
+`[note: notify email was hidden in the code below for security reasons, dashboard has full user email address]`
 
 ```
 {
@@ -197,7 +197,9 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 `[Note: request below has personal email hidden for security reasons but used full address in actual request]`
 
 
-```https://api.datadoghq.{{datadog_site}}/api/v1/graph/snapshot?metric_query=anomalies(avg:mysql.net.max_connections{*}, 'basic', 2)&start=1591044560&end=1591044860&title=anomalies avg mysql net max connections&notification=m******z@yahoo.com```
+```
+https://api.datadoghq.{{datadog_site}}/api/v1/graph/snapshot?metric_query=anomalies(avg:mysql.net.max_connections{*}, 'basic', 2)&start=1591044560&end=1591044860&title=anomalies avg mysql net max connections&notification=m******z@yahoo.com
+```
 
 ```
 {
