@@ -103,6 +103,8 @@ instances:
   - min_collection_interval: 45
 ```
 
+### Bonus Question
 
+The collection interval can be modified in the .yaml configuration for each Agent check.
 
 
