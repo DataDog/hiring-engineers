@@ -25,7 +25,7 @@ Just used `> sudo DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=7b108d7...`  That was smoo
 
 Successful initial report from DD agent on app.datadoghq.eu webpage.
 
-## Collecting Metrics
+## Collecting Metrics:
 
 ### Adding tags to the DD Agent config file
 
@@ -107,4 +107,6 @@ instances:
 
 The collection interval can be modified in the .yaml configuration for each Agent check.
 
+## Visualising Data:
 
+### DataDog API Timeboard
