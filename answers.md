@@ -76,7 +76,7 @@ Ah, made an indentation error - FIXED!   `Done running check metrics_example`
 
 Please see file my_metric.py
 
-`import random
+```import random
   
 from datadog_checks.base import AgentCheck
 
@@ -89,7 +89,7 @@ class MyClass(AgentCheck):
             random.randint(0, 1000),
             tags=["env:dev","metric_submission_type:gauge"],
         )
-`
+```
 
 
 
