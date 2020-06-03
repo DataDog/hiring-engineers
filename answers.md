@@ -13,7 +13,7 @@ Candidate for Solution Engineer in London
 My personal setup...
 
 1. My home laptop is OSX, could spin up Docker on that machine, but...
-2. I already have a LAMP build (Ubuntu 18.04 / Apache2 / mysql / PHP, Python) live on AWS to run Wordpress - so let's instrucment that with the DataDog Agent and connect from OSX as client
+2. I already have a LAMP build (Ubuntu 18.04 / Apache2 / mysql / PHP, Python) live on AWS to run Wordpress - so let's instrument that with the DataDog Agent and connect from OSX as client
 
 ### Sign Up for DataDog, Install Agent & Connect
 
