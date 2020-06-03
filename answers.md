@@ -34,7 +34,7 @@ Here you are able to see your hosts!
 3. After you're done setting up your database. It's time to do some work! 
 * Let's create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. 
 We can use this [guide](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) to create our new agent.
-The first step is to create our two files. 
+The first step is to create our two files (make sure the two have the same name)!
     * [conf.d/custom_mymetric.yaml](custom_mymetric.yaml)
     * [checks.d/custom_mymetric.yaml](custom_mymetric.py)
     
