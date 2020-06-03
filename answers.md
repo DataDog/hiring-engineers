@@ -27,7 +27,7 @@ Successful initial report from DD agent on app.datadoghq.eu webpage.
 
 ## Collecting Metrics
 
-## Adding tags to the DD Agent config file
+### Adding tags to the DD Agent config file
 
 `tags:
     - "<p6steve_build>:<1.0>"
@@ -36,11 +36,11 @@ Successful initial report from DD agent on app.datadoghq.eu webpage.
     
 *rather an unusual yaml format!*
 
-## Screenshot of Host with Tags
+### Screenshot of Host with Tags
 
 ![image2](images/image2.png)
 
-## Adding MySQL Integration
+### Adding MySQL Integration
 
 Adding user & validating...
 `mysql: [Warning] Using a password on the command line interface can be insecure.
@@ -59,6 +59,21 @@ Adjusting `/etc/datadog-agent/conf.d/mysql.d/conf.yaml` per docs -- couple of WA
 Here is a dashboard with MySQL...
 
 ![image3](images/image3.png)
+
+### Custom Agent check
+
+1. First step - clone and run the documented example - no joy. Try running with python3 directly...
+
+`ubuntu@ip-172-31-25-233:/etc/datadog-agent/checks.d$ python3 *.py
+  File "metrics_example.py", line 3
+    from datadog_checks.base import AgentCheck
+    ^
+IndentationError: unexpected indent`
+
+Ah, made an indentation error - FIXED!   `Done running check metrics_example`
+
+2. Second step - tweak the code
+
 
 
 
