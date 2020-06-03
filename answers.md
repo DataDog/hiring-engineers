@@ -1,6 +1,6 @@
 Your answers to the questions go here.
 
-# These Answers by Stephen Roe
+# Answers by Stephen Roe
 
 Candidate for Solution Engineer in London
 
@@ -50,5 +50,5 @@ Tweaking privileges...
 mysql: [Warning] Using a password on the command line interface can be insecure.
 MySQL grant - OK`
 
-Adjusting `/etc/datadog-agent/conf.d/mysql.d/conf.yaml` per docs -- couple of WARNINGS on sudo service datadog-agent status
+Adjusting `/etc/datadog-agent/conf.d/mysql.d/conf.yaml` per docs -- couple of WARNings on sudo service datadog-agent status
 
