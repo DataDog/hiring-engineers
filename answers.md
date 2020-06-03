@@ -12,7 +12,7 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 
 ## Signing up for Datadog
 Sign up for [Datadog](https://www.datadoghq.com/) (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
-Once you sign up, you'll follow the steps to install the Datadog agent on your machine. In this case since I'm using Vagrant I'm following the CentOS/Red Hat instructions. 
+Once you sign up, you'll follow the steps to install the Datadog agent on your machine.
 
 ## Let's collect some metrics
 After you're done signing up and have the agent installed. You will now go to the Datadog Infrastructure/[Host Map page.](https://docs.datadoghq.com/infrastructure/hostmap/) 
