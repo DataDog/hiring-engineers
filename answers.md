@@ -65,11 +65,13 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 <img src="Images/DDogRollupSum.png" width="600">
 
 
-The whole time board script is [here](TheWholeTimeboard.py)
+4. The whole time board script is [here](TheWholeTimeboard.py)
 <img src="Images/TheWholeTimeboard.png" width="600">
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 Set the Timeboard's timeframe to the past 5 minutes
+<img src="Images/5minGraph.png" width="600">
+
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 Bonus Question: What is the Anomaly graph displaying?
