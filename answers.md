@@ -45,3 +45,25 @@ The first step is to create our two files (make sure the two have the same name)
 
 In order to check if your metric is working - you can enter "sudo service datadog-agent status".
 <img src="Images/Datadog_MetricCheck.png" width="600">
+
+### WOOHOO! We are done with that section! Now on to the next one!! 
+
+## Let's actually see some data! 
+
+Let's utilize the Datadog API to create a Timeboard that contains:
+
+1. Your custom metric scoped over your host.
+
+
+
+
+
+Any metric from the Integration on your Database with the anomaly function applied.
+Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+Set the Timeboard's timeframe to the past 5 minutes
+Take a snapshot of this graph and use the @ notation to send it to yourself.
+Bonus Question: What is the Anomaly graph displaying?
