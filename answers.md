@@ -77,9 +77,11 @@ Script: [custom Metric Roll Up Sum](custom_metricRollUpSum.py)
 
 Once this is created, let's access the Dashboard from your Dashboard List in the UI:
 
-Let's change some settings. Let's set the Timeboard's timeframe to the past 5 minutes.
-To do this we need to go to each individual graph and edit the time to 5 min. 
+Let's change some settings. Let's set the Timeboard's timeframe to the past 5 minutes. 
+
 <img src="Images/5minGraph.png" width="600">
+
+To do this we need to go to each individual graph and edit the time to 5 min. 
 
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 <img src="Images/AnnotateGraph.png" width="600">
