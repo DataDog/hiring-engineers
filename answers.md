@@ -1,6 +1,6 @@
 Your answers to the questions go here.
 ________________________________________________________________________________________________________________
-Prerequisites - Setup the environment
+## Prerequisites - Setup the environment
 
 - You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
@@ -9,110 +9,113 @@ Prerequisites - Setup the environment
 - You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
 Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
-  I set up a Vagrant Ubuntu VM of version 18.04
+  >I set up a Vagrant Ubuntu VM of version 18.04
   
-  Showing the Vagrant host in the Datadog UI:
-    Vagrant Host 1.png
+  >Showing the Vagrant host in the Datadog UI:
+    >Vagrant Host 1.png
       
 ________________________________________________________________________________________________________________
-Collecting Metrics:
+## Collecting Metrics:
 
 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-  Showing the Vagrant Tags in the datadog.yaml:
-     Vagrant Tags.png
+  >Showing the Vagrant Tags in the datadog.yaml:
+     >Vagrant Tags.png
      
-  Showing the Vagrant Tags in the Datadog UI:
-     Vagrant Host 2.png   
+  >Showing the Vagrant Tags in the Datadog UI:
+     >Vagrant Host 2.png   
 
 ________________________________________________________________________________________________________________
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-  I installed a MySQL database and put configured it to communicate with the datadog agent in the conf.yaml within the etc/datadog-agent/conf.d/mysql.d directory
-    MySQL configuration file.png
+  >I installed a MySQL database and put configured it to communicate with the datadog agent in the conf.yaml within the etc/datadog-agent/conf.d/mysql.d directory
+    >MySQL configuration file.png
   
-  I configured a user, set the apporpriate permissions, and validated that the agent was collecting MySQL metrics:
-    MySQL Users.png
-    MySQL Permissions.png
-    MySQL Status.png
-    MySQL Counters.png
+  >I configured a user, set the apporpriate permissions, and validated that the agent was collecting MySQL metrics:
+    >MySQL Users.png
+    >MySQL Permissions.png
+    >MySQL Status.png
+    >MySQL Counters.png
 ________________________________________________________________________________________________________________
 - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-  I created a custom Agent check that submits a metric named custom_metric with a random value between 0 and 1000 and put it in the /etc/datadog-agent/checks.d/ directory
+  >I created a custom Agent check that submits a metric named custom_metric with a random value between 0 and 1000 and put it in the /etc/datadog-agent/checks.d/ directory
 
 
+```
 
+#the following try/except block will make the custom check compatible with any Agent version
 
-  #the following try/except block will make the custom check compatible with any Agent versiontry:
 try:
-# first, try to import the base class from new versions of the Agent...
+
+#first, try to import the base class from new versions of the Agent...
    from datadog_checks.base import AgentCheck
 except ImportError:
-# ...if the above failed, the check is running in Agent version < 6.6.0
+#...if the above failed, the check is running in Agent version < 6.6.0
    from checks import AgentCheck
 
-# content of the special variable __version__ will be shown in the Agent status page
+#content of the special variable __version__ will be shown in the Agent status page
 ___version__ = "1.0.0"
 
-# import random integer function
+#import random integer function
 from random import randint
 
-# create a function that checks for the latest output value from the Datadog Agent of specified metric
+#create a function that checks for the latest output value from the Datadog Agent of specified metric
 
 class MetricCheck(AgentCheck):
    def check(self, instance):
       self.gauge('custom_metric',randint(0,1000))
 
+```
 
-
-  I've included screenshots of the custom metric collection status from the Datadog Agent:
+  >I've included screenshots of the custom metric collection status from the Datadog Agent:
   
-  Custom Metric Status.png
+  >Custom Metric Status.png
   
 ________________________________________________________________________________________________________________
 
 
-  I put the custom_metric.yaml file in the /etc/datadog-agent/conf.d/ directory which creates the instances mapping:
+  >I put the custom_metric.yaml file in the /etc/datadog-agent/conf.d/ directory which creates the instances mapping:
   
-  
+```  
   
 #creates a configuration file that changes the interval of collection of data
 
 init_config:
 instances:
     -   min_collection_interval: 45
-    
+ 
+``` 
 ________________________________________________________________________________________________________________    
 
 - Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-  See above for code, below for screenshot of interval on dash:
+  >See above for code, below for screenshot of interval on dash:
   
-  CustomMetric Interval Change 2.png
-  CustomMetric Interval Change 1.png
+  >CustomMetric Interval Change 2.png
+  >CustomMetric Interval Change 1.png
 ________________________________________________________________________________________________________________   
-Bonus Question Can you change the collection interval without modifying the Python check file you created?
+**Bonus Question Can you change the collection interval without modifying the Python check file you created?**
 
-  Yes! In the conf.yaml file for the custom check (code above) you can change the interval
+  >Yes! In the conf.yaml file for the custom check (code above) you can change the interval
   
 ________________________________________________________________________________________________________________   
-Utilize the Datadog API to create a Timeboard that contains:
+- Utilize the Datadog API to create a Timeboard that contains:
 
 - Your custom metric scoped over your host.
 
-  CustomMetric Dash.png
+  >CustomMetric Dash.png
 
 ________________________________________________________________________________________________________________ 
 - Any metric from the Integration on your Database with the anomaly function applied.
 - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-  CustomMetricGlobalDash.png
+  >CustomMetricGlobalDash.png
 
 ________________________________________________________________________________________________________________ 
 - Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-
+```
 
 from datadog import initialize, api
 
@@ -163,38 +166,38 @@ api.Timeboard.create(title=title,
                      template_variables=template_variables,
                      read_only=read_only)
                      
-                     
+```                     
 
 ________________________________________________________________________________________________________________ 
 
 - Once this is created, access the Dashboard from your Dashboard List in the UI:
 
-  See above screenshots
+  >See above screenshots
   
 ________________________________________________________________________________________________________________ 
 
 - Set the Timeboard's timeframe to the past 5 minutes
 
-CustomMetric Dash over 5 mins.png
+  >CustomMetric Dash over 5 mins.png
 
 ________________________________________________________________________________________________________________ 
 
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-  I sent the 5 min interval graph to myself in an email via the @ notation:
+  >I sent the 5 min interval graph to myself in an email via the @ notation:
   
-  CustomMetric Sent via at.png
+  >CustomMetric Sent via at.png
   
   
-  I also set up a slack integration to be able to send snapshots of these custom dashboards via slack. The example below provides a screenshot of the MySQL anomaly graph sent via Slack:
+  >I also set up a slack integration to be able to send snapshots of these custom dashboards via slack. The example below provides a screenshot of the MySQL anomaly graph sent via Slack:
   
-  CustomDash Sent via Slack.png
+  >CustomDash Sent via Slack.png
   
 ________________________________________________________________________________________________________________   
 
-- Bonus Question: What is the Anomaly graph displaying?
+**Bonus Question: What is the Anomaly graph displaying?**
 
-The Anomaly graph is displaying a measure of the amount of CPU time the MySQL database takes to execute a task against what has been historically considered "normal". Essentially, the anomaly measure within Datadog will figure out what a normal amount of CPU time to execute a task is based on historical data and project out what upper and lower bounds would be considered normal based on that. If there are CPU times that are outside of those bounds, it will highlight them in red as an anomaly or potential risk.
+>The Anomaly graph is displaying a measure of the amount of CPU time the MySQL database takes to execute a task against what has been historically considered "normal". Essentially, the anomaly measure within Datadog will figure out what a normal amount of CPU time to execute a task is based on historical data and project out what upper and lower bounds would be considered normal based on that. If there are CPU times that are outside of those bounds, it will highlight them in red as an anomaly or potential risk.
 
 ________________________________________________________________________________________________________________  
 
@@ -206,7 +209,7 @@ ________________________________________________________________________________
 - Alerting threshold of 800
 - And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-Monitor Thresholds.png
+>Monitor Thresholds.png
 
 ________________________________________________________________________________________________________________  
 
@@ -218,54 +221,53 @@ ________________________________________________________________________________
 
 - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-  Metric Alert Message.png
+  >Metric Alert Message.png
 ________________________________________________________________________________________________________________
 
 - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-  Email notification for no data:
+  >Email notification for no data:
   
-  No data alert.png
+  >No data alert.png
   
-  Email notification for warning:
+  >Email notification for warning:
   
-  Warning Email Alert.png
+  >Warning Email Alert.png
   
-  Email notification for alert:
+  >Email notification for alert:
   
-  High threshold alert.png
+  >High threshold alert.png
 
 ________________________________________________________________________________________________________________ 
-
-- Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+**Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:**
 
 - One that silences it from 7pm to 9am daily on M-F,
 
-  Weekday Downtime Email Alert.png
-  Weekday Window.png
+  >Weekday Downtime Email Alert.png
+  >Weekday Window.png
 
 - And one that silences it all day on Sat-Sun.
 
-  Weekend Downtime Email Alert.png
-  Weekend Window.png
+  >Weekend Downtime Email Alert.png
+  >Weekend Window.png
   
   
-  I also sent out these notifications via slack:
+  >I also sent out these notifications via slack:
   
-  Metric Downtime Slack Alert.png
+  >Metric Downtime Slack Alert.png
 
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-  See screenshots above
+  >See screenshots above
 ________________________________________________________________________________________________________________ 
 
-Collecting APM Data:
+## Collecting APM Data:
 
 
 
 ________________________________________________________________________________________________________________ 
 
-Bonus Question: What is the difference between a Service and a Resource?
+**Bonus Question: What is the difference between a Service and a Resource?**
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
