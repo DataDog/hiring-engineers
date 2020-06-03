@@ -92,6 +92,16 @@ class MyClass(AgentCheck):
         )
 ```
 
+3. Third step - change the collection interval to 45s
+
+Please also see as committed code file my_metric.yaml
+
+```
+init_config:
+  
+instances:
+  - min_collection_interval: 45
+```
 
 
 
