@@ -27,7 +27,17 @@ Here you are able to see your hosts!
 2. Now the next step is to install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database! I decided to go with MongoDB.
   * I first installed MongoDB on my box using the instructions [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
   * I then followed the [instructions](https://docs.datadoghq.com/integrations/mongo/) 
+  * I went to the integrations page on the Datadog app and searched for Mongodb
+  * I followed the instructions, created a new user in Mongodb and made a [conf file](mongodb_conf.yaml)
+  * After I made all these changes I restarted the agent: sudo service datadog-agent restart
 
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-Change your check's collection interval so that it only submits the metric once every 45 seconds.
-Bonus Question Can you change the collection interval without modifying the Python check file you created?
+3. After you're done setting up your database. It's time to do some work! 
+* Let's create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. 
+We can use this [guide](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) to create our new agent.
+The first step is to create our two files. 
+    * [conf.d/custom_mymetric.yaml](custom_mymetric.yaml)
+    * [checks.d/custom_mymetric.yaml](custom_mymetric.py)
+    
+* Now let's change your check's collection interval so that it only submits the metric once every 45 seconds. 
+
+* Bonus Round - Let's change the collection interval without modifying the Python check file we created. 
