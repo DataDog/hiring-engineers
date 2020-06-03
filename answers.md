@@ -74,4 +74,12 @@ Set the Timeboard's timeframe to the past 5 minutes
 <img src="Images/5minGraph.png" width="600">
 
 Take a snapshot of this graph and use the @ notation to send it to yourself.
+<img src="Images/AnnotateGraph.png" width="600">
+
+<img src="Images/EmailGraph.png" width="600">
+
 Bonus Question: What is the Anomaly graph displaying?
+The Anomaly graph is displaying what's expected in gray based on historical trends and the actual data real time. 
+It detects anything out of the norm!
+
+
