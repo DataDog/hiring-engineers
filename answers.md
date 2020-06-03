@@ -74,9 +74,10 @@ Ah, made an indentation error - FIXED!   `Done running check metrics_example`
 
 2. Second step - tweak the code
 
-Please see file my_metric.py
+Please also see as committed file my_metric.py
 
-```import random
+```
+import random
   
 from datadog_checks.base import AgentCheck
 
