@@ -95,25 +95,25 @@ The Anomaly graph is displaying what's expected in gray based on historical tren
 It detects anything out of the norm!
 
 ## Now let's monitor our data! 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor!
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+Let's create a  new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 Warning threshold of 500
 Alerting threshold of 800
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+We can set that configuration when you're creating the new metric monitor.
+
 <img src="Images/ConfigMetricMonitor.png" width="600">
 
-Please configure the monitor’s message so that it will:
+We will then need to configure our messages so we can schedule email notifications.
 
-Send you an email whenever the monitor triggers.
-
-Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+We'll create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
 <img src="Images/MetricMonitorMessage.png" width="600">
 
-Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+We'll include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
 We can add the trigger and host ip by editing the message and adding: 
 ```
@@ -121,9 +121,7 @@ We can add the trigger and host ip by editing the message and adding:
 ```
 <img src="Images/MetricAlertwIp.png" width="600">
 
-When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-
-We can click on "Test Monitor Notifications" to test all of these alerts.
+Let's then click on "Test Monitor Notifications" to test all of these alerts and receive the email notifications for each.
 
 <img src="Images/MetricMonitorTesting.png" width="600">
 
@@ -133,7 +131,12 @@ We can click on "Test Monitor Notifications" to test all of these alerts.
 
 <img src="Images/WarningEmail.png" width="600">
 
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. So we're going to set up two scheduled downtimes for this monitor:
+### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. So we're going to set up two scheduled downtimes for this monitor:
+
+On the "Manage Monitors" screen, we can click on "Manage Downtime". 
+Once there we can click on "Schedule Downtime" on the right hand side of the screen. 
+
+You can then set the configurations as follows:
 
 One that silences it from 7pm to 9am daily on M-F,
 <img src="Images/DowntimeConfigWeekdays.png" width="600">
@@ -141,7 +144,9 @@ One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
 <img src="Images/DowntimeConfigWeekends.png" width="600">
 
-Let's set up san email notification so that you are  notified when you schedule the downtime. Below is a screenshot of that notification.
+Let's also set up san email notification so that you are  notified when you schedule the downtime by making sure we add the contacts on the "Notify your team" portion. 
+
+Below is a screenshot of these notifications.
 
 <img src="Images/Notifyyourteamconfig.png" width="600">
 
