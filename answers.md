@@ -121,11 +121,11 @@ We can click on "Test Monitor Notifications" to test all of these alerts.
 
 <img src="Images/MetricMonitorTesting.png" width="600">
 
-<img src="Images/AlertMetricEmail.png" width="600">
+<img src="Images/AlertEmail.png" width="600">
 
-<img src="Images/NoDataMetricEmail.png" width="600">
+<img src="Images/NoDataEmail.png" width="600">
 
-<img src="Images/WarningMetricEmail.png" width="600">
+<img src="Images/WarningEmail.png" width="600">
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
