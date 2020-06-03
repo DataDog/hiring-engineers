@@ -119,7 +119,7 @@ And one that silences it all day on Sat-Sun.
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 ## Let's collect some APM data!
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+Given the following Flask app (or any Python/Ruby/Go app of your choice) , let's instrument it using Datadog’s APM solution:
 ```
 from flask import Flask
 import logging
@@ -151,4 +151,21 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
+First step is to save this Flask app. I saved it as flask_app.py.
+
+Let's then follow the instructions from this [page](https://docs.datadoghq.com/getting_started/tracing/).
+
+1. sudo apt-get install python-pip
+2. pip install flask
+3. pip install ddtrace
+
+Let's also enable apm in the agents config file aka datadog.yaml. 
+```
+apm_config:
+    enabled: true
+```
+and then restart the agent
+```
+sudo service datadog-agent restart
+```
 
