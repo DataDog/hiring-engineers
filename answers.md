@@ -17,6 +17,6 @@ In the spirit of demonstrating thoughtfulness, here is my rationale regarding my
 
 Just used > sudo DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=7b108d7...  That was smooth!
 
-(images/image1.png)
+![image1](images/image1.png)
 
 
