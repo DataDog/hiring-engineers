@@ -30,17 +30,7 @@ Create a custom Agent check that submits a metric named my_metric with a random 
 Create new example_metric.py and example_metric.yaml using commands:
 $ sudo nano /etc/datadog-agent/conf.d/example_metric.yaml $ sudo nano /etc/datadog-agent/checks.d/example_metric.py
 
--- Code in my_metric.py file
-
-the following try/except block will make the custom check compatible with any$
-
-try: # first, try to import the base class from new versions of the Agent... from datadog_checks.base import AgentCheck except ImportError: # ...if the above failed, the check is running in Agent version < 6.6.0 from checks import AgentCheck
-
-content of the special variable version will be shown in the Agent status$
-
-version = "1.0.0"
-
-class MyCheck(AgentCheck): def check(self, instance): from random import randrange random_val = randrange(1000) self.gauge('my_metric', random_val)
+-- Code in screenshot attached
 
 Documentation: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
 
@@ -69,17 +59,8 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Your custom metric scoped over your host. Any metric from the Integration on your Database with the anomaly function applied. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-from datadog import initialize, api
+Code in screenshot attached.
 
-options = { 'api_key': 'xxxxx', 'app_key': 'xxxxx' }
-
-initialize(**options)
-
-title = 'My Timeboard 2' widgets = [{ 'definition': { 'type': 'timeseries', 'requests': [ {'q': 'avg:example_metric.count{*}'} ], 'title': 'Average Mem over my metric' } }] layout_type = 'ordered' description = 'A dashboard with memory info.' is_read_only = True notify_list = ['kristinatubera@gmail.com'] template_variables = [{ 'name': 'Kristina', 'prefix': 'host', 'default': 'my-host' }]
-
-saved_views = [{ 'name': 'Saved views for hostname 2', 'template_variables': [{'name': 'host', 'value': '<HOSTNAME_2>'}]} ]
-
-api.Dashboard.create(title=title, widgets=widgets, layout_type=layout_type, description=description, is_read_only=is_read_only, notify_list=notify_list, template_variables=template_variables, template_variable_presets=saved_views)
 
 Documentation: https://docs.datadoghq.com/dashboards/guide/timeboard-api-doc/?tab=python and https://docs.datadoghq.com/api/v1/dashboards/#create-a-new-dashboard
 
