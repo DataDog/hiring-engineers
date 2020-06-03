@@ -57,6 +57,7 @@ Adjusting `/etc/datadog-agent/conf.d/mysql.d/conf.yaml` per docs -- couple of WA
 `WARN | (pkg/collector/python/datadog_agent.go:118 in LogMessage) | mysql:deae8cbf193a8b9a | (mysql.py:956) | Privilege error or engine unavailable accessing the INNODB status tables (must grant PROCESS): (1227, 'Access denie...` ... oops looks like I forgot to grant process on innodb (probably forgot to FLIUSH PRIVILEGES;)- FIXED
 
 Here is a dashboard with MySQL...
+
 ![image3](images/image3.png)
 
 
