@@ -84,7 +84,7 @@ Let's change some settings. Let's set the Timeboard's timeframe to the past 5 mi
 To do this we need to go to each individual graph and edit the time to 5 min. 
 
 Take a snapshot of this graph and use the @ notation to send it to yourself.
-<img src="Images/AnnotateGraph.png" width="600">
+<img src="Images/annotate.png" width="600">
 
 <img src="Images/EmailGraph.png" width="600">
 
