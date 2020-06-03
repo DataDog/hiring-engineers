@@ -7,12 +7,12 @@ options = {
 
 initialize(**options)
 
-title = 'The Main Dashboard'
+title = 'Datadog Timeboard'
 widgets = [{
     'definition': {
         'type': 'timeseries',
         'requests': [
-            {'q': 'avg:my_metric{host:shirleyswork}'}
+            {'q': 'avg:my_metric{host:vagrant}'}
         ],
         'title': 'Average of my custom metric'
     }
@@ -21,7 +21,7 @@ widgets = [{
     'definition': {
         'type': 'timeseries',
         'requests': [
-            {'q': "anomalies(avg:mongodb.asserts{*},'basic',2)"}
+            {'q': "anomalies(avg:mongodb.uptime{*},'basic',2)"}
         ],
         'title': 'Anomalies in MongoDB'
     }
@@ -30,7 +30,7 @@ widgets = [{
     'definition': {
         'type': 'timeseries',
         'requests': [
-            {'q': 'sum:my_metric{host:shirleyswork}.rollup(sum,60)'}
+            {'q': 'sum:my_metric{host:vagrant}.rollup(sum,60)'}
         ],
         'title': 'Roll up sum of metric'
     }

@@ -1,398 +1,245 @@
-## Answers 
+# A Hands-on Introduction to Datadog!
+## About Datadog
+If you've never heard or used the Datadog monitoring tool, this is a great exercise for you to tackle. 
+In this tutorial, I will spin up a VM, sign up for Datadog, and begin using their tools. 
+
+## Setting up your environment
+You can utilize any OS/host that you would like to complete this exercise. However, the Datadog team has recommend one of the following approaches:
+  * You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues.
+  * You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
+
+#### I decided to spin up a VM via Vagrant. I followed the instructions from [here.](https://www.vagrantup.com/intro/getting-started)
+
+## Signing up for Datadog
+Let's sign up for [Datadog](https://www.datadoghq.com/) (use “Datadog Recruiting Candidate” in the “Company” field). Luckily, we can use their 14 day free trial. 
+You'll then follow the steps to install the Datadog agent on your machine. Once that's done we'll be able to get the Agent reporting metrics from your local machine.
+
+## Let's collect some metrics
+After you're done signing up and have the agent installed. You will now go to the Datadog Infrastructure/[Host Map page.](https://docs.datadoghq.com/infrastructure/hostmap/) 
+Here you are able to see your hosts!
+
+1. Now that we have all that set up. Let's add some tags in the Agent config file (/etc/datadog-agent/datadog.yaml) and make sure the tags appear on the Host Map page in Datadog app. 
+
+<img src="Images/Datadog_TaggingConfigFile.png" width="600">
+
+<img src="Images/Datadog_HostsMapTagging1.png" width="600">
+
+2. Now the next step is to install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database! I decided to go with MongoDB.
+  * I first installed MongoDB on my box using the instructions [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+  * I then followed the [instructions for Mongo](https://docs.datadoghq.com/integrations/mongo/) 
+  * I went to the integrations page on the Datadog app and searched for Mongodb
+  * I followed the instructions, created a new user in Mongodb and made a [conf file](mongodb_conf.yaml)
+  * After I made all these changes I restarted the agent: sudo service datadog-agent restart
+
+3. After you're done setting up your database. It's time to do some work! 
+* Let's create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. 
+We can use this [guide](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) to create our new agent.
+The first step is to create our two files (make sure the two have the same name)!
+    * [conf.d/custom_mymetric.yaml](custom_mymetric.yaml)
+    * [checks.d/custom_mymetric.yaml](custom_mymetric.py)
+    
+* Now let's change your check's collection interval so that it only submits the metric once every 45 seconds. 
+    * I imported threading/timer and made changes to my python script [custom_mymetric_45sec.py](custom_mymetric_45sec.py)
+* Bonus Round - Let's change the collection interval without modifying the Python check file we created. 
+    * In order to change the collection interval without modifying the python file you have to [update the custom_mymetric.yaml file](custom_mymetric_45sec.yaml)
+
+In order to check if your metric is working - you can enter "sudo service datadog-agent status".
+<img src="Images/Datadog_MetricCheck.png" width="600">
+
+### WOOHOO! We are done with that section! Now on to the next one!! 
+
+## Let's actually see some data! 
+
+Let's utilize the Datadog API to create a Timeboard!
+
+The first steps to this is installing python, installing the datadog module, and running a command found [here.](https://docs.datadoghq.com/api/) We're also going to use this [documentation](https://docs.datadoghq.com/api/v1/dashboards/) to get an example script to create our timeboard.  
+
+After finishing up will all the pre-requisites, we create the python scripts. 
+
+1. Let's create a timeboard for our custom metric over our Host with a python script
+You can check if your board was created if you check the Dashboard List on the Datadog App. 
+Script: [custom metric scoped over your host](custom_metricavghost.py)
+<img src="Images/DDogMetricOverHost.png" width="600">
 
 
-## 1. Prerequisites - Setup the environment
+2. Any metric from the Integration on your Database (I used [the documentation for MongoDB](https://docs.datadoghq.com/integrations/mongo/)) with the anomaly function applied.
+Script: [custom metric db anomaly](custom_metricdbanomaly.py)
+<img src="Images/DDogAnomalyDB.png" width="600">
 
-**Choose an environment!**
-Decided to spin up a fresh linux VM via Vagrant.
-Then signed up for  Datadog (used “Datadog Recruiting Candidate” in the “Company” field).
-###### Resources used:
-* https://www.vagrantup.com/intro/getting-started
-
-## 2. Collecting Metrics!
-
-**Task: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
-
-###### What is an agent? ######
-* The agent is the software that reports back to the Data Dog tool. 
-
-###### Where is it's config file? ######
-* The config file is the file datadog.yaml in the /etc/datadog-agent folder. 
-
-###### Resources used: 
-* https://docs.datadoghq.com/tagging/assigning_tags/?tab=agentv6v7#configuration-files 
-* https://docs.datadoghq.com/tagging/ 
-
-**Add tags to your agents config file aka datadog.yaml Search for "tags" and add them there.**
-* I added :
-   * staging 
-   * app:Postgres
-
-![](Images/TagConfigFile.png)
-
-**Next! Show a screenshot of your host and its tags on the Host Map page in Datadog to prove you did it!** 
-![](Images/TagsonHost.png)
+3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+Script: [custom Metric Roll Up Sum](custom_metricRollUpSum.py)
+<img src="Images/DDogRollupSum.png" width="600">
 
 
-**Task: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
-* I installed MongoDB and followed the instructions on the Mongodb Integrations set up page.
+4. The whole time board script is [here](TheWholeTimeboard.py)
+<img src="Images/TheWholeTimeboard.png" width="600">
 
-###### Resources used:
-* https://docs.datadoghq.com/integrations/mongo/
-* https://gist.github.com/shimar/13381bce5c5cbeb72d801d74099ba2ec 
+Once this is created, let's access the Dashboard from your Dashboard List in the UI:
 
-After making sure MongoDB was running I proceeded to set up the integration for it following the instructions here: 
-https://app.datadoghq.com/account/settings#integrations/mongodb
+Let's change some settings. Let's set the Timeboard's timeframe to the past 5 minutes. 
 
-First step was creating the Data Dog user to the database!
+<img src="Images/5minGraph.png" width="600">
 
-On MongoDB 3.x or higher, use the createUser command.
+To do this we need to go to each individual graph and edit the time to 5 min. 
 
-```
- db.createUser({
-   "user":"datadog",
-  "pwd": "abc123",
-  "roles" : [
-    {role: 'read', db: 'admin' },
-    {role: 'clusterMonitor', db: 'admin'},
-    {role: 'read', db: 'local' }
-  ]
- })
- ```
+Take a snapshot of this graph and use the @ notation to send it to yourself. 
 
-![](Images/successfullycreatedatadogmongodbuser.png)
+We need to right click on the graph and select "Annotate this graph"
+<img src="Images/annotate.png" width="600">
 
-Second step was to create a new mongo.d/conf.yaml file in the conf.d folder and make the necessary changes to reflect my local servers information:
-![](Images/mangoyaml.png)
-
-I then restarted the agent. 
-
-**Task: Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
-In order for you to create a custom Agent, you need to create two files. 
-
-** Make sure the name of the files are the same in both directories. **
-
-Create /etc/datadog-agent/conf.d/custom_mymetric.yaml containing the following: 
-```
-instances: [{}]
- ```
- and created custom_mymetric.py in /etc/datadog-agent/checks.d containing the following:
- 
- ```
- ## the following try/except block will make the custom check compatible with any Agent version
-try:
-    # first, try to import the base class from new versions of the Agent...
-    from datadog_checks.base import AgentCheck
-except ImportError:
-    # ...if the above failed, the check is running in Agent version < 6.6.0
-    from checks import AgentCheck
-
-# content of the special variable __version__ will be shown in the Agent status page
-__version__ = "1.0.0"
-
-import random 
-
-class HelloCheck(AgentCheck):
-    def check(self, instance):
-        self.gauge('my_metric', random.randrange(0,1000), tags=['TAG_KEY:TAG_VALUE']) 
-```
-        
-**Task: Change your check's collection interval so that it only submits the metric once every 45 seconds.**
-
-```
-init_config:
-instances:
-          - min_collection_interval: 45
-```
-###### Resource used: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
-     
-Bonus Question Can you change the collection interval without modifying the Python check file you created? Edit the yaml file.
-
-
-## 3. Visualizing Data!
-Utilize the Datadog API to create a Timeboard that contains:
-
-Your custom metric scoped over your host.
-
-Check CustomMetricAvgHost.py
-```
-from datadog import initialize, api
-
-options = {
-    'api_key': '**',
-    'app_key': '**'
-}
-
-initialize(**options)
-
-title = 'Avg Custom Metric'
-widgets = [{
-    'definition': {
-        'type': 'timeseries',
-        'requests': [
-            {'q': 'avg:my_metric{host:shirleyswork}'}
-        ],
-        'title': 'Average of my custom metric'
-    }
-}]
-
-layout_type = 'ordered'
-description = 'A dashboard with memory info.'
-is_read_only = True
-notify_list = ['user@domain.com']
-template_variables = [{
-    'name': 'host1',
-    'prefix': 'host',
-    'default': 'my-host'
-}]
-
-saved_views = [{
-    'name': 'Saved views for hostname 2',
-    'template_variables': [{'name': 'host', 'value': '<HOSTNAME_2>'}]}
-]
-
-api.Dashboard.create(title=title,
-                     widgets=widgets,
-                     layout_type=layout_type,
-                     description=description,
-                     is_read_only=is_read_only,
-                     notify_list=notify_list,
-                     template_variables=template_variables,
-                     template_variable_presets=saved_views)
-```
-
-Any metric from the Integration on your Database with the anomaly function applied.
-Check AnyMetricAnomalyOverDB.py
-```
-from datadog import initialize, api
-
-options = {
-    'api_key': '**',
-    'app_key': '**'
-}
-
-initialize(**options)
-
-title = 'Anomalies in MongoDB'
-widgets = [{
-    'definition': {
-        'type': 'timeseries',
-        'requests': [
-            {'q': "anomalies(avg:mongodb.asserts{*},'basic',2)"}
-        ],
-        'title': 'Anomalies in MongoDB'
-    }
-}]
-
-layout_type = 'ordered'
-description = 'A dashboard with memory info.'
-is_read_only = True
-notify_list = ['davila.shirl@gmail.com']
-template_variables = [{
-    'name': 'host1',
-    'prefix': 'host',
-    'default': 'my-host'
-}]
-
-saved_views = [{
-    'name': 'Saved views for hostname 2',
-    'template_variables': [{'name': 'host', 'value': '<HOSTNAME_2>'}]}
-]
-
-api.Dashboard.create(title=title,
-                     widgets=widgets,
-                     layout_type=layout_type,
-                     description=description,
-                     is_read_only=is_read_only,
-                     notify_list=notify_list,
-                     template_variables=template_variables,
-                     template_variable_presets=saved_views)
-```
-                     
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Check rollupsumdashboard.py
-
-```
-from datadog import initialize, api
-
-options = {
-    'api_key': '**',
-    'app_key': '**'
-}
-
-initialize(**options)
-
-title = 'Rollup sum of my metric'
-widgets = [{
-    'definition': {
-        'type': 'timeseries',
-        'requests': [
-            {'q': 'sum:my_metric{host:shirleyswork}.rollup(sum,60)'}
-        ],
-        'title': 'Roll up sum of metric'
-    }
-}]
-
-layout_type = 'ordered'
-description = 'A dashboard with memory info.'
-is_read_only = True
-notify_list = ['davila.shirl@gmail.com']
-template_variables = [{
-    'name': 'host1',
-    'prefix': 'host',
-    'default': 'my-host'
-}]
-
-saved_views = [{
-    'name': 'Saved views for hostname 2',
-    'template_variables': [{'name': 'host', 'value': '<HOSTNAME_2>'}]}
-]
-
-api.Dashboard.create(title=title,
-                     widgets=widgets,
-                     layout_type=layout_type,
-                     description=description,
-                     is_read_only=is_read_only,
-                     notify_list=notify_list,
-                     template_variables=template_variables,
-                     template_variable_presets=saved_views)
-```
-
-******Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.****** 
-* The files are in the repo!
-
-Once this is created, access the Dashboard from your Dashboard List in the UI:
-![](Images/FullDashboard.py)
-
-Set the Timeboard's timeframe to the past 5 minutes
-
-Take a snapshot of this graph and use the @ notation to send it to yourself.
-![](Images/5minFullDashboard.png)
-![](Images/annotate.png)
-![](Images/annotategrapgemail.png)
+<img src="Images/EmailGraph.png" width="600">
 
 Bonus Question: What is the Anomaly graph displaying?
-The anomaly graph is showing what's normal and what's happpening. It helps detect something that deviates from what is standard.
+The Anomaly graph is displaying what's expected in gray based on historical trends and the actual data real time. 
+It detects anything out of the norm!
 
-## 4. Monitoring Data:
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+## Now let's monitor our data! 
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor!
+
+Let's create a  new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 Warning threshold of 500
 Alerting threshold of 800
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-**On the DataDog menu, click on "Manage Monitors"**
-![](Images/ManageMonitors.png)
+We can set that configuration when you're creating the new metric monitor.
 
-**Set up your configuration**
-![](Images/ConfigMonitoring.png)
+<img src="Images/ConfigMetricMonitor.png" width="600">
 
-Please configure the monitor’s message so that it will:
+We will then need to configure our messages so we can schedule email notifications.
 
-**Send you an email whenever the monitor triggers.
-![](Images/EmailSetupMonitoring.png)
+We'll create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
-**Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-![](Images/MonitoringDiffMessage.png)
+<img src="Images/MetricMonitorMessage.png" width="600">
 
-**Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-![](Images/metricvalueandipmonitoring.png)
+We'll include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-**When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-
-**Alert Email**
-![](Images/AlertIPValueMonitoringEmail.png)
-
-**Warn Email**
-![](Images/WarningEmail.png)
-
-**No Data Email**
-![](Images/Nodata.png)
-
-**Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-
-**One that silences it from 7pm to 9am daily on M-F,
-
-Click on "Manage Downtime" when you're on the "Manage Monitors" page 
-![](Images/ScheduleDowntimeConfiguration.png)
-
-**And one that silences it all day on Sat-Sun.
-![](Images/EveryweekendDowntime.png)
-
-Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-
-**After you are done configuring the downtimes. You can see them on the Manage Downtime page. 
-
-![](Images/Downtime.png)
-
-**Downtime Email 7pm-9am Every Day
-
-![](Images/ScheduleDowntimeEmail7pm9am.png)
-
-**Weekends Downtime Email
-
-![](Images/WeekendsDowntimeEmail.png)
-
-Resources:
-* https://docs.datadoghq.com/monitors/notifications/?tab=is_alert
-
-* https://docs.datadoghq.com/monitors/notifications/?tab=is_alert
-
-* https://www.datadoghq.com/blog/mute-datadog-alerts-planned-downtime/
-
-## 5. Collecting APM Data:
-I wasn't able to successfully collect the APM Data. 
-
-This is how far I got: 
-
-Install python, Flask, ddtrace
-
+We can add the trigger and host ip by editing the message and adding: 
 ```
-pip install ddtrace
+{{#is_alert}} Alert! Metric value: {{value}} Threshold exceeding 800! in IP {{host.ip}} {{/is_alert}}
 ```
+<img src="Images/MetricAlertwIp.png" width="600">
 
-Save the flask app FlaskApp.py
+Let's then click on "Test Monitor Notifications" to test all of these alerts and receive the email notifications for each.
 
-Enable Logs in the agents config file (datadog.yaml)
-![](EnableLogsinConfigFile.png)
+<img src="Images/MetricMonitorTesting.png" width="600">
 
-Make a python.d directory in the conf.d directory.
-Make a conf.yaml file in the python.d directory. 
+<img src="Images/AlertEmail.png" width="600">
 
+<img src="Images/NoDataEmail.png" width="600">
+
+<img src="Images/WarningEmail.png" width="600">
+
+### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. So we're going to set up two scheduled downtimes for this monitor:
+
+On the "Manage Monitors" screen, we can click on "Manage Downtime". 
+Once there we can click on "Schedule Downtime" on the right hand side of the screen. 
+
+You can then set the configurations as follows:
+
+One that silences it from 7pm to 9am daily on M-F,
+<img src="Images/DowntimeConfigWeekdays.png" width="600">
+
+And one that silences it all day on Sat-Sun.
+<img src="Images/DowntimeConfigWeekends.png" width="600">
+
+Let's also set up san email notification so that you are  notified when you schedule the downtime by making sure we add the contacts on the "Notify your team" portion. 
+
+Below is a screenshot of these notifications.
+
+<img src="Images/Notifyyourteamconfig.png" width="600">
+
+<img src="Images/DowntimeWeekdaysEmail.png" width="600">
+
+<img src="Images/DowntimeWeekendEmail.png" width="600">
+
+## Let's collect some APM data!
+Given the following Flask app (or any Python/Ruby/Go app of your choice) , let's instrument it using Datadog’s APM solution:
 ```
-init_config:
+from flask import Flask
+import logging
+import sys
 
-instances:
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
 
-logs:
+app = Flask(__name__)
 
-  - type: file
-    path: /var/log/log.log
-    service: flask
-    source: python
-    sourcecategory: sourcecode
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
 ```
 
-Setting up profiling
-export DD_PROFILING_TAGS=env:shirleyswork,service:flask,version:<YOUR_VERSION>
+First step is to save this Flask app. I saved it as flask_app.py.
 
-Flask App Profiling Page
-![](Images/FlaskProfiling.png)
+Let's then follow the instructions from this [page](https://docs.datadoghq.com/getting_started/tracing/).
 
-Running the flask app
-using 
-![](Images/RunningFlaskApp.png)
+1. sudo apt-get install python-pip
+2. pip install flask
+3. pip install ddtrace
 
-Resources used: 
-* https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/
-* https://docs.datadoghq.com/tracing/profiling/?tab=python 
-* https://docs.datadoghq.com/tracing/setup/python/
+Let's also enable apm in the agents config file aka datadog.yaml. 
+```
+apm_config:
+    enabled: true
+```
+and then restart the agent
+```
+sudo service datadog-agent restart
+```
+Now we're ready to run our app!
 
+```DD_SERVICE=Shirley_Flask ddtrace-run python flask_app.py```
 
-## 6. Final Question:
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
-Is there anything creative you would use Datadog for?
+Once we do this, we need to start testing by opening a new terminal window and sending your traces to Datadog using curl. 
 
-I actually just started gardening for the first time and I love it! I find it really rewarding to be able to see my plants grow. I would actually use DataDog to monitor my plants and my gardening plot. I have 5 indoor plants and one big garden plot outside. I would create a dashboard that monitors the Soil Temperature, Ph level, Sunlight, moisture of all my plants. 
-You can actually make this with a raspberry pi, Humidity and Temperature Sensor (dht11),Moisture Sensor, and Luminosity Sensor. I would set up alerts if thresholds fall below the desired level.
+```curl http://0.0.0.0:5050/```
+```curl http://0.0.0.0:5050/api/trace```
+```curl http://0.0.0.0:5050/api/apm```
 
+<img src="Images/Testing_FlaskApp.png" width="600">
+
+Now, we have to give it about 3-5 minutes for it to appear in the Service List page on the UI. 
+
+<img src="Images/Shirley_Flask.png" width="600">
+
+To view a live tail of all the commands you're testing - click on Live tail.
+
+<img src="Images/LiveTailTesting.png" width="600">
+
+If we then click on the service, we can view the graphs detailing everything about that service.
+
+<img src="Images/FlaskAppAllGraphs.png" width="600">
+
+<img src="Images/FlaskAppAllEndpoints.png" width="600">
+
+We can then add those graphs onto our existing timeboard we created earlier, by clicking on the export button and "Export to dashboard"
+
+<img src="Images/DatadogTimeboard_wFlaskApp.png" width="600">
+
+We can then generate a public url by clicking on the gear on the left hand side of your selected dashboard and generate a link. 
+Public URL:[Datadog Dashboard](https://p.datadoghq.com/sb/gj2ioi4cfzha9ar7-c7f213a5d752e37c59b579937902063d)
+
+# We're done!
+
+## Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+## Is there anything creative you would use Datadog for?
+### I actually just started gardening for the first time and I love it! I find it really rewarding to be able to see my plants grow. I would actually use DataDog to monitor my plants and my gardening plot. I have 5 indoor plants and one big garden plot outside. I would create a dashboard that monitors the Soil Temperature, Ph level, Sunlight, moisture of all my plants. You can actually make this with a raspberry pi, Humidity and Temperature Sensor (dht11),Moisture Sensor, and Luminosity Sensor. I would set up alerts if thresholds fall below the desired level. 

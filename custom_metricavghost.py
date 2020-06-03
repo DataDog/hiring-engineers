@@ -1,20 +1,20 @@
 from datadog import initialize, api
 
 options = {
-    'api_key': '**',
-    'app_key': '**'
+    'api_key': 'e22ab28c0cbdef7ac4be4f9bc58927c9',
+    'app_key': 'a4d1692da652f4e1d3fcc3ef8ed4785b68bfa2a5'
 }
 
 initialize(**options)
 
-title = 'Rollup sum of my metric'
+title = 'The Main Dashboard'
 widgets = [{
     'definition': {
         'type': 'timeseries',
         'requests': [
-            {'q': 'sum:my_metric{host:shirleyswork}.rollup(sum,60)'}
+            {'q': 'avg:my_metric{host:shirleyswork}'}
         ],
-        'title': 'Roll up sum of metric'
+        'title': 'Average of my custom metric'
     }
 }]
 
