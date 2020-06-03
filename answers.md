@@ -52,7 +52,7 @@ In order to check if your metric is working - you can enter "sudo service datado
 
 Let's utilize the Datadog API to create a Timeboard that contains:
 
-1. Your custom metric scoped over your host.
+1. Your [custom metric scoped over your host](custom_metricavghost.py) python script
 
 
 
