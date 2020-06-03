@@ -201,3 +201,9 @@ We can then add those graphs onto our existing timeboard we created earlier, by 
 We can then generate a public url by clicking on the gear on the left hand side of your selected dashboard and generate a link. 
 Public URL:[Datadog Dashboard](https://p.datadoghq.com/sb/gj2ioi4cfzha9ar7-c7f213a5d752e37c59b579937902063d)
 
+# We're done!
+
+## Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+## Is there anything creative you would use Datadog for?
+### I actually just started gardening for the first time and I love it! I find it really rewarding to be able to see my plants grow. I would actually use DataDog to monitor my plants and my gardening plot. I have 5 indoor plants and one big garden plot outside. I would create a dashboard that monitors the Soil Temperature, Ph level, Sunlight, moisture of all my plants. You can actually make this with a raspberry pi, Humidity and Temperature Sensor (dht11),Moisture Sensor, and Luminosity Sensor. I would set up alerts if thresholds fall below the desired level. 
