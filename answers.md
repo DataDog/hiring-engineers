@@ -39,6 +39,6 @@ The first step is to create our two files (make sure the two have the same name)
     * [checks.d/custom_mymetric.yaml](custom_mymetric.py)
     
 * Now let's change your check's collection interval so that it only submits the metric once every 45 seconds. 
-    * 
+    * I imported threading/timer and made changes to my python script [custom_mymetric_45sec.py](custom_mymetric_45sec.py)
 * Bonus Round - Let's change the collection interval without modifying the Python check file we created. 
     * In order to change the collection interval without modifying the python file you have to [update the custom_mymetric.yaml file](custom_mymetric_45sec.yaml)
