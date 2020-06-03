@@ -75,9 +75,10 @@ Script: [custom Metric Roll Up Sum](custom_metricRollUpSum.py)
 4. The whole time board script is [here](TheWholeTimeboard.py)
 <img src="Images/TheWholeTimeboard.png" width="600">
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+Once this is created, let's access the Dashboard from your Dashboard List in the UI:
 
-Set the Timeboard's timeframe to the past 5 minutes
+Let's change some settings. Let's set the Timeboard's timeframe to the past 5 minutes.
+To do this we need to go to each individual graph and edit the time to 5 min. 
 <img src="Images/5minGraph.png" width="600">
 
 Take a snapshot of this graph and use the @ notation to send it to yourself.
