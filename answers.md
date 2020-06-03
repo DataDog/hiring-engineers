@@ -23,24 +23,26 @@ Just used `> sudo DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=7b108d7...`  That was smoo
 
 ### Get the Agent Reporting Metrics from your (local) Machine
 
-Successful initial report from DD agent on app.datadoghq.eu webpage, including some custom tags...
-
-![image2](images/image2.png)
+Successful initial report from DD agent on app.datadoghq.eu webpage.
 
 ## Collecting Metrics
 
-Adding tags to the DD Agent config file...
+## Adding tags to the DD Agent config file
 
 `tags:
     - "<p6steve_build>:<1.0>"
     - "<p6steve_url>:<henleycloudconsulting.co.uk>"
     - "<p6steve-ssl>:<on>"`
     
-*rather an unusual yaml format*
+*rather an unusual yaml format!*
+
+## Screenshot of Host with Tags
+
+![image2](images/image2.png)
 
 ## Adding MySQL Integration
 
-Adding user...
+Adding user & validating...
 `mysql: [Warning] Using a password on the command line interface can be insecure.
 Uptime	353341
 Uptime_since_flush_status	353341`
