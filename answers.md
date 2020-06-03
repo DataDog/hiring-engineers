@@ -269,6 +269,8 @@ ________________________________________________________________________________
 
 **Bonus Question: What is the difference between a Service and a Resource?**
 
+>A Service is 
+
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 Please include your fully instrumented app in your submission, as well.
