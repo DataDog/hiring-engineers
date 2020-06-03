@@ -115,6 +115,12 @@ Create different messages based on whether the monitor is in an Alert, Warning, 
 
 Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
+We can add the trigger and host ip by editing the message and adding: 
+```
+{{#is_alert}} Alert! Metric value: {{value}} Threshold exceeding 800! in IP {{host.ip}} {{/is_alert}}
+```
+<img src="Images/MetricAlertwIp.png" width="600">
+
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 We can click on "Test Monitor Notifications" to test all of these alerts.
