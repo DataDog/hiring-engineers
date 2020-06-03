@@ -1,0 +1,40 @@
+{
+    "viz": "timeseries",
+    "requests": [
+        {
+            "q": "avg:my_metric.gauge{host:henleycloudconsulting.co.uk}",
+            "type": "line",
+            "style": {
+                "palette": "dog_classic",
+                "type": "solid",
+                "width": "normal"
+            }
+        },
+        {
+            "q": "anomalies(avg:mysql.innodb.rows_read{host:henleycloudconsulting.co.uk}, 'basic', 1)",
+            "type": "line",
+            "style": {
+                "type": "solid",
+                "width": "normal",
+                "palette": "purple"
+            }
+        },
+        {
+            "q": "sum:my_metric.gauge{host:henleycloudconsulting.co.uk}.rollup(avg, 3600)",
+            "type": "line",
+            "style": {
+                "type": "solid",
+                "width": "normal",
+                "palette": "orange"
+            }
+        }
+    ],
+    "yaxis": {
+        "scale": "linear",
+        "min": "auto",
+        "max": "auto",
+        "includeZero": true,
+        "label": ""
+    },
+    "markers": []
+}
