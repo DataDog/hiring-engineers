@@ -12,7 +12,8 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
   >I set up a Vagrant Ubuntu VM of version 18.04
   
   >Showing the Vagrant host in the Datadog UI:
-    >Vagrant Host 1.png
+  
+  >![VagrantHost1](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Vagrant%20Host%201.png)
       
 ________________________________________________________________________________________________________________
 ## Collecting Metrics:
@@ -20,22 +21,26 @@ ________________________________________________________________________________
 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
   >Showing the Vagrant Tags in the datadog.yaml:
-     >Vagrant Tags.png
+  
+  >![VagrantTags](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Vagrant%20Tags.png)
      
   >Showing the Vagrant Tags in the Datadog UI:
-     >Vagrant Host 2.png   
+  
+  >![VagrantHost2](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Vagrant%20Host%202.png)  
 
 ________________________________________________________________________________________________________________
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
   >I installed a MySQL database and put configured it to communicate with the datadog agent in the conf.yaml within the etc/datadog-agent/conf.d/mysql.d directory
-    >MySQL configuration file.png
+  
+  >![MySQLConfigFile](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/MySQL%20configuration%20file.png)
   
   >I configured a user, set the apporpriate permissions, and validated that the agent was collecting MySQL metrics:
-    >MySQL Users.png
-    >MySQL Permissions.png
-    >MySQL Status.png
-    >MySQL Counters.png
+  
+  >![MySQLUser](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/MySQL%20Users.png)
+  >![MySQLPermissions](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/MySQL%20Permissions.png)
+  >![MySQLStatus](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/MySQL%20Status.png)
+  >![MySQLCounters](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/MySQL%20Counters.png)
 ________________________________________________________________________________________________________________
 - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
@@ -70,7 +75,7 @@ class MetricCheck(AgentCheck):
 
   >I've included screenshots of the custom metric collection status from the Datadog Agent:
   
-  >Custom Metric Status.png
+  >![CustomMetricStatus](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Custom%20Metric%20Status.png)
   
 ________________________________________________________________________________________________________________
 
@@ -92,8 +97,8 @@ ________________________________________________________________________________
 
   >See above for code, below for screenshot of interval on dash:
   
-  >CustomMetric Interval Change 2.png
-  >CustomMetric Interval Change 1.png
+  >![CustChange2](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/CustomMetric%20Interval%20Change%202.png)
+  >![CustChange1](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/CustomMetric%20Interval%20Change%201.png)
 ________________________________________________________________________________________________________________   
 **Bonus Question Can you change the collection interval without modifying the Python check file you created?**
 
@@ -104,13 +109,13 @@ ________________________________________________________________________________
 
 - Your custom metric scoped over your host.
 
-  >CustomMetric Dash.png
+  >![CustDash](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/CustomMetric%20Dash.png)
 
 ________________________________________________________________________________________________________________ 
 - Any metric from the Integration on your Database with the anomaly function applied.
 - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-  >CustomMetricGlobalDash.png
+  >![CustMetGlobalDash](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/CustomMetricGlobalDash.png)
 
 ________________________________________________________________________________________________________________ 
 - Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
@@ -178,7 +183,7 @@ ________________________________________________________________________________
 
 - Set the Timeboard's timeframe to the past 5 minutes
 
-  >CustomMetric Dash over 5 mins.png
+  >![Cust5MinDash](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/CustomMetric%20Dash%20over%205%20mins.png)
 
 ________________________________________________________________________________________________________________ 
 
@@ -186,12 +191,12 @@ ________________________________________________________________________________
 
   >I sent the 5 min interval graph to myself in an email via the @ notation:
   
-  >CustomMetric Sent via at.png
+  >![CustAtMet](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/CustomMetric%20Sent%20via%20at.png)
   
   
   >I also set up a slack integration to be able to send snapshots of these custom dashboards via slack. The example below provides a screenshot of the MySQL anomaly graph sent via Slack:
   
-  >CustomDash Sent via Slack.png
+  >![CustDashSlack](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/CustomDash%20Sent%20via%20Slack.png)
   
 ________________________________________________________________________________________________________________   
 
@@ -209,7 +214,7 @@ ________________________________________________________________________________
 - Alerting threshold of 800
 - And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
->Monitor Thresholds.png
+>![MonitorDashThresh](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Monitor%20Thresholds.png)
 
 ________________________________________________________________________________________________________________  
 
@@ -221,40 +226,39 @@ ________________________________________________________________________________
 
 - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-  >Metric Alert Message.png
+  >![MetAlertMessage](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Metric%20Alert%20Message.png)
 ________________________________________________________________________________________________________________
 
 - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
   >Email notification for no data:
   
-  >No data alert.png
+  >![NoDataAlert](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/No%20data%20alert.png)
   
   >Email notification for warning:
   
-  >Warning Email Alert.png
+  >![WarningEmail](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Warning%20Email%20Alert.png)
   
   >Email notification for alert:
   
-  >High threshold alert.png
+  >![HighThresh](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/High%20threshold%20alert.png)
 
 ________________________________________________________________________________________________________________ 
 **Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:**
 
 - One that silences it from 7pm to 9am daily on M-F,
 
-  >Weekday Downtime Email Alert.png
-  >Weekday Window.png
+  >![WeekdayDowntimeAlert](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Weekday%20Downtime%20Email%20Alert.png)
+  >![WeekdayWindow](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Weekday%20Window.png)
 
 - And one that silences it all day on Sat-Sun.
 
-  >Weekend Downtime Email Alert.png
-  >Weekend Window.png
-  
+  >![WeekendDowntimeAlert](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Weekend%20Downtime%20Email%20Alert.png)
+  >![WeekendWindow](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Weekend%20Window.png)
   
   >I also sent out these notifications via slack:
   
-  >Metric Downtime Slack Alert.png
+  >![MetricDowntimeSlack](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Metric%20Downtime%20Slack%20Alert.png)
 
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
