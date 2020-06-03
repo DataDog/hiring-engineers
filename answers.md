@@ -168,4 +168,32 @@ and then restart the agent
 ```
 sudo service datadog-agent restart
 ```
+Now we're ready to run our app!
+
+```DD_SERVICE=Shirley_Flask ddtrace-run python flask_app.py```
+
+Once we do this, we need to start testing by opening a new terminal window and sending your traces to Datadog using curl. 
+
+```curl http://0.0.0.0:5050/```
+```curl http://0.0.0.0:5050/api/trace```
+```curl http://0.0.0.0:5050/api/apm```
+
+Now, we have to give it about 3-5 minutes for it to appear in the Service List page on the UI. 
+
+AND THEN!
+<img src="Images/Shirley_Flask.png" width="600">
+
+To view a live tail of all the commands you're testing - click on Live tail.
+<img src="Images/LiveTailTesting.png" width="600">
+
+If we then click on the service, we can view the graphs detailing everything about that service.
+
+<img src="Images/FlaskAppAllGraphs.png"width="600">
+<img src="Images/FlaskAppAllEndpoints.png"width="600">
+
+We can then add those graphs onto our existing timeboard we created earlier, by clicking on the export button and "Export to dashboard"
+<img src="Images/DatadogTimeboard_wFlaskApp.png"width="600">
+
+We can then generate a public url by clicking on the gear on the left hand side of your selected dashboard and generate a link. 
+Public URL:[Datadog Dashboard](https://p.datadoghq.com/sb/gj2ioi4cfzha9ar7-c7f213a5d752e37c59b579937902063d)
 
