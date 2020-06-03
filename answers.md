@@ -195,6 +195,7 @@ If we then click on the service, we can view the graphs detailing everything abo
 <img src="Images/FlaskAppAllEndpoints.png" width="600">
 
 We can then add those graphs onto our existing timeboard we created earlier, by clicking on the export button and "Export to dashboard"
+
 <img src="Images/DatadogTimeboard_wFlaskApp.png" width="600">
 
 We can then generate a public url by clicking on the gear on the left hand side of your selected dashboard and generate a link. 
