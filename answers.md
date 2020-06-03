@@ -178,6 +178,8 @@ Once we do this, we need to start testing by opening a new terminal window and s
 ```curl http://0.0.0.0:5050/api/trace```
 ```curl http://0.0.0.0:5050/api/apm```
 
+<img src="Images/Testing_FlaskApp" width="600">
+
 Now, we have to give it about 3-5 minutes for it to appear in the Service List page on the UI. 
 
 <img src="Images/Shirley_Flask.png" width="600">
