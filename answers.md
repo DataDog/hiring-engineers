@@ -54,13 +54,15 @@ Let's utilize the Datadog API to create a Timeboard that contains:
 
 1. Your [custom metric scoped over your host](custom_metricavghost.py) python script
 You can check if your board was created if you check the Dashboard List on the Datadog App. 
-<img src="Images/DataDogAvgMetricOverHost.png" width="600">
+<img src="Images/DDogMetricOverHost.png" width="600">
 
 
 2. Any metric from the Integration on your Database (I used [the documentation for MongoDB](https://docs.datadoghq.com/integrations/mongo/)) with the anomaly function applied.
+<img src="Images/DDogAnomalyDB.png" width="600">
 
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+<img src="Images/DDogRollupSum.png" width="600">
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
