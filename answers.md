@@ -42,3 +42,6 @@ The first step is to create our two files (make sure the two have the same name)
     * I imported threading/timer and made changes to my python script [custom_mymetric_45sec.py](custom_mymetric_45sec.py)
 * Bonus Round - Let's change the collection interval without modifying the Python check file we created. 
     * In order to change the collection interval without modifying the python file you have to [update the custom_mymetric.yaml file](custom_mymetric_45sec.yaml)
+
+In order to check if your metric is working - you can enter "sudo service datadog-agent status".
+<img src="Images/Datadog_MetricCheck.png" width="600">
