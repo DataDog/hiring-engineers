@@ -133,11 +133,21 @@ We can click on "Test Monitor Notifications" to test all of these alerts.
 
 <img src="Images/WarningEmail.png" width="600">
 
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. So we're going to set up two scheduled downtimes for this monitor:
 
 One that silences it from 7pm to 9am daily on M-F,
+<img src="Images/DowntimeConfigWeekdays.png" width="600">
+
 And one that silences it all day on Sat-Sun.
-Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+<img src="Images/DowntimeConfigWeekends.png" width="600">
+
+Let's set up san email notification so that you are  notified when you schedule the downtime. Below is a screenshot of that notification.
+
+<img src="Images/Notifyyourteamconfig.png" width="600">
+
+<img src="Images/DowntimeWeekdaysEmail.png" width="600">
+
+<img src="Images/DowntimeWeekendEmail.png" width="600">
 
 ## Let's collect some APM data!
 Given the following Flask app (or any Python/Ruby/Go app of your choice) , let's instrument it using Datadog’s APM solution:
