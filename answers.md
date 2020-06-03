@@ -11,18 +11,18 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 #### I decided to spin up a VM via Vagrant. I followed the instructions from [here.](https://www.vagrantup.com/intro/getting-started)
 
 ## Signing up for Datadog
-Sign up for [Datadog](https://www.datadoghq.com/) (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
-Once you sign up, you'll follow the steps to install the Datadog agent on your machine.
+Let's sign up for [Datadog](https://www.datadoghq.com/) (use “Datadog Recruiting Candidate” in the “Company” field). Luckily, we can use their 14 day free trial. 
+You'll then follow the steps to install the Datadog agent on your machine. Once that's done we'll be able to get the Agent reporting metrics from your local machine.
 
 ## Let's collect some metrics
 After you're done signing up and have the agent installed. You will now go to the Datadog Infrastructure/[Host Map page.](https://docs.datadoghq.com/infrastructure/hostmap/) 
 Here you are able to see your hosts!
 
-1. Now that we have all that set up. Let's add some tags in the Agent config file (/etc/datadog-agent/datadog.yaml) and make sure the tags appear on the Host Map page in Datadog app. I also went ahead and changed my hostname in the same file to "datadogwork". 
+1. Now that we have all that set up. Let's add some tags in the Agent config file (/etc/datadog-agent/datadog.yaml) and make sure the tags appear on the Host Map page in Datadog app. 
 
 <img src="Images/Datadog_TaggingConfigFile.png" width="600">
 
-<img src="Images/Datadog_HostsMapTagging.png" width="600">
+<img src="Images/Datadog_HostsMapTagging1.png" width="600">
 
 2. Now the next step is to install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database! I decided to go with MongoDB.
   * I first installed MongoDB on my box using the instructions [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
