@@ -26,7 +26,7 @@ Here you are able to see your hosts!
 
 2. Now the next step is to install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database! I decided to go with MongoDB.
   * I first installed MongoDB on my box using the instructions [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
-  * I then followed the [instructions](https://docs.datadoghq.com/integrations/mongo/) 
+  * I then followed the [instructions for Mongo](https://docs.datadoghq.com/integrations/mongo/) 
   * I went to the integrations page on the Datadog app and searched for Mongodb
   * I followed the instructions, created a new user in Mongodb and made a [conf file](mongodb_conf.yaml)
   * After I made all these changes I restarted the agent: sudo service datadog-agent restart
@@ -83,7 +83,9 @@ Let's change some settings. Let's set the Timeboard's timeframe to the past 5 mi
 
 To do this we need to go to each individual graph and edit the time to 5 min. 
 
-Take a snapshot of this graph and use the @ notation to send it to yourself.
+Take a snapshot of this graph and use the @ notation to send it to yourself. 
+
+We need to right click on the graph and select "Annotate this graph"
 <img src="Images/annotate.png" width="600">
 
 <img src="Images/EmailGraph.png" width="600">
