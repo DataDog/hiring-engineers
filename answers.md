@@ -15,5 +15,19 @@ Sign up for [Datadog](https://www.datadoghq.com/) (use “Datadog Recruiting Can
 Once you sign up, you'll follow the steps to install the Datadog agent on your machine. In this case since I'm using Vagrant I'm following the CentOS/Red Hat instructions. 
 
 ## Let's collect some metrics
-After you're done signing up and have the agent installed. You will now go to the Datadog Infrastructure/Host Map page. 
-Here you are able to see 
+After you're done signing up and have the agent installed. You will now go to the Datadog Infrastructure/[Host Map page.](https://docs.datadoghq.com/infrastructure/hostmap/) 
+Here you are able to see your hosts!
+
+1. Now that we have all that set up. Let's add some tags in the Agent config file (/etc/datadog-agent/datadog.yaml) and make sure the tags appear on the Host Map page in Datadog app. I also went ahead and changed my hostname in the same file to "datadogwork". 
+
+<img src="Images/Datadog_TaggingConfigFile.png" width="600">
+
+<img src="Images/Datadog_HostsMapTagging.png" width="600">
+
+2. Now the next step is to install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database! I decided to go with MongoDB.
+  * I first installed MongoDB on my box using the instructions [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+  * I then followed the [instructions](https://docs.datadoghq.com/integrations/mongo/) 
+
+Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+Change your check's collection interval so that it only submits the metric once every 45 seconds.
+Bonus Question Can you change the collection interval without modifying the Python check file you created?
