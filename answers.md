@@ -110,3 +110,12 @@ The collection interval can be modified in the .yaml configuration for each Agen
 ## Visualising Data:
 
 ### DataDog API Timeboard
+
+1. my_metric scoped over host
+2. mysql database metric with anomaly function applied
+3. my_metric with rollup for last hour (average to match y-aexis scale)
+
+Please also see committed file of script my_metric_graph.json
+
+![image4](images/image4.png)
+
