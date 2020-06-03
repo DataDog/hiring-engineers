@@ -19,4 +19,7 @@ Just used > sudo DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=7b108d7...  That was smooth
 
 ![image1](images/image1.png)
 
+## Q1. Get the Aget Reporting Metrics from your (local) Machine
 
+Successful initial report from DD agent on app.datadoghq.eu webpage
+![image2](images/image2.png)
