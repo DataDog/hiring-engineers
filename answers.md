@@ -127,3 +127,5 @@ Please also see committed file of script my_metric_graph.json
 
 2. Take snapshot and sent to myself with @
 
+![image6](images/image6.png)
+
