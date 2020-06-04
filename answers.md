@@ -1,16 +1,12 @@
-Your answers to the questions go here.
-
 # Answers by Stephen Roe
 
-Candidate for Solution Engineer in London
-
-*my hobby github account is p6steve, email is stephen.john.roe@gmail.com*
+Candidate for Solution Engineer in London (stephen.john.roe@gmail.com)
 
 *link to this repo provided by Nick Elwell*
 
 ## Prerequisites
 
-My personal setup...
+My setup...
 
 1. My home laptop is OSX, could spin up Docker on that machine, but...
 2. I already have a LAMP build (Ubuntu 18.04 / Apache2 / mysql / PHP, Python) live on AWS to run Wordpress - so let's instrument that with the DataDog Agent and connect from OSX as client
