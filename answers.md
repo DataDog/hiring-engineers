@@ -139,3 +139,15 @@ For example, anomaly detection can help you discover when your web traffic is un
 
 The red 'blip' on my graph for db rows read happens about once per hour - I think that tis when some internal housekpeeing occurs within mysql. Another explanation is that this is caused by a search engine robot hitting the website.
 
+## Monitoring Data
+
+### New Metric Monitor
+
+*Every 5 mins, different messages for each case, metric value, host IP*
+- Warning threshold of 500
+- Alerting threshold of 800
+- No Data for this query over the past 10m
+
+**Screenshot of Monitor Email**
+
+![image7](images/image7.png)
