@@ -154,4 +154,4 @@ The red 'blip' on my graph for db rows read happens about once per hour - I thin
 
 ![image9](images/image9.png)
 
-
+# WORK IN PROGRESS - COLLECTING APM DATA NEXT 
