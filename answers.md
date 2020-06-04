@@ -105,6 +105,8 @@ ________________________________________________________________________________
   >Yes! In the conf.yaml file for the custom check (code above) you can change the interval
   
 ________________________________________________________________________________________________________________   
+## Visualizing Data:
+
 - Utilize the Datadog API to create a Timeboard that contains:
 
 - Your custom metric scoped over your host.
@@ -206,6 +208,8 @@ ________________________________________________________________________________
 
 ________________________________________________________________________________________________________________  
 
+## Monitoring Data
+
 - Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
 - Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
@@ -273,8 +277,19 @@ ________________________________________________________________________________
 
 **Bonus Question: What is the difference between a Service and a Resource?**
 
->A Service is 
+>Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application. Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job (per https://docs.datadoghq.com/tracing/visualization/).
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+>To me, it seems like resources are the building blocks of services.
 
-Please include your fully instrumented app in your submission, as well.
+- Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+- Please include your fully instrumented app in your submission, as well.
+
+
+## Final Question:
+
+- Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+- Is there anything creative you would use Datadog for?
+
+  >My undergraduate degree is in Biomedical Engineering, and one thing I've always been interested in is prosthetics. My thought is to use Datadog to improve the testing of prosthetics to be more life-like. You could instrument Datadog into digital sensors that are placed on the end of a person's stump, as well as on the same muscles on the other live limb and track the differences in eletrical and neural activity based on different functions that a person performs. AKA - if I wiggle my fingers, what electrical and cognitive actitity happens on my normal limb, and what eletrical activity is generated on my stump if I try and do the same? We can then use that information to feed back into sensors on a prosthetic limb to test out what type of similar electrical activity generates the same type of action. We can use Datadog to record that prosthetic eletrical activity and begin to correlate: if I see this graph of eletrical activity from when the patient tries to wiggle his fingers, how can I correlate that to the electrical activity on the prosthetic limb that is required to make it wiggle its fingers? You can then use some type of regression regression and anomaly analysis to begin to better tune the data; if I have a jump in activity or some particular pattern, does that translate into a thumb or a pinky wiggle? How can I filter out eletrical stimulation that isn't for limb motion? etc.
