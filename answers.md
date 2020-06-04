@@ -119,3 +119,11 @@ Please also see committed file of script my_metric_graph.json
 
 ![image4](images/image4.png)
 
+### Access Dashboard within UI
+
+1. Set timeframe to the past 5 mins
+
+![image5](images/image5.png)
+
+2. Take snapshot and sent to myself with @
+
