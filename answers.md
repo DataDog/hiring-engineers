@@ -129,3 +129,13 @@ Please also see committed file of script my_metric_graph.json
 
 ![image6](images/image6.png)
 
+**Bonus Question:**
+
+Anomaly detection is an algorithmic feature that identifies when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard to monitor with threshold-based alerting.
+
+For example, anomaly detection can help you discover when your web traffic is unusually low on a weekday afternoon—even though that same level of traffic is normal later in the evening. Or consider a metric measuring the number of logins to your steadily-growing site. Because the number increases daily, any threshold would be quickly outdated, whereas anomaly detection can alert you if there is an unexpected drop—potentially indicating an issue with the login system.
+
+**Specifically:**
+
+The red 'blip' on my graph for db rows read happens about once per hour - I think that tis when some internal housekpeeing occurs within mysql. Another explanation is that this is caused by a search engine robot hitting the website.
+
