@@ -271,7 +271,63 @@ ________________________________________________________________________________
 
 ## Collecting APM Data:
 
+>Unfortunately, I was not able to get the APM piece of this flask application up and running. I was able to enable trace metrics and pull those from the Datadog Agent, and I was able to download and install flask and instrument the application, but I was having trouble accessing the endpoint for the flask application and getting it to populate in the Datadog Dashboard.
 
+>I've included a picture of the APM configuration I set up in the datadog.yaml file to connect to the UI, as well as the trace metrics pulled from the Datadog Agent:
+
+>![AgentAPMYaml](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Agent%20Yaml%20APM%20Config.png)
+>![AgentTraceData1](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Agent%20Trace%20Data.png)
+>![AgentTraceData2](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Agent%20Trace%20Data%202.png)
+
+I've included the code used to instrument the flask app as well:
+
+```
+
+from flask import Flask
+import logging
+import sys
+
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+   return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+   return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+   return 'Posting Traces'
+
+if __name__ == '__main__':
+   app.debug = True
+   app.run(host='0.0.0.0', port='5050')
+   
+```
+
+>The flask app ran, but it was unable to be accessed at the http://0.0.0.0 endpoint via port 5050:
+
+>Picture of flask app running using ddtrace:
+
+.![FlaskAppRun](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Flask%20App%20Run.png)
+
+>Unable to connect to flask app endpoint:
+
+>![FlaskError](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Flask%20HTTP%20Error.png)
+
+
+>I included the DEBUG function in the python script and got a number of different error messages, most of which were related to not having specific hooks registered for different modules. As I tried to instrument them, it would create more errors and presumably more dependencies that I was unable to solve under the time constraints.
 
 ________________________________________________________________________________________________________________ 
 
