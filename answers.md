@@ -156,6 +156,6 @@ The red 'blip' on my graph for db rows read happens about once per hour - I thin
 
 *Scheduled downtime*
 
-![image8](images/image8.png)
+![image9](images/image9.png)
 
 
