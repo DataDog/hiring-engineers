@@ -10,6 +10,7 @@ DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=MY_API_KEY bash -c "$(curl -L https://raw.gi
 ```
 
 Here is the agent status metrics:
+
 ![Agent Status](/images/running_agent_vm.png)
 
 ## Collecting Metrics
