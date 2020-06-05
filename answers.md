@@ -119,9 +119,9 @@ instances:
 
 ## Visualizing Data
 Utilize the Datadog API to create a Timeboard that contains:
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+* Your custom metric scoped over your host. [Answer](/images/timeboard_mymetric.png)
+* Any metric from the Integration on your Database with the anomaly function applied. [Answer](/images/timeboard_anomaly.png)
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. [Answer](/images/timeboard_mymetric_rollup.png)
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
