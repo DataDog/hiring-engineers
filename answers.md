@@ -9,6 +9,9 @@ DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=MY_API_KEY bash -c "$(curl -L https://raw.gi
 
 ```
 
+Here is the agent status metrics:
+![Agent Status](/images/running_agent_vm.png)
+
 ## Collecting Metrics
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
