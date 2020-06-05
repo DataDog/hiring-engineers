@@ -3,7 +3,7 @@ Your answers to the questions go here.
 ## Prerequisites - Setup the environment
 The Agent reporting metrics from my local machine (which is using a linux VM vis Vagrant).
 
-I did Setup a Ubuntu agent with this command once I spun up my Vagrant linux VM (Ubuntu):
+I setup a Ubuntu agent with this command once I spun up my Vagrant linux VM (Ubuntu):
 ```
 DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=MY_API_KEY bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
@@ -103,7 +103,8 @@ instances:
 ```
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-Answer: Yes, looking at the documentation (https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) you can change the collection interval of a check, by adjusting min_collection_interval field in the configuration file. A user may be able to add a sleep method in the custom agent check python file, i.e. the one I had was custom_randomcheck.py so I believe you could add a sleep function in there to modify the collection interval. Alternatively, using that min_collection_interval is a nice configuration to be able to manipulate.
+
+**Answer**: Yes, looking at the documentation (https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) you can change the collection interval of a check, by adjusting **min_collection_interval** field in the configuration file. A user may be able to add a sleep method in the custom agent check python file, i.e. the one I had was **custom_randomcheck.py** so I believe you could add a sleep function in there to modify the collection interval. Alternatively, using that min_collection_interval is a nice configuration to be able to manipulate.
 
 ## Visualizing Data
 Utilize the Datadog API to create a Timeboard that contains:
@@ -113,7 +114,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-Answer: This is the timeboard, with all these 3 metrics, I did have one for each that you can view in this zip. For the graph below, I used the log y scale to visualize these metrics a bit clearer because they have different scales.
+**Answer**: This is the timeboard, with all these 3 metrics, I did have one for each that you can view in this zip. For the graph below, I used the log y scale to visualize these metrics a bit clearer because they have different scales.
 
 
 Here’s the JSON script for this timeboard:
@@ -147,18 +148,42 @@ https://gist.github.com/jbrache/7c032d404be26a1f471c7c7d0215d608
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
-* Bonus Question: What is the Anomaly graph displaying?
+
+**Answer**: Below is a screenshot of the email with the timeboard set to the past 5 minutes with my mention.
+
+* **Bonus Question**: What is the Anomaly graph displaying?
+
+**Answer**: The anomaly graph is displaying behavior for a metric which may be abnormal by analyzing the historical data for that metric. It displays what looks normal as well as what looks like anomalies (with red lines). There are some additional settings you can adjust based on the type of algorithm used for tracking trends as well as the ‘bounds’ parameter which allows you to adjust the tolerances.
 
 ## Monitoring Data
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+**Answer**: below are the message conditions
+
+Please configure the monitor’s message so that it will:
+* Send you an email whenever the monitor triggers.
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+**Answer**: Here is the message configuration with this these conditions:
 
 **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 * One that silences it from 7pm to 9am daily on M-F,
+
 * And one that silences it all day on Sat-Sun.
+
 * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+Email notification for Sat-Sun downtime:
 
 ## Collecting APM Data
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
