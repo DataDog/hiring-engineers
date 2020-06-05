@@ -257,7 +257,14 @@ https://gist.github.com/jbrache/ce316dbcb02935da26e58d89394cf012
 "http://127.0.0.1:5050/api/trace"
 ```
 
+The link to this APM and Infrastructure metrics dashboard can be seen here:
+https://app.datadoghq.com/dashboard/puy-qw4-6dv/apm-dashboard?from_ts=1591366562751&live=true&to_ts=1591380962751&tv_mode=false
+
+![APM and Infrastructure Dashboard](/images/apm_infra_dashboard.png)
+
 ## Final Question
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+There's a lot of potential here, thinking along the lines of an IoT device my family has a farm and I recently setup a gate control system that's relatively far away from the main house. This is a gate control system that includes an intercom, video and the ability to open/close the main gate. It's setup with a system long range antenna's to provide network connectivity, but currently I have a hard time understanding when either the power is out or if there's a problem with the internet connection. I see I could potentially drop in a rasberry pi or another type of single board computer remotely and have it send metrics to DataDog to let me know if the system is offline. I could probably capture additiona metrics on weather or not the gate is open or closed, or if someone is at the front gate with a sensor.
