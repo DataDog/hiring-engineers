@@ -21,12 +21,15 @@ tags:
     - os:Ubuntu_18.04.3_LTS
     - candidate-type:SalesEngineer
     - candidate-name:JoseBrache
-
 ```
+![Tags in datadog.yaml](/images/agent_tags.png)
 
 This host map can be seen here: https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=2551253227
 
+![Tags on the Host Map Page](/images/vagrant_host.png)
+
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
 Installed mysql on my ubuntu VM
 ```
 sudo apt install mysql-server
@@ -57,6 +60,8 @@ instances:
 ```
 
 Was able to see the captured metrics in DataDog here: https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=2551253227
+
+![MySQL Metrics on Host Map Page](/images/vagrant_host_mysql.png)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
@@ -92,9 +97,11 @@ class RandomCheck(AgentCheck):
 After restarting the agent, I was able to find this metric being reported, graph shown below with the link here:
 https://app.datadoghq.com/metric/explorer?from_ts=1591331546799&to_ts=1591335146799&live=true&page=0&is_auto=false&tile_size=m&exp_metric=mymetric&exp_agg=avg&exp_row_type=metric
 
+![mymetric in Metrics Explorer](/images/mymetric_explorer.png)
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-I modified the ‘min_configuration_interval’ field in the configuration file, so it looks like this (following these(https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) instructions):
+I added the ‘min_configuration_interval’ field in custom_randomcheck.yaml, so it looks like this (following these(https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) instructions):
 ```
 init_config:
  
@@ -116,6 +123,7 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 
 **Answer**: This is the timeboard, with all these 3 metrics, I did have one for each that you can view in this zip. For the graph below, I used the log y scale to visualize these metrics a bit clearer because they have different scales.
 
+![mymetric in Metrics Explorer](/images/timeboard_with_mymetric_mymetric-rollup_mysql-anomaly.png)
 
 Here’s the JSON script for this timeboard:
 https://gist.github.com/jbrache/7c032d404be26a1f471c7c7d0215d608
@@ -151,6 +159,8 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 **Answer**: Below is a screenshot of the email with the timeboard set to the past 5 minutes with my mention.
 
+![mymetric in Metrics Explorer](/images/timeboard_with_mymetric_mymetric-rollup_mysql-anomaly.png)
+
 * **Bonus Question**: What is the Anomaly graph displaying?
 
 **Answer**: The anomaly graph is displaying behavior for a metric which may be abnormal by analyzing the historical data for that metric. It displays what looks normal as well as what looks like anomalies (with red lines). There are some additional settings you can adjust based on the type of algorithm used for tracking trends as well as the ‘bounds’ parameter which allows you to adjust the tolerances.
@@ -163,6 +173,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 **Answer**: below are the message conditions
+![mymetric monitor conditions](/images/mymetric_monitor_conditions.png)
 
 Please configure the monitor’s message so that it will:
 * Send you an email whenever the monitor triggers.
@@ -171,15 +182,25 @@ Please configure the monitor’s message so that it will:
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 **Answer**: Here is the message configuration with this these conditions:
+![mymetric monitor message config](/images/mymetric_monitor_message.png)
+
+**Answer**: Here is the email notification I received:
+![mymetric monitor email](/images/mymetric_monitor_email_warn.png)
 
 **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 * One that silences it from 7pm to 9am daily on M-F,
+![7pm to 9am daily on M-F](/images/downtime_summary_m-f.png)
 
 * And one that silences it all day on Sat-Sun.
+![Sat-Sun](downtime_summary_s-s.png)
 
 * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+Email notification for M-F downtime:
+![Downtime Email M-F](downtime_m-f.png)
+
 Email notification for Sat-Sun downtime:
+![Downtime Email Sat-Sun](downtime_weekend.png)
 
 ## Collecting APM Data
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
