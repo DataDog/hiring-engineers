@@ -205,11 +205,30 @@ Email notification for Sat-Sun downtime:
 ## Collecting APM Data
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-* **Bonus Question**: What is the difference between a Service and a Resource?
+
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 Please include your fully instrumented app in your submission, as well.
+
+**Answer**:
+* I modified slightly the provided flask app to enable App analytics. The code for this flask app (flask_app.py) is here:
+https://gist.github.com/jbrache/04b914cfb0f6b785756e56a14e34e855
+
+* Next, I started the above [flask app](https://gist.github.com/jbrache/04b914cfb0f6b785756e56a14e34e855) with this command on my VM:
+```
+FLASK_APP=flask_app.py DATADOG_ENV=flask_test DD_RUNTIME_METRICS_ENABLED=true DD_TRACE_ANALYTICS_ENABLED=true ddtrace-run flask run --port=5050 --host=0.0.0.0
+```
+
+* Next, I created another client app that called the resources on the flask app. I called this [call_flask_app.py](https://gist.github.com/jbrache/ce316dbcb02935da26e58d89394cf012). All this python script does is call each resource with a 5 second delay for each. The code for this python script is here, I simply ran this on the same VM while the flask app was running to start getting APM metrics:
+https://gist.github.com/jbrache/ce316dbcb02935da26e58d89394cf012
+
+* **Bonus Question**: What is the difference between a Service and a Resource?
+
+**Answer**: A **service** is a set of processes that accomplish the same job or task, for example a service can be a flask app or a database. A **resource** can be an action for a provided service, like accessing an app endpoint or a query. For example, in the linked flask app service, the resource '/api/trace' may be accessable by a client loading the url:
+```
+"http://127.0.0.1:5050/api/trace"
+```
 
 ## Final Question
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
