@@ -75,8 +75,7 @@ This was in the contents:
 instances: [{}]
 ```
 
-Then created a custom_randomcheck.py in:
-‘/etc/datadog-agent/checks.d’
+Then created a [custom_randomcheck.py](https://gist.github.com/jbrache/a823c37c147c20ceab8afdb521672d43) in: **/etc/datadog-agent/checks.d**
 
 With this code:
 ```python
