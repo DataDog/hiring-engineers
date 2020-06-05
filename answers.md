@@ -159,7 +159,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 **Answer**: Below is a screenshot of the email with the timeboard set to the past 5 minutes with my mention.
 
-![mymetric in Metrics Explorer](/images/datadog_snapshot.png.png)
+![Timeboard email snapshot](/images/datadog_snapshot.png)
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
