@@ -159,7 +159,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 **Answer**: Below is a screenshot of the email with the timeboard set to the past 5 minutes with my mention.
 
-![mymetric in Metrics Explorer](/images/timeboard_with_mymetric_mymetric-rollup_mysql-anomaly.png)
+![mymetric in Metrics Explorer](/images/datadog_snapshot.png.png)
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
@@ -193,14 +193,14 @@ When this monitor sends you an email notification, take a screenshot of the emai
 ![7pm to 9am daily on M-F](/images/downtime_summary_m-f.png)
 
 * And one that silences it all day on Sat-Sun.
-![Sat-Sun](downtime_summary_s-s.png)
+![Sat-Sun](/images/downtime_summary_s-s.png)
 
 * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 Email notification for M-F downtime:
-![Downtime Email M-F](downtime_m-f.png)
+![Downtime Email M-F](/images/downtime_m-f.png)
 
 Email notification for Sat-Sun downtime:
-![Downtime Email Sat-Sun](downtime_weekend.png)
+![Downtime Email Sat-Sun](/images/downtime_weekend.png)
 
 ## Collecting APM Data
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
