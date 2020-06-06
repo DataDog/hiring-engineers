@@ -263,7 +263,7 @@ It's setup with a system of long range antenna connected to the main house for n
 This has been running fairly well but because it's setup in a rural environment I have some challenges understanding when I loose connection, due to a power outage or the antennas themselves have a problem with connectivity. Funny enough the power goes out all the time and growing up you learned to entertain yourself by being outside!
 
 The gate where I would like to track some information is here, you can see the antenna that connects to the main house:
-![Gate Monitoring](/images/antenna_stations.png)
+![Gate Monitoring](/images/gate_antenna.png)
 
 My main issue is that I'm having a hard time tracking when the system goes offline. This is bad because:
 1. You can't see who's at the gate via the security cameras
