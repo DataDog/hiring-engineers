@@ -231,6 +231,11 @@ FLASK_APP=flask_app.py DATADOG_ENV=flask_test DD_RUNTIME_METRICS_ENABLED=true DD
 * Next, I created another client app that called the resources on the flask app. I called this [call_flask_app.py](https://gist.github.com/jbrache/ce316dbcb02935da26e58d89394cf012). All this python script does is call each resource with a 5 second delay for each. The code for this python script is here, I simply ran this on the same VM while the flask app was running to start getting APM metrics:
 https://gist.github.com/jbrache/ce316dbcb02935da26e58d89394cf012
 
+The link to this APM and Infrastructure metrics dashboard can be seen here:
+https://app.datadoghq.com/dashboard/puy-qw4-6dv/apm-dashboard?from_ts=1591366562751&live=true&to_ts=1591380962751&tv_mode=false
+
+![APM and Infrastructure Dashboard](/images/apm_infra_dashboard.png)
+
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
 **Answer**: A **service** is a set of processes that accomplish the same job or task, for example a service can be a flask app or a database. A **resource** can be an action for a provided service, like accessing an app endpoint or a query. For example, in the linked flask app service, the resource '/api/trace' may be accessable by a client loading the url:
@@ -238,14 +243,30 @@ https://gist.github.com/jbrache/ce316dbcb02935da26e58d89394cf012
 "http://127.0.0.1:5050/api/trace"
 ```
 
-The link to this APM and Infrastructure metrics dashboard can be seen here:
-https://app.datadoghq.com/dashboard/puy-qw4-6dv/apm-dashboard?from_ts=1591366562751&live=true&to_ts=1591380962751&tv_mode=false
-
-![APM and Infrastructure Dashboard](/images/apm_infra_dashboard.png)
-
 ## Final Question
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
 
-**Answer**: There's a lot of potential here, thinking along the lines of an IoT device, my family has a farm and I recently setup a gate control system that's relatively far away from the main house. This is a gate control system that includes an intercom, video and the ability to open/close the main gate. It's setup with a system of long range antenna connected to the main house for network connectivity. Currently I have a hard time understanding when either the power is out or if there's a problem with the internet connection. I see I could potentially drop in a rasberry pi or another type of single board computer remotely and have it send metrics to DataDog to let me know if the system is offline. I could probably capture additional metrics on whether the gate is open or closed, or if someone is at the front gate with a sensor.
+**Answer**: There's a lot of potential here, thinking along the lines of an IoT device to monitor the connection to a security system.
+
+My family has a farm and I recently setup a gate control system that's far away from the main house. This is a gate control system that includes:
+* An intercom (It's a SIP intercom setup to call the main house when someone pushes the button)
+* Security video (2 Cameras)
+* The ability to open/close the main gate from the intercom on granted access
+* Antenna to connect to the main house
+* Network switch
+
+It's setup with a system of long range antenna connected to the main house for network connectivity. You can see how these antennas are set up below, the main house (Point A) connects to the gate (Point C) via a relay station (Point B) to avoid trees and hills.
+![Gate Antenna System](/images/antenna_stations.png)
+
+This has been running fairly well but because it's setup in a rural environment I have some challenges understanding when I loose connection, due to a power outage or the antennas themselves have a problem with connectivity. Funny enough the power goes out all the time and growing up you learned to entertain yourself by being outside!
+
+The gate where I would like to track some information is here, you can see the antenna that connects to the main house:
+![Gate Monitoring](/images/antenna_stations.png)
+
+My main issue is that I'm having a hard time tracking when the system goes offline. This is bad because:
+1. You can't see who's at the gate via the security cameras
+2. You can't open/close the main gate from the main house
+
+I'm working on at least fixing the power outage issue by installing a battery backup but there is still the problem if the link between antennas drop (which sadly has happened). After doing this excercise, I realized I could drop in a Raspberry Pi or another type of single board computer at and send metrics to Datadog to let me know if the system is offline! At that point, I should be able to capture a ton of other metrics on whether the gate is open or closed, or if someone is at the front gate with a sensor and send an alert. There's a ton of stuff I could set up to capture data to understand what is happeneing and when someone should manually check it when it's offline.
