@@ -262,11 +262,12 @@ It's setup with a system of long range antenna connected to the main house for n
 
 This has been running fairly well but because it's setup in a rural environment I have some challenges understanding when I loose connection, due to a power outage or the antennas themselves have a problem with connectivity. Funny enough the power goes out all the time and growing up you learned to entertain yourself by being outside!
 
-The gate where I would like to track some information is here, you can see the antenna that connects to the main house:
+The gate (Point C in the image above) where I would like to track some information is here, you can see the antenna that connects to the relay station:
 ![Gate Monitoring](/images/gate_antenna.png)
 
 My main issue is that I'm having a hard time tracking when the system goes offline. This is bad because:
 1. You can't see who's at the gate via the security cameras
 2. You can't open/close the main gate from the main house
+3. The intercom doesn't work, someone at the gate pressing the button would not be able to call the main house
 
 I'm working on at least fixing the power outage issue by installing a battery backup but there is still the problem if the link between antennas drop (which sadly has happened). After doing this excercise, I realized I could drop in a Raspberry Pi or another type of single board computer at and send metrics to Datadog to let me know if the system is offline! At that point, I should be able to capture a ton of other metrics on whether the gate is open or closed, or if someone is at the front gate with a sensor and send an alert. There's a ton of stuff I could set up to capture data to understand what is happeneing and when someone should manually check it when it's offline.
