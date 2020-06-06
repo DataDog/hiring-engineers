@@ -28,7 +28,8 @@ tags:
 ```
 ![Tags in datadog.yaml](/images/agent_tags.png)
 
-This host map can be seen here: https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=2551253227
+This host map can be seen here:
+https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=2551253227
 
 ![Tags on the Host Map Page](/images/vagrant_host.png)
 
@@ -63,7 +64,8 @@ instances:
 
 ```
 
-Was able to see the captured metrics in DataDog here: https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=2551253227
+Was able to see the captured metrics in DataDog here:
+https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=2551253227
 
 ![MySQL Metrics on Host Map Page](/images/vagrant_host_mysql.png)
 
@@ -118,16 +120,16 @@ instances:
 
 ## Visualizing Data
 Utilize the Datadog API to create a Timeboard that contains:
-* Your custom metric scoped over your host. [Answer](/images/timeboard_mymetric.png)
-* Any metric from the Integration on your Database with the anomaly function applied. [Answer](/images/timeboard_anomaly.png)
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. [Answer](/images/timeboard_mymetric_rollup.png)
+* Your custom metric scoped over your host.
+* Any metric from the Integration on your Database with the anomaly function applied.
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-**Answer**: This is the timeboard, with all these 3 metrics, I did have one for each that you can view for each above. For the graph below, I used the log y scale to visualize these metrics a bit clearer because they have different scales. You can find this Dashboard here:
+**Answer**: For the graph view below, I used the log y scale to visualize these metrics a bit clearer because they have different scales. Below is the link to the Dashboard, with all these 3 metrics:
 https://app.datadoghq.com/dashboard/tr8-2j6-8wj/se-candidate-dashboard---via-api?from_ts=1591403007342&live=true&to_ts=1591406607342
 
-Here’s the python script used to create this timeboard (API keys have been revmoved):
+Here’s the python script used to create this Dashboard (API keys have been revmoved):
 https://gist.github.com/jbrache/bd59966d92de9c7aeb3dd15b7f9d197b
 
 ![mymetric in Metrics Explorer](/images/timeboard_with_mymetric_mymetric-rollup_mysql-anomaly.png)
