@@ -257,7 +257,7 @@ My family has a farm and I recently setup a gate control system that's far away 
 * Antenna to connect to the main house
 * Network switch
 
-It's setup with a system of long range antenna connected to the main house for network connectivity. You can see how these antennas are set up below, the main house (Point A) connects to the gate (Point B) via a relay station (Point C) to avoid trees and hills.
+It's setup with a system of long range antennas connected to the main house for network connectivity. You can see how these antennas are set up below, the main house (Point A) connects to the gate (Point B) via a relay station (Point C) to avoid trees and hills.
 
 ![Gate Antenna System](/images/antenna_stations.png)
 
