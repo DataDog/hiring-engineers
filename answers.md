@@ -257,13 +257,13 @@ My family has a farm and I recently setup a gate control system that's far away 
 * Antenna to connect to the main house
 * Network switch
 
-It's setup with a system of long range antenna connected to the main house for network connectivity. You can see how these antennas are set up below, the main house (Point A) connects to the gate (Point C) via a relay station (Point B) to avoid trees and hills.
+It's setup with a system of long range antenna connected to the main house for network connectivity. You can see how these antennas are set up below, the main house (Point A) connects to the gate (Point B) via a relay station (Point C) to avoid trees and hills.
 
 ![Gate Antenna System](/images/antenna_stations.png)
 
 This has been running fairly well but because it's setup in a rural environment I have some challenges understanding when I loose connection, due to a power outage or the antennas themselves have a problem with connectivity. Funny enough the power goes out all the time and growing up you learned to entertain yourself by being outside!
 
-The gate (Point C in the image above) where I would like to track some information is here, you can see the antenna that connects to the relay station:
+The gate (Point B in the image above) where I would like to track some information is here, you can see the antenna that connects to the relay station:
 
 ![Gate Monitoring](/images/gate_antenna.png)
 
