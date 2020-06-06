@@ -29,7 +29,6 @@ tags:
 ![Tags in datadog.yaml](/images/agent_tags.png)
 
 This host map can be seen here:
-
 https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=2551253227
 
 ![Tags on the Host Map Page](/images/vagrant_host.png)
@@ -66,7 +65,6 @@ instances:
 ```
 
 Was able to see the captured metrics in DataDog here:
-
 https://app.datadoghq.com/infrastructure/map?fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=name&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=false&node_type=host&host=2551253227
 
 ![MySQL Metrics on Host Map Page](/images/vagrant_host_mysql.png)
@@ -102,7 +100,6 @@ class RandomCheck(AgentCheck):
 ```
 
 After restarting the agent, I was able to find this metric being reported, graph shown below with the link here:
-
 https://app.datadoghq.com/metric/explorer?from_ts=1591331546799&to_ts=1591335146799&live=true&page=0&is_auto=false&tile_size=m&exp_metric=mymetric&exp_agg=avg&exp_row_type=metric
 
 ![mymetric in Metrics Explorer](/images/mymetric_explorer.png)
@@ -130,11 +127,9 @@ Utilize the Datadog API to create a Timeboard that contains:
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 **Answer**: For the graph view below, I used the log y scale to visualize these metrics a bit clearer because they have different scales. Below is the link to the Dashboard, with all these 3 metrics:
-
 https://app.datadoghq.com/dashboard/tr8-2j6-8wj/se-candidate-dashboard---via-api?from_ts=1591403007342&live=true&to_ts=1591406607342
 
 Here’s the python script used to create this Dashboard (API keys have been revmoved):
-
 https://gist.github.com/jbrache/bd59966d92de9c7aeb3dd15b7f9d197b
 
 ![mymetric in Metrics Explorer](/images/timeboard_with_mymetric_mymetric-rollup_mysql-anomaly.png)
