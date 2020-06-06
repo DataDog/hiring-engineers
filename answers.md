@@ -124,37 +124,13 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-**Answer**: This is the timeboard, with all these 3 metrics, I did have one for each that you can view in this zip. For the graph below, I used the log y scale to visualize these metrics a bit clearer because they have different scales.
+**Answer**: This is the timeboard, with all these 3 metrics, I did have one for each that you can view for each above. For the graph below, I used the log y scale to visualize these metrics a bit clearer because they have different scales. You can find this Dashboard here:
+https://app.datadoghq.com/dashboard/tr8-2j6-8wj/se-candidate-dashboard---via-api?from_ts=1591403007342&live=true&to_ts=1591406607342
+
+Here’s the python script used to create this timeboard (API keys have been revmoved):
+https://gist.github.com/jbrache/bd59966d92de9c7aeb3dd15b7f9d197b
 
 ![mymetric in Metrics Explorer](/images/timeboard_with_mymetric_mymetric-rollup_mysql-anomaly.png)
-
-Here’s the JSON script for this timeboard:
-https://gist.github.com/jbrache/7c032d404be26a1f471c7c7d0215d608
-```json
-{
-    "viz": "timeseries",
-    "requests": [
-        {
-            "q": "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2), avg:mymetric{*}, avg:mymetric{*}.rollup(sum, 3600)",
-            "type": "line",
-            "style": {
-                "palette": "dog_classic",
-                "type": "solid",
-                "width": "normal"
-            }
-        }
-    ],
-    "yaxis": {
-        "max": "auto",
-        "scale": "log",
-        "min": "auto",
-        "label": "",
-        "includeZero": true
-    },
-    "markers": []
-}
-
-```
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 * Set the Timeboard's timeframe to the past 5 minutes
