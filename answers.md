@@ -160,6 +160,13 @@ Need to install Flask on my Ubuntu machine... try it with a simple hello world- 
 
 ![image10](images/image10.png)
 
-pip3 install ddtrace
+Checking out the datadog blog - good post on Flask https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/, so...
+1. pip3 install ddtrace
+2. FLASK_APP=sample_app.py DATADOG_ENV=flask_test ddtrace-run flask run --port=5050
+3. curl 127.0.0.1:5050  => Entrypoint to the Application
+4. curl 127.0.0.1:5050/api/apm => Getting APM Started
+5. curl 127.0.0.1:5050/api/trace => Posting Traces
+
+![image11](images/image11.png)
 
 
