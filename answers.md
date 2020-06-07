@@ -201,5 +201,5 @@ A. I think it would be interesting to use DataDog to Monitor service utilization
 Customers could then use DataDog to monitor their spend for a collection of services across all delivery modes (dedicated, virtual servers, containers, microservices, etc), for example:
 - verify cloud vendor billing and negotiate discounts
 - compare delivery modes for optimum economic 'bang for the buck'
-- set thresholds to change mode - e.g. from reserved to spot capacity
+- set thresholds to alert on change mode events - e.g. from reserved to spot capacity
 - analyze comparative cost vs service levels for each vendor and move capacity to the lowest cost option
