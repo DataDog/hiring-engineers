@@ -196,7 +196,7 @@ A. I think it would be interesting to use DataDog to Monitor service utilization
 - build a service to encapsulate the AWS Price List Service [API](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/using-pelong.html) and similar from Azure & Google
 - define some introspection classes/methods for each of my services such as get-my-service-type (e.g. ec2/eu-west-2a/t2.micro) and get-my-service-metrics (e.g. %-utilization for EC2 / memory use for EBS / number of API calls for lambda)
 - define economic metrics for each of my services such as $$$/hour
-- define a wiring template for each service type (EC2, FarGate, Lambda and so on) that goes (i) my-service-type => (ii) my-rate & my-metric => (iii) my $$$/hour
+- define a wiring template for each service type (EC2, FarGate, Lambda and so on) that goes (i) my-service-type => (ii) my-rate & my-metric => (iii) my $$$/hour as a common & comparable DataDog metric
 
 Customers could then use DataDog to monitor their spend for a collection of services across all delivery modes (dedicated, virtual servers, containers, microservices, etc), for example:
 - verify cloud vendor billing and negotiate discounts
