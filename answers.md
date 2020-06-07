@@ -135,7 +135,7 @@ For example, anomaly detection can help you discover when your web traffic is un
 
 The red 'blip' on my graph for db rows read happens about once per hour - I think that tis when some internal housekpeeing occurs within mysql. Another explanation is that this is caused by a search engine robot hitting the website.
 
-## Monitoring Data
+## Monitoring Data:
 
 ### New Metric Monitor
 
@@ -154,7 +154,7 @@ The red 'blip' on my graph for db rows read happens about once per hour - I thin
 
 ![image9](images/image9.png)
 
-# Collecting APM Data
+# Collecting APM Data:
 
 Need to install Flask on my Ubuntu machine... try it with a simple hello world- OK
 
