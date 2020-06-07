@@ -169,9 +169,23 @@ Checking out the datadog blog - good post on Flask https://www.datadoghq.com/blo
 
 ![image11](images/image11.png)
 
-Looks like my server is playing ball - let's check out the DataDog APM dashboard...
+Looks like my server is playing ball - let's get the example Flask app provided up and running and graft in the trace instrumentation (also see __init__.py committed file)...
 
-![image12](images/image12.png)
+![image14](images/image14.png)
+
+Now let's check out the DataDog APM dashboard... looking good (hit with curl a few times)
+
+![image13](images/image13.png)
+
+## Link and Screenshot of a Dashboard with both APM and Infrastructure
+
+https://p.datadoghq.eu/sb/0p0dpzq0x0wk0gc8-abda7300c45a3155679fabb26c18c4e6 (live data on Sunday 7th une 2020 at 15:15)
+
+![image15](images/image15.png)
+
+
+
+
 
 ## Bonus Question
 
