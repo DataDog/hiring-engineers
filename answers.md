@@ -198,7 +198,7 @@ A. I think it would be interesting to use DataDog to Monitor service utilization
 - define economic metrics for each of my services such as $$$/hour
 - define a wiring template for each service type (EC2, FarGate, Lambda and so on) that goes (i) my-service-type => (ii) my-rate & my-metric => (iii) my $$$/hour as a common & comparable DataDog metric
 
-Customers could then use DataDog to monitor their spend for a collection of services across all delivery modes (dedicated, virtual servers, containers, microservices, etc), for example:
+Customers could then use DataDog to monitor their spend for a collection of services across all delivery modes (dedicated, virtual servers, containers, microservices, etc), for example they could then:
 - verify cloud vendor billing and negotiate discounts
 - compare delivery modes for optimum economic 'bang for the buck'
 - set thresholds to alert on change mode events - e.g. from reserved to spot capacity
