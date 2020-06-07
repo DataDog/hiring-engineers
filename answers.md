@@ -175,6 +175,5 @@ Looks like my server is playing ball - let's check out the DataDog APM dashboard
 
 ## Bonus Question
 
-Found useful DataDog glossary here https://docs.datadoghq.com/tracing/visualization/#services
-- Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
-- Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
+- A service is a set of processes that do the same job - for example a web framework or database.
+- A resource is a particular action for a given service (typically an individual endpoint or query). 
