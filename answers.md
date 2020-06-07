@@ -169,4 +169,6 @@ Checking out the datadog blog - good post on Flask https://www.datadoghq.com/blo
 
 ![image11](images/image11.png)
 
+Looks like my server is playing ball - let's check out the DataDog APM dashboard...
 
+![image12](images/image12.png)
