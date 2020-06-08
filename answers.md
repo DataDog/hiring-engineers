@@ -143,15 +143,15 @@ if name == 'main': app.run(host='134.122.123.208')
 
 Yes, you can just edit the .yaml file. Alternatively you can edit it from the metrics summary page.
 
-## What is the Anomaly graph displaying? Monitoring Data
+## What is the Anomaly graph displaying?
 
 On the graph, the Anomaly will show any deviation o based on previous collected metrics. This could be a good graph for identifying inconsistencies or having a different behavior than expected.
 
-## Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+## Can you schedule downtime for alerts if you don’t want to be alerted when you are out of the office?
 
-One that silences it from 7pm to 9am daily on M-F, And one that silences it all day on Sat-Sun. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+Yes, you can set alerts that silence at any time. For me, I have one that silences it from 7pm to 9am daily on M-F, And one that silences it all day on Sat-Sun. 
 
-I went into the GUI to make these changes and then sent in a screen shot.
+I went into the GUI to make these changes and you can see an example in my my uploads.
 
 ## What is the difference between a Service and a Resource?
 
