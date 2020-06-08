@@ -1,6 +1,6 @@
 # Datadog Set up for first time users
 
-For those ofyou who may be new Datadog, Datadog is a monitoring service for cloud-scale applications, providing monitoring of servers, databases, tools, and services, through a SaaS-based data analytics platform. From infrastructure to apps, Datadog provides observability on any platform.
+For those of you who may be new Datadog, Datadog is a monitoring service for cloud-scale applications, providing monitoring of servers, databases, tools, and services, through a SaaS-based data analytics platform. From infrastructure to apps, Datadog provides observability on any platform.
 
 Below you will find a step - by - step guide for setting up DataDog and taking you through certain excercises for an Ubuntu instances. Enjoy and let me know if you have any questions.
 
