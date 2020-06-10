@@ -1,0 +1,83 @@
+{
+    "title": "tech exercise dashboard",
+    "widgets": [
+        {
+            "definition": {
+                "type": "note",
+                "content": "3 graphs visualizing:\n\n* `postgresql.commits` metrics from _Postgres_  - anomalies\n* custom metric `my_check` \n    *  scoped by host\n    *  data rolled up by the hour\n\nBonus: alert graph visualizing the monitor",
+                "background_color": "yellow"
+            }
+        },
+        {
+            "definition": {
+                "title": "Postgres commits [txs/s] - anomalies",
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(max:postgresql.commits{*}, 'basic', 2)"
+                    }
+                ]
+            }
+        },
+        {
+            "definition": {
+                "title": "custom metric: `my_check`",
+                "type": "group",
+                "layout_type": "ordered",
+                "widgets": [
+                  {
+                      "definition": {
+                          "title": "scoped over my host",
+                          "type": "timeseries",
+                          "requests": [
+                              {
+                                  "q": "avg:my_check{host:MacBook-Pro.local}",
+                                  "style": {
+                                    "palette": "green",
+                                    "line_type": "dashed"
+                                  }
+                              }
+                          ],
+                          "markers": [
+                              {
+                                  "value": "y = 800",
+                                  "label": " alert > 800 "
+                              },
+                              {
+                                  "value": "y = 500",
+                                  "label": " warning > 500 "
+                              }
+                          ]
+                      }
+                  },
+                  {
+                      "definition": {
+                        "title": "data rolled up by the hour",
+                        "type": "timeseries",
+                        "requests": [
+                            {
+                                "q": "avg:my_check{host:MacBook-Pro.local}.rollup(avg, 3600)",
+                                "display_type": "bars",
+                                "style": {
+                                    "palette": "orange"
+                                }
+                            }
+                        ]
+                      }
+                  },
+                  {
+                      "definition": {
+                          "type": "alert_graph",
+                          "title": "Monitor: 'my_check' value too high",
+                          "alert_id": "169419",
+                          "viz_type": "timeseries"
+                      }
+                  }
+                ]
+            }
+        }
+    ],
+    "layout_type": "ordered",
+    "description": "generated via API",
+    "is_read_only": false
+}
