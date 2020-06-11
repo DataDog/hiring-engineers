@@ -127,8 +127,8 @@ ________________________________________________________________________________
 from datadog import initialize, api
 
 options = {
-         'api_key': '5339cb2233282c327d3450f5e9c48c41',
-         'app_key': '0d38c97a515286c329dde6b903636590ed3cd6f6'
+         'api_key': *removed for exercise*,
+         'app_key': *removed for exercise*
          }
 
 initialize(**options)
