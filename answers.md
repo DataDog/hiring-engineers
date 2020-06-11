@@ -38,7 +38,7 @@ I quickly ran a the status check below, just to make sure everything was running
 ### 1. "Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog."
 
 I took a quick read on the following link: [Datadog Tagging](https://docs.datadoghq.com/tagging/)
-q
+
 So, to do this I had to change the yaml file, so I got the file path from the status command I ran above, /etc/datadog-agent/datadog.yaml once I had this, I ran the below command to get change the yaml file. I changed the hostname and tags. 
 ```
 sudo vim /etc/datadog-agent/datadog.yaml 
@@ -56,6 +56,7 @@ Once this was done, we have to restart the agent with the below command and wait
  "sudo service datadog-agent restart"
  ```
   [Datadog yaml file](https://imgur.com/T9cJkpY)
+  
   [Datadog host map](https://imgur.com/6cbVh2C)
 
 
@@ -529,43 +530,43 @@ I could have done it through the UI, but I don't think that was the point of the
 
 This was one of the easiest sections of the assessment. I went to the monitors section on the Datadog page and selected "New Monitor" then clicked Metric and selected "my_metric"
 
-https://app.datadoghq.com/monitors#/create
+[Datadog Create a Monitor[(https://app.datadoghq.com/monitors#/create)
 
-So, we can see the requirements of the new metric monitor are to be 
+So, we can see the requirements of the new metric monitor are to be:
 
-    Warning threshold of 500
-    Alerting threshold of 800
-    And also ensure that it will notify you if there is No Data for this query over the past 10m.
-    Send you an email whenever the monitor triggers.
-    Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-    When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+1. Warning threshold of 500
+2. Alerting threshold of 800
+3. And also ensure that it will notify you if there is No Data for this query over the past 10m.
+4. Send you an email whenever the monitor triggers.
+5. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+6. When this monitor sends you an email notification, take a screenshot of the email that it sends you.
   
 So input the requirements for the monitoring. It's easy to follow and you can see the images below
 
-  https://imgur.com/FuTFlat [monitor1]
-  https://imgur.com/TWnJKqV [monitor2]
-  https://imgur.com/TWnJKqV [monitor3]
-  https://imgur.com/5nVKY0h[monitor4]
+  1. [monitor1](https://imgur.com/FuTFlat)
+  2. [monitor2](https://imgur.com/TWnJKqV)
+  3. [monitor3](https://imgur.com/TWnJKqV)
+  4. [monitor4](https://imgur.com/5nVKY0h)
  
+### Email alerts
+Here are the alert emails I received:
+ 1. [monitorEmail](https://imgur.com/0iEKQ0V)
+ 2. [No data email](https://imgur.com/a/1YSuASb)
 
-Here is the alert email I received:
-  https://imgur.com/0iEKQ0V [monitorEmail]
-  https://imgur.com/a/1YSuASb [No data email]
 
+I then scheduled the downtime from 7pm to 9am daily on Monday to Friday and then one that silences it on the weekend by clicking the schedule downtime button near the top. You can also go to setup down time by the following link: [Datadog Downtime](https://app.datadoghq.eu/monitors#/downtime)
 
-I then scheduled the downtime from 7pm to 9am daily on Monday to Friday and then one that silences it on the weekend by clicking the schedule downtime button near the top. You can also go to setup down time by the following link: https://app.datadoghq.eu/monitors#/downtime
-
- https://imgur.com/tHivZmn [monitorDowntimeWeekday]
+[monitorDowntimeWeekday](https://imgur.com/tHivZmn)
  I had an issue with setting the downtime to midnight on a Sunday, it threw an error https://imgur.com/2KCD8Dy
  So, I just changed it to after the current time and let it run for Saturday and Sunday
- https://imgur.com/jyykAA4 [monitorDowntimeWeekend]
+[monitorDowntimeWeekend](https://imgur.com/jyykAA4)
  On Monday I was able to change it back to midnight. 
- https://imgur.com/a/1UVYfcj [Bug_fixed] ##must be an error that won't let you change the  time to set an alert before the current time.
+[Bug_fixed](https://imgur.com/a/1UVYfcj) There must be an error that won't let you change the  time to set an alert before the current time.
 
 Here were the emails I received after doing so:
 
- https://imgur.com/CBuV0aQ [monitorDowntime] UTC is an hour behind GMT, so it reads 6 to 8
- https://imgur.com/a/1UVYfcj[monitorDowntime2]Same as above, but it reads 11pm UTC
+[monitorDowntime](https://imgur.com/CBuV0aQ) UTC is an hour behind GMT, so it reads 6 to 8
+[monitorDowntime2](https://imgur.com/a/1UVYfcj) Same as above, but it reads 11pm UTC
 
 
 
@@ -573,8 +574,12 @@ Here were the emails I received after doing so:
 ## Collecting APM Data
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-First, I needed to install ddtrace. I did this by using pip and the following command: `sudo pip3 install --upgrade ddtrace` It gave me an error, so I had to run through a few steps just to install ddtrace.
-
+First, I needed to install ddtrace. I did this by using pip and the following command: 
+```
+`sudo pip3 install --upgrade ddtrace` 
+```
+It gave me an error, so I had to run through a few steps just to install ddtrace.
+```
 sudo pip3 install --upgrade ddtrace
 The directory '/home/vagrant/.cache/pip/http' or its parent directory is not owned by the current user and the cache has been disabled. Please check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
 The directory '/home/vagrant/.cache/pip' or its parent directory is not owned by the current user and caching wheels has been disabled. check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
@@ -590,12 +595,14 @@ Collecting ddtrace
     
     ----------------------------------------
 Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-build-tdx86tk0/ddtrace/
-
+```
 So, I read that I had to run the below command to upgrade pip
-
+```
 "sudo pip3 install --upgrade pip"
-
-I then ran  "sudo pip3 install --upgrade ddtrace"
+```
+I then ran  
+```
+"sudo pip3 install --upgrade ddtrace"
 
 WARNING: The directory '/home/vagrant/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
 Collecting ddtrace
@@ -606,30 +613,33 @@ Collecting msgpack>=0.5.0
      |████████████████████████████████| 274 kB 8.5 MB/s 
 Installing collected packages: msgpack, ddtrace
 Successfully installed ddtrace-0.38.1 msgpack-1.0.0
-
+```
 So now that is installed, I can move onto the next part.
 
 I wanted to read more into Flask, so I looked in the following pages: 
-https://flask.palletsprojects.com/en/1.1.x/installation/#install-create-env
-https://flask.palletsprojects.com/en/1.1.x/quickstart/
+[Flask Install](https://flask.palletsprojects.com/en/1.1.x/installation/#install-create-env)
+[Flask Quickstart](https://flask.palletsprojects.com/en/1.1.x/quickstart/)
 
-      I ran a few of the commands below to setup a virtual environment
-      vagrant@vagrant:~$ mkdir myprojectdatadog
-      vagrant@vagrant:~$  cd myprojectdatadog
-      vagrant@vagrant:~/myprojectdatadog$ python3 -m venv venv
-      vagrant@vagrant:~/myprojectdatadog$ . venv/bin/activate
-      (venv) vagrant@vagrant:~/myprojectdatadog$  pip3 install Flask
-  So now I see Flask is installed I want to do a version check. 
+I ran a few of the commands below to setup a virtual environment
+```
+vagrant@vagrant:~$ mkdir myprojectdatadog
+vagrant@vagrant:~$  cd myprojectdatadog
+vagrant@vagrant:~/myprojectdatadog$ python3 -m venv venv
+vagrant@vagrant:~/myprojectdatadog$ . venv/bin/activate
+(venv) vagrant@vagrant:~/myprojectdatadog$  pip3 install Flask
+So now I see Flask is installed I want to do a version check. 
   
       (venv) vagrant@vagrant:~/myprojectdatadog$ flask --version
        Python 3.6.9
        Flask 1.1.2
        Werkzeug 1.0.1
-       
-I create my python file and copy the code provided into it. 
+```
 
+I create my python file and copy the code provided into it. 
+```
       sudo vim my_flaskapp.py
-      
+```
+```
       ## Python code
 from flask import Flask
 import logging
@@ -659,61 +669,76 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
-    
-    ###
-      
+```    
+
+```      
     (venv) vagrant@vagrant:~/myprojectdatadog$  export FLASK_APP=my_flaskapp.py
     (venv) vagrant@vagrant:~/myprojectdatadog$ flask run
+```
 
 I get this below error, so I have a quick search how to fix this. 
+```
 WARNING: This is a development server. Do not use it in a production deployment.
-
+```
 I ran the below to enable change it to prod. 
-
+```
     (venv) vagrant@vagrant:~/myprojectdatadog$ export FLASK_ENV=development
+```
 I then run flask with the below:    
-
+```
     (venv) vagrant@vagrant:~/myprojectdatadog$ flask run
-    
+```
+
 The above command returns this error 
-
+```
     OSError: [Errno 98] Address already in use
-So, I run the below based on this documentation: https://medium.com/@tessywangari05/oserror-errno-98-address-already-in-use-flask-error-ccbff65e2bb5
+```
 
-      (venv) vagrant@vagrant:~/myprojectdatadog$  ps -fA | grep flask
-    vagrant  16433  1630  0 14:31 pts/0    00:00:00 grep --color=auto flask
-    (venv) vagrant@vagrant:~/myprojectdatadog$ kill 1630 ## PID from above
-    (venv) vagrant@vagrant:~/myprojectdatadog$ flask run
-     * Serving Flask app "my_flaskapp.py" (lazy loading)
-     * Environment: development
-     * Debug mode: on
-     * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-    2020-06-08 14:32:52,321 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-     * Restarting with stat
-    2020-06-08 14:32:52,326 - werkzeug - INFO -  * Restarting with stat
-     * Debugger is active!
-     * Debugger PIN: 993-124-556
-    2020-06-08 14:32:52,520 - werkzeug - INFO -  * Debugger PIN: 993-124-556
+So, I run the below based on this documentation: [Flask Errno 98](https://medium.com/@tessywangari05/oserror-errno-98-address-already-in-use-flask-error-ccbff65e2bb5)
+```
+(venv) vagrant@vagrant:~/myprojectdatadog$  ps -fA | grep flask
+vagrant  16433  1630  0 14:31 pts/0    00:00:00 grep --color=auto flask
+(venv) vagrant@vagrant:~/myprojectdatadog$ kill 1630 ## PID from above
+(venv) vagrant@vagrant:~/myprojectdatadog$ flask run
+* Serving Flask app "my_flaskapp.py" (lazy loading)
+* Environment: development
+* Debug mode: on
+* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2020-06-08 14:32:52,321 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+* Restarting with stat
+2020-06-08 14:32:52,326 - werkzeug - INFO -  * Restarting with stat
+* Debugger is active!
+* Debugger PIN: 993-124-556
+2020-06-08 14:32:52,520 - werkzeug - INFO -  * Debugger PIN: 993-124-556
+```
 
 I tried to run the below commands to see if I could see what was happening. 
-
+```
       lsof -i :5050
       netstat -tulpn
       netstat -van | grep 8126.
-      
-I couldn't figure out what had happened so, I decided to go back and try install the DD-trace recommended on https://docs.datadoghq.com/tracing/setup/python/
+```
 
+I couldn't figure out what had happened so, I decided to go back and try install the DD-trace recommended on [Datadog Tracing](https://docs.datadoghq.com/tracing/setup/python/)
+```
 (venv) vagrant@vagrant:/etc/datadog-agent/conf.d$ sudo pip3 install --upgrade pip
 (venv) vagrant@vagrant:~/myprojectdatadog$ sudo pip3 install --upgrade ddtrace
+```
 
-I added the below from the https://github.com/DataDog/dd-trace-py/blob/master/ddtrace/opentracer/tracer.py to my_flaskapp.py
+I added the below from the [Datadog Tracer code python](https://github.com/DataDog/dd-trace-py/blob/master/ddtrace/opentracer/tracer.py) to my_flaskapp.py
 
+#### Python code - Import DDTrace
+```
 import ddtrace
 from ddtrace import Tracer as DatadogTracer
+```
 
-Then I ran the  ddtrace-run python3 my_flaskapp.py
-
-## errors when running my flask app with DDtrace
+Then I ran the below command;
+```
+ddtrace-run python3 my_flaskapp.py
+```
+#### Errors when running my flask app with DDtrace
+```
 (venv) vagrant@vagrant:~/myprojectdatadog$ ddtrace-run python3 my_flaskapp.py
    2020-06-08 14:52:25,913 DEBUG [ddtrace.internal.import_hooks] [import_hooks.py:136] - No hooks registered for module 'jinja2.ext'
 2020-06-08 14:52:25,913 - ddtrace.internal.import_hooks - DEBUG - No hooks registered for module 'jinja2.ext'
@@ -732,8 +757,7 @@ Then I ran the  ddtrace-run python3 my_flaskapp.py
 2020-06-08 14:52:26,166 - werkzeug - INFO -  * Debugger PIN: 206-210-676
 ^C2020-06-08 14:52:30,880 DEBUG [ddtrace._worker] [_worker.py:58] - Stopping AgentWriter thread
 2020-06-08 14:52:30,880 - ddtrace._worker - DEBUG - Stopping AgentWriter thread
-
-##
+```
 
 I tried to do this outside the test env I setup and did all the same steps to install flask, ddtrace and ddtrace[profiling]
 
@@ -742,7 +766,7 @@ It still came back with the same error codes as above.
 I wasn't able to take this any further, so I decided that I'd try show you what code I had added to the my_flaskapp.py
 
 ### My_flaskapp.py code
-
+```
 from flask import Flask
 import logging
 import sys
@@ -774,17 +798,16 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
-
-###
-
+```
 
 #### Additional Documentation I used to try help me in this section
-[APM Documentation](https://docs.datadoghq.com/tracing/)  
-https://docs.datadoghq.com/tracing/setup/python/ 
-[Setup APM YouTube](https://www.youtube.com/watch?v=faoR5M-BaSw)  
-[Additional docs] (https://datadogpy.readthedocs.io/en/latest/)
+1. [Datadog APM Documentation](https://docs.datadoghq.com/tracing/)  
+2. [Datadog Python Tracing Setup](https://docs.datadoghq.com/tracing/setup/python/)
+3. [Setup APM YouTube](https://www.youtube.com/watch?v=faoR5M-BaSw)  
+4. [Additional docs](https://datadogpy.readthedocs.io/en/latest/)
 
-I used the below to try solve the issues with flask and the python app
+#### I used the below to try solve the issues with flask and the python app
+
 [Datadog Trace Client](http://pypi.datadoghq.com/trace/docs/#get-started)  
 [Tracing Setup](https://docs.datadoghq.com/tracing/setup/python/)  
 [DatadogAgent](https://github.com/DataDog/datadog-agent)  
@@ -793,7 +816,7 @@ I used the below to try solve the issues with flask and the python app
 [pyddprofile]http://pypi.datadoghq.com/trace/docs/basic_usage.html#basic-usage
 [jinga] https://jinja.palletsprojects.com/en/2.11.x/intro/
 
-Bonus question: What is the difference between a Service and a Resource?
+### Bonus question: What is the difference between a Service and a Resource?
 
 A service is a set of processes that provide a feature set. 
 "A service is a set of processes that do the same job." Some examples include webapp, admin, and query. 
@@ -805,26 +828,26 @@ The below link was useful for explaining and giving examples.
 
 ## Creative use for Datadog
 
-I'm just after finishing the F1 documentary on Netflix and I think Motorsport and F1 in particular would be a great use for Datadog. The average F1 car on a race weekend can produce half a terabyte of data. With the margin of victory being measured in thousandths of a second, rapid processing and analysis of data is key to victory. 
+I have just finished the F1 documentary on Netflix and I think Motorsport and F1 in particular would be a great use for Datadog. The average F1 car on a race weekend can produce half a terabyte of data. With the margin of victory being measured in thousandths of a second, rapid processing and analysis of data is key to victory. 
 
 This is a quote from Matt Harris who is head of IT for Mercedes-AMG Petronas Motorsport:
 
-"Data's critical -- without it, we can make very few decisions," says Harris. "That data can be both structured and unstructured. Just because a driver turns around and tells us something, we can't take it for granted -- we prove it with data. We look for the anomalies in data that support configuration changes on the car." 
+>Data's critical -- without it, we can make very few decisions," says Harris. "That data can be both structured and unstructured. Just because a driver turns around and tells us something, we can't take it for granted -- we prove it with data. We look for the anomalies in data that support configuration changes on the car.
 
 The increased use of telemetry in F1 cars make cloud offerings more and more appealing. Having datadog come in could make it easier for the F1 constructor to have all their observability metrics in one place. 
 
 Using the three pillars of observability below:
-Metrics
-Traces
-Logs
+1. Metrics
+2. Traces
+3. Logs
 
-Metrics
+### Metrics
 Since numbers are optimized for storage, processing, compression, and retrieval, metrics enable longer retention of data as well as easier querying. This makes metrics perfectly suited to building dashboards that reflect historical trends. Metrics also allow for gradual reduction of data resolution. After a certain period of time, data can be aggregated into daily or weekly frequency. Datadog could allow F1 teams to create custom metrics around their car from Engine speed to Gear box data, Fuel usage and Tyre temperature. Giving them better strategies what to change week on week and what to change during a race.
 
-Traces
+### Traces
 Traces add critical visibility into the health of an application end-to-end. Traces allow you to analyse all of your application's traces to generate in-depth latency reports to surface performance degradations, and can capture traces from all of your VMs, containers.
 
-Logs
+### Logs
 Logs are the information we look at only when things are bad. A log is a text line that describes an event that happened at a certain time. Depending on the system that produces the logs, logs sometimes come in a plain text format—although the trend now is to provide structured logs so that they can be parsed easily to then run queries to debug effectively. A log consists of a timestamp and a payload that helps give more context about the event. Logs will allow teams to check what happened before an incident so they can prevent this from happening again. This could range from tyres overheating to gearbox failure. 
 
 Datadog Log Management also comes with a set of out of the box solutions to collect your logs and send them to Datadog:
@@ -838,7 +861,7 @@ Datadog Log Management also comes with a set of out of the box solutions to coll
 Datadog's fluency with the ability to integrate with all the major cloud providers is a big plus. With AWS being the leader at the moment in F1 data it will be fine for the moment but as more cloud providers try get into F1 Datadog will be in a great position for multi cloud strategies. With Datadog increasing their platform offering we could see things like Watchdog come into play when simulating different race day scenarios in the future.
 
 
-# Conclusion
+## Conclusion
 Thank you for taking the time to review my submission. 
 
 I learned a lot from completing this exercise. It was fun to use tools I had never used before such as flask and vagrant, but by carefully reading the detailed Datadog documentation and googling a few things along the way I was able to try and tackle every task.
