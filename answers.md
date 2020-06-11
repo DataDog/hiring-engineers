@@ -341,7 +341,12 @@ ________________________________________________________________________________
 
 - Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
+>See above screenshot
+
 - Please include your fully instrumented app in your submission, as well.
+
+>See above screenshots and one below:
+>![Flaskapp](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/FlaskApp.png)
 
 
 ## Final Question:
