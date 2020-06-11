@@ -278,13 +278,14 @@ ________________________________________________________________________________
 
 ## Collecting APM Data:
 
->Unfortunately, I was not able to get the APM piece of this flask application up and running. I was able to enable trace metrics and pull those from the Datadog Agent, and I was able to download and install flask and instrument the application, but I was having trouble accessing the endpoint for the flask application and getting it to populate in the Datadog Dashboard.
+>I was able to successfully instrument flask and track APM metrics in Datadog and created dashboards to show infrastructure and APM metrics.
 
->I've included a picture of the APM configuration I set up in the datadog.yaml file to connect to the UI, as well as the trace metrics pulled from the Datadog Agent:
+>I've included a picture of the APM configuration I set up in the datadog.yaml file to connect to the UI, as well as the metrics populating in the APM section of the UI for Flask:
 
 >![AgentAPMYaml](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Agent%20Yaml%20APM%20Config.png)
->![AgentTraceData1](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Agent%20Trace%20Data.png)
->![AgentTraceData2](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Agent%20Trace%20Data%202.png)
+>![FlaskSuccess](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Flask%20Success.png)
+>![FlaskMetrics](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Flask%20Metrics.png)
+
 
 I've included the code used to instrument the flask app as well:
 
@@ -323,18 +324,12 @@ if __name__ == '__main__':
    
 ```
 
->The flask app ran, but it was unable to be accessed at the http://0.0.0.0 endpoint via port 5050:
+>I've included a few screenshots of the dashboard I created using infrastructure and APM metrics. I was able to figure out that you can look at the default APM dashboards and export them to a custom dashboard, so that is what I did to get the APM metrics to populate. I also created an overlay of the Warning Monitor notfications I set up to provide an example of how one can use this functionality to correlate metrics and events for faster MTTR.
 
->Picture of flask app running using ddtrace:
+>![FlaskDash1](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Flask%20Performance%20Dash.png)
+>![FlaskDash2](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Flask%20Performance%20Dash%202.png)
+>![FlaskOverlay](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Flask%20Performance%20Dash%20w%20Alert%20Overlay.png)
 
-.![FlaskAppRun](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Flask%20App%20Run.png)
-
->Unable to connect to flask app endpoint:
-
->![FlaskError](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Flask%20HTTP%20Error.png)
-
-
->I included the DEBUG function in the python script and got a number of different error messages, most of which were related to not having specific hooks registered for different modules. As I tried to instrument them, it would create more errors and presumably more dependencies that I was unable to solve under the time constraints.
 
 ________________________________________________________________________________________________________________ 
 
