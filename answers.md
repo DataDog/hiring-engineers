@@ -250,9 +250,9 @@ ________________________________________________________________________________
   
   >I also decided to create a composite monitor out of two additional metrics that I created, first_metric and second_metric. Both of these metrics are still just generating random numbers between 0 and 1000 like the custom metric, but I created a monitor to only notify me when both metrics are above 500 (warn), 800 (alert) or a combination of both.
   
-  >[CompositeMonitor](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Composite%20Monitors.png)
-  >[CompositeMessage](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Composite%20Message.png)
-  >[CompositeEmail](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Composite%20Email.png)
+  >![CompositeMonitor](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Composite%20Monitors.png)
+  >![CompositeMessage](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Composite%20Message.png)
+  >![CompositeEmail](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Composite%20Email.png)
 
 ________________________________________________________________________________________________________________ 
 **Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:**
