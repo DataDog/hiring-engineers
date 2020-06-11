@@ -8,11 +8,11 @@ I really enjoyed getting the time to play around with the Datadog stack. I decid
 
 First thing I did was take a quick read through the guides and see what the assessment consisted of. 
 
-Setting up test environment:
+Setting up test environment.
 
 Assessment:
-1. Collecting Metrics:
-2. Visualizing Data:
+1. Collecting Metrics
+2. Visualizing Data
 3. Monitoring Data
 4. Collecting APM Data
 5. Final/Bonus Questions
@@ -39,7 +39,7 @@ I quickly ran a the status check below, just to make sure everything was running
 
 I took a quick read on the following link: [Datadog Tagging](https://docs.datadoghq.com/tagging/)
 
-So, to do add tags I needed to change the yaml file, so I got the file path from the status command I ran above, /etc/datadog-agent/datadog.yaml once I had this, I ran the below command to get change the yaml file. I changed the hostname and tags. 
+In order to add tags, I needed to change the yaml file, so I got the file path from the status command I ran above, /etc/datadog-agent/datadog.yaml once I had this, I ran the below command to get change the yaml file. I changed the hostname and tags. 
 ```
 sudo vim /etc/datadog-agent/datadog.yaml 
 ```
@@ -53,7 +53,7 @@ sudo vim /etc/datadog-agent/datadog.yaml
   
 Once this was done, we have to restart the agent with the below command and wait for a few minutes to see it on the hostmap. [Datadog Host Map](https://app.datadoghq.eu/infrastructure/map)
  ```
- "sudo service datadog-agent restart"
+sudo service datadog-agent restart
  ```
   [Datadog Yaml File](https://imgur.com/T9cJkpY)
   
@@ -63,12 +63,12 @@ Once this was done, we have to restart the agent with the below command and wait
 
 ### Q2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-I went with MySQL as it's what I'm most familiar with. I took a quick look through the documentation. [Datadog Integrations MySQL](https://app.datadoghq.eu/account/settings#integrations/mysql) It was a pretty straight forward integration. I'd probably add in a line or two around the installation of the chosen DB on your OS of choice, but I get there are a lot of permutations out there. 
+I went with MySQL as it's what I'm most familiar with. I took a quick look through the documentation provided: [Datadog Integrations MySQL](https://app.datadoghq.eu/account/settings#integrations/mysql) It was a pretty straight forward integration. I'd probably add in a line or two around the installation of the chosen DB on your OS of choice, but I get there are a lot of permutations out there. 
 So, I ran a few commands below to get MySQL installed.
 
   #### Install MySQL Server on the Ubuntu operating system
-    "sudo apt-get install mysql-server"
-    "sudo mysql -u root" 
+    sudo apt-get install mysql-server
+    sudo mysql -u root
 
 Now that is completed, I connect Datadog to the MySQL server, using the steps I followed in the following page: [Datadog Integrations MySQL](https://app.datadoghq.eu/account/settings#integrations/mysql)
 
@@ -84,7 +84,7 @@ I verified the user was created successfully using the following commands - and 
 ```
 mysql -u datadog --password='REPLACE_WITH_YOUR_PASSWORD' -e "show status" | grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || echo -e "\033[0;31mCannot connect to MySQL\033[0m"
 ```
-Then I ran, 
+Then I ran the following:
 ```
 mysql -u datadog --password=<UNIQUEPASSWORD> -e "show slave status" && \ echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
 echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
@@ -102,7 +102,7 @@ I saw that the user was created with the appropriate permissions.
 
  [User permissions](https://imgur.com/Fxs1Xb5)
   
-I ran the following SQL commands and then went to the Metrics explorer and seen that the spikes from running a few queries.
+I ran the following SQL commands, went to the Metrics explorer and saw that the spikes from running a few queries.
 ```
 mysql> show databases like 'performance_schema';
 
@@ -115,22 +115,22 @@ mysql> GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';
 
 I followed the documentation outlined here:  [Agent Checks](https://docs.datadoghq.com/developers/agent_checks/) and [Write Checks](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
 
-It was pretty straight forward to follow, practically all the code was already written for me. So, I just followed the following steps
+It was pretty straight forward to follow, practically all the code was already written for me. So, I just followed the following steps:
 ```
-"sudo vim /etc/datadog-agent/conf.d/hello.yaml"
+sudo vim /etc/datadog-agent/conf.d/hello.yaml
 ```
-Inserted the following line and then save and close
+I inserted the following into the yaml file, saved and closed:
 
 #### Hello yaml file
 ```
 instances: [{}] 
 ```
 
-I then ran the below command: 
+I then ran the below command to create hello.py: 
 ```
-"sudo vim /etc/datadog-agent/checks.d/hello.py" 
+sudo vim /etc/datadog-agent/checks.d/hello.py
 ```
-This let me add the following code into the python file.
+Which allowed me to add the following code into the python file.
 
 #### Python Code
 ```
@@ -150,16 +150,16 @@ class HelloCheck(AgentCheck):
         self.gauge('hello.world', 1, tags=['TAG_KEY:TAG_VALUE'])
 ```
 
-I restarted the agent and was able to see the update on the metrics explorer.
+I restarted the agent and was able to see the update on the metrics explorer:
  [Hello.py Metrics](https://imgur.com/SlvAQhz)
   
-Once I had the test metric created, I started on the new metric that reports a random number from 0-1000. I used the contents from the previous yaml file but created a new file with the following command. 
+Once the test metric was created, I started on the new metric that reports a random number from 0-1000. I used the contents from the previous yaml file but created a new file with the following command: 
 ```
-"sudo vim /etc/datadog-agent/conf.d/my_metric.yaml"
+sudo vim /etc/datadog-agent/conf.d/my_metric.yaml
 ```
-I did the same command to create the py file  
+I did the same command to create the py file and inputted the below into it: 
 ```
-"sudo vim /etc/datadog-agent/checks.d/my_metric.py" and inputted the below into it
+sudo vim /etc/datadog-agent/checks.d/my_metric.py 
 ```
 #### Python code
 ```
@@ -171,21 +171,21 @@ class RandomCheck(AgentCheck): # same as documentation just change HelloCheck to
          self.gauge('my_metric', random.randint(0, 1000)) #changed the name to "my_metric" and  returning a random Integer from 0 to 1000, 
 ```
 
-These links will help with anyone who needs with understanding the random module
+The below links will help anyone understand the random module in python:
 1. [Python Random Libary]("https://docs.python.org/3/library/random.html")
 2. [Python Generate Random Numbers]("https://docs.python.org/3.1/library/random.html")
 
 
-Now that I was able to create a check, I was ready to create the new metric that reports a random number from 0-1000. I used the exact same yaml file as from the hello.world check but I renamed it to "my_metric.yaml".
+Now that I was able to create a check, I was ready to create the new metric that reports a random number from 0-1000. I used the exact same yaml file as from the hello.world check but I renamed it to my_metric.yaml.
 
-The my_metric python code is also very similar to the hello.world code but I added/modified a few things. First, I wanted to change the name of the metric from "hello.world" to "my_metric".
+The my_metric python code is also very similar to the hello.world code but I added/modified a few things. First, I wanted to change the name of the metric from hello.world to my_metric.
 
 #### Python code for My Metric
 ```
 self.gauge('my_metric', 1)
 ```
 
-Then, instead of reporting a constant 1, I wanted to generate a random number from 0-1000. To do that, I needed to important the "random" library into python by adding the line "import random" to the top of our code. I can generate a random number between 0-1000 with the randint member of the random class "random.randint(0,1000))" My final code looks like the following:
+Then, instead of reporting a constant 1, I wanted to generate a random number from 0-1000. To do that, I needed to import the "random" library into python by adding the line "import random" to the top of our code. I can generate a random number between 0-1000 with the randint member of the random class "random.randint(0,1000))" My final code looks like the following:
 
 
 #### Python code for Random number generator
@@ -199,18 +199,18 @@ class RandomCheck(AgentCheck):
 
 Then, I restarted the Datadog agent by running the command:
 ```
-"sudo service datadog-agent restart"
+sudo service datadog-agent restart
 ```
-I checked my new metric "my_metric" in the metrics explorer, I saw that our check is successfully generating random numbers between 0-1000.
+I finally checked my new metric "my_metric" in the metrics explorer and confirmed that our check is successfully generating random numbers between 0-1000.
 
 [Metric Explorer My_Metric](https://imgur.com/E29gZs3)
 
 
 ### Q4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 If you go to Collection interval section of the above file, it gives you the code to change the collection interval. 
-Insert this into your my_metric yaml file. 
+To do so, insert this into your my_metric yaml file. 
 ```
-"sudo vim /etc/datadog-agent/conf.d/my_metric.yaml" 
+sudo vim /etc/datadog-agent/conf.d/my_metric.yaml
 ```
 Make sure you change the 30 to 45.
 
@@ -225,8 +225,9 @@ instances:
 
 ### Q5. Can you change the collection interval without modifying the Python check file you created?
 
-I will answer the bonus question for which I referred to this article: [Write Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) 
-I can change the collection interval by altering the below yaml file at the min_collection interval variable. In the below I changed it to 60 seconds. This means there is no need to alter my python code.
+I referred to this article when answering the bonus question: [Write Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) 
+
+I can change the collection interval by altering the below yaml file at the min_collection interval variable. In the below I changed it from 45 seconds to 60 seconds. This means there is no need to alter my python code.
 
 #### Collection interval code - 60 Seconds
 ```
@@ -235,14 +236,14 @@ init_config:
 instances:
    -  min_collection_interval: 60
    ```
-Now we have changed the collection interval, give the agent a reboot with the following code.
+Now I have changed the collection interval, I restart the agent with the following code.
 ```
-"sudo service datadog-agent restart"
+sudo service datadog-agent restart
 ```
 
-In the documentation there is a caveat;
+In the documentation there is a caveat:
 
-Note: If the min_collection_interval is set to 30, it does not mean that the metric is collected every 30 seconds, but rather that it could be collected as often as every 30 seconds. The collector will try to run the check every 30 seconds, but the check might need to wait in line, depending on how many integrations are enabled on the same Agent. Also, if the check method takes more than 30 seconds to finish, the Agent will notice the check is still running and will skip its execution until the next interval.
+Note: If the min_collection_interval is set to 30, it does not mean that the metric is collected every 30 seconds, but rather that it could be collected as often as every 30 seconds. The collector will try to run the check every 30 seconds, but the check might need to wait in line depending on how many integrations are enabled on the same Agent. Also, if the check method takes more than 30 seconds to finish, the Agent will notice the check is still running and will skip its execution until the next interval.
 
 As per the documentation, it is important to note that this does not guarantee a collection every 45 seconds. Instead, it means that this particular check *may be collected* as often as every 45 seconds. 
 
@@ -252,12 +253,13 @@ You can see from the metric explorer that this has successfully been deployed.
   
 
 ## Section 2: Visualizing Data
-First, we start off with the requirements 
+First, we start off with the requirements:
+
 Utilize the Datadog API to create a Timeboard that contains:
 
 1. Your custom metric scoped over your host.
 2. Any metric from the Integration on your Database with the anomaly function applied.
-3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
 
 In order to accomplish this task, I first installed the Datadog python library by following the instructions on the Datadog Python GitHub: [Datadog Python](https://github.com/DataDog/datadogpy)
 
@@ -271,7 +273,7 @@ At this point I was ready to begin writing the Timeboard code in python. To do t
 
 I then wanted to compile this code, but I needed to get the API keys from Datadog. To obtain them, I went to the API tab on the integrations menu and generated a new key by selecting "Create Application Key":
 
-The code I saved was taken from the datadog doc and is seen below:
+The code I saved was taken from the Datadog documentation and is seen below:
 
 #### Python code for Creating a timeboard
 ```python
@@ -305,20 +307,20 @@ api.Timeboard.create(title=title,
                      template_variables=template_variables,
                      read_only=read_only)                     
 ```
-I had an issue where the data wasn't sending from my_timeboard.py or my_screenboard.py. so it wasn't creating a new dashboard for me. 
+I had an issue where the data wasn't sending from "my_timeboard.py" or "my_screenboard.py", so it wasn't creating a new dashboard for me. 
 
 I went to try and look what were the reasons why it wasn't working. 
 
-I ran the below commands:
+I ran the below commands and seen the below:
 ```
-tail -f /var/log/datadog/agent.log and seen the below. 
+tail -f /var/log/datadog/agent.log 
 ```
   #### Datadog agent logs
-  
-        2020-06-07 16:57:35 UTC | CORE | WARN | (pkg/collector/python/datadog_agent.go:118 in LogMessage) | mysql:1fa1a2e54ef75ec6 | (mysql.py:1295) | Failed to fetch records from the perf schema                                  'events_statements_summary_by_digest' table.
-        2020-06-07 16:57:35 UTC | CORE | WARN | (pkg/collector/python/datadog_agent.go:118 in LogMessage) | mysql:1fa1a2e54ef75ec6 | (mysql.py:1324) | Failed to fetch records from the perf schema                                  'events_statements_summary_by_digest' table.
-        
-This error occurs twice. I could see there was an error with MySQL server, so I went and checked to see if there were any errors with any of the config files. 
+```  
+2020-06-07 16:57:35 UTC | CORE | WARN | (pkg/collector/python/datadog_agent.go:118 in LogMessage) | mysql:1fa1a2e54ef75ec6 | (mysql.py:1295) | Failed to fetch records from the perf schema                                  'events_statements_summary_by_digest' table.
+2020-06-07 16:57:35 UTC | CORE | WARN | (pkg/collector/python/datadog_agent.go:118 in LogMessage) | mysql:1fa1a2e54ef75ec6 | (mysql.py:1324) | Failed to fetch records from the perf schema                                  'events_statements_summary_by_digest' table.
+```     
+This error occurs twice. I could see there was an error with the MySQL server, so I went and checked to see if there were any errors with any of the config files. 
 
 There was a spelling mistake in one of the config files, so I fixed that and restarted the agent. 
 
@@ -372,9 +374,9 @@ udp        0      0 localhost:33425         localhost:8125          ESTABLISHED
 Active UNIX domain sockets (w/o servers)
 ```
 
-I then went to look at the SQL server directly and make sure that it's working correctly. 
+I then went to look at the MySQL server directly in order to make sure that it was working correctly. 
 
-Everything looks ok I ran a few commands and the below is what was seen. 
+Everything looked ok, I ran a few commands and the below is what was seen. 
 
 #### SQL code
 ```
@@ -437,15 +439,15 @@ mysql> show global variables like 'PORT';
 1 row in set (0.00 sec)
 ```
 
-The ports looked fine and I could see that the user permissions were correct, and I could see the data in the DB.
+The ports looked fine, the user permissions were correct and I could see the data in the DB.
 
 I decided I would type out the python script I had prepared for the next part anyway. 
 
-I broke the one file up into the code for each task that is asked:
+I broke the python file into separate sections of code for each task that is asked:
 
 1. Your custom metric scoped over your host.
 2. Any metric from the Integration on your Database with the anomaly function applied.
-3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
 
 
 #### Python code
@@ -476,11 +478,11 @@ graphs = [{
 ```
   ###  Task 2: Any metric from the Integration on your Database with the anomaly function applied.
   
-  I took a look into the [Datadog Miscellaneous Functions](https://docs.datadoghq.com/graphing/miscellaneous/functions/) for functions and [Datadog Algorithms](https://docs.datadoghq.com/dashboards/functions/algorithms/) and [Datadog Anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms) for anomalies. 
+  I took a look into the [Datadog Miscellaneous Functions](https://docs.datadoghq.com/graphing/miscellaneous/functions/) for functions, [Datadog Algorithms](https://docs.datadoghq.com/dashboards/functions/algorithms/) and [Datadog Anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms) for anomalies. 
   
-An example I found was  anomalies(METRIC_NAME>{*}, '<ALGORITHM>', <BOUNDS>) and it is what I need, so I chose the Mysql.performance.com for the metric name, for algorithm I used basic as there is no seasonal repeating, and 1 for bounds.
+An example I found for anomalies was the following: (METRIC_NAME>{*}, '<ALGORITHM>', <BOUNDS>) and it is what I needed, so I chose the "Mysql.performance.com" for the metric name, "basic" for algorithm (as there is no seasonal repeating), and "1" for bounds.
 ```
- {
+ 
    "definition": {
         "events": [],
         "requests": [
@@ -491,13 +493,13 @@ An example I found was  anomalies(METRIC_NAME>{*}, '<ALGORITHM>', <BOUNDS>) and 
     "title": "SQL Select Anomalies"    
 }
 ```
-### Task 3: Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-I needed to look at the rollup function for the next part. [Datadog Functions](https://docs.datadoghq.com/dashboards/functions/rollup/)
+### Task 3: Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
+I needed to look at the rollup function for the next part: [Datadog Functions](https://docs.datadoghq.com/dashboards/functions/rollup/)
  
-So, the first thing we are told is that the .rollup() function at the end of a query allows you to perform custom time aggregation, i.e. this function enables you to define: They give a few examples in the piece
+The first thing we are told is that the ".rollup()" function at the end of a query allows you to perform custom time aggregation, i.e. this function enables you to define: They give a few examples in the piece
 
-1. .rollup(sum,120). 
-2. .rollup(avg,86400):
+1. .rollup(sum,120)
+2. .rollup(avg,86400)
 
 We're looking for an hour, so that's 3600 seconds and they tell us to use sum, so we use .rollup(sum, 3600)
 ```
@@ -525,9 +527,9 @@ api.Timeboard.create(title=title,
                      template_variables=template_variables,
                      read_only=read_only)
 ```
-I don't know if all of the above works due to the error I had but reading the documentation and looking at examples they gave made it easy to understand. 
+I don't know if all of the above works due to the error I had but reading the documentation and looking at examples they gave, made it easy to understand. 
 
-I couldn't do the below due to the Timeboard not being created
+I couldn't do the below due to the Timeboard not being created:
 
  1. Set the Timeboard's timeframe to the past 5 minutes
  2. Take a snapshot of this graph and use the @ notation to send it to yourself.
@@ -537,11 +539,11 @@ I could have done it through the UI, but I don't think that was the point of the
 
 ## Section 3: Monitoring data
 
-This was one of the easiest sections of the assessment. I went to the monitors section on the Datadog page and selected "New Monitor" then clicked Metric and selected "my_metric"
+This was one of the easiest sections of the assessment. I went to the "Monitors" section on the Datadog page and selected "New Monitor", then clicked Metric and selected "my_metric"
 
 [Datadog Create a Monitor](https://app.datadoghq.com/monitors#/create)
 
-So, we can see the requirements of the new metric monitor are to be:
+We can see the requirements of the new metric monitor are to be:
 
 1. Warning threshold of 500
 2. Alerting threshold of 800
@@ -550,10 +552,9 @@ So, we can see the requirements of the new metric monitor are to be:
 5. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 6. When this monitor sends you an email notification, take a screenshot of the email that it sends you.
   
-So input the requirements for the monitoring. It's easy to follow and you can see the images below
+I input the requirements for the monitoring. It's easy to follow and you can see the images below
 
 ### Setting up the Monitoring 
-The below images are very easy to follow:
 
   1. [Setting up the monitor Part 1](https://imgur.com/FuTFlat)
   2. [Setting up the monitor Part 2](https://imgur.com/TWnJKqV)
@@ -566,15 +567,15 @@ Here are the alert emails I received:
  2. [No data Email](https://imgur.com/a/1YSuASb)
 
 ### Scheduling Downtime
-I then scheduled the downtime from 7pm to 9am daily on Monday to Friday and then one that silences it on the weekend by clicking the schedule downtime button near the top. You can also go to setup down time by the following link: [Datadog Downtime](https://app.datadoghq.eu/monitors#/downtime)
+I scheduled the downtime from 7pm to 9am daily on Monday to Friday and then one that silences it on the weekend by clicking the schedule downtime button near the top. You can also go to setup down time by the following link: [Datadog Downtime](https://app.datadoghq.eu/monitors#/downtime)
 
 [MonitoringDowntimeWeekday](https://imgur.com/tHivZmn)
- I had an issue with setting the downtime to midnight on a Sunday, it gave an error that wouldn't let me change the time to midnight  [Midnight Error](https://imgur.com/2KCD8Dy)
+I had an issue with setting the downtime to midnight on a Sunday, it gave an error that wouldn't let me change the time to midnight  [Midnight Error](https://imgur.com/2KCD8Dy)
  
- So, I just changed it to after the current time and let it run for Saturday and Sunday
+I just changed it to after the current time and let it run for Saturday and Sunday
 [MonitoringDowntimeWeekend](https://imgur.com/jyykAA4)
 
-On Monday I was able to change it back to midnight. 
+On Monday, I was able to change it back to midnight: 
 [Bug_fixed](https://imgur.com/a/1UVYfcj) There must be an error that won't let you change the  time to set an alert before the current time.
 
 ### Downtime Emails
