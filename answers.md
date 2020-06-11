@@ -324,7 +324,7 @@ if __name__ == '__main__':
    
 ```
 
->I've included a few screenshots of the dashboard I created using infrastructure and APM metrics. I was able to figure out that you can look at the default APM dashboards and export them to a custom dashboard, so that is what I did to get the APM metrics to populate. I also created an overlay of the Warning Monitor notfications I set up to provide an example of how one can use this functionality to correlate metrics and events for faster MTTR.
+>I've included a few screenshots of the dashboard I created using infrastructure and APM metrics. I was able to figure out that you can look at the default APM dashboards and export them to a custom dashboard, so that is what I did to get the APM metric dashboards to populate on the custom dashboard. I also created an overlay of the Warning Monitor notfications I set up to provide an example of how one can use this functionality to correlate metrics and events for faster MTTR.
 
 >![FlaskDash1](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Flask%20Performance%20Dash.png)
 >![FlaskDash2](https://github.com/GB-18/hiring-engineers/blob/GB-18-patch-1/Flask%20Performance%20Dash%202.png)
