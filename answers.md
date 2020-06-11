@@ -579,10 +579,10 @@ On Monday, I was able to change it back to midnight:
 [Bug_fixed](https://imgur.com/a/1UVYfcj) There must be an error that won't let you change the  time to set an alert before the current time.
 
 ### Downtime Emails
-Here were the emails I received after doing so:
+Here are the emails I received after creating the downtime:
 
-[MonitoringDowntimeEmail](https://imgur.com/CBuV0aQ) UTC is an hour behind GMT, so it reads 6 to 8
-[MonitoringDowntimeEmail2](https://imgur.com/a/1UVYfcj) Same as above, but it reads 11pm UTC
+1. [MonitoringDowntimeEmail](https://imgur.com/CBuV0aQ) UTC is an hour behind GMT, so it reads 6 to 8
+2. [MonitoringDowntimeEmail2](https://imgur.com/a/1UVYfcj) Same as above, but it reads 11pm UTC
 
 
 
@@ -612,13 +612,13 @@ Collecting ddtrace
     ----------------------------------------
 Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-build-tdx86tk0/ddtrace/
 ```
-So, I read that I had to run the below command to upgrade pip
+I read that I had to run the below command to upgrade pip
 ```
-"sudo pip3 install --upgrade pip"
+sudo pip3 install --upgrade pip
 ```
 I then ran:
 ```
-"sudo pip3 install --upgrade ddtrace"
+sudo pip3 install --upgrade ddtrace
 
 WARNING: The directory '/home/vagrant/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
 Collecting ddtrace
@@ -630,7 +630,7 @@ Collecting msgpack>=0.5.0
 Installing collected packages: msgpack, ddtrace
 Successfully installed ddtrace-0.38.1 msgpack-1.0.0
 ```
-So now that is installed, I can move onto the next part.
+Once installed I moved onto the next part:
 
 I wanted to read more into Flask, so I looked in the following pages: 
 1. [Flask Install](https://flask.palletsprojects.com/en/1.1.x/installation/#install-create-env)
@@ -644,7 +644,7 @@ vagrant@vagrant:~/myprojectdatadog$ python3 -m venv venv
 vagrant@vagrant:~/myprojectdatadog$ . venv/bin/activate
 (venv) vagrant@vagrant:~/myprojectdatadog$  pip3 install Flask
 ```
-So now I see Flask is installed I want to do a version check. 
+I saw Flask was installed and I did a version check. 
 ```
       (venv) vagrant@vagrant:~/myprojectdatadog$ flask --version
        Python 3.6.9
@@ -652,7 +652,7 @@ So now I see Flask is installed I want to do a version check.
        Werkzeug 1.0.1
 ```
 
-I create my python file and copy the code provided into it. 
+I created my python file and copied the code provided into it. 
 ```
 sudo vim my_flaskapp.py
 ```
@@ -693,25 +693,25 @@ if __name__ == '__main__':
 (venv) vagrant@vagrant:~/myprojectdatadog$ flask run
 ```
 
-I get this below error, so I have a quick search how to fix this:
+I recieved the below error, so I did a quick search on how to fix this:
 ```
 WARNING: This is a development server. Do not use it in a production deployment.
 ```
-I ran the below to enable change it to prod: 
+I ran the below to change it to prod: 
 ```
 (venv) vagrant@vagrant:~/myprojectdatadog$ export FLASK_ENV=development
 ```
-I then run flask with the below:    
+I then ran flask with the below:    
 ```
 (venv) vagrant@vagrant:~/myprojectdatadog$ flask run
 ```
 
-The above command returns this error:
+The above command returned this error:
 ```
 OSError: [Errno 98] Address already in use
 ```
 
-So, I run the below based on this documentation: [Flask Errno 98](https://medium.com/@tessywangari05/oserror-errno-98-address-already-in-use-flask-error-ccbff65e2bb5)
+I ran the below based on this documentation: [Flask Errno 98](https://medium.com/@tessywangari05/oserror-errno-98-address-already-in-use-flask-error-ccbff65e2bb5)
 ```
 (venv) vagrant@vagrant:~/myprojectdatadog$  ps -fA | grep flask
 vagrant  16433  1630  0 14:31 pts/0    00:00:00 grep --color=auto flask
@@ -729,7 +729,7 @@ vagrant  16433  1630  0 14:31 pts/0    00:00:00 grep --color=auto flask
 2020-06-08 14:32:52,520 - werkzeug - INFO -  * Debugger PIN: 993-124-556
 ```
 
-I tried to run the below commands to see if I could see what was happening:
+I tried to run the below commands to see if I could see what was happening with the code:
 ```
 lsof -i :5050
 netstat -tulpn
@@ -750,7 +750,7 @@ import ddtrace
 from ddtrace import Tracer as DatadogTracer
 ```
 
-Then I ran the below command;
+Then I ran the below command:
 ```
 ddtrace-run python3 my_flaskapp.py
 ```
@@ -776,9 +776,9 @@ ddtrace-run python3 my_flaskapp.py
 2020-06-08 14:52:30,880 - ddtrace._worker - DEBUG - Stopping AgentWriter thread
 ```
 
-I tried to do this outside the test env I setup and did all the same steps to install flask, ddtrace and ddtrace[profiling]
+I tried to do this outside the test env I setup and followed all the same steps to install flask, ddtrace and ddtrace[profiling]
 
-It still came back with the same error codes as above.
+It still came back with the same error codes described above.
 
 I wasn't able to take this any further, so I decided that I'd try show you what code I had added to the my_flaskapp.py
 
@@ -817,7 +817,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-#### Additional Documentation I used to try help me in this section
+#### Additional Documentation I used to help me in this section
 1. [Datadog APM Documentation](https://docs.datadoghq.com/tracing/)  
 2. [Datadog Python Tracing Setup](https://docs.datadoghq.com/tracing/setup/python/)
 3. [Setup APM YouTube](https://www.youtube.com/watch?v=faoR5M-BaSw)  
@@ -825,13 +825,13 @@ if __name__ == '__main__':
 
 #### I used the below to try solve the issues with flask and the python app
 
-[Datadog Trace Client](http://pypi.datadoghq.com/trace/docs/#get-started)  
-[Tracing Setup](https://docs.datadoghq.com/tracing/setup/python/)  
-[Datadog Agent](https://github.com/DataDog/datadog-agent)  
-[tracing code](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/#tracing-your-code)
-[example flask](https://gist.githubusercontent.com/davidmlentz/4538db971af0e1d69a7936f4f8046122/raw/4a238f1c74d0f5f5ee2dd40a92b81f4176493c8c/apm_test_flask_custom.py)
-[Pyddprofile](http://pypi.datadoghq.com/trace/docs/basic_usage.html#basic-usage)
-[Jinga](https://jinja.palletsprojects.com/en/2.11.x/intro/)
+1. [Datadog Trace Client](http://pypi.datadoghq.com/trace/docs/#get-started)  
+2. [Tracing Setup](https://docs.datadoghq.com/tracing/setup/python/)  
+3. [Datadog Agent](https://github.com/DataDog/datadog-agent)  
+4. [Tracing code](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/#tracing-your-code)
+5. [Example flask](https://gist.githubusercontent.com/davidmlentz/4538db971af0e1d69a7936f4f8046122/raw/4a238f1c74d0f5f5ee2dd40a92b81f4176493c8c/apm_test_flask_custom.py)
+6. [Pyddprofile](http://pypi.datadoghq.com/trace/docs/basic_usage.html#basic-usage)
+y. [Jinga](https://jinja.palletsprojects.com/en/2.11.x/intro/)
 
 ### Bonus question: What is the difference between a Service and a Resource?
 
@@ -847,11 +847,11 @@ The below link was useful for explaining and giving examples.
 
 I have just finished the F1 documentary on Netflix and I think Motorsport and F1 in particular would be a great use for Datadog. The average F1 car on a race weekend can produce half a terabyte of data. With the margin of victory being measured in thousandths of a second, rapid processing and analysis of data is key to victory. 
 
-This is a quote from Matt Harris who is head of IT for Mercedes-AMG Petronas Motorsport:
+This is a quote from Matt Harris, Head of IT for Mercedes-AMG Petronas Motorsport:
 
 >Data's critical -- without it, we can make very few decisions," says Harris. "That data can be both structured and unstructured. Just because a driver turns around and tells us something, we can't take it for granted -- we prove it with data. We look for the anomalies in data that support configuration changes on the car.
 
-The increased use of telemetry in F1 cars make cloud offerings more and more appealing. Having datadog come in could make it easier for the F1 constructor to have all their observability metrics in one place. 
+The increased use of telemetry in F1 cars make cloud offerings more and more appealing. Having Datadog come in to the constructor team could make it easier for the F1 constructor to have all their observability metrics in one place. 
 
 Using the three pillars of observability below:
 1. Metrics
@@ -859,7 +859,7 @@ Using the three pillars of observability below:
 3. Logs
 
 ### Metrics
-Since numbers are optimized for storage, processing, compression, and retrieval, metrics enable longer retention of data as well as easier querying. This makes metrics perfectly suited to building dashboards that reflect historical trends. Metrics also allow for gradual reduction of data resolution. After a certain period of time, data can be aggregated into daily or weekly frequency. Datadog could allow F1 teams to create custom metrics around their car from Engine speed to Gear box data, Fuel usage and Tyre temperature. Giving them better strategies what to change week on week and what to change during a race.
+Since numbers are optimized for storage, processing, compression, and retrieval, metrics enable longer retention of data as well as easier querying. This makes metrics perfectly suited to building dashboards that reflect historical trends. Metrics also allow for gradual reduction of data resolution. After a certain period of time, data can be aggregated into daily or weekly frequency. Datadog could allow F1 teams to create custom metrics around their car from engine speed to gear box data, fuel usage and tyre temperature. Giving them better strategies on what to change week on week and what to change during a race.
 
 ### Traces
 Traces add critical visibility into the health of an application end-to-end. Traces allow you to analyse all of your application's traces to generate in-depth latency reports to surface performance degradations, and can capture traces from all of your VMs, containers.
@@ -869,21 +869,21 @@ Logs are the information we look at only when things are bad. A log is a text li
 
 Datadog Log Management also comes with a set of out of the box solutions to collect your logs and send them to Datadog:
 
-  Collect logs from your hosts.
-  Collect logs from your applications.
-  Collect logs from a Docker environment.
-  Collect logs from a serverless environment.
-  Collect logs from your Cloud provider.
+  1. Collect logs from your hosts.
+  2. Collect logs from your applications.
+  3. Collect logs from a Docker environment.
+  4. Collect logs from a serverless environment.
+  5. Collect logs from your Cloud provider.
 
-Datadog's fluency with the ability to integrate with all the major cloud providers is a big plus. With AWS being the leader at the moment in F1 data it will be fine for the moment but as more cloud providers try get into F1 Datadog will be in a great position for multi cloud strategies. With Datadog increasing their platform offering we could see things like Watchdog come into play when simulating different race day scenarios in the future.
+Datadog's fluency with the ability to integrate with all the major cloud providers is a big plus. With AWS being the current leader in F1 data, AWS will be fine for the moment but as more cloud providers try get into the F1 scene. Datadog will be in a great position for multi cloud strategies. With Datadog increasing their platform offering, we could see things like Watchdog come into play when simulating different race day scenarios in the future.
 
 
 ## Conclusion
 Thank you for taking the time to review my submission. 
 
-I learned a lot from completing this exercise. It was fun to use tools I had never used before such as flask and vagrant, but by carefully reading the detailed Datadog documentation and googling a few things along the way I was able to try and tackle every task.
+I learned a lot from completing this exercise. It was fun to use tools I had never used before such as Flask and Vagrant, but by carefully reading the detailed Datadog documentation and googling a few things along the way, I was able to try and tackle every task.
 
-I think the toughest part of this exercise was dealing with the python problems. I couldn't get the programs to execute correctly and I looked through the agent and different troubleshooting areas but couldn't figure out where I was going wrong. I think if I was working with the Datadog team I'd reach out to one of the engineers as they'd be able to point me in the right direction and I’d go from there.
+I think the toughest part of this exercise was dealing with the Python problems. I couldn't get the programs to execute correctly and I looked through the agent and different troubleshooting areas but couldn't figure out where I was going wrong. I think if I was working with the Datadog team I'd reach out to one of the engineers as they'd be able to point me in the right direction and I’d go from there.
 
 
 
