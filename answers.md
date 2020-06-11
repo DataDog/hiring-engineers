@@ -4,9 +4,9 @@ Your answers to the questions go here.
 ## Intro
 I really enjoyed getting the time to play around with the Datadog stack. I decided I'd go outside my comfort zone and go along with the recommended environment and use vagrant and VirtualBox. I decided to keep Azure for work. 
 
-### Prerequisites (setting up the environment)
+### Prerequisites (Setting up the environment)
 
-First thing I did was take a skim through the guides and see what the assessment consisted of. 
+First thing I did was take a quick read through the guides and see what the assessment consisted of. 
 
 Setting up test environment:
 
@@ -21,7 +21,7 @@ I prefer breaking out the sections with the items in small chucks and reading th
 
 The version of Ubuntu I used was 18.04. 
 
-I then created my Datadog account and connected the agent to my new VM by following the easy steps here: [Setting up the Datadog Agent - Ubuntu[(https://app.datadoghq.com/account/settings#agent/ubuntu)
+I then created my Datadog account and connected the agent to my new VM by following the easy steps here: [Setting up the Datadog Agent - Ubuntu](https://app.datadoghq.com/account/settings#agent/ubuntu)
 
 I ran through the following page and decided to leave it open to get the agent commands [Datadog Agent commands](https://docs.datadoghq.com/agent/guide/agent-commands/?tab=agentv6v7)
 
@@ -34,12 +34,12 @@ I quickly ran a the status check below, just to make sure everything was running
  [Datadog-agent status](https://imgur.com/a/zx2P8Mq)
  
  
-## Collecting Metrics
-### 1. "Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog."
+## Section 1: Collecting Metrics
+### Q1. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 I took a quick read on the following link: [Datadog Tagging](https://docs.datadoghq.com/tagging/)
 
-So, to do this I had to change the yaml file, so I got the file path from the status command I ran above, /etc/datadog-agent/datadog.yaml once I had this, I ran the below command to get change the yaml file. I changed the hostname and tags. 
+So, to do add tags I needed to change the yaml file, so I got the file path from the status command I ran above, /etc/datadog-agent/datadog.yaml once I had this, I ran the below command to get change the yaml file. I changed the hostname and tags. 
 ```
 sudo vim /etc/datadog-agent/datadog.yaml 
 ```
@@ -55,26 +55,26 @@ Once this was done, we have to restart the agent with the below command and wait
  ```
  "sudo service datadog-agent restart"
  ```
-  [Datadog yaml file](https://imgur.com/T9cJkpY)
+  [Datadog Yaml File](https://imgur.com/T9cJkpY)
   
-  [Datadog host map](https://imgur.com/6cbVh2C)
+  [Datadog Host Map](https://imgur.com/6cbVh2C)
 
 
 
-### 2. "Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database."
+### Q2. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-I went with MySQL as it's what I'm most familiar with. I took a quick look through the documentation [Datadog Integrations MySQL](https://app.datadoghq.eu/account/settings#integrations/mysql) It was a pretty straight forward integration. I'd probably add in a line or two around the installation of the chosen DB on your OS of choice, but I get there are a lot of permutations out there. 
+I went with MySQL as it's what I'm most familiar with. I took a quick look through the documentation. [Datadog Integrations MySQL](https://app.datadoghq.eu/account/settings#integrations/mysql) It was a pretty straight forward integration. I'd probably add in a line or two around the installation of the chosen DB on your OS of choice, but I get there are a lot of permutations out there. 
 So, I ran a few commands below to get MySQL installed.
 
   #### Install MySQL Server on the Ubuntu operating system
     "sudo apt-get install mysql-server"
     "sudo mysql -u root" 
 
-Now that is done, I connect Datadog to the MySQL server, using the steps I followed in the following page again: [Datadog Integrations MySQL](https://app.datadoghq.eu/account/settings#integrations/mysql)
+Now that is completed, I connect Datadog to the MySQL server, using the steps I followed in the following page: [Datadog Integrations MySQL](https://app.datadoghq.eu/account/settings#integrations/mysql)
 
 I followed the steps above and created the user called Datadog and gave it the appropriate permissions.
 
-#### SQL command
+#### SQL commands
 ```
 CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
 ```
@@ -108,10 +108,10 @@ mysql> show databases like 'performance_schema';
 
 mysql> GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';
  ```
- [Sql Monitor Metrics](https://imgur.com/vEVnaqR)
+ [SQL Monitor Metrics](https://imgur.com/vEVnaqR)
   
 
-### 3. "Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000."
+### Q3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 I followed the documentation outlined here:  [Agent Checks](https://docs.datadoghq.com/developers/agent_checks/) and [Write Checks](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
 
@@ -172,8 +172,8 @@ class RandomCheck(AgentCheck): # same as documentation just change HelloCheck to
 ```
 
 These links will help with anyone who needs with understanding the random module
-[Python Random Libary]("https://docs.python.org/3/library/random.html")
-[Python Random int]("https://docs.python.org/3.1/library/random.html")
+1. [Python Random Libary]("https://docs.python.org/3/library/random.html")
+2. [Python Generate Random Numbers]("https://docs.python.org/3.1/library/random.html")
 
 
 Now that I was able to create a check, I was ready to create the new metric that reports a random number from 0-1000. I used the exact same yaml file as from the hello.world check but I renamed it to "my_metric.yaml".
@@ -206,7 +206,7 @@ I checked my new metric "my_metric" in the metrics explorer, I saw that our chec
 [Metric Explorer My_Metric](https://imgur.com/E29gZs3)
 
 
-### 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
+### Q4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 If you go to Collection interval section of the above file, it gives you the code to change the collection interval. 
 Insert this into your my_metric yaml file. 
 ```
@@ -223,9 +223,10 @@ instances:
    -  min_collection_interval: 45
 ```
 
-### 5. Bonus Question Can you change the collection interval without modifying the Python check file you created?
+### Q5. Can you change the collection interval without modifying the Python check file you created?
 
-I will answer the bonus question for which I referred to this article: [Write Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) I can change the collection interval by altering the below yaml file at the min_collection interval variable. In the below I changed it to 60 seconds. This means there is no need to alter my python code.
+I will answer the bonus question for which I referred to this article: [Write Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) 
+I can change the collection interval by altering the below yaml file at the min_collection interval variable. In the below I changed it to 60 seconds. This means there is no need to alter my python code.
 
 #### Collection interval code - 60 Seconds
 ```
@@ -250,15 +251,15 @@ You can see from the metric explorer that this has successfully been deployed.
 [Metric explorer Collection interval](https://imgur.com/wge5uFi)
   
 
-## Visualizing Data
+## Section 2: Visualizing Data
 First, we start off with the requirements 
 Utilize the Datadog API to create a Timeboard that contains:
 
-    Your custom metric scoped over your host.
-    Any metric from the Integration on your Database with the anomaly function applied.
-    Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+1. Your custom metric scoped over your host.
+2. Any metric from the Integration on your Database with the anomaly function applied.
+3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-In order to accomplish this task, I first installed the Datadog python library by following the instructions on the Datadog python GitHub: [Datadog Python[(https://github.com/DataDog/datadogpy)
+In order to accomplish this task, I first installed the Datadog python library by following the instructions on the Datadog Python GitHub: [Datadog Python](https://github.com/DataDog/datadogpy)
 
 I ran the command:
 ```
@@ -304,11 +305,11 @@ api.Timeboard.create(title=title,
                      template_variables=template_variables,
                      read_only=read_only)                     
 ```
-I had an issue where the data wasn't sending from my_timeboard.py or my_screenboard.py. wasn't going to the dashboard so it wasn't creating a new dashboard for me. 
+I had an issue where the data wasn't sending from my_timeboard.py or my_screenboard.py. so it wasn't creating a new dashboard for me. 
 
 I went to try and look what were the reasons why it wasn't working. 
 
-I ran 
+I ran the below commands:
 ```
 tail -f /var/log/datadog/agent.log and seen the below. 
 ```
@@ -321,7 +322,7 @@ This error occurs twice. I could see there was an error with MySQL server, so I 
 
 There was a spelling mistake in one of the config files, so I fixed that and restarted the agent. 
 
-#### Error
+#### Config Error
 ```
 vagrant@vagrant:~$ cat /etc/datadog-agent/conf.d/mysql.d/conf.yaml 
 nit_config: ## should be init_config
@@ -343,10 +344,9 @@ instances:
       
 Still not working, so I went back to the logs. 
 
-[Datadog agent logs2]
+
 I could see it is down to one now that I have fixed the yaml file. I ran through all the other directories to make sure everything was fine. Everything else looked fine. So, I went and to see if there was anything else blocking this like port forwarding. 
 
-[Datadog directories]
 I turned it on and checked but it made no difference, so I reverted back to default. 
 
 #### Turning on port forwarding 
@@ -372,7 +372,7 @@ udp        0      0 localhost:33425         localhost:8125          ESTABLISHED
 Active UNIX domain sockets (w/o servers)
 ```
 
-I then went to look at the sql server directly and make sure that it's working correctly. 
+I then went to look at the SQL server directly and make sure that it's working correctly. 
 
 Everything looks ok I ran a few commands and the below is what was seen. 
 
@@ -441,7 +441,14 @@ The ports looked fine and I could see that the user permissions were correct, an
 
 I decided I would type out the python script I had prepared for the next part anyway. 
 
-#### Python code 
+I broke the one file up into the code for each task that is asked:
+
+1. Your custom metric scoped over your host.
+2. Any metric from the Integration on your Database with the anomaly function applied.
+3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+
+#### Python code
 ```
 from datadog import initialize, api
 options = {
@@ -455,7 +462,7 @@ title = "Datadog Assignment Timeboard"
 description = "This would be my datadog Timeboard!"
 graphs = [{
 ```
-  ## Your custom metric scoped over your host.
+  ### Task 1: Your custom metric scoped over your host.
   ```
     "definition": {
         "events": [],
@@ -467,28 +474,30 @@ graphs = [{
     "title": "my_metric"
 },
 ```
-  ##  Any metric from the Integration on your Database with the anomaly function applied.
+  ###  Task 2: Any metric from the Integration on your Database with the anomaly function applied.
   
-  I took a look into the [Datadog Miscellaneous Functions](https://docs.datadoghq.com/graphing/miscellaneous/functions/) for functions and [Datadog Algorithms[(https://docs.datadoghq.com/dashboards/functions/algorithms/) and [Datadog Anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms) for anomalies. 
-An example I found was  anomalies(METRIC_NAME>{*}, '<ALGORITHM>', <BOUNDS>) and it is what I need, so I chose the Mysql.performance.com for the metric name, algorithm I used basic as there is no seasonal repeating and 1 for bounds.
-   
-    "definition": {
+  I took a look into the [Datadog Miscellaneous Functions](https://docs.datadoghq.com/graphing/miscellaneous/functions/) for functions and [Datadog Algorithms](https://docs.datadoghq.com/dashboards/functions/algorithms/) and [Datadog Anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms) for anomalies. 
+  
+An example I found was  anomalies(METRIC_NAME>{*}, '<ALGORITHM>', <BOUNDS>) and it is what I need, so I chose the Mysql.performance.com for the metric name, for algorithm I used basic as there is no seasonal repeating, and 1 for bounds.
+```
+ {
+   "definition": {
         "events": [],
         "requests": [
             {"q": "anomalies(avg:mysql.performance.com_select{*}, 'basic', 1)"}
         ],
         "viz": "timeseries"
     },
-    "title": "SQL Select Anomalies"
-    
-},
-
-## Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+    "title": "SQL Select Anomalies"    
+}
+```
+### Task 3: Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 I needed to look at the rollup function for the next part. [Datadog Functions](https://docs.datadoghq.com/dashboards/functions/rollup/)
+ 
 So, the first thing we are told is that the .rollup() function at the end of a query allows you to perform custom time aggregation, i.e. this function enables you to define: They give a few examples in the piece
 
-.rollup(sum,120). 
-.rollup(avg,86400):
+1. .rollup(sum,120). 
+2. .rollup(avg,86400):
 
 We're looking for an hour, so that's 3600 seconds and they tell us to use sum, so we use .rollup(sum, 3600)
 ```
@@ -526,11 +535,11 @@ I couldn't do the below due to the Timeboard not being created
 
 I could have done it through the UI, but I don't think that was the point of the challenge.
 
-## Monitoring data
+## Section 3: Monitoring data
 
 This was one of the easiest sections of the assessment. I went to the monitors section on the Datadog page and selected "New Monitor" then clicked Metric and selected "my_metric"
 
-[Datadog Create a Monitor[(https://app.datadoghq.com/monitors#/create)
+[Datadog Create a Monitor](https://app.datadoghq.com/monitors#/create)
 
 So, we can see the requirements of the new metric monitor are to be:
 
@@ -543,35 +552,41 @@ So, we can see the requirements of the new metric monitor are to be:
   
 So input the requirements for the monitoring. It's easy to follow and you can see the images below
 
-  1. [monitor1](https://imgur.com/FuTFlat)
-  2. [monitor2](https://imgur.com/TWnJKqV)
-  3. [monitor3](https://imgur.com/TWnJKqV)
-  4. [monitor4](https://imgur.com/5nVKY0h)
+### Setting up the Monitoring 
+The below images are very easy to follow:
+
+  1. [Setting up the monitor Part 1](https://imgur.com/FuTFlat)
+  2. [Setting up the monitor Part 2](https://imgur.com/TWnJKqV)
+  3. [Setting up the monitor Part 3](https://imgur.com/TWnJKqV)
+  4. [Setting up the monitor Part 4](https://imgur.com/5nVKY0h)
  
 ### Email alerts
 Here are the alert emails I received:
- 1. [monitorEmail](https://imgur.com/0iEKQ0V)
- 2. [No data email](https://imgur.com/a/1YSuASb)
+ 1. [Monitoring Email](https://imgur.com/0iEKQ0V)
+ 2. [No data Email](https://imgur.com/a/1YSuASb)
 
-
+### Scheduling Downtime
 I then scheduled the downtime from 7pm to 9am daily on Monday to Friday and then one that silences it on the weekend by clicking the schedule downtime button near the top. You can also go to setup down time by the following link: [Datadog Downtime](https://app.datadoghq.eu/monitors#/downtime)
 
-[monitorDowntimeWeekday](https://imgur.com/tHivZmn)
- I had an issue with setting the downtime to midnight on a Sunday, it threw an error https://imgur.com/2KCD8Dy
+[MonitoringDowntimeWeekday](https://imgur.com/tHivZmn)
+ I had an issue with setting the downtime to midnight on a Sunday, it gave an error that wouldn't let me change the time to midnight  [Midnight Error](https://imgur.com/2KCD8Dy)
+ 
  So, I just changed it to after the current time and let it run for Saturday and Sunday
-[monitorDowntimeWeekend](https://imgur.com/jyykAA4)
- On Monday I was able to change it back to midnight. 
+[MonitoringDowntimeWeekend](https://imgur.com/jyykAA4)
+
+On Monday I was able to change it back to midnight. 
 [Bug_fixed](https://imgur.com/a/1UVYfcj) There must be an error that won't let you change the  time to set an alert before the current time.
 
+### Downtime Emails
 Here were the emails I received after doing so:
 
-[monitorDowntime](https://imgur.com/CBuV0aQ) UTC is an hour behind GMT, so it reads 6 to 8
-[monitorDowntime2](https://imgur.com/a/1UVYfcj) Same as above, but it reads 11pm UTC
+[MonitoringDowntimeEmail](https://imgur.com/CBuV0aQ) UTC is an hour behind GMT, so it reads 6 to 8
+[MonitoringDowntimeEmail2](https://imgur.com/a/1UVYfcj) Same as above, but it reads 11pm UTC
 
 
 
 
-## Collecting APM Data
+## Section 4: Collecting APM Data
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
 First, I needed to install ddtrace. I did this by using pip and the following command: 
@@ -600,7 +615,7 @@ So, I read that I had to run the below command to upgrade pip
 ```
 "sudo pip3 install --upgrade pip"
 ```
-I then ran  
+I then ran:
 ```
 "sudo pip3 install --upgrade ddtrace"
 
@@ -617,8 +632,8 @@ Successfully installed ddtrace-0.38.1 msgpack-1.0.0
 So now that is installed, I can move onto the next part.
 
 I wanted to read more into Flask, so I looked in the following pages: 
-[Flask Install](https://flask.palletsprojects.com/en/1.1.x/installation/#install-create-env)
-[Flask Quickstart](https://flask.palletsprojects.com/en/1.1.x/quickstart/)
+1. [Flask Install](https://flask.palletsprojects.com/en/1.1.x/installation/#install-create-env)
+2. [Flask Quickstart](https://flask.palletsprojects.com/en/1.1.x/quickstart/)
 
 I ran a few of the commands below to setup a virtual environment
 ```
@@ -627,8 +642,9 @@ vagrant@vagrant:~$  cd myprojectdatadog
 vagrant@vagrant:~/myprojectdatadog$ python3 -m venv venv
 vagrant@vagrant:~/myprojectdatadog$ . venv/bin/activate
 (venv) vagrant@vagrant:~/myprojectdatadog$  pip3 install Flask
+```
 So now I see Flask is installed I want to do a version check. 
-  
+```
       (venv) vagrant@vagrant:~/myprojectdatadog$ flask --version
        Python 3.6.9
        Flask 1.1.2
@@ -637,10 +653,10 @@ So now I see Flask is installed I want to do a version check.
 
 I create my python file and copy the code provided into it. 
 ```
-      sudo vim my_flaskapp.py
+sudo vim my_flaskapp.py
 ```
 ```
-      ## Python code
+## Python code
 from flask import Flask
 import logging
 import sys
@@ -672,26 +688,26 @@ if __name__ == '__main__':
 ```    
 
 ```      
-    (venv) vagrant@vagrant:~/myprojectdatadog$  export FLASK_APP=my_flaskapp.py
-    (venv) vagrant@vagrant:~/myprojectdatadog$ flask run
+(venv) vagrant@vagrant:~/myprojectdatadog$  export FLASK_APP=my_flaskapp.py
+(venv) vagrant@vagrant:~/myprojectdatadog$ flask run
 ```
 
-I get this below error, so I have a quick search how to fix this. 
+I get this below error, so I have a quick search how to fix this:
 ```
 WARNING: This is a development server. Do not use it in a production deployment.
 ```
-I ran the below to enable change it to prod. 
+I ran the below to enable change it to prod: 
 ```
-    (venv) vagrant@vagrant:~/myprojectdatadog$ export FLASK_ENV=development
+(venv) vagrant@vagrant:~/myprojectdatadog$ export FLASK_ENV=development
 ```
 I then run flask with the below:    
 ```
-    (venv) vagrant@vagrant:~/myprojectdatadog$ flask run
+(venv) vagrant@vagrant:~/myprojectdatadog$ flask run
 ```
 
-The above command returns this error 
+The above command returns this error:
 ```
-    OSError: [Errno 98] Address already in use
+OSError: [Errno 98] Address already in use
 ```
 
 So, I run the below based on this documentation: [Flask Errno 98](https://medium.com/@tessywangari05/oserror-errno-98-address-already-in-use-flask-error-ccbff65e2bb5)
@@ -712,11 +728,11 @@ vagrant  16433  1630  0 14:31 pts/0    00:00:00 grep --color=auto flask
 2020-06-08 14:32:52,520 - werkzeug - INFO -  * Debugger PIN: 993-124-556
 ```
 
-I tried to run the below commands to see if I could see what was happening. 
+I tried to run the below commands to see if I could see what was happening:
 ```
-      lsof -i :5050
-      netstat -tulpn
-      netstat -van | grep 8126.
+lsof -i :5050
+netstat -tulpn
+netstat -van | grep 8126.
 ```
 
 I couldn't figure out what had happened so, I decided to go back and try install the DD-trace recommended on [Datadog Tracing](https://docs.datadoghq.com/tracing/setup/python/)
@@ -810,11 +826,11 @@ if __name__ == '__main__':
 
 [Datadog Trace Client](http://pypi.datadoghq.com/trace/docs/#get-started)  
 [Tracing Setup](https://docs.datadoghq.com/tracing/setup/python/)  
-[DatadogAgent](https://github.com/DataDog/datadog-agent)  
-[tracing_code] (https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/#tracing-your-code)
-[example.flask] (https://gist.githubusercontent.com/davidmlentz/4538db971af0e1d69a7936f4f8046122/raw/4a238f1c74d0f5f5ee2dd40a92b81f4176493c8c/apm_test_flask_custom.py)
-[pyddprofile]http://pypi.datadoghq.com/trace/docs/basic_usage.html#basic-usage
-[jinga] https://jinja.palletsprojects.com/en/2.11.x/intro/
+[Datadog Agent](https://github.com/DataDog/datadog-agent)  
+[tracing code](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/#tracing-your-code)
+[example flask](https://gist.githubusercontent.com/davidmlentz/4538db971af0e1d69a7936f4f8046122/raw/4a238f1c74d0f5f5ee2dd40a92b81f4176493c8c/apm_test_flask_custom.py)
+[Pyddprofile](http://pypi.datadoghq.com/trace/docs/basic_usage.html#basic-usage)
+[Jinga](https://jinja.palletsprojects.com/en/2.11.x/intro/)
 
 ### Bonus question: What is the difference between a Service and a Resource?
 
