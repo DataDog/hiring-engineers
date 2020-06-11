@@ -2,7 +2,7 @@ Your answers to the questions go here.
 # DataDog Pre-Sales Engineer Exercise
 
 ## Intro
-Really enjoyed getting the time to play around with the Datadog stack. I decided I'd go outside my comfort zone and go along with the recommended environment and use vagrant and VirtualBox. Keep Azure for work. 
+I really enjoyed getting the time to play around with the Datadog stack. I decided I'd go outside my comfort zone and go along with the recommended environment and use vagrant and VirtualBox. I decided to keep Azure for work. 
 
 ### Prerequisites (setting up the environment)
 
@@ -17,26 +17,32 @@ Assessment:
 4. Collecting APM Data
 5. Final/Bonus Questions
 
-I prefer breaking out the sections with the items in small chucks and reading through the relevant documentation section by section rather than all at once and reading each section in depth when I go to each challenge. So, I skimmed through the assessment and then went back and set up the environment. For setting up the environment, I opted to use Vagrant and VirtualBox because it was the recommended option, so I guessed that's what the team use when working at Datadog.  I've never used Vagrant or VirtualBox before this challenge, it was fairly straight forward and easy to use.
+I prefer breaking out the sections with the items in small chucks and reading through the relevant documentation section by section rather than all at once and reading each section in depth when I go to each challenge. So, I briefly read through the assessment and then went back and set up the environment. For setting up the environment, I opted to use Vagrant and VirtualBox because it was the recommended option, so I guessed that's what the team use when working at Datadog.  I've never used Vagrant or VirtualBox before this challenge, it was fairly straight forward and easy to use.
 
 The version of Ubuntu I used was 18.04. 
 
-I then created my Datadog account and connected the agent to my new VM by following the easy steps here: https://app.datadoghq.com/account/settings#agent/ubuntu
+I then created my Datadog account and connected the agent to my new VM by following the easy steps here: [Setting up the Datadog Agent - Ubuntu[(https://app.datadoghq.com/account/settings#agent/ubuntu)
 
-I ran through the following page and decided to leave it open to get the agent commands https://docs.datadoghq.com/agent/guide/agent-commands/?tab=agentv6v7
+I ran through the following page and decided to leave it open to get the agent commands [Datadog Agent commands](https://docs.datadoghq.com/agent/guide/agent-commands/?tab=agentv6v7)
 
-I quickly ran a status check "sudo datadog-agent status” just to make sure everything was running and going into the datadog portal online. So, everything is up and running. Let's get stuck in.
+I quickly ran a the status check below, just to make sure everything was running and going into the datadog portal online. So, everything is up and running. Let's get started.
+```
+"sudo datadog-agent status” 
+```
 
 
- https://imgur.com/a/zx2P8Mq [Datadog-agent status]
+ [Datadog-agent status](https://imgur.com/a/zx2P8Mq)
  
  
 ## Collecting Metrics
 ### 1. "Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog."
 
-I took a quick read on the following link: https://docs.datadoghq.com/tagging/ 
-
-So, to do this I had to change the yaml file, so I got the file path from the status command I ran above, /etc/datadog-agent/datadog.yaml once I had this, I ran the following command to get change the yaml file. sudo vim /etc/datadog-agent/datadog.yaml I changed the hostname and tags. 
+I took a quick read on the following link: [Datadog Tagging](https://docs.datadoghq.com/tagging/)
+q
+So, to do this I had to change the yaml file, so I got the file path from the status command I ran above, /etc/datadog-agent/datadog.yaml once I had this, I ran the below command to get change the yaml file. I changed the hostname and tags. 
+```
+sudo vim /etc/datadog-agent/datadog.yaml 
+```
 
 #### Config changes
     Hostname: owen.barr
@@ -45,31 +51,31 @@ So, to do this I had to change the yaml file, so I got the file path from the st
       -james:bond
       - donegal:gaa
   
-Once this was done, we have to restart the agent with the below command "sudo service datadog-agent restart" and wait for a few minutes to see it on the hostmap. https://app.datadoghq.eu/infrastructure/map
- 
-  https://imgur.com/T9cJkpY [Datadog yaml file]
-  https://imgur.com/6cbVh2C [Datadog host map]
+Once this was done, we have to restart the agent with the below command and wait for a few minutes to see it on the hostmap. [Datadog Host Map](https://app.datadoghq.eu/infrastructure/map)
+ ```
+ "sudo service datadog-agent restart"
+ ```
+  [Datadog yaml file](https://imgur.com/T9cJkpY)
+  [Datadog host map](https://imgur.com/6cbVh2C)
 
 
 
 ### 2. "Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database."
 
-I went with MySQL as it's what I'm most familiar with. 
-I took a quick look through the documentation https://app.datadoghq.eu/account/settings#integrations/mysql all seemed pretty straight forward. I'd probably add in a line or two around the installation of the chosen DB on your OS of choice, but I get there are a lot of permutations out there. 
+I went with MySQL as it's what I'm most familiar with. I took a quick look through the documentation [Datadog Integrations MySQL](https://app.datadoghq.eu/account/settings#integrations/mysql) It was a pretty straight forward integration. I'd probably add in a line or two around the installation of the chosen DB on your OS of choice, but I get there are a lot of permutations out there. 
 So, I ran a few commands below to get MySQL installed.
 
   #### Install MySQL Server on the Ubuntu operating system
     "sudo apt-get install mysql-server"
     "sudo mysql -u root" 
 
-Now that is done, I connect Datadog to the MySQL server, using the steps I followed in the following page again: https://app.datadoghq.com/account/settings#integrations/mysql
+Now that is done, I connect Datadog to the MySQL server, using the steps I followed in the following page again: [Datadog Integrations MySQL](https://app.datadoghq.eu/account/settings#integrations/mysql)
 
 I followed the steps above and created the user called Datadog and gave it the appropriate permissions.
 
 #### SQL command
 ```
 CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
-
 ```
 
 I verified the user was created successfully using the following commands - and replacing <UNIQUEPASSWORD> with the password I created when creating the user.
@@ -77,44 +83,44 @@ I verified the user was created successfully using the following commands - and 
 ```
 mysql -u datadog --password='REPLACE_WITH_YOUR_PASSWORD' -e "show status" | grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || echo -e "\033[0;31mCannot connect to MySQL\033[0m"
 ```
-Then I ran 
+Then I ran, 
 ```
 mysql -u datadog --password=<UNIQUEPASSWORD> -e "show slave status" && \ echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
 echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
   ```
-This threw back an error until I ran the below command:
+This gave back an error until I ran the below command:
 ```
 GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
 ```
 Once the above command was run, I ran the following command again, 
-``` mysql -u datadog --password=<UNIQUEPASSWORD> -e "show slave status" && \ echo -e "\033[0;32mMySQL grant - OK\033[0m" || \ echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m" 
+``` 
+mysql -u datadog --password=<UNIQUEPASSWORD> -e "show slave status" && \ echo -e "\033[0;32mMySQL grant - OK\033[0m" || \ echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m" 
 ```
 
 I saw that the user was created with the appropriate permissions. 
 
-  https://imgur.com/Fxs1Xb5 [User permissions]
+ [User permissions](https://imgur.com/Fxs1Xb5)
   
 I ran the following SQL commands and then went to the Metrics explorer and seen that the spikes from running a few queries.
 ```
 mysql> show databases like 'performance_schema';
 
 mysql> GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';
-
  ```
- https://imgur.com/vEVnaqR [Sql monitor metrics]
+ [Sql Monitor Metrics](https://imgur.com/vEVnaqR)
   
 
 ### 3. "Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000."
 
-Again, I followed the documentation outlined here:  https://docs.datadoghq.com/developers/agent_checks/ and https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
+I followed the documentation outlined here:  [Agent Checks](https://docs.datadoghq.com/developers/agent_checks/) and [Write Checks](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
 
-It was pretty straight forward to follow practically all the code was already written for me. So, I just followed the following steps
+It was pretty straight forward to follow, practically all the code was already written for me. So, I just followed the following steps
 ```
 "sudo vim /etc/datadog-agent/conf.d/hello.yaml"
 ```
 Inserted the following line and then save and close
 
-## hello yaml file
+#### Hello yaml file
 ```
 instances: [{}] 
 ```
@@ -144,13 +150,13 @@ class HelloCheck(AgentCheck):
 ```
 
 I restarted the agent and was able to see the update on the metrics explorer.
- [Hello.py Metrics] (https://imgur.com/SlvAQhz)
+ [Hello.py Metrics](https://imgur.com/SlvAQhz)
   
 Once I had the test metric created, I started on the new metric that reports a random number from 0-1000. I used the contents from the previous yaml file but created a new file with the following command. 
 ```
 "sudo vim /etc/datadog-agent/conf.d/my_metric.yaml"
 ```
-I did the same for the py file  
+I did the same command to create the py file  
 ```
 "sudo vim /etc/datadog-agent/checks.d/my_metric.py" and inputted the below into it
 ```
@@ -165,15 +171,15 @@ class RandomCheck(AgentCheck): # same as documentation just change HelloCheck to
 ```
 
 These links will help with anyone who needs with understanding the random module
-("https://docs.python.org/3/library/random.html")
-("https://docs.python.org/3.1/library/random.html")
+[Python Random Libary]("https://docs.python.org/3/library/random.html")
+[Python Random int]("https://docs.python.org/3.1/library/random.html")
 
 
 Now that I was able to create a check, I was ready to create the new metric that reports a random number from 0-1000. I used the exact same yaml file as from the hello.world check but I renamed it to "my_metric.yaml".
 
 The my_metric python code is also very similar to the hello.world code but I added/modified a few things. First, I wanted to change the name of the metric from "hello.world" to "my_metric".
 
-#### python code
+#### Python code for My Metric
 ```
 self.gauge('my_metric', 1)
 ```
@@ -181,7 +187,7 @@ self.gauge('my_metric', 1)
 Then, instead of reporting a constant 1, I wanted to generate a random number from 0-1000. To do that, I needed to important the "random" library into python by adding the line "import random" to the top of our code. I can generate a random number between 0-1000 with the randint member of the random class "random.randint(0,1000))" My final code looks like the following:
 
 
-#### python code
+#### Python code for Random number generator
 ```
 import random
 from checks import AgentCheck
@@ -196,40 +202,51 @@ Then, I restarted the Datadog agent by running the command:
 ```
 I checked my new metric "my_metric" in the metrics explorer, I saw that our check is successfully generating random numbers between 0-1000.
 
-[python My_Metric] (https://imgur.com/E29gZs3)
+[Metric Explorer My_Metric](https://imgur.com/E29gZs3)
 
 
 ### 4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
-
-
-### 5. Bonus Question Can you change the collection interval without modifying the Python check file you created?
-
-
-I will first answer the bonus question for which I referred to this article: [Write Agent Check]https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
-
 If you go to Collection interval section of the above file, it gives you the code to change the collection interval. 
-Just insert this into your my_metric yaml file. "sudo vim /etc/datadog-agent/conf.d/my_metric.yaml" Just make sure you change the 30 to 45.
+Insert this into your my_metric yaml file. 
+```
+"sudo vim /etc/datadog-agent/conf.d/my_metric.yaml" 
+```
+Make sure you change the 30 to 45.
 
-#### collection interval code
+
+#### Collection interval code - 45 Seconds
 ```
 init_config:
 
 instances:
    -  min_collection_interval: 45
-   
+```
+
+### 5. Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+I will answer the bonus question for which I referred to this article: [Write Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) I can change the collection interval by altering the below yaml file at the min_collection interval variable. In the below I changed it to 60 seconds. This means there is no need to alter my python code.
+
+#### Collection interval code - 60 Seconds
+```
+init_config:
+
+instances:
+   -  min_collection_interval: 60
    ```
 Now we have changed the collection interval, give the agent a reboot with the following code.
-
+```
 "sudo service datadog-agent restart"
+```
 
-In the documentation there is a caveat, 
+In the documentation there is a caveat;
+
 Note: If the min_collection_interval is set to 30, it does not mean that the metric is collected every 30 seconds, but rather that it could be collected as often as every 30 seconds. The collector will try to run the check every 30 seconds, but the check might need to wait in line, depending on how many integrations are enabled on the same Agent. Also, if the check method takes more than 30 seconds to finish, the Agent will notice the check is still running and will skip its execution until the next interval.
 
 As per the documentation, it is important to note that this does not guarantee a collection every 45 seconds. Instead, it means that this particular check *may be collected* as often as every 45 seconds. 
 
 You can see from the metric explorer that this has successfully been deployed.
 
-  https://imgur.com/wge5uFi [Collection interval]
+[Metric explorer Collection interval](https://imgur.com/wge5uFi)
   
 
 ## Visualizing Data
@@ -240,20 +257,21 @@ Utilize the Datadog API to create a Timeboard that contains:
     Any metric from the Integration on your Database with the anomaly function applied.
     Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-In order to accomplish this task, I first installed the Datadog python library by following the instructions on the Datadog python GitHub: https://github.com/DataDog/datadogpy
+In order to accomplish this task, I first installed the Datadog python library by following the instructions on the Datadog python GitHub: [Datadog Python[(https://github.com/DataDog/datadogpy)
 
 I ran the command:
+```
 sudo pip3 install datadog
+```
 
 At this point I was ready to begin writing the Timeboard code in python. To do this, I referenced the following article:
-https://docs.datadoghq.com/api/?lang=python#timeboards
-
-
+[Datadog Timeboards](https://docs.datadoghq.com/api/?lang=python#timeboards)
 
 I then wanted to compile this code, but I needed to get the API keys from Datadog. To obtain them, I went to the API tab on the integrations menu and generated a new key by selecting "Create Application Key":
 
 The code I saved was taken from the datadog doc and is seen below:
 
+#### Python code for Creating a timeboard
 ```python
 from datadog import initialize, api
 options = {
@@ -290,19 +308,20 @@ I had an issue where the data wasn't sending from my_timeboard.py or my_screenbo
 I went to try and look what were the reasons why it wasn't working. 
 
 I ran 
+```
 tail -f /var/log/datadog/agent.log and seen the below. 
-
-  [Datadog agent logs]
+```
+  #### Datadog agent logs
   
         2020-06-07 16:57:35 UTC | CORE | WARN | (pkg/collector/python/datadog_agent.go:118 in LogMessage) | mysql:1fa1a2e54ef75ec6 | (mysql.py:1295) | Failed to fetch records from the perf schema                                  'events_statements_summary_by_digest' table.
         2020-06-07 16:57:35 UTC | CORE | WARN | (pkg/collector/python/datadog_agent.go:118 in LogMessage) | mysql:1fa1a2e54ef75ec6 | (mysql.py:1324) | Failed to fetch records from the perf schema                                  'events_statements_summary_by_digest' table.
         
 This error occurs twice. I could see there was an error with MySQL server, so I went and checked to see if there were any errors with any of the config files. 
 
-There was a spelling mistake in the config file, so I fixed that and restarted the agent. 
+There was a spelling mistake in one of the config files, so I fixed that and restarted the agent. 
 
-## error
-
+#### Error
+```
 vagrant@vagrant:~$ cat /etc/datadog-agent/conf.d/mysql.d/conf.yaml 
 nit_config: ## should be init_config
 
@@ -319,8 +338,8 @@ instances:
       extra_performance_metrics: true
       schema_size_metrics: false
       disable_innodb_metrics: false
+```      
       
-  ##
 Still not working, so I went back to the logs. 
 
 [Datadog agent logs2]
@@ -329,7 +348,8 @@ I could see it is down to one now that I have fixed the yaml file. I ran through
 [Datadog directories]
 I turned it on and checked but it made no difference, so I reverted back to default. 
 
-## Turning on port forwarding 
+#### Turning on port forwarding 
+```
 $ cat /proc/sys/net/ipv4/ip_forward
 0
 $ sysctl net.ipv4.ip_forward=1
@@ -349,19 +369,16 @@ tcp        0      0 vagrant:47440           23.172.107.34.bc.:https ESTABLISHED
 udp        0      0 localhost:46898         localhost:8125          ESTABLISHED
 udp        0      0 localhost:33425         localhost:8125          ESTABLISHED
 Active UNIX domain sockets (w/o servers)
-
+```
 
 I then went to look at the sql server directly and make sure that it's working correctly. 
 
 Everything looks ok I ran a few commands and the below is what was seen. 
 
-## SQL code
+#### SQL code
+```
 mysql> select * from events_statements_summary_by_digest;
 ERROR 1046 (3D000): No database selected
-mysql> show databases
-    -> ^C
-
-^C
 mysql> show databases;
 +--------------------+
 | Database           |
@@ -372,12 +389,15 @@ mysql> show databases;
 | sys                |
 +--------------------+
 4 rows in set (0.00 sec)
-
+```
+```
 mysql> use performance_schema;
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker start-up with -A
 
 Database changed
+```
+```
 mysql> select * from events_statements_summary_by_digest;
 +--------------------+----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------------+----------------+----------------+----------------+---------------+------------+--------------+-------------------+---------------+-------------------+-----------------------------+------------------------+----------------------+----------------------------+------------------+------------------------+-----------------+-----------------------+----------------+---------------+---------------+-------------------+------------------------+---------------------+---------------------+
 | SCHEMA_NAME        | DIGEST                           | DIGEST_TEXT                                                                                                                                                                                                                                                                                                                                           | COUNT_STAR | SUM_TIMER_WAIT | MIN_TIMER_WAIT | AVG_TIMER_WAIT | MAX_TIMER_WAIT | SUM_LOCK_TIME | SUM_ERRORS | SUM_WARNINGS | SUM_ROWS_AFFECTED | SUM_ROWS_SENT | SUM_ROWS_EXAMINED | SUM_CREATED_TMP_DISK_TABLES | SUM_CREATED_TMP_TABLES | SUM_SELECT_FULL_JOIN | SUM_SELECT_FULL_RANGE_JOIN | SUM_SELECT_RANGE | SUM_SELECT_RANGE_CHECK | SUM_SELECT_SCAN | SUM_SORT_MERGE_PASSES | SUM_SORT_RANGE | SUM_SORT_ROWS | SUM_SORT_SCAN | SUM_NO_INDEX_USED | SUM_NO_GOOD_INDEX_USED | FIRST_SEEN          | LAST_SEEN           |
@@ -405,7 +425,8 @@ mysql> select * from events_statements_summary_by_digest;
 | performance_schema | dcccbb8f13c4aee22ce880dd44b1649f | SHOW GLOBAL VARIABLES LIKE ?                                                                                                                                                                                                                                                                                                                          |          1 |     1660447000 |     1660447000 |     1660447000 |     1660447000 |     180000000 |          0 |            0 |                 0 |             1 |              1020 |                           0 |                      1 |                    0 |                          0 |                0 |                      0 |               2 |                     0 |              0 |             0 |             0 |                 1 |                      0 | 2020-06-07 18:21:56 | 2020-06-07 18:21:56 |
 +--------------------+----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------------+----------------+----------------+----------------+---------------+------------+--------------+-------------------+---------------+-------------------+-----------------------------+------------------------+----------------------+----------------------------+------------------+------------------------+-----------------+-----------------------+----------------+---------------+---------------+-------------------+------------------------+---------------------+---------------------+
 21 rows in set (0.00 sec)
-
+```
+```
 mysql> show global variables like 'PORT';
 +---------------+-------+
 | Variable_name | Value |
@@ -413,15 +434,14 @@ mysql> show global variables like 'PORT';
 | port          | 3306  |
 +---------------+-------+
 1 row in set (0.00 sec)
+```
 
-## 
-
-Ports looked fine and I could see that the user permissions were correct, and I could see the data in the DB.
+The ports looked fine and I could see that the user permissions were correct, and I could see the data in the DB.
 
 I decided I would type out the python script I had prepared for the next part anyway. 
 
-## Python code
-
+#### Python code 
+```
 from datadog import initialize, api
 options = {
     'api_key': 'API_Keys ',
@@ -433,8 +453,9 @@ initialize(**options)
 title = "Datadog Assignment Timeboard"
 description = "This would be my datadog Timeboard!"
 graphs = [{
-
+```
   ## Your custom metric scoped over your host.
+  ```
     "definition": {
         "events": [],
         "requests": [
@@ -444,9 +465,11 @@ graphs = [{
     },
     "title": "my_metric"
 },
-
+```
   ##  Any metric from the Integration on your Database with the anomaly function applied.
-  I took a look into the https://docs.datadoghq.com/graphing/miscellaneous/functions/ for functions and https://docs.datadoghq.com/dashboards/functions/algorithms/ and https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms for anomalies. anomalies(METRIC_NAME>{*}, '<ALGORITHM>', <BOUNDS>) is what I need so I chose the Mysql.performance.com for the metric name, algorithm I used basic as there is no seasonal repeating and 1 for bounds.
+  
+  I took a look into the [Datadog Miscellaneous Functions](https://docs.datadoghq.com/graphing/miscellaneous/functions/) for functions and [Datadog Algorithms[(https://docs.datadoghq.com/dashboards/functions/algorithms/) and [Datadog Anomaly](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms) for anomalies. 
+An example I found was  anomalies(METRIC_NAME>{*}, '<ALGORITHM>', <BOUNDS>) and it is what I need, so I chose the Mysql.performance.com for the metric name, algorithm I used basic as there is no seasonal repeating and 1 for bounds.
    
     "definition": {
         "events": [],
@@ -459,14 +482,15 @@ graphs = [{
     
 },
 
-    Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-I needed to look at the rollup function for the next part. https://docs.datadoghq.com/dashboards/functions/rollup/
+## Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+I needed to look at the rollup function for the next part. [Datadog Functions](https://docs.datadoghq.com/dashboards/functions/rollup/)
 So, the first thing we are told is that the .rollup() function at the end of a query allows you to perform custom time aggregation, i.e. this function enables you to define: They give a few examples in the piece
 
 .rollup(sum,120). 
 .rollup(avg,86400):
 
 We're looking for an hour, so that's 3600 seconds and they tell us to use sum, so we use .rollup(sum, 3600)
+```
 {
     "definition": {
         "events": [],
@@ -490,15 +514,14 @@ api.Timeboard.create(title=title,
                      graphs=graphs,
                      template_variables=template_variables,
                      read_only=read_only)
-##
-
+```
 I don't know if all of the above works due to the error I had but reading the documentation and looking at examples they gave made it easy to understand. 
 
 I couldn't do the below due to the Timeboard not being created
 
-    Set the Timeboard's timeframe to the past 5 minutes
-    Take a snapshot of this graph and use the @ notation to send it to yourself.
-    Bonus Question: What is the Anomaly graph displaying?
+ 1. Set the Timeboard's timeframe to the past 5 minutes
+ 2. Take a snapshot of this graph and use the @ notation to send it to yourself.
+ 3. Bonus Question: What is the Anomaly graph displaying?
 
 I could have done it through the UI, but I don't think that was the point of the challenge.
 
