@@ -27,7 +27,7 @@ I ran through the following page and decided to leave it open to get the agent c
 
 I quickly ran a the status check below, just to make sure everything was running and going into the datadog portal online. So, everything is up and running. Let's get started.
 ```
-"sudo datadog-agent status” 
+sudo datadog-agent status
 ```
 
 
