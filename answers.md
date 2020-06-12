@@ -59,7 +59,113 @@ The following links provide access to the Host Dashboard and Host Map:
 
 
 ## Collecting Metrics
+* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+  The following tags were to [`datadog.yaml`](src/datadog.yaml) config file:
+  ```
+  tags:
+    - service:coffee-shop
+    - service:coffee-shop:lat:37.747613
+    - service:coffee-shop:long:-122.432123
+    - version:coffee-shop:09121970
+  ```
+
+This screenshot shows the tags that were added to the `kalachakra.local` host:
+  ![tags](images/tags.png)
+
+
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+  MySQL was already installed on my MacBook Pro, so I followed the Datadog [integration documentation for MySQL](https://app.datadoghq.com/account/settings#integrations/mysql)
+  ![mysql_metrics](images/mysql_metrics.png)
+
+
+* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+The custom Agent check `custom_check.py`
+```python
+# the following try/except block will make the custom check compatible with any Agent version
+import random
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class CustomCheckmuy(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', random.randint(0,1000), tags=['host:kalachakra.local'])
+```
+
+I verified the `custom_check` using the `datadog-agent` "check" command:
+```commandline
+~/.datadog-agent » datadog-agent check custom_check                             jeremy@kalachakra
+=== Series ===
+{
+  "series": [
+    {
+      "metric": "my_metric",
+      "points": [
+        [
+          1591984345,
+          1
+        ]
+      ],
+      "tags": [
+        "TAG_KEY:TAG_VALUE"
+      ],
+      "host": "kalachakra.local",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    }
+  ]
+}
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+
+    custom_check (1.0.0)
+    --------------------
+      Instance ID: custom_check:d884b5186b651429 [OK]
+      Configuration Source: file:/opt/datadog-agent/etc/conf.d/custom_check.yaml
+      Total Runs: 1
+      Metric Samples: Last Run: 1, Total: 1
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2020-06-12 10:52:25.000000 PDT
+      Last Successful Execution Date : 2020-06-12 10:52:25.000000 PDT
+
+
+Check has run only once, if some metrics are missing you can try again with --check-rate to see any other metric if available.
+```
+
+* Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+I added the `min_configuration_interval` field in the [custom_check.yaml](src/custom_check.yaml) file, as per the
+[main documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) listed in 
+the References section of the main [README.md](README.md).
+```
+init_config:
+ 
+instances:
+  - min_collection_interval: 45
+```
+
+* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+It can be modified directly in the [custom_check.yaml](src/custom_check.yaml) file
+Using the Datadog Agent GUI, I modified the interval directly and restarted the agent:
+ ![check_gui](images/check_gui.png)
+ 
 
 ## Visualizing Data
 
