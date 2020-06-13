@@ -60,8 +60,6 @@ The following links provide access to the Host Dashboard and Host Map:
 
 
 ## Collecting Metrics
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-
   The following tags were to [`datadog.yaml`](src/datadog.yaml) config file:
   ```
   tags:
@@ -72,7 +70,6 @@ The following links provide access to the Host Dashboard and Host Map:
   ```
 
   This screenshot shows the tags that were added to the `kalachakra.local` host:
-
   ![tags](images/tags.png)
 
 
@@ -162,8 +159,6 @@ instances:
   - min_collection_interval: 45
 ```
 
-**Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-
 You can also change the collection interval directly [custom_check.yaml](src/custom_check.yaml) file.
 Using the Datadog Agent GUI, I modified the interval directly and restarted the agent to pick up the new 
 collection interval:
@@ -193,10 +188,66 @@ Additionally, I downloaded the [Timeboard JSON](Jeremy'sTimeboard--2020-06-12T22
 reference.
 
 To answer the bonus question, the anomaly in the graph of 2 standard deviations from normal data points. The `anomalies()` algorithm provides a gray band overlay on the metric 
-that shows the expected behavior data collected in the past.ww
+that shows the expected behavior data collected in the past.
 
 
 ## Monitoring Data
+
+In order to ensure that we capture any metric value
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+### Monitor Creation
+To monitor `my_metric`, I created a new metric monitor on the [Monitors](https://app.datadoghq.com/monitors/manage) page as required
+![my_metric1](images/my_metric1.png)
+
+![my_metric2](images/my_metric2.png)
+
+### Managing Monitor Violations
+The following image shows that the monitor threshholds are applied and displayed in the graph:
+![my_metric_monitor](images/my_metric2.png)
+
+To indicate violations of `my_metric`, we can configure user notification with the following
+parameterized messages:
+```
+{{#is_alert}}
+ALERT: {{host.name}}:{{host.ip}} Threshold Exceeded! Current Value: {{value}}
+{{/is_alert}}
+
+{{#is_warning}}
+WARNING: {{host.name}}:{{host.ip}} Threshold Exceeded! Current Value: {{value}}
+{{/is_warning}}
+
+{{#is_no_data}}
+NO_DATA: No data available!
+{{/is_no_data}}
+
+Notify @jeremy.daggett@gmail.com
+```
+
+### Monitor Notifications
+Using the `@` notation with my name, the UI automatically populates the notification email. Nice touch! I leveraged the
+*Test Notifications* feature for each one of the monitor states as defined in the configuration to ensure that I
+received email notifications. Here is screen capture of the email notifications I received:
+
+![Test Monitors](images/monitor_test.png)
+
+
+### Triggering Monitors
+
+The Alert monitor never triggered, despite the fact that I tested the notification:
+![monitor_alert_email](images/monitor_alert_email.png)
+
+The Warning monitor triggered many since the value of `my_metric` was 503.143 as shown here in the screenshot of the
+ email notification:
+![monitor_warning_email](images/monitor_warning_email.png)
+
+### Monitoring Downtime
+To silence the monitor I created, I created Monitor Downtime for weekdays and the weekend:
+  * [Manage Monitor Downtime](https://app.datadoghq.com/monitors#downtime)
+  * [Weekend Monitor Silencing](https://app.datadoghq.com/monitors#downtime?id=859183173)
+  * [Weekly Monitor Silencing](https://app.datadoghq.com/monitors#downtime?id=859187076)
 
 
 ## Collecting APM Data
