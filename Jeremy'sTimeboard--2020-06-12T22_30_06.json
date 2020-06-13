@@ -1,0 +1,68 @@
+{
+  "title": "Jeremy's Timeboard",
+  "description": "Awesome Dashboard",
+  "widgets": [
+    {
+      "id": 6187787251749402,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "avg:my_metric{host:kalachakra.local}"
+          }
+        ],
+        "title": "Average of my_metric",
+        "show_legend": false,
+        "legend_size": "0"
+      }
+    },
+    {
+      "id": 4243142379189381,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "anomalies(avg:mysql.performance.threads_running{*}, 'basic', 2)",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Anomalies in MySQL open files",
+        "show_legend": false,
+        "legend_size": "0"
+      }
+    },
+    {
+      "id": 1516108277604894,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:my_metric{host:kalachakra.local}.rollup(sum,60)"
+          }
+        ],
+        "title": "Roll up sum of my_metric",
+        "show_legend": false,
+        "legend_size": "0"
+      }
+    }
+  ],
+  "template_variables": [],
+  "layout_type": "ordered",
+  "is_read_only": true,
+  "notify_list": [
+    "jeremy.daggett@gmail.com"
+  ],
+  "id": "ahh-t7t-2x8"
+}

@@ -1,7 +1,7 @@
 # macOS Agent Install 
 
 ##Agent Installation Page
-This page provides installation instructions for a variety of systems that Datadog supports. 
+The Agent installation instructions for a variety of systems is presented on the main install page as shown:
 ![agent](../images/macos_agent_install.png)
 
 ## Command Line Installation
@@ -326,12 +326,15 @@ DogStatsD
 
 ## Launch the Datadog Agent GUI
 
+From the Command Line, I launched the Datadog Agent GUI to ensure that it was collecting metrics:
 ```commandline
 ~ » datadog-agent launch-gui                                    jeremy@kalachakra
 ```
 
+The Datadog Agent GUI that I was presented with provides a wealth of information:
 ![agent_gui](../images/datadog_agent_manager.png)
 
-Optionally, macOS has a handy system tray integration for the Datadog Agent.
+Optionally, macOS has a handy system tray integration for the Datadog Agent that allows for easy access to the Agent's
+functionality. Nice!
 
 ![macos_tray](../images/macos_system_tray.png)
