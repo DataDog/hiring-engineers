@@ -236,12 +236,18 @@ received email notifications. Here is screen capture of the email notifications 
 
 ### Triggering Monitors
 
-The Alert monitor never triggered, despite the fact that I tested the notification:
-![monitor_alert_email](images/monitor_alert_email.png)
+#### Alert Monitor
+The Alert monitor never triggered, despite the fact that I tested the notification and received an email:
 
+![monitor_test_alert](images/monitor_test_alert.png)
+
+
+#### Warning Monitor
 The Warning monitor triggered many since the value of `my_metric` was 503.143 as shown here in the screenshot of the
- email notification:
+email notification:
+
 ![monitor_warning_email](images/monitor_warning_email.png)
+
 
 ### Monitoring Downtime
 To silence the monitor I created, I created Monitor Downtime for weekdays and the weekend:
