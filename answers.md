@@ -184,7 +184,7 @@ down menu. I took a snapshot of my timeboard and using the @ notation, I sent it
 The Timeboard [Jeremy\'s Timeboard](https://app.datadoghq.com/dashboard/ahh-t7t-2x8/jeremys-timeboard) can be accessed 
 in my Datadog environment.
 
-Additionally, I downloaded the [Timeboard JSON](Jeremy'sTimeboard--2020-06-12T22_30_06.json) for additional 
+Additionally, I downloaded the [Timeboard JSON](src/Jeremy'sTimeboard--2020-06-12T22_30_06.json) for additional 
 reference.
 
 To answer the bonus question, the anomaly in the graph of 2 standard deviations from normal data points. The `anomalies()` algorithm provides a gray band overlay on the metric 
