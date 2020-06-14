@@ -1,7 +1,7 @@
 # Datadog Solutions Engineer Exercise
 
 The intent of the exercise is to get familiar with the Datadog Platform. This document outlines the process from initial
- account setup, Agent installation, collecting metrics, visualizing and monitoring data from an array complex systems.
+ account setup, Agent installation, collecting metrics, visualizing and monitoring data from an array systems.
 
 
 ## Prerequisites and Environment Setup
@@ -37,7 +37,7 @@ Vagrant Ubuntu 18.04.4 LTS VM running with VirtualBox
 ## Agent Installation
 The Agent installation was quite simple and allows users to get metrics pushed to Datadog almost immediately.
 
-The following installation documents provide the commands and output for the installation of the Agent on my Host:
+The following installation instructions provide the commands and output for the installation of the Agents on my Host:
 * [macOS Agent Installation](src/macos_agent_install.md)
 * [Ubuntu Agent Installation](src/ubuntu_agent_install.md)
 
@@ -252,5 +252,79 @@ To silence the monitor I created, I created Monitor Downtime for weekdays and th
 
 ## Collecting APM Data
 
+To use the APM tracing features, I followed the instructions for the [Datadog Flask Integration](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask)
+to properly instrument the application. I also put some random `sleep()` calls to make the responses a little more realistic to a real world scenario.
 
-## Final Question
+```python
+import logging
+import sys
+import time
+import random
+from flask import Flask
+from ddtrace import patch_all
+patch_all()
+
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+
+@app.route('/api/apm')
+def apm_endpoint():
+    time.sleep(random.randint(0,15))
+    return 'Getting APM Started'
+
+
+@app.route('/api/trace')
+def trace_endpoint():
+    time.sleep(random.randint(0,10))
+    return 'Posting Traces'
+
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port='5050')
+```
+
+For reference, here are the sources for the Application and log output:
+* [my_flask_app.py](src/my_flask_app.py)
+* [my_flask_app.log](src/my_flask_app.log)
+
+
+### Services versus Resources
+
+Services are essentially map to a microservices architecture, where you have multiple services that work together,
+like "Customer Service", "User Service", or "Payment Service". They are essentially the instrumented Applications
+running in your environment.
+
+Resources provide insight into the internal workings of a service, like requests, latencies, and errors.
+
+
+## Creative Uses for Datadog
+
+Refactoring "Balls of Mud"
+
+Many customer applications I have worked with are typically in a state of monolithic bitrot and needed to be refactored
+into Cloud Native microservices, all of which are responsible for their own domain. Even for experienced engineers, this
+is a challenging endeavor. Where does one start?
+
+I would use Datadog as a tool to monitor and visualize the refactoring of the monolith into microservices. Datadog would
+allow analysis of each new service as they are stripped away from the monolith. I would use as many of the provided
+integrations to capture metrics from legacy services into more modern tools like Kafka, Cassandra and Spark as I move
+away from older services.
+
+## Conclusion
+This has been a really fun exercise and I have learned a lot from it! I wanted to experiment with a lot of the other
+integrations, primarily with the technologies I mentioned. While my trial account is active, I think I might spin up
+a [Cloudflow](https://cloudflow.io/) cluster on GCP and monitor it.

@@ -1,0 +1,39 @@
+ * Serving Flask app "my_flask_app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2020-06-13 11:25:06,999 - ddtrace.internal.import_hooks - DEBUG - No hooks registered for module 'stringprep'
+2020-06-13 11:25:07,001 - werkzeug - INFO -  * Running on http://127.0.0.1:5050/ (Press CTRL+C to quit)
+2020-06-13 11:25:09,980 - ddtrace.tracer - DEBUG - Updating constant tags ['lang:python', 'lang_interpreter:CPython', 'lang_version:3.7.7', 'tracer_version:0.38.2', 'service:flask']
+2020-06-13 11:25:09,981 - ddtrace.tracer - DEBUG - writing 8 spans (enabled:True)
+2020-06-13 11:25:09,981 - ddtrace.tracer - DEBUG - 
+      name flask.request
+        id 17944747675049136966
+  trace_id 12103282517409034401
+ parent_id None
+   service flask
+  resource GET /
+      type web
+     start 1592072709.979746
+       end 1592072709.9811392
+  duration 0.001393s
+     error 0
+      tags 
+           flask.endpoint:api_entry
+           flask.url_rule:/
+           flask.version:1.1.2
+           http.method:GET
+           http.status_code:200
+           http.url:http://localhost:5050/
+           runtime-id:1041c9989f074a9b99e40809de46d5ce
+2020-06-13 11:25:09,981 - ddtrace._worker - DEBUG - Starting AgentWriter thread
+2020-06-13 11:25:09,981 - werkzeug - INFO - 127.0.0.1 - - [13/Jun/2020 11:25:09] "[37mGET / HTTP/1.1[0m" 200 -
+2020-06-13 11:25:10,986 - ddtrace.api - DEBUG - reported 1 traces in 0.00176s
+2020-06-13 11:25:10,986 - ddtrace.internal.writer - DEBUG - Failed to send traces to Datadog Agent at http://localhost:8126: [Errno 61] Connection refused
+2020-06-13 11:25:31,442 - werkzeug - INFO - 127.0.0.1 - - [13/Jun/2020 11:25:31] "[37mGET /api/apm HTTP/1.1[0m" 200 -
+2020-06-13 11:25:49,052 - werkzeug - INFO - 127.0.0.1 - - [13/Jun/2020 11:25:49] "[37mGET /api/trace HTTP/1.1[0m" 200 -
+2020-06-13 11:25:57,226 - werkzeug - INFO - 127.0.0.1 - - [13/Jun/2020 11:25:57] "[33mGET /api/wrongendpoint HTTP/1.1[0m" 404 -
+2020-06-13 11:26:03,169 - ddtrace._worker - DEBUG - Stopping AgentWriter thread
+2020-06-13 11:26:03,169 - ddtrace._worker - DEBUG - Waiting 5 seconds for AgentWriter to finish. Hit ctrl-c to quit.
+2020-06-13 11:26:03,169 - ddtrace._worker - DEBUG - Shutting down AgentWriter thread
