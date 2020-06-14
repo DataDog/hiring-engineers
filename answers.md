@@ -23,30 +23,51 @@ Learn more about tags in the Datadog Docs: [Getting started with tagging](https:
 
 #### Solution:
 
-1) List all files in your `datadog-agent` directory:
+**1)** List all files in your `datadog-agent` directory:
 
 ```
 ls -la /etc/datadog-agent
 ```
 
-Youl'll notice that you have a file here called `datadog.yaml.example`.
+Youl'll notice that you have a file here called `datadog_example.yaml`.
 
-2) Make a copy of the Agent configuraton file that we can work in:
+**2)** Make a copy of the Agent configuraton file that we can work in:
 
 ```
-cp /etc/datadog-agent/datadog.yaml.example /etc/datadog-agent/datadog.yaml
+cp /etc/datadog-agent/datadog_example.yaml/etc/datadog-agent/datadog.yaml
 ```
 
-3) Open the [Agent main configuration file](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7) in Vim:
+**3)** Open the [Agent main configuration file](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7) in Vim:
 
 ```
 vim /etc/datadog-agent/datadog.yaml
 ```
 
-4)
+**4)** The first thing that you'll notice is that the **API** setting is uncommented but has no value. In order to make your Agent communicate with Datadog, it must know the your API key. An API key is unique to your organization and can be found in your [Datadog API configuration page](https://app.datadoghq.eu/account/settings#api):
 
-Find the tags section and uncomment it and add a new tag. Set the `key` to `name` and its `value` to `kevins_datado_demohost`:
+![Datadog_API-keys](./img/Collecting Metrics/Task1/Task1-API_keys.png)
 
+Paste your API-key and paste it in your datadog.yaml file:
+
+![Task1-Add_API_key_to_yaml](./img/Collecting Metrics/Task1/Task1-Add_API_key_to_yaml.png)
+
+**5)** If you chose your Datadog region to be Europe (EU) during signup, you must change the site of the Datadog intake `@param site` as well as the host address of the Datadog intake server `@param dd_url` in your `datadog.yaml` file. This is necessary as your API key is only valid for the region it was generated for:
+
+![Task1-Change-region-to-EU](./img/Collecting Metrics/Task1/Task1-Change-region-to-EU.png)
+
+**6)** Finally find the tags section of your config file. Uncomment it and add two new tag. Set an `environment` tag with a value of `dev` and set a `name`-tag with the value `kevins_datadog_demohost`:
+
+![Task1-Agent_configfile_tags](./img/Collecting Metrics/Task1/Task1-Agent_configfile_tags.png)
+
+**7)** After you've saved the file the Datadog agent must be restarted. As stated in the [https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7), this can be done by typing the following command in you Vangart SSH:
+
+```
+sudo service datadog-agent restart
+```
+
+**8)** After the Agent has restarted it picked up the new config settings and tagged your host as expected. Open your DD Host Map to validate the changes:
+
+![Task1-Host_has_tags](./img/Collecting Metrics/Task1/Task1-Host_has_tags.png)
 
 ### Task: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
