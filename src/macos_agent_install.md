@@ -1,10 +1,11 @@
 # macOS Agent Install 
 
-##Agent Installation Page
+## Agent Installation Page
 The Agent installation instructions for a variety of systems is presented on the main install page as shown:
 ![agent](../images/macos_agent_install.png)
 
 ## Command Line Installation
+Using the command in step 1, I ran the command line installer for the macOS Agent:
 
 ```commandline
 ~ » DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=XXXXXXXX bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"
@@ -42,6 +43,7 @@ the launchctl command. It will start automatically at login.
 ```
 
 ## Check Agent Status
+Post installation, I checked the status of the Agent to ensure that it was running:
 
 ```commandline
 ~ » datadog-agent status                                       jeremy@kalachakra
@@ -324,9 +326,9 @@ DogStatsD
 ---------------------------------------------------------------------------------
 ```
 
-## Launch the Datadog Agent GUI
+## Datadog Agent GUI
 
-From the Command Line, I launched the Datadog Agent GUI to ensure that it was collecting metrics:
+From the command ine, I launched the Datadog Agent GUI to ensure that it was collecting metrics:
 ```commandline
 ~ » datadog-agent launch-gui                                    jeremy@kalachakra
 ```
