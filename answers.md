@@ -110,3 +110,24 @@ And here's a screenshot of the email that we receive, in this case due to a Warn
 And here's one of our actual downtime configurations:
 
 ![](images/downtime_config.png)
+
+## Collecting APM Data
+
+Here's a [public link](https://p.datadoghq.com/sb/ugu7owlssk96eujv-9a8b36abf521ef4715aaaa39b77d8e5e) to a dashboard showing both APM (`flask.request_duration`) and infrastructure (host map of avg `system.cpu`)
+
+![](images/combined.png)
+
+No changes were made to the included flask app, which is included in this repo as [app.py](app.py) - changes in instrumentation were made via environment variable.
+
+*Bonus* - difference between a Service and a Resource?
+- A Service refers to a grouping of endpoints or actions that form a unit of related functionality - in this example, the entire flask server `app.py` is a service
+- A Resource is a component of a Service that accomplishes a more granular individual action - in this example, each of the Flask endpoints defined such as `/api/apm` is a distinct Resource
+
+## Final Question - creative uses
+
+For a fun topic, it would be neat to pull (Strava Streams data)[https://developers.strava.com/docs/reference/#api-Streams] to track athletes on long-distance endurance races and forecast performance/alert on deviations of metrics such as speed/altitute covered.
+
+For a more business-oriented topic - (Box Keysafe)[https://www.box.com/security/keysafe] is an encryption service offered by Box where customers can own and manage an AWS KMS Key used to govern encryption/decryption of their Box instance content. This separation of access control into two steps and two ecosystems reassures the customer, but it can be difficult for Box because of the lack ov visibility.
+- The AWS KMS instance the customer spins up to manage their key is customer-owned and obfuscated away from Box, for security
+- Box tries to maintain connectivity by doing a "pulse check" no-op ping on a frequent basis, but this is only a binary up/down metric
+- Monitoring metrics on the AWS KMS instance could provide a customer's Box engineering contact with insight into performance of the underlying KMS service without opening the door to more compromising access
