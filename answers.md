@@ -225,13 +225,78 @@ Now change to your [MySQL - Overview](https://app.datadoghq.eu/dash/integration/
 
 ### Custom Agent check submitting a random value
 
-Next we will go over the process of creating a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. 
+Next we will go over the process of creating a c**ustom Agent check** that submits a metric named `my_metric` with a random value between `0` and `1000`. Custom checks are well suited to collect metrics from custom applications and are sheduled to run on a fixed interval.
+
+The perform the custom check as described, you can use a fairly simple Python script:
+
+```python
+from datadog_checks.checks import AgentCheck
+from random import randint
+
+class CheckMetric(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', randint(0,1000))
+```
+
+Copy and paste the script to Vim:
+
+```bash
+vim /etc/datadog-agent/checks.d/custom_agent_check.py
+```
+
+The execution of the script requires a `.yaml` file defining the the collection interval:
+
+```yaml
+init_config:
+
+instances:
+  - min_collection_interval: 15
+```
+
+Copy and paste the script to Vim:
+
+```bash
+vim /etc/datadog-agent/conf.d/custom_agent_check.yaml
+```
+
+> **Note:** The names of the configuration and check files must match. If your check is called `custom_agent_check.py`, your configuration file *must* be named `custom_agent_check.yaml`.
+
+Restart the Datadog Agent:
+
+```
+sudo service datadog-agent restart
+```
+
+And watch your Custom Agent Metric report data to from your Host to Datadog:
+
+![Task3_Custom-Agent-Metric-being-reported-to-datadog](./img/Collecting Metrics/Task3/Task3_Custom-Agent-Metric-being-reported-to-datadog.png)
 
 
 
-### Task: Change your check's collection interval so that it only submits the metric once every 45 seconds.
+**Submission links:**
 
-### Task: Bonus Question Can you change the collection interval without modifying the Python check file you created?
+* [Link to the Metrics Explorer](https://app.datadoghq.eu/metric/explorer?from_ts=1592256469750&to_ts=1592260069750&live=true&page=0&is_auto=false&tile_size=m&exp_agg=avg&exp_row_type=metric&exp_metric=my_metric)
+
+### Changing the check's collection interval
+
+Changing the interval at which the check is performed from the default value of `15` seconds can easily be done via the the check's `.yaml` file. Open the file with vim
+
+```
+vim /etc/datadog-agent/conf.d/custom_agent_check.yaml
+```
+
+ and change the `min_collection_interval` value from `15` to `45`:
+
+```
+init_config:
+
+instances:
+  - min_collection_interval: 45
+```
+
+**Bonus:** By setting the collection interval value in the associate `.yaml` file, the Python skript must not be touched to parametrize the data collection.  
+
+
 
 ## Solution: Visualizing Data
 
