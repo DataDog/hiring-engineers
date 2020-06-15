@@ -23,7 +23,7 @@ Once your Ubuntu image has been downloaded you'll find a 'Vagrantfile' in the fo
 
 ## Solution: Collecting Metrics
 
-### Task-1: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+### Adding tags to your Host in Datadog
 
 Learn more about tags in the Datadog Docs: [Getting started with tagging](https://docs.datadoghq.com/getting_started/tagging/).
 
@@ -75,13 +75,159 @@ sudo service datadog-agent restart
 
 ![Task1-Host_has_tags](./img/Collecting%20Metrics/Task1/Task1-Host_has_tags.png)
 
-### Task-2: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+
+### Datadog Integration with MongoDB
+
+Next we will install a MongoDB on our host and install the respective Datadog integration for the database. Datadog allows us to visualize key MongoDB metrics and to correlate the MongoDB performance with the rest of our applications.
+
+**Note**: MongoDB v2.6+ is required for this integration.
+
+#### MongoDB installation on the VM
+
+The installation of a MongoDB instance on our Ubuntu VM is fairly easy. Following the official [MongoDB documentation](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) we install the MongoDB Community edition in 4 easy steps.
+
+After the installation has completed we start MongoDB and perform a quick check to verify that the installation is running correctly. The command `sudo systemctl status mongod` is signaling a healthy system report:
+
+![Task2_MongoDB-is-successfully-running](./img/Collecting%20Metrics/Task2/Task2_MongoDB-is-successfully-running.png)
+
+Now that we have an MongoDB instance available we can type the keyword `mongo` in our terminal to start a Mongo shell to interact with the Database.
+
+#### The Datadog integration for MongoDB
+
+Datadog has a wide range of pre-build service integration which makes our lives easier and the connecting third party services lightning fast. This is also the case for MongoDB. Datadog's integration for MongoDB [https://docs.datadoghq.com/integrations/mongo/](https://docs.datadoghq.com/integrations/mongo/) and the setup process is fast as the installation is already included in the Datadog Agent package.
 
 
 
+First we create a new MongoDB instance on our host by running the following command in the MangoDB shell:
+
+```
+> use datadogTestDB
+```
+
+Next, create the very first database entry:
+
+```
+> db.user.insert({name: firstUser})
+```
 
 
-### Task: Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+Making use of our Mango shell (see previous section) we now create a read-only user for the Datadog Agent in the admin database as described in the [Datadog Docs](https://docs.datadoghq.com/integrations/mongo/) (**Hint:** If you're unsure which version of MongoDB is installed on your system you can run `db.version()` to check).
+
+
+
+Create a renamed copy of the example yaml file:
+
+```
+cp conf.yaml.example conf.yaml
+```
+
+Restart [Datadog Agent](https://docs.datadoghq.com/agent/guide/agent-commands/?tab=agentv6v7#start-stop-and-restart-the-agent) running on your host:
+
+```
+sudo service datadog-agent start
+```
+
+Verify the MongoDB conncetion with your Datadog host by running 
+
+```
+sudo datadog-agent status
+```
+
+
+
+Next change to your Datadog Dashboard and search for the MongoDB integration:
+
+![Task2_Datadog-MongoDB-Integration](./img/Collecting%20Metrics/Task2/Task2_Datadog-MongoDB-Integration.png)
+
+Click on `Available` and then select `install` to add the MongoDB integration:
+
+![Task2_Datadog-MongoDB-Integration-installed](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Collecting Metrics/Task2/Task2_Datadog-MongoDB-Integration-installed.png)
+
+Changing to the [MongoDB Overview Dashboard](https://app.datadoghq.eu/screen/integration/110/mongodb---overview) in should bring up the first database metrics fetched by your Agent running on your host:
+
+
+
+=========================================
+
+### Datadog Integration with MySQL
+
+The MySQL check is included in the [Datadog Agent](https://app.datadoghq.eu/account/settings#agent) package. No additional installation is needed on your MySQL server.
+
+
+
+First, change to you Vangart SSH terminal window and update the apt package by running:
+
+```
+sudo apt update
+```
+
+Then install the MySQL package on your Ubuntu machine with the following command:
+
+```
+sudo apt install mysql-server
+```
+
+Once the installation is completed, the MySQL service will start automatically. To check whether the MySQL server is running, type in the following command:
+
+```
+sudo systemctl status mysql
+```
+
+![Task2_Chek-whether-MySQL-is-running](./img/Collecting Metrics/Task2/Task2_Chek-whether-MySQL-is-running.png)
+
+Now that MySQL is installed and is running on the Agent, we prepare the Database for the Datadog integration as described in the [Datadog Docs](https://docs.datadoghq.com/integrations/mysql/). To interact with your MySQL instance, login as root:
+
+```
+sudo mysql
+```
+
+Now create a database user for the Datadog Agent:
+
+```
+mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
+```
+
+Finish all further steps described in the [https://docs.datadoghq.com/integrations/mysql/](https://docs.datadoghq.com/integrations/mysql/) from Datadog.
+
+
+
+Restart the Agent:
+
+```
+sudo service datadog-agent restart
+```
+
+and inspect the Agent status log:
+
+```
+sudo datadog-agent status
+```
+
+![Task2_Agent-status-MySQL](./img/Collecting Metrics/Task2/Task2_Agent-status-MySQL.png)
+
+The Database is sucessfully installed on our host and the Agent integration was sucessfully. Now it is time to install you first Datadog integration. Select **Integrations** from the Datadog sidebar and type in **MySQL** in the search field. Click on the MySQL integration and install it:
+
+![Task2-MySQL-Integration-installed](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Collecting Metrics/Task2/Task2-MySQL-Integration-installed.png)
+
+Now change to your [MySQL - Overview](https://app.datadoghq.eu/dash/integration/9/mysql---overview?from_ts=1592254130144&to_ts=1592257730144&live=true) Dashboard on the Datadog website and watch your first MySQL database metrics coming in:
+
+![Task2_MySQL-Overview-Dashboard](./img/Collecting Metrics/Task2/Task2_MySQL-Overview-Dashboard.png)
+
+
+
+**Submission links:**
+
+* [Link to my MySQL-Overview Dashboard](https://app.datadoghq.eu/dash/integration/9/mysql---overview?from_ts=1592254130144&to_ts=1592257730144&live=true)
+
+
+
+### Custom Agent check submitting a random value
+
+Next we will go over the process of creating a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. 
+
+
 
 ### Task: Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
