@@ -1,9 +1,25 @@
+![](https://imgix.datadoghq.com/img/about/presskit/logo-h/logo_horizontal_purple.png)
+
+## Introduction
+
+In this README, we'll walk through sample configuration to demonstrate four aspects of Datadog functionality:
+- Collecting Metrics
+- Visualizing Data
+- Monitoring Data
+- Datadog APM
+
+Questions/feedback to author: Jason Kim, Sales Engineer (jpk040@gmail.com)
+Last updated date: 15 June 2020
+
 ## Prerequisites - Setup the environment
 
 Here's a screenshot of three hosts with the Datadog agent installed:
 - localhost (OSX)
+  - One-step install with `DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=[YOUR_API_KEY] bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_mac_os.sh)"`
 - docker-desktop
+  - One-step install with `DOCKER_CONTENT_TRUST=1 docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=[YOUR_API_KEY] datadog/agent:7`
 - vagrant (ubuntu 18.04)
+  - One-step install with `DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=[YOUR_API_KEY] bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
 
 ![](images/hosts.png)
 
@@ -21,7 +37,9 @@ And we can see the tags show on this agent:
 
 ### Install a database and integration
 
-We install postgres on our vagrant host, create a postgres user for the agent to use as a means of access, and place those user and postgres connection details in `conf.d/postgres.d/conf.yaml`:
+We install postgres on our vagrant host, create a postgres user for the agent to use as a means of access, and place those user and postgres connection details in `conf.d/postgres.d/conf.yaml`. Note that the postgres user created for this purpose needs the role `pg_monitor`:
+
+![](images/postgres_conf.png)
 
 ![](images/postgres.png)
 
@@ -65,6 +83,7 @@ instances:
   - min_collection_interval: 45
 ```
 
+#### [Editor's note]
 Interestingly, this seemed to change collection interval, but in an unclear way as the Metrics Explorer graph for my_metric adjusted from 20-second intervals to 40- or 60-second intervals. This seemed a little flaky:
 - initial 20-second graphed interval didn't match default 15-second reporting interval
 - subsequent 40- or 60-second graphed interval didn't match updated 45-second change
@@ -83,6 +102,8 @@ Here's a Timeboard with three component widgets:
 - Time series tracking with anomaly range on `postgres.percent_usage_connections`
 - A single value showing rollup sum of all `my_metric` values over the last 60 minutes
 
+We can generate Timeboards via API - here's the code of a python script [datadog-timeboard.py](datadog-timeboard.py) used to generate the Timeboard via the `POST /dashboard` API endpoint:
+
 ![](images/timeboard.png)
 
 Here's an email I sent to myself by @mentioning my user in the "send snapshot" comment field. The zoomed-in 5 min view was made by click-and-dragging on the parent un-re-sized graph.
@@ -90,8 +111,6 @@ Here's an email I sent to myself by @mentioning my user in the "send snapshot" c
 ![](images/snapshot.png)
 
 *Bonus* - The Anomaly graph is showing a timeseries of the metric `postgres.percent_usage_connections` with a grey overlay showing the expected range of outcomes for a "non-anomalous" value. Non-anomalous is defined by a fit algorithm - which in this case was the `'basic'` parameter in the `anomalies()` function call and represented lagging rolling quantile computation - and a magnitude, specified by the `2` (standard deviations) parameter in `anomalies()`
-
-Here's the code of a python script [datadog-timeboard.py](datadog-timeboard.py) used to generate the Timeboard via the `POST /dashboard` API endpoint:
 
 ## Monitoring DataDog
 
