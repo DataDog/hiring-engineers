@@ -1,4 +1,4 @@
-# Datadog Hiring Challenge - Solution Engineer
+# Datadog Hiring Challenge - Solutions Engineer
 
 **Table of contents:**
 * Preface
@@ -13,11 +13,17 @@
 
 The preface comes here...
 
-## Solution: Prerequisites Setup the environment
+## Prerequisites and Environment Setup
+
+**Note:** The default username and password for vagrant machines is vagrant and vagrant respectively. For enhanced security it is advised to use an SSH key as password instead.
+
+Once your Ubuntu image has been downloaded you'll find a 'Vagrantfile' in the folder.
+
+![Prerequisites_Host-is-reporting-data-to-Datadog](./img/Prerequisites/Prerequisites_Host-is-reporting-data-to-Datadog.png)
 
 ## Solution: Collecting Metrics
 
-### Task: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+### Task-1: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 Learn more about tags in the Datadog Docs: [Getting started with tagging](https://docs.datadoghq.com/getting_started/tagging/).
 
@@ -69,7 +75,11 @@ sudo service datadog-agent restart
 
 ![Task1-Host_has_tags](./img/Collecting%20Metrics/Task1/Task1-Host_has_tags.png)
 
-### Task: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+### Task-2: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+
+
+
 
 ### Task: Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
