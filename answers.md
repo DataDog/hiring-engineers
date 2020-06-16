@@ -413,7 +413,7 @@ Copy the monitoring requirements to the Monitor settings:
 
 ![Task1_Setup-Treshhold-alert-for-Metric](./img/Monitoring/Task1_Setup-Treshhold-alert-for-Metric.png)
 
-![Task1_Set-alert-Thresholds](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Monitoring/Task1_Set-alert-Thresholds.png)
+![Task1_Set-alert-Thresholds](./img/Monitoring/Task1_Set-alert-Thresholds.png)
 
 
 
@@ -439,7 +439,7 @@ It does not take much time and the first warning is triggered by our metric pass
 
 
 
-![Task1_Datadog-Warning-email](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Monitoring/Task1_Datadog-Warning-email.png)
+![Task1_Datadog-Warning-email](./img/Monitoring/Task1_Datadog-Warning-email.png)
 
 #### Scheduled monitoring downtimes
 
@@ -453,7 +453,7 @@ Such settings can be added in the **Managed Downtime** view (*Monitors > Manage 
 
 
 
-![Task2_Sheduled-downtime-weekdays](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Monitoring/Task2_Sheduled-downtime-weekdays.png)
+![Task2_Sheduled-downtime-weekdays](./img/Monitoring/Task2_Sheduled-downtime-weekdays.png)
 
 
 
@@ -461,7 +461,7 @@ The defined receipents are notified about the new scheduled downtime rule via em
 
 
 
-![Task2_Scheduled-downtime-notification-email](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Monitoring/Task2_Scheduled-downtime-notification-email.png)
+![Task2_Scheduled-downtime-notification-email](./img/Monitoring/Task2_Scheduled-downtime-notification-email.png)
 
 Next we reapeat the process and set up a second scheduled downtime that is active all day on the weekend. Again, click on the **Schedule Downtime** button and fill in the required information:
 
@@ -473,7 +473,7 @@ The defined receipents are again notified about the new scheduled downtime rule 
 
 
 
-![Task2_Scheduled-downtime-notification-email-weekends](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Monitoring/Task2_Scheduled-downtime-notification-email-weekends.png)
+![Task2_Scheduled-downtime-notification-email-weekends](./img/Monitoring/Task2_Scheduled-downtime-notification-email-weekends.png)
 
 **Submission Links:**
 
