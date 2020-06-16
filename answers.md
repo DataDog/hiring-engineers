@@ -5,7 +5,7 @@
 * [About Datadog](#about-datadog)
 * [Prerequisites and Environment Setup](#prerequisites-and-environment-setup)
 * [Collecting Metrics with Datadog](#collecting-metrics-with-datadog)
-* [Visualizing Data with Datadog Timeboards](#visualizing-data-with-datadog-timeboard)
+* [Visualizing Data with Datadog Timeboards](#visualizing-data-with-datadog-timeboards)
 * [Monitoring Data with Datadog](#monitoring-data-with-datadog)
 * [Collecting APM Data with Datadog](#collecting-apm-data-with-datadog)
 * [Using Datadog in real world applications](#using-datadog-in-real-world-applications)
