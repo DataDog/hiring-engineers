@@ -15,7 +15,7 @@ The preface comes here...
 
 ## Prerequisites and Environment Setup
 
-**Note:** The default username and password for vagrant machines is vagrant and vagrant respectively. For enhanced security it is advised to use an SSH key as password instead.
+> **Note:** The default username and password for vagrant machines is vagrant and vagrant respectively. For enhanced security it is advised to use an SSH key as password instead.
 
 Once your Ubuntu image has been downloaded you'll find a 'Vagrantfile' in the folder.
 
@@ -81,11 +81,7 @@ sudo service datadog-agent restart
 
 ### Datadog Integration with MySQL
 
-The MySQL check is included in the [Datadog Agent](https://app.datadoghq.eu/account/settings#agent) package. No additional installation is needed on your MySQL server.
-
-
-
-First, change to you Vangart SSH terminal window and update the apt package by running:
+The MySQL check is included in the [Datadog Agent](https://app.datadoghq.eu/account/settings#agent) package. No additional installation is needed on your MySQL server. First, change to you Vangart SSH terminal window and update the apt package by running:
 
 ```
 sudo apt update
@@ -118,8 +114,6 @@ mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
 ```
 
 Finish all further steps described in the [https://docs.datadoghq.com/integrations/mysql/](https://docs.datadoghq.com/integrations/mysql/) from Datadog.
-
-
 
 Restart the Agent:
 
@@ -324,9 +318,10 @@ Again we utilize Postman to perform the updates. Choose the `PUT - Update a Dash
 
 Next change to the Body tab in Postman and add the following script. It will do a couple of things:
 
-* Add a new widget 
-* Add a new widget
-* Copy the **Body** to Postman and Send a **PUT** request to the Datadog API:
+* Add a new widget that applies the anomaly funtion to a metric
+* Add a new widget that applies the rollup function on our custom metric
+
+Copy the **Body** to Postman and Send a **PUT** request to the Datadog API:
 
 ```json
 {
@@ -378,11 +373,21 @@ The API should respond with the header code **200 (OK)**. Now change to the Data
 
 The Update has been successful and your Timeboard now visualizes all the required metrics. The dast update clearly emphasizes the benefits of a easy to use API. With Datadog your pulling in new metrics in minutes not hours or days allowing you to focus on metrics analysis not setup efforts.
 
+#### Working with the Timeboard from the Datadog UI
+
+Let us investigate our options to manipulate the newly created Timeboard from the Datadog UI. First set the timeframe of the Dashboard to `5min The past 5 minutes` via the dropdown in the top right corner. Now hover the **Anomalies Graph** and click on the Share icon. Choose to **Send a Snapshot...** and send a short message to one of your co-workers:
+
+
+
+![Task3_Timeboard-Graph-Snapshot](./img/Visualizing-Data/Task3_Timeboard-Graph-Snapshot.png)
+
+
+
+**Bonus:** The Anomaly Graph visualizes events of unusal highs or lows of of a metrics. Metric data that falls out of the normal band (grey) is displayed in red color. In this specific case the Anomaly Graph indicates such events for the metric `MySQL CPU time per user`.
+
 **Submission Links:**
 
 * [Link to my Datadog Timeboard](https://app.datadoghq.eu/dashboard/yp7-ari-z3p/kevins-datadog-timeboard?from_ts=1592300708463&to_ts=1592304308463&live=true)
-
-
 
 ## Solution: Monitoring Data
 
