@@ -21,7 +21,9 @@ Once your Ubuntu image has been downloaded you'll find a 'Vagrantfile' in the fo
 
 ![Prerequisites_Host-is-reporting-data-to-Datadog](./img/Prerequisites/Prerequisites_Host-is-reporting-data-to-Datadog.png)
 
-## Solution: Collecting Metrics
+
+
+## Collecting Metrics with Datadog
 
 ### Adding tags to your Host in Datadog
 
@@ -203,7 +205,7 @@ And watch your Custom Agent Metric report data to from your Host to Datadog:
 
 * [Link to the Metrics Explorer](https://app.datadoghq.eu/metric/explorer?from_ts=1592256469750&to_ts=1592260069750&live=true&page=0&is_auto=false&tile_size=m&exp_agg=avg&exp_row_type=metric&exp_metric=my_metric)
 
-### Changing the check's collection interval
+#### Changing the check's collection interval
 
 Changing the interval at which the check is performed from the default value of `15` seconds can easily be done via the the check's `.yaml` file. Open the file with vim
 
@@ -224,7 +226,97 @@ instances:
 
 
 
-## Solution: Visualizing Data
+## Visualizing Data with Datadog Timeboards
+
+**Timeboards** a fantastic way to visualize your data across an entire dashboard. They are well suited for any kind of troubleshooting, correlation and general data exploration. This makes Datadog Timeboards a good canditate for large TV displays in your cafeteria or lobby. The good thing is, Datadog provides you with the **easiest possible feature** to do exactly that - a prebuild **TV icon** that lets your stream your Datadog Timeboard on large TV screens.
+
+Let us upgrade your cafetria and set up your very first Datadog Timeboard!
+
+#### The goal
+
+In the last section you've set up a custom metric publishing data via the Datadog Agent installed on your Host. In this section we will take that Metric and build a Timeboard to visualize it. Following the instructions from the [Datadog Docs](https://docs.datadoghq.com/dashboards/timeboards/), we will utilize the **Datadog API** to create a Timeboard that contains:
+
+- Your custom metric scoped over your host.
+- Any metric from the Integration on your Database with the anomaly function applied.
+- Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
+
+#### Utilizing the Datadog API
+
+Datadog maintains an API that allows you to get data in and out of Datadog in a programmatic fashion. The API is documented in great detail in the offical [Datadog Docs](https://docs.datadoghq.com/api/). Performing API calls to Datadog can easliy be done using Postman. Within the docs we find a very helpful [step-by-step guid](https://docs.datadoghq.com/getting_started/api/)e on how to set up Postman for Datadog API development. 
+
+First go on and setup **Postman** as described in the [Docs](https://docs.datadoghq.com/getting_started/api/) - import the Datadog collection and set up your environemnt. To finalize the setup, run a quick check to see if your Postman environment can successfully communicate with the Datadog API (`POST`):
+
+
+
+<img src="./img/Visualizing-Data/Task1_Postman-Post-Check.png" alt="Task1_Postman-API-Check" style="zoom:58%;" />
+
+
+
+If the POST check was successful, the Datadog API should respond with a Status of **202 (Accepted)** and a positive JSON response:
+
+
+
+<img src="/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Visualizing-Data/Task1_Postman-API-Check.png" alt="Task1_Postman-API-Check" style="zoom:50%;" />
+
+
+
+#### Creating a Timeboard in Datadog via the API
+
+Now that Postman is set up on our machines we can create our first Datadog Timeboard via the API. The [Datadog Docs](https://docs.datadoghq.com/api/v1/dashboards/) have a section on this topic. First open your **Datadog API Collection** in Postman, click on **Dashboard** and select the `POST - Create a Dashboard` option.
+
+
+
+The following POST body will do a couple of things:
+
+* It will create a Datadog Dashboard with the title `Kevin's Datadog Timeboard`
+* It will create a [Timeseries Widget](https://docs.datadoghq.com/dashboards/widgets/timeseries/) that displays your custom metric `my_metric`
+* It will add a description for your new Timeboard explaining its purpose
+* It will add `test@datadoghq.com` to the list of users being notified when changes are made
+
+Copy the **Body** to Postman and Send a **POST** request to the Datadog API:
+
+```json
+{
+    "title": "Kevin's Datadog Timeboard",
+    "widgets": [
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:my_metric{host:vagrant}"
+                    }
+                ],
+                "title": "Custom Metric 'my_metric' scoped over host"
+            }
+        }
+    ],
+    "layout_type": "ordered",
+    "description": "This Timeboard will be used to visualize a custom metric, an anomaly function and a rollup function.",
+    "is_read_only": true,
+    "notify_list": [
+        "test@datadoghq.com"
+    ]
+}
+```
+
+The API should respond with the header code **200 (OK)**. Now change to the Datadog website, click on *Dashboard > Dashboard List* in the sidebar and notice that a new Dashboard with the title `Kevin's Datadog Timeboard` showed up in the list. Click on the Dashboard and open it:
+
+
+
+![Task1_Filled-Dashboard](./img/Visualizing-Data/Task1_Filled-Dashboard.png)
+
+
+
+**The API request has been successful!** A simple API request was enough to set up your first Timeboard in Datadog visualizing a Custom Metric from your Host. It definitely is a strength of Datadog to have such a well documented and easy to use API that can be uitilized to automated the task of metric collection and visualization.
+
+
+
+**Submission Links:**
+
+* [Link to my Datadog Timeboard](https://app.datadoghq.eu/dashboard/yp7-ari-z3p/kevins-datadog-timeboard?from_ts=1592300708463&to_ts=1592304308463&live=true)
+
+
 
 ## Solution: Monitoring Data
 
