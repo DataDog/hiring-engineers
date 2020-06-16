@@ -3,12 +3,12 @@
 ### Table of contents:
 
 * [About Datadog](#about-datadog)
-* [Prerequisites and Environment Setup]()
-* [Collecting Metrics with Datadog]()
-* [Visualizing Data with Datadog Timeboards]()
-* [Monitoring Data with Datadog]()
-* [Collecting APM Data with Datadog]()
-* [Using Datadog in real world applications]()
+* [Prerequisites and Environment Setup](#prerequisites-and-environment-setup)
+* [Collecting Metrics with Datadog](#collecting-metrics-with-datadog)
+* [Visualizing Data with Datadog Timeboards](#visualizing-data-with-datadog-timeboard)
+* [Monitoring Data with Datadog](#monitoring-data-with-datadog)
+* [Collecting APM Data with Datadog](#collecting-apm-data-with-datadog)
+* [Using Datadog in real world applications](#using-datadog-in-real-world-applications)
 
 
 
@@ -19,6 +19,16 @@ The preface comes here...
 
 
 ## Prerequisites and Environment Setup
+
+In the following you will be walked through a number of steps that help you get familiar with Datadog. We will set up a new Ubuntu VM instance on your local machine (Host) and install the Datadog Agent on it. The DD Agent will be able to collect useful Infrastructure and APM data and metrics. The data will be sent to Datadog where we are going the visulalize and analyse it. 
+
+Be prepared to learn a lot about Infrastructure Monitoring, Application Performance Monitoring and Data Visualization along the way. Ready? Let's start!
+
+
+
+### Setting up your local Environment
+
+We will use [Vagrant](https://www.vagrantup.com/) to set up your local developement environemnt. 
 
 > **Note:** The default username and password for vagrant machines is vagrant and vagrant respectively. For enhanced security it is advised to use an SSH key as password instead.
 
@@ -542,7 +552,7 @@ Create a flask script file and edit it with Vim:
 vim flaskapp.py
 ```
 
-Copy an paste the following flask script to Vim:
+Copy an paste the following [Flask](https://flask.palletsprojects.com/en/0.12.x/quickstart/) script to Vim:
 
 ```python
 from flask import Flask
