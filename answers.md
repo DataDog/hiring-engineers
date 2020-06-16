@@ -308,9 +308,75 @@ The API should respond with the header code **200 (OK)**. Now change to the Data
 
 
 
-**The API request has been successful!** A simple API request was enough to set up your first Timeboard in Datadog visualizing a Custom Metric from your Host. It definitely is a strength of Datadog to have such a well documented and easy to use API that can be uitilized to automated the task of metric collection and visualization.
+The API request has been successful! A simple API request was enough to set up your first Timeboard in Datadog visualizing a Custom Metric from your Host. It definitely is a strength of Datadog to have such a well documented and easy to use API that can be uitilized to automated the task of metric collection and visualization.
+
+##### Enhance the Timeboard functionality
+
+In the next step we are going to update our Timeboard to include a metric from our database integration with the anomaly function applied. Furthermore we will display the custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
+
+Again we utilize Postman to perform the updates. Choose the `PUT - Update a Dashboard` collection endpoint and add the `DASHBOARD_ID` path variable of the Timeboard you want to update (The ID can be found in the Dashboard URL and in the API response received after creating the Dashboard):
 
 
+
+<img src="./img/Visualizing-Data/Task2_Add-Dashboard-ID-to-path-variable.png" alt="Task2_Add-Dashboard-ID-to-path-variable" style="zoom:50%;" />
+
+
+
+Next change to the Body tab in Postman and add the following script. It will do a couple of things:
+
+* Add a new widget 
+* Add a new widget
+* Copy the **Body** to Postman and Send a **PUT** request to the Datadog API:
+
+```json
+{
+  "title": "Kevin's Datadog Timeboard",
+  "widgets": [{
+      "definition": {
+        "type": "timeseries",
+        "requests": [{
+          "q": "anomalies(avg:mysql.performance.user_time{host:vagrant}, 'basic', 3)"
+        }],
+        "title": "Mysql CPU time per user - Anomalies Graph"
+      }
+    },
+    {
+      "definition": {
+        "type": "query_value",
+        "requests": [{
+          "q": "my_metric{host:vagrant}.rollup(sum, 3600)"
+        }],
+        "title": "Custom metric 'my_metric' with rollup function applied"
+      }
+    },
+    {
+      "definition": {
+        "type": "timeseries",
+        "requests": [{
+          "q": "avg:my_metric{host:vagrant}"
+        }],
+        "title": "Custom Metric 'my_metric' scoped over host"
+      }
+    }
+  ],
+  "layout_type": "ordered",
+  "description": "This Timeboard will be used to visualize a custom metric, an anomaly function and a rollup function.",
+  "is_read_only": true,
+  "notify_list": [
+    "test@datadoghq.com"
+  ]
+}
+```
+
+The API should respond with the header code **200 (OK)**. Now change to the Datadog website, and reload our Datadog Timeboard tab.
+
+
+
+![Task2_Add-additional-timeboard-metrics](./img/Visualizing-Data/Task2_Add-additional-timeboard-metrics.png)
+
+
+
+The Update has been successful and your Timeboard now visualizes all the required metrics. The dast update clearly emphasizes the benefits of a easy to use API. With Datadog your pulling in new metrics in minutes not hours or days allowing you to focus on metrics analysis not setup efforts.
 
 **Submission Links:**
 
