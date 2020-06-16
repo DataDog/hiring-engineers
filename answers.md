@@ -385,7 +385,7 @@ Let us investigate our options to manipulate the newly created Timeboard from th
 
 **Submission Links:**
 
-* [Link to my Datadog Timeboard](https://app.datadoghq.eu/dashboard/yp7-ari-z3p/kevins-datadog-timeboard?from_ts=1592300708463&to_ts=1592304308463&live=true)
+* [Link to my Datadog Timeboard](https://app.datadoghq.eu/dashboard/yp7-ari-z3p/kevins-datadog-timeboard?from_ts=1592322736854&to_ts=1592326336854&live=true)
 
 ## Monitoring Data with Datadog
 
@@ -483,10 +483,151 @@ The defined receipents are again notified about the new scheduled downtime rule 
 
 
 
-## Collecting APM Data:
+## Collecting APM Data
+
+Datadog has a strong set of features and product for state-of-the-art [APM](https://www.datadoghq.com/product/apm/) (Application Performance Monitoring) . Seamless application navigation with [Service Maps](https://www.datadoghq.com/blog/service-map/), [App analytics](https://www.datadoghq.com/blog/apm-watchdog-service-map-trace-search/) and Auto-instrumentation for distributed tracing are just some of many features Datadog offers in the APM space.
 
 
 
-## Solution: Collecting APM Data
+### Setting up a Dashboard collecting APM metrics
 
-## Solution: Final Question
+Let us set up an examplary application that reports metrics to a APM Dashboard. We will be using a [Flask app](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/) with Datadog's APM solution
+
+Datadog maintains a step-by-step guide on [Getting started with Tracing](https://docs.datadoghq.com/getting_started/tracing/) that we will follow along to get the APM Dashboard up and running. First verify that your APM Agent is running by printing the Datadog Agent status report:
+
+```
+sudo datadog-agent status
+```
+
+![Task1_Verify-that-APM-Agent-is-running](./img/APM-Data/Task1_Verify-that-APM-Agent-is-running.png)
+
+Next install `pip` then `flask` and `ddtrace` on your Ubuntu VM by typing in the following commands:
+
+```
+sudo apt-get install python-pip
+pip install flask
+pip install ddtrace
+```
+
+> **Note:** If the `ddtrace` installation fails, run `pip install --upgrade cython`  first.
+
+Now create a folder for your flask application:
+
+```
+mkdir datadog_flask && cd datadog_flask
+```
+
+Define the title of your service:
+
+```
+export DD_SERVICE=kevins_datdog_service
+```
+
+Create a flask script file and edit it with Vim:
+
+```
+vim flaskapp.py
+```
+
+Copy an paste the following flask script to Vim:
+
+```python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+Use ddtrace to run your flask app:
+
+```
+ddtrace-run python flaskapp.py
+```
+
+You should get an output similar to this:
+
+```
+ * Serving Flask app "flaskapp" (lazy loading)
+ * Running on http://0.0.0.0:5050/
+```
+
+Open a new terminal window and reconnect with your Vagrant SSH:
+
+```
+vagrant ssh
+```
+
+Now you can test your Flask application an send traces to Datadog. Use `curl` on the url your app is running at:
+
+```
+curl http://0.0.0.0:5050/
+```
+
+If you get the following output, your test has been successful:
+
+```
+Entrypoint to the Application
+```
+
+
+
+#### Service and Traces visualization on Datadog
+
+By following the steps stated above we managed it to set up a Flask Service that data to Datadog. Open either your [services page](https://app.datadoghq.eu/apm/services) or your [trace list](https://app.datadoghq.eu/apm/traces) to see the data coming in from your Host:
+
+
+
+![Task1_Traces-list](./img/APM-Data/Task1_Traces-list.png)
+
+
+
+Select a Trace from the Flask Service and inspect the Flame Graph vislualizing the `GET` request:
+
+
+
+![Task1_Flask-Get-Requests](./img/APM-Data/Task1_Flask-Get-Requests.png)
+
+Now that the data from the Flask Service is being sent to Datadog, you can go on and include the **APM metrics** next to your **Infrastructure metrics** in a new **Datadog Dashboard **(*Dashboard > New Dashboard*). 
+
+
+
+![Task1_APM-and-Infrastructure-Dashboard](./img/APM-Data/Task1_APM-and-Infrastructure-Dashboard.png)
+
+
+
+### Difference between a Service and a Resource
+
+* **(Datadog) Service:** A Service is a group of processes fulfilling a specific job. *Example: A MySQL database.*
+* **(Datadog) Resource:** A Resource is a particular function running on a Service. *Example: A SQL query*
+
+
+
+**Submission Links:**
+
+* [My APM/Infrastructure Dashboard](https://app.datadoghq.eu/dashboard/272-tq5-96j/kevins-apm-and-infrastructure-metrics?from_ts=1592325924391&live=true&to_ts=1592326824391)
+
+## Final Question
