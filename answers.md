@@ -248,7 +248,7 @@ If the POST check was successful, the Datadog API should respond with a Status o
 
 
 
-<img src="/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Visualizing-Data/Task1_Postman-API-Check.png" alt="Task1_Postman-API-Check" style="zoom:50%;" />
+<img src="./img/Visualizing-Data/Task1_Postman-API-Check.png" alt="Task1_Postman-API-Check" style="zoom:50%;" />
 
 
 
