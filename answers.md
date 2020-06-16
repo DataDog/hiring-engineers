@@ -193,8 +193,6 @@ And watch your Custom Agent Metric report data to from your Host to Datadog:
 
 ![Task3_Custom-Agent-Metric-being-reported-to-datadog](./img/Collecting%20Metrics/Task3/Task3_Custom-Agent-Metric-being-reported-to-datadog.png)
 
-
-
 **Submission links:**
 
 * [Link to the Metrics Explorer](https://app.datadoghq.eu/metric/explorer?from_ts=1592256469750&to_ts=1592260069750&live=true&page=0&is_auto=false&tile_size=m&exp_agg=avg&exp_row_type=metric&exp_metric=my_metric)
@@ -423,17 +421,69 @@ Set the name of your Monitor to `Monitoring the Custom Metric 'my_metric'` and p
 
 Congratulations, to have sucessfully set up your first Datadog monitor with minimal effort. Below you can see a visual interpretation of the alerting rules that you've defined in your Monitor for quick check and validation: 
 
+
+
 ![Task1_Monitoring-conditions-visualization](./img/Monitoring/Task1_Monitoring-conditions-visualization.png)
-
-It does not take much time and the first warning is triggered by our metric passing the value of `500`. As expected we receive an email notification from Datadog:
-
-![Task1_Datadog-Warning-email](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Monitoring/Task1_Datadog-Warning-email.png) 
 
 
 
 ### More advanced Monitoring options
 
-Setting up your first Datadog Monitor was fast and pretty easy. Now we are going one step further and 
+Setting up your first Datadog Monitor was fast and pretty easy. Now we are going one step further and configure our monitor so that it will:
+
+- Send you an **email** whenever the **monitor triggers**.
+- Create different messages based on whether the monitor is in an **Alert**, **Warning**, or **No Data state**.
+- Include the **metric value** that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+It does not take much time and the first warning is triggered by our metric passing the value of `500`. As expected we receive an email notification from Datadog:
+
+
+
+![Task1_Datadog-Warning-email](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Monitoring/Task1_Datadog-Warning-email.png)
+
+#### Scheduled monitoring downtimes
+
+**Bonus**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+- One that **silences** it from **7pm to 9am** daily on **weekdays**,
+- And one that **silences** it all day on **Saturday** until **Sunday**.
+- Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+Such settings can be added in the **Managed Downtime** view (*Monitors > Manage Downtime*) of Datadog. Click **Schedule Downtime** on the top right corner of the page and specify the Downtime settings as stated above:
+
+
+
+![Task2_Sheduled-downtime-weekdays](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Monitoring/Task2_Sheduled-downtime-weekdays.png)
+
+
+
+The defined receipents are notified about the new scheduled downtime rule via email. This is a great feature the Datadog provides to keep your team up to date on important changes:
+
+
+
+![Task2_Scheduled-downtime-notification-email](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Monitoring/Task2_Scheduled-downtime-notification-email.png)
+
+Next we reapeat the process and set up a second scheduled downtime that is active all day on the weekend. Again, click on the **Schedule Downtime** button and fill in the required information:
+
+![Task2_Sheduled-downtime-weekends](./img/Monitoring/Task2_Sheduled-downtime-weekends.png)
+
+
+
+The defined receipents are again notified about the new scheduled downtime rule via email:
+
+
+
+![Task2_Scheduled-downtime-notification-email-weekends](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Monitoring/Task2_Scheduled-downtime-notification-email-weekends.png)
+
+**Submission Links:**
+
+* [Link to my Monitor](https://app.datadoghq.eu/monitors/177703)
+* [Link to scheduled Downtime 1](https://app.datadoghq.eu/monitors#/downtime?id=12706768) 
+* [Link to scheduled Downtime 2](https://app.datadoghq.eu/monitors#downtime?id=12707093)
+
+
+
+## Collecting APM Data:
 
 
 
