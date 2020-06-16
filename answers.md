@@ -1,17 +1,22 @@
 # Datadog Hiring Challenge - Solutions Engineer
 
-**Table of contents:**
-* Preface
-* Solution: Prerequisites - Setup the environment
-* Solution: Collecting Metrics
-* Solution: Visualizing Data
-* Solution: Monitoring Data
-* Solution: Collecting APM Data
-* Solution: Final Question
+### Table of contents:
 
-## Preface
+* [About Datadog](#about-datadog)
+* [Prerequisites and Environment Setup]()
+* [Collecting Metrics with Datadog]()
+* [Visualizing Data with Datadog Timeboards]()
+* [Monitoring Data with Datadog]()
+* [Collecting APM Data with Datadog]()
+* [Using Datadog in real world applications]()
+
+
+
+## About Datadog
 
 The preface comes here...
+
+
 
 ## Prerequisites and Environment Setup
 
@@ -19,17 +24,19 @@ The preface comes here...
 
 Once your Ubuntu image has been downloaded you'll find a 'Vagrantfile' in the folder.
 
+
+
 ![Prerequisites_Host-is-reporting-data-to-Datadog](./img/Prerequisites/Prerequisites_Host-is-reporting-data-to-Datadog.png)
 
 
 
 ## Collecting Metrics with Datadog
 
-### Adding tags to your Host in Datadog
+Learn more about tags in the [Getting started with tagging](https://docs.datadoghq.com/getting_started/tagging/) section in the Datadog Docs.
 
-Learn more about tags in the Datadog Docs: [Getting started with tagging](https://docs.datadoghq.com/getting_started/tagging/).
 
-#### Solution:
+
+#### Adding tags to your Host
 
 **1)** List all files in your `datadog-agent` directory:
 
@@ -74,6 +81,8 @@ sudo service datadog-agent restart
 ```
 
 **8)** After the Agent has restarted it picked up the new config settings and tagged your host as expected. Open your DD Host Map to validate the changes:
+
+
 
 ![Task1-Host_has_tags](./img/Collecting%20Metrics/Task1/Task1-Host_has_tags.png)
 
@@ -387,6 +396,8 @@ Let us investigate our options to manipulate the newly created Timeboard from th
 
 * [Link to my Datadog Timeboard](https://app.datadoghq.eu/dashboard/yp7-ari-z3p/kevins-datadog-timeboard?from_ts=1592322736854&to_ts=1592326336854&live=true)
 
+
+
 ## Monitoring Data with Datadog
 
 Datadog makes your life very easy by providing a wide range of prebuild and fully integrated product - This is also true for [Monitors](https://www.datadoghq.com/blog/monitoring-101-collecting-data/). Monitoring with Datadog is well documented in the [Docs](https://docs.datadoghq.com/monitors/) and provides many options and settings to set up alerts and warnings just as you need them.
@@ -429,7 +440,7 @@ Congratulations, to have sucessfully set up your first Datadog monitor with mini
 
 ### More advanced Monitoring options
 
-Setting up your first Datadog Monitor was fast and pretty easy. Now we are going one step further and configure our monitor so that it will:
+Setting up your first Datadog Monitor was easy and very fast. Now we are going one step further and configure our monitor even more. The following functionalities will be implemented:
 
 - Send you an **email** whenever the **monitor triggers**.
 - Create different messages based on whether the monitor is in an **Alert**, **Warning**, or **No Data state**.
@@ -440,6 +451,8 @@ It does not take much time and the first warning is triggered by our metric pass
 
 
 ![Task1_Datadog-Warning-email](./img/Monitoring/Task1_Datadog-Warning-email.png)
+
+
 
 #### Scheduled monitoring downtimes
 
@@ -483,7 +496,7 @@ The defined receipents are again notified about the new scheduled downtime rule 
 
 
 
-## Collecting APM Data
+## Collecting APM Data with Datadog
 
 Datadog has a strong set of features and product for state-of-the-art [APM](https://www.datadoghq.com/product/apm/) (Application Performance Monitoring) . Seamless application navigation with [Service Maps](https://www.datadoghq.com/blog/service-map/), [App analytics](https://www.datadoghq.com/blog/apm-watchdog-service-map-trace-search/) and Auto-instrumentation for distributed tracing are just some of many features Datadog offers in the APM space.
 
@@ -630,4 +643,15 @@ Now that the data from the Flask Service is being sent to Datadog, you can go on
 
 * [My APM/Infrastructure Dashboard](https://app.datadoghq.eu/dashboard/272-tq5-96j/kevins-apm-and-infrastructure-metrics?from_ts=1592325924391&live=true&to_ts=1592326824391)
 
-## Final Question
+
+
+## Using Datadog in real world applications
+
+Beside of the fact that Datadog is used by thousands of happy commercial customer all over the world, the platform can also be used in many other creative ways. Datadog has already been used to monitor the [NYC Subway System](https://www.datadoghq.com/blog/monitor-mta-status/), the [Pokemon Go App](https://www.datadoghq.com/blog/monitoring-pokemon-go-service-status-datadog/) and even [office restroom availability](https://www.datadoghq.com/blog/engineering/restroom-hacks/). 
+
+In these days nearly anything is a smart device producing some sort of data. No matter if it is your Refrigerator, your Toaster or your new [Smart Stroller](https://www.indiegogo.com/projects/smartbe-intelligent-stroller#/) - all these devices are already connected to the internet and many others will follow. These circumstances not only predict successful times ahead for a data analytics platform like Datadog, it also allows anyone to dream and build promising new services and products solely based on these incredible amounts of data produced each day.
+
+I could imagine 
+
+
+
