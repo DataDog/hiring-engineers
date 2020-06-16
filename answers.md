@@ -389,7 +389,53 @@ Let us investigate our options to manipulate the newly created Timeboard from th
 
 * [Link to my Datadog Timeboard](https://app.datadoghq.eu/dashboard/yp7-ari-z3p/kevins-datadog-timeboard?from_ts=1592300708463&to_ts=1592304308463&live=true)
 
-## Solution: Monitoring Data
+## Monitoring Data with Datadog
+
+Datadog makes your life very easy by providing a wide range of prebuild and fully integrated product - This is also true for [Monitors](https://www.datadoghq.com/blog/monitoring-101-collecting-data/). Monitoring with Datadog is well documented in the [Docs](https://docs.datadoghq.com/monitors/) and provides many options and settings to set up alerts and warnings just as you need them.
+
+### Setting up a Datadog Monitor
+
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor. 
+
+The process of setting up a Monitor that is able to track our custom metric and alert us if special conditions are met is fairly simple. Change to the Monitoring section in Datadog (*Monitors > Manager Monitors*) and click on the Button **New Monitor +** in the top right corner:
+
+
+
+![Task1_Set-up-a-Metrics-Monitor](./img/Monitoring/Task1_Set-up-a-Metrics-Monitor.png)
+
+
+
+Choose to set up a Metric-Monitor and click on the button. In the next window you have plenty of options to define your new monitor. We will adjust the Monitor so that it watches the **average** of your custom metric (`my_metric`) and will **alert** you if it’s above the following values **over the past 5 minutes**:
+
+- `Warning` threshold of `500`
+- `Alerting` threshold of `800`
+- `Notification` if there is No Data over the past `10 minutes`
+
+Copy the monitoring requirements to the Monitor settings:
+
+![Task1_Setup-Treshhold-alert-for-Metric](./img/Monitoring/Task1_Setup-Treshhold-alert-for-Metric.png)
+
+![Task1_Set-alert-Thresholds](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Monitoring/Task1_Set-alert-Thresholds.png)
+
+
+
+Set the name of your Monitor to `Monitoring the Custom Metric 'my_metric'` and pick your own user to be notified in the **5) Notify your team** section. Finally save the Monitor by clicking on **Save** at the bottom of the page.
+
+Congratulations, to have sucessfully set up your first Datadog monitor with minimal effort. Below you can see a visual interpretation of the alerting rules that you've defined in your Monitor for quick check and validation: 
+
+![Task1_Monitoring-conditions-visualization](./img/Monitoring/Task1_Monitoring-conditions-visualization.png)
+
+It does not take much time and the first warning is triggered by our metric passing the value of `500`. As expected we receive an email notification from Datadog:
+
+![Task1_Datadog-Warning-email](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Monitoring/Task1_Datadog-Warning-email.png) 
+
+
+
+### More advanced Monitoring options
+
+Setting up your first Datadog Monitor was fast and pretty easy. Now we are going one step further and 
+
+
 
 ## Solution: Collecting APM Data
 
