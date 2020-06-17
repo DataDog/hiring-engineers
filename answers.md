@@ -20,7 +20,7 @@ The preface comes here...
 
 ## Prerequisites and Environment Setup
 
-In the following you will be walked through a number of steps that help you get familiar with Datadog. We will set up a new Ubuntu VM instance on your local machine (Host) and install the Datadog Agent on it. The DD Agent will be able to collect useful Infrastructure and APM data and metrics. The data will be sent to Datadog where we are going the visulalize and analyse it. 
+In the following you will be walked through a number of steps that help you get familiar with Datadog. We will set up a new Ubuntu VM instance on your local machine (Host) and install the Datadog Agent on it. The DD Agent will be able to collect useful Infrastructure metrics and APM data. 
 
 Be prepared to learn a lot about Infrastructure Monitoring, Application Performance Monitoring and Data Visualization along the way. Ready? Let's start!
 
@@ -28,11 +28,74 @@ Be prepared to learn a lot about Infrastructure Monitoring, Application Performa
 
 ### Setting up your local Environment
 
-We will use [Vagrant](https://www.vagrantup.com/) to set up your local developement environemnt. 
+We will use [Vagrant](https://www.vagrantup.com/) to set up your local developement environment. Vagrant is a great tool for building and maintaining virtual environment setups and will help us to speed up things. We are going to follow Vagrant's [Getting Started](https://www.vagrantup.com/intro/getting-started) documentation, that guides us through all necessary steps to spin up a new Ubuntu VM instance in minutes:
 
-> **Note:** The default username and password for vagrant machines is vagrant and vagrant respectively. For enhanced security it is advised to use an SSH key as password instead.
 
-Once your Ubuntu image has been downloaded you'll find a 'Vagrantfile' in the folder.
+
+**1)** First download and  [install the latest version of Vagrant](https://www.vagrantup.com/docs/installation/) as well as [VirtualBox](https://www.virtualbox.org/), an open-sourced virtualization softwae.
+
+**2)** Next, create a new directory for your Datatdog exercise:
+
+```
+$ mkdir datadogTest && cd datadogTest
+```
+
+**3)** Initialize Vagrant by running the two short commands:
+
+```
+$ vagrant init hashicorp/bionic64
+$ vagrant up
+```
+
+That's it! You now have a fully functioning **Ubuntu 18.04 LTS 64-bit** virtual machine running in your VirtualBox, that is control via Vagrant.
+
+The init-command placed a `Vagrantfile` in your `datadogTest` directory. With the help of the Vagrant file you can easily describe the virtual environment setup you would like to have. Your VM needs more RAM? No problem, open the Vagrantfile, change the value of `vb.memory` to `2048` and save the file. Reload the Vagrant with `vagrant reload` and you are all set.
+
+
+
+### Installing the Datadog Agent 
+
+In the previous section we have set up the Host. But it is not yet reporting any data to Datadog because both still don't know from each other. This is where the [Datadog Agent](https://docs.datadoghq.com/agent/) comes into place. The Datadog Agent will run on your Host, where it collects data and metrics and sends them over to Datadog. 
+
+**1)** The installation of the Datadog Agent is fairly simple. First you need to SSH into your Vagrant environment:
+
+```
+vagrant ssh
+```
+
+**2)** Next, grant yourself root access to the machine to make things easier along the way:
+
+```
+vagrant@vagrant:~$ sudo passwd root
+```
+
+**3)** You will be promted to pick as password, do so and confirm it. Now switch user to **root** and confirm again using your new password:
+
+```
+vagrant@vagrant:~$ su
+```
+
+
+
+##### Signing up up for a Free Trial on Datadog 
+
+Switch to the [Datadog Website](https://www.datadoghq.com/) and click on the **Free Trial** button to sign up for a 14 days trial that lets you monitor as many servers as you like at no costs. 
+
+> **Note:** If you are a Recruiting Candidate working through an exercise, type "*Datadog Recruiting Candidate*" in the "*Company*" filed. 
+
+After you signed up, you are forwared to the **Install your first Datadog Agent** section. Pick **Ubuntu**, as this is the environment that we installed on our VM. Copy the installation command and paste it in your Vagrant SSH:
+
+```
+root@vagrant# DD_AGENT_MAJOR_Version...
+```
+
+Wait for the installation to finish and then start the Datadog Agent:
+
+```
+root@vagrant# service datadog-agent start
+```
+
+Your Agent will spin up and register itself with Datadog. Click the **Next** button on the Datadog website and see your Host lighting up in green color on the welcome page. Congratulations, you successfully registered your first Host with Datadog!
 
 
 
@@ -41,6 +104,8 @@ Once your Ubuntu image has been downloaded you'll find a 'Vagrantfile' in the fo
 
 
 ## Collecting Metrics with Datadog
+
+Monitoring data comes in many forms. While some systems pour out data continuously others only produce data when special conditions are met. Datadog helps you monitor any kind of data and data source. When your environments grow in computing capacity and in number of instances it is helpful to tag the single parts to keep the overview. Datadog provides a rich set of tagging functionalities that help you providing context to your services. In the following we will start with adding tags to our Host and then move on to collect data from a MySQL database.
 
 Learn more about tags in the [Getting started with tagging](https://docs.datadoghq.com/getting_started/tagging/) section in the Datadog Docs.
 
@@ -54,12 +119,12 @@ Learn more about tags in the [Getting started with tagging](https://docs.datadog
 ls -la /etc/datadog-agent
 ```
 
-Youl'll notice that you have a file here called `datadog_example.yaml`.
+Youl'll notice that there is a file called `datadog.yaml.example`.
 
-**2)** Make a copy of the Agent configuraton file that we can work in:
+**2)** Make a copy of the Agent configuraton file that you can work in:
 
 ```
-cp /etc/datadog-agent/datadog_example.yaml/etc/datadog-agent/datadog.yaml
+cp /etc/datadog-agent/datadog.yaml.example /etc/datadog-agent/datadog.yaml
 ```
 
 **3)** Open the [Agent main configuration file](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7) in Vim:
@@ -68,29 +133,33 @@ cp /etc/datadog-agent/datadog_example.yaml/etc/datadog-agent/datadog.yaml
 vim /etc/datadog-agent/datadog.yaml
 ```
 
-**4)** The first thing that you'll notice is that the **API** setting is uncommented but has no value. In order to make your Agent communicate with Datadog, it must know the your API key. An API key is unique to your organization and can be found in your [Datadog API configuration page](https://app.datadoghq.eu/account/settings#api):
+**4)** The first thing that you'll notice is that the **API** setting has no value. In order to make your Agent communicate with Datadog, it must know your API key. An API key is unique to your organization and can be found in your [Datadog API configuration page](https://app.datadoghq.eu/account/settings#api):
+
+
 
 ![Datadog_API-keys](./img/Collecting%20Metrics/Task1/Task1-API_keys.png)
 
-Paste your API-key and paste it in your datadog.yaml file:
+
+
+Copy and paste your API-key in your `datadog.yaml` file:
 
 ![Task1-Add_API_key_to_yaml](./img/Collecting%20Metrics/Task1/Task1-Add_API_key_to_yaml.png)
 
-**5)** If you chose your Datadog region to be Europe (EU) during signup, you must change the site of the Datadog intake `@param site` as well as the host address of the Datadog intake server `@param dd_url` in your `datadog.yaml` file. This is necessary as your API key is only valid for the region it was generated for:
+**5)** If you have decided to have your Datadog in the Europe (EU) region during signup, you must now change the site of the Datadog intake `@param site`, as well as the host address of the Datadog intake server `@param dd_url`. This is necessary as your API key is only valid for the region it was generated for:
 
 ![Task1-Change-region-to-EU](./img/Collecting%20Metrics/Task1/Task1-Change-region-to-EU.png)
 
-**6)** Finally find the tags section of your config file. Uncomment it and add two new tag. Set an `environment` tag with a value of `dev` and set a `name`-tag with the value `kevins_datadog_demohost`:
+**6)** Finally find the tags section of your config file. Uncomment it and add two new tags. Set an `environment` tag with a value of `dev` and set a `name` tag with the value `kevins_datadog_demohost`:
 
 ![Task1-Agent_configfile_tags](./img/Collecting%20Metrics/Task1/Task1-Agent_configfile_tags.png)
 
-**7)** After you've saved the file the Datadog agent must be restarted. As stated in the [https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7), this can be done by typing the following command in you Vangart SSH:
+**7)** After you've saved the file the Datadog agent must be restarted. As stated in the [Datadog Docs](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7), this can be done by typing the following command in you Vangart SSH:
 
 ```
-sudo service datadog-agent restart
+service datadog-agent restart
 ```
 
-**8)** After the Agent has restarted it picked up the new config settings and tagged your host as expected. Open your DD Host Map to validate the changes:
+**8)** After the Agent has restarted it picked up the new config settings and tagged your host as expected. Open your Datadog [Host Map](https://app.datadoghq.eu/infrastructure/map) to validate the changes:
 
 
 
@@ -100,19 +169,23 @@ sudo service datadog-agent restart
 
 ### Datadog Integration with MySQL
 
-The MySQL check is included in the [Datadog Agent](https://app.datadoghq.eu/account/settings#agent) package. No additional installation is needed on your MySQL server. First, change to you Vangart SSH terminal window and update the apt package by running:
+Datadog has more than **400** **built-in integrations** ranging from messaging plugins to orchestration apps. This list cannot be complete without a **MySQL integration**! Datadog comes with fully integrated MySQL support that is super easy to set up.
+
+The MySQL check is already included in the [Datadog Agent](https://app.datadoghq.eu/account/settings#agent) package. Hence, no additional installation is needed on your MySQL server. The only thing that is currently missing on our Host environment is the MySQL database itself. Follow these quick steps to install a copy:
+
+**1)** First, change to you Vangart SSH terminal window and update the apt package by running:
 
 ```
 sudo apt update
 ```
 
-Then install the MySQL package on your Ubuntu machine with the following command:
+**2)** Then install the MySQL package on your Ubuntu machine with the following command:
 
 ```
 sudo apt install mysql-server
 ```
 
-Once the installation is completed, the MySQL service will start automatically. To check whether the MySQL server is running, type in the following command:
+**3)** Once the installation is completed, the MySQL service will start automatically. To check whether the MySQL server is running, type in the following command:
 
 ```
 sudo systemctl status mysql
@@ -120,27 +193,29 @@ sudo systemctl status mysql
 
 ![Task2_Chek-whether-MySQL-is-running](./img/Collecting%20Metrics/Task2/Task2_Chek-whether-MySQL-is-running.png)
 
-Now that MySQL is installed and is running on the Agent, we prepare the Database for the Datadog integration as described in the [Datadog Docs](https://docs.datadoghq.com/integrations/mysql/). To interact with your MySQL instance, login as root:
+**4)** Now that MySQL is installed and is running on the Agent, we prepare the Database for the Datadog integration as described in the [Datadog Docs](https://docs.datadoghq.com/integrations/mysql/). To interact with your MySQL instance, login as root:
 
 ```
 sudo mysql
 ```
 
-Now create a database user for the Datadog Agent:
+**5)** Now create a database user for the Datadog Agent:
 
 ```
 mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
 ```
 
-Finish all further steps described in the [https://docs.datadoghq.com/integrations/mysql/](https://docs.datadoghq.com/integrations/mysql/) from Datadog.
+**6)** Finish all further steps described in Datadog's [MySQL Docs](https://docs.datadoghq.com/integrations/mysql/).
 
-Restart the Agent:
+
+
+**7)** Restart the Agent once the database setup is done:
 
 ```
 sudo service datadog-agent restart
 ```
 
-and inspect the Agent status log:
+**8)** And inspect the Agent status log:
 
 ```
 sudo datadog-agent status
@@ -148,15 +223,17 @@ sudo datadog-agent status
 
 ![Task2_Agent-status-MySQL](./img/Collecting%20Metrics/Task2/Task2_Agent-status-MySQL.png)
 
-The Database is sucessfully installed on our host and the Agent integration was sucessfully. Now it is time to install you first Datadog integration. Select **Integrations** from the Datadog sidebar and type in **MySQL** in the search field. Click on the MySQL integration and install it:
+The Database is sucessfully installed on our host and the Agent integration was sucessful. Now it is time to install you first Datadog integration. Select **Integrations** from the Datadog sidebar and type in **MySQL** in the search field. Click on the MySQL integration and install it:
 
 ![Task2-MySQL-Integration-installed](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Collecting Metrics/Task2/Task2-MySQL-Integration-installed.png)
 
-Now change to your [MySQL - Overview](https://app.datadoghq.eu/dash/integration/9/mysql---overview?from_ts=1592254130144&to_ts=1592257730144&live=true) Dashboard on the Datadog website and watch your first MySQL database metrics coming in:
+Change to your [MySQL - Overview](https://app.datadoghq.eu/dash/integration/9/mysql---overview?from_ts=1592254130144&to_ts=1592257730144&live=true) Dashboard on Datadog's website and watch your first MySQL database metrics coming in:
 
 ![Task2_MySQL-Overview-Dashboard](./img/Collecting%20Metrics/Task2/Task2_MySQL-Overview-Dashboard.png)
 
 
+
+Congratulations! You can now monitor your database and collect all kinds of important metrics. Datadog helps you to keep an eye  on metrics like Query throughput, Query performance or Open Connections. 
 
 **Submission links:**
 
@@ -210,11 +287,15 @@ sudo service datadog-agent restart
 
 And watch your Custom Agent Metric report data to from your Host to Datadog:
 
+
+
 ![Task3_Custom-Agent-Metric-being-reported-to-datadog](./img/Collecting%20Metrics/Task3/Task3_Custom-Agent-Metric-being-reported-to-datadog.png)
 
 **Submission links:**
 
 * [Link to the Metrics Explorer](https://app.datadoghq.eu/metric/explorer?from_ts=1592256469750&to_ts=1592260069750&live=true&page=0&is_auto=false&tile_size=m&exp_agg=avg&exp_row_type=metric&exp_metric=my_metric)
+
+
 
 #### Changing the check's collection interval
 
@@ -233,7 +314,7 @@ instances:
   - min_collection_interval: 45
 ```
 
-**Bonus:** By setting the collection interval value in the associate `.yaml` file, the Python skript must not be touched to parametrize the data collection.  
+**Bonus:** By setting the collection interval value in the associate `.yaml` file, the Python script must not be touched to parametrize the data collection.  
 
 
 
@@ -241,9 +322,9 @@ instances:
 
 **Timeboards** a fantastic way to visualize your data across an entire dashboard. They are well suited for any kind of troubleshooting, correlation and general data exploration. This makes Datadog Timeboards a good canditate for large TV displays in your cafeteria or lobby. The good thing is, Datadog provides you with the **easiest possible feature** to do exactly that - a prebuild **TV icon** that lets your stream your Datadog Timeboard on large TV screens.
 
-Let us upgrade your cafetria and set up your very first Datadog Timeboard!
+Let's upgrade your cafetria and set up your very first Datadog Timeboard!
 
-#### The goal
+##### The goal:
 
 In the last section you've set up a custom metric publishing data via the Datadog Agent installed on your Host. In this section we will take that Metric and build a Timeboard to visualize it. Following the instructions from the [Datadog Docs](https://docs.datadoghq.com/dashboards/timeboards/), we will utilize the **Datadog API** to create a Timeboard that contains:
 
@@ -400,7 +481,7 @@ Let us investigate our options to manipulate the newly created Timeboard from th
 
 
 
-**Bonus:** The Anomaly Graph visualizes events of unusal highs or lows of of a metrics. Metric data that falls out of the normal band (grey) is displayed in red color. In this specific case the Anomaly Graph indicates such events for the metric `MySQL CPU time per user`.
+**Bonus:** The Anomaly Graph visualizes events of unusal highs or lows of a metric. Metric data that falls out of the normal band (grey) is displayed in red color. In this specific case the Anomaly Graph indicates such events for the metric `MySQL CPU time per user`.
 
 **Submission Links:**
 
@@ -424,7 +505,7 @@ The process of setting up a Monitor that is able to track our custom metric and 
 
 
 
-Choose to set up a Metric-Monitor and click on the button. In the next window you have plenty of options to define your new monitor. We will adjust the Monitor so that it watches the **average** of your custom metric (`my_metric`) and will **alert** you if it’s above the following values **over the past 5 minutes**:
+Choose to set up a **Metric-Monitor** by clicking on that button. In the next window you have plenty of options to define your new monitor. We will adjust the Monitor so that it watches the **average** of your custom metric (`my_metric`) and will **alert** you if it’s above the following values **over the past 5 minutes**:
 
 - `Warning` threshold of `500`
 - `Alerting` threshold of `800`
