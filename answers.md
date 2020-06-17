@@ -171,7 +171,7 @@ service datadog-agent restart
 
 Datadog has more than **400** **built-in integrations** ranging from messaging plugins to orchestration apps. This list cannot be complete without a **MySQL integration**! Datadog comes with fully integrated MySQL support that is super easy to set up.
 
-The MySQL check is already included in the [Datadog Agent](https://app.datadoghq.eu/account/settings#agent) package. Hence, no additional installation is needed on your MySQL server. The only thing that is currently missing on our Host environment is the MySQL database itself. Follow these quick steps to install a copy:
+The MySQL check is already included in the Datadog Agent package. Hence, no additional installation is needed on your MySQL server. The only thing that is currently missing on our Host environment is the MySQL database itself. Follow these quick steps to install a copy:
 
 **1)** First, change to you Vangart SSH terminal window and update the apt package by running:
 
@@ -223,7 +223,7 @@ sudo datadog-agent status
 
 The Database is sucessfully installed on our host and the Agent integration was sucessful. Now it is time to install your first Datadog integration. Select **Integrations** from the Datadog sidebar and type in **MySQL** in the search field. Click on the MySQL integration and install it:
 
-![Task2-MySQL-Integration-installed](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Collecting Metrics/Task2/Task2-MySQL-Integration-installed.png)
+![Task2-MySQL-Integration-installed](./img/Collecting Metrics/Task2/Task2-MySQL-Integration-installed.png)
 
 
 
@@ -336,7 +336,7 @@ In the last section you've set up a custom metric publishing data via the Datado
 
 Datadog maintains an API that allows you to get data in and out of Datadog in a programmatic fashion. The API is documented in great detail in the offical [Datadog Docs](https://docs.datadoghq.com/api/). Performing API calls to Datadog can easliy be done using Postman. Within the docs we find a very helpful [step-by-step guid](https://docs.datadoghq.com/getting_started/api/)e on how to set up Postman for Datadog API development. 
 
-First go on and setup **Postman** as described in the [Docs](https://docs.datadoghq.com/getting_started/api/) - import the Datadog collection and set up your environemnt. To finalize the setup, run a quick check to see if your Postman environment can successfully communicate with the Datadog API (`POST`):
+First go on and setup **Postman** as described in the Docs - import the Datadog collection and set up your environemnt. To finalize the setup, run a quick check to see if your Postman environment can successfully communicate with the Datadog API (`POST`):
 
 
 
@@ -737,7 +737,7 @@ Entrypoint to the Application
 
 #### Service and Traces visualization on Datadog
 
-By following the steps stated above we managed it to set up a Flask Service that data to Datadog. Open either your [services page](https://app.datadoghq.eu/apm/services) or your [trace list](https://app.datadoghq.eu/apm/traces) to see the data coming in from your Host:
+By following the steps stated above we managed it to set up a Flask Service that data to Datadog. Open either your [services page](https://app.datadoghq.eu/apm/services?end=1592415999212&env=none&paused=false&start=1589823999212) or your [trace list](https://app.datadoghq.eu/apm/traces?from_ts=1589824036360&index=apm-search&live=true&query=env%3Anone&to_ts=1592416036360) to see the data coming in from your Host:
 
 
 
@@ -776,7 +776,7 @@ Now that the data from the Flask Service is being sent to Datadog, you can go on
 
 Beside of the fact that Datadog is used by thousands of happy commercial customer all over the world, the platform can also be used in many other creative ways. Datadog has already been used to monitor the [NYC Subway System](https://www.datadoghq.com/blog/monitor-mta-status/), the [Pokemon Go App](https://www.datadoghq.com/blog/monitoring-pokemon-go-service-status-datadog/) and even [office restroom availability](https://www.datadoghq.com/blog/engineering/restroom-hacks/). 
 
-In these days nearly anything is a smart device producing some sort of data. No matter if it is your Refrigerator, your Toaster or your new [Smart Stroller](https://www.indiegogo.com/projects/smartbe-intelligent-stroller#/) - all these devices are already connected to the internet and many others will follow. These circumstances not only predict successful times ahead for a data analytics platform like Datadog, it also allows anyone to build promising new services and products solely based on these incredible amounts of data produced each day.
+In these days nearly anything is a smart device producing some sort of data. No matter if it is your Refrigerator, your Toaster or your new Smart Stroller - all these devices are already connected to the internet and many others will follow. These circumstances not only predict successful times ahead for a data analytics platform like Datadog, it also allows anyone to build promising new services and products solely based on these incredible amounts of data produced each day.
 
 #### Helping to fix air-pollution with Datadog
 
