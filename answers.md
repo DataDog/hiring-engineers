@@ -14,7 +14,7 @@
 
 ## About Datadog
 
-Datadog is a Cloud Monitoring as a Service company that lets you monitor any stack and app at any scale. Started as an Infrastructure Monitoring Service, Datadog quickly became a full-stack Monitoring provider trusted by many thousands of customers worldwide. Today the company has 1000+ employees and offers best in class Infrastructure and [Application Performance Monitoring](https://www.datadoghq.com/product/apm/) and products such as Log Management and [Security Monitoring](https://www.datadoghq.com/blog/announcing-security-monitoring/).
+Datadog is a Cloud Monitoring as a Service company that lets you monitor any stack and app at any scale. Started as an Infrastructure Monitoring Service, Datadog quickly became a full-stack Monitoring provider trusted by many thousands of customers worldwide. Today the company has 1000+ employees and offers best in class Infrastructure and [Application Performance Monitoring](https://www.datadoghq.com/product/apm/) and services such as Log Management and [Security Monitoring](https://www.datadoghq.com/blog/announcing-security-monitoring/).
 
 
 
@@ -511,7 +511,9 @@ Choose to set up a **Metric-Monitor** by clicking on that button. In the next wi
 - `Alerting` threshold of `800`
 - `Notification` if there is No Data over the past `10 minutes`
 
-Copy the monitoring requirements to the Monitor settings:
+Copy the requirements requirements to the Monitor settings, choose the detection method to be a **Threshold Alert** and don't forget to define the **Host** as we will need some of its parameters for the Email reporting we'll set up later:
+
+
 
 ![Task1_Setup-Treshhold-alert-for-Metric](./img/Monitoring/Task1_Setup-Treshhold-alert-for-Metric.png)
 
@@ -519,7 +521,7 @@ Copy the monitoring requirements to the Monitor settings:
 
 
 
-Set the name of your Monitor to `Monitoring the Custom Metric 'my_metric'` and pick your own user to be notified in the **5) Notify your team** section. Finally save the Monitor by clicking on **Save** at the bottom of the page.
+Set the name of your Monitor to `Monitoring the Custom Metric 'my_metric'` and finally save the Monitor by clicking on **Save** at the bottom of the page.
 
 Congratulations, to have sucessfully set up your first Datadog monitor with minimal effort. Below you can see a visual interpretation of the alerting rules that you've defined in your Monitor for quick check and validation: 
 
@@ -537,7 +539,35 @@ Setting up your first Datadog Monitor was easy and very fast. Now we are going o
 - Create different messages based on whether the monitor is in an **Alert**, **Warning**, or **No Data state**.
 - Include the **metric value** that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-It does not take much time and the first warning is triggered by our metric passing the value of `500`. As expected we receive an email notification from Datadog:
+To set up the required behavior stated above we will make use of the **4) Say what's happening** section of the Monitor settings:
+
+
+
+![Task2_Trigger-messages-box](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Monitoring/Task2_Trigger-messages-box.png)
+
+
+
+The option seems to be rather simple but is indeed very powerful. As described in the [Datadog Docs](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#tag-variables) there are many pre-build template and conditional variables available that allow you to highly customize your Datadog notifications. With the help of the documentation we can 
+
+Copy and paste the following script to the notification box in your Monitor settings:
+
+```
+{{#is_alert}}
+The Metric 'my_metric' hit {{value}} on host {{host.name}} with IP {{host.ip}}.
+{{/is_alert}}
+
+{{#is_warning}}
+The Metric 'my_metric' hit {{value}} on host {{host.name}}.
+{{/is_warning}}  
+
+{{#is_no_data}}
+The Metric 'my_metric' has not reported data on {{host.name}}.
+{{/is_no_data}}
+```
+
+Set your **user** as recipient in **5) Notify your team** and save your changes.
+
+It does not take much time and the first warning is triggered by our metric passing the value of `500`. As expected we receive an email notification from Datadog that includes all the important information about the Metric and the Host:
 
 
 
@@ -582,6 +612,8 @@ The defined receipents are again notified about the new scheduled downtime rule 
 
 
 ![Task2_Scheduled-downtime-notification-email-weekends](./img/Monitoring/Task2_Scheduled-downtime-notification-email-weekends.png)
+
+
 
 **Submission Links:**
 
