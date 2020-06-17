@@ -543,7 +543,7 @@ To set up the required behavior stated above we will make use of the **4) Say wh
 
 
 
-![Task2_Trigger-messages-box](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Monitoring/Task2_Trigger-messages-box.png)
+![Task2_Trigger-messages-box](./img/Monitoring/Task2_Trigger-messages-box.png)
 
 
 
