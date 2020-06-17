@@ -778,7 +778,21 @@ Beside of the fact that Datadog is used by thousands of happy commercial custome
 
 In these days nearly anything is a smart device producing some sort of data. No matter if it is your Refrigerator, your Toaster or your new [Smart Stroller](https://www.indiegogo.com/projects/smartbe-intelligent-stroller#/) - all these devices are already connected to the internet and many others will follow. These circumstances not only predict successful times ahead for a data analytics platform like Datadog, it also allows anyone to build promising new services and products solely based on these incredible amounts of data produced each day.
 
-I could imagine 
+#### Helping to fix air-pollution with Datadog
+
+It would be a fun exercise to use the power of the Datadog platform to solve a real world problem. One thing that comes to my mind is the very difficult and heated-up public discussion about air-pollution in Germany and especially in Stuttgart (City in southern Germany). Stuttgart is among the cities with the [highest levels of air-pollution](https://www.dw.com/en/stuttgart-germanys-beijing-for-air-pollution/a-18991064) for years and constantly struggling with fine dust smog caused by traffic.
+
+The Stuttgart residents are directly affected by the fine dust (air pollution) levels, as cars can get cars may be prohibited from entering the city and public transportation prices drop on days with high fine dust levels. These circumastances make it very important for the public to know the current fine dust levels to prepare accordingly (take the metro instead of the car).
+
+Local organizations started collecting fine dust metrics a few years and even set up [public APIs](https://github.com/opendata-stuttgart/meta/wiki/APIs) for easy access to measurement values. But one thing that is still missing is meaningful aggregation of data and detailed data visualization. The screenshot below shows a fine dust heatmap for the Stuttgart area that currently is available:
 
 
+
+<img src="/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Final-Question/Task1_Currently-Available-Visualizations.png" alt="Task1_Currently-Available-Visualizations" style="zoom:50%;" />
+
+
+
+If **Datadog** would be used as a data aggragation and monitoring service one could merge multiple data sources to gain insights on a higher abstraction level. It would be instresting to bring the fine dust levels in relation with traffic and public transportion utilization ("Does more traffic correlate with higher fine dust levels?", "Does more public transportation utilization correlate with lower fine dust levels?").
+
+Furthermore it would be highly useful for the public to extent the simple air pollution heatmap with more Dashboard widgets from Datadog's extensive [Widgets Library](https://docs.datadoghq.com/dashboards/widgets/). Having a **Fine Dust Dashboard** (similar to the [MTA service Tracker]([https://p.datadoghq.com/sb/c654eb94b-113d9af87f?tpl_var_host=host%3Amta-status-tracker&tpl_var_line=%2A](https://p.datadoghq.com/sb/c654eb94b-113d9af87f?tpl_var_host=host%3Amta-status-tracker&tpl_var_line=*))) displaying all aggragated Metrics in one place (probably even availabe as **Web- or Native App**) would be very practical for the city of Stuttgart. People would have more realtime insights about their city which would help them to leave their car at home when it's time again to fight fine dust.
 
