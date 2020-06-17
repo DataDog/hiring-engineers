@@ -14,13 +14,13 @@
 
 ## About Datadog
 
-The preface comes here...
+Datadog is a Cloud Monitoring as a Service company that lets you monitor any stack and app at any scale. Started as an Infrastructure Monitoring Service, Datadog quickly became a full-stack Monitoring provider trusted by many thousands of customers worldwide. Today the company has 1000+ employees and offers best in class Infrastructure and [Application Performance Monitoring](https://www.datadoghq.com/product/apm/) and products such as Log Management and [Security Monitoring](https://www.datadoghq.com/blog/announcing-security-monitoring/).
 
 
 
 ## Prerequisites and Environment Setup
 
-In the following you will be walked through a number of steps that help you get familiar with Datadog. We will set up a new Ubuntu VM instance on your local machine (Host) and install the Datadog Agent on it. The DD Agent will be able to collect useful Infrastructure metrics and APM data. 
+In the following you will be walked through a number of steps that help you get familiar with Datadog. We will set up a new Ubuntu VM instance on your local machine (Host) and install the Datadog Agent on it. The Datadog Agent will be able to collect useful Infrastructure metrics and APM data. 
 
 Be prepared to learn a lot about Infrastructure Monitoring, Application Performance Monitoring and Data Visualization along the way. Ready? Let's start!
 
@@ -567,7 +567,11 @@ The defined receipents are notified about the new scheduled downtime rule via em
 
 ![Task2_Scheduled-downtime-notification-email](./img/Monitoring/Task2_Scheduled-downtime-notification-email.png)
 
+
+
 Next we reapeat the process and set up a second scheduled downtime that is active all day on the weekend. Again, click on the **Schedule Downtime** button and fill in the required information:
+
+
 
 ![Task2_Sheduled-downtime-weekends](./img/Monitoring/Task2_Sheduled-downtime-weekends.png)
 
@@ -740,7 +744,7 @@ Now that the data from the Flask Service is being sent to Datadog, you can go on
 
 Beside of the fact that Datadog is used by thousands of happy commercial customer all over the world, the platform can also be used in many other creative ways. Datadog has already been used to monitor the [NYC Subway System](https://www.datadoghq.com/blog/monitor-mta-status/), the [Pokemon Go App](https://www.datadoghq.com/blog/monitoring-pokemon-go-service-status-datadog/) and even [office restroom availability](https://www.datadoghq.com/blog/engineering/restroom-hacks/). 
 
-In these days nearly anything is a smart device producing some sort of data. No matter if it is your Refrigerator, your Toaster or your new [Smart Stroller](https://www.indiegogo.com/projects/smartbe-intelligent-stroller#/) - all these devices are already connected to the internet and many others will follow. These circumstances not only predict successful times ahead for a data analytics platform like Datadog, it also allows anyone to dream and build promising new services and products solely based on these incredible amounts of data produced each day.
+In these days nearly anything is a smart device producing some sort of data. No matter if it is your Refrigerator, your Toaster or your new [Smart Stroller](https://www.indiegogo.com/projects/smartbe-intelligent-stroller#/) - all these devices are already connected to the internet and many others will follow. These circumstances not only predict successful times ahead for a data analytics platform like Datadog, it also allows anyone to build promising new services and products solely based on these incredible amounts of data produced each day.
 
 I could imagine 
 
