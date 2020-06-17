@@ -784,11 +784,11 @@ It would be a fun exercise to use the power of the Datadog platform to solve a r
 
 The Stuttgart residents are directly affected by the fine dust (air pollution) levels, as cars can get cars may be prohibited from entering the city and public transportation prices drop on days with high fine dust levels. These circumastances make it very important for the public to know the current fine dust levels to prepare accordingly (take the metro instead of the car).
 
-Local organizations started collecting fine dust metrics a few years and even set up [public APIs](https://github.com/opendata-stuttgart/meta/wiki/APIs) for easy access to measurement values. But one thing that is still missing is meaningful aggregation of data and detailed data visualization. The screenshot below shows a fine dust heatmap for the Stuttgart area that currently is available:
+Local organizations started collecting fine dust metrics a few years and even set up [public APIs](https://github.com/opendata-stuttgart/meta/wiki/APIs) for easy access to measurement values. But one thing that is still missing is meaningful aggregation of data and detailed data visualization. The screenshot below shows a currently available fine dust heatmap for the Stuttgart area ([Source](https://luftdaten.info/)):
 
 
 
-<img src="/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Final-Question/Task1_Currently-Available-Visualizations.png" alt="Task1_Currently-Available-Visualizations" style="zoom:50%;" />
+<img src="./img/Final-Question/Task1_Currently-Available-Visualizations.png" alt="Task1_Currently-Available-Visualizations" style="zoom:50%;" />
 
 
 
