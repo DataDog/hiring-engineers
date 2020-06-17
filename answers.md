@@ -28,7 +28,7 @@ Be prepared to learn a lot about Infrastructure Monitoring, Application Performa
 
 ### Setting up your local Environment
 
-We will use [Vagrant](https://www.vagrantup.com/) to set up your local developement environment. Vagrant is a great tool for building and maintaining virtual environment setups and will help us to speed up things. We are going to follow Vagrant's [Getting Started](https://www.vagrantup.com/intro/getting-started) documentation, that guides us through all necessary steps to spin up a new Ubuntu VM instance in minutes:
+We will use [Vagrant](https://www.vagrantup.com/) to set up the local development environment. Vagrant is a great tool for building and maintaining virtual environment setups and will help us to speed up things. We are going to follow Vagrant's [Getting Started](https://www.vagrantup.com/intro/getting-started) documentation, that guides us through all necessary steps to spin up a new Ubuntu VM instance in minutes:
 
 
 
@@ -69,7 +69,7 @@ vagrant ssh
 vagrant@vagrant:~$ sudo passwd root
 ```
 
-**3)** You will be promted to pick as password, do so and confirm it. Now switch user to **root** and confirm again using your new password:
+**3)** You will be prompted to pick as password, do so and confirm it. Now switch user to **root** and confirm again using your new password:
 
 ```
 vagrant@vagrant:~$ su
@@ -83,7 +83,7 @@ Switch to the [Datadog Website](https://www.datadoghq.com/) and click on the **F
 
 > **Note:** If you are a Recruiting Candidate working through an exercise, type "*Datadog Recruiting Candidate*" in the "*Company*" filed. 
 
-After you signed up, you are forwared to the **Install your first Datadog Agent** section. Pick **Ubuntu**, as this is the environment that we installed on our VM. Copy the installation command and paste it in your Vagrant SSH:
+After you signed up, you are forwarded to the **Install your first Datadog Agent** section. Pick **Ubuntu**, as this is the environment that we installed on our VM. Copy the installation command and paste it in your Vagrant SSH:
 
 ```
 root@vagrant# DD_AGENT_MAJOR_Version...
@@ -105,7 +105,7 @@ Your Agent will spin up and register itself with Datadog. Click the **Next** but
 
 ## Collecting Metrics with Datadog
 
-Monitoring data comes in many forms. While some systems pour out data continuously others only produce data when special conditions are met. Datadog helps you monitor any kind of data and data source. When your environments grow in computing capacity and in number of instances it is helpful to tag the single parts to keep the overview. Datadog provides a rich set of tagging functionalities that help you providing context to your services. In the following we will start with adding tags to our Host and then move on to collect data from a MySQL database.
+Monitoring data comes in many forms. While some systems pour out data continuously others only produce data when special conditions are met. Datadog helps you monitor any kind of data and data source. When your environments grow in computing capacity and in number of instances it is helpful to tag the single parts to keep the overview. Datadog provides a rich set of tagging functionalities that help you to provide context to your services. In the following we will start with adding tags to our Host and then move on to collect data from a MySQL database.
 
 Learn more about tags in the [Getting started with tagging](https://docs.datadoghq.com/getting_started/tagging/) section in the Datadog Docs.
 
@@ -121,7 +121,7 @@ ls -la /etc/datadog-agent
 
 Youl'll notice that there is a file called `datadog.yaml.example`.
 
-**2)** Make a copy of the Agent configuraton file that you can work in:
+**2)** Make a copy of the Agent configuration file that you can work in:
 
 ```
 cp /etc/datadog-agent/datadog.yaml.example /etc/datadog-agent/datadog.yaml
@@ -141,7 +141,7 @@ vim /etc/datadog-agent/datadog.yaml
 
 
 
-Copy and paste your API-key in your `datadog.yaml` file:
+Copy and paste your API-key to your `datadog.yaml` file:
 
 ![Task1-Add_API_key_to_yaml](./img/Collecting%20Metrics/Task1/Task1-Add_API_key_to_yaml.png)
 
@@ -149,7 +149,7 @@ Copy and paste your API-key in your `datadog.yaml` file:
 
 ![Task1-Change-region-to-EU](./img/Collecting%20Metrics/Task1/Task1-Change-region-to-EU.png)
 
-**6)** Finally find the tags section of your config file. Uncomment it and add two new tags. Set an `environment` tag with a value of `dev` and set a `name` tag with the value `kevins_datadog_demohost`:
+**6)** Finally, find the tags section of your config file. Uncomment it and add two new tags. Set an `environment` tag with a value of `dev` and set a `name` tag with the value `kevins_datadog_demohost`:
 
 ![Task1-Agent_configfile_tags](./img/Collecting%20Metrics/Task1/Task1-Agent_configfile_tags.png)
 
@@ -159,7 +159,7 @@ Copy and paste your API-key in your `datadog.yaml` file:
 service datadog-agent restart
 ```
 
-**8)** After the Agent has restarted it picked up the new config settings and tagged your host as expected. Open your Datadog [Host Map](https://app.datadoghq.eu/infrastructure/map) to validate the changes:
+**8)** Once the Agent restarted it picks up the new config settings and tagged your host as expected. Open your Datadog [Host Map](https://app.datadoghq.eu/infrastructure/map) to validate the changes:
 
 
 
@@ -207,8 +207,6 @@ mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
 
 **6)** Finish all further steps described in Datadog's [MySQL Docs](https://docs.datadoghq.com/integrations/mysql/).
 
-
-
 **7)** Restart the Agent once the database setup is done:
 
 ```
@@ -223,9 +221,11 @@ sudo datadog-agent status
 
 ![Task2_Agent-status-MySQL](./img/Collecting%20Metrics/Task2/Task2_Agent-status-MySQL.png)
 
-The Database is sucessfully installed on our host and the Agent integration was sucessful. Now it is time to install you first Datadog integration. Select **Integrations** from the Datadog sidebar and type in **MySQL** in the search field. Click on the MySQL integration and install it:
+The Database is sucessfully installed on our host and the Agent integration was sucessful. Now it is time to install your first Datadog integration. Select **Integrations** from the Datadog sidebar and type in **MySQL** in the search field. Click on the MySQL integration and install it:
 
 ![Task2-MySQL-Integration-installed](/Users/Kevin/Documents/Projekte/Datadog/hiring-engineers/img/Collecting Metrics/Task2/Task2-MySQL-Integration-installed.png)
+
+
 
 Change to your [MySQL - Overview](https://app.datadoghq.eu/dash/integration/9/mysql---overview?from_ts=1592254130144&to_ts=1592257730144&live=true) Dashboard on Datadog's website and watch your first MySQL database metrics coming in:
 
@@ -245,7 +245,7 @@ Congratulations! You can now monitor your database and collect all kinds of impo
 
 Next we will go over the process of creating a **Custom Agent Check** that submits a metric named `my_metric` with a random value between `0` and `1000`. Custom checks are well suited to collect metrics from custom applications and are sheduled to run on a fixed interval.
 
-The perform the custom check as described, you can use a fairly simple Python script:
+To perform the custom check as described above, you can use a fairly simple Python script:
 
 ```python
 from datadog_checks.checks import AgentCheck
@@ -262,7 +262,7 @@ Copy and paste the script to Vim:
 vim /etc/datadog-agent/checks.d/custom_agent_check.py
 ```
 
-The execution of the script requires a `.yaml` file defining the the collection interval:
+The execution of the script requires a `.yaml` file defining the collection interval:
 
 ```yaml
 init_config:
@@ -299,7 +299,7 @@ And watch your Custom Agent Metric report data to from your Host to Datadog:
 
 #### Changing the check's collection interval
 
-Changing the interval at which the check is performed from the default value of `15` seconds can easily be done via the the check's `.yaml` file. Open the file with vim
+Changing the interval at which the check is performed from the default value of `15` seconds can easily be done via the check's `.yaml` file. Open the file with Vim
 
 ```
 vim /etc/datadog-agent/conf.d/custom_agent_check.yaml
@@ -400,11 +400,11 @@ The API should respond with the header code **200 (OK)**. Now change to the Data
 
 
 
-The API request has been successful! A simple API request was enough to set up your first Timeboard in Datadog visualizing a Custom Metric from your Host. It definitely is a strength of Datadog to have such a well documented and easy to use API that can be uitilized to automated the task of metric collection and visualization.
+The API request has been successful! A simple API request was enough to set up your first Timeboard in Datadog visualizing a Custom Metric from your Host. It definitely is a strength of Datadog to have such a well documented and easy to use API that can be uitilized to automate the task of metric collection and visualization.
 
 ##### Enhance the Timeboard functionality
 
-In the next step we are going to update our Timeboard to include a metric from our database integration with the anomaly function applied. Furthermore we will display the custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
+In the next step we are going to update our Timeboard to include a metric from our database integration with the anomaly function applied. Furthermore, we will display the custom metric with the rollup function applied to sum up all the points for the past hour into one bucket.
 
 Again we utilize Postman to perform the updates. Choose the `PUT - Update a Dashboard` collection endpoint and add the `DASHBOARD_ID` path variable of the Timeboard you want to update (The ID can be found in the Dashboard URL and in the API response received after creating the Dashboard):
 
@@ -416,8 +416,8 @@ Again we utilize Postman to perform the updates. Choose the `PUT - Update a Dash
 
 Next change to the Body tab in Postman and add the following script. It will do a couple of things:
 
-* Add a new widget that applies the anomaly funtion to a metric
-* Add a new widget that applies the rollup function on our custom metric
+* Add a new widget that applies the anomaly function to a metric
+* Add a new widget that applies the roll up function on our custom metric
 
 Copy the **Body** to Postman and Send a **PUT** request to the Datadog API:
 
@@ -469,7 +469,7 @@ The API should respond with the header code **200 (OK)**. Now change to the Data
 
 
 
-The Update has been successful and your Timeboard now visualizes all the required metrics. The dast update clearly emphasizes the benefits of a easy to use API. With Datadog your pulling in new metrics in minutes not hours or days allowing you to focus on metrics analysis not setup efforts.
+The Update has been successful and your Timeboard now visualizes all the required metrics. The speed of the update clearly emphasizes the benefits of an easy-to-use API. With Datadog you're pulling in new metrics in minutes not hours or days allowing you to focus on metrics analysis not setup efforts.
 
 #### Working with the Timeboard from the Datadog UI
 
@@ -481,7 +481,7 @@ Let us investigate our options to manipulate the newly created Timeboard from th
 
 
 
-**Bonus:** The Anomaly Graph visualizes events of unusal highs or lows of a metric. Metric data that falls out of the normal band (grey) is displayed in red color. In this specific case the Anomaly Graph indicates such events for the metric `MySQL CPU time per user`.
+**Bonus:** The Anomaly Graph visualizes events of unusual highs or lows of a metric. Metric data that falls out of the normal band (grey) is displayed in red color. In this specific case the Anomaly Graph indicates such events for the metric `MySQL CPU time per user`.
 
 **Submission Links:**
 
@@ -511,7 +511,7 @@ Choose to set up a **Metric-Monitor** by clicking on that button. In the next wi
 - `Alerting` threshold of `800`
 - `Notification` if there is No Data over the past `10 minutes`
 
-Copy the requirements requirements to the Monitor settings, choose the detection method to be a **Threshold Alert** and don't forget to define the **Host** as we will need some of its parameters for the Email reporting we'll set up later:
+Copy the requirements to the Monitor settings, choose the detection method to be a **Threshold Alert** and don't forget to define the **Host** as we will need some of its parameters for the Email reporting we'll set up later:
 
 
 
@@ -523,7 +523,7 @@ Copy the requirements requirements to the Monitor settings, choose the detection
 
 Set the name of your Monitor to `Monitoring the Custom Metric 'my_metric'` and finally save the Monitor by clicking on **Save** at the bottom of the page.
 
-Congratulations, to have sucessfully set up your first Datadog monitor with minimal effort. Below you can see a visual interpretation of the alerting rules that you've defined in your Monitor for quick check and validation: 
+Congratulations, to have successfully set up your first Datadog monitor with minimal effort. Below you can see a visual interpretation of the alerting rules that you've defined in your Monitor for quick check and validation: 
 
 
 
@@ -547,7 +547,7 @@ To set up the required behavior stated above we will make use of the **4) Say wh
 
 
 
-The option seems to be rather simple but is indeed very powerful. As described in the [Datadog Docs](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#tag-variables) there are many pre-build template and conditional variables available that allow you to highly customize your Datadog notifications. With the help of the documentation we can 
+The option seems to be rather simple but is indeed very powerful. As described in the [Datadog Docs](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#tag-variables) there are many pre-build template and conditional variables available that allow you to highly customize your Datadog notifications. 
 
 Copy and paste the following script to the notification box in your Monitor settings:
 
@@ -583,7 +583,7 @@ It does not take much time and the first warning is triggered by our metric pass
 - And one that **silences** it all day on **Saturday** until **Sunday**.
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-Such settings can be added in the **Managed Downtime** view (*Monitors > Manage Downtime*) of Datadog. Click **Schedule Downtime** on the top right corner of the page and specify the Downtime settings as stated above:
+Such settings can be added in the **Managed Downtime** view (*Monitors > Manage Downtime*) of Datadog. Click **Schedule Downtime** in the top right corner of the page and specify the Downtime settings as stated above:
 
 
 
@@ -599,7 +599,7 @@ The defined receipents are notified about the new scheduled downtime rule via em
 
 
 
-Next we reapeat the process and set up a second scheduled downtime that is active all day on the weekend. Again, click on the **Schedule Downtime** button and fill in the required information:
+Next we repeat the process and set up a second scheduled downtime that is active all day on the weekend. Again, click on the **Schedule Downtime** button and fill in the required information:
 
 
 
@@ -607,7 +607,7 @@ Next we reapeat the process and set up a second scheduled downtime that is activ
 
 
 
-The defined receipents are again notified about the new scheduled downtime rule via email:
+The defined recipients are again notified about the new scheduled downtime rule via email:
 
 
 
@@ -625,13 +625,13 @@ The defined receipents are again notified about the new scheduled downtime rule 
 
 ## Collecting APM Data with Datadog
 
-Datadog has a strong set of features and product for state-of-the-art [APM](https://www.datadoghq.com/product/apm/) (Application Performance Monitoring) . Seamless application navigation with [Service Maps](https://www.datadoghq.com/blog/service-map/), [App analytics](https://www.datadoghq.com/blog/apm-watchdog-service-map-trace-search/) and Auto-instrumentation for distributed tracing are just some of many features Datadog offers in the APM space.
+Datadog has a strong set of features and product for state-of-the-art [APM](https://www.datadoghq.com/product/apm/) (Application Performance Monitoring). Seamless application navigation with [Service Maps](https://www.datadoghq.com/blog/service-map/), [App analytics](https://www.datadoghq.com/blog/apm-watchdog-service-map-trace-search/) and Auto-instrumentation for distributed tracing are just some of many features Datadog offers in the APM space.
 
 
 
 ### Setting up a Dashboard collecting APM metrics
 
-Let us set up an examplary application that reports metrics to a APM Dashboard. We will be using a [Flask app](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/) with Datadog's APM solution
+Let us set up an examplary application that reports metrics to an APM Dashboard. We will be using a [Flask app](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/) with Datadog's APM solution.
 
 Datadog maintains a step-by-step guide on [Getting started with Tracing](https://docs.datadoghq.com/getting_started/tracing/) that we will follow along to get the APM Dashboard up and running. First verify that your APM Agent is running by printing the Datadog Agent status report:
 
@@ -721,7 +721,7 @@ Open a new terminal window and reconnect with your Vagrant SSH:
 vagrant ssh
 ```
 
-Now you can test your Flask application an send traces to Datadog. Use `curl` on the url your app is running at:
+Test your Flask application by sending traces to Datadog. Use `curl` on the url your app is running at:
 
 ```
 curl http://0.0.0.0:5050/
@@ -745,7 +745,7 @@ By following the steps stated above we managed it to set up a Flask Service that
 
 
 
-Select a Trace from the Flask Service and inspect the Flame Graph vislualizing the `GET` request:
+Select a Trace from the Flask Service and inspect the Flame Graph visualizing the `GET` request:
 
 
 
@@ -782,7 +782,7 @@ In these days nearly anything is a smart device producing some sort of data. No 
 
 It would be a fun exercise to use the power of the Datadog platform to solve a real world problem. One thing that comes to my mind is the very difficult and heated-up public discussion about air-pollution in Germany and especially in Stuttgart (City in southern Germany). Stuttgart is among the cities with the [highest levels of air-pollution](https://www.dw.com/en/stuttgart-germanys-beijing-for-air-pollution/a-18991064) for years and constantly struggling with fine dust smog caused by traffic.
 
-The Stuttgart residents are directly affected by the fine dust (air pollution) levels. Cars may be prohibited from entering the city and public transportation prices drop on days with high fine dust levels. These circumastances make it very important for the public to know the current fine dust levels to prepare accordingly (e.g. take the metro instead of the car).
+The Stuttgart residents are directly affected by the fine dust (air pollution) levels. Cars may be prohibited from entering the city and public transportation prices drop on days with high fine dust levels. These circumstances make it very important for the public to know the current fine dust levels to prepare accordingly (e.g. take the metro instead of the car).
 
 Local organizations started collecting fine dust metrics a few years ago and even maintain [public APIs](https://github.com/opendata-stuttgart/meta/wiki/APIs) for easy access to measurement values. But one thing that is still missing is meaningful aggregation of data and detailed data visualization. The screenshot below shows a currently available fine dust heatmap for the Stuttgart area ([Source](https://luftdaten.info/)):
 
@@ -792,7 +792,7 @@ Local organizations started collecting fine dust metrics a few years ago and eve
 
 
 
-If **Datadog** would be used as a data aggragation and monitoring service one could merge multiple data sources to gain insights on a higher abstraction level. It would be instresting to bring the fine dust levels in relation with traffic and public transportation utilization ("Does more traffic correlate with higher fine dust levels?", "Does more public transportation utilization correlate with lower fine dust levels?").
+If **Datadog** would be used as a data aggregation and monitoring service one could merge multiple data sources to gain insights on a higher abstraction level. It would be interesting to bring the fine dust levels in relation with traffic and public transportation utilisation ("Does more traffic correlate with higher fine dust levels?", "Does more public transportation utilisation correlate with lower fine dust levels?").
 
-Furthermore it would be highly useful if the simple air pollution heatmap (see above) would be extented with more Dashboard widgets from Datadog's extensive [Widgets Library](https://docs.datadoghq.com/dashboards/widgets/). Having a **Fine Dust Dashboard** (similar to the [MTA service Tracker]([https://p.datadoghq.com/sb/c654eb94b-113d9af87f?tpl_var_host=host%3Amta-status-tracker&tpl_var_line=%2A](https://p.datadoghq.com/sb/c654eb94b-113d9af87f?tpl_var_host=host%3Amta-status-tracker&tpl_var_line=*))) displaying all aggragated Metrics in one place (probably even availabe as **Web- or Native App**) would be very practical for the city of Stuttgart. People would have more realtime insights about their city, which would help them to leave their car at home when it's time again to fight fine dust.
+Furthermore, it would be highly useful if the simple air pollution heatmap (see above) would be extented with more Dashboard widgets from Datadog's extensive [Widgets Library](https://docs.datadoghq.com/dashboards/widgets/). Having a **Fine Dust Dashboard** (similar to the [MTA service Tracker]([https://p.datadoghq.com/sb/c654eb94b-113d9af87f?tpl_var_host=host%3Amta-status-tracker&tpl_var_line=%2A](https://p.datadoghq.com/sb/c654eb94b-113d9af87f?tpl_var_host=host%3Amta-status-tracker&tpl_var_line=*))) displaying all aggragated Metrics in one place (probably even availabe as **Web- or Native App**) would be very practical for the city of Stuttgart. People would have more realtime insights about their city, which would help them to leave their car at home when it's time again to fight fine dust.
 
