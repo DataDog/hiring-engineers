@@ -99,7 +99,7 @@ Your Agent will spin up and register itself with Datadog. Click the **Next** but
 
 
 
-![Prerequisites_Host-is-reporting-data-to-Datadog](./img/Prerequisites/Prerequisites_Host-is-reporting-data-to-Datadog.png)
+![Prerequisites_Host-is-reporting-data-to-Datadog](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Prerequisites/Prerequisites_Host-is-reporting-data-to-Datadog.png)
 
 
 
@@ -137,21 +137,21 @@ vim /etc/datadog-agent/datadog.yaml
 
 
 
-![Datadog_API-keys](./img/Collecting%20Metrics/Task1/Task1-API_keys.png)
+![Datadog_API-keys](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Collecting%20Metrics/Task1/Task1-API_keys.png)
 
 
 
 Copy and paste your API-key to your `datadog.yaml` file:
 
-![Task1-Add_API_key_to_yaml](./img/Collecting%20Metrics/Task1/Task1-Add_API_key_to_yaml.png)
+![Task1-Add_API_key_to_yaml](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Collecting%20Metrics/Task1/Task1-Add_API_key_to_yaml.png)
 
 **5)** If you have decided to have your Datadog in the Europe (EU) region during signup, you must now change the site of the Datadog intake `@param site`, as well as the host address of the Datadog intake server `@param dd_url`. This is necessary as your API key is only valid for the region it was generated for:
 
-![Task1-Change-region-to-EU](./img/Collecting%20Metrics/Task1/Task1-Change-region-to-EU.png)
+![Task1-Change-region-to-EU](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Collecting%20Metrics/Task1/Task1-Change-region-to-EU.png)
 
 **6)** Finally, find the tags section of your config file. Uncomment it and add two new tags. Set an `environment` tag with a value of `dev` and set a `name` tag with the value `kevins_datadog_demohost`:
 
-![Task1-Agent_configfile_tags](./img/Collecting%20Metrics/Task1/Task1-Agent_configfile_tags.png)
+![Task1-Agent_configfile_tags](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Collecting%20Metrics/Task1/Task1-Agent_configfile_tags.png)
 
 **7)** After you've saved the file the Datadog agent must be restarted. As stated in the [Datadog Docs](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7), this can be done by typing the following command in you Vangart SSH:
 
@@ -163,7 +163,7 @@ service datadog-agent restart
 
 
 
-![Task1-Host_has_tags](./img/Collecting%20Metrics/Task1/Task1-Host_has_tags.png)
+![Task1-Host_has_tags](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Collecting%20Metrics/Task1/Task1-Host_has_tags.png)
 
 
 
@@ -191,7 +191,7 @@ sudo apt install mysql-server
 sudo systemctl status mysql
 ```
 
-![Task2_Chek-whether-MySQL-is-running](./img/Collecting%20Metrics/Task2/Task2_Chek-whether-MySQL-is-running.png)
+![Task2_Chek-whether-MySQL-is-running](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Collecting%20Metrics/Task2/Task2_Chek-whether-MySQL-is-running.png)
 
 **4)** Now that MySQL is installed and is running on the Agent, we prepare the Database for the Datadog integration as described in the [Datadog Docs](https://docs.datadoghq.com/integrations/mysql/). To interact with your MySQL instance, login as root:
 
@@ -219,17 +219,17 @@ sudo service datadog-agent restart
 sudo datadog-agent status
 ```
 
-![Task2_Agent-status-MySQL](./img/Collecting%20Metrics/Task2/Task2_Agent-status-MySQL.png)
+![Task2_Agent-status-MySQL](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Collecting%20Metrics/Task2/Task2_Agent-status-MySQL.png)
 
 The Database is sucessfully installed on our host and the Agent integration was sucessful. Now it is time to install your first Datadog integration. Select **Integrations** from the Datadog sidebar and type in **MySQL** in the search field. Click on the MySQL integration and install it:
 
-![Task2-MySQL-Integration-installed](./img/Collecting%20Metrics/Task2/Task2-MySQL-Integration-installed.png)
+![Task2-MySQL-Integration-installed](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Collecting%20Metrics/Task2/Task2-MySQL-Integration-installed.png)
 
 
 
 Change to your [MySQL - Overview](https://app.datadoghq.eu/dash/integration/9/mysql---overview?from_ts=1592254130144&to_ts=1592257730144&live=true) Dashboard on Datadog's website and watch your first MySQL database metrics coming in:
 
-![Task2_MySQL-Overview-Dashboard](./img/Collecting%20Metrics/Task2/Task2_MySQL-Overview-Dashboard.png)
+![Task2_MySQL-Overview-Dashboard](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Collecting%20Metrics/Task2/Task2_MySQL-Overview-Dashboard.png)
 
 
 
@@ -289,7 +289,7 @@ And watch your Custom Agent Metric report data to from your Host to Datadog:
 
 
 
-![Task3_Custom-Agent-Metric-being-reported-to-datadog](./img/Collecting%20Metrics/Task3/Task3_Custom-Agent-Metric-being-reported-to-datadog.png)
+![Task3_Custom-Agent-Metric-being-reported-to-datadog](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Collecting%20Metrics/Task3/Task3_Custom-Agent-Metric-being-reported-to-datadog.png)
 
 **Submission links:**
 
@@ -340,7 +340,7 @@ First go on and setup **Postman** as described in the Docs - import the Datadog 
 
 
 
-<img src="./img/Visualizing-Data/Task1_Postman-Post-Check.png" alt="Task1_Postman-API-Check" style="zoom:58%;" />
+<img src="https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Visualizing-Data/Task1_Postman-Post-Check.png" alt="Task1_Postman-API-Check" style="zoom:58%;" />
 
 
 
@@ -348,7 +348,7 @@ If the POST check was successful, the Datadog API should respond with a Status o
 
 
 
-<img src="./img/Visualizing-Data/Task1_Postman-API-Check.png" alt="Task1_Postman-API-Check" style="zoom:50%;" />
+<img src="https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Visualizing-Data/Task1_Postman-API-Check.png" alt="Task1_Postman-API-Check" style="zoom:50%;" />
 
 
 
@@ -396,7 +396,7 @@ The API should respond with the header code **200 (OK)**. Now change to the Data
 
 
 
-![Task1_Filled-Dashboard](./img/Visualizing-Data/Task1_Filled-Dashboard.png)
+![Task1_Filled-Dashboard](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Visualizing-Data/Task1_Filled-Dashboard.png)
 
 
 
@@ -410,7 +410,7 @@ Again we utilize Postman to perform the updates. Choose the `PUT - Update a Dash
 
 
 
-<img src="./img/Visualizing-Data/Task2_Add-Dashboard-ID-to-path-variable.png" alt="Task2_Add-Dashboard-ID-to-path-variable" style="zoom:50%;" />
+<img src="https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Visualizing-Data/Task2_Add-Dashboard-ID-to-path-variable.png" alt="Task2_Add-Dashboard-ID-to-path-variable" style="zoom:50%;" />
 
 
 
@@ -465,7 +465,7 @@ The API should respond with the header code **200 (OK)**. Now change to the Data
 
 
 
-![Task2_Add-additional-timeboard-metrics](./img/Visualizing-Data/Task2_Add-additional-timeboard-metrics.png)
+![Task2_Add-additional-timeboard-metrics](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Visualizing-Data/Task2_Add-additional-timeboard-metrics.png)
 
 
 
@@ -477,7 +477,7 @@ Let us investigate our options to manipulate the newly created Timeboard from th
 
 
 
-![Task3_Timeboard-Graph-Snapshot](./img/Visualizing-Data/Task3_Timeboard-Graph-Snapshot.png)
+![Task3_Timeboard-Graph-Snapshot](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Visualizing-Data/Task3_Timeboard-Graph-Snapshot.png)
 
 
 
@@ -501,7 +501,7 @@ The process of setting up a Monitor that is able to track our custom metric and 
 
 
 
-![Task1_Set-up-a-Metrics-Monitor](./img/Monitoring/Task1_Set-up-a-Metrics-Monitor.png)
+![Task1_Set-up-a-Metrics-Monitor](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Monitoring/Task1_Set-up-a-Metrics-Monitor.png)
 
 
 
@@ -515,9 +515,9 @@ Copy the requirements to the Monitor settings, choose the detection method to be
 
 
 
-![Task1_Setup-Treshhold-alert-for-Metric](./img/Monitoring/Task1_Setup-Treshhold-alert-for-Metric.png)
+![Task1_Setup-Treshhold-alert-for-Metric](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Monitoring/Task1_Setup-Treshhold-alert-for-Metric.png)
 
-![Task1_Set-alert-Thresholds](./img/Monitoring/Task1_Set-alert-Thresholds.png)
+![Task1_Set-alert-Thresholds](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Monitoring/Task1_Set-alert-Thresholds.png)
 
 
 
@@ -527,7 +527,7 @@ Congratulations, to have successfully set up your first Datadog monitor with min
 
 
 
-![Task1_Monitoring-conditions-visualization](./img/Monitoring/Task1_Monitoring-conditions-visualization.png)
+![Task1_Monitoring-conditions-visualization](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Monitoring/Task1_Monitoring-conditions-visualization.png)
 
 
 
@@ -543,7 +543,7 @@ To set up the required behavior stated above we will make use of the **4) Say wh
 
 
 
-![Task2_Trigger-messages-box](./img/Monitoring/Task2_Trigger-messages-box.png)
+![Task2_Trigger-messages-box](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Monitoring/Task2_Trigger-messages-box.png)
 
 
 
@@ -571,7 +571,7 @@ It does not take much time and the first warning is triggered by our metric pass
 
 
 
-![Task1_Datadog-Warning-email](./img/Monitoring/Task1_Datadog-Warning-email.png)
+![Task1_Datadog-Warning-email](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Monitoring/Task1_Datadog-Warning-email.png)
 
 
 
@@ -587,7 +587,7 @@ Such settings can be added in the **Managed Downtime** view (*Monitors > Manage 
 
 
 
-![Task2_Sheduled-downtime-weekdays](./img/Monitoring/Task2_Sheduled-downtime-weekdays.png)
+![Task2_Sheduled-downtime-weekdays](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Monitoring/Task2_Sheduled-downtime-weekdays.png)
 
 
 
@@ -595,7 +595,7 @@ The defined receipents are notified about the new scheduled downtime rule via em
 
 
 
-![Task2_Scheduled-downtime-notification-email](./img/Monitoring/Task2_Scheduled-downtime-notification-email.png)
+![Task2_Scheduled-downtime-notification-email](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Monitoring/Task2_Scheduled-downtime-notification-email.png)
 
 
 
@@ -603,7 +603,7 @@ Next we repeat the process and set up a second scheduled downtime that is active
 
 
 
-![Task2_Sheduled-downtime-weekends](./img/Monitoring/Task2_Sheduled-downtime-weekends.png)
+![Task2_Sheduled-downtime-weekends](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Monitoring/Task2_Sheduled-downtime-weekends.png)
 
 
 
@@ -611,7 +611,7 @@ The defined recipients are again notified about the new scheduled downtime rule 
 
 
 
-![Task2_Scheduled-downtime-notification-email-weekends](./img/Monitoring/Task2_Scheduled-downtime-notification-email-weekends.png)
+![Task2_Scheduled-downtime-notification-email-weekends](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Monitoring/Task2_Scheduled-downtime-notification-email-weekends.png)
 
 
 
@@ -639,7 +639,7 @@ Datadog maintains a step-by-step guide on [Getting started with Tracing](https:/
 sudo datadog-agent status
 ```
 
-![Task1_Verify-that-APM-Agent-is-running](./img/APM-Data/Task1_Verify-that-APM-Agent-is-running.png)
+![Task1_Verify-that-APM-Agent-is-running](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/APM-Data/Task1_Verify-that-APM-Agent-is-running.png)
 
 Next install `pip` then `flask` and `ddtrace` on your Ubuntu VM by typing in the following commands:
 
@@ -741,7 +741,7 @@ By following the steps stated above we managed it to set up a Flask Service that
 
 
 
-![Task1_Traces-list](./img/APM-Data/Task1_Traces-list.png)
+![Task1_Traces-list](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/APM-Data/Task1_Traces-list.png)
 
 
 
@@ -749,13 +749,13 @@ Select a Trace from the Flask Service and inspect the Flame Graph visualizing th
 
 
 
-![Task1_Flask-Get-Requests](./img/APM-Data/Task1_Flask-Get-Requests.png)
+![Task1_Flask-Get-Requests](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/APM-Data/Task1_Flask-Get-Requests.png)
 
 Now that the data from the Flask Service is being sent to Datadog, you can go on and include the **APM metrics** next to your **Infrastructure metrics** in a new **Datadog Dashboard **(*Dashboard > New Dashboard*). 
 
 
 
-![Task1_APM-and-Infrastructure-Dashboard](./img/APM-Data/Task1_APM-and-Infrastructure-Dashboard.png)
+![Task1_APM-and-Infrastructure-Dashboard](https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/APM-Data/Task1_APM-and-Infrastructure-Dashboard.png)
 
 
 
@@ -788,7 +788,7 @@ Local organizations started collecting fine dust metrics a few years ago and eve
 
 
 
-<img src="./img/Final-Question/Task1_Currently-Available-Visualizations.png" alt="Task1_Currently-Available-Visualizations" style="zoom:50%;" />
+<img src="https://github.com/kevinkatzke/hiring-engineers/blob/solutions-engineer/img/Final-Question/Task1_Currently-Available-Visualizations.png" alt="Task1_Currently-Available-Visualizations" style="zoom:50%;" />
 
 
 
