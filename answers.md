@@ -223,7 +223,7 @@ sudo datadog-agent status
 
 The Database is sucessfully installed on our host and the Agent integration was sucessful. Now it is time to install your first Datadog integration. Select **Integrations** from the Datadog sidebar and type in **MySQL** in the search field. Click on the MySQL integration and install it:
 
-![Task2-MySQL-Integration-installed](./img/Collecting Metrics/Task2/Task2-MySQL-Integration-installed.png)
+![Task2-MySQL-Integration-installed](./img/Collecting%20Metrics/Task2/Task2-MySQL-Integration-installed.png)
 
 
 
