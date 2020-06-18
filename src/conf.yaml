@@ -1,0 +1,41 @@
+init_config:
+
+instances:
+ - server: 127.0.0.1
+   user: datadog
+   pass: 'datadog1' # from the CREATE USER step earlier
+   port: 3306 # e.g. 3306
+   options:
+   replication: false
+   galera_cluster: true
+   extra_status_metrics: true
+   extra_innodb_metrics: true
+   extra_performance_metrics: true
+   schema_size_metrics: false
+   disable_innodb_metrics: false
+logs:
+- type: file
+  path: "<ERROR_LOG_FILE_PATH>"
+  source: mysql
+  service: "<SERVICE_NAME>"
+
+- type: file
+  path: "<SLOW_QUERY_LOG_FILE_PATH>"
+  source: mysql
+  service: "<SERVICE_NAME>"
+  log_processing_rules:
+- type: multi_line
+  name: new_slow_query_log_entry
+  pattern: "# Time:"
+  # If mysqld was started with `--log-short-format`, use:
+  #         # pattern: "# Query_time:"
+  #
+  #           - type: file
+  #               path: "<GENERAL_LOG_FILE_PATH>"
+  #                   source: mysql
+  #                       service: "<SERVICE_NAME>"
+  #                           # For multiline logs, if they start by the date with the format yyyy-mm-dd uncomment the following processing rule
+  #                               # log_processing_rules:
+  #                                   #   - type: multi_line
+  #                                       #     name: new_log_start_with_date
+  #                                           #     pattern: \d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])
