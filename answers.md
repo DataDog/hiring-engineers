@@ -1,8 +1,8 @@
-# Datadog Solutions Engineer Challange
+# Datadog Solutions Engineer Challenge
 
 ## Table of Contents
 
-* [Enviornment Setup](#enviornment-setup)
+* [Environment Setup](#environment-setup)
 * [Collecting Metrics](#collecting-metrics)
 * [Visualizing Data](#visualizing-data)
 * [Monitoring Data](#monitoring-data)
@@ -11,7 +11,7 @@
 * [References](#references)
  
 
-## Enviornment Setup
+## Environment Setup
 
 In the following readme you will be taken through a number of different features of Datadog that will help familiarise you with the platform
 and what you can do with it.
@@ -19,9 +19,10 @@ and what you can do with it.
 To start we will download and install [Vagrant](https://www.vagrantup.com/downloads) please choose your OS version for this and follow the [Vagrant setup](https://www.vagrantup.com/intro/getting-started) instructions. Once that is done you should have a local contained instance of Ubuntu running.
 > **Note:** By default the username and password are vagrant:vagrant
 
-Next signup to the [Datadog platform](https://www.datadoghq.com/). Once you have access follow the [installation instruction](https://app.datadoghq.eu/account/settings#agent/ubuntu) for Ubuntu to setup a Datadog Agent locally in vagrant. 
+Next signup to the [Datadog platform](https://www.datadoghq.com/). Once you have access follow the [installation instruction](https://app.datadoghq.eu/account/settings#agent/ubuntu) for Ubuntu to setup a Datadog Agent locally in vagrant.
 
-Once you have followed these steps done upon loggining into Datadog or in the "Infrastructure-> Host Map" you should see your vagrant host.
+Once you have followed these steps done upon logging into Datadog or in the "Infrastructure-> Host Map" you should see your vagrant host.
+
 ![vagrant_agent](./images/vagrant_agent.png)
 
 To access your virtual machine use `vagrant ssh` to gain command line access
@@ -33,12 +34,12 @@ To access your virtual machine use `vagrant ssh` to gain command line access
 
 To add tags to your agent edit the the relevant `datadog-agent` yaml file, more information can be found [here](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7) on the location of this file on different operating systems.
 
-More documentation on assigning tags can be found [here](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/?tab=noncontainerizedenvironments) where you have more information on creating tags via the API, UI and DogstatsD. For our exercise we will do this via the commandline.
+More documentation on assigning tags can be found [here](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/?tab=noncontainerizedenvironments) where you have more information on creating tags via the API, UI and DogstatsD. For our exercise we will do this via the command line.
 
 1) Open the configuration file
 ```
 vi /etc/datadog-agent/datadog.yaml
-``` 
+```
 
 > **Note:** If you followed the easy install many of the following steps will have been done for you
 
@@ -52,8 +53,8 @@ Once you have your key paste it into your file
 ![api_key_file](./images/api_key_file.png)
 
 
-3) One important thing to note is if you register to Datadog EU you will need to ensure your `site` and `dd_url` as set accordingly as your API key is linked to the region of the platform you have registred to, if this is set incorrectly
-your Agent will expereince problems authenticating to Datadog. These should be set to  `datadoghq.eu` and `https://app.datadoghq.eu` respectively.
+3) One important thing to note is if you register to Datadog EU you will need to ensure your `site` and `dd_url` as set accordingly as your API key is linked to the region of the platform you have registered to, if this is set incorrectly
+your Agent will experience problems authenticating to Datadog. These should be set to  `datadoghq.eu` and `https://app.datadoghq.eu` respectively.
 
 ![site_location](./images/site_location.png)
 
@@ -73,9 +74,9 @@ sudo service datadog-agent restart
 
 ### Install Mysql Setup and configuration
 
-1) Next we will install Mysql databse on your vagrant VM, to install Mysql make sure to update and then run the install for `mysql-server`
+1) Next we will install Mysql database on your vagrant VM, to install Mysql make sure to update and then run the install for `mysql-server`
 ```
-sudo apt update 
+sudo apt update
 sudo apt install mysql-server
 ```
 
@@ -115,7 +116,7 @@ sudo datadog-agent status
 ### Creating a Custom Agent with a check
 
 In this section we will cover creating a **Custom Agent** follow the [instructions](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7), using a python file calling the API.
-This agent will submit a custom metric called `my_metric` submitting a random values between `0` and `1000` running on set interval.
+This agent will submit a custom metric called `my_metric` submitting a random value between `0` and `1000` running on a set interval.
 
 1) To create your [my_metric](src/my_metric.py) python script under the `/etc/datadog-agent/checks.d`  directory
 ```python
@@ -135,11 +136,11 @@ __version__ = "1.0.0"
 
 class MyMetric(AgentCheck):
     def check(self, instance):
-    	randomValue = randint(0,1000)
+        randomValue = randint(0,1000)
         self.gauge('my.metric', randomValue, tags=['test:my_new_key'])
 ```
 
-2) Then you will need to create your [my_metric.yaml](src/my_metric.yaml) file that will define the inerval that your value will be collected at
+2) Then you will need to create your [my_metric.yaml](src/my_metric.yaml) file that will define the interval that your value will be collected at
 ```yaml
 init_config:
 
@@ -157,15 +158,15 @@ tags:
 sudo service datadog-agent restart
 ```
 
-4) You should be able to see `my_metric` now in the [Metrics Explorer](https://app.datadoghq.eu/metric/explorer?from_ts=1592494330915&to_ts=1592497930915&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my.metric&exp_agg=avg&exp_row_type=metric) once you set 
+4) You should be able to see `my_metric` now in the [Metrics Explorer](https://app.datadoghq.eu/metric/explorer?from_ts=1592494330915&to_ts=1592497930915&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my.metric&exp_agg=avg&exp_row_type=metric) once you set
 the graph to `my.metric`.
 
 ![my_metric_graph](./images/my_metric_graph.png)
 
 
-### Changing the Collection Interval 
+### Changing the Collection Interval
 
-To change your agents collection interval ideally you dont want to edit your files to do this you can do the follow:
+To change your agents collection interval ideally you don't want to edit your files to do this you can do the follow:
 
 - In the Datadog UI go to the [Metric Summary section](https://app.datadoghq.eu/metric/summary?filter=my&metric=my.metric)
 - Enter your tag to filter by find your metric you are looking for
@@ -173,7 +174,7 @@ To change your agents collection interval ideally you dont want to edit your fil
 - Click edit on the panel that comes up
 - Set the interval
 
-More infortmaiton can be found in the [Metric Summary](https://docs.datadoghq.com/metrics/summary/).
+More information can be found in the [Metric Summary](https://docs.datadoghq.com/metrics/summary/).
 
 ![update_internal](./images/update_internal.png)
 
@@ -189,14 +190,14 @@ tags:
 
 ## Visualizing Data
 
-In this section we will cover how we can vistualise data from our Agents using dashboard. These allow you to visually track, analyse, and display key performance metrics, which enable you to monitor the health of your infrastructure. We will look at creating our own custom dasbhoard to 
-capute metrics around our Mysql database as well as our custom metric `my_metric`. Here we will utilse the **API** to create our dashboard as per the [Dashboard Documentation](https://docs.datadoghq.com/api/v1/dashboards/). 
+In this section we will cover how we can visualise data from our Agents using dashboard. These allow you to visually track, analyse, and display key performance metrics, which enable you to monitor the health of your infrastructure. We will look at creating our own custom dashboard to
+capute metrics around our Mysql database as well as our custom metric `my_metric`. Here we will utilise the **API** to create our dashboard as per the [Dashboard Documentation](https://docs.datadoghq.com/api/v1/dashboards/).
 
 ### Create Dashboard
 
 We will create the dashboard using the [python API](https://github.com/DataDog/datadogpy).
 
-1) We need to install the Datalog libraries lets do this using pip
+1) We need to install the Datalog libraries let's do this using pip
 ```
 pip3 install datadog
 ```
@@ -205,7 +206,7 @@ pip3 install datadog
 
 ![app_key](./images/app_key.png)
 
-3) We will create a [my_dashboard.py](src/my_dashboard.py) file , here we are creating 3 graphs: 
+3) We will create a [my_dashboard.py](src/my_dashboard.py) file , here we are creating 3 graphs:
 - One to show Anomalies of our Mysql CPU performance
 - Two to [Rollup](https://docs.datadoghq.com/dashboards/functions/rollup/) and sum our `test:my_new_key` for the past hour
 - Three to average the count of our `test:my_new_key`
@@ -246,7 +247,7 @@ widgets = [{
         'requests': [
             {'q': 'avg:my.metric{test:my_new_key}'}
         ],
-        'title': 'Custom \'my_metric\' graph of my_new_key' 
+        'title': 'Custom \'my_metric\' graph of my_new_key'
     }
 }]
 layout_type = 'ordered'
@@ -271,15 +272,15 @@ python3 my_dashboard.py
 
 ### Set the Dashboards timeframe to the past 5 minutes
 
-Now that we have succedfully created our [dashboard](https://app.datadoghq.eu/dashboard/q5h-988-f3z/solution-enigneering-test-dashboard) we can now view our metrics
+Now that we have successfully created our [dashboard](https://app.datadoghq.eu/dashboard/q5h-988-f3z/solution-enigneering-test-dashboard) we can now view our metrics
 
 ![my_dashboard](./images/my_dashboard.png)
 
-Here we can drill down into our [timeseries](https://docs.datadoghq.com/dashboards/widgets/timeseries/) and [query value](https://docs.datadoghq.com/dashboards/widgets/query_value/) graphs, lets say 
-we want to see what happend in the past 5 minutes in our graphs we can go to the top right and set a [custom time](https://docs.datadoghq.com/dashboards/guide/custom_time_frames/) frame. Alternativey we can drag over a 5 minute period 
+Here we can drill down into our [timeseries](https://docs.datadoghq.com/dashboards/widgets/timeseries/) and [query value](https://docs.datadoghq.com/dashboards/widgets/query_value/) graphs, lets say
+We want to see what happened in the past 5 minutes in our graphs. We can go to the top right and set a [custom time](https://docs.datadoghq.com/dashboards/guide/custom_time_frames/) frame. Alternatively we can drag over a 5 minute period
 on the graph to get a similar result.
 
-> **Note:** Possible BUG: I was unable to edit the 5minute time frame as per the documentation it didnt accept any custom values for the main timeboard
+> **Note:** Possible BUG: I was unable to edit the 5minute time frame as per the documentation it did not accept any custom values for the main timeboard
 
 ![5_min_timeframe](./images/5_min_timeframe.png)
 
@@ -290,7 +291,7 @@ Next we will take a snapshot of our Anomalies graph, this can be done by clickin
 
 ![annotate](./images/annotate.png)
 
-Then simply type @youremail@address.foo and press enter. You should then revcieve an email similar to this one
+Then simply type @youremail@address.foo and press enter. You should then receive an email similar to this one
 
 ![email_annotate](./images/email_annotate.png)
 
@@ -305,22 +306,22 @@ This is visualised by showing the highs and lows of a particular metric that fal
 
 ## Monitoring Data
 
-Datadog provides a whole host of [monitoring](https://docs.datadoghq.com/monitors/) features we will cover some of these in this section where we will look at how we can monitor and alert on our metrics.
+Datadog provides a whole host of [monitoring](https://docs.datadoghq.com/monitors/) features. We will cover some of these in this section where we will look at how we can monitor and alert on our metrics.
 
 ### Setting up a Monitor
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor. 
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
 We will create a new [Metric Monitor](https://app.datadoghq.eu/monitors#/create) by going to the Monitoring section in Datadog and choosing "New Monitor -> Metric", this will watch the average of your custom metric (my_metric) and will alert if it’s some values we will set.
 
 ![new_monitor](./images/new_monitor.png)
 
-This should bring you to a new window and here we can define and adjust how our [Metric Monitor](https://docs.datadoghq.com/monitors/monitor_types/metric/?tab=threshold) will work, we want to monitor the average of our custom metric `my_metric` and be **alerted** when 
+This should bring you to a new window and here we can define and adjust how our [Metric Monitor](https://docs.datadoghq.com/monitors/monitor_types/metric/?tab=threshold) will work, we want to monitor the average of our custom metric `my_metric` and be **alerted** when
 the values are above the following settings in the past **5 minutes**:
 
 - `Warning` threshold of 500
 - `Alerting` threshold of 800
-- `Notification` if there is **No Data** for this query in  the past **10 imnutes**
+- `Notification` if there is **No Data** for this query in  the past **10 minutes**
 
 ![metric_setup](./images/metric_setup.png)
 
@@ -331,13 +332,13 @@ Now if you go to [Manage Monitors](https://app.datadoghq.eu/monitors/manage) you
 
 ![manage_monitor](./images/manage_monitor.png)
 
-Now we want to add some extra logic to our monitors notifications so have a better idea of whats causing them and provide some usefull infromation, so we will add  the following:
+Now we want to add some extra logic to our monitors notifications so have a better idea of what's causing them and provide some useful information, so we will add  the following:
 
 - A different message for `Alert`, `Warning` and `No Data`
 - The `metric` that caused the notification
 - The `IP Address` of the host only when it is an `Alert`
 
-To do this we can use the [notification](https://docs.datadoghq.com/monitors/notifications/?tab=dashboards) documentation. We can update the notifications to the following: 
+To do this we can use the [notification](https://docs.datadoghq.com/monitors/notifications/?tab=dashboards) documentation. We can update the notifications to the following:
 
 ```
 {{#is_alert}}
@@ -352,8 +353,7 @@ A warning was triggered for 'my_metric' - {{value}} it reached the 500 threshold
 No data was sent for 'my_metric' in the past 5 minutes
 {{/is_no_data}}}
 ```
-Now we will 
-Now what we have enchanced our notifications we want to ensure we arent notified out of hours so we will setup a [schedualed downtime](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname) with the following parameters:
+Now that we have enhanced our notifications we want to ensure we aren't notified out of hours so we will setup a [scheduled downtime](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname) with the following parameters:
 - No notifications **7pm** to **9am** daily on **Monday** to **Friday**,
 - No notifications on **Saturday** to **Sunday**
 
@@ -361,7 +361,7 @@ To do this we will go to the Monitors [Managed Downtime](https://app.datadoghq.e
 
 ![scheduale_downtime](./images/scheduale_downtime.png)
 
-We will set two schedualed down times one for the **Weekdays** and one for **Weekends**, make sure to add recipients that are notified of these downtimes so everyone is aware that they are schedulued. Lets
+We will set two scheduled down times one for the **Weekdays** and one for **Weekends**, make sure to add recipients that are notified of these downtimes so everyone is aware that they are scheduled. Lets
 create the Weekday downtime:
 
 ![downtime1](./images/downtime1.png)
@@ -370,7 +370,7 @@ create the Weekday downtime:
 Now lets repeat the same but adjusting our times for Weekends:
 ![downtime2](./images/downtime2.png)
 
-If you successfully created both our [Weekday](https://app.datadoghq.eu/monitors#downtime?id=12909256) and [Weekend](https://app.datadoghq.eu/monitors#downtime?id=12908961) downtimes. You and any recipients should recieve confirmation emails once these are setup
+If you successfully created both our [Weekday](https://app.datadoghq.eu/monitors#downtime?id=12909256) and [Weekend](https://app.datadoghq.eu/monitors#downtime?id=12908961) downtimes. You and any recipients should receive confirmation emails once these are setup
 
 ![downtime_confirm1](./images/downtime_confirm1.png)
 ![downtime_confirm2](./images/downtime_confirm2.png)
@@ -392,7 +392,7 @@ sudo datadog-agent status
 ```
 ![apm_running](./images/apm_running.png)
 
-Now that we have confrimed the APM AGENT is up and running we need to setup `flask` and `ddtrace` for this we will use a package manager for pypthon called [pip](https://pypi.org/project/pip/):
+Now that we have confirmed the APM AGENT is up and running we need to setup `flask` and `ddtrace` for this we will use a package manager for python called [pip](https://pypi.org/project/pip/):
 
 ```
 sudo apt install python3-pip
@@ -446,7 +446,7 @@ Now we can run our application using `ddtrace` which will automatically instrume
 ddtrace-run python3 flask_app.py
 ```
 
-If everything ran successfully you should see a message simialr to
+If everything ran successfully you should see a message similar to
 
 ```
 * Serving Flask app "hello" (lazy loading)
@@ -469,7 +469,7 @@ Welcome to the Application
 
 ### APM Services and Traces Dashboard
 
-Now that we have our **Flask** application running lets go to our [APM Services](https://app.datadoghq.eu/apm) and check if our [Trace](https://app.datadoghq.eu/apm/traces) is there and we are recieveing data from our vagrant host
+Now that we have our **Flask** application running lets go to our [APM Services](https://app.datadoghq.eu/apm) and check if our [Trace](https://app.datadoghq.eu/apm/traces) is there and we are receiving data from our vagrant host
 
 ![trace](./images/trace.png)
 
@@ -489,7 +489,7 @@ In Datadog we have two types of main visualisation [Service](https://docs.datado
 
 ## Datadog in the Wild
 
-Datadog provides a quick to deploy and easy to use solution with hundreds of integrations out of the box. The range of applicaitons for the platform ranges from monitoring NYC Subway System, Pokemon Go, and even office restroom availability! Given the recent Covid-19 outbreak healthcare monitoring is ever more important in the modern day with the potential application of monitoring patients themselves. Utilising Datadogs ease of integration it could be use to hook into mobile medical devices on patients and instantly alert of any deterioration in health notifying relevant emergency services eg: paramedics, the nearest hospital and the patients GP.
+Datadog provides a quick to deploy and easy to use solution with hundreds of integrations out of the box. The range of applications for the platform ranges from monitoring NYC Subway System, Pokemon Go, and even office restroom availability! Given the recent Covid-19 outbreak healthcare monitoring is ever more important in the modern day with the potential application of monitoring patients themselves. Utilising Datadogs ease of integration it could be use to hook into mobile medical devices on patients and instantly alert of any deterioration in health notifying relevant emergency services eg: paramedics, the nearest hospital and the patients GP.
 
 
 ## References
