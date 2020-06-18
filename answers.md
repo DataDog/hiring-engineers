@@ -3,11 +3,11 @@
 ## Table of Contents
 
 * [`Enviornment Setup`](#enviornment-setup)
-* [`Collecting Metrics`](#collecting0-metrics)
+* [`Collecting Metrics`](#collecting-metrics)
 * [`Visualizing Data`](#visualizing-data)
 * [`Monitoring Data`](#monitoring-data)
 * [`Collecting APM Data`](#collecting-apm-data)
-* [`Final Question`](#final-question)
+* [`Datadog in the Wild`](#datadog-in-the-wild)
 * [`References`](#references)
  
 
