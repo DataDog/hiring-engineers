@@ -44,8 +44,8 @@ This section definitely proved to be a bit more difficult for me. After reviewin
 `from datadog import initialize, api
 
 options = {
-    'api_key': '648c3e89d8d364910175fc7ab0ac93b5',
-    'app_key': '65997f7ab341dde29853243be978212c06c1af8b'
+    'api_key': 'XXXXXXX',
+    'app_key': 'XXXXXXX'
 }
 
 initialize(**options)
