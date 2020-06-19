@@ -1,5 +1,8 @@
 # Datadog Solutions Engineer Challenge
 
+Datadog is a monitoring and analytics tool for information technology (IT) and DevOps teams that can be used to determine performance metrics as well as event monitoring for infrastructure and cloud services. The software can monitor services such as servers, databases and tools. It supports hundreds of integrations out of the box and is designed to be quick and easy to setup and install.
+
+
 ## Table of Contents
 
 * [Environment Setup](#environment-setup)
@@ -16,12 +19,12 @@
 In the following readme you will be taken through a number of different features of Datadogs platform that will help familiarise you with the capabilities
 and strengths.
 
-To start we will download and install [Vagrant](https://www.vagrantup.com/downloads) please choose your OS version for this and follow the [Vagrant setup](https://www.vagrantup.com/intro/getting-started) instructions. Once that is done you should have a local contained instance of Ubuntu running.
+To start we will download and install [Vagrant](https://www.vagrantup.com/downloads). Please choose your OS version for this and follow the [Vagrant setup](https://www.vagrantup.com/intro/getting-started) instructions. You should now have a local contained instance of Ubuntu running.
 > **Note:** By default the username and password are vagrant:vagrant
 
 Next signup to the [Datadog platform](https://www.datadoghq.com/). Once you have access follow the [installation instructions](https://app.datadoghq.eu/account/settings#agent/ubuntu) for Ubuntu to setup a Datadog Agent locally in vagrant.
 
-Once you that is done login to Datadog and go to the "Infrastructure-> Host Map" you should see your vagrant host.
+Login to Datadog and go to the "Infrastructure-> Host Map" you should see your vagrant host.
 
 ![vagrant_agent](./images/vagrant_agent.png)
 
