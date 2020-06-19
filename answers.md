@@ -1,7 +1,7 @@
 # Datadog Sales Engineer Candidate - Steve Wharton
 
 
-##Prerequisites - Setup the environment
+## Prerequisites - Setup the environment
 
 	Used vagrant/virtualbox on OSX with Ubuntu VM.
 	
@@ -423,7 +423,7 @@ Editing the my_metric.yaml file to add min_collection_interval: 45
 See above.
  
 
-##Visualizing Data:
+## Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
 
@@ -605,7 +605,7 @@ The tail of the Anomaly Graph is showing the future predicted values of my_metri
 ![Alt Image Text](./images/15minsanomalyfuture.jpg "Optional Title")
 
 
-##Monitoring Data
+## Monitoring Data
 
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
@@ -806,7 +806,7 @@ done
 Please include your fully instrumented app in your submission, as well.
 
 
-##Final Question:
+## Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
