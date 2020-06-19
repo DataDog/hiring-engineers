@@ -21,7 +21,7 @@ To start we will download and install [Vagrant](https://www.vagrantup.com/downlo
 
 Next signup to the [Datadog platform](https://www.datadoghq.com/). Once you have access follow the [installation instructions](https://app.datadoghq.eu/account/settings#agent/ubuntu) for Ubuntu to setup a Datadog Agent locally in vagrant.
 
-Once you that done login to Datadog and go to the "Infrastructure-> Host Map" you should see your vagrant host.
+Once you that is done login to Datadog and go to the "Infrastructure-> Host Map" you should see your vagrant host.
 
 ![vagrant_agent](./images/vagrant_agent.png)
 
@@ -197,7 +197,7 @@ We will create our dashboard using Datadogs [python API](https://github.com/Data
 
 1) We need to install the Datalog libraries let's do this using a package manager for python called [pip](https://pypi.org/project/pip/)
 
-> **Note:** If you havent already install pip3
+> **Note:** If you haven't already install pip3
 ```
 sudo apt install python3-pip
 pip3 install datadog
@@ -323,17 +323,17 @@ the values are above the following settings in the past **5 minutes**:
 
 ![metric_setup](./images/metric_setup.png)
 
-Make sure to set a **Name** for your monitor we will call it `Custom Metric Monitor - my_metric`, make sure to set yourself as the person to be **notified** this will send you and email if an alert is triggered and hit **SAVE**
+Make sure to set a **Name** for your monitor we will call it `Custom Metric Monitor - my_metric`, set yourself as the person to be **notified** this will send you and email if an alert is triggered and hit **Save**
 ![metric_setup2](./images/metric_setup2.png)
 
 Now if you go to [Manage Monitors](https://app.datadoghq.eu/monitors/manage) you should see your new monitor and we go view [our monitor](https://app.datadoghq.eu/monitors#180109)
 
 ![manage_monitor](./images/manage_monitor.png)
 
-Now we want to add some extra logic to our monitors notifications so have a better idea of what's causing them and provide some useful information, so we will add  the following:
+Now we want to add some extra logic to our monitors notifications so have a better idea of what's causing the alerts provide some useful information, so we will add  the following:
 
 - A different message for `Alert`, `Warning` and `No Data`
-- The `metric` that caused the notification
+- The `metric` and `value` that caused the notification
 - The `IP Address` of the host only when it is an `Alert`
 
 To do this we can use the [notification](https://docs.datadoghq.com/monitors/notifications/?tab=dashboards) documentation. We can update the notifications to the following:
@@ -351,6 +351,11 @@ A warning was triggered for 'my_metric' - {{value}} it reached the 500 threshold
 No data was sent for 'my_metric' in the past 5 minutes
 {{/is_no_data}}}
 ```
+
+You should receive an email similar to this one:
+
+![warning](./images/warning.png)
+
 Now that we have enhanced our notifications we want to ensure we aren't notified out of hours so we will setup a [scheduled downtime](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname) with the following parameters:
 - No notifications **7pm** to **9am** daily on **Monday** to **Friday**,
 - No notifications on **Saturday** to **Sunday**
@@ -359,13 +364,13 @@ To do this we will go to the Monitors [Managed Downtime](https://app.datadoghq.e
 
 ![scheduale_downtime](./images/scheduale_downtime.png)
 
-We will set two scheduled down times one for the **Weekdays** and one for **Weekends**, make sure to add recipients that are notified of these downtimes so everyone is aware that they are scheduled. Lets
-create the Weekday downtime:
+We will set two scheduled down times one for the **Weekdays** and one for **Weekends**, make sure to add recipients that are notified of these downtimes so everyone is aware that they are scheduled. Lets create the Weekday downtime:
 
 ![downtime1](./images/downtime1.png)
 
 
 Now lets repeat the same but adjusting our times for Weekends:
+
 ![downtime2](./images/downtime2.png)
 
 If you successfully created both our [Weekday](https://app.datadoghq.eu/monitors#downtime?id=12909256) and [Weekend](https://app.datadoghq.eu/monitors#downtime?id=12908961) downtimes. You and any recipients should receive confirmation emails once these are setup
@@ -376,12 +381,11 @@ If you successfully created both our [Weekday](https://app.datadoghq.eu/monitors
 
 ## Collecting APM Data
 
-In the next section we will cover Datadogs [APM](https://www.datadoghq.com/product/apm/) (Application Performance Monitoring).
+In the next section we will cover Datadogs [APM](https://www.datadoghq.com/product/apm/) (Application Performance Monitoring) and how we can create an implementation using this.
 
 ### Setup Dashboard and Collect APM Metrics
 
-We will create a simple APM dashboard and we will implement it combiging  [Flask](https://flask.palletsprojects.com/en/0.12.x/quickstart/) and APM. For this we can reference
-Datadogs [guide](https://docs.datadoghq.com/getting_started/tracing/) on setting up our dashboard. We will want to make sure we can see our **Trace** and include those metrics in a **Infrastructure metrics** dashboard
+We will create a simple APM dashboard and we will implement it combiging  [Flask](https://flask.palletsprojects.com/en/0.12.x/quickstart/) and APM. For this we can reference Datadogs [guide](https://docs.datadoghq.com/getting_started/tracing/) on setting up our dashboard. We will want to make sure we can see our **Trace** and include those metrics in a **Infrastructure metrics** dashboard.
 
 Let start with  verifying our APM is enabled
 
@@ -390,13 +394,13 @@ sudo datadog-agent status
 ```
 ![apm_running](./images/apm_running.png)
 
-Now that we have confirmed the APM AGENT is up and running we need to setup `flask` and `ddtrace` using pip:
+Now that we have confirmed the **APM AGENT** is up and running we need to setup `flask` and `ddtrace` using pip that we installed earlier:
 
 ```
 pip3 install flask
 pip3 install ddtrace
 ```
-> **Note:** Sometimes ddtrace fails to install, if this happens run `ip3 install --upgrade cython` this should resolve the issue
+> **Note:** Sometimes ddtrace fails to install, if this happens run `pip3 install --upgrade cython` this should resolve the issue
 
 Now we can create our [flask_app.py](src/flask_app.py) using the following code:
 
@@ -431,7 +435,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-Next need to make sure to define out service
+Next need to make sure to define our service
 
 ```
 export DD_SERVICE=m_custom_service
@@ -478,7 +482,7 @@ Now that we have our metrics we still need to add the to our [Infrastructure met
 
 ![infra_dashboard](./images/infra_dashboard.png)
 
-In Datadog we have two types of main visualisation [Service](https://docs.datadoghq.com/tracing/visualization/#services) and [Resources](https://docs.datadoghq.com/tracing/visualization/#resources):
+In Datadog we have two types of main APM visualisations [Service](https://docs.datadoghq.com/tracing/visualization/#services) and [Resources](https://docs.datadoghq.com/tracing/visualization/#resources):
 
 - Service: A Service is a process providing access to an underlying resource Eg: Flask app, Apache, Ngnixn, Mysql etc.
 - Resource: A Resource is a function that would run on a Service Eg: Web request, SQL query etc.
@@ -486,7 +490,9 @@ In Datadog we have two types of main visualisation [Service](https://docs.datado
 
 ## Datadog in the Wild
 
-Datadog provides a quick to deploy and easy to use solution with hundreds of integrations out of the box. The range of applications for the platform ranges from monitoring NYC Subway System, Pokemon Go, and even office restroom availability! Given the recent Covid-19 outbreak healthcare monitoring is ever more important in the modern day with the potential application of monitoring patients themselves. Utilising Datadogs ease of integration it could be use to hook into mobile medical devices on patients and instantly alert of any deterioration in health notifying relevant emergency services eg: paramedics, the nearest hospital and the patients GP.
+Datadog provides a quick to deploy and easy to use solution with hundreds of integrations out of the box. The range of real-world applications for the platform ranges from monitoring NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Given the recent Covid-19 outbreak healthcare monitoring is ever more important in the modern day with the potential application of monitoring patients themselves. Utilising Datadogs ease of integration it could be use to hook into mobile medical devices to monitor patients and instantly alert of any deterioration in health notifying relevant emergency services eg: paramedics, the nearest hospital and the patients GP.
 
 
 ## References
@@ -516,3 +522,5 @@ Datadog provides a quick to deploy and easy to use solution with hundreds of int
 ### Other questions:
 
 * [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
+
+
