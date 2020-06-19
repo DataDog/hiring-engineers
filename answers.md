@@ -1,5 +1,6 @@
 # Datadog Sales Engineer Candidate - Steve Wharton
 
+
 ##Prerequisites - Setup the environment
 
 	Used vagrant/virtualbox on OSX with Ubuntu VM.
@@ -9,6 +10,7 @@
 
 
 ## Collecting Metrics:
+
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 **ANSWER**
@@ -420,6 +422,7 @@ my_metric (1.0.0)
 Editing the my_metric.yaml file to add min_collection_interval: 45
 See above.
  
+
 ##Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
@@ -649,6 +652,7 @@ Make sure that your email is notified when you schedule the downtime and take a 
 
 ## Collecting APM Data:
 
+
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
 ~~~python
@@ -800,6 +804,7 @@ done
 
 
 Please include your fully instrumented app in your submission, as well.
+
 
 ##Final Question:
 
