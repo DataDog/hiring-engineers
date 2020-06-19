@@ -57,7 +57,7 @@ Once you have your key paste it into your file
 ![api_key_file](./images/api_key_file.png)
 
 
-3) One important thing to note is if you register to Datadog EU you will need to ensure your `site` and `dd_url` as set accordingly as your API key is linked to the region of the platform you have registered to, if this is set incorrectly your Agent will experience problems authenticating to Datadog. These should be set to  `datadoghq.eu` and `https://app.datadoghq.eu` respectively.
+3) One important thing to note is if you register to Datadog EU you will need to ensure your `site` and `dd_url` are set accordingly as your API key is linked to the region of the platform you have registered to, if this is set incorrectly your Agent will experience problems authenticating to Datadog. These should be set to  `datadoghq.eu` and `https://app.datadoghq.eu` respectively.
 
 ![site_location](./images/site_location.png)
 
