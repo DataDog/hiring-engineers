@@ -4,7 +4,8 @@ Personal Information
 - Email: somensari@gmail.com
 - Datadog account: tomaso@italymail.com
 
-------------
+---
+
 # Collecting Metrics
 
 ## Tags
@@ -16,6 +17,8 @@ I created an Ubuntu VM and added tags to the config file /etc/datadog/datadog.ym
 >   - "country:canada"
 >   - "mytag:myvalue”
 `
+
+![dashboard](/host_tags_view.png)
 
 ## Custom Agent
 I created a python script (exercise.yml) and placed it under the checks.d directory.
@@ -53,7 +56,7 @@ I actually have a question: How the collection interval affects alerting (if at 
 ## Database
 I configured a mysql instance on my box and configured the database monitoring by cloning the conf.yml file under conf.d/mysql.d directory and changing the database credentials
 
-![dashboard](/ "Philadelphia's Magic Gardens")
+![dashboard](/mysql_dashboard.png)
 
 # Visualizing Data
 
@@ -64,20 +67,21 @@ curl -X POST -H "Content-Type: application/json" -H "DD-API-KEY: ae9774213091cc6
 ```
 I did set up the timeboard but I am not sure I did the rollup portion correctly. I need to review the documentation so I can wrap my head around the rationale there… maybe I need more/better data too.
 
-Bonus: The anomaly chart is graphing the metrics and highlighting periods that "look" anomalous (values above or below the "expected" values)
+**Bonus**: The anomaly chart is graphing the metrics and highlighting periods that "look" anomalous (values above or below the "expected" values)
 
-
+![dashboard](/custom_metric_anomaly.png)
 
 # Monitoring Data
 Here's the threshold configuration
+![dashboard](/monitor_definition1.png)
 
-
+![dashboard](/monitor_definition2.png)
 Here are the different messages according to severity and the host/ip/metric values
 
 
 # Maintenance Windows
 Created the maintenance windows as requested, see screenshots
-
+![dashboard](/mmaintenance_windows.png)
 
 # APM
 
@@ -131,8 +135,15 @@ if __name__ == '__main__':
 ```
 
 Here's the dashboard:
-
+![dashboard](/apm_infra.png)
 
 In a nutshell, a service defines an “ application” as it groups assets related to the application (db queries, endpoints, etc) and a resource is one of the “ components”  of a service (maybe a query, an instrumented endpoint, etc)
 
+---
 
+I had plans to setup a K8 cluster and deploy the agent, maybe try some logs and other things... synthetic checks/RUM... the platform is so vast and there's a lot to explore. We are, however, getting close to the end of the quarter and my availability is getting very limited... for that reason I decided to submit the exercise without the other "goodies".
+Please contact me if you have questions.
+Thanks,
+Adilson
+
+---
