@@ -812,6 +812,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
+**ANSWER**
 At the moment, my house keeps flooding (slightly) due to a blocked drain and the heavy rain we've been having.  I'd like to monitor the rate of rain fall, and the water level in the drain and predictivly model when we have to start bailing out the drain to avoid mopping up another 30L of rainwater.
 
 
