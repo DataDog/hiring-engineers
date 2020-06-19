@@ -811,22 +811,3 @@ At the moment, my house keeps flooding (slightly) due to a blocked drain and the
 
 
 
-##Instructions
-
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-Fork this repo.
-
-Answer the questions in answers.md
-
-Commit as much code as you need to support your answers.
-
-Submit a pull request.
-
-Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
-
-
-
-    
