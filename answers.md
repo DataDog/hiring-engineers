@@ -13,28 +13,30 @@
 
 ## Environment Setup
 
-In the following readme you will be taken through a number of different features of Datadog that will help familiarise you with the platform
-and what you can do with it.
+In the following readme you will be taken through a number of different features of Datadogs platform that will help familiarise you with the capabilities
+and strengths.
 
 To start we will download and install [Vagrant](https://www.vagrantup.com/downloads) please choose your OS version for this and follow the [Vagrant setup](https://www.vagrantup.com/intro/getting-started) instructions. Once that is done you should have a local contained instance of Ubuntu running.
 > **Note:** By default the username and password are vagrant:vagrant
 
-Next signup to the [Datadog platform](https://www.datadoghq.com/). Once you have access follow the [installation instruction](https://app.datadoghq.eu/account/settings#agent/ubuntu) for Ubuntu to setup a Datadog Agent locally in vagrant.
+Next signup to the [Datadog platform](https://www.datadoghq.com/). Once you have access follow the [installation instructions](https://app.datadoghq.eu/account/settings#agent/ubuntu) for Ubuntu to setup a Datadog Agent locally in vagrant.
 
-Once you have followed these steps done upon logging into Datadog or in the "Infrastructure-> Host Map" you should see your vagrant host.
+Once you that done login to Datadog and go to the "Infrastructure-> Host Map" you should see your vagrant host.
 
 ![vagrant_agent](./images/vagrant_agent.png)
 
-To access your virtual machine use `vagrant ssh` to gain command line access
+To access your virtual machine run `vagrant ssh` from the location you setup and ran your vagrant instance this should then give you a command line terminal
 
 ## Collecting Metrics
 
 
 ### Creating Tags in your Agent
 
-To add tags to your agent edit the the relevant `datadog-agent` yaml file, more information can be found [here](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7) on the location of this file on different operating systems.
+In this section we cover [tags](https://docs.datadoghq.com/getting_started/tagging/) and how to add them to your agent.
 
-More documentation on assigning tags can be found [here](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/?tab=noncontainerizedenvironments) where you have more information on creating tags via the API, UI and DogstatsD. For our exercise we will do this via the command line.
+To start lets edit the the relevant `datadog-agent` yaml file, more information can be found [here](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7) on the location of this file on different operating systems.
+
+Documentation on assigning tags can be found [here](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/?tab=noncontainerizedenvironments), here you have more information on creating tags via the API, UI and DogstatsD. For our exercise we will do this via the command line using the following steps:
 
 1) Open the configuration file
 ```
@@ -43,8 +45,7 @@ vi /etc/datadog-agent/datadog.yaml
 
 > **Note:** If you followed the easy install many of the following steps will have been done for you
 
-2) Next you will need to get your API key, this can be found under [Integrations API](https://app.datadoghq.eu/account/settings#api) in the Datadog platform. This key is used to identify your agent to your organisation and required
-for the two to communicate.
+2) Next you will need to get your API key, this can be found under [Integrations API](https://app.datadoghq.eu/account/settings#api) in the Datadog platform. This key is used to identify your agent to your organisation and required for the two to communicate.
 
 ![api_key](./images/api_key.png)
 
@@ -53,8 +54,7 @@ Once you have your key paste it into your file
 ![api_key_file](./images/api_key_file.png)
 
 
-3) One important thing to note is if you register to Datadog EU you will need to ensure your `site` and `dd_url` as set accordingly as your API key is linked to the region of the platform you have registered to, if this is set incorrectly
-your Agent will experience problems authenticating to Datadog. These should be set to  `datadoghq.eu` and `https://app.datadoghq.eu` respectively.
+3) One important thing to note is if you register to Datadog EU you will need to ensure your `site` and `dd_url` as set accordingly as your API key is linked to the region of the platform you have registered to, if this is set incorrectly your Agent will experience problems authenticating to Datadog. These should be set to  `datadoghq.eu` and `https://app.datadoghq.eu` respectively.
 
 ![site_location](./images/site_location.png)
 
@@ -72,7 +72,7 @@ sudo service datadog-agent restart
 ![tags](./images/tags.png)
 
 
-### Install Mysql Setup and configuration
+### Mysql installation and configuration
 
 1) Next we will install Mysql database on your vagrant VM, to install Mysql make sure to update and then run the install for `mysql-server`
 ```
@@ -93,7 +93,7 @@ sudo service mysql status
 sudo mysql
 ```
 
-As part of the setup you will need to create a conf.yaml file under `/etc/datadog-agent/conf.d/mysql.d` like the following example [conf.yaml](src/conf.yaml) file.
+As part of the setup you will need to create a `conf.yaml` file under `/etc/datadog-agent/conf.d/mysql.d` like the following example [conf.yaml](src/conf.yaml) file.
 
 4) Restart the Agent again and check if it is monitoring Mysql correctly
 ```
@@ -103,7 +103,7 @@ sudo datadog-agent status
 
 ![agent_mysql_status](./images/agent_mysql_status.png)
 
-5) Now that we have setup the Agent we need to make sure to install the [Integration](https://app.datadoghq.eu/account/settings#integrations/mysql) in Datadog to start monitoring Mysql.
+5) Now that we have setup the Agent we need to make sure to install the [Integration](https://app.datadoghq.eu/account/settings#integrations/mysql) in Datadog to start monitoring Mysql. This is found under the "Integrations" section where you will see a list of all possible systems Datadog can integrate with out of the box.
 
 ![myql_integration_install](./images/myql_integration_install.png)
 
@@ -115,10 +115,9 @@ sudo datadog-agent status
 
 ### Creating a Custom Agent with a check
 
-In this section we will cover creating a **Custom Agent** follow the [instructions](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7), using a python file calling the API.
-This agent will submit a custom metric called `my_metric` submitting a random value between `0` and `1000` running on a set interval.
+In this section we will cover creating a **Custom Agent**, we will follow the [instructions](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) to create a python file that wil call the Datadog API. This agent will use a custom metric called `my_metric` submitting a random value between `0` and `1000` running on a set interval. Use the following steps to get up and running:
 
-1) To create your [my_metric](src/my_metric.py) python script under the `/etc/datadog-agent/checks.d`  directory
+1) Lets create your [my_metric](src/my_metric.py) python script under the `/etc/datadog-agent/checks.d` directory
 ```python
 # the following try/except block will make the custom check compatible with any Agent version
 import random
@@ -153,12 +152,12 @@ tags:
 > **Note:** Please ensure that your `tags` match in both the `.yaml` and `python` file
 
 
-3) Restart your Agent
+3) Restart your Agent for the changes to take effect
 ```
 sudo service datadog-agent restart
 ```
 
-4) You should be able to see `my_metric` now in the [Metrics Explorer](https://app.datadoghq.eu/metric/explorer?from_ts=1592494330915&to_ts=1592497930915&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my.metric&exp_agg=avg&exp_row_type=metric) once you set
+4) You should now be able to see `my_metric` in the [Metrics Explorer](https://app.datadoghq.eu/metric/explorer?from_ts=1592494330915&to_ts=1592497930915&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my.metric&exp_agg=avg&exp_row_type=metric) once you set
 the graph to `my.metric`.
 
 ![my_metric_graph](./images/my_metric_graph.png)
@@ -190,15 +189,17 @@ tags:
 
 ## Visualizing Data
 
-In this section we will cover how we can visualise data from our Agents using dashboard. These allow you to visually track, analyse, and display key performance metrics, which enable you to monitor the health of your infrastructure. We will look at creating our own custom dashboard to
-capute metrics around our Mysql database as well as our custom metric `my_metric`. Here we will utilise the **API** to create our dashboard as per the [Dashboard Documentation](https://docs.datadoghq.com/api/v1/dashboards/).
+In this section we will cover how we can visualise data from our Agents using dashboards. These allow you to visually track, analyse, and display key performance metrics, which enable you to monitor the health of your infrastructure. We will look at creating our own custom dashboard to capture metrics around our Mysql database as well as our custom metric `my_metric`. Here we will utilise the **API** to create our dashboard as per the [Dashboard Documentation](https://docs.datadoghq.com/api/v1/dashboards/).
 
 ### Create Dashboard
 
-We will create the dashboard using the [python API](https://github.com/DataDog/datadogpy).
+We will create our dashboard using Datadogs [python API](https://github.com/DataDog/datadogpy).
 
-1) We need to install the Datalog libraries let's do this using pip
+1) We need to install the Datalog libraries let's do this using a package manager for python called [pip](https://pypi.org/project/pip/)
+
+> **Note:** If you havent already install pip3
 ```
+sudo apt install python3-pip
 pip3 install datadog
 ```
 
@@ -207,11 +208,9 @@ pip3 install datadog
 ![app_key](./images/app_key.png)
 
 3) We will create a [my_dashboard.py](src/my_dashboard.py) file , here we are creating 3 graphs:
-- One to show Anomalies of our Mysql CPU performance
-- Two to [Rollup](https://docs.datadoghq.com/dashboards/functions/rollup/) and sum our `test:my_new_key` for the past hour
-- Three to average the count of our `test:my_new_key`
-
-
+- One showing Anomalies of our Mysql CPU performance
+- Second showing a [Rollup](https://docs.datadoghq.com/dashboards/functions/rollup/) and sum of our `test:my_new_key` values for the past hour
+- And our final graph will show the average the count of our `test:my_new_key`
 ```python
 from datadog import initialize, api
 
@@ -265,7 +264,7 @@ api.Dashboard.create(title=title,
 
 ```
 
-We then run our file
+We can then run our file:
 ```
 python3 my_dashboard.py
 ```
@@ -276,26 +275,25 @@ Now that we have successfully created our [dashboard](https://app.datadoghq.eu/d
 
 ![my_dashboard](./images/my_dashboard.png)
 
-Here we can drill down into our [timeseries](https://docs.datadoghq.com/dashboards/widgets/timeseries/) and [query value](https://docs.datadoghq.com/dashboards/widgets/query_value/) graphs, lets say
-We want to see what happened in the past 5 minutes in our graphs. We can go to the top right and set a [custom time](https://docs.datadoghq.com/dashboards/guide/custom_time_frames/) frame. Alternatively we can drag over a 5 minute period
+Here we can drill down into our [timeseries](https://docs.datadoghq.com/dashboards/widgets/timeseries/) and [query value](https://docs.datadoghq.com/dashboards/widgets/query_value/) graphs. Now lets say we want to see what happened in the past 5 minutes in our graphs. We can go to the top right and set a [custom time](https://docs.datadoghq.com/dashboards/guide/custom_time_frames/) frame. Alternatively we can drag over a 5 minute period
 on the graph to get a similar result.
 
-> **Note:** Possible BUG: I was unable to edit the 5minute time frame as per the documentation it did not accept any custom values for the main timeboard
+> **Note:** Possible BUG: I was unable to edit the 5 minute time frame as per the documentation it did not accept any custom values for the main timeboard
 
 ![5_min_timeframe](./images/5_min_timeframe.png)
 
 
 ### Annotation snapshot
 
-Next we will take a snapshot of our Anomalies graph, this can be done by clicking on it and pressing the annotate button.
+Next we will take a snapshot of our Anomalies graph, this can be done by clicking on the graphs and selecting the annotate button.
 
 ![annotate](./images/annotate.png)
 
-Then simply type @youremail@address.foo and press enter. You should then receive an email similar to this one
+Then simply type @youremail@address.foo and press enter. You should then receive an email similar to this one with the annotation
 
 ![email_annotate](./images/email_annotate.png)
 
-### What is the Anomaly graph?>
+### What is the Anomaly graph?
 
 The [Anomaly graph](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) provides deeper context for dynamic metrics. By analyzing a metric’s historical behavior, anomaly detection distinguishes between normal and abnormal metric trends.
 This is visualised by showing the highs and lows of a particular metric that fall out of what is considered the **norm** which is represented by the grey band, and highs or lows are represented in red.
@@ -312,7 +310,7 @@ Datadog provides a whole host of [monitoring](https://docs.datadoghq.com/monitor
 
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
-We will create a new [Metric Monitor](https://app.datadoghq.eu/monitors#/create) by going to the Monitoring section in Datadog and choosing "New Monitor -> Metric", this will watch the average of your custom metric (my_metric) and will alert if it’s some values we will set.
+We will create a new [Metric Monitor](https://app.datadoghq.eu/monitors#/create) by going to the Monitoring section in Datadog and choosing "New Monitor -> Metric", this will watch the average of your custom metric `my_metric` and will alert if it goes over some thresholds. Lets start by creating our monitor:
 
 ![new_monitor](./images/new_monitor.png)
 
@@ -392,10 +390,9 @@ sudo datadog-agent status
 ```
 ![apm_running](./images/apm_running.png)
 
-Now that we have confirmed the APM AGENT is up and running we need to setup `flask` and `ddtrace` for this we will use a package manager for python called [pip](https://pypi.org/project/pip/):
+Now that we have confirmed the APM AGENT is up and running we need to setup `flask` and `ddtrace` using pip:
 
 ```
-sudo apt install python3-pip
 pip3 install flask
 pip3 install ddtrace
 ```
