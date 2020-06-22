@@ -1,0 +1,146 @@
+{
+    "title": "Custom metrics BRS",
+    "description": "",
+    "widgets": [
+        {
+            "id": 6210190090323804,
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:my_metric{host:ubuntu-xenial}",
+                        "display_type": "line",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        }
+                    }
+                ],
+                "yaxis": {
+                    "label": "",
+                    "scale": "linear",
+                    "min": "auto",
+                    "max": "auto",
+                    "include_zero": true
+                },
+                "title": "Custom metric: my_metric on Ubuntu host",
+                "show_legend": false,
+                "legend_size": "0"
+            }
+        },
+        {
+            "id": 1052167189182458,
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(avg:postgresql.rows_returned{host:ubuntu-xenial}, 'basic', 2)",
+                        "display_type": "line",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        }
+                    }
+                ],
+                "yaxis": {
+                    "label": "",
+                    "scale": "linear",
+                    "min": "auto",
+                    "max": "auto",
+                    "include_zero": true
+                },
+                "title": "PostgreSQL rows returned with anomaly function",
+                "show_legend": false,
+                "legend_size": "0"
+            }
+        },
+        {
+            "id": 2780680859825814,
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:my_metric{host:ubuntu-xenial}.rollup(sum, 3600)",
+                        "display_type": "bars",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        }
+                    }
+                ],
+                "yaxis": {
+                    "label": "",
+                    "scale": "linear",
+                    "min": "auto",
+                    "max": "auto",
+                    "include_zero": true
+                },
+                "title": "Custom metric: rollup of random numbers per hour",
+                "show_legend": false,
+                "legend_size": "0"
+            }
+        },
+        {
+            "id": 2561817484041534,
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:trace.flask.request.hits{service:flask}.as_count()",
+                        "display_type": "bars",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        }
+                    }
+                ],
+                "yaxis": {
+                    "label": "",
+                    "scale": "linear",
+                    "min": "auto",
+                    "max": "auto",
+                    "include_zero": true
+                },
+                "title": "Flask app requests number",
+                "show_legend": false,
+                "legend_size": "0"
+            }
+        },
+        {
+            "id": 8967110943758612,
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:trace.flask.request.duration{service:flask}",
+                        "display_type": "line",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        }
+                    }
+                ],
+                "yaxis": {
+                    "label": "",
+                    "scale": "linear",
+                    "min": "auto",
+                    "max": "auto",
+                    "include_zero": true
+                },
+                "title": "Flask app requests duration",
+                "show_legend": false,
+                "legend_size": "0"
+            }
+        }
+    ],
+    "template_variables": [],
+    "layout_type": "ordered",
+    "is_read_only": false,
+    "notify_list": [],
+    "id": "hp5-3dr-ui2"
+}
