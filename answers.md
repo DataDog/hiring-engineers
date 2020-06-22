@@ -61,7 +61,7 @@ init_config:
 instances: [{}]
 ```
 
-The python script - `</etc/datadog-agent/checks.d/custom_agent_ck.py>`   NOTE:  It was discovered that the 
+The python script - `</etc/datadog-agent/checks.d/custom_agent_ck.py>`
 ```
 from datadog_checks.base import AgentCheck
 
@@ -97,6 +97,11 @@ init_config:
 
 instances:  - min_collection_interval: 45
 ```
+
+The following screenshots are from the `<sudo datadog-agent status>` command and show "check 29" and "check 30" happening 45 seconds apart.
+![check_29](https://user-images.githubusercontent.com/4591443/85278061-04d6ff80-b44a-11ea-901d-972094a53e81.png)
+
+![check_30_45sec](https://user-images.githubusercontent.com/4591443/85278103-15877580-b44a-11ea-960b-8b32b3446db9.png)
 
 ## BONUS QUESTION: 
 Can you change the collection interval without modifying the Python check file you created?  
