@@ -108,7 +108,7 @@ Can you change the collection interval without modifying the Python check file y
 
 **BONUS QUESTION RESULTS:**
 
-I could not find a way to change the collection interval without editing the `</etc/datadog-agent/conf.d/custom_agent_ck.yaml>` file as shown above in the **TASK 4 RESULTS**.  If there is another way, it is most likely by leveraging the Datadog API, but I did not find anything in my search.
+I believe the answer is no.  I could not find a way to change the collection interval without editing the `</etc/datadog-agent/conf.d/custom_agent_ck.yaml>` file as shown above in the **TASK 4 RESULTS**.  If there is another way, it is most likely by leveraging the Datadog API, but I did not find anything in my search.
 
 
 # VISUALIZING DATA:
