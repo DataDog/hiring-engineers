@@ -70,7 +70,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 - Your custom metric scoped over your host.
   - `Here is JSON snippet for that metric`
-    ```bash
+    ```json
     {
       "id": 6210190090323804,
       "definition": {
