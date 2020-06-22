@@ -210,8 +210,9 @@ Please configure the monitor’s message so that it will:
     - `Screenshot for daily downtime on M-F`
       ![](screenshots/dd_downtime_weekend.png)
   - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-    - `I didn't wait for email notification, but from the screenshot is clearly visible how it's configured.`
+    - `Below is the downtime schedule configuration and email`
       ![](screenshots/dd_downtime_email.png)
+      ![](screenshots/dd_downtime_scheduled.png)
 
 ## Collecting APM Data:
 
@@ -266,3 +267,15 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 - `Here is the screenshot of the main dashboard, please take in mind that rollup widget doesn't show anything because of the time frame is being set to 15 minutes whereas rollup has been configured for 1 hour`
   ![](screenshots/dd_main_dashboard.png)
+
+## Final Question:
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+- `One of my the main idea is about IoT devices to be used in the oceans, where different kind of measurements are being collected by using millions of IoT devices and having them reporting the data in real time to DataDog would an awesome use case.`
+
+- `Drones to be used for remote deliveries would be another interesting use case where DataDog could be perfectly used even collecting some weather data on the way for the best effective usage in the future like wind, temperature, etc.`
+
+- `And of course to use DataDog for car manufactures with all modern embedded IoT devices to monitor, aggregate, correlate performance between different hardware, code changes, performance, etc.`
