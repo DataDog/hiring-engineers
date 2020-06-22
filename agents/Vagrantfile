@@ -1,0 +1,81 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+  config.vm.define "frontend" do |frontend|
+    frontend.vm.box = "ubuntu/bionic64"
+    frontend.vm.hostname = "frontend"
+    frontend.vm.network "forwarded_port", guest: 80, host: 8080
+    frontend.vm.network "private_network", ip: "172.16.1.10"
+    frontend.vm.provider "virtualbox" do |vb|
+      vb.name = frontend.vm.hostname
+      vb.cpus = 1
+      vb.memory = "1024"
+      vb.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
+    end
+    frontend.vm.synced_folder "../apps/frontend", "/app"
+    frontend.vm.provision "shell", path: "provisioning/frontend.sh", env: {DD_API_KEY: ENV['DD_API_KEY'], VM_HOSTNAME: frontend.vm.hostname}
+  end
+
+  config.vm.define "postgresql" do |postgresql|
+    postgresql.vm.box = "ubuntu/bionic64"
+    postgresql.vm.hostname = "postgresql"
+    postgresql.vm.network "private_network", ip: "172.16.1.11"
+    # postgresql.vm.disk :disk, name: "postgresql_data", size: '50GB', provider_config: {virtualbox: {storagectl: }}
+    postgresql.vm.provider "virtualbox" do |vb|
+      vb.name = postgresql.vm.hostname
+      vb.cpus = 4
+      vb.memory = "4096"
+      vb.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
+    end
+    postgresql.vm.provision "shell", path: "provisioning/postgresql.sh", env: {DD_API_KEY: ENV['DD_API_KEY'], VM_HOSTNAME: postgresql.vm.hostname}
+  end
+
+  config.vm.define "twitter_collector" do |collector|
+    collector.vm.box = "ubuntu/bionic64"
+    collector.vm.hostname = "twitter-collector"
+    collector.vm.network "forwarded_port", guest: 8080, host: 8082
+    collector.vm.network "private_network", ip: "172.16.1.12"
+    collector.vm.provider "virtualbox" do |vb|
+      vb.name = collector.vm.hostname
+      vb.cpus = 4
+      vb.memory = "2048"
+      vb.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
+    end
+    collector.vm.synced_folder "../apps/twitter_collector", "/app"
+    collector.vm.provision "shell", path: "provisioning/twitter_collector.sh", env: {TWITTER_CONSUMER_KEY: ENV['TWITTER_CONSUMER_KEY'], TWITTER_CONSUMER_SECRET: ENV['TWITTER_CONSUMER_SECRET'], TWITTER_ACCESS_TOKEN: ENV['TWITTER_ACCESS_TOKEN'], TWITTER_ACCESS_SECRET: ENV['TWITTER_ACCESS_SECRET'], DD_API_KEY: ENV['DD_API_KEY'], VM_HOSTNAME: collector.vm.hostname}
+  end
+
+  config.vm.define "chaos_engine" do |chaos|
+    chaos.vm.box = "ubuntu/bionic64"
+    chaos.vm.hostname = "chaos-engine"
+    chaos.vm.network "private_network", ip: "172.16.1.13"
+    chaos.vm.provider "virtualbox" do |vb|
+      vb.name = chaos.vm.hostname
+      vb.cpus = 1
+      vb.memory = "1024"
+      vb.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
+    end
+    chaos.vm.synced_folder "../apps/chaos_engine", "/app"
+    chaos.vm.provision "shell", path: "provisioning/chaos_engine.sh", env: {DD_API_KEY: ENV['DD_API_KEY'], VM_HOSTNAME: chaos.vm.hostname}
+  end
+
+  config.vm.define "demo_api" do |demo|
+    demo.vm.box = "ubuntu/bionic64"
+    demo.vm.hostname = "demo-api"
+    demo.vm.network "forwarded_port", guest: 5050, host: 8081
+    demo.vm.network "private_network", ip: "172.16.1.14"
+    demo.vm.provider "virtualbox" do |vb|
+      vb.name = demo.vm.hostname
+      vb.cpus = 1
+      vb.memory = "1024"
+      vb.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
+    end
+    demo.vm.synced_folder "../apps/demo_api", "/app"
+    demo.vm.provision "shell", path: "provisioning/demo_api.sh", env: {DD_API_KEY: ENV['DD_API_KEY'], VM_HOSTNAME: demo.vm.hostname}
+  end
+end

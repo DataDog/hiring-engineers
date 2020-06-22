@@ -1,0 +1,5 @@
+.vagrant
+*.log
+main
+twitter_collector_linux
+./twitter_collector/twitter_collector

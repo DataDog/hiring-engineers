@@ -1,0 +1,17 @@
+[Unit]
+Description=Datadog Demo API
+After=network.target
+Wants=datadog-agent-trace.service datadog-agent-process.service datadog-agent-sysprobe.service datadog-agent.service
+
+[Service]
+Type=simple
+User=vagrant
+Group=www-data
+WorkingDirectory=/opt/demo_api
+Restart=on-failure
+Environment="PATH=/opt/demo_api/venv/bin"
+EnvironmentFile=/opt/demo_api/demo_api.env
+ExecStart=/opt/demo_api/venv/bin/ddtrace-run /opt/demo_api/venv/bin/python /app/api.py
+
+[Install]
+WantedBy=multi-user.target
