@@ -70,7 +70,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 - Your custom metric scoped over your host.
   - `Here is JSON snippet for that metric`
-    ```json
+    ```bash
     {
       "id": 6210190090323804,
       "definition": {
@@ -164,7 +164,17 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-- `Guys, I have created this dashboard manually, export it as a JSON file, but it can be quickly automated as it described on your` [page.](https://docs.datadoghq.com/api/v1/dashboards/)
+- ```bash
+     DD_CLIENT_API_KEY="xxxxxxxxxxxxxxxx"
+     DD_CLIENT_APP_KEY="yyyyyyyyyyyyyy"
+     curl -X POST https://api.datadoghq.com/api/v1/dashboard \
+     -H "Content-Type: application/json" \
+     -H "DD-API-KEY: ${DD_CLIENT_API_KEY}" \
+     -H "DD-APPLICATION-KEY: ${DD_CLIENT_APP_KEY}" \
+     -d @- << EOF
+     $JSON_FROM_ABOVE
+     EOF
+  ```
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -173,7 +183,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
   - `Here is small screenshot.`
     ![](screenshots/dd_snapshot.png)
 - **Bonus Question**: What is the Anomaly graph displaying?
-  - `Anomaly graph might detect when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns.`
+  - `Anomaly graph might detect when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns. This function shows a gray band on the metric showing the expected behavior of a series based on the past.`
 
 ## Monitoring Data
 
