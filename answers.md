@@ -388,13 +388,58 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 
 **TASK 1 RESULTS:**
 
+[LINK](https://p.datadoghq.com/sb/cmggfrk9tw94cbdy-24f31aec24e54e44edf38951cc370eee) to APM / Infrastructure Dashboard
 
-# BONUS QUESTION:
+Screenshot of LINDEN - APM / Infrastructure Dashboard
+![APM_Infrastructure_dashboard](https://user-images.githubusercontent.com/4591443/85316858-17b9f600-b483-11ea-837e-96a7525c723d.png)
+
+
+Please include your fully instrumented app in your submission, as well.
+```
+from flask import Flask
+import logging
+import sys
+import ddtrace.profiling.auto
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port='5050')
+```
+
+## BONUS QUESTION:
 What is the difference between a Service and a Resource?
 
-## BONUS QUESTION RESULTS:
+**BONUS QUESTION RESULTS:**
+
 Services are the building blocks of microservice architectures - broadly a service groups together endpoints, queries or jobs for the purposes of building your application.
 Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
+
+
+# FINAL QUESTION:
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?  **FINAL QUESTION ANSWER:** An idea I had was inspired by the kegerator solution in the Datadog Blogs.   It would be nice to be able to monitor the amount of ABS, PLA, Nylon, etc... on a 3D Printer spool before it runs out in the middle of a long running print.
 
 
 
