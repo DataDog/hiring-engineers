@@ -1,5 +1,6 @@
 provider "google" {
-  # Store credentials JSON as $GOOGLE_CREDENTIALS
+  // Store your credentials JSON as $GOOGLE_CREDENTIALS. Example:
+  // export GOOGLE_CREDENTIALS=$(cat ~/datadog-tech-exercise-97c6ddb75b5c.json)
   project = var.project_id
   region  = var.region
 }
@@ -52,12 +53,6 @@ resource "google_compute_instance" "doghouse" {
     }
   }
 
-  // Local SSD disk
-  // This will *not* work for f1-micro or g1-small sized instances
-  # scratch_disk {
-  #   interface = "SCSI"
-  # }
-
   network_interface {
     subnetwork = google_compute_subnetwork.dogsubnet.self_link
     access_config {
@@ -68,6 +63,7 @@ resource "google_compute_instance" "doghouse" {
     ssh-keys = "ubuntu:${chomp(tls_private_key.dogkey.public_key_openssh)} terraform"
   }
 
+  // Why must I be like that...why must I chase the cat?
   provisioner "file" {
     source      = "assets/"
     destination = "/home/ubuntu/"
@@ -81,10 +77,13 @@ resource "google_compute_instance" "doghouse" {
     }
   }
 
+  // Nothing but the dog in me...
   provisioner "remote-exec" {
     inline = [
       "sudo sh -c 'cp /home/ubuntu/bits.txt /etc/motd'",
-      "sudo DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=${var.dd_api_key} bash -c \"$$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)\""
+      "wget https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh -O /tmp/install_script.sh",
+      "sudo chmod +x /tmp/install_script.sh",
+      "sudo DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=${var.dd_api_key} /tmp/install_script.sh"
     ]
 
     connection {
@@ -101,8 +100,8 @@ resource "google_compute_instance" "doghouse" {
   }
 }
 
-# Write out the SSH key so we can access our instance
-# Be sure to `chmod 600 dogkey.pem` to fix the permissions!
+// Write out the SSH key so we can access our instance
+// Be sure to `chmod 600 dogkey.pem` to fix the permissions!
 resource "local_file" "dog-ssh-key" {
   content = tls_private_key.dogkey.private_key_pem
   filename = "./dogkey.pem"
