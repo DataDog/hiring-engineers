@@ -1,9 +1,10 @@
->       .-'`   `'-.
->   _,.'.===   ===.'.,_
->  / /  .___. .___.  \ \
-> / /   ( o ) ( o )   \ \                                            _
->: /|    '-'___'-'    |\ ;                                          (_)
->| |`\_,.-'`   `"-.,_/'| |                                          /|
+```       
+       .-'`   `'-.
+   _,.'.===   ===.'.,_
+  / /  .___. .___.  \ \
+ / /   ( o ) ( o )   \ \                                            _
+: /|    '-'___'-'    |\ ;                                          (_)
+| |`\_,.-'`   `"-.,_/'| |                                          /|
 | |  \             /  | |                                         /\;
 | |   \           /   | | _                              ___     /\/
 | |    \   __    /\   | |' `\-.-.-.-.-.-.-.-.-.-.-.-.-./`   `"-,/\/ 
@@ -20,6 +21,7 @@
                     ,-----`~~~\                      (_(_(_______)
                    (_(_(_______)
 
+```
 # Prerequisites - Setup the environment
 
 We tackle some of the hardest technical problems while delivering a product that "just works" for our customers. And we are backed by some of the best VCs in NYC and the world.
