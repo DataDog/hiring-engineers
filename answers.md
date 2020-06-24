@@ -22,15 +22,9 @@
                    (_(_(_______)
 
 ```
-# Prerequisites - Setup the environment
+# Prerequisites - Seting up the environment
 
-We tackle some of the hardest technical problems while delivering a product that "just works" for our customers. And we are backed by some of the best VCs in NYC and the world.
-
-Do you want to make a difference? Are you exceptional at your job, and intrinsically motivated by it? Do you eat hard problems for breakfast and find them beautifully simple solutions by lunchtime? Do you ever wish you were there in the early days of these startups everyone is talking about?
-
-If so, we want to hear from you.
-
-[source](http://jobs.datadoghq.com/)
+- [x] Spinned up a Linux VM using Vagrant
 
 # The Positions
 
