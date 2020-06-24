@@ -1,1 +1,4 @@
 apm/__pycache__/**
+setup/.vagrant/**
+setup/apm/__pycache__/**
+.DS_Store

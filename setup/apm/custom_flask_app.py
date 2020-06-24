@@ -27,7 +27,7 @@ def api_trace():
         return 'Posting traces'
 
 
-# I configure the port via a command line argument rather
+# the port is configured by means of a command line argument
 # (DD_SERVICE=custom_flask_app  ddtrace-run flask run --port=5533)
 if __name__ == '__main__':
     app.run()
