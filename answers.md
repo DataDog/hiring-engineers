@@ -24,7 +24,11 @@
 ```
 # Prerequisites - Seting up the environment
 
-- [x] Spinned up a Linux VM using Vagrant
+- [x] Spinned up a Ubuntu VM using Vagrant
+
+- [x] Connected to the Vagrant VM
+
+- [x] Installed Datadog agent
 
 # The Positions
 
