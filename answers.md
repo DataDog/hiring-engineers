@@ -22,18 +22,23 @@
                    (_(_(_______)
 
 ```
-# Prerequisites - Seting up the environment
+# Prerequisites - Setting up the environment
 
 - [x] Spinned up a Ubuntu VM using Vagrant
 
 ![prerequisites](screens/screen1%20-%20vagrantV1.PNG "Prerequisite 1")
 
 
+
 - [x] Connected to the Vagrant VM
-![prerequisites](screens/screen2 - vagrantV2.PNG "Prerequisite 2")
+
+![prerequisites](screens/screen2%20-%20vagrantV2.PNG "Prerequisite 2")
+
+
 
 - [x] Installed Datadog agent
-![prerequisites](screens/screen3 - runningAgent.PNG" "Prerequisite 3")
+
+![prerequisites](screens/screen3%20-%20runningAgent.PNG" "Prerequisite 3")
 
 # The Positions
 
