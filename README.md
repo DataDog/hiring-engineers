@@ -1,5 +1,5 @@
-If you want to apply as a Solutions or Sales Engineer at [Datadog](http://datadog.com) you are in the right spot. Read on, it's fun, I promise.
-
+# DataDog Solutions/Sales Engineer Technical Exercise
+If you want to apply for a Solutions or Sales Engineer job at [Datadog](http://datadog.com) you're in the right spot. This technical exercise will test your skills and give you a chance to work with the Datadog platform.
 
 <a href="https://www.datadoghq.com/careers/" title="Careers at Datadog">
 <img src="https://imgix.datadoghq.com/img/careers/careers_photos_overview.jpg" width="1000" height="332"></a>
