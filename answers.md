@@ -38,7 +38,7 @@
 
 - [x] Installed Datadog agent
 
-![prerequisites](screens/screen3%20-%20runningAgent.PNG" "Prerequisite 3")
+![prerequisites](screens/screen3%20-%20runningAgent.PNG "Prerequisite 3")
 
 # The Positions
 
