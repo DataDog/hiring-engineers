@@ -25,7 +25,9 @@
 # Prerequisites - Seting up the environment
 
 - [x] Spinned up a Ubuntu VM using Vagrant
+
 ![prerequisites](screens/screen1%20-%20vagrantV1.PNG "Prerequisite 1")
+
 
 - [x] Connected to the Vagrant VM
 ![prerequisites](screens/screen2 - vagrantV2.PNG "Prerequisite 2")
