@@ -4,7 +4,7 @@ data "external" "credentials" {
 }
 
 # Create a new Datadog - Google Cloud Platform integration
-resource "datadog_integration_gcp" "awesome_gcp_project_integration" {
+resource "datadog_integration_gcp" "doghouse_integration" {
   project_id     = data.external.credentials.result.project_id
   private_key_id = data.external.credentials.result.private_key_id
   private_key    = data.external.credentials.result.private_key
