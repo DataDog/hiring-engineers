@@ -40,7 +40,11 @@
 
 ![prerequisites](screens/screen3%20-%20runningAgent.PNG "Prerequisite 3")
 
-# The Positions
+# Collecting Metrics
+
+- [x] Edited the datadog.yaml file, added the tags, restarted the Datadog Agent
+
+![prerequisites](screens/screen4-tags.PNG "Prerequisite 4")
 
 1. Solutions Engineer: check out the `solutions-engineer` [branch](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer) of this repository.
 2. Devops Evangelist: check out the `devops-evangelist` [branch](https://github.com/DataDog/hiring-engineers/tree/devops-evangelist) of this repository.
