@@ -29,7 +29,7 @@
 
 - [x] Installed a Datadog agent
 
-![prerequisites](screens/screen3t.PNG "Prerequisite 3")
+![prerequisites](screens/screen3.PNG "Prerequisite 1")
 
 # Collecting Metrics
 
