@@ -3,7 +3,8 @@
 # provision all the software we need in our Vagrant host
 
 
-API_KEY=db478d2f1f0a8b79c7396b99b3f5181a
+API_KEY=2fcab63f3a5b4647d684977366b68cd8
+#db478d2f1f0a8b79c7396b99b3f5181a
 DD_PG_USER_PASSWORD=dd_pg_integration
 
 # refresh package index

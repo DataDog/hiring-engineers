@@ -6,10 +6,15 @@ This is a short demo of a tiny subset of Datadogs functionality to give you a gl
 _Content_
 * [Prerequisites](#prerequisites)
 * [Setup](#setup)
-* [I. Collecting Metrics](#i.-collecting-metrics)
-* [II. Visualizing Data](#i.-visualizing-data)
-* [III. Monitoring Data](#i.-monitoring-data)
-* [IV. Collecting APM Data](#i.-collecting-apm-data)
+* [I. Collecting Metrics](i-collecting-metrics)
+  * [Tags](#tags)
+  * [Integrations](#integrations)
+  * [Custom metric checks](#custom-metric-checks)
+  * [Metric interval](#metric-interval)
+* [II. Visualizing Data](#ii-visualizing-data)
+* [III. Monitoring Data](#iii-monitoring-data)
+  * [Schedule downtimes](#schedule-downtimes)
+* [IV. Collecting APM Data](#iv-collecting-apm-data)
 * [Final Question](#final-question)
 
 
@@ -17,11 +22,11 @@ _Content_
 
 You should have the following:
 * a MacOS or Linux computer
- * git, curl, and a terminal window installed
- * the basic skills to know how to handle those
+ * git, curl, and a terminal window application installed
+ * the basic skills to handle those
 * an Internet connection
-* half an hour or so of quiet time
-* fun trying new things
+* roughly an hour or so of quiet time
+* fun trying out things
 
 ## Setup
 
@@ -31,39 +36,47 @@ You should have the following:
  but once you created your account there is no way back!)
 
  Once you are logged in please get your [_API key_](https://datadoghq.eu/account/settings#api) which you'll need in a moment.
- While you are at it please create an _Application Key_ which we'll need for _visualizing data_ a little further down the road.
+ While you are at it please also create an _Application Key_ which we'll need for _visualizing data_ with a dashboard a little further down the road.
+
+ ![application key](imgs/application_key.png)
 
 **2)** Next step is to install Vagrant. (This is just one of [a dozen of possible integration options](https://datadoghq.eu/account/settings#agent), but probably the cleanest and easiest to start with as it offers good isolation from all other processes running on your host and thus is less error prone).
 
 Please follow the [instructions](https://www.vagrantup.com/intro/getting-started/install) specific for your target machine to install vagrant. Once done please type `vagrant version` in a terminal window which should result in something like this:
+
 ![vagrant version](imgs/vagrant_version.png)
 
 **3)**  Now clone [this repo](https://github.com/m-wendler/hiring-engineers)
-(`git clone git@github.com:m-wendler/hiring-engineers.git`) as this comes preconfigured with a handful of files making it easy to spin up a _vagrant box_ with all the required software:
+(`git clone git@github.com:m-wendler/hiring-engineers.git`) as this comes equipped with a handful of files making it easy to spin up a _vagrant virtual machine_ with all the required software for our showcase:
 
 * the datadog agent
-* a postgresql database
+* a postgresql database server
 * a custom check to showcase a custom metric
 * a flask app for showcasing APM along with a short program making a few API requests to simulate traffic
 
-(check out branch `solutions-engineer` please).
+(check out the branch `solutions-engineer` please).
 
 **4)** Configure your Setup:
-Remember your Datadog API key from earlier? Please put this into [setup/config/datadog.yaml] line 10 and [setup/provision.sh] line 3.
+Remember your _Datadog API key_ from earlier? Please put this into
+* [setup/config/datadog.yaml](https://github.com/m-wendler/hiring-engineers/blob/ccf2101ca7f1e801ea8a023ce9c666c37bdf5282/setup/config/datadog.yaml#L10) line 10 and
+* [setup/provision.sh](https://github.com/m-wendler/hiring-engineers/blob/ccf2101ca7f1e801ea8a023ce9c666c37bdf5282/setup/provision.sh#L6) line 6.
 
-**5)** Spin up your host:
+**5)** Spin up your virtual machine:
 
-Change to the directory `setup` which contains the [_Vagrantfile_]. This describes Vagrant how to spin up a new virtual machine and provision it with all the required artefacts.
+Change to the directory `setup` which contains the [_Vagrantfile_](https://github.com/m-wendler/hiring-engineers/blob/solutions-engineer/setup/Vagrantfile). This tells Vagrant how to spin up a new virtual machine and provision it with all the required artefacts.
 Type `sudo vagrant up` in your terminal window and watch the output scrolling down as Vagrant does its work (which might take a few moments).
 
 If this finishes without an error message you can validate that everything is in place:
 
-* `sudo vagrant status` which should show something like ![default runnig](imgs/default_running.png)
+* `sudo vagrant status` which should show something like
+
+ ![default runnig](imgs/default_running.png)
 
 * Now let's peep inside of the VM with `sudo vagrant ssh` which should greet you with `vagrant@vagrant:~$`.
 
-This is where we'll look at for the _source_ of the data (from the vagrant host and its running applications/services) which is _visualized_ in Datadog. So these are like 2 sides of a coin ...
-let's get to it!
+This is where we'll look at for the _source_ of the data (from the vagrant virtual machine and its running applications/services) which is _visualized_ in Datadog. So these are like 2 sides of a coin ...
+
+Let's get to it!
 
 ## I. Collecting Metrics
 
@@ -73,13 +86,13 @@ Head over to [_Infrastructure/Host Map_](https://datadoghq.eu/infrastructure/map
 
 ![host map](imgs/host_map.png)
 
-You can click on the hexagon to see more details about your host:
+You can click on the hexagon to see more details about your virtual machine:
 
 ![host details](imgs/host_details.png)
 
-e.g. the custom tags that we defined in the agent's TODO [configuration file] (lower right corner).
+e.g. the custom tags that we defined in the agent's  [configuration file](https://github.com/m-wendler/hiring-engineers/blob/ccf2101ca7f1e801ea8a023ce9c666c37bdf5282/setup/config/datadog.yaml#L66) (lower right corner). If you want to change them or add new ones you can do it right in there (and restart the agent with `launchctl stop com.datadoghq.agent` followed by `launchctl start com.datadoghq.agent`).
 
-To see this at the source please go back to your terminal window where you _ssh_ d into your host (remember the `vagrant@vagrant:~$` prompt?) and type
+To see the tags at the source please go back to your terminal window where you _ssh_ d into your virtual machine (remember the `vagrant@vagrant:~$` prompt?) and type
 
 `sudo datadog-agent status`
 
@@ -89,22 +102,22 @@ which should result in ~ 300 lines of output. Searching for `host tags` shows yo
 
 These are exactly the tags shown in the host details above.
 
-_What are tags good for actually?_ They really come in handy once you have a sizable collection of hosts and apps/services from dozens of teams in different locations (think region/availabilty zones). Tags help you to _categorize_ your artefacts and help you to find them easier in Datadog and to _slice and dice_ your graph queries.
-Here is [more about it](https://docs.datadoghq.com/getting_started/tagging/) but the basic recommendation is: tags are cheap, so use them freely (without going over board: each tag should have a precise meaning within your company).
+_What are tags good for actually?_ They really come in handy once you have a sizable collection of hosts and apps/services from different locations (think region/availabilty zones) and dozens of teams. Tags help you to _categorize_ your artefacts and find them again in Datadog and to _slice and dice_ your graph queries.
+Here is [more about it](https://docs.datadoghq.com/getting_started/tagging/) but the basic recommendation is: tags are cheap, so use them freely (without going over board: each tag should have a fairly precise meaning within your company).
 
 
 ### Integrations
 
 Coming back to the host map (detail) view above with the host hexagon in the bottom left corner.
-You can see more details about the apps running on the host by clicking on one of the rectangles depicted them in the hexagon in the bottom left corner.
+You can see more details about the apps running in the virtual machine by clicking on one of the rectangles depicted in the hexagon in the bottom left corner.
 
 E.g. details of the postgres server:
 
 ![postgres details](imgs/postgres_details.png)
 
-Datadog shows 10 postgres metrics graphs in the details pane ... but how?
+Datadog shows 14 postgres metrics graphs in the details pane ... but how did it get this data?
 
-Technically the agent running on the host needs to get access to the software it wants to monitor, which is done by [_integrating_](https://docs.datadoghq.com/getting_started/integrations/) it. This process is specific to the target software, but luckily Datadog currently supports more than 400 of those and describes how to integrate them in detail. (And if you happen to want to integrate an hitherto unsupported one it describes in detail [how to do that](https://docs.datadoghq.com/developers/integrations/new_check_howto/?tab=configurationfile) as well! So you are covered pretty well).
+Technically the agent running in the virtual machine needs to get access to the software it wants to monitor, which is done by [_integrating_](https://docs.datadoghq.com/getting_started/integrations/) it. This process is specific to the target software, but luckily Datadog currently supports more than 400 of those and describes how to integrate them in detail. (And if you happen to want to integrate an hitherto unsupported one it describes in detail [how to do that](https://docs.datadoghq.com/developers/integrations/new_check_howto/?tab=configurationfile) as well! So you are covered pretty well either way).
 
 Let's look at our use case: head to _Integrations/Integrations_ and search for `postgres`:
 
@@ -113,12 +126,12 @@ Let's look at our use case: head to _Integrations/Integrations_ and search for `
 Clicking on this tile gets you to the [Postgres Integration](https://datadoghq.eu/account/settings#integrations/postgres) description page.
 
 I did everything for you by the Vagrant provisioning:
-* provided a postgres specific `conf.yaml` file which gets copied to the agent's directory /etc/datadog-agent/conf.d/postgres.d/
-* create a database user with enough permissions to read stats data from postgres.
+* provided a postgres specific [`conf.yaml`](https://github.com/m-wendler/hiring-engineers/blob/solutions-engineer/setup/config/conf.yaml) file which gets copied to the agents directory `/etc/datadog-agent/conf.d/postgres.d/` on the host
+* create a [database user](https://github.com/m-wendler/hiring-engineers/blob/ccf2101ca7f1e801ea8a023ce9c666c37bdf5282/setup/provision.sh#L34) with enough permissions to read stats data from postgres.
 
-(BTW: you may notice that I hardcoded the database user's password in here. Maybe good enough for a demo, but please don't do this in production.)
+(BTW: you may notice that I hardcoded the database user's password in here. Maybe good enough for a demo, but please don't do this in production ... but you knew this already)
 
-To check that the integration works on the host look at the agent status again in the terminal window (`sudo datadog-agent status`) and search for `postgres`:
+To check that the integration works in the virtual machine look at the agent status again in the terminal window (`sudo datadog-agent status`) and search for `postgres`:
 
 ![agent postgres status](imgs/agent_postgres_status.png)
 
@@ -127,16 +140,16 @@ The green `OK` signals success here. And `Metric Samples` proves that the agent 
 ### Custom metric checks
 
 By now you know how to see the details of this app in Datadog, right?
-(Like for postgres above: in the host map detail view click on the rectangle of our custom `my_check` - which is confusingly named though)
+(Like for postgres above: in the host map detail view click on the rectangle of our custom `my_check` - which is confusingly named `(no-name...`though)
 
 ![custom metric](imgs/my_check_details.png)
 
-You also find the metric by searching for it in the [_Metrics Summary_](https://datadoghq.eu/metric/summary?filter=my_ch):
+You can also find the metric by searching for it in the [_Metrics Summary_](https://datadoghq.eu/metric/summary?filter=my_ch):
 
 ![custom check metric](imgs/custom_check_metric.png)
 
 To [write a custom agent check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#custom-agent-check) we need 2 files:
-* a _configuration_ file: `custom_my_check.yaml`, which changes the `min_collection_interval` from the default `15` to `45`.
+* a _configuration_ file: [`custom_my_check.yaml`](https://github.com/m-wendler/hiring-engineers/blob/solutions-engineer/setup/config/custom_my_check.yaml), which changes the `min_collection_interval` from the default `15` to `45`.
 
 ```yaml
 # configuration for the custom check
@@ -147,7 +160,7 @@ instances:
   - min_collection_interval: 45
 ```
 
-* and the actual _check_ file `custom_my_check.py`, which generates a random integer value between `0` and `1000` everytime it is called and sends this with the _metric name_ `my_check`.  
+* and the actual _check_ file [`custom_my_check.py`](https://github.com/m-wendler/hiring-engineers/blob/solutions-engineer/setup/config/custom_my_check.py), which generates a random integer value between `0` and `1000` everytime it is called and sends this with the _metric name_ `my_check`.  
 
 ```Python
 # a custom check that emits a random value
@@ -173,7 +186,7 @@ Speaking of _names_: Please bear in mind that a (custom) check (possibly) deals 
 * the _check_ name, in our case `custom_my_check`.  Technically this is the simple name of the files defining the check (`custom_my_check.yaml` and `custom_my_check.py`).
 * and the actual _metric_ name, in our case `my_check`: this is how this metric is referred to in Datadog (e.g. in the above details).
 
-To see that your check works on the host (let's check the check 😉) run this in your terminal window:
+To see that your check works in the virtual machine (let's check the check 😉) run this in your terminal window:
 
 `sudo datadog-agent check custom_my_check`
 
@@ -183,7 +196,7 @@ which should result in somthing like:
 
 ### Metric interval
 
-The collection interval (the time window within which the metric data is collected in seconds) is set to `15` by default and can be changed in the check's [_configuration file_] (no need to touch the _python file_). As mentioned above the value is currently set to `45`.
+The collection interval (the time window within which the metric data is collected in seconds) is set to `15` by default and can be changed in the check's [_configuration file_](https://github.com/m-wendler/hiring-engineers/blob/ccf2101ca7f1e801ea8a023ce9c666c37bdf5282/setup/config/custom_my_check.yaml#L6) (no need to touch the _python file_). As mentioned above the value is currently set to `45`.
 
 
 ## II. Visualizing Data
@@ -191,11 +204,11 @@ The collection interval (the time window within which the metric data is collect
 [Dashboards](https://docs.datadoghq.com/dashboards/) visualize important metrics of your applications, services, and infrastructure so you can see quickly if they are healthy or not.
 Dashboards typically contain a number of [_widgets_](https://docs.datadoghq.com/dashboards/widgets/) which visualize one or several metrics in a specific way. Widgets can be arranged on a dashboard either in a grid with equal widget size ([_timeboard_](https://docs.datadoghq.com/dashboards/timeboards/)) or arbitrarily with varying widget sizes ([_screenboard_](https://docs.datadoghq.com/dashboards/screenboards/)).
 
-Let's see an example _timeboard_ with some metrics coming from the applications running on our host.
+Let's see an example _timeboard_ with some metrics coming from the applications running on our virtual machine.
 
-There is a [shell script](dashboard/create_dashboard.sh) prepared which will create the timeboard automatically using the [datadog API](https://docs.datadoghq.com/api/).
+There is a [shell script](https://github.com/m-wendler/hiring-engineers/blob/solutions-engineer/dashboard/create_dashboard.sh) prepared which will create the timeboard automatically using the [datadog API](https://docs.datadoghq.com/api/).
 
-It depends on _curl_ and requires to be called with the [_api_ and _app_ keys](https://datadoghq.eu/account/settings#api) (you prepared during the setup) as parameters, e.g.
+It depends on _curl_ and requires to be called (on your machine, not the Vagrant VM) with the [_api_ and _app_ keys](https://datadoghq.eu/account/settings#api) (you prepared during the setup) as parameters, e.g.
 
     `./create_dashboard.sh <DATADOG API KEY> <DATADOG APP KEY>`
 
@@ -205,29 +218,34 @@ In Datadog navigate to [_Dashboards/Dashboard list_](https://datadoghq.eu/dashbo
 
 ![demo dashboard](imgs/demo_timeboard.png)
 
-Now send a snapshot of the custom check graph:
+So this timeboard contains
+* a _Notes & Links_ widget for textual information
+* a _Timeseries_ widget visualizing a Postgesql metric
+* and two more _Timeseries_ widgets for the custom check metrics within a `Group` widget (which are great for structuring your widgets).
+
+Now let's send a snapshot of the custom check graph:
 * in the widget select a 5m time window
-* click the 2 widget icon and select _send snapshot_
+* click the 2nd widget icon and select _send snapshot_
 * this will open a notification area
-* in there type `@` followed by your name or the name of the desired receipient
+* in there type `@` followed by the name of the desired receipient
 
 E.g. doing this for myself resulted in this graph ending up in my inbox:
 
 ![snapshot](imgs/graph_snapshot.png)
 
-and in the event time line:
+and in the [events stream](https://datadoghq.eu/event/stream):
 
 ![snapshot event](imgs/snapshot_mention.png)
 
-**What is this [_anomaly function_](https://docs.datadoghq.com/dashboards/functions/algorithms/#anomalies) all about?**
+**BTW: what is this [_anomaly function_](https://docs.datadoghq.com/dashboards/functions/algorithms/#anomalies) all about?**
 
-Using this [function]((https://docs.datadoghq.com/dashboards/functions/algorithms/#anomalies)) in a timeseries widget shows the actual timeseries data plus a grey band visualizing a _range_ of expected behaviour based on past data.
+Using this [function]((https://docs.datadoghq.com/dashboards/functions/algorithms/#anomalies)) in a timeseries widget shows the actual timeseries data plus a grey band visualizing a _range_ of expected data based on past behaviour.
 
 The advantage is that you don't have to specify thresholds (which you might not know anyway in the case of new metrics). The algorithm finds out automatically what is normal behaviour and what is anomalous.
 
 ## III. Monitoring Data
 
-You shouldn't have to check your dashboards all the time to see if everything is humming along fine. [Alerting](https://docs.datadoghq.com/monitors/) is a way of notifying you if something is off. The Datadog means to do this is a [_monitor_](https://docs.datadoghq.com/monitors/monitor_types/). They come in a variety of types, but the most common one is probably a [_metric_](https://docs.datadoghq.com/monitors/monitor_types/metric/?tab=threshold) monitor.
+You shouldn't have to actively look at your dashboards all the time to see if everything is humming along fine. [Alerting](https://docs.datadoghq.com/monitors/) is a way of notifying you if something is off. The Datadog means to do this is a [_monitor_](https://docs.datadoghq.com/monitors/monitor_types/). They come in a variety of types, but the most common one is probably a [_metric_](https://docs.datadoghq.com/monitors/monitor_types/metric/?tab=threshold) monitor.
 
 Let's create a monitor that notifies you in any of these cases for the _my_metric_ metric:
 * value above **500** (warning)
@@ -241,12 +259,12 @@ The following page guides you through 5 steps:
 ![new monitor](imgs/new_monitor.png)
 
 * _Choose the detection method_: default is _threshold_. This is what we want so just leave it as it is.
-* _Define the Metric_: type in `my_metric`
+* _Define the Metric_: type in `my_check`
 * _Set alert conditions_: the triggering comes with a sensible default, so leave this too
   * _Alert threshold_: 800
   * _Warning threshold: 500
   * change the _if data is missing_ option to `Notify` and the time window to `10` (minutes)
-* _Say what's happening_: put in something like:
+* _Say what's happening_: put in a monitor title and into the larger textfield below something like:
 
 ```
 @dd.sales-engineer@mike-wendler.com: monitor
@@ -280,8 +298,8 @@ In my case I received the following notifications via email for the 3 possible c
 What if you don't want to be notified ALL the time? A pretty common scenario e.g. is _office hours_: get notified only during regular office working time (the proverbial _nine to five_).
 
 Let's schedule 2 downtimes
-* for weekday nights
-* and for weekends
+* [for weekday nights](https://datadoghq.eu/monitors#downtime?id=11631312)
+* [for weekends](https://datadoghq.eu/monitors#downtime?id=12062938)
 
 Navigate to [_Monitors_/Manage Downtime](https://datadoghq.eu/monitors#/downtime) and press the _Schedule Downtime_ button
 which will bring up this window:
@@ -305,7 +323,7 @@ For me a notification of a scheduled downtime looked like this: ![scheduled down
 
 ## IV. Collecting APM Data
 
-[Datadog APM](https://docs.datadoghq.com/tracing/) provides you with _performance_ metrics for your applications. For this to work you need to instrument your app
+[Datadog APM](https://docs.datadoghq.com/tracing/) provides you with _performance_ metrics for your applications. For this to work you need to _instrument_ your [app](https://github.com/m-wendler/hiring-engineers/blob/solutions-engineer/setup/apm/custom_flask_app.py)
 e.g. like this:
 
 ```python
@@ -335,8 +353,9 @@ def api_trace():
 if __name__ == '__main__':
     app.run()
 ```
+(this app is run automatically as the last _Vagrant provisioning_ step)
 
-To simulate some traffic there is a shell script `run_app.sh` which you can start on the host to run this short python program (which randomly calls the endpoints defined in the flask app above a few times):
+To simulate some traffic there is a shell script [`run_requests.sh`](https://github.com/m-wendler/hiring-engineers/blob/solutions-engineer/setup/apm/run_requests.sh) which you can start on the Vagrant virtual machine to run this short [python program](https://github.com/m-wendler/hiring-engineers/blob/solutions-engineer/setup/apm/make_requests.py) (which randomly calls the endpoints defined in the flask app above a few times):
 
 ```python
 import requests
@@ -352,31 +371,39 @@ while count > 0:
   count = count - 1
 ```
 
-A [demo APM timeboard](https://datadoghq.eu/dashboard/xcj-cwf-2b7)
+Just call this script as often as you please to get some data coming in.
+
+In Datadag navigating to [`APM/Services`](https://datadoghq.eu/apm/services) and clicking on `custom_flask_app` will show you a dasboard like this:
+
+![apm service dashboard](imgs/apm_service_dashboard.png)
+
+(Should the service not be listed it might be that it just didn't report any data in the chosen time window. Choose a longer time window in that case).
+
+Widgets from a _service dashboard_ can easily be integrated into custom dashboards (by clicking on the top right icon of the widget and choosing _Export to Dashboard_).
+
+This [demo APM timeboard](https://datadoghq.eu/dashboard/xcj-cwf-2b7) integrates 2 graphs from a service dashboard.
 
 ![demo apm dashboard](imgs/apm_dashboard.png)
 
 **Bonus Question**:
 * _Service_: A computing building block of a comprising application that provides a coherent functionality to clients. Typically groups endpoints, queries to data providers (e.g. a database), or jobs etc. A service often serves _resources_. (Services in Datadog APM are visualized in the [services list view](https://datadoghq.eu/apm/services) or the [services map](https://datadoghq.eu/apm/services)).
 
-* _Resource_: A (part of a) domain of an application. Typically something like an instrumented web endpoint, database query, or job result. A resource is often served by a _service_.
+* _Resource_: A (part of a) domain of an application. Typically something like an instrumented web endpoint, database query, or job result. A resource is often served by a _service_. Datadog APM automatically generates a dashboard for any resource it encounters.
 
 (These definitions are somewhat specific to (Datadog) APM. In other contexts (e.g. _domain driven design_ or _REST_) these terms might be defined slightly differently)
 
-**Final Question**:
+## Final Question
 
-* I could picture
-    * a custom check for my ssh and/or docker agent and a monitor to alert me if they aren't up any longer
-    * using the new banking APIs to feed my account balance into a dashboard and a monitor if the balance falls below a threshold
+* Datadog could also be used for more unusual usecases like:
+    * defining a custom check for my ssh and/or docker agent on my macbook and a monitor to alert me if they aren't up any longer
+    * using the new banking APIs to feed my account balance into a dashboard and having a monitor alert me if the balance falls below a threshold
     * accessing the 'who is on-call' data from OpsGenie and visualize this on a widget (I can not think of a way how to achieve this currently though)
 
-**Final Remarks**:
+**Finishing Remarks**:
 
-* when creating a schedule downtime the year was set to 2021 by default ... noticed this only after a while and found this awkward
-* I like to have alert graphs on dashboards. Why is there no link to the underlying monitor details page?
-* the JSON format occasionally is a bit inconsistent. I usually create a widget manually and then export the result. Pasting the exported widget definition into my [dashboard.json file](dashboard/dashboard.json) led to errors in some cases and needed to be tweaked.
+* I like to have alert graphs on dashboards. What I'd like too is having a link to the underlying monitor details page ...
 
 
 ---
 
-2020-06-24
+2020-06-25

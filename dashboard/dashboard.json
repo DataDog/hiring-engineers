@@ -14,7 +14,7 @@
                 "type": "timeseries",
                 "requests": [
                     {
-                        "q": "anomalies(max:postgresql.bgwriter.checkpoints_timed{host:precise64}, 'basic', 2)"
+                        "q": "anomalies(max:postgresql.bgwriter.checkpoints_timed{host:vagrant}, 'basic', 2)"
                     }
                 ]
             }
@@ -31,7 +31,7 @@
                           "type": "timeseries",
                           "requests": [
                               {
-                                  "q": "avg:my_check{host:precise64}",
+                                  "q": "avg:my_check{host:vagrant}",
                                   "style": {
                                     "palette": "green",
                                     "line_type": "dashed"
@@ -56,7 +56,7 @@
                         "type": "timeseries",
                         "requests": [
                             {
-                                "q": "avg:my_check{host:precise64}.rollup(avg, 3600)",
+                                "q": "avg:my_check{host:vagrant}.rollup(avg, 3600)",
                                 "display_type": "bars",
                                 "style": {
                                     "palette": "orange"
