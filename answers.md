@@ -23,7 +23,7 @@
 
 ```
 # Prerequisites - Setting up the environment
-C
+
 - [x] Spinned up an Azure Ubuntu VM and connected to it.
 
 
