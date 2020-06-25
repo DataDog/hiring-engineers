@@ -23,30 +23,20 @@
 
 ```
 # Prerequisites - Setting up the environment
-
+C
 - [x] Spinned up an Azure Ubuntu VM and connected to it.
 
 
 - [x] Installed a Datadog agent
 
-![prerequisites](screens/screen3.PNG "Prerequisite 1")
+![prerequisites](screens/screen2.PNG "Prerequisite 1")
 
 # Collecting Metrics
 
-- [x] Edited the datadog.yaml file, added the tags, restarted the Datadog Agent
+- [x] Edited the datadog.yaml file, added the tags, restarted the Datadog Agent.
 
-![prerequisites](screens/screen4-tags.PNG "Prerequisite 4")
+![prerequisites](screens/screen4.PNG "Prerequisite 2")
 
-1. Solutions Engineer: check out the `solutions-engineer` [branch](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer) of this repository.
-2. Devops Evangelist: check out the `devops-evangelist` [branch](https://github.com/DataDog/hiring-engineers/tree/devops-evangelist) of this repository.
+- [x] Installed the MySQL database on the VM, created the datadog database user and gave it the necessary rights according to this integration documentation: https://docs.datadoghq.com/integrations/mysql/ Created a conf.yaml file and updated the necessary configurations. Restarted the MySQL database and the Datadog agent to enable MySQL monitoring.
 
-
-# How do I submit my results?
-
-1. Fork this repository.
-2. Check out the branch that interests you.
-3. Commit your work.
-4. Submit a pull request against this upstream repository.
-
-# Questions?
-File an issue in this repository.
+![prerequisites](screens/screen5.PNG "Prerequisite 2")
