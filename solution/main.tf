@@ -80,10 +80,8 @@ resource "google_compute_instance" "doghouse" {
   // Nothing but the dog in me...
   provisioner "remote-exec" {
     inline = [
-      "sudo sh -c 'cp /home/ubuntu/bits.txt /etc/motd'",
-      "wget https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh -O /tmp/install_script.sh",
-      "sudo chmod +x /tmp/install_script.sh",
-      "sudo DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=${var.dd_api_key} /tmp/install_script.sh"
+      "sudo chmod +x /home/ubuntu/datadog_setup.sh",
+      "sudo /home/ubuntu/datadog_setup.sh ${var.dd_api_key}"
     ]
 
     connection {
