@@ -58,9 +58,7 @@
 
 ![prerequisites](screens/screen9.PNG "Prerequisite 9")
 
-**Bonus question**: Yes, it is possible to modify the collection interval without modifying the Python file by modifying the configuration file as it was executed above. The interval modification using the configuration file was inspired by this: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
-
-Bonus Question Can you change the collection interval without modifying the Python check file you created?
+**Bonus question**: Yes, it is possible to modify the collection interval without modifying the Python file by modifying the configuration file as it was executed above. It's also possible to modify the collection interval using the UI.
 
 # Visualizing Data:
 
