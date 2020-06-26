@@ -66,7 +66,7 @@ Bonus Question Can you change the collection interval without modifying the Pyth
 
 - [x] Created an API and Application key through the Datadog portal and wrote a script that collected the following metrics:
 * Custom metric from the exercise earlier
-* MySQL CPU Time annomalies - percentage of CPU time spent in user space
+* Percentage of CPU time spent in user space by MySQL annomalies
 * Custom metric's roll up for the past hour
 
 
@@ -140,3 +140,12 @@ api.Dashboard.create(title=title,
 
 ![prerequisites](screens/screen11.PNG "Prerequisite 11")
 
+- [x] Set the Timeboard's timeframe to the past 5 minutes:
+
+![prerequisites](screens/screen12.PNG "Prerequisite 12")
+
+- [x] Took a snapshot of the graph and annotated myself
+
+![prerequisites](screens/screen13.PNG "Prerequisite 13")
+
+**Bonus question**: The Anomaly graph leverages the anomaly detection algorithm which determines when a metric behaves differently compared to the past. In the context of this exercise, the anomaly graph was applied to the percentage of CPU time spent in user space by MySQL and it allows to monitor anomalies within the boundary that I set (3). Any behaviour that doesn't align with the usual patterns will be highlighted to me.
