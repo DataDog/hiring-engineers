@@ -6,7 +6,7 @@ This is a short demo of a tiny subset of Datadogs functionality to give you a gl
 _Content_
 * [Prerequisites](#prerequisites)
 * [Setup](#setup)
-* [I. Collecting Metrics](i-collecting-metrics)
+* [I. Collecting Metrics](#i-collecting-metrics)
   * [Tags](#tags)
   * [Integrations](#integrations)
   * [Custom metric checks](#custom-metric-checks)
@@ -293,7 +293,7 @@ In my case I received the following notifications via email for the 3 possible c
 
 * or if there is no data at all (_no data_) ![no data](imgs/no_data.png)
 
-**Schedule downtimes**
+### Schedule downtimes
 
 What if you don't want to be notified ALL the time? A pretty common scenario e.g. is _office hours_: get notified only during regular office working time (the proverbial _nine to five_).
 
