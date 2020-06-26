@@ -52,7 +52,7 @@
 
 - [x] Restarted the agent after which it was possible to monitor 'my_metrics' using either 'sudo service datadog-agent status' or the Metrics Explorer:
 
-![prerequisites](screens/screen8.PNG "Prerequisite 8")
+![prerequisites](screens/screen8.1.PNG "Prerequisite 8")
 
 - [x] Updated the collection interval in the 'my_metrics.yaml' file to submit the metrics once every 45 seconds: 
 
@@ -63,3 +63,80 @@
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 # Visualizing Data:
+
+- [x] Created an API and Application key through the Datadog portal and wrote a script that collected the following metrics:
+* Custom metric from the exercise earlier
+* MySQL CPU Time annomalies - percentage of CPU time spent in user space
+* Custom metric's roll up for the past hour
+
+
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': '67923c3202becb1bf292d7055535373f',
+    'app_key': 'd0acbe013adbcb3a5d416a623a983abd9cc6cc73',
+    'api_host': 'https://api.datadoghq.eu'
+}
+
+initialize(**options)
+
+title = 'Timeboard Technical Exercise'
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:my_metrics{host:datadogmain}'}
+        ],
+        'title': 'Custom Metric scoped over host'
+    }
+},
+
+{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': "anomalies(avg:mysql.performance.user_time{host:datadogmain}, 'basic', 3)"}
+        ],
+        'title': 'MySQL CPU Time'
+    }
+},
+
+{
+    'definition': {
+        'type': 'query_value',
+        'requests': [
+            {'q': 'avg:my_metrics{host:datadogmain}.rollup(sum,3600)'}
+        ],
+        'title': 'Custom Metric roll up for past hour'
+    }
+}
+
+
+
+]
+
+
+layout_type = 'ordered'
+description = 'A dashboard with memory info.'
+is_read_only = True
+notify_list = ['user@domain.com']
+
+
+
+
+api.Dashboard.create(title=title,
+                     widgets=widgets,
+                     layout_type=layout_type,
+                     description=description,
+                     is_read_only=is_read_only,
+                     notify_list=notify_list)
+```
+- [x] Executed the Python script:
+
+![prerequisites](screens/screen10.PNG "Prerequisite 10")
+
+- [x] The new dashboard appeared in the list:
+
+![prerequisites](screens/screen11.PNG "Prerequisite 11")
+
