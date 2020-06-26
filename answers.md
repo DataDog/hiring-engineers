@@ -149,3 +149,7 @@ api.Dashboard.create(title=title,
 ![prerequisites](screens/screen13.PNG "Prerequisite 13")
 
 **Bonus question**: The Anomaly graph leverages the anomaly detection algorithm which determines when a metric behaves differently compared to the past. In the context of this exercise, the anomaly graph was applied to the percentage of CPU time spent in user space by MySQL and it allows to monitor anomalies within the boundary that I set (3). Any behaviour that doesn't align with the usual patterns will be highlighted to me.
+
+# Monitoring Data:
+
+- [x] Sample
