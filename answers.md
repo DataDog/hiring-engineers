@@ -40,22 +40,23 @@
 - [x] Installed the MySQL database on the VM, created the datadog database user and gave it the necessary rights according to this integration documentation: https://docs.datadoghq.com/integrations/mysql/ Created a conf.yaml file and updated the necessary configurations. Restarted the MySQL database and the Datadog agent to enable MySQL monitoring.
 
 ![prerequisites](screens/screen5.PNG "Prerequisite 4")
+![prerequisites](screens/screen5.1.PNG "Prerequisite 5")
 
 - [x] Created a file in conf.d folder named my_metrics.yaml
 
-![prerequisites](screens/screen6.PNG "Prerequisite 4")
+![prerequisites](screens/screen6.PNG "Prerequisite 6")
 
 - [x] Created a file in checks.d folder named my_metrics.py and added the following code as suggested here: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
 
-![prerequisites](screens/screen7.PNG "Prerequisite 5")
+![prerequisites](screens/screen7.PNG "Prerequisite 7")
 
 - [x] Restarted the agent after which it was possible to monitor 'my_metrics' using either 'sudo service datadog-agent status' or the Metrics Explorer:
 
-![prerequisites](screens/screen8.PNG "Prerequisite 6")
+![prerequisites](screens/screen8.PNG "Prerequisite 8")
 
 - [x] Updated the collection interval in the 'my_metrics.yaml' file to submit the metrics once every 45 seconds: 
 
-![prerequisites](screens/screen9.PNG "Prerequisite 7")
+![prerequisites](screens/screen9.PNG "Prerequisite 9")
 
 **Bonus question**: Yes, it is possible to modify the collection interval without modifying the Python file by modifying the configuration file as it was executed above. The interval modification using the configuration file was inspired by this: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
 
