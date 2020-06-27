@@ -190,7 +190,7 @@ api.Dashboard.create(title=title,
 
 # Collecting APM Data:
 
-- [x] PIP Installed Flask and DDTrace on the VM, configured the Flask app code and executed it using ddtrace command (couldn't install DDTrace without updating Cython and Python tools first):
+- [x] PIP Installed Flask and DDTrace on the VM, configured datadog.yaml to enable APM collection. Updated the host in the Flask app code and executed it using ddtrace command (couldn't install DDTrace without updating Cython and Python tools first):
 
 ```
 from flask import Flask
@@ -222,3 +222,28 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port='5050')
 ```
+
+![prerequisites](screens/screen22.PNG "Prerequisite 22")
+
+- [x] Hit the API endpoint a few times using curl and generated some access data. Upon opening the APM section in the Datadog portal, the Services and Traces pages were populated:
+
+![prerequisites](screens/screen23.PNG "Prerequisite 23")
+
+![prerequisites](screens/screen24.PNG "Prerequisite 24")
+
+- [x] APM and Infrastructure Metrics in one Timeboard:
+
+![prerequisites](screens/screen25.PNG "Prerequisite 25")
+
+**The Dashboard can be visualised here**: https://p.datadoghq.eu/sb/9fytqflfopx31kcm-6ff4e2824402fe5b64a8640310f3f40b
+
+**Bonus question**: 
+
+A service represents a set of processes that do the same job - such as a web framework or database (source: https://docs.datadoghq.com/tracing/visualization/service/)
+Whilst a resource is a particular action for a given service usually an individual endpoint or query (source: https://docs.datadoghq.com/tracing/visualization/resource/)
+
+In the context of this exercise, an example of a service is the flask app from above which sends traces to Datadog APM whilst a resource is an API endpoint such as api/apm.
+
+# Final Question:
+
+- [x] Sample
