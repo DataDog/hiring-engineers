@@ -27,7 +27,7 @@
 - [x] Spinned up an Azure Ubuntu VM and connected to it.
 
 
-- [x] Installed a Datadog agent
+- [x] Installed the Datadog agent
 
 ![prerequisites](screens/screen2.PNG "Prerequisite 1")
 
@@ -155,14 +155,14 @@ api.Dashboard.create(title=title,
 - [x] Created a New Monitor that monitors the custom metric 'my_metrics' with the following settings:
 * Warning threshold of 500
 * Alerting threshold of 800
-* And also ensured that it will notify you if there is No Data for this query over the past 10m.
+* And also ensured that it will notify me if there is No Data for this query over the past 10 minutes.
 
 ![prerequisites](screens/screen14.PNG "Prerequisite 14")
 
 - [x] Configured monitor's message so it will:
 * Send me an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Included the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+* Included the metric value that caused the monitor to trigger and host IP when the Monitor triggers an Alert state.
 
 ![prerequisites](screens/screen15.PNG "Prerequisite 15")
 
