@@ -146,8 +146,42 @@ api.Dashboard.create(title=title,
 
 ![prerequisites](screens/screen13.PNG "Prerequisite 13")
 
+**The Dashboard can be visualised here**: https://p.datadoghq.eu/sb/9fytqflfopx31kcm-6ff4e2824402fe5b64a8640310f3f40b
+
 **Bonus question**: The Anomaly graph leverages the anomaly detection algorithm which determines when a metric behaves differently compared to the past. In the context of this exercise, the anomaly graph was applied to the percentage of CPU time spent in user space by MySQL and it allows to monitor anomalies within the boundary that I set (3). Any behaviour that doesn't align with the usual patterns will be highlighted to me.
 
 # Monitoring Data:
 
-- [x] Sample
+- [x] Created a New Monitor that monitors the custom metric 'my_metrics' with the following settings:
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+![prerequisites](screens/screen14.PNG "Prerequisite 14")
+
+- [x] Configured monitor's message so it will:
+* Send me an email whenever the monitor triggers.
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+![prerequisites](screens/screen15.PNG "Prerequisite 15")
+
+![prerequisites](screens/screen16.PNG "Prerequisite 16")
+
+![prerequisites](screens/screen17.PNG "Prerequisite 17")
+
+**Bonus question**: Set up two scheduled downtimes for this monitor:
+
+* One that silences it from 7pm to 9am daily on M-F
+
+![prerequisites](screens/screen18.PNG "Prerequisite 18")
+
+![prerequisites](screens/screen19.PNG "Prerequisite 19")
+
+
+* And one that silences it all day on Sat-Sun.
+![prerequisites](screens/screen20.PNG "Prerequisite 20")
+
+* Email downtime notification (please igonore the difference in time compared to the screenshot above, I am currently in a different timezone):
+![prerequisites](screens/screen21.PNG "Prerequisite 21")
+
