@@ -155,14 +155,14 @@ api.Dashboard.create(title=title,
 - [x] Created a New Monitor that monitors the custom metric 'my_metrics' with the following settings:
 * Warning threshold of 500
 * Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+* And also ensured that it will notify you if there is No Data for this query over the past 10m.
 
 ![prerequisites](screens/screen14.PNG "Prerequisite 14")
 
 - [x] Configured monitor's message so it will:
 * Send me an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+* Included the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
 ![prerequisites](screens/screen15.PNG "Prerequisite 15")
 
@@ -180,8 +180,45 @@ api.Dashboard.create(title=title,
 
 
 * And one that silences it all day on Sat-Sun.
+
 ![prerequisites](screens/screen20.PNG "Prerequisite 20")
 
 * Email downtime notification (please igonore the difference in time compared to the screenshot above, I am currently in a different timezone):
+
 ![prerequisites](screens/screen21.PNG "Prerequisite 21")
 
+
+# Collecting APM Data:
+
+- [x] PIP Installed Flask and DDTrace on the VM, configured the Flask app code and executed it using ddtrace command (couldn't install DDTrace without updating Cython and Python tools first):
+
+```
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port='5050')
+```
