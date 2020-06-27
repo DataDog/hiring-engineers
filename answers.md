@@ -240,7 +240,8 @@ if __name__ == '__main__':
 **Bonus question**: 
 
 A service represents a set of processes that do the same job - such as a web framework or database (source: https://docs.datadoghq.com/tracing/visualization/service/)
-Whilst a resource is a particular action for a given service usually an individual endpoint or query (source: https://docs.datadoghq.com/tracing/visualization/resource/)
+
+Whilst a resource is a particular action for a given service, usually an individual endpoint or query (source: https://docs.datadoghq.com/tracing/visualization/resource/)
 
 In the context of this exercise, an example of a service is the flask app from above which sends traces to Datadog APM whilst a resource is an API endpoint such as api/apm.
 
