@@ -256,9 +256,4 @@ In order to make this possible, a Datadog integration can be created with the Mi
 
 - [x] Scenario #2: Cattle Health Monitoring
 
-The Datadog Agent is lightweight which means that it could be installed across most hardware platforms, in addition Datadog allows cost efficiency at scale through Logging without Limits that enable
-
-To bring visibility to diverse IoT fleets, Datadog can be installed on nearly any hardware platform and operating system, including Linux, Windows, Android, and ARM devices. On every device, the lightweight Datadog Agent collects metrics, distributed traces, logs, and more for centralized monitoring and analytics. Datadog's Logging without Limits™ enables companies with large device fleets to manage and monitor their logs cost-effectively. Companies can send all their logs to Datadog for real-time visibility, then generate metrics that summarize log contents and dynamically retain high-value logs for long-term analytics.
-
-
-- [x] Scenario #3: Cow Monitoring
+The Datadog Agent is lightweight which means that it could be installed across most hardware platforms, in addition Datadog allows cost efficiency at scale through Logging without Limits that enables companies with large device fleets to take advantage of the reduced cost. Particular emphasis can be put on farms that use IoT devices to monitor their animals such as Japanese farmers with wagyu cattle. The wagyu cows wear collars which monitor for how long a cow is lying, standing, how much they're drinking and how often they're eating. This data can be collected in a Datadog Dashboard where each individual cow can be displayed as a host and custom monitoring metrics can be assigned for health analysis purposes such as body mass index - farmers can be alerted if cows reach fat levels which are too low or too high or anomalies algorithm can be applied to track cow behaviour that doesn't align with the usual patterns.
