@@ -1,3 +1,3 @@
 Answers to the interview questions are below. You may also walk through the answers as an interactive tutorial in Google Cloud Shell:
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/scarolan/hiring-exercise.git&cloudshell_git_branch=sc/total-recall&cloudshell_tutorial=walkthrough.md)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/scarolan/hiring-exercise.git&cloudshell_git_branch=sean-carolan-answers&cloudshell_tutorial=walkthrough.md)
