@@ -248,12 +248,17 @@ In the context of this exercise, an example of a service is the flask app from a
 # Final Question:
 
 - [x] Scenario #1: Sustainability Metrics
+
 Datadog can be leveraged in a way that would allow organisations to make sustainability conscious decisions and reduce their carbon footprint. For example, companies already use Datadog to collect metrics from across different cloud providers such as AWS, Azure and GCP - this cloud consumption data can be used in order to create a custom metric that would measure scope 3 type carbon emissions which are the responsibility of the company that uses the cloud service. Scope 3 emissions are indirect activities from outside the company which aren't under control of the cloud provider such as the internet service provider broadband and it's the type of emissions that could be reduced by the company using the cloud service.
 
 In order to make this possible, a Datadog integration can be created with the Microsoft Sustainability Calculator (https://appsource.microsoft.com/en-us/product/power-bi/coi-sustainability.sustainability_dashboard) which quantifies the carbon impact of each Azure subscription over a period of time and its datacenters. As a result, the Azure metrics collected in Datadog could be used to create a dashboard and monitor which would track the carbon emissions and how successful the decarbonization efforts are. A similar Business Intelligence tool can be created to gather AWS and GCP data where Datadog in turn can provide tracking information for the carbon footprint.
 
 
 - [x] Scenario #2: Cattle Health Monitoring
+
+The Datadog Agent is lightweight which means that it could be installed across most hardware platforms, in addition Datadog allows cost efficiency at scale through Logging without Limits that enable
+
+To bring visibility to diverse IoT fleets, Datadog can be installed on nearly any hardware platform and operating system, including Linux, Windows, Android, and ARM devices. On every device, the lightweight Datadog Agent collects metrics, distributed traces, logs, and more for centralized monitoring and analytics. Datadog's Logging without Limits™ enables companies with large device fleets to manage and monitor their logs cost-effectively. Companies can send all their logs to Datadog for real-time visibility, then generate metrics that summarize log contents and dynamically retain high-value logs for long-term analytics.
 
 
 - [x] Scenario #3: Cow Monitoring
