@@ -95,6 +95,9 @@ Copy the API key and run the following commands:
 
 ```bash
 export DD_API_KEY=YOURAPIKEYHERE
+```
+
+```bash
 export DATADOG_GCP_CREDENTIALS=$(cat ~/.datadog.json)
 ```
 
