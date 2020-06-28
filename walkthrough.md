@@ -287,7 +287,7 @@ exit
 ```
 
 Now test your new account to make sure the permissions are correct. You'll need to type in the password we just set after you enter the command.
-```bash
+```
 psql -h localhost -U datadog postgres -c \
 "select * from pg_stat_database LIMIT(1);" \
 && echo -e "\e[0;32mPostgres connection - OK\e[0m" \
@@ -301,7 +301,7 @@ Click **Next** to continue.
 ## Configure the Agent for Database Monitoring
 Now you can create a new config file to monitor your PostgreSQL database. Run the following commands to populate the /etc/datadog-agent/postgres.d/conf.yaml file.
 
-First gain a root shell so we don't have to type sudo for every command:
+First gain a root shell so we don't have to type sudo for every command. If you are already in a root prompt (it looks like a `#` symbol), you can skip this step.
 ```bash
 sudo /bin/su - root
 ```
@@ -311,8 +311,8 @@ Next create the postgres.d config directory:
 mkdir -p /etc/datadog-agent/conf.d/postgres.d
 ```
 
-The cat command below dumps all the configuration into the file for us. Just copy and paste or click the **Copy to Cloud Shell** button to copy it into your terminal.
-```bash
+The cat command below dumps all the configuration into the file for us. You'll need to copy and paste this block of code into your terminal, as the auto-run button won't work here.
+```
 cat <<-EOF > /etc/datadog-agent/conf.d/postgres.d/conf.yaml
 init_config:
 
@@ -334,9 +334,14 @@ Run this command a few times to generate some activity on your database:
 sudo -u postgres sh -c "pgbench -i"
 ```
 
-Now open up the PostgreSQL screenboard. You should start to see database metrics populate the graphs after a few minutes.
+Back in your Datadog account, enable the PostgreSQL integration:
+[https://app.datadoghq.com/account/settings#integrations/postgres](https://app.datadoghq.com/account/settings#integrations/postgres)
 
-[https://app.datadoghq.com/screen/integration/235/postgres---overview](https://app.datadoghq.com/screen/integration/235/postgres---overview)
+You'll need to scroll to the bottom of the configuration tab and click on the **Install** button there.
+
+Now open up the PostgreSQL metrics dashboard. You should start to see database metrics populate the graphs after a few minutes.
+
+[https://app.datadoghq.com/dash/integration/17/postgres---metrics](https://app.datadoghq.com/dash/integration/17/postgres---metrics)
 
 Click **Next** to continue.
 
