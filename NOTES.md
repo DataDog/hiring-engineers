@@ -32,6 +32,10 @@ Full disclosure: I opened a support ticket to report the issue with the GCP inst
 
 To work around this I added tags in the GCP instance metadata in my Terraform code.
 
+I found one issue that may be related about quoting tags. I didn't find any open issues about this agent on GCP, with Ubuntu 18.04.
+
+https://github.com/DataDog/datadog-agent/issues/4982
+
 #### Duplicate host when GCP integration is installed
 One issue I encountered was that if you install the GCP integration and the agent, the instance shows up twice in the Datadog inventory. Something's causing it to be registered as two separate hosts. The host that was picked up by the integration does not show an availability zone and the hostname is different:
 
