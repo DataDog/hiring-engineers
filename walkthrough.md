@@ -225,6 +225,8 @@ All commands from here on out should be run on your GCP instance, not your Cloud
 hostname
 ```
 
+If you used the default Terraform dogname variable your hostname should be `astro`.
+
 Click **Next** to continue.
 
 ## Working with the Datadog agent
@@ -288,7 +290,7 @@ Restart the agent to update your tags.
 systemctl restart datadog-agent
 ```
 
-Check out your host's Datadog dashboard to see your new tags. Tags are a powerful way to track and create collections of hosts and services.
+Check out your host on the infrastructure map to see your new tags. Tags are a powerful way to track and create collections of hosts and services. It may take a few minutes for the tags to update in the UI.
 
 Click on the **Next** button to continue.
 

@@ -18,9 +18,10 @@ Cleaned up my Terraform code and built a Google Cloud Shell tutorial. Now other 
 
 **Lessons learned:** The Datadog agent is easy to install and the entire process can be automated using Infrastructure as Code tools like shell scripts, Chef/Puppet/Ansible, or Terraform.
 
-### Adding Tags - A Lesson in Small Details
-**Goal:** Add tags to the instance using the datadog.yaml config file.
+### Observations and Issues
+**Goal:** Document anything else I encountered that was interesting or odd.
 
+#### Adding Tags - issue with GCP
 I attempted to add tags to my instance using the datadog.yaml file and the example on your tutorial here:
 
 https://docs.datadoghq.com/getting_started/tagging/assigning_tags/?tab=noncontainerizedenvironments#configuration-files
@@ -29,12 +30,7 @@ After several attempts to restart the agent, tear down and rebuild my VM, check 
 
 Full disclosure: I opened a support ticket to report the issue with the GCP instance tags. Todd Rizley informed me that they would be unable to help me with the hiring exercise which is totally fair. I told Todd I'd document my findings and report them during my interview.
 
-Root Cause: After some more experimentation I realized that my terraform code was creating the datadog.yaml file inside of `/etc/datadog` and not `/etc/datadog-agent`. :facepalm:
-
-**Lessons Learned:** Read The Fine Manual carefully before diving into technical troubleshooting. It was a small error that escaped my initial troubleshooting because I assumed the config file was working, since the agent started up just fine. Sometimes bugs like this can be hidden by clever automation scripts.
-
-### Observations and Issues
-**Goal:** Document anything else I encountered that was interesting or odd.
+To work around this I added tags in the GCP instance metadata in my Terraform code.
 
 #### Duplicate host when GCP integration is installed
 One issue I encountered was that if you install the GCP integration and the agent, the instance shows up twice in the Datadog inventory. Something's causing it to be registered as two separate hosts. The host that was picked up by the integration does not show an availability zone and the hostname is different:
@@ -66,7 +62,7 @@ It's definitely sending data:
 2020-06-28 17:42:15 UTC | CORE | INFO | (pkg/forwarder/transaction.go:272 in internalProcess) | Successfully posted payload to "https://7-20-2-app.agent.datadoghq.com/intake/?api_key=*************************a9601", the agent will only log transaction success every 500 transactions
 ```
 
-Finally...after nearly 30 minutes the host showed up on the map. This does not leave a good first impression. Nobody wants to wait half an hour for their first monitoring results to show up...
+Finally...after nearly 30 minutes the host showed up on the map. Curious why it may take so long to start registering data?
 
 #### Working with the PostgreSQL integration
 No problems installing Postgres and the Postgres integration. I didn't realize at first that I also had to go into the GUI to enable the integration and see it on the dashboard list. The Terraform provider only covers a small handful of integrations for automated installation:
