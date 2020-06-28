@@ -148,8 +148,8 @@ Next, initialize the workspace to download any requried providers:
 terraform init
 ```
 
-Configure your project ID inside a tfvars file. The terraform.tfvars file is a convenient place to set non-sensitive variables.
-```bash
+Configure your project ID inside a tfvars file. The terraform.tfvars file is a convenient place to set non-sensitive variables. You'll have to manually copy and paste this one into the terminal because the auto-copy function doesn't like the escape backslashes. Copy and paste the commend into your shell prompt:
+```
 echo "project_id = \"$PROJECT_ID\"" > terraform.tfvars
 ```
 
@@ -175,7 +175,7 @@ Let's do it for real this time. Run the following command to build your virtual 
 terraform apply -var "dd_api_key=$DD_API_KEY"
 ```
 
-This part will take a few minutes to complete. You can watch the progress of the run in your terminal.
+This part will take a few minutes to complete. You can watch the progress of the run in your terminal. When the Terraform run is complete you'll see some instructions for connecting to your instance.
 
 Click **Next** to proceed.
 
@@ -199,21 +199,23 @@ Are you sure you want to continue connecting (yes/no)?
 
 Great, you've connected to your Linux instance. You should see an ASCII art image of Bits, the Datadog mascot.
 
+Click **Next** to continue.
+
 ## Working with the Datadog agent
 The [Datadog agent](https://docs.datadoghq.com/agent/) is software that runs in the background on all the hosts you wish to monitor. We've pre-installed the agent on your virtual machine for you. Let's take a look at the agent config file:
-```
+```bash
 sudo cat /etc/datadog-agent/datadog.yaml
 ```
 
 There is only one required setting in this file, namely `api_key`. You can adjust all kinds of settings inside of this file but the minimum requirement is a single line containing your API key. We'll be adding some things to this file in the next steps.
 
 Start up the Datadog agent with the following command:
-```
+```bash
 sudo systemctl start datadog-agent
 ```
 
 If the command ran successfully it will not create any output. You can check the agent status at any time with the following command:
-```
+```bash
 sudo systemctl status datadog-agent
 ```
 
@@ -228,7 +230,7 @@ Note: It can take a few minutes before your host shows up on the map. If your ho
 Click on the **Next** button to continue.
 
 ## Add some Tags
-"Tags are a way of adding dimensions to Datadog telemetries so they can be filtered, aggregated, and compared in Datadog visualizations."
+Tags are a way of adding dimensions to Datadog telemetries so they can be filtered, aggregated, and compared in Datadog visualizations.
 
 [https://docs.datadoghq.com/getting_started/tagging/](https://docs.datadoghq.com/getting_started/tagging/)
 
@@ -241,12 +243,13 @@ sudo /bin/su - root
 
 Now run the following block of code to add some tags to your datadog.yaml file:
 ```bash
-cat <<-EOF > /etc/datadog-agent/datadog.yaml
+cat <<-EOF >> /etc/datadog-agent/datadog.yaml
 tags:
   - dogname: Astro
   - dogtype: Great Dane
   - dogshow: The Jetsons
 EOF
+```
 
 Restart the agent to update your tags.
 ```bash
