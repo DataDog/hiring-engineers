@@ -227,6 +227,36 @@ Note: It can take a few minutes before your host shows up on the map. If your ho
 
 Click on the **Next** button to continue.
 
+## Add some Tags
+"Tags are a way of adding dimensions to Datadog telemetries so they can be filtered, aggregated, and compared in Datadog visualizations."
+
+[https://docs.datadoghq.com/getting_started/tagging/](https://docs.datadoghq.com/getting_started/tagging/)
+
+Adding tags is easy, and can be done via configuration files, the UI, the API or DogStatsd. Let's update our configuration file to add some tags to our instance.
+
+First gain a root shell so you don't have to type `sudo` before every command:
+```bash
+sudo /bin/su - root
+```
+
+Now run the following block of code to add some tags to your datadog.yaml file:
+```bash
+cat <<-EOF > /etc/datadog-agent/datadog.yaml
+tags:
+  - dogname: Astro
+  - dogtype: Great Dane
+  - dogshow: The Jetsons
+EOF
+
+Restart the agent to update your tags.
+```bash
+systemctl restart datadog-agent
+```
+
+Check out your host's Datadog dashboard to see your new tags. Tags are a powerful way to track and create collections of hosts and services.
+
+Click on the **Next** button to continue.
+
 ## Install the PostgreSQL database
 Let's install a database for Datadog to monitor. We'll be following the instructions here:
 
