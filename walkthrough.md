@@ -17,6 +17,7 @@ Click the **Start** button to move to the next step.
 
 ## What is Datadog?
 ![Bits the Datadog Mascot](https://github.com/scarolan/hiring-engineers/raw/sean-carolan-answers/solution/assets/dd_logo_v_rgb.png)
+<br>
 
 [Datadog](https://www.datadoghq.com) is the essential monitoring platform for cloud applications. We bring together data from servers, containers, databases, and third-party services to make your stack entirely observable. These capabilities help DevOps teams avoid downtime, resolve performance issues, and ensure customers are getting the best user experience.
 
