@@ -30,6 +30,11 @@ export PROJECT_ID=datadog-gcp-test-$RANDOM
 gcloud projects create $PROJECT_ID --name="Datadog test project"
 ```
 
+Set your project ID in your shell environment. This is so you don't have to specify it for every command you run in the terminal.
+```bash
+gcloud config set project $PROJECT_ID
+```
+
 Good job. Now that you have a project ID and have defined the PROJECT_ID environment variable, you can click **Next** to continue.
 
 ## Enable the Compute Engine API
@@ -38,11 +43,6 @@ If you have an existing project with billing and the Compute Engine API already 
 Note: You'll require a valid billing account to do this tutorial. You can use free Google Cloud credits for this tutorial as long as you have a valid billing account.
 
 The commands below should be copied and pasted into your Google Cloud Shell terminal.
-
-Set your project ID. This is so you don't have to specify it for every command you run in the terminal.
-```bash
-gcloud config set project $PROJECT_ID
-```
 
 See what billing accounts you have available:
 ```bash
@@ -136,30 +136,30 @@ echo $DATADOG_GCP_CREDENTIALS
 Ready to start building? Click **Next** to proceed.
 
 ## Build the Base Infrastructure
-In this step we'll use Terraform to stand up a virtual machine running Ubuntu 20.04. Don't worry if you haven't used Terraform before.
+In this step we'll use Terraform to stand up a virtual machine running Ubuntu 20.04. Don't worry if you haven't used Terraform before, all the commands you need are listed below.
 
 First change into the directory where our Terraform code is stored. This is also known as your Terraform workspace.
-```
-cd solutions
+```bash
+cd solution
 ```
 
-Next, initialize the directory to download any requried providers:
-```
+Next, initialize the workspace to download any requried providers:
+```bash
 terraform init
 ```
 
-Configure your project ID inside a tfvars file:
-```
+Configure your project ID inside a tfvars file. The terraform.tfvars file is a convenient place to set non-sensitive variables.
+```bash
 echo "project_id = \"$PROJECT_ID\"" > terraform.tfvars
 ```
 
 Your terraform.tfvars file should now contain a single line defining your project_id. Check it to be sure:
-```
+```bash
 cat terraform.tfvars
 ```
 
 Let's do a dry run. We'll pass in our API key as a command line variable so we don't have to hard-code it into a file:
-```
+```bash
 terraform plan -var "dd_api_key=$DD_API_KEY"
 ```
 
@@ -171,7 +171,7 @@ Plan: 7 to add, 0 to change, 0 to destroy.
 The seven things you'll build include a virtual private cloud (VPC), a network subnet, a TLS (SSH) key, a local copy of your private SSH key, a firewall, a Google Compute instance, and the Datadog integration for GCP.
 
 Let's do it for real this time. Run the following command to build your virtual machine and integration. You'll need to confirm the run by typing `yes` after you run this command.
-```
+```bash
 terraform apply -var "dd_api_key=$DD_API_KEY"
 ```
 
