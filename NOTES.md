@@ -5,7 +5,7 @@ Began my hiring exercise by cloning the git repository into Google Cloud Shell. 
 
 Next, I wrote Terraform code to automate the creation of a VM and the scaffolding required to support it. My first goal was to build a repeatable development environment that would be easy to stand up and tear down.
 
-I used the Terraform file and remote_exec provisioners to download and install the Datadog agent, and to render the /etc/datadog/datadog.yaml configuration file. Once I had my VM up and runnning and registered with Datadog, I added the GCP integration using the Datadog Terraform provider:
+I used the Terraform file and remote_exec provisioners to download and install the Datadog agent, and to render the /etc/datadog-agent/datadog.yaml configuration file. Once I had my VM up and runnning and registered with Datadog, I added the GCP integration using the Datadog Terraform provider:
 
 https://www.terraform.io/docs/providers/datadog/r/integration_gcp.html
 
@@ -86,5 +86,5 @@ https://app.datadoghq.com/screen/integration/235/postgres---overview
 The docs here were not clear about where the postgres.d/conf.yaml file goes:
 https://docs.datadoghq.com/integrations/postgres/#installation
 
-This tutorial might be updated to include the full path to the configuration file. New users might not be aware that it is /etc/datadog/conf.d/postgres.d/conf.yaml.
+This tutorial might be updated to include the full path to the configuration file. New users might not be aware that it is /etc/datadog-agent/conf.d/postgres.d/conf.yaml.
 

@@ -61,9 +61,6 @@ resource "google_compute_instance" "doghouse" {
 
   metadata = {
     ssh-keys = "ubuntu:${chomp(tls_private_key.dogkey.public_key_openssh)} terraform"
-    dogname  = "astro"
-    dogtype  = "Great Dane"
-    dogenv   = "production"
   }
 
   // Why must I be like that...why must I chase the cat?
