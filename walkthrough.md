@@ -1,7 +1,11 @@
 # Monitor Google Cloud Platform with Datadog
 
 ## Getting Started
-This guide will walk you through deploying the Datadog agent onto a Google Compute Instance. You'll configure agent settings to collect some metrics, visualize your data with dashboards, monitor the data and send alerts, and configure Datadog to collect application performance data. Let's get started! 🐶
+This guide will walk you through deploying the Datadog agent onto a Google Compute Instance and  configuring the Datadog GCP integration. We'll be using the open source Terraform tool to provision everything from scratch. If you don't know Terraform that's OK, all the required code is already written for you.
+
+Once we have our infrastructure up and running, you'll configure agent settings to collect some metrics, visualize your data with dashboards, monitor the data and send alerts, and configure Datadog to collect application performance data.
+
+Let's get started! 🐶
 
 **Time to complete**: About 60 minutes
 
@@ -15,31 +19,29 @@ You can use an existing Google Cloud Project or create a new one. The project me
 
 [https://console.cloud.google.com/home/dashboard](https://console.cloud.google.com/home/dashboard)
 
-You can also easily create a new project using the command line. You may need to add some numbers to the end of your project id if it is already taken. Here we use the built-in $RANDOM variable to accomplish this.
+You can also easily create a new project using the command line. You may need to add some numbers to the end of your project id if it is already taken. You can use the built-in $RANDOM variable to accomplish this. If you already have your a Project ID you want to use, simply replace the part after the equals sign in the next command.
 
 Example:
 ```bash
-export RANDOM_ID=$RANDOM
+export PROJECT_ID=datadog-gcp-test-$RANDOM
 ```
 
 ```bash
-gcloud projects create datadog-gcp-test-$RANDOM_ID --name="Datadog test project"
+gcloud projects create $PROJECT_ID --name="Datadog test project"
 ```
+
+Good job. Now that you have a project ID and have defined the PROJECT_ID environment variable, you can click **Next** to continue.
 
 ## Enable the Compute Engine API
-Once you have created a project (or selected an existing one), you'll need to enable the Compute Engine API.
+If you have an existing project with billing and the Compute Engine API already enabled you can skip this step.
 
-Note: You'll require a valid billing account to do the next steps. You can use free Google Cloud credits for this tutorial as long as you have a valid billing account.
+Note: You'll require a valid billing account to do this tutorial. You can use free Google Cloud credits for this tutorial as long as you have a valid billing account.
 
-Visit the APIs dashboard and click on the `+Enable APIs and Services` button. Search for 'compute' and select the **Compute Engine API**. Click on the blue **Enable** button.
+The commands below should be copied and pasted into your Google Cloud Shell terminal.
 
-[https://console.cloud.google.com/apis/dashboard](https://console.cloud.google.com/apis/dashboard)
-
-Alternatively you can easily enable the API on the command line. The commands below can be copied and pasted into your Google Cloud Shell terminal.
-
-Set your project ID:
+Set your project ID. This is so you don't have to specify it for every command you run in the terminal.
 ```bash
-gcloud config set project datadog-gcp-test-$RANDOM_ID
+gcloud config set project $PROJECT_ID
 ```
 
 See what billing accounts you have available:
@@ -49,17 +51,17 @@ gcloud beta billing accounts list
 
 Link up billing for your project. Replace the billing account ID with your own.
 ```bash
-gcloud beta billing projects link datadog-gcp-test-$RANDOM_ID --billing-account=01234A-FGHIJ7-MNOPQ8
+gcloud beta billing projects link $PROJECT_ID --billing-account=CHANGE-THISTO-YOUROWN
 ```
 
-Enable the compute engine API:
+Enable the compute engine API. This command can take a minute or more to complete.
 ```bash
 gcloud services enable compute
 ```
 
 Note: You may need to get an administrator to enable billing if your account does not have the correct privileges.
 
-You can verify that the Compute Engine API is enabled with this command:
+You can verify that the Compute Engine API is enabled with this command. The output should show Compute Engine API is enabled.
 ```bash
 gcloud services list | grep compute
 ```
@@ -67,7 +69,7 @@ gcloud services list | grep compute
 Click **Next** to proceed.
 
 ## Create a Service Account
-In order to use the Datadog integration for GCP you'll need to create a service account with viewer access.
+In order to use the Datadog integration for GCP you'll need a service account with viewer access. Datadog requires **read** access to the Google Cloud APIs for your project. This is better than using your admin or owner credentials.
 
 Create a service account with the following command:
 ```bash
@@ -76,22 +78,34 @@ gcloud iam service-accounts create datadog-service-account --display-name "Datad
 
 Now grant the Viewer role to your new service account:
 ```bash
-gcloud projects add-iam-policy-binding datadog-gcp-test-$RANDOM_ID --member=serviceAccount:datadog-service-account@datadog-gcp-test-$RANDOM_ID.iam.gserviceaccount.com --role=roles/viewer
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:datadog-service-account@$PROJECT_ID.iam.gserviceaccount.com --role=roles/viewer
 ```
 
 Create a JSON key file for your new service account.
 ```bash
-gcloud iam service-accounts keys create --iam-account datadog-service-account@datadog-gcp-test-$RANDOM_ID.iam.gserviceaccount.com ~/datadog.json
+gcloud iam service-accounts keys create --iam-account datadog-service-account@$PROJECT_ID.iam.gserviceaccount.com ~/datadog.json
 ```
 
 Now you should have a Google Cloud credentials file in your home directory called `datadog.json`. We'll use these credentials in the next steps.
 
+Note: In a production environment you might store sensitive keys like this in a [password vault](https://www.vaultproject.io/) or other credentials management system. For the purposes of this tutorial, the datadog.json file is fine.
+
+Click **Next** to continue.
+
 ## Set up Your Environment Variables
-In order to configure your GCP instance and integration you'll need three environment variables, namely `DD_API_KEY`, `DD_APP_KEY`, and `DATADOG_GCP_CREDENTIALS`. You can get your Datadog API and app keys at the following URL:
+In order to configure your GCP instance and integration you'll need three environment variables, namely `DD_API_KEY`, `DD_APP_KEY`, and `DATADOG_GCP_CREDENTIALS`. Here's what each credential is for:
 
-https://app.datadoghq.com/account/settings#api
+* DD_API_KEY - Allows the Datadog agent running on your VM to send data into your Datadog account.
 
-Run the following commands to export your keys and credentials as environment variables. This is safer than storing sensitive information in your code or text files!
+* DD_APP_KEY - Allows our Terraform code to programatically configure your Datadog integrations and dashboards.
+
+* DATADOG_GCP_CREDENTIALS - Read only credentials that allows Datadog to harvest rich data from the Google Cloud APIs for your project.
+
+You can find your Datadog API and application keys at the following URL:
+
+[https://app.datadoghq.com/account/settings#api](https://app.datadoghq.com/account/settings#api)
+
+Run the following commands to export your keys and credentials as environment variables. This is safer than storing sensitive information in your code or text files! Don't forget to replace the placeholders with your real keys.
 
 ```bash
 export DD_API_KEY=YOURAPIKEYHERE
@@ -121,10 +135,100 @@ echo $DATADOG_GCP_CREDENTIALS
 
 Ready to start building? Click **Next** to proceed.
 
-## Next Step here
-More instructions here.
+## Build the Base Infrastructure
+In this step we'll use Terraform to stand up a virtual machine running Ubuntu 20.04. Don't worry if you haven't used Terraform before.
+
+First change into the directory where our Terraform code is stored. This is also known as your Terraform workspace.
+```
+cd solutions
+```
+
+Next, initialize the directory to download any requried providers:
+```
+terraform init
+```
+
+Configure your project ID inside a tfvars file:
+```
+echo "project_id = \"$PROJECT_ID\"" > terraform.tfvars
+```
+
+Your terraform.tfvars file should now contain a single line defining your project_id. Check it to be sure:
+```
+cat terraform.tfvars
+```
+
+Let's do a dry run. We'll pass in our API key as a command line variable so we don't have to hard-code it into a file:
+```
+terraform plan -var "dd_api_key=$DD_API_KEY"
+```
+
+The output will show that there are 7 resources that will be created:
+```
+Plan: 7 to add, 0 to change, 0 to destroy.
+```
+
+The seven things you'll build include a virtual private cloud (VPC), a network subnet, a TLS (SSH) key, a local copy of your private SSH key, a firewall, a Google Compute instance, and the Datadog integration for GCP.
+
+Let's do it for real this time. Run the following command to build your virtual machine and integration. You'll need to confirm the run by typing `yes` after you run this command.
+```
+terraform apply -var "dd_api_key=$DD_API_KEY"
+```
+
+This part will take a few minutes to complete. You can watch the progress of the run in your terminal.
 
 Click **Next** to proceed.
+
+## Connect to your Virtual Machine
+You can connect to your new VM using the SSH command. First we'll need to update the permissions on our private SSH key. Connect to your agent by copying these commands from your Terraform output:
+
+Update the permissions on your private key:
+```bash
+chmod 600 dogkey.pem
+```
+
+Connect to your instance with SSH. Use your own IP address here instead of 1.2.3.4.
+```bash
+ssh -i dogkey.pem ubuntu@1.2.3.4
+```
+
+Answer `yes` when you are prompted with this question:
+```
+Are you sure you want to continue connecting (yes/no)?
+```
+
+Great, you've connected to your Linux instance. You should see an ASCII art image of Bits, the Datadog mascot.
+
+## Working with the Datadog agent
+The [Datadog agent](https://docs.datadoghq.com/agent/) is software that runs in the background on all the hosts you wish to monitor. We've pre-installed the agent on your virtual machine for you. Let's take a look at the agent config file:
+```
+cat /etc/datadog/datadog.yaml
+```
+
+There is only one required setting in this file, namely `api_key`. You can adjust all kinds of settings inside of this file but the minimum requirement is a single line containing your API key. We'll be adding some things to this file in the next steps.
+
+Start up the Datadog agent with the following command:
+```
+sudo systemctl start datadog-agent
+```
+
+If the command ran successfully it will not create any output. You can check the agent status at any time with the following command:
+```
+sudo systemctl status datadog-agent
+```
+
+Detailed data about your host is now streaming back to your Datadog account. Check out the host map and you should see a new host called `astro` appear on the map. If you renamed your dogname variable it will show up under a different name.
+
+[https://app.datadoghq.com/infrastructure/map](https://app.datadoghq.com/infrastructure/map)
+
+## View the Datadog GCP Dashboard
+Visit the following URL to see the preset GCP dashboard in Datadog:
+
+[https://app.datadoghq.com/screen/integration/48/google-cloud-platform](https://app.datadoghq.com/screen/integration/48/google-cloud-platform)
+
+It will take a few minutes for data to appear on the dashboard. Let's log onto our newly built Linux instance and set up the Datadog agent for more in-depth monitoring of our CPU, disk and network.
+
+Click **Next** to continue.
 
 ## Another step here
 Do some things
