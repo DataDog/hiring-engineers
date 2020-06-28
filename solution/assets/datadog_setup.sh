@@ -11,8 +11,8 @@ KEY=$1
 cp /home/ubuntu/bits.txt /etc/motd
 
 # Render the Datadog config file
-mkdir /etc/datadog
-cat <<EOM > /etc/datadog/datadog.yaml
+mkdir /etc/datadog-agent
+cat <<EOM > /etc/datadog-agent/datadog.yaml
 api_key: $KEY
 EOM
 

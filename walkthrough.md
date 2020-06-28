@@ -202,7 +202,7 @@ Great, you've connected to your Linux instance. You should see an ASCII art imag
 ## Working with the Datadog agent
 The [Datadog agent](https://docs.datadoghq.com/agent/) is software that runs in the background on all the hosts you wish to monitor. We've pre-installed the agent on your virtual machine for you. Let's take a look at the agent config file:
 ```
-cat /etc/datadog/datadog.yaml
+sudo cat /etc/datadog-agent/datadog.yaml
 ```
 
 There is only one required setting in this file, namely `api_key`. You can adjust all kinds of settings inside of this file but the minimum requirement is a single line containing your API key. We'll be adding some things to this file in the next steps.
@@ -221,12 +221,89 @@ Detailed data about your host is now streaming back to your Datadog account. Che
 
 [https://app.datadoghq.com/infrastructure/map](https://app.datadoghq.com/infrastructure/map)
 
-## View the Datadog GCP Dashboard
-Visit the following URL to see the preset GCP dashboard in Datadog:
+You can also click on your host and visit its dashboard to see detailed stats collected by the Datadog agent.
 
-[https://app.datadoghq.com/screen/integration/48/google-cloud-platform](https://app.datadoghq.com/screen/integration/48/google-cloud-platform)
+Note: It can take a few minutes before your host shows up on the map. If your host shows up twice on the map, don't worry. This happens because the GCP integration also detects the instance from the Google Cloud API. Datadog will merge the two hosts together after a few minutes.
 
-It will take a few minutes for data to appear on the dashboard. Let's log onto our newly built Linux instance and set up the Datadog agent for more in-depth monitoring of our CPU, disk and network.
+Click on the **Next** button to continue.
+
+## Install the PostgreSQL database
+Let's install a database for Datadog to monitor. We'll be following the instructions here:
+
+[https://docs.datadoghq.com/integrations/postgres/#installation](https://docs.datadoghq.com/integrations/postgres/#installation)
+
+Use this command to install the PostgreSQL database on your host. Make sure you are SSH'd into your target VM and not your Cloud Shell when you run these commands.
+```bash
+sudo apt -y install postgresql
+```
+
+Next open a psql prompt as the postgres user to create an account for Datadog:
+```bash
+sudo -u postgres psql
+```
+
+Within the psql prompt run this command:
+```sql
+create user datadog with password 'datadog123';
+grant pg_monitor to datadog;
+```
+
+Exit the psql (postgres) prompt:
+```sql
+exit
+```
+
+Now test your new account to make sure the permissions are correct. You'll need to type in the password we just set after you enter the command.
+```bash
+psql -h localhost -U datadog postgres -c \
+"select * from pg_stat_database LIMIT(1);" \
+&& echo -e "\e[0;32mPostgres connection - OK\e[0m" \
+|| echo -e "\e[0;31mCannot connect to Postgres\e[0m"
+```
+
+You can escape from the psql output by entering `ZZ` on your keyboard. Nice work.
+
+Click **Next** to continue.
+
+## Configure the Agent for Database Monitoring
+Now you can create a new config file to monitor your PostgreSQL database. Run the following commands to populate the /etc/datadog-agent/postgres.d/conf.yaml file.
+
+First gain a root shell so we don't have to type sudo for every command:
+```bash
+sudo /bin/su - root
+```
+
+Next create the postgres.d config directory:
+```bash
+mkdir -p /etc/datadog-agent/conf.d/postgres.d
+```
+
+The cat command below dumps all the configuration into the file for us. Just copy and paste or click the **Copy to Cloud Shell** button to copy it into your terminal.
+```bash
+cat <<-EOF > /etc/datadog-agent/conf.d/postgres.d/conf.yaml
+init_config:
+
+instances:
+  - host: localhost
+    port: 5432
+    username: datadog
+    password: datadog123
+EOF
+```
+
+Restart the agent to load your new config:
+```bash
+systemctl restart datadog-agent
+```
+
+Run this command a few times to generate some activity on your database:
+```bash
+sudo -u postgres sh -c "pgbench -i"
+```
+
+Now open up the PostgreSQL screenboard. You should start to see database metrics populate the graphs after a few minutes.
+
+[https://app.datadoghq.com/screen/integration/235/postgres---overview](https://app.datadoghq.com/screen/integration/235/postgres---overview)
 
 Click **Next** to continue.
 

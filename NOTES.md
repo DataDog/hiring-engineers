@@ -57,12 +57,34 @@ I tried this but the auto-generated hostname stays in the dashboard. I also atte
 
 https://docs.datadoghq.com/getting_started/tagging/assigning_tags/?tab=noncontainerizedenvironments#host-tags
 
-The duplicate host issue seems to have resolved itself. 
+The duplicate host issue seems to have resolved itself.
 
 Initial impressions on the dashboards.
 
 My newly minted host starts out with a bright red color. This doesn't feel right. A new Linux instance should show up 'healthy' or 'green'. I looked closer and it appears that the dashboard has auto-calculated the 'high water mark' for CPU at 0.5%. I adjusted this up to 100% to get my host green.
 
+After a teardown and rebuild of my infrastructure using Terraform I noticed that my host was not showing up in the Datadog console anymore. The agent is running and it says the API key is valid, so not sure what's causing this inconsistency. I'm going to give it 30 minutes and see if my host ever 'checks in'.
 
+```
+  API Keys status
+  ===============
+    API key ending with a9601: API Key valid
+```
 
+It's definitely sending data:
+
+```
+2020-06-28 17:42:15 UTC | CORE | INFO | (pkg/forwarder/transaction.go:272 in internalProcess) | Successfully posted payload to "https://7-20-2-app.agent.datadoghq.com/intake/?api_key=*************************a9601", the agent will only log transaction success every 500 transactions
+```
+
+Finally...after nearly 30 minutes the host showed up on the map. This does not leave a good first impression. Nobody wants to wait half an hour for their first monitoring results to show up...
+
+No problems installing Postgres and the Postgres integration. But I can't for the life of me figure out how to navigate to this dashboard on the menus. I had to google around until I found a tutorial with a direct link to it.
+
+https://app.datadoghq.com/screen/integration/235/postgres---overview
+
+The docs here were not clear about where the postgres.d/conf.yaml file goes:
+https://docs.datadoghq.com/integrations/postgres/#installation
+
+This tutorial might be updated to include the full path to the configuration file. New users might not be aware that it is /etc/datadog/conf.d/postgres.d/conf.yaml.
 
