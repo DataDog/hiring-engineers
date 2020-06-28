@@ -11,7 +11,7 @@ Read the directions in this sidebar carefully and copy the commands for each ste
 
 Ready? Let's get started! 🐶
 
-**Time to complete**: About 60 minutes
+**Time to complete**: About 90 minutes
 
 Click the **Start** button to move to the next step.
 
@@ -19,6 +19,8 @@ Click the **Start** button to move to the next step.
 ![Bits the Datadog Mascot](./assets/dd_logo_v_rgb.png)
 
 Datadog is the essential monitoring platform for cloud applications. We bring together data from servers, containers, databases, and third-party services to make your stack entirely observable. These capabilities help DevOps teams avoid downtime, resolve performance issues, and ensure customers are getting the best user experience.
+
+Click **Next** to continue the tutorial.
 
 ## Create a Google Cloud Project
 You can use an existing Google Cloud Project or create a new one. The project menu is right at the top of your Google Cloud Platform dashboard:
@@ -185,7 +187,20 @@ This part will take a few minutes to complete. You can watch the progress of the
 
 Click **Next** to proceed.
 
-## Connect to your Virtual Machine
+## View the Google Compute Engine Dashboard
+Hop on over to the Datadog Google Compute Dashboard:
+
+[https://app.datadoghq.com/screen/integration/47/google-compute-engine](https://app.datadoghq.com/screen/integration/47/google-compute-engine)
+
+Note that Datadog is already collecting valuable information about your project, even before we've installed or set up any agents. Datadog is using the read-only service account we created earlier to extract data about your project.
+
+Click the little star ⭐ icon to add this dashboard to your Favorites.
+
+In the next step we'll connect to your instance and learn about the Datadog agent.
+
+Click **Next** to continue.
+
+## Connect to your GCP Instance
 You can connect to your new VM using the SSH command. First we'll need to update the permissions on our private SSH key. Connect to your agent by copying these commands from your Terraform output:
 
 Update the permissions on your private key:
@@ -199,16 +214,22 @@ ssh -i dogkey.pem ubuntu@1.2.3.4
 ```
 
 Answer `yes` when you are prompted with this question:
-```
-Are you sure you want to continue connecting (yes/no)?
-```
+
+_Are you sure you want to continue connecting (yes/no)?_
 
 Great, you've connected to your Linux instance. You should see an ASCII art image of Bits, the Datadog mascot.
+
+All commands from here on out should be run on your GCP instance, not your Cloud Shell workstation. You can tell which machine you are on by looking at the shell prompt. If your prompt has _cloudshell_ in it you will need to SSH back into your instance. Try typing the hostname command now to make sure you are on the correct machine:
+
+```bash
+hostname
+```
 
 Click **Next** to continue.
 
 ## Working with the Datadog agent
-The [Datadog agent](https://docs.datadoghq.com/agent/) is software that runs in the background on all the hosts you wish to monitor. We've pre-installed the agent on your virtual machine for you. Let's take a look at the agent config file:
+The [Datadog agent](https://docs.datadoghq.com/agent/) is software that runs in the background on all the hosts you wish to monitor. We've pre-installed the agent on your virtual machine for you. Let's take a look at the agent config file.
+
 ```bash
 sudo cat /etc/datadog-agent/datadog.yaml
 ```
@@ -231,7 +252,7 @@ Detailed data about your host is now streaming back to your Datadog account. Che
 
 You can also click on your host and visit its dashboard to see detailed stats collected by the Datadog agent.
 
-Note: It can take a few minutes before your host shows up on the map. If your host shows up twice on the map, don't worry. This happens because the GCP integration also detects the instance from the Google Cloud API. Datadog will merge the two hosts together after a few minutes.
+**Note:** It can take a few minutes before your host shows up on the map. If your host shows up twice on the map, don't worry. This happens because the GCP integration also detects the instance from the Google Cloud API. Datadog will merge the two hosts together after a few minutes.
 
 Click on the **Next** button to continue.
 
@@ -247,14 +268,19 @@ First gain a root shell so you don't have to type `sudo` before every command:
 sudo /bin/su - root
 ```
 
-Now run the following block of code to add some tags to your datadog.yaml file:
-```bash
+Now run the following block of code to add some tags to your datadog.yaml file. Copy and paste this code into your terminal. This command should only be run once.
+```
 cat <<-EOF >> /etc/datadog-agent/datadog.yaml
 tags:
   - dogname: Astro
   - dogtype: Great Dane
   - dogshow: The Jetsons
 EOF
+```
+
+Check out your new datadog.yaml file:
+```bash
+cat /etc/datadog-agent/datadog.yaml
 ```
 
 Restart the agent to update your tags.
@@ -271,9 +297,14 @@ Let's install a database for Datadog to monitor. We'll be following the instruct
 
 [https://docs.datadoghq.com/integrations/postgres/#installation](https://docs.datadoghq.com/integrations/postgres/#installation)
 
+You should still be in a root shell. If you don't see a `#` in your prompt run this again:
+```bash
+sudo /bin/su - root
+```
+
 Use this command to install the PostgreSQL database on your host. Make sure you are SSH'd into your target VM and not your Cloud Shell when you run these commands.
 ```bash
-sudo apt -y install postgresql
+apt -y install postgresql
 ```
 
 Next open a psql prompt as the postgres user to create an account for Datadog:
@@ -281,14 +312,14 @@ Next open a psql prompt as the postgres user to create an account for Datadog:
 sudo -u postgres psql
 ```
 
-Within the psql prompt run this command:
+Within the psql prompt run this command. You'll need to copy and paste this into the terminal.
 ```sql
 create user datadog with password 'datadog123';
 grant pg_monitor to datadog;
 ```
 
 Exit the psql (postgres) prompt:
-```sql
+```bash
 exit
 ```
 
