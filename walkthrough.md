@@ -16,8 +16,7 @@ Ready? Let's get started! 🐶
 Click the **Start** button to move to the next step.
 
 ## What is Datadog?
-![Bits the Datadog Mascot](./assets/dd_logo_v_rgb.png)
-
+![Bits the Datadog Mascot](./solution/assets/dd_logo_v_rgb.png)
 Datadog is the essential monitoring platform for cloud applications. We bring together data from servers, containers, databases, and third-party services to make your stack entirely observable. These capabilities help DevOps teams avoid downtime, resolve performance issues, and ensure customers are getting the best user experience.
 
 Click **Next** to continue the tutorial.
@@ -338,7 +337,7 @@ Click **Next** to continue.
 ## Configure the Agent for Database Monitoring
 Now you can create a new config file to monitor your PostgreSQL database. Run the following commands to populate the /etc/datadog-agent/postgres.d/conf.yaml file.
 
-First gain a root shell so we don't have to type sudo for every command. If you are already in a root prompt (it looks like a `#` symbol), you can skip this step.
+If you are already in a root prompt (it looks like a `#` symbol), you can skip this step.
 ```bash
 sudo /bin/su - root
 ```
@@ -379,6 +378,8 @@ You'll need to scroll to the bottom of the configuration tab and click on the **
 Now open up the PostgreSQL metrics dashboard. You should start to see database metrics populate the graphs after a few minutes.
 
 [https://app.datadoghq.com/dash/integration/17/postgres---metrics](https://app.datadoghq.com/dash/integration/17/postgres---metrics)
+
+Add the Postgres - Metric dashboard to your favorites by clicking on the star ⭐ icon.
 
 Click **Next** to continue.
 
