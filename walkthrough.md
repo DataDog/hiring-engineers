@@ -87,14 +87,18 @@ gcloud iam service-accounts keys create --iam-account datadog-service-account@da
 Now you should have a Google Cloud credentials file in your home directory called `datadog.json`. We'll use these credentials in the next steps.
 
 ## Set up Your Environment Variables
-In order to configure your GCP instance and integration you'll need two environment variables, namely `DD_API_KEY` and `DATADOG_GCP_CREDENTIALS`. You can get your Datadog API key at the following URL:
+In order to configure your GCP instance and integration you'll need three environment variables, namely `DD_API_KEY`, `DD_APP_KEY`, and `DATADOG_GCP_CREDENTIALS`. You can get your Datadog API and app keys at the following URL:
 
 https://app.datadoghq.com/account/settings#api
 
-Copy the API key and run the following commands:
+Run the following commands to export your keys as environment variables.
 
 ```bash
 export DD_API_KEY=YOURAPIKEYHERE
+```
+
+```bash
+export DD_APP_KEY=YOURAPPKEYHERE
 ```
 
 ```bash
