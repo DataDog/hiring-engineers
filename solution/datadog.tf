@@ -1,4 +1,4 @@
-# Extract our credentials from the GOOGLE_CREDENTIALS environment variable
+# Extract our credentials from the DATADOG_GCP_CREDENTIALS environment variable
 data "external" "credentials" {
   program = ["bash", "./assets/import_creds.sh"]
 }

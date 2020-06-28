@@ -19,8 +19,10 @@ You can also easily create a new project using the command line. You may need to
 
 Example:
 ```bash
-# Get a random number to use in our project id
 export RANDOM_ID=$RANDOM
+```
+
+```bash
 gcloud projects create datadog-gcp-test-$RANDOM_ID --name="Datadog test project"
 ```
 
@@ -33,7 +35,7 @@ Visit the APIs dashboard and click on the `+Enable APIs and Services` button. Se
 
 [https://console.cloud.google.com/apis/dashboard](https://console.cloud.google.com/apis/dashboard)
 
-Alternatively you can easily enable the API on the command line. Set your project ID and then you can enable the compute engine API. Make sure the project ID matches the one you created above!
+Alternatively you can easily enable the API on the command line. The commands below can be copied and pasted into your Google Cloud Shell terminal.
 
 Set your project ID:
 ```bash
@@ -62,11 +64,6 @@ You can verify that the Compute Engine API is enabled with this command:
 gcloud services list | grep compute
 ```
 
-The output should look like this:
-```
-compute.googleapis.com            Compute Engine API
-```
-
 Click **Next** to proceed.
 
 ## Create a Service Account
@@ -79,7 +76,7 @@ gcloud iam service-accounts create datadog-service-account --display-name "Datad
 
 Now grant the Viewer role to your new service account:
 ```bash
-gcloud projects add-iam-policy-binding datadog-gcp-test-$RANDOM_ID --member=serviceAccount:datadog-service-account@datadog-gcp-test-$RANDOM_ID --role=roles/viewer
+gcloud projects add-iam-policy-binding datadog-gcp-test-$RANDOM_ID --member=serviceAccount:datadog-service-account@datadog-gcp-test-$RANDOM_ID.iam.gserviceaccount.com --role=roles/viewer
 ```
 
 Create a JSON key file for your new service account.
@@ -90,7 +87,7 @@ gcloud iam service-accounts keys create --iam-account datadog-service-account@da
 Now you should have a Google Cloud credentials file in your home directory called `datadog.json`. We'll use these credentials in the next steps.
 
 ## Set up Your Environment Variables
-In order to configure your GCP instance and integration you'll need two environment variables, namely `DD_API_KEY` and `GOOGLE_CREDENTIALS`. You can get your Datadog API key at the following URL:
+In order to configure your GCP instance and integration you'll need two environment variables, namely `DD_API_KEY` and `DATADOG_GCP_CREDENTIALS`. You can get your Datadog API key at the following URL:
 
 https://app.datadoghq.com/account/settings#api
 
@@ -98,18 +95,20 @@ Copy the API key and run the following commands:
 
 ```bash
 export DD_API_KEY=YOURAPIKEYHERE
-export GOOGLE_CREDENTIALS=$(cat ~/.datadog.json)
+export DATADOG_GCP_CREDENTIALS=$(cat ~/.datadog.json)
 ```
 
 Check your work by echoing out these variables:
 
 ```bash
 echo $DD_API_KEY
-echo $GOOGLE_CREDENTIALS
+```
+
+```bash
+echo $DATADOG_GCP_CREDENTIALS
 ```
 
 Ready to start building? Click **Next** to proceed.
-
 
 ## Next Step here
 More instructions here.
