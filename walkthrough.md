@@ -91,7 +91,7 @@ In order to configure your GCP instance and integration you'll need three enviro
 
 https://app.datadoghq.com/account/settings#api
 
-Run the following commands to export your keys as environment variables.
+Run the following commands to export your keys and credentials as environment variables. This is safer than storing sensitive information in your code or text files!
 
 ```bash
 export DD_API_KEY=YOURAPIKEYHERE
@@ -109,6 +109,10 @@ Check your work by echoing out these variables:
 
 ```bash
 echo $DD_API_KEY
+```
+
+```bash
+echo $DD_APP_KEY
 ```
 
 ```bash
