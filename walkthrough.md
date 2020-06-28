@@ -5,14 +5,20 @@ This guide will walk you through deploying the Datadog agent onto a Google Compu
 
 Once we have our infrastructure up and running, you'll configure agent settings to collect some metrics, visualize your data with dashboards, monitor the data and send alerts, and configure Datadog to collect application performance data.
 
-Let's get started! 🐶
+On the left side of the screen you'll see a text editor and a Google Cloud Shell console. The code used by this tutorial is stored in the `cloudshell_open/hiring-engineers` directory.
+
+Read the directions in this sidebar carefully and copy the commands for each step into your terminal window.
+
+Ready? Let's get started! 🐶
 
 **Time to complete**: About 60 minutes
 
 Click the **Start** button to move to the next step.
 
 ## What is Datadog?
-Datadog is an infrastructure monitoring SaaS platform.
+![Bits the Datadog Mascot](./assets/dd_logo_v_rgb.png)
+
+Datadog is the essential monitoring platform for cloud applications. We bring together data from servers, containers, databases, and third-party services to make your stack entirely observable. These capabilities help DevOps teams avoid downtime, resolve performance issues, and ensure customers are getting the best user experience.
 
 ## Create a Google Cloud Project
 You can use an existing Google Cloud Project or create a new one. The project menu is right at the top of your Google Cloud Platform dashboard:

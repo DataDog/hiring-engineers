@@ -69,9 +69,8 @@ It's definitely sending data:
 Finally...after nearly 30 minutes the host showed up on the map. This does not leave a good first impression. Nobody wants to wait half an hour for their first monitoring results to show up...
 
 #### Working with the PostgreSQL integration
-No problems installing Postgres and the Postgres integration. But I can't for the life of me figure out how to navigate to this dashboard on the menus. I had to google around until I found a tutorial with a direct link to it.
-
-https://app.datadoghq.com/screen/integration/235/postgres---overview
+No problems installing Postgres and the Postgres integration. I didn't realize at first that I also had to go into the GUI to enable the integration and see it on the dashboard list. The Terraform provider only covers a small handful of integrations for automated installation:
+https://www.terraform.io/docs/providers/datadog/index.html
 
 The docs here were not clear about where the postgres.d/conf.yaml file goes:
 https://docs.datadoghq.com/integrations/postgres/#installation
