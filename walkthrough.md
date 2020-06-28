@@ -102,7 +102,7 @@ export DD_APP_KEY=YOURAPPKEYHERE
 ```
 
 ```bash
-export DATADOG_GCP_CREDENTIALS=$(cat ~/.datadog.json)
+export DATADOG_GCP_CREDENTIALS=$(cat ~/datadog.json)
 ```
 
 Check your work by echoing out these variables:
