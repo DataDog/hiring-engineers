@@ -332,7 +332,7 @@ Next open a psql prompt as the postgres user to create an account for Datadog:
 sudo -u postgres psql
 ```
 
-Within the psql prompt run this command. You'll need to copy and paste this into the terminal.
+Within the psql prompt run this command. You'll need to copy and paste this into the terminal. Be sure you hit `ENTER` after the second command.
 ```sql
 create user datadog with password 'datadog123';
 grant pg_monitor to datadog;
@@ -391,7 +391,12 @@ Restart the datadog agent to load your new config:
 systemctl restart datadog-agent
 ```
 
-Run this one liner to start generating connections to your database. It will tie up 5/100 of your available database connections. Leave this script running for a few minutes to generate data for your dashboards. Use `CTRL-C` to stop it when you are done generating traffic.
+Set up the pgbench tool so we can generate database activity:
+```bash
+sudo -u postgres sh -c "pgbench -i"
+```
+
+Next, run this one liner to start generating connections to your database. It will tie up 5/100 of your available database connections. Leave this script running for a few minutes to generate data for your dashboards. Use `CTRL-C` to stop it when you are done generating traffic.
 ```bash
 while true; do sudo -u postgres sh -c "pgbench -c 5 -C"; sleep 1; done
 ```
