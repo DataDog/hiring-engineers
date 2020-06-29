@@ -423,7 +423,7 @@ echo "instances: [{}]" > /etc/datadog-agent/conf.d/random_number.yaml
 
 Next, copy the check's Python script into the checks.d directory.
 ```bash
-cp /home/ubuntu/my_metric.py /etc/datadog-agent/checks.d/random_number.yaml
+cp /home/ubuntu/random_number.py /etc/datadog-agent/checks.d/random_number.py
 ```
 
 Finally restart the agent to start collecting random numbers.
@@ -431,7 +431,7 @@ Finally restart the agent to start collecting random numbers.
 systemctl restart datadog-agent
 ```
 
-Your host's Datadog dashboard should now show a new entry called **my_metric** under the Apps Running section. Click it to see a graph of all the random numbers that were generated.
+Your host's Datadog dashboard should now show a new entry called **random_number** under the Apps Running section. Click it to see a graph of all the random numbers that were generated.
 
 Next let's change your collection interval. Overwrite your random_number.yaml file with the following command:
 ```bash
