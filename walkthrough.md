@@ -301,7 +301,7 @@ Restart the agent to update your tags.
 systemctl restart datadog-agent
 ```
 
-Check out your host on the infrastructure map to see your new tags. Tags are a powerful way to track and create collections of hosts and services. It may take a few minutes for the tags to update in the UI.
+Tags are a powerful way to track and create collections of hosts and services. It may take up to ten minutes for the tags to update in the UI. You can proceed with the next steps while the agent runs in the background.
 
 Click on the **Next** button to continue.
 
@@ -394,6 +394,40 @@ Now open up the PostgreSQL metrics dashboard. You should start to see database m
 [https://app.datadoghq.com/dash/integration/17/postgres---metrics](https://app.datadoghq.com/dash/integration/17/postgres---metrics)
 
 Add the Postgres - Metric dashboard to your favorites by clicking on the star ⭐ icon.
+
+Click **Next** to continue.
+
+## Create a Custom Agent Check
+In this step we'll add a custom agent check to your instance. Custom agent checks are written in Python and should be stored in `/etc/datadog-agent/checks.d`. Each check should have an identically named yaml configuration file in `/etc/datadog-agent/conf.d`. The recommended practice is to prefix your custom check names with `custom_` to differentiate them from the built-in Datadog checks.
+
+Let's create the YAML config for our check first. Run the following command:
+```bash
+echo "instances: [{}]" > /etc/datadog-agent/conf.d/custom_random.yaml
+```
+
+Next copy the check script into the checks.d directory.
+```bash
+cp /home/ubuntu/custom_random.py /etc/datadog-agent/checks.d
+```
+
+Finally restart the agent to start collecting random numbers.
+```bash
+systemctl restart datadog-agent
+```
+
+Your host's Datadog dashboard should now show a new entry called **random_metric** under the Apps Running section. Click it to see a graph of all the random numbers that were generated.
+
+Next let's change your collection interval. Overwrite your custom_random.yaml file with the following command:
+```bash
+echo "instances: [{min_collection_interval: 45}]" > /etc/datadog-agent/conf.d/custom_random.yaml
+```
+
+Restart the agent to activate the new collection interval.
+```bash
+systemctl restart datadog-agent
+```
+
+You should now see data points on the graph showing up roughly 40 seconds apart. The granularity of the graph is measured in 20 second intervals.
 
 Click **Next** to continue.
 
