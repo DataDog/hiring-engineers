@@ -316,6 +316,13 @@ sudo /bin/su - root
 ```
 
 Use this command to install the PostgreSQL database on your host. Make sure you are SSH'd into your target VM and not your Cloud Shell when you run these commands.
+
+First update the apt cache on your host:
+```bash
+apt -y update
+```
+
+Then install the PostgreSQL database package:
 ```bash
 apt -y install postgresql
 ```
