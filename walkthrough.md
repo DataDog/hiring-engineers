@@ -422,7 +422,7 @@ Finally restart the agent to start collecting random numbers.
 systemctl restart datadog-agent
 ```
 
-Your host's Datadog dashboard should now show a new entry called **random_metric** under the Apps Running section. Click it to see a graph of all the random numbers that were generated.
+Your host's Datadog dashboard should now show a new entry called **my_metric** under the Apps Running section. Click it to see a graph of all the random numbers that were generated.
 
 Next let's change your collection interval. Overwrite your custom_random.yaml file with the following command:
 ```bash

@@ -8,13 +8,13 @@ resource "datadog_dashboard" "ordered_dashboard" {
     timeseries_definition {
       title = "Random Number from ${var.dogname}"
       request {
-        q            = "avg:random_metric.gauge{name:${var.dogname}}"
+        q            = "avg:my_metric.gauge{name:${var.dogname}}"
         display_type = "bars"
         style {
           palette    = "dog_classic"
         }
         metadata {
-          expression = "avg:random_metric.gauge{name:${var.dogname}}"
+          expression = "avg:my_metric.gauge{name:${var.dogname}}"
           alias_name = "${var.dogname} Random Number"
         }
       }
@@ -47,7 +47,7 @@ resource "datadog_dashboard" "ordered_dashboard" {
         live_span  = "1h"
       }
       request {
-        q          = "avg:random_metric.gauge{name:${var.dogname}}.rollup(sum, 3600)"
+        q          = "avg:my_metric.gauge{name:${var.dogname}}.rollup(sum, 3600)"
         aggregator = "sum"
       }
     }
