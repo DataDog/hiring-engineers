@@ -391,7 +391,7 @@ Restart the datadog agent to load your new config:
 systemctl restart datadog-agent
 ```
 
-Run this one liner to start generating connections to your database. Leave this script running for a few minutes to generate data for your dashboards. Use `CTRL-C` to stop it when you are done generating traffic.
+Run this one liner to start generating connections to your database. It will tie up 5/100 of your available database connections. Leave this script running for a few minutes to generate data for your dashboards. Use `CTRL-C` to stop it when you are done generating traffic.
 ```bash
 while true; do sudo -u postgres sh -c "pgbench -c 5 -C"; sleep 1; done
 ```
@@ -456,7 +456,17 @@ As you've probably guessed, you can create custom dashboards to show all kinds o
 
 In the **Dashboards** menu click on **Dashboard List**. Next, click on **Datadog Tutorial Dashboard**. This dashboard was created programatically with Terraform code. You can see the code that built the dashboard in the `dd_dashboard.tf` file in the code editor.
 
+Take a closer look at the **PostgreSQL % Max Connections on astro** graph. You should see the database activity you generated earlier with the one-liner.
 
+Back on your VM, run the database benchmark script again, but this time we'll simulate 95 connections instead of 5.
+
+```bash
+while true; do sudo -u postgres sh -c "pgbench -c 95 -C"; sleep 1; done
+```
+
+Watch the anomaly graph for a few minutes. What happens?
+
+Click **Next** to continue
 
 ## Another step here
 Do some things
