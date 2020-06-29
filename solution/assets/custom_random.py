@@ -11,7 +11,7 @@ except ImportError:
 class RandomCheck(AgentCheck):
     def check(self, instance):
         self.gauge(
-            "random_metric.gauge",
+            "my_metric.gauge",
             random.randint(0, 1000),
             tags=["metric_submission_type:gauge"],
         )

@@ -431,6 +431,13 @@ You should now see data points on the graph showing up roughly 40 seconds apart.
 
 Click **Next** to continue.
 
+## Visualizing Monitoring Data
+As you've probably guessed, you can create custom dashboards to show all kinds of metrics and alert conditions. When you spun up this lab environment using Terraform a special dashboard was created that includes three widgets on it.
+
+In the **Dashboards** menu click on **Dashboard List**. Next, click on **Datadog Tutorial Dashboard**. This dashboard was created programatically with Terraform code. You can see the code that built the dashboard in the `dd_dashboard.tf` file in the code editor.
+
+
+
 ## Another step here
 Do some things
 
