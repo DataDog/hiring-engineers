@@ -36,6 +36,10 @@ I found one issue that may be related about quoting tags. I didn't find any open
 
 https://github.com/DataDog/datadog-agent/issues/4982
 
+Testing tags without the GCP integration. Theory is that the GCP integration is clobbering any tags that were configured in the datadog.yaml file. Removed integration, created brand new standalone GCP host with the agent installed.  Added some tags and started a stopwatch timer after restarting the agent.
+
+During my test the agent file based tags took 7.5 minutes to show up in the dashboard. Why so slow?
+
 #### Duplicate host when GCP integration is installed
 One issue I encountered was that if you install the GCP integration and the agent, the instance shows up twice in the Datadog inventory. Something's causing it to be registered as two separate hosts. The host that was picked up by the integration does not show an availability zone and the hostname is different:
 

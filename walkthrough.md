@@ -47,7 +47,7 @@ gcloud config set project $PROJECT_ID
 Good job. Now that you have a project ID and have defined the PROJECT_ID environment variable, you can click **Next** to continue.
 
 ## Enable the Compute Engine API
-If you have an existing project with billing and the Compute Engine API already enabled you can skip this step.
+If you have an existing project with billing and the Compute Engine API already enabled you can skip this step. Just make sure you have the $PROJECT_ID environment variable set before you move on.
 
 Note: You'll require a valid billing account to do this tutorial. You can use free Google Cloud credits for this tutorial as long as you have a valid billing account.
 
@@ -237,17 +237,27 @@ The [Datadog agent](https://docs.datadoghq.com/agent/) is software that runs in 
 sudo cat /etc/datadog-agent/datadog.yaml
 ```
 
-There is only one required setting in this file, namely `api_key`. You can adjust all kinds of settings inside of this file but the minimum requirement is a single line containing your API key. We'll be adding some things to this file in the next steps.
+There is only one required setting in this file, namely `api_key`. You can configure many settings in of this file, but the minimum requirement is a single line containing your API key. We'll be adding some things to this file in the next steps.
 
 Start up the Datadog agent with the following command:
 ```bash
 sudo systemctl start datadog-agent
 ```
 
-If the command ran successfully it will not create any output. You can check the agent status at any time with the following command:
+If the command ran successfully it will not create any output. You can check the agent status at with the following command:
 ```bash
 sudo systemctl status datadog-agent
 ```
+
+You should see **active (running)** on the status line. Type `ZZ` to exit if your terminal prompt is missing.
+
+Let's take a closer look at the agent status. Run this command to see more details about all the monitors running on your host:
+
+```bash
+sudo datadog-agent status
+```
+
+Scroll back through the output and see all the agent settings and default checks. Healthy checks show up with a green `[OK]` next to them.
 
 Detailed data about your host is now streaming back to your Datadog account. Check out the host map and you should see a new host called `astro` appear on the map. If you renamed your dogname variable it will show up under a different name.
 
@@ -260,7 +270,7 @@ You can also click on your host and visit its dashboard to see detailed stats co
 Click on the **Next** button to continue.
 
 ## Add some Tags
-Tags are a way of adding dimensions to Datadog telemetries so they can be filtered, aggregated, and compared in Datadog visualizations.
+Tags are a way of adding dimensions to Datadog telemetries so they can be filtered, aggregated, and compared in Datadog visualizations. Tags are always converted to all lower-case, and spaces will be replaced with underscores. You can learn more about tagging in the getting started guide:
 
 [https://docs.datadoghq.com/getting_started/tagging/](https://docs.datadoghq.com/getting_started/tagging/)
 
@@ -275,9 +285,9 @@ Now run the following block of code to add some tags to your datadog.yaml file. 
 ```
 cat <<-EOF >> /etc/datadog-agent/datadog.yaml
 tags:
-  - dogname: Astro
-  - dogtype: Great Dane
-  - dogshow: The Jetsons
+  - dogname:astro
+  - dogtype:great_dane
+  - dogshow:the_jetsons
 EOF
 ```
 

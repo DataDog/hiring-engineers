@@ -61,9 +61,10 @@ resource "google_compute_instance" "doghouse" {
 
   metadata = {
     ssh-keys = "ubuntu:${chomp(tls_private_key.dogkey.public_key_openssh)} terraform"
-    dogname = "Astro"
-    dogtype = "Great Dane"
-    dogshow = "The Jetsons"
+    # Uncomment the lines below to add more tags to your instance.
+    # dogname = "astro"
+    # dogtype = "great_dane"
+    # dogshow = "the_jetsons"
   }
 
   // Why must I be like that...why must I chase the cat?
