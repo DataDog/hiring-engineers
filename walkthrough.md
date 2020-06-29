@@ -407,14 +407,22 @@ Click **Next** to continue.
 ## Create a Custom Agent Check
 In this step we'll add a custom agent check to your instance. Custom agent checks are written in Python and should be stored in `/etc/datadog-agent/checks.d`. Each check should have an identically named yaml configuration file in `/etc/datadog-agent/conf.d`. The recommended practice is to prefix your custom check names with `custom_` to differentiate them from the built-in Datadog checks.
 
-Let's create the YAML config for our check first. Run the following command:
+Let's create the YAML config for our check first. Run the following commands:
 ```bash
-echo "instances: [{}]" > /etc/datadog-agent/conf.d/custom_random.yaml
+mkdir /etc/datadog-agent/conf.d/my_metric.d
 ```
 
-Next copy the check script into the checks.d directory.
 ```bash
-cp /home/ubuntu/custom_random.py /etc/datadog-agent/checks.d
+echo "instances: [{}]" > /etc/datadog-agent/conf.d/my_metric.d/my_metric.yaml
+```
+
+Next run these commands to copy the check script into the checks.d directory.
+```bash
+mkdir /etc/datadog-agent/checks.d/my_metric.d
+```
+
+```bash
+cp /home/ubuntu/my_metric.py /etc/datadog-agent/checks.d/my_metric.d/my_metric.yaml
 ```
 
 Finally restart the agent to start collecting random numbers.
@@ -424,9 +432,9 @@ systemctl restart datadog-agent
 
 Your host's Datadog dashboard should now show a new entry called **my_metric** under the Apps Running section. Click it to see a graph of all the random numbers that were generated.
 
-Next let's change your collection interval. Overwrite your custom_random.yaml file with the following command:
+Next let's change your collection interval. Overwrite your my_metric.yaml file with the following command:
 ```bash
-echo "instances: [{min_collection_interval: 45}]" > /etc/datadog-agent/conf.d/custom_random.yaml
+echo "instances: [{min_collection_interval: 45}]" > /etc/datadog-agent/conf.d/my_metric.d/my_metric.yaml
 ```
 
 Restart the agent to activate the new collection interval.
