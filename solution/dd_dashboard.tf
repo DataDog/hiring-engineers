@@ -49,6 +49,16 @@ resource "datadog_dashboard" "ordered_dashboard" {
       request {
         q          = "avg:my_metric.gauge{name:${var.dogname}}.rollup(sum, 3600)"
         aggregator = "sum"
+        conditional_formats {
+          comparator = "<"
+          value = "9000"
+          palette = "white_on_green"
+        }
+        conditional_formats {
+          comparator = ">"
+          value = "9000"
+          palette = "white_on_red"
+        }
       }
     }
   }
