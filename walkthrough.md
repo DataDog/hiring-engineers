@@ -381,14 +381,19 @@ instances:
 EOF
 ```
 
-Restart the agent to load your new config:
+Restart PostgreSQL to load the new configuration:
+```bash
+systemctl restart postgresql
+```
+
+Restart the datadog agent to load your new config:
 ```bash
 systemctl restart datadog-agent
 ```
 
-Run this command a few times to generate some activity on your database:
+Run this one liner to start generating connections to your database. Leave this script running for a few minutes to generate data for your dashboards. Use `CTRL-C` to stop it when you are done generating traffic.
 ```bash
-sudo -u postgres sh -c "pgbench -i"
+while true; do sudo -u postgres sh -c "pgbench -c 5 -C"; sleep 1; done
 ```
 
 Back in your Datadog account, enable the PostgreSQL integration:

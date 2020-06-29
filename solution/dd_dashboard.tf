@@ -23,16 +23,16 @@ resource "datadog_dashboard" "ordered_dashboard" {
 
   widget {
     timeseries_definition {
-      title = "PostgreSQL Max Connections on ${var.dogname}"
+      title = "PostgreSQL % Max Connections on ${var.dogname}"
       request {
-        q            = "anomalies(avg:postgresql.max_connections{name:${var.dogname}}, 'robust', 2)"
+        q            = "anomalies(avg:postgresql.percent_usage_connections{name:${var.dogname}}, 'basic', 2)"
         display_type = "bars"
         style {
           palette    = "orange"
         }
         metadata {
-          expression = "anomalies(avg:postgresql.max_connections{name:${var.dogname}}, 'robust', 2)"
-          alias_name = "PostgreSQL Max Connections"
+          expression = "anomalies(avg:postgresql.percent_usage_connections{name:${var.dogname}}, 'basic', 2)"
+          alias_name = "PostgreSQL % Max Connections"
         }
       }
     }
