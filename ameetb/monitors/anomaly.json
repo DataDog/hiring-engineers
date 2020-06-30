@@ -1,0 +1,29 @@
+{
+	"id": 19795734,
+	"name": "Unusual CPU-System load",
+	"type": "query alert",
+	"query": "avg(last_1h):anomalies(avg:system.cpu.system{*}, 'basic', 2, direction='both', alert_window='last_5m', interval=20, count_default_zero='true') >= 1",
+	"message": "{{#is_alert}}Got a high CPU-System alert\nTime of alert: {{last_triggered_at_epoch}}  \nValue of cpu.system @ trigger: {{value}} \n\nSteps:\n1) Log on box\n2) Run 'ps aux'\n{{/is_alert}}\n\n{{#is_recovery}}High CPU-System load  is recovering\nNo action to take.\n{{/is_recovery}} \n\n{{#is_warning}}\nKeep an eye on high cpu-system load.\nSteps:\n1) Log on box\n2) Run 'ps aux'\n{{/is_warning}} \n\n{{#is_no_data}}\nNo data has been reported for system.cpu.system{{/is_no_data}}  @bharwani@gmail.com",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"evaluation_delay": 5,
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 1,
+			"critical_recovery": 0
+		},
+		"threshold_windows": {
+			"trigger_window": "last_5m",
+			"recovery_window": "last_5m"
+		}
+	}
+}

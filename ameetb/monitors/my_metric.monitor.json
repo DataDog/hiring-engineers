@@ -1,0 +1,24 @@
+{
+	"id": 19802123,
+	"name": "My_metric monitoring",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:my_metric{*} > 800",
+	"message": "Alert from: Host {{host.name}} with IP {{host.ip}}. \n\n{{#is_alert}}\nmy_metric is {{value}}. \nAlert trigger is {{threshold}} \nTake a look!\nRefer to playbook: http://devops.com/my_metric#alert\n{{/is_alert}} \n\n{{#is_warning}}\nmy_metric is {{value}}.\nWarning trigger is {{warn_threshold}} \nTake a look! \nRefer to playbook: http://devops.com/my_metric#warning\n{{/is_warning}} \n\n{{#is_no_data}}\nmy_metric has not reported any value in the last 10mins. Take a look!\nRefer to playbook: http://devops.com/my_metric#no_data\n{{/is_no_data}} \n\n @bharwani@gmail.com",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": false,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}
