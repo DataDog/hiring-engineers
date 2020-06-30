@@ -208,7 +208,7 @@ Your Terraform run should be nearly finished by now. You'll see green text with 
 Click **Next** to continue.
 
 ## Connect to your GCP Instance
-You can connect to your new GCP instance using the SSH command. First we'll need to update the permissions on our private SSH key. Connect to your agent by copying these commands from your Terraform output:
+You can connect to your new GCP instance using the SSH command. First we'll need to update the permissions on our private SSH key. Connect to your machine by copying these commands from your Terraform output:
 
 Update the permissions on your private key:
 ```bash
