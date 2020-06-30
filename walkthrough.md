@@ -496,6 +496,10 @@ sudo -u postgres sh -c "pgbench -P 5 -c 95 -C -t 1750"
 
 Watch the anomaly graph for a few minutes. What happens?
 
+Stop the pgbench process with `CTRL-C`.
+
+Add the Datadog Tutorial Dashboard to your favorites by clicking on the star ⭐ icon.
+
 Click **Next** to continue.
 
 ## Create an Alert Monitor
@@ -528,45 +532,74 @@ Click **Next** to proceed.
 ## Application Performance Monitoring
 [Datadog APM](https://docs.datadoghq.com/getting_started/tracing/) (Application Performance Monitoring), also known as tracing, allows you to collect detailed application performance data.
 
+First let's reconnect to your GCP instance:
+```bash
+ssh -i dogkey.pem ubuntu@1.2.3.4
+```
+
+Gain a root shell:
+```bash
+sudo /bin/su - root
+```
+
 Setting up APM is easy. Follow the steps below to enable tracing for a sample app:
 
 First, install the `flask` and `ddtrace` packages.
 ```bash
-sudo apt -y install python3-pip
+apt -y install python3-pip
 pip3 install flask
 pip3 install ddtrace
 ```
 
-Next, run the sample app code with ddtrace enabled.
+Set the DD_SERVICE environment variable:
 ```bash
 export DD_SERVICE=sampleapp
-ddtrace-run python /home/ubuntu/flaskapp.py
+```
+
+Start the app in the background:
+```bash
+nohup ddtrace-run python3 /home/ubuntu/flaskapp.py &
 ```
 
 You can use these commands to generate data. Run each command three or four times.
 ```bash
 curl http://localhost:5050/
 ```
+
 ```bash
 curl http://localhost:5050/api/apm
 ```
+
 ```bash
 curl http://localhost:5050/api/trace
 ```
 
-Check your Datadog APM dashboard.
+Check out the new sampleapp service at this link:
+
+[https://app.datadoghq.com/apm/service/sampleapp/](https://app.datadoghq.com/apm/service/sampleapp/)
+
+You should see data start to stream in within a few minutes.
+
+Congratulations, you have enabled Application Performance Monitoring!
 
 Click **Next** to proceed.
 
-## Terraform Destroy
-All done? You can clean up everything you built with the `terraform destroy` command. Try it now:
-
+## Clean Up
+This brings us to the end of the tutorial. Let's clean up everything that we built. Exit from your instance and return back to your cloud shell environment. You'll need to exit twice, once to leave the root shell and again to log off of the instance.
 ```bash
-terraform destroy
+exit
 ```
 
-You'll need to confirm your intention by typing `yes` again. This is to help prevent accidental deletion of important infrastructure!
+Once you're back in cloud shell, delete your instance and Datadog dashboards and monitors with the `terraform destroy` command:
+```bash
+terraform destroy -auto-approve -var "dd_api_key=$DD_API_KEY"
+```
 
-Nice work. If you'd like to learn more about Datadog visit the following link:
+You can keep your Google project if you plan to repeat this tutorial. Or, delete the project with the following command:
+```bash
+gcloud projects delete $PROJECT_ID
+```
 
-https://www.datadoghq.com
+Thanks for trying out Datadog monitoring for Google Cloud Platform. If you'd like to learn more about Datadog visit the following link:
+
+[https://www.datadoghq.com](https://www.datadoghq.com)
