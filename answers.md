@@ -80,6 +80,7 @@ For this section, I used the Flask sample app and I went the ddtrace-run route a
 
 Here is the code I used: [ameetb/src/app/app.py](ameetb/src/app/app.py). 
 Pip [requirements.txt](ameetb/src/app/requirements.txt) file is also provided.
+
 Frankly, not much change was needed. I added the *from datadog import  initialize, api* line. 
 Also, I had to enable *APM* directive in the Agents's datadog.yaml file and restart the agent. 
 
@@ -98,7 +99,7 @@ hey -n 100 http://127.0.0.1:5050/api/trace
 Here is the Dashboard with APM, Monitors and other Environment metrics: [https://app.datadoghq.com/dashboard/kvw-h77-xvg/infrastructure--apm-dashboard?from_ts=1593451445737&to_ts=1593537845737&live=true](https://app.datadoghq.com/dashboard/kvw-h77-xvg/infrastructure--apm-dashboard?from_ts=1593451445737&to_ts=1593537845737&live=true)
 
 Here is a screenshot of the combined Dashboard: 
-![ameetb/sreenshots/combined_timeboard.png](ameetb/sreenshots/combined_timeboard.png)
+![ameetb/sreenshots/combined_timeboard.png](ameetb/screenshots/combined_timeboard.png)
 
 And here is the JSON for the combined Dashboard: [ameetb/timeboards/Infrastructure&APMDashboard--2020-06-30T14_12_56.json](ameetb/timeboards/Infrastructure&APMDashboard--2020-06-30T14_12_56.json)
 
