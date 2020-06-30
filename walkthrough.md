@@ -526,11 +526,35 @@ Great job, now you have alerts and downtimes configured.
 Click **Next** to proceed.
 
 ## Application Performance Monitoring
-Do some things
+[Datadog APM](https://docs.datadoghq.com/getting_started/tracing/) (Application Performance Monitoring), also known as tracing, allows you to collect detailed application performance data.
 
+Setting up APM is easy. Follow the steps below to enable tracing for a sample app:
+
+First, install the `flask` and `ddtrace` packages.
 ```bash
-service datadog-agent restart
+sudo apt -y install python3-pip
+pip3 install flask
+pip3 install ddtrace
 ```
+
+Next, run the sample app code with ddtrace enabled.
+```bash
+export DD_SERVICE=sampleapp
+ddtrace-run python /home/ubuntu/flaskapp.py
+```
+
+You can use these commands to generate data. Run each command three or four times.
+```bash
+curl http://localhost:5050/
+```
+```bash
+curl http://localhost:5050/api/apm
+```
+```bash
+curl http://localhost:5050/api/trace
+```
+
+Check your Datadog APM dashboard.
 
 Click **Next** to proceed.
 
