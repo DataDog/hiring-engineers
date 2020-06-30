@@ -2,10 +2,10 @@ Your answers to the questions go here.
 
 ### Collecting Metrics
 
-** Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-*/etc/datadog-agent/datadog.yaml
-*tags: ["environment:demo", "os:ubuntu"]
+/etc/datadog-agent/datadog.yaml
+`tags: ["environment:demo", "os:ubuntu"]`
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
