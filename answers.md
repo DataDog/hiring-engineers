@@ -11,6 +11,23 @@ Your answers to the questions go here.
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 MySql and integration installed. <br>
+Created /etc/datadog-agent/conf.d/mysql.d/conf.yaml <br>
+```
+    instances: 
+       - server: 127.0.0.1
+         user: datadog
+         pass: "password"
+         port: 3306
+         options:
+           replication: 0
+           galera_cluster: 1
+           extra_status_metrics: true
+           extra_innodb_metrics: true
+           extra_performance_metrics: true
+           schema_size_metrics: false
+           disable_innodb_metrics: false
+    ```
+
 ![screenshotMySQL](images/Snip20200630_14.png)
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. <br>
