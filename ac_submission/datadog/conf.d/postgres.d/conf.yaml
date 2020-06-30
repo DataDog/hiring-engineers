@@ -1,0 +1,11 @@
+ad_identifiers:
+- postgres
+
+init_config:
+
+instances:
+
+  - host: postgres
+    port: 5432
+    username: datadog
+    password: pgpass1234

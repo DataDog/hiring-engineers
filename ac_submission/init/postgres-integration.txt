@@ -1,0 +1,2 @@
+create user datadog with password '<PASSWORD>';
+grant pg_monitor to datadog;

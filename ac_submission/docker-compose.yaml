@@ -1,0 +1,50 @@
+version: "3"
+services:
+  api:
+    build: 
+      context: node-api
+    ports:
+     - "8080:8080"
+    links:
+     - datadog
+    environment:
+     - DATADOG_HOST=datadog # used by the web app to initialize the Datadog library
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: pgpass1234
+      POSTGRES_USER: datadog 
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    labels:
+      com.datadoghq.ad.check_names: '["postgres"]'
+      com.datadoghq.ad.init_configs: '[{}]'
+      com.datadoghq.ad.instances: '[{"host": "postgres", "port": 5432, "username": "datadog", "password": "pgpass1234", "tags": ["app:demo"]}]'
+      #com.datadoghq.ad.instances: '[{"host": "postgres", "port": 5432, "username": "${DD_PG_USER}", "password": "${DD_PG_PASSWORD}", "tags": ["app:demo"]}]'
+      #com.datadoghq.ad.instances: '[{"host": "postgres", "port": 5432, "username": "%%env_DD_PG_USER%%", "password": "%%env_D_PG_PASSWORD%%", "tags": ["app:demo"]}]'
+  # agent section
+  datadog:
+    build: datadog
+    links:
+      - postgres # ensures that redis is a host that the container can find
+      #- web # ensures that the web app can send metrics
+    environment:
+     #- DD_API_KEY=__your_datadog_api_key_here__
+     - DD_API_KEY=${DD_API_KEY}
+     - DD_DOCKER_LABELS_AS_TAGS={"my.custom.label.project":"projecttag","my.custom.label.version":"versiontag"}
+     - DD_TAGS="key1:value1 dddockeragent:1 cloud:gcp" 
+     - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
+     - DD_LOGS_ENABLED=true
+     - DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true
+     - DD_AC_EXCLUDE="name:datadog-agent"
+    ports:
+     - 8126:8126
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /proc/:/host/proc/:ro
+     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+     - ./datadog/conf.d:/etc/datadog-agent/conf.d
+     - ./datadog/checks.d:/etc/datadog-agent/checks.d
+     - ./datadog/logs:/var/log/datadog
