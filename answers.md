@@ -73,11 +73,68 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
+Script is as below: <br>
+
+```
+api_key=1d277ec3da15e2ad90fca7de484a9315
+app_key=16e7f5eff2caba4208fd90884caae4dbbd3907c5
+
+curl  -X POST -H "Content-type: application/json" \
+-d '{
+      "title" : "My Timeboard Final Version",
+      "read_only" : "True",
+      "graphs" : [{
+          "title": "my_metric scoped over host",
+          "definition": {
+              "events": [],
+              "requests": [
+                  {"q": "avg:my_metric{host:vagrant}"}
+              ],
+              "viz": "timeseries"
+          }
+      },
+      {
+	      "title": "MySQL CPU time anomalies",
+	      "definition": {
+		  "events": [],
+		  "requests": [
+			{"q": "anomalies(avg:mysql.performance.cpu_time{host:vagrant}, \"basic\", 3)"}
+		  ],
+		  "viz": "timeseries"
+               }
+	},
+	{	
+		"title": "my_metric with rollup to sum up all the points for the past hour",
+        	"definition": {
+            	"events": [],
+            	"requests": [
+                	{ "q": "avg:my_metric{host:vagrant}.rollup(\"sum\", 3600)"}
+            ]
+   		 }
+	}
+      ]
+}' \
+
+```
+
+
 Once this is created, access the Dashboard from your Dashboard List in the UI:
+Here is the link to the dashboard: https://app.datadoghq.com/dashboard/m9w-te7-88z/my-timeboard-final-version?from_ts=1593539069918&to_ts=1593542669918&live=true <br>
 
 * Set the Timeboard's timeframe to the past 5 minutes
+
+**Note: Incrementing time frames via keyboard and entering custom timeframes is in beta, it doesn't work on timeboard. I had to select the past 15 mins and then click and zoom on one of the graph and selecting a 5 mins interval** <br>
+![screen5mins](images/Snip20200630_23.png)
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+![screen5mins](images/Snip20200630_24.png)
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+
+
+
+
 
 ## Monitoring Data
 
