@@ -16,10 +16,34 @@ Solutions to the hiring exercise are available as an interactive GCP tutorial an
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+
+![](2020-06-30-11-42-53.png)
+
+![](2020-06-30-12-07-10.png)
+
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+![](2020-06-30-12-38-27.png)
+
+![](2020-06-30-12-39-33.png)
+
+![](2020-06-30-12-42-52.png)
+
+![](2020-06-30-12-42-34.png)
+
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+![](2020-06-30-12-43-54.png)
+
+![](2020-06-30-12-45-12.png)
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+![](2020-06-30-12-44-26.png)
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+**Yes. See the screenshot above, we simply update the collection interval in the yaml config file.**
 
 ## Visualizing Data:
 
@@ -29,13 +53,27 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
+![](2020-06-30-12-48-30.png)
+
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+**The terraform code used to create this timeboard is stored in solution/dd_dashboard.tf**
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
+
+![](2020-06-30-12-51-07.png)
+
+**Note: The pulldown menu only seems to go as granular as Past 15 minutes**
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+![](2020-06-30-12-50-20.png)
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+
+**The anomaly graph is showing the percentage of used connections on the database.  The orange line represents data points that are 'normal' or within the expected range. Purple indicates data points that have gone outside the expected bounds. More data is required to allow the algorithm to adjust to actual usage patterns.**
 
 ## Monitoring Data
 
@@ -54,11 +92,23 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
+**The terraform code used to create the monitor and downtime schedules is in solution/dd_monitor.tf**
+
+![](2020-06-30-12-55-23.png)
+
+![](2020-06-30-12-55-43.png)
+
+![](2020-06-30-12-56-07.png)
+
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+**NOTE: I used an offset for the timing of the downtime, to be kind to our New York employees.**
+
+![](2020-06-30-12-56-41.png)
 
 ## Collecting APM Data:
 

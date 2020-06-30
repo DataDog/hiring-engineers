@@ -29,8 +29,9 @@ resource "datadog_monitor" "high_random_number" {
 # Downtime so we don't get alerted evenings and weekends
 resource "datadog_downtime" "weeknights" {
   scope = ["*"]
-  start_date = "2020-06-30T19:00:00-05:00"
-  end_date   = "2020-07-01T09:00:00-05:00"
+  # You can adjust the offset (the final four digits) to match your time zone
+  start_date = "2020-06-30T19:00:00-04:00"
+  end_date   = "2020-07-01T09:00:00-04:00"
   monitor_id = datadog_monitor.high_random_number.id
   message    = "Weeknight downtime scheduled @${var.email}"
 
@@ -42,8 +43,9 @@ resource "datadog_downtime" "weeknights" {
 
 resource "datadog_downtime" "weekends" {
   scope = ["*"]
-  start_date = "2020-07-04T00:00:00-05:00"
-  end_date   = "2020-07-05T00:00:00-05:00"
+  # You can adjust the offset (the final four digits) to match your time zone
+  start_date = "2020-07-04T00:00:00-04:00"
+  end_date   = "2020-07-05T00:00:00-04:00"
   monitor_id = datadog_monitor.high_random_number.id
   message    = "Weekend downtime scheduled @${var.email}"
 
