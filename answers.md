@@ -55,6 +55,14 @@ Modify the custom_mycheck.yaml file by changing **min_collection_interval: 45** 
 I did not change the Python file, instead I modified the yaml file above.<br>
 Another solution would be to create a cron job, which calls the check with "sudo -u dd-agent -- datadog-agent check custom_mycheck" <br>
 
+#### Documentation that I used to complete this section:
+https://www.vagrantup.com/intro/getting-started <br>
+https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7 <br>
+https://support.rackspace.com/how-to/install-mysql-server-on-the-ubuntu-operating-system/<br>
+https://docs.datadoghq.com/integrations/mysql/ <br>
+
+
+
 ## Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
