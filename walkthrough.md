@@ -519,7 +519,7 @@ Terraform will update your monitors and downtime configurations to use your emai
 
 Check your email for notifications about the monitor and downtime update. You will also start receiving alerts whenever the monitor enters a warning or critical state.
 
-Note: If you get disconnected from your shell or have issues running terraform, go back to step 5 to reconfigure your environment variables. You can use the **Previous** button at the bottom to navigate back. For the terraform command to work you need to have the PROJECT_ID, DD_API_KEY, DD_APP_KEY, and DATADOG_GCP_CREDENTIALS variables set. You also need to be inside the solutions directory.
+Note: If you get disconnected from your shell or have issues running terraform, go back to step 5 to reconfigure your environment variables, and return here once you're done. You can use the **Previous** button at the bottom to navigate back.
 
 Great job, now you have alerts and downtimes configured.
 
