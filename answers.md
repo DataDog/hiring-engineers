@@ -18,25 +18,12 @@ MySql and integration installed. <br>
 ![screenUpdate](images/Snip20200630_16.png)
 
 1. Create **custom_mycheck.py** under /etc/datadog-agent/checks.d folder <br>
-`
-try: <br>
-    from checks import AgentCheck <br>
-except ImportError: <br>
-    from datadog_checks.checks  import AgentCheck <br>
-__version__ = "1.2.0" <br>
-<br>
-import random <br>
-<br> 
-class MyCheck(AgentCheck): <br>
-    def check(self, instance): <br>
-        tag = "metric:my_metric" <br> 
-        self.gauge('my_metric', random.randint(0,1000), tags=[tag])` <br>
+
+![screenPy](images/Snip20200630_19.png)
 
 2. Create **custom_mycheck.yaml** under /etc/datadog-agent/conf.d folder <br>
-`init_config:
 
-instances: 
-  - min_collection_interval: 45`
+![screenYaml](images/Snip20200630_18.png)
 
 3. Check by `sudo -u dd-agent -- datadog-agent check custom-mycheck` <br>
 
