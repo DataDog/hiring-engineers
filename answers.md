@@ -26,7 +26,7 @@ Created /etc/datadog-agent/conf.d/mysql.d/conf.yaml <br>
            extra_performance_metrics: true
            schema_size_metrics: false
            disable_innodb_metrics: false
-    ```
+ ```
 
 ![screenshotMySQL](images/Snip20200630_14.png)
 
