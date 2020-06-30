@@ -1,4 +1,4 @@
-# Monitor Google Cloud Platform with Datadog
+# Monitoring Google Cloud Platform with Datadog
 
 ## Getting Started
 This guide will walk you through deploying the Datadog agent onto a Google Compute Instance and  configuring the Datadog GCP integration. We'll be using the open source Terraform tool to provision everything from scratch. If you don't know Terraform that's OK, all the required code is already written for you.
