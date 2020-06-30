@@ -24,27 +24,29 @@ Click the **Start** button to move to the next step.
 Click **Next** to continue the tutorial.
 
 ## Create a Google Cloud Project
-You can use an existing Google Cloud Project or create a new one. The project menu is right at the top of your Google Cloud Platform dashboard:
+You can use an existing Google Cloud Project or create a new one. The project menu is right at the top of your Google Cloud Platform dashboard. You can use the console menu to see your available projects, or simply run the `gcloud projects list` command in your shell.
 
 [https://console.cloud.google.com/home/dashboard](https://console.cloud.google.com/home/dashboard)
 
-You can also easily create a new project using the command line. You may need to add some numbers to the end of your project id if it is already taken. You can use the built-in $RANDOM variable to accomplish this. If you already have your a Project ID you want to use, simply replace the part after the equals sign in the next command.
+You can also create a new project using the command line. You may need to add some numbers to the end of your project id if it is already taken. Use the built in $RANDOM variable to accomplish this. Choose *one* of the following two options to get started:
 
-Example:
+**Option 1** - I already have a Google Cloud Project:
 ```bash
-export PROJECT_ID=datadog-gcp-test-$RANDOM
+export PROJECT_ID=your-project-id-goes-here
 ```
 
+**Option 2** - I need to create a new project:
 ```bash
+export PROJECT_ID=datadog-gcp-test-$RANDOM
 gcloud projects create $PROJECT_ID --name="Datadog test project"
 ```
 
-Set your project ID in your shell environment. This is so you don't have to specify it for every command you run in the terminal.
+Great. Now that you have a project to use, set your project ID in your shell environment. This is so you don't have to specify it for every command you run in the terminal. Your terminal prompt will change to show your project ID.
 ```bash
 gcloud config set project $PROJECT_ID
 ```
 
-Good job. Now that you have a project ID and have defined the PROJECT_ID environment variable, you can click **Next** to continue.
+Click **Next** to continue.
 
 ## Enable the Compute Engine API
 If you have an existing project with billing and the Compute Engine API already enabled you can skip this step. Just make sure you have the $PROJECT_ID environment variable set before you move on.
@@ -104,7 +106,7 @@ Click **Next** to continue.
 ## Set up Your Environment Variables
 In order to configure your GCP instance and integration you'll need three environment variables, namely `DD_API_KEY`, `DD_APP_KEY`, and `DATADOG_GCP_CREDENTIALS`. Here's what each credential is for:
 
-* DD_API_KEY - Allows the Datadog agent running on your VM to send data into your Datadog account.
+* DD_API_KEY - Allows the Datadog agent running on your GCP instance to send data into your Datadog account.
 
 * DD_APP_KEY - Allows our Terraform code to programatically configure your Datadog integrations and dashboards.
 
@@ -145,7 +147,7 @@ echo $DATADOG_GCP_CREDENTIALS
 Ready to start building? Click **Next** to proceed.
 
 ## Build the Base Infrastructure
-In this step we'll use Terraform to stand up a virtual machine running Ubuntu 20.04. Don't worry if you haven't used Terraform before, all the commands you need are listed below.
+In this step we'll use Terraform to stand up a GCP instance (virtual machine) running Ubuntu 20.04. Don't worry if you haven't used Terraform before, all the commands you need are listed below.
 
 First change into the directory where our Terraform code is stored. This is also known as your Terraform workspace.
 ```bash
@@ -157,7 +159,7 @@ Next, initialize the workspace to download any requried providers:
 terraform init
 ```
 
-Configure your project ID inside a tfvars file. The terraform.tfvars file is a convenient place to set non-sensitive variables. You'll have to manually copy and paste this one into the terminal because the auto-copy function doesn't like the escape backslashes. Copy and paste the commend into your shell prompt:
+Configure your project ID inside a tfvars file. The terraform.tfvars file is a convenient place to set non-sensitive variables. You'll have to manually copy and paste this one into the terminal because the auto-copy function doesn't like the escape backslashes. Copy and paste the following command into your terminal:
 ```
 echo "project_id = \"$PROJECT_ID\"" > terraform.tfvars
 ```
@@ -172,37 +174,41 @@ Let's do a dry run. We'll pass in our API key as a command line variable so we d
 terraform plan -var "dd_api_key=$DD_API_KEY"
 ```
 
-The output will show that there are 7 resources that will be created:
+The output will show that there are 7 resources that will be created.
 ```
 Plan: 7 to add, 0 to change, 0 to destroy.
 ```
 
 The seven things you'll build include a virtual private cloud (VPC), a network subnet, a TLS (SSH) key, a local copy of your private SSH key, a firewall, a Google Compute instance, and the Datadog integration for GCP.
 
-Let's do it for real this time. Run the following command to build your virtual machine and integration. You'll need to confirm the run by typing `yes` after you run this command.
+Let's do it for real this time. Run the following command to build your GCP instance and integration. We're using the -auto-apply flag here to avoid having to type 'yes' to confirm the run:
 ```bash
-terraform apply -var "dd_api_key=$DD_API_KEY"
+terraform apply -auto-approve -var "dd_api_key=$DD_API_KEY"
 ```
 
-This part will take a few minutes to complete. You can watch the progress of the run in your terminal. When the Terraform run is complete you'll see some instructions for connecting to your instance.
+This part will take a few minutes to complete. You can watch the progress of the run in your terminal. When the Terraform run is complete you'll see some instructions for connecting to your instance. In the next step you'll explore the Datadog dashboard.
 
-Click **Next** to proceed.
+You can safely proceed to the next step while your run completes. Leave it running while you explore the Datadog console.
+
+Click **Next** to continue.
 
 ## View the Google Compute Engine Dashboard
 Hop on over to the Datadog Google Compute Dashboard:
 
 [https://app.datadoghq.com/screen/integration/47/google-compute-engine](https://app.datadoghq.com/screen/integration/47/google-compute-engine)
 
-Note that Datadog is already collecting valuable information about your project, even before we've installed or set up any agents. Datadog is using the read-only service account we created earlier to extract data about your project.
+Datadog is already collecting information about your project even before we've installed or set up any agents.
+
+We are using the read-only service account we created earlier to extract data about your project. The dashboard will appear mostly empty at first, as it takes a few minutes for data to start streaming in.
 
 Click the little star ⭐ icon to add this dashboard to your Favorites.
 
-In the next step we'll connect to your instance and learn about the Datadog agent.
+Your Terraform run should be nearly finished by now. You'll see green text with some connection instructions when it is complete. In the next steps we'll connect to your instance and start the Datadog agent.
 
 Click **Next** to continue.
 
 ## Connect to your GCP Instance
-You can connect to your new VM using the SSH command. First we'll need to update the permissions on our private SSH key. Connect to your agent by copying these commands from your Terraform output:
+You can connect to your new GCP instance using the SSH command. First we'll need to update the permissions on our private SSH key. Connect to your agent by copying these commands from your Terraform output:
 
 Update the permissions on your private key:
 ```bash
@@ -218,9 +224,11 @@ Answer `yes` when you are prompted with this question:
 
 _Are you sure you want to continue connecting (yes/no)?_
 
-Great, you've connected to your Linux instance. You should see an ASCII art image of Bits, the Datadog mascot.
+Great, you've connected to your Linux instance. Say hello to [Bits, the Datadog mascot](https://twitter.com/datadoghq/status/845435648152604673).
 
-All commands from here on out should be run on your GCP instance, not your Cloud Shell workstation. You can tell which machine you are on by looking at the shell prompt. If your prompt has _cloudshell_ in it you will need to SSH back into your instance. Try typing the hostname command now to make sure you are on the correct machine:
+All commands from here on out should be run on your GCP instance, not your Cloud Shell workstation. You can tell which machine you are on by looking at the shell prompt. If your prompt has _cloudshell_ in it you will need to SSH back into your instance.
+
+Try typing the hostname command now to make sure you are on the correct machine:
 
 ```bash
 hostname
@@ -231,13 +239,13 @@ If you used the default Terraform dogname variable your hostname should be `astr
 Click **Next** to continue.
 
 ## Working with the Datadog agent
-The [Datadog agent](https://docs.datadoghq.com/agent/) is software that runs in the background on all the hosts you wish to monitor. We've pre-installed the agent on your virtual machine for you. Let's take a look at the agent config file.
+The [Datadog agent](https://docs.datadoghq.com/agent/) is software that runs in the background on all the hosts you wish to monitor. We've pre-installed the agent on your GCP instance for you. Let's take a look at the agent config file.
 
 ```bash
 sudo cat /etc/datadog-agent/datadog.yaml
 ```
 
-There is only one required setting in this file, namely `api_key`. You can configure many settings in of this file, but the minimum requirement is a single line containing your API key. We'll be adding some things to this file in the next steps.
+There is only one required setting in this file, namely `api_key`. You can configure many settings in of this file, but the minimum requirement is a single line containing your API key.
 
 Start up the Datadog agent with the following command:
 ```bash
@@ -249,7 +257,7 @@ If the command ran successfully it will not create any output. You can check the
 sudo systemctl status datadog-agent
 ```
 
-You should see **active (running)** on the status line. Type `ZZ` to exit if your terminal prompt is missing.
+You should see **active (running)** on the status line. Type `ZZ` (those are CAPITAL Z's) to exit if your terminal gets stuck. `ZZ` is a handy shortcut. Think of it as your escape hatch.
 
 Let's take a closer look at the agent status. Run this command to see more details about all the monitors running on your host:
 
@@ -265,7 +273,7 @@ Detailed data about your host is now streaming back to your Datadog account. Che
 
 You can also click on your host and visit its dashboard to see detailed stats collected by the Datadog agent.
 
-**Note:** It can take a few minutes before your host shows up on the map. If your host shows up twice on the map, don't worry. This happens because the GCP integration also detects the instance from the Google Cloud API. Datadog will merge the two hosts together after a few minutes.
+**Note:** It can take a few minutes before your host shows up on the map. If your host shows up twice on the map, don't panic. Datadog will merge the them together after a few minutes.
 
 Click on the **Next** button to continue.
 
@@ -301,7 +309,9 @@ Restart the agent to update your tags.
 systemctl restart datadog-agent
 ```
 
-Tags are a powerful way to track and create collections of hosts and services. It may take up to ten minutes for the tags to update in the UI. You can proceed with the next steps while the agent runs in the background.
+Tags are a powerful way to track and create collections of hosts and services. The Datadog agent also collects all the metadata tags from your instance and imports those as well.
+
+It may take up to ten minutes for the tags to update in the UI. You can proceed with the tutorial while that happens in the background.
 
 Click on the **Next** button to continue.
 
@@ -315,7 +325,7 @@ You should still be in a root shell. If you don't see a `#` in your prompt run t
 sudo /bin/su - root
 ```
 
-Use this command to install the PostgreSQL database on your host. Make sure you are SSH'd into your target VM and not your Cloud Shell when you run these commands.
+Use the commands below to install the PostgreSQL database on your host. Make sure you are SSH'd into your target instance and not your Cloud Shell when you run them.
 
 First update the apt cache on your host:
 ```bash
@@ -332,13 +342,15 @@ Next open a psql prompt as the postgres user to create an account for Datadog:
 sudo -u postgres psql
 ```
 
-Within the psql prompt run this command. You'll need to copy and paste this into the terminal. Be sure you hit `ENTER` after the second command.
+Your shell prompt should now look like this: `postgres=#`
+
+Within the postgres prompt run this command. You'll need to copy and paste this into the terminal. Be sure you hit `ENTER` after the second command.
 ```sql
 create user datadog with password 'datadog123';
 grant pg_monitor to datadog;
 ```
 
-Exit the psql (postgres) prompt:
+Exit the postgres prompt and go back to your root shell:
 ```bash
 exit
 ```
@@ -351,7 +363,9 @@ psql -h localhost -U datadog postgres -c \
 || echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 ```
 
-You can escape from the psql output by entering `ZZ` on your keyboard. Nice work.
+Escape by entering `ZZ` on your keyboard.
+
+You should see a message that says `Postgres connection - OK` in your terminal.
 
 Click **Next** to continue.
 
@@ -381,11 +395,6 @@ instances:
 EOF
 ```
 
-Restart PostgreSQL to load the new configuration:
-```bash
-systemctl restart postgresql
-```
-
 Restart the datadog agent to load your new config:
 ```bash
 systemctl restart datadog-agent
@@ -396,27 +405,36 @@ Set up the pgbench tool so we can generate database activity:
 sudo -u postgres sh -c "pgbench -i"
 ```
 
-Next, run this one liner to start generating connections to your database. It will tie up 5/100 of your available database connections. Leave this script running for a few minutes to generate data for your dashboards. Use `CTRL-C` to stop it when you are done generating traffic.
+Next, run this one liner to start generating connections to your database. It will tie up around 25/100 of your available database connections. Leave this script running for now. It will take about five minutes to complete.
 ```bash
-while true; do sudo -u postgres sh -c "pgbench -c 5 -C"; sleep 1; done
+sudo -u postgres sh -c "pgbench -P 5 -c 25 -C -t 1750"
 ```
 
 Back in your Datadog account, enable the PostgreSQL integration:
+
 [https://app.datadoghq.com/account/settings#integrations/postgres](https://app.datadoghq.com/account/settings#integrations/postgres)
 
 You'll need to scroll to the bottom of the configuration tab and click on the **Install** button there.
 
-Now open up the PostgreSQL metrics dashboard. You should start to see database metrics populate the graphs after a few minutes.
+Now open up the PostgreSQL Overview dashboard. Look at the **Max connections in use** widget. You should see the number start to hover around 25%.
 
-[https://app.datadoghq.com/dash/integration/17/postgres---metrics](https://app.datadoghq.com/dash/integration/17/postgres---metrics)
+[https://app.datadoghq.com/screen/integration/235/postgres---overview](https://app.datadoghq.com/screen/integration/235/postgres---overview)
 
-Add the Postgres - Metric dashboard to your favorites by clicking on the star ⭐ icon.
+Add the Postgres - Overview dashboard to your favorites by clicking on the star ⭐ icon.
+
+If your pgbench command is still running in your terminal, you can stop it with `CTRL-C`.
 
 Click **Next** to continue.
 
 ## Create a Custom Agent Check
 In this step we'll add a custom agent check to your instance. Custom agent checks are written in Python and should be stored in `/etc/datadog-agent/checks.d`. Each check should have an identically named yaml configuration file inside `/etc/datadog-agent/conf.d`. You can also store your files in subdirectories for easier organization.
 
+If you are already in a root shell you can skip this step.
+```bash
+sudo /bin/su - root
+```
+
+Run the following command to generate the config file:
 ```bash
 echo "instances: [{}]" > /etc/datadog-agent/conf.d/random_number.yaml
 ```
@@ -426,14 +444,18 @@ Next, copy the check's Python script into the checks.d directory.
 cp /home/ubuntu/random_number.py /etc/datadog-agent/checks.d/random_number.py
 ```
 
-Finally restart the agent to start collecting random numbers.
+Restart the agent to start collecting random numbers.
 ```bash
 systemctl restart datadog-agent
 ```
 
-Your host's Datadog dashboard should now show a new entry called **my_metric** under the Apps Running section. Click it to see a graph of all the random numbers that were generated.
+Visit the custom dashboard that Datadog created for your new metric. You'll start to see random numbers populate the graph about every 15 seconds.
 
-Next let's change your collection interval. Overwrite your random_number.yaml file with the following command:
+[https://app.datadoghq.com/dash/integration/custom%3Amy_metric](https://app.datadoghq.com/dash/integration/custom%3Amy_metric)
+
+The default interval for Datadog checks is 15 seconds. Perhaps we don't need the check to run that often.
+
+Let's change your collection interval. Overwrite your random_number.yaml config file with the following command to change the minimum collection interval to 45 seconds:
 ```bash
 echo "instances: [{min_collection_interval: 45}]" > /etc/datadog-agent/conf.d/random_number.yaml
 ```
@@ -443,28 +465,67 @@ Restart the agent to activate the new collection interval.
 systemctl restart datadog-agent
 ```
 
-You should now see data points on the graph showing up roughly 40 seconds apart. The granularity of the graph is measured in 20 second intervals.
+You should now see data points on the graph showing up roughly 40 seconds apart. The granularity of the graph is measured in 20 second intervals. In the next step we'll visualize this data with a Datadog dashboard.
 
 Click **Next** to continue.
 
 ## Visualizing Monitoring Data
-As you've probably guessed, you can create custom dashboards to show all kinds of metrics and alert conditions. When you spun up this lab environment using Terraform a special dashboard was created that includes three widgets on it.
+With Datadog, you can create custom dashboards to show different metrics and alert conditions. When you built this lab environment a special dashboard was created.
 
-In the **Dashboards** menu click on **Dashboard List**. Next, click on **Datadog Tutorial Dashboard**. This dashboard was created programatically with Terraform code. You can see the code that built the dashboard in the `dd_dashboard.tf` file in the code editor.
+In the **Dashboards** menu click on [Dashboard List](https://app.datadoghq.com/dashboard).
 
-Take a closer look at the **PostgreSQL % Max Connections on astro** graph. You should see the database activity you generated earlier with the one-liner.
+Next, click on **Datadog Tutorial Dashboard**. This dashboard was created programatically with Terraform code. You can see the code that built the dashboard in the `dd_dashboard.tf` file in the code editor. There are three widgets on this dashboard. Widgets are the customizable parts of your dashboard. Our three widgets are:
 
-Back on your VM, run the database benchmark script again, but this time we'll simulate 95 connections instead of 5.
+* A timeseries bar graph of our random number check on host astro
+* A timeseries line graph of PostgreSQL connections with anomaly detection enabled
+* A query value gauge that shows the sum of the past hour's random numbers. This gauge will turn red when the sum goes past 9000.
+
+Add the Datadog Tutorial Dashboard to your favorites by clicking on the star ⭐ icon.
+
+Take a closer look at the **PostgreSQL % Max Connections on astro** graph. This is an [anomaly graph](https://docs.datadoghq.com/monitors/monitor_types/anomaly/). The anomaly function watches your data, and can alert you when unusual patterns are detected.
+
+You should see the database activity you generated earlier. Note how the graph jumps up to around 0.25 or 25% of your available connections.
+
+The gray shaded area of the graph is what Datadog sees as normal activity for this metric. Datadog will learn your usage patterns, and eventually the gray area conforms into a regular pattern that forms your baseline.
+
+Back on your GCP instance, run the database benchmark script again, but this time we'll simulate 95 connections instead of 5.
 
 ```bash
-while true; do sudo -u postgres sh -c "pgbench -c 95 -C"; sleep 1; done
+sudo -u postgres sh -c "pgbench -P 5 -c 95 -C -t 1750"
 ```
 
 Watch the anomaly graph for a few minutes. What happens?
 
-Click **Next** to continue
+Click **Next** to continue.
 
-## Another step here
+## Create an Alert Monitor
+[Datadog monitors](https://docs.datadoghq.com/monitors/) can watch all of your metrics and alert you when critical changes happen.
+
+The terraform code we ran earlier created a monitor to alert on random numbers above 800. You can see the code that built the monitor in the `dd_monitor.tf` file. There are also two downtimes defined, one for weeknights and another for weekends.
+
+Let's update these monitors so that you can start receiving alerts when the random numbers get too high.
+
+Exit from your GCP instance with the `exit` command. You'll probably need to do this twice, once to escape your root shell and a second time to get back into your cloudshell prompt.
+
+You should be in the `~/cloudshell_open/hiring-engineers/solution` directory before proceeding.
+
+Run the following command, replacing *you@example.com* with the same email address associated with your Datadog account.
+
+```bash
+terraform apply -auto-approve -var "dd_api_key=$DD_API_KEY" -var "email=you@example.com"
+```
+
+Terraform will update your monitors and downtime configurations to use your email address for notifications.
+
+Check your email for notifications about the monitor and downtime update. You will also start receiving alerts whenever the monitor enters a warning or critical state.
+
+Note: If you get disconnected from your shell or have issues running terraform, go back to step 5 to reconfigure your environment variables. You can use the **Previous** button at the bottom to navigate back. For the terraform command to work you need to have the PROJECT_ID, DD_API_KEY, DD_APP_KEY, and DATADOG_GCP_CREDENTIALS variables set. You also need to be inside the solutions directory.
+
+Great job, now you have alerts and downtimes configured.
+
+Click **Next** to proceed.
+
+## Application Performance Monitoring
 Do some things
 
 ```bash

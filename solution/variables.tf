@@ -4,6 +4,11 @@ variable "project_id" {
   description = "Your Google Cloud Platform project id. You can find this at the top of the page on the Google Cloud Console. You must have the Compute Engine API enabled for your project in order for this Terraform code to function."
 }
 
+variable "email" {
+  description = "Email address used for Datadog alerts."
+  default     = "you@example.com"
+}
+
 variable "region" {
   description = "The GCP region where you want to build infrastructure."
   default     = "us-central1"
