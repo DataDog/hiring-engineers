@@ -86,7 +86,7 @@ Also, I had to enable *APM* directive in the Agents's datadog.yaml file and rest
 
 I started the flask app using: 
 ```
-export DD_TRACE_ANALYTICS_ENABLED=true ;ddtrace-run python3 [app.py](http://app.py/)
+export DD_TRACE_ANALYTICS_ENABLED=true; ddtrace-run python3 [app.py](http://app.py/)
 ```
 
 To simulate traffic on the app's endpoint, I used [https://github.com/rakyll/hey](https://github.com/rakyll/hey). 
