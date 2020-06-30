@@ -131,7 +131,7 @@ Here is the link to the dashboard: https://app.datadoghq.com/dashboard/m9w-te7-8
 ![screen5mins](images/Snip20200630_24.png)
 
 * **Bonus Question**: What is the Anomaly graph displaying?
-The anomly graph is designed to identify when a metric is deviating from its past behavior. <br>
+The anomly graph is designed to identify when a metric is deviating from the majority of historical behavior. <br>
 
 
 ## Monitoring Data
