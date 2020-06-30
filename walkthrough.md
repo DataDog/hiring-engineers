@@ -532,7 +532,7 @@ Click **Next** to proceed.
 ## Application Performance Monitoring
 [Datadog APM](https://docs.datadoghq.com/getting_started/tracing/) (Application Performance Monitoring), also known as tracing, allows you to collect detailed application performance data.
 
-First let's reconnect to your GCP instance:
+First let's reconnect to your GCP instance. Replace the 1.2.3.4 with your instance IP address. If you forgot your IP address just type `history | grep ssh` to review your previous commands.
 ```bash
 ssh -i dogkey.pem ubuntu@1.2.3.4
 ```
