@@ -13,20 +13,16 @@ Your answers to the questions go here.
 MySql and integration installed. <br>
 ![screenshotMySQL](images/Snip20200630_14.png)
 
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. <br>
 **Note:Documentation needs to be corrected. The example code doesn't work as expected. Should be updated as below https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7** <br>
 ![screenUpdate](images/Snip20200630_16.png)
 
 1. Create **custom_mycheck.py** under /etc/datadog-agent/checks.d folder <br>
-`# the following try/except block will make the custom check compatible with any Agent version
+`
 try:
-    # first, try to import the base class from new versions of the Agent...
     from checks import AgentCheck
 except ImportError:
-    # ...if the above failed, the check is running in Agent version < 6.6.0
     from datadog_checks.checks  import AgentCheck
-
-# content of the special variable __version__ will be shown in the Agent status page
 __version__ = "1.2.0"
 
 import random
@@ -35,6 +31,7 @@ class MyCheck(AgentCheck):
     def check(self, instance):
         tag = "metric:my_metric"
         self.gauge('my_metric', random.randint(0,1000), tags=[tag])`
+
 2. Create **custom_mycheck.yaml** under /etc/datadog-agent/conf.d folder <br>
 `init_config:
 
