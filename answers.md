@@ -6,6 +6,7 @@ Your answers to the questions go here.
 
 /etc/datadog-agent/datadog.yaml<br>
 `tags: ["environment:demo", "os:ubuntu"]`
+![screenshotHostMap](images/Snip20200629_11.png)
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
