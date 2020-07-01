@@ -29,7 +29,13 @@ A public [link](https://p.datadoghq.eu/sb/vik60ulhvn4ner0k-06f362dc4e8b89b439879
 
 * API driven dashboard [JSON](https://github.com/dwpseng/hiring-engineers/blob/4b9d7d1d71f688e09b24448df68e799a36e67b2c/answers/exports/DataWizardVisualisation-ViaAPI4--2020-06-30T10%2005%2045.json#L1)
 
-  
+## PoC
+
+This repository is a fully functional self-service PoC of the features in context, instructions:
+* Install Docker (Tested on Mac & Ubuntu)
+* Clone the repostory
+* `sudo chmod +x run.sh`
+* fire `sudo ./run.sh`
 
 ## Collecting Metrics:
 
