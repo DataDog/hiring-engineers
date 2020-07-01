@@ -221,6 +221,10 @@ https://app.datadoghq.com/apm/services?end=1593640453237&env=flask_test&paused=f
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
+Service: Services are the building blocks of microservice architectures - broadly a service groups together endpoints, queriers, or jobs for the purposes of building your application. <br>
+
+Resource: Resource is a particular action for a given service. Resources represent a particular domain of a customer application. They are typically an instrumented web endpoint, database query, or backgroud job. <br>
+
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 Please include your fully instrumented app in your submission, as well.
