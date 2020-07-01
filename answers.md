@@ -227,6 +227,10 @@ Resources are particular action for a given service. They are typically an instr
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
+![screenAPM](images/Snip20200701_44.png) 
+
+https://app.datadoghq.com/dashboard/n6z-296-72s/zhangs-timeboard-1-jul-2020-1509?from_ts=1593638483258&live=true&to_ts=1593642083258
+
 Please include your fully instrumented app in your submission, as well.
 
 ## Final Question:
