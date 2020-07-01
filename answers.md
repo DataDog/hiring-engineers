@@ -1,3 +1,7 @@
+**This doc and the associated git hub assets represent the submission of
+the technical exercise provided to Tom O'Leary during his interview
+process at DataDog (for Enterprise Sales Engineer).**
+
 **Prerequisites - Setup the environment**
 
 You can utilize any OS/host that you would like to complete this
@@ -18,7 +22,7 @@ machine.
 
 Spin up a Ubuntu VM
 
-![](.//media/image1.png)
+![](.//media/image1.png){width="6.5in" height="1.931233595800525in"}
 
 Installed Docker with command: sudo apt-get install docker.io
 
@@ -37,13 +41,13 @@ Host datadog1 agent up and reporting metrics:
 
 <https://app.datadoghq.com/dash/host/2673579463?from_ts=1593104807629&to_ts=1593108407629&live=true>
 
-![](.//media/image4.png)
+![](.//media/image4.png){width="6.5in" height="4.423193350831146in"}
 
 Alternate agent install in Docker container
 
 docker pull datadog/docker-dd-agent
 
-![](.//media/image5.png)
+![](.//media/image5.png){width="6.5in" height="1.5468667979002624in"}
 
 For agent troubleshooting, logs can be viewed in the agent Docker
 container
