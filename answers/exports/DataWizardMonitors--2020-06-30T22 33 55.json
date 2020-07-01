@@ -1,0 +1,24 @@
+{
+	"id": 187888,
+	"name": "Attention: My Random Metric is very high on {{dept.name}}  {{host.ip}}",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:random.my_metric{*} by {dept,host} > 800",
+	"message": "On {{host.name}} {{host.ip}}  with in the {{dept}} department.\n\n{{#is_no_data}}Wow are we missing something!{{/is_no_data}} \n\n{{#is_alert}}We are telling you to Panic! The value is above {{threshold}} {{/is_alert}} \n\n{{#is_warning}}We are Warning you! The value is above {{warn_threshold}} {{/is_warning}} \n\n\nThanks @dwpseng@gmail.com",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": false,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}

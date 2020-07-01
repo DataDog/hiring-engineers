@@ -1,0 +1,113 @@
+  version: '3'
+    
+  services:
+    db:
+      image: postgres:12.3
+      container_name: postgres_container
+      env_file: .env
+      volumes:
+        - database-data:/var/lib/postgresql/data/
+        - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
+
+      command: ["postgres", "-c", "log_statement=all"]
+      labels: 
+        my.custom.label.dept: "enablement:presales"
+        com.datadoghq.tags.service: "pg_database"
+        com.datadoghq.tags.version: "12.3"
+        com.datadoghq.tags.env: "emea:demo:db:postgres"
+        com.datadoghq.ad.check_names: '["postgres"]'
+        com.datadoghq.ad.init_configs: '[{}]'
+        com.datadoghq.ad.instances: >- 
+          [{
+            "host":"db", 
+            "port":5432,
+            "username":"datadog",
+            "password":"${DD_POSTGRES_PSWD}",
+            "collect_default_database": true
+            }]
+        com.datadoghq.ad.logs: >-
+          [{
+            "source": "postgresql",
+            "service": "pg_database",
+            "log_processing_rules": [{
+              "type": "multi_line",
+              "name": "log_start_with_date",
+              "pattern" : "\\d{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])"
+            }]
+          }] 
+
+    web:
+      build: .
+      container_name: django_container
+      command:  pyddprofile manage.py runserver 0.0.0.0:8000
+      env_file: .env
+      labels: 
+        my.custom.label.dept: "enablement:presales"
+        com.datadoghq.tags.service: 'django_web'
+        com.datadoghq.tags.version: '2.2'
+        com.datadoghq.ad.check_names: '["python"]'
+        com.datadoghq.tags.env: 'emea:demo:web:django'
+        com.datadoghq.tags.dept: 'enablement:presales'
+        com.datadoghq.ad.init_configs: '[{}]'
+        com.datadoghq.ad.logs: >-
+          [{
+            "source": "python",
+            "service": "django_web",
+            "log_processing_rules": [{
+              "type": "multi_line",
+              "name": "log_start_with_date",
+              "pattern" : "\\d{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])"
+            }]
+          }] 
+      volumes:
+        - .:/code
+      links: 
+        - db
+      ports:
+        - "8000:8000"
+      depends_on:
+        - db  
+
+    adminer:
+      image: adminer
+      container_name: adminer_container
+      restart: always
+      links: 
+        - db
+      ports:
+        - 8080:8080
+      depends_on:
+        - db
+
+    datadog:
+      image: datadog/agent
+      container_name: datadog_container
+      ports: 
+        - "8126:8126/tcp"
+      env_file: .env
+      environment:
+        - DD_DOCKER_LABELS_AS_TAGS='{"my.custom.label.dept":"dept"}'
+        - DD_TAGS="dept:enablement:presales"
+
+      labels: 
+        com.datadoghq.tags.env: "emea:demo:web:aminer"
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - /proc/:/host/proc/:ro
+        - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+        - ./dd-agent-conf.d:/conf.d:ro 
+        - ./dd-agent-checks.d:/checks.d:ro 
+        - /sys/kernel/debug:/sys/kernel/debug
+      cap_add:
+        - SYS_ADMIN
+        - SYS_RESOURCE
+        - SYS_PTRACE
+        - NET_ADMIN
+        - IPC_LOCK
+      security_opt:
+        - apparmor:unconfined
+      depends_on:
+        - db
+
+  volumes:
+    database-data:

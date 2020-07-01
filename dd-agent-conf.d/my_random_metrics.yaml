@@ -1,0 +1,5 @@
+# Cosult the docs to the minimum collection interval
+# https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
+
+instances:
+  - min_collection_interval: 45
