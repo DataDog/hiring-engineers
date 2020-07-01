@@ -1,64 +1,106 @@
 **This doc and the associated git hub assets represent the submission of
-the technical exercise provided to Tom O'Leary during his interview
-process at DataDog (for Enterprise Sales Engineer).**
+a technical exercise provided to Tom O'Leary during his interview
+process at Datadog (for Enterprise Sales Engineer). The exercise is
+intended to familiarize candidates with Datadog.**
 
 **Prerequisites - Setup the environment**
 
-You can utilize any OS/host that you would like to complete this
-exercise. However, we recommend one of the following approaches:
+**Step 1) Install a New VM**
 
--   You can spin up a fresh linux VM via Vagrant or other tools so that
-    you don't run into any OS or dependency issues. [Here are
-    instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for
-    setting up a Vagrant Ubuntu VM. We strongly recommend using
-    minimum v. 16.04 to avoid dependency issues.
-
--   You can utilize a Containerized approach with Docker for Linux and
-    our dockerized Datadog Agent image.
-
-Then, sign up for Datadog (use "Datadog Recruiting Candidate" in the
-"Company" field), get the Agent reporting metrics from your local
-machine.
-
-Spin up a Ubuntu VM
+First we'll spin up a new VM. Most any VM technology can be used, but an
+[Ubuntu 18.04](https://releases.ubuntu.com/18.04/) image on [VMWare
+Workstation
+Player](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html)
+was used for this exercise.
 
 ![](.//media/image1.png){width="6.5in" height="1.931233595800525in"}
 
-Installed Docker with command: sudo apt-get install docker.io
+**Step 2) Install Docker**
+
+Well be running everything in a [Docker](http://www.docker.com/)
+container to avoid any dependency conflicts. Let's install Docker on the
+new VM.
+
+***Command:** sudo apt-get install docker.io*
 
 ![](.//media/image2.png){width="6.5in" height="2.019417104111986in"}
 
-Installed the dockerized Datadog Agent image:
+**Step 3) Install the Datadog Agent**
 
-DOCKER_CONTENT_TRUST=1 docker run -d \--name dd-agent -v
+We could install the Datadog agent directly on the host VM but that
+would be somewhat antithetical to using the Docker platform, so instead
+let's install the dockerized Datadog Agent image:
+
+***Command:** DOCKER_CONTENT_TRUST=1 docker run -d \--name dd-agent -v
 /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v
 /cgroup/:/host/sys/fs/cgroup:ro -e
-DD_API_KEY=75cc324da0bc265b8883ce646853b814 datadog/agent:7
+DD_API_KEY=75cc324da0bc265b8883ce646853b814 datadog/agent:*7
 
-![](.//media/image3.png){width="6.5in" height="1.7861373578302713in"}
+We can see the agent container is up with the below Docker command.
 
-Host datadog1 agent up and reporting metrics:
+***Command:** docker ps*
+
+![](.//media/image3.png){width="6.5in" height="0.8250601487314085in"}
+
+Note, the Docker daemon runs under root. For simplicity, we don't want
+to preface every Docker command with "sudo", let's create a docker group
+with root access and add us to that group. [See instructions
+here.](https://docs.docker.com/engine/install/linux-postinstall/)
+
+We can also now see that the agent is reporting data to the Datadog
+platform.
 
 <https://app.datadoghq.com/dash/host/2673579463?from_ts=1593104807629&to_ts=1593108407629&live=true>
 
 ![](.//media/image4.png){width="6.5in" height="4.423193350831146in"}
 
-Alternate agent install in Docker container
+**Troubleshooting**
 
-docker pull datadog/docker-dd-agent
+For agent troubleshooting, agent logs can be viewed in the agent Docker
+container (/var/log/datadog)
 
-![](.//media/image5.png){width="6.5in" height="1.5468667979002624in"}
-
-For agent troubleshooting, logs can be viewed in the agent Docker
-container
-
-sudo docker exec -it docker-dd-agent bash
-
-cd /var/log/datadog
+***Command:** docker exec -it dd-agent bash*
 
 Agent status can also be seen:
 
-sudo docker exec -it \<CONTAINER_NAME\> agent status
+***Command:** docker exec -it dd-agent agent status*
+
+**Step 4) Install MySQL & Flask Docker containers**
+
+Since we want to see how Datadog can be applied to monitoring real world
+applications, let's install a couple of Docker containers to create an
+application that exposes a simple REST service that pulls data from a
+database.
+
+**MySQL**
+
+***Command:** docker pull mysql/mysql-server:latest*
+
+We now have a MySQL Docker image on our VM
+
+![](.//media/image5.png){width="6.5in" height="1.1173490813648295in"}
+
+See [MySQL Docker installation
+guide](http://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html)
+for full details
+
+In order to monitor MySQL with Datadog, we'll need to do a few things
+around setting up a MySQL user with
+
+A good blog article on monitoring MySQL can be found here
+
+[MySQL monitoring with
+Datadog](http://www.datadoghq.com/blog/mysql-monitoring-with-datadog/)
+
+**Flask**
+
+Install Flask Docker image
+
+<https://github.com/tiangolo/uwsgi-nginx-flask-docker>
+
+Install MySQL python libs
+
+<https://dev.mysql.com/doc/connector-python/en/connector-python-installation-binary.html>
 
 **Collecting Metrics:**
 
@@ -69,11 +111,10 @@ sudo docker exec -it \<CONTAINER_NAME\> agent status
     and then install the respective Datadog integration for that
     database.
 
-> <https://www.datadoghq.com/blog/mysql-monitoring-with-datadog/>
->
 > Follow instructions to install MySQL in Docker container:
 >
-> <https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html>
+> [MySQL Docker installation
+> guide](http://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html)
 >
 > Installed MySQL as Docker container:
 
