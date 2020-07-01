@@ -86,7 +86,9 @@ Datadog agent can connect to MySQL with the proper credentials (see
 [MySQL Docker installation
 guide](http://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html)
 for full details). We'll create SQL script for this so we can execute at
-container startup (\[script\](/mysql_config/mysql-dd-config.sql)
+container startup
+
+\[mysql-dd-config.sql\](./mysql_config/mysql-dd-config.sql)
 
 \`\`\`console
 
