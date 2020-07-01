@@ -1,6 +1,6 @@
 # Solutions Engineer
 
-I come from Dev/Support/DevOps and a bit of security background, I have been long interested in how [DataDog is evolving](https://en.wikipedia.org/wiki/Datadog#History), and how they made it to the log management world in 2018 after perfecting their Metrics collection capabilities, then for completion, complimenting that by announcing their SIEM solution in April this year. 
+I come from Dev/Support/DevOps and a fair security background, I have been long interested in how [DataDog is evolving](https://en.wikipedia.org/wiki/Datadog#History), and how they made it to the log management world in 2018 after perfecting their Metrics collection capabilities, then for completion, complimenting that by announcing their SIEM solution in April this year. 
 
 I played a little around collecting logs and local metrics, and that was it, however, the more I think about the product and the UX and capabilities it offers, the more I see myself full of energy to talk about it and subconsciously sell it! And boy, was I so excited about the opportunity of the Sales Engineer I found?! Yes!
 
@@ -274,20 +274,20 @@ Datadog is a very powerful and feature rich product, yet very self-service which
 
 **Dark Theme**
 
-![](/home/dwpseng/hiring-engineers/answers/screensshots/dark_theme_profiling.png)
+![](./screensshots/dark_theme_profiling.png)
 
 **Django Logs**
 
-![](/home/dwpseng/hiring-engineers/answers/screensshots/django_logs_and_details.png)
+![](./screensshots/django_logs_and_details.png)
 
 **Docker Overview**
 
-![Docker Overview](/home/dwpseng/hiring-engineers/answers/screensshots/Docker_Overviet_dashboard.png)
+![Docker Overview](./screensshots/Docker_Overviet_dashboard.png)
 
 **Inra Postgres Containers**
 
-![](/home/dwpseng/hiring-engineers/answers/screensshots/infra_containers_postgres_details.png)
+![](/./screensshots/infra_containers_postgres_details.png)
 
 **Log Explorer - Postgres**
 
-![](/home/dwpseng/hiring-engineers/answers/screensshots/log_explorer_.png)
+![](./screensshots/log_explorer_.png)
