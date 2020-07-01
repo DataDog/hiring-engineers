@@ -173,7 +173,7 @@ This can be accomplished via the manage downtime. <br>
   
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   
-
+  ![screenDowntime](images/Snip20200630_38.png)
 
 ## Collecting APM Data:
 
