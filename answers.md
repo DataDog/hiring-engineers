@@ -31,20 +31,20 @@ We could install the Datadog agent directly on the host VM but that
 would be somewhat antithetical to using the Docker platform, so instead
 let's install the dockerized Datadog Agent image:
 
-***Command:** DOCKER_CONTENT_TRUST=1 docker run -d \--name dd-agent -v
-/var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v
-/cgroup/:/host/sys/fs/cgroup:ro -e
-DD_API_KEY=75cc324da0bc265b8883ce646853b814 datadog/agent:*7
+***Command:** DOCKER_CONTENT_TRUST=1 docker run -d \--name
+docker-dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v
+/proc/:/host/proc/:ro -v /cgroup/:/host/sys/fs/cgroup:ro -e
+DD_API_KEY=\<API KEY\> datadog/agent:*7
 
 We can see the agent container is up with the below Docker command.
 
 ***Command:** docker ps*
 
-![](.//media/image3.png){width="6.5in" height="0.8250601487314085in"}
+![](.//media/image3.png){width="6.5in" height="0.6280172790901137in"}
 
 Note, the Docker daemon runs under root. For simplicity, we don't want
-to preface every Docker command with "sudo", let's create a docker group
-with root access and add us to that group. [See instructions
+to preface every Docker command with "sudo", so let's create a docker
+group with root access and add us to that group. [See instructions
 here.](https://docs.docker.com/engine/install/linux-postinstall/)
 
 We can also now see that the agent is reporting data to the Datadog
@@ -88,9 +88,11 @@ guide](http://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-g
 for full details). We'll create SQL script for this so we can execute at
 container startup
 
-[mysql-dd-config.sql](./mysql_config/mysql-dd-config.sql)
+FIXME\[mysql-dd-config.sql\](./mysql_config/scripts/mysql-dd-config.sql)
 
-```console
+FIXME
+
+\`\`\`console
 
 \# To run script on container lauch use
 
@@ -109,28 +111,143 @@ ALTER USER \'dduser\'@\'%\' WITH MAX_USER_CONNECTIONS 5;
 
 GRANT SELECT ON performance_schema.\* TO \'dduser\'@\'%\';
 
-```
-
-In order to monitor MySQL with Datadog, we'll need to do a few things
-around setting up a MySQL.
+\`\`\`
 
 [Configuring MySQL for Datadog
 monitoring](http://docs.datadoghq.com/integrations/mysql/#pagetitle)
 
-A good blog article on monitoring MySQL can be found here
+\`\`\`
 
-[MySQL monitoring with
-Datadog](http://www.datadoghq.com/blog/mysql-monitoring-with-datadog/)
+To run the MySQL container we will use another shell script.
+
+\`\`\`console
+
+docker run \\
+
+-d \\
+
+-l \"com.datadoghq.ad.logs\"=\'\[{\"source\": \"mysql container\",
+\"service\": \"mysql\"}\]\' \\
+
+\--name=mysql1 \\
+
+\--network ddnetwork \\
+
+\--env=\"MYSQL_ROOT_PASSWORD=datadog\" \\
+
+\--publish 6603:3306 \\
+
+\--mount
+type=bind,src=/home/datadog/mysql_config/data,dst=/var/lib/mysql \\
+
+\--mount type=bind,src=/home/datadog/mysql_config/my.cnf,dst=/etc/my.cnf
+\\
+
+\--mount
+type=bind,src=/home/datadog/mysql_config/scripts,dst=/docker-entrypoint-initdb.d
+\\
+
+mysql/mysql-server
+
+\`\`\`
+
+To create some data in the database, we run the create_city_stats.sql
+script in MySQL.
+
+FIXME\[create_city_stats.sql\](./mysql_config/ create_city_stats.sql)
+
+***mysql\>** source /*create_city_stats.sql
+
+We can since we exposed the MySQL port to the host (publish 6603:3306)
+we can access the data in MySQL Workbench from the decktop
+
+![](.//media/image6.png){width="5.1325in" height="2.0733333333333333in"}
 
 **Flask**
 
-Install Flask Docker image
+Flask will host the REST service that returns population data based a
+requested city name.
 
-<https://github.com/tiangolo/uwsgi-nginx-flask-docker>
+Install Flask Docker image: [flask docker
+setup](http://github.com/tiangolo/uwsgi-nginx-flask-docker).
 
-Install MySQL python libs
+To run our app, well need to copy it over to the Flask container,
+install the Datadog trace library, MySQL python libs, then run the app
+using ddtrace-run to enable tracing :
 
-<https://dev.mysql.com/doc/connector-python/en/connector-python-installation-binary.html>
+FIXME\`\`\`console
+
+\>docker cp ./flaskbuild/app/main.py flaskapp:/app
+
+\>docker exec -it flaskapp bash
+
+\>pip install ddtrace
+
+\>pip install mysql-connector-python
+
+\>ddtrace-run python main.py
+
+\`\`\`
+
+Data has a prebuilt [Docker
+Dashboard](http://app.datadoghq.com/screen/integration/52/docker---overview)
+that lets us see the Docker containers are up and happy.
+
+![](.//media/image7.png){width="5.7539774715660545in"
+height="3.506666666666667in"}
+
+Now it's time to collect and explore some metrics.
+
+**Collecting Metrics:**
+
+It's useful to be able to tag our metrics by things like host,
+environment, application, etc. This lets us easily locate and group
+similar metrics from the same category. Tags can be added through
+different methods, since we are deploying everything in Docker, and easy
+way is to use put the tags in the docker run command using and
+environment variable.
+
+FIXME\[mysql-dd-config.sql\](./run-dd-agent.sh)
+
+\`\`\`console
+
+docker run -d \--name docker-dd-agent \\
+
+\--network ddnetwork \\
+
+-v /var/run/docker.sock:/var/run/docker.sock:ro \\
+
+-v /proc/:/host/proc/:ro \\
+
+-v /home/datadog/dd_config/conf.d:/conf.d:ro \\
+
+-v /home/datadog/dd_config/checks.d:/checks.d:ro \\
+
+-v /home/datadog/dd_config/run:/opt/docker-dd-agent/run:rw \\
+
+-v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \\
+
+-e API_KEY=75cc324da0bc265b8883ce646853b814 \\
+
+-e SD_BACKEND=docker \\
+
+-e NON_LOCAL_TRAFFIC=false \\
+
+-e DD_LOGS_ENABLED=true \\
+
+-e DD_AC_EXCLUDE=\"name:datadog-agent\" \\
+
+-e DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true \\
+
+-e DD_APM_ENABLED=true \\
+
+-e DD_APM_NON_LOCAL_TRAFFIC=true \\
+
+\-**e TAGS=docker:agent,env:testing \\**
+
+datadog/docker-dd-agent:latest
+
+\`\`\`
 
 **Collecting Metrics:**
 
@@ -195,7 +312,7 @@ touch /opt/dd-agent-conf.d/nginx.yaml
 
 > Fully enable MySQL performance metrics (non-prod DB only)
 >
-> ![](.//media/image6.png){width="4.042204724409449in"
+> ![](.//media/image8.png){width="4.042204724409449in"
 > height="3.0533333333333332in"}
 >
 > <https://app.datadoghq.com/dash/integration/12/MySQL%20-%20Overview?tpl_var_scope=host%3Adatadog1&from_ts=1593263610416&to_ts=1593267210416&live=true>
