@@ -20,7 +20,10 @@ Datadog lets us build dashboards that combine metrics from many different source
 
 ![Overview](./screensshots/overview.png)
 
-
+## Lingk to scripts (Provided in context as well)
+* Monitoring [Json](https://github.com/dwpseng/hiring-engineers/blob/4b9d7d1d71f688e09b24448df68e799a36e67b2c/answers/exports/DataWizardMonitors--2020-06-30T22%2033%2055.json#L2)
+* Data Wizard Overview Dashboard - [JSON](https://github.com/dwpseng/hiring-engineers/blob/4b9d7d1d71f688e09b24448df68e799a36e67b2c/answers/exports/DataWizardOverview--2020-06-30T22%2033%2055.json#L1)
+* API driven dashboard [JSON](https://github.com/dwpseng/hiring-engineers/blob/4b9d7d1d71f688e09b24448df68e799a36e67b2c/answers/exports/DataWizardVisualisation-ViaAPI4--2020-06-30T10%2005%2045.json#L1)
 
 ## Collecting Metrics:
 
@@ -144,7 +147,7 @@ Since you’ve already caught your test metric going above 800 once, you don’t
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-* You may use this [**script**](./exports/DataWizardMonitors--2020-06-30T22 33 55.json) to import the monitoring
+* You may use this [**script**](https://github.com/dwpseng/hiring-engineers/blob/4b9d7d1d71f688e09b24448df68e799a36e67b2c/answers/exports/DataWizardMonitors--2020-06-30T22%2033%2055.json#L2) to import the monitoring
   
 
 ![](./screensshots/multi_mon.png)
