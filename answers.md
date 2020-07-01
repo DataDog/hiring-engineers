@@ -152,15 +152,20 @@ Please configure the monitor’s message so that it will:
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-![screenAlert1](images/Snip20200630_32.png)
+![screenAlert2](images/Snip20200630_32.png)
 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+
+![screenEmail](images/Snip20200630_34.png)
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  
+This can be accomplished via the manage downtime. <br>
 
 ## Collecting APM Data:
 
