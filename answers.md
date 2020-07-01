@@ -88,9 +88,9 @@ guide](http://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-g
 for full details). We'll create SQL script for this so we can execute at
 container startup
 
-\[mysql-dd-config.sql\](./mysql_config/mysql-dd-config.sql)
+[mysql-dd-config.sql](./mysql_config/mysql-dd-config.sql)
 
-\`\`\`console
+```console
 
 \# To run script on container lauch use
 
@@ -109,7 +109,7 @@ ALTER USER \'dduser\'@\'%\' WITH MAX_USER_CONNECTIONS 5;
 
 GRANT SELECT ON performance_schema.\* TO \'dduser\'@\'%\';
 
-\`\`\`
+```
 
 In order to monitor MySQL with Datadog, we'll need to do a few things
 around setting up a MySQL.
