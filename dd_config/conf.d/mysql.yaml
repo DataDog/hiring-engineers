@@ -1,0 +1,36 @@
+init_config:
+
+instances:
+  - server: mysql1
+    user: dduser
+    pass: datadog # from the CREATE USER step earlier
+    port: 3306 # e.g. 3306
+    options:
+      replication: false
+      galera_cluster: true
+      extra_status_metrics: true
+      extra_innodb_metrics: true
+      extra_performance_metrics: true
+      schema_size_metrics: false
+      disable_innodb_metrics: false
+logs:
+ - type: file
+   path: /var/log/mysql/mysql_error.log
+   service: email-service
+   source: mysql
+
+ - type: file
+   path: /var/log/mysql/mysql_slow.log
+   service: email-service
+   source: mysql
+   log_processing_rules:
+     - type: multi_line
+       name: new_slow_query_log_entry
+       pattern: "# Time:"
+       # If mysqld was started with `--log-short-format`, use:
+       # pattern: "# Query_time:"
+
+ - type: file
+   path: /var/log/mysql/mysql.log
+   service: email-service
+   source: mysql
