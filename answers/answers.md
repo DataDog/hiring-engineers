@@ -97,9 +97,9 @@ A public [link](https://p.datadoghq.eu/sb/vik60ulhvn4ner0k-06f362dc4e8b89b439879
 
   
 ## Visualizing Data:
-  
+
 Utilize the Datadog API to create a Timeboard that contains:
-  
+
 - Your custom metric scoped over your host.
   
   - The random metric is included also random metric on top of the CUP usage
@@ -172,8 +172,10 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
   ![](./screensshots/500.png)
   
   * Alerting threshold of 800
+    * Interestingly well randomly I got no 800 but then had to fire the amazing test alert (I love that very useful)
+    * ![](./screensshots/800.png)
   * And also ensure that it will notify you if there is No Data for this query over the past 10m.
-  * ![](./screensshots/no_data_alert.png)
+  * ![](./screensshots/10mins.png)
   
   
 
@@ -189,7 +191,7 @@ Please configure the monitor’s message so that it will:
   
 - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
   
-  - I could get all to work except for {{host.ip}} this might be due to Docker compsoe but I have tried quite few thing but could not git it working unfortunately
+  - I could get all to work except for {{host.ip}} this might be due to Docker compose but I have tried quite few thing but could not git it working unfortunately
   
     ![](./screensshots/mon_tags.png)
   
@@ -302,7 +304,7 @@ Datadog is a very powerful and feature rich product, yet very self-service which
 
 **Inra Postgres Containers**
 
-![](/./screensshots/infra_containers_postgres_details.png)
+![](./screensshots/infra_containers_postgres_details.png)
 
 **Log Explorer - Postgres**
 
