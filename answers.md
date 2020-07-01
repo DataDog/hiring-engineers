@@ -4,10 +4,10 @@ You can utilize any OS/host that you would like to complete this
 exercise. However, we recommend one of the following approaches:
 
 -   You can spin up a fresh linux VM via Vagrant or other tools so that
-    you don't run into any OS or dependency issues. [Here are
-    instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for
+    you don't run into any OS or dependency issues.Â [Here are
+    instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant)Â for
     setting up a Vagrant Ubuntu VM. We strongly recommend using
-    minimum v. 16.04 to avoid dependency issues.
+    minimumÂ v. 16.04Â to avoid dependency issues.
 
 -   You can utilize a Containerized approach with Docker for Linux and
     our dockerized Datadog Agent image.
@@ -18,11 +18,11 @@ machine.
 
 Spin up a Ubuntu VM
 
-![](media/image1.png){width="6.5in" height="1.931233595800525in"}
+![](.//media/image1.png)
 
 Installed Docker with command: sudo apt-get install docker.io
 
-![](media/image2.png){width="6.5in" height="2.019417104111986in"}
+![](.//media/image2.png){width="6.5in" height="2.019417104111986in"}
 
 Installed the dockerized Datadog Agent image:
 
@@ -31,19 +31,19 @@ DOCKER_CONTENT_TRUST=1 docker run -d \--name dd-agent -v
 /cgroup/:/host/sys/fs/cgroup:ro -e
 DD_API_KEY=75cc324da0bc265b8883ce646853b814 datadog/agent:7
 
-![](media/image3.png){width="6.5in" height="1.7861373578302713in"}
+![](.//media/image3.png){width="6.5in" height="1.7861373578302713in"}
 
 Host datadog1 agent up and reporting metrics:
 
 <https://app.datadoghq.com/dash/host/2673579463?from_ts=1593104807629&to_ts=1593108407629&live=true>
 
-![](media/image4.png){width="6.5in" height="4.423193350831146in"}
+![](.//media/image4.png)
 
 Alternate agent install in Docker container
 
 docker pull datadog/docker-dd-agent
 
-![](media/image5.png){width="6.5in" height="1.5468667979002624in"}
+![](.//media/image5.png)
 
 For agent troubleshooting, logs can be viewed in the agent Docker
 container
@@ -120,7 +120,7 @@ touch /opt/dd-agent-conf.d/nginx.yaml
 
 > Fully enable MySQL performance metrics (non-prod DB only)
 >
-> ![](media/image6.png){width="4.042204724409449in"
+> ![](.//media/image6.png){width="4.042204724409449in"
 > height="3.0533333333333332in"}
 >
 > <https://app.datadoghq.com/dash/integration/12/MySQL%20-%20Overview?tpl_var_scope=host%3Adatadog1&from_ts=1593263610416&to_ts=1593267210416&live=true>
@@ -149,7 +149,7 @@ touch /opt/dd-agent-conf.d/nginx.yaml
 -   Change your check\'s collection interval so that it only submits the
     metric once every 45 seconds.
 
--   **Bonus Question** Can you change the collection interval without
+-   **Bonus Question**Â Can you change the collection interval without
     modifying the Python check file you created?
 
 **Visualizing Data:**
@@ -317,4 +317,3 @@ To submit your answers:
 -   Don\'t forget to include links to your dashboard(s), even better
     links and screenshots. We recommend that you include your
     screenshots inline with your answers.
-
