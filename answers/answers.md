@@ -34,6 +34,8 @@ A public [link](https://p.datadoghq.eu/sb/vik60ulhvn4ner0k-06f362dc4e8b89b439879
 This repository is a fully functional self-service PoC of the features in context, instructions:
 * Install Docker (Tested on Mac & Ubuntu)
 * Clone the repostory
+* Rename the DOT_ENV_TEMPLATE.env file to .env
+* Populate the relevant credentials and any other env. variables
 * `sudo chmod +x run.sh`
 * fire `sudo ./run.sh`
 
