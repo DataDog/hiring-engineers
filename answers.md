@@ -80,12 +80,40 @@ We now have a MySQL Docker image on our VM
 
 ![](.//media/image5.png){width="6.5in" height="1.1173490813648295in"}
 
-See [MySQL Docker installation
+In order to monitor MySQL with Datadog, we'll need to do a few things
+around setting up a MySQL. One is to set up a MySQL user with so the
+Datadog agent can connect to MySQL with the proper credentials (see
+[MySQL Docker installation
 guide](http://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html)
-for full details
+for full details). We'll create SQL script for this so we can execute at
+container startup (\[script\](/mysql_config/mysql-dd-config.sql)
+
+\`\`\`console
+
+\# To run script on container lauch use
+
+\# \--mount
+type=bind,src=/home/datadog/config/scripts/,dst=/docker-entrypoint-initdb.d/
+\\
+
+CREATE USER \'dduser\'@\'%\' IDENTIFIED WITH mysql_native_password by
+\'\<password\>\';
+
+GRANT REPLICATION CLIENT ON \*.\* TO \'dduser\'@\'%\';
+
+GRANT PROCESS ON \*.\* TO \'dduser\'@\'%\';
+
+ALTER USER \'dduser\'@\'%\' WITH MAX_USER_CONNECTIONS 5;
+
+GRANT SELECT ON performance_schema.\* TO \'dduser\'@\'%\';
+
+\`\`\`
 
 In order to monitor MySQL with Datadog, we'll need to do a few things
-around setting up a MySQL user with
+around setting up a MySQL.
+
+[Configuring MySQL for Datadog
+monitoring](http://docs.datadoghq.com/integrations/mysql/#pagetitle)
 
 A good blog article on monitoring MySQL can be found here
 
