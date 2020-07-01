@@ -18,16 +18,20 @@ First I'd like to express how impressive the Datadog entire suite and features, 
 
 Datadog lets us build dashboards that combine metrics from many different sources. We can mix and transform metrics to make them more useful. It also provides a powerful interface for interactive exploration of metrics.
 
+A public [link](https://p.datadoghq.eu/sb/vik60ulhvn4ner0k-06f362dc4e8b89b439879eb1a962594e)
+
 ![Overview](./screensshots/overview.png)
 
-## Lingk to scripts (Provided in context as well)
+## Links to scripts (Provided in context as well)
 * Monitoring [Json](https://github.com/dwpseng/hiring-engineers/blob/4b9d7d1d71f688e09b24448df68e799a36e67b2c/answers/exports/DataWizardMonitors--2020-06-30T22%2033%2055.json#L2)
+
 * Data Wizard Overview Dashboard - [JSON](https://github.com/dwpseng/hiring-engineers/blob/4b9d7d1d71f688e09b24448df68e799a36e67b2c/answers/exports/DataWizardOverview--2020-06-30T22%2033%2055.json#L1)
+
 * API driven dashboard [JSON](https://github.com/dwpseng/hiring-engineers/blob/4b9d7d1d71f688e09b24448df68e799a36e67b2c/answers/exports/DataWizardVisualisation-ViaAPI4--2020-06-30T10%2005%2045.json#L1)
 
+  
+
 ## Collecting Metrics:
-
-
 
 * Add tags in the Agent config file and show us a screen-shot of your host and its tags on the Host Map page in Datadog.
 
@@ -54,7 +58,7 @@ Datadog lets us build dashboards that combine metrics from many different source
 
     ![](./screensshots/env_file_scrambled.png)
 
-  - The following is the code sniped that is creating the container needed.![PG Docker source](./screensshots/pg_code_.png)
+  - The following is the code sniped that is creating the container needed. -The full compose [file](https://github.com/dwpseng/hiring-engineers/blob/6284d4c194c9ee51c68b90fa60a40f91394d9531/docker-compose.yml#L1)![PG Docker source](./screensshots/pg_code_.png)
     - Please note that the entry point is to add the Datadog required credentials using the [Initialization scripts](https://hub.docker.com/_/postgres). 
     - I have used the [Docker labels](https://docs.docker.com/config/labels-custom-metadata/) to let the magic of [Datadog Docker Autodiscovery](https://docs.datadoghq.com/agent/docker/integrations/?tab=docker) take care of things.
     - The docker label "**my.custom.label.dept**" this will be extracted by the agent and mapped to "dept" - I love this!
@@ -65,6 +69,8 @@ Datadog lets us build dashboards that combine metrics from many different source
   - There was not much to do here to be honest, going through such brilliant [documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) and taking the example with slight tweak.
 
   - The code below is almost copy paste except I have add a random number
+
+  - Code found [here](https://github.com/dwpseng/hiring-engineers/blob/6284d4c194c9ee51c68b90fa60a40f91394d9531/dd-agent-checks.d/my_random_metrics.py#L1)
 
     ![](./screensshots/cac_python_code.png)
 
@@ -85,22 +91,23 @@ Datadog lets us build dashboards that combine metrics from many different source
 - **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
   - Yes, this is simple, in fact it is right at the start of the Custom Agent Check [documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7), Brilliant!  Using the **min_collection_interval** 
-  - ![](./screensshots/cac_conf_45.png)
-
+  - Yaml config [here](https://github.com/dwpseng/hiring-engineers/blob/6284d4c194c9ee51c68b90fa60a40f91394d9531/dd-agent-conf.d/my_random_metrics.yaml#L5)
+- ![](./screensshots/cac_conf_45.png)
   
 
-  ## Visualizing Data:
-
-  Utilize the Datadog API to create a Timeboard that contains:
-
-  - Your custom metric scoped over your host.
-
-    - The random metric is included also random metric on top of the CUP usage
-
+  
+## Visualizing Data:
+  
+Utilize the Datadog API to create a Timeboard that contains:
+  
+- Your custom metric scoped over your host.
+  
+  - The random metric is included also random metric on top of the CUP usage
   - Any metric from the Integration on your Database with the anomaly function applied.
 
     - I have put fetched rows and it's anomalies 
   - Use this JSON [export](exports/DataWizardVisualisation-ViaAPI4--2020-06-30T10 05 45.json) to re-create the same dashboard
+  - Public [link](https://p.datadoghq.eu/sb/vik60ulhvn4ner0k-2c5e387d4b5827038aa58c2f79ea9a97) to the dashboard
   
   ![](./screensshots/dashboard_via_api.png)
   
@@ -111,11 +118,17 @@ Datadog lets us build dashboards that combine metrics from many different source
 
 
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+* Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-This is a simple script to push the Dashboard JSON
+* Python script code found [here](https://github.com/dwpseng/hiring-engineers/blob/data_wizard/api/dashboard_api_.py#L1)
 
-![](./screensshots/api_dash_code.png)
+* The **django_container** could be used to run the script 
+
+  `docker exec django_container python api/dashboard_api_.py`
+
+  
+
+  ![](./screensshots/api_dash_code.png)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 

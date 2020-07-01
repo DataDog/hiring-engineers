@@ -39,7 +39,8 @@
     web:
       build: .
       container_name: django_container
-      command:  pyddprofile manage.py runserver 0.0.0.0:8000
+#      command:  pyddprofile manage.py runserver 0.0.0.0:8000
+      command:  ddtrace-run manage.py runserver 0.0.0.0:8000
       env_file: .env
       labels: 
         my.custom.label.dept: "enablement:presales"
