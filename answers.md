@@ -206,6 +206,18 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
+Steps: <br>
+Install ddtrace by **pip install ddtrace** <br>
+By default, Flask runs apps on port 5000. The Datadog agent also uses 5000 by default, so this command below specifies a different Flask port to avoid any conflit<br>
+
+```
+FLASK_APP=sample_app.py DATADOG_ENV=flask_test ddtrace-run flask run --port=4999
+```
+
+![screenDowntime](images/Snip20200630_42.png)
+https://app.datadoghq.com/apm/services?end=1593640453237&env=flask_test&paused=false&start=1593636853237 <br>
+
+
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
