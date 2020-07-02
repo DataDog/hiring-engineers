@@ -105,7 +105,7 @@ Please configure the monitor’s message so that it will:
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-> NOTE: I used an offset for the timing of the downtime, to be kind to our US-based employees. The timezone offset is configurable in the Terraform code. Also, I added Sunday night to the 'weeknight' downtimes so as not to wake up our engineers between midnight at 7am on Monday morning...
+> NOTE: I used an offset for the timing of the downtime, to be kind to our US-based employees. The timezone offset is configurable in the Terraform code. Also, I added Sunday night to the 'weeknight' downtimes so as not to wake up our engineers between midnight and 7am on Monday morning...
 
 ![](./images/2020-07-02-06-16-31.png)
 
