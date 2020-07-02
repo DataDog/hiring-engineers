@@ -1,4 +1,4 @@
-# Custom check that returns a random number between 1-1000
+# Custom check that returns a random number between 0-1000
 __version__ = "0.0.1"
 import random
 
