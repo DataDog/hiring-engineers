@@ -513,8 +513,13 @@ Exit from your GCP instance with the `exit` command. You'll probably need to do 
 
 You should be in the `~/cloudshell_open/hiring-engineers/solution` directory before proceeding.
 
-Run the following command, replacing *you@example.com* with the same email address associated with your Datadog account.
+First we'll use the `terraform taint` command to force a rebuild of our monitor configuration. Run these two commands in your terminal:
+```bash
+terraform taint datadog_downtime.weekends
+terraform taint datadog_downtime.weeknights
+```
 
+Now run the following command, replacing *you@example.com* with the same email address associated with your Datadog account.
 ```bash
 terraform apply -auto-approve -var "dd_api_key=$DD_API_KEY" -var "email=you@example.com"
 ```
