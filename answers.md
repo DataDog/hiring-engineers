@@ -166,11 +166,11 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 ![](./images/2020-07-02-06-25-09.png)
 
 ## Dashboard and monitor links for Sean Carolan:
-https://app.datadoghq.com/dashboard/szg-x5q-3kt/datadog-tutorial-dashboard
-https://app.datadoghq.com/dashboard/a7v-mv2-3id/sean-carolan---hiring-exercise---infra-and-apm
-https://app.datadoghq.com/apm/service/sampleapp/flask.request
-https://app.datadoghq.com/monitors/19896526
-https://app.datadoghq.com/monitors#downtime?id=878657788
+https://app.datadoghq.com/dashboard/szg-x5q-3kt/datadog-tutorial-dashboard<br>
+https://app.datadoghq.com/dashboard/a7v-mv2-3id/sean-carolan---hiring-exercise---infra-and-apm<br>
+https://app.datadoghq.com/apm/service/sampleapp/flask.request<br>
+https://app.datadoghq.com/monitors/19896526<br>
+https://app.datadoghq.com/monitors#downtime?id=878657788<br>
 https://app.datadoghq.com/monitors#downtime?id=878657787
 
 Please include your fully instrumented app in your submission, as well.
