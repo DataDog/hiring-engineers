@@ -1,0 +1,104 @@
+{
+   "title":"Example Timeboard From API",
+   "description":"Timeboard created with API",
+   "widgets":[
+      {
+         "id":947107672124808,
+         "definition":{
+            "type":"timeseries",
+            "requests":[
+               {
+                  "q":"avg:my_metric{host:datadog1}",
+                  "display_type":"line",
+                  "style":{
+                     "palette":"dog_classic",
+                     "line_type":"solid",
+                     "line_width":"normal"
+                  }
+               }
+            ],
+            "yaxis":{
+               "label":"",
+               "scale":"linear",
+               "min":"auto",
+               "max":"auto",
+               "include_zero":true
+            },
+            "title":"My Customer Metric",
+            "time":{
+
+            },
+            "show_legend":false,
+            "legend_size":"0"
+         }
+      },
+      {
+         "id":2150531279346304,
+         "definition":{
+            "type":"timeseries",
+            "requests":[
+               {
+                  "q":"anomalies(avg:mysql.performance.com_select{*}, 'basic', 2)",
+                  "display_type":"line",
+                  "style":{
+                     "palette":"dog_classic",
+                     "line_type":"solid",
+                     "line_width":"normal"
+                  }
+               }
+            ],
+            "yaxis":{
+               "label":"",
+               "scale":"linear",
+               "min":"auto",
+               "max":"auto",
+               "include_zero":true
+            },
+            "title":"MySQL Performance Select",
+            "time":{
+
+            },
+            "show_legend":false,
+            "legend_size":"0"
+         }
+      },
+      {
+         "id":1013625373256536,
+         "definition":{
+            "type":"timeseries",
+            "requests":[
+               {
+                  "q":"sum:my_metric{docker:agent}.rollup(sum, 360)",
+                  "display_type":"line",
+                  "style":{
+                     "palette":"dog_classic",
+                     "line_type":"solid",
+                     "line_width":"normal"
+                  }
+               }
+            ],
+            "yaxis":{
+               "label":"",
+               "scale":"linear",
+               "min":"auto",
+               "max":"auto",
+               "include_zero":true
+            },
+            "title":"My Metric Rollup",
+            "time":{
+
+            },
+            "show_legend":false
+         }
+      }
+   ],
+   "template_variables":[
+
+   ],
+   "layout_type":"ordered",
+   "is_read_only":false,
+   "notify_list":[
+
+   ],
+   "id":"x4r-ccw-z5s"
+}
