@@ -1,5 +1,5 @@
-api_key=75cc324da0bc265b8883ce646853b814
-app_key=90010fe90c75c6ba58575f40fe0b5831b2db00fd
+api_key=<YOUR API KEY>
+app_key=<YOUR APP KEY>
 
 curl  -X POST -H "Content-type: application/json" \
 -d '{

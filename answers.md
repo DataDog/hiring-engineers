@@ -133,7 +133,7 @@ script in MySQL.
 
 [create_city_stats.sql](./mysql_config/create_city_stats.sql)
 
-***mysql\>** source /*create_city_stats.sql
+***mysql\>** source /create_city_stats.sql
 
 Or we can run the script in the Workbench if we've enabled remote access to the desktop (above).
 
@@ -204,7 +204,7 @@ sudo docker run -d --name docker-dd-agent \
   -v /home/datadog/dd_config/checks.d:/checks.d:ro \
   -v /home/datadog/dd_config/run:/opt/docker-dd-agent/run:rw \
   -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
-  -e API_KEY=75cc324da0bc265b8883ce646853b814 \
+  -e API_KEY=<API_KEY> \
   -e SD_BACKEND=docker \
   -e NON_LOCAL_TRAFFIC=false \
   -e DD_LOGS_ENABLED=true \
