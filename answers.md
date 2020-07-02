@@ -1,5 +1,5 @@
 ## Hiring Exercise Answers
-### Candidate - Sean Carolan
+### Candidate - [Sean Carolan](https://www.linkedin.com/in/seancarolan108/)
 
 ### Introduction
 Thank you for the opportunity to go through this hiring exercise. I enjoyed the technical challenge and learned a lot about the Datadog platform. I took detailed notes about the process, which I'm happy to share privately.
