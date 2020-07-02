@@ -63,7 +63,7 @@ container (/var/log/datadog)
 
 Agent status can also be seen:
 
-***Command:** docker exec -it dd-agent agent status*
+***Command:** docker exec -it docker-dd-agent agent status*
 
 **Step 4) Install MySQL & Flask Docker containers**
 
@@ -94,8 +94,6 @@ container startup
 ```
 
 # To run script on container lauch use
-
-# To run script on container lauch use
 #  --mount type=bind,src=/home/datadog/config/scripts/,dst=/docker-entrypoint-initdb.d/ \
 CREATE USER 'dduser'@'%' IDENTIFIED WITH mysql_native_password by 'datadog';
 GRANT REPLICATION CLIENT ON *.* TO 'dduser'@'%';
@@ -104,8 +102,14 @@ ALTER USER 'dduser'@'%' WITH MAX_USER_CONNECTIONS 5;
 GRANT SELECT ON performance_schema.* TO 'dduser'@'%';
 ```
 
-[Configuring MySQL for Datadog
-monitoring](http://docs.datadoghq.com/integrations/mysql/#pagetitle)
+Optional: To enable remote access to MySQL from your native desktop. You can issue this additional command:
+
+ />docker exec -it mysql1 mysql -uroot -p
+mysql>GRANT ALL PRIVILEGES ON *.* TO 'dduser'@'%';
+
+
+See [configuring MySQL for Datadog
+monitoring](http://docs.datadoghq.com/integrations/mysql/#pagetitle) for more detail.
 
 
 To run the MySQL container we will use another shell script.
@@ -127,9 +131,11 @@ mysql/mysql-server
 To create some data in the database, we run the create_city_stats.sql
 script in MySQL.
 
-[create_city_stats.sql](./mysql_config/ create_city_stats.sql)
+[create_city_stats.sql](./mysql_config/create_city_stats.sql)
 
 ***mysql\>** source /*create_city_stats.sql
+
+Or we can run the script in the Workbench if we've enabled remote access to the desktop (above).
 
 Since we exposed the MySQL port to the host (-publish 6603:3306) we can
 access the data in MySQL Workbench from the decktop:
@@ -144,14 +150,17 @@ requested city name.
 Install Flask Docker image: [flask docker
 setup](http://github.com/tiangolo/uwsgi-nginx-flask-docker).
 
-To run our app, well need to copy it over to the Flask container,
-install the Datadog trace library, MySQL python libs, then run the app
+To build a Docker container with our app already installed, from the flask_config directory run
+
+***Command:** docker build -t flaskapp:1.0 .
+
+You can start the flask Docker container with the [run-flask.sh](./run-flask.sh).
+
+To run our app, install the Datadog trace library, MySQL python libs, then run the app
 using ddtrace-run to enable tracing :
+ 
 
 ```console
-
-\>docker cp ./flask_config/app/main.py flaskapp:/app
-
 \>docker exec -it flaskapp bash
 
 \>pip install ddtrace
