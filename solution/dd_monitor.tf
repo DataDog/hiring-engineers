@@ -14,7 +14,7 @@ resource "datadog_monitor" "high_random_number" {
     {{/is_no_data}}
   EOM
 
-  query = "avg(last_5m):avg:my_metric.gauge{*} > 800"
+  query = "avg(last_5m):avg:my_metric.gauge{*} by {host} > 800"
 
   thresholds = {
     warning           = 500

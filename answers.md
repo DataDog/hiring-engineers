@@ -96,7 +96,7 @@ Please configure the monitor’s message so that it will:
 
 ![](./images/2020-07-02-06-14-11.png)
 
-![](./images/2020-06-30-12-56-07.png)
+![](./images/2020-07-02-06-52-41.png)
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
