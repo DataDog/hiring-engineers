@@ -57,7 +57,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-**The terraform code used to create this timeboard is stored in solution/dd_dashboard.tf**
+**The terraform code used to create this timeboard is stored in [solution/dd_dashboard.tf](./solution/dd_dashboard.tf)**
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -92,7 +92,7 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-**The terraform code used to create the monitor and downtime schedules is in solution/dd_monitor.tf**
+**The terraform code used to create the monitor and downtime schedules is in [solution/dd_monitor.tf](./solution/dd_monitor.tf)**
 
 ![](./images/2020-06-30-12-55-23.png)
 

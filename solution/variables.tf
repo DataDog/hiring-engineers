@@ -37,3 +37,18 @@ variable "subnet_prefix" {
 variable "dd_api_key" {
   description = "Your Datadog API key. We strongly recommend storing this as environment variable DD_API_KEY."
 }
+
+variable "utc_offset" {
+  description = "Used to schedule downtimes. New York is -04:00"
+  default = "-04:00"
+}
+
+variable "weeknight_dt_start" {
+  description = "Beginning of weeknight downtime."
+  default = "19:00"
+}
+
+variable "weeknight_dt_end" {
+  description = "End of weeknight downtime."
+  default = "09:00"
+}
