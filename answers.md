@@ -91,63 +91,37 @@ container startup
 [mysql-dd-config.sql](./mysql_config/scripts/mysql-dd-config.sql)
 
 
-```console
+```
 
-\# To run script on container lauch use
+# To run script on container lauch use
 
-\# \--mount
-type=bind,src=/home/datadog/config/scripts/,dst=/docker-entrypoint-initdb.d/
-\\
-
-CREATE USER \'dduser\'@\'%\' IDENTIFIED WITH mysql_native_password by
-\'\<password\>\';
-
-GRANT REPLICATION CLIENT ON \*.\* TO \'dduser\'@\'%\';
-
-GRANT PROCESS ON \*.\* TO \'dduser\'@\'%\';
-
-ALTER USER \'dduser\'@\'%\' WITH MAX_USER_CONNECTIONS 5;
-
-GRANT SELECT ON performance_schema.\* TO \'dduser\'@\'%\';
-
+# To run script on container lauch use
+#  --mount type=bind,src=/home/datadog/config/scripts/,dst=/docker-entrypoint-initdb.d/ \
+CREATE USER 'dduser'@'%' IDENTIFIED WITH mysql_native_password by 'datadog';
+GRANT REPLICATION CLIENT ON *.* TO 'dduser'@'%';
+GRANT PROCESS ON *.* TO 'dduser'@'%';
+ALTER USER 'dduser'@'%' WITH MAX_USER_CONNECTIONS 5;
+GRANT SELECT ON performance_schema.* TO 'dduser'@'%';
 ```
 
 [Configuring MySQL for Datadog
 monitoring](http://docs.datadoghq.com/integrations/mysql/#pagetitle)
 
-```
 
 To run the MySQL container we will use another shell script.
 
-```console
-
-docker run \\
-
--d \\
-
--l \"com.datadoghq.ad.logs\"=\'\[{\"source\": \"mysql container\",
-\"service\": \"mysql\"}\]\' \\
-
-\--name=mysql1 \\
-
-\--network ddnetwork \\
-
-\--env=\"MYSQL_ROOT_PASSWORD=datadog\" \\
-
-\--publish 6603:3306 \\
-
-\--mount
-type=bind,src=/home/datadog/mysql_config/data,dst=/var/lib/mysql \\
-
-\--mount type=bind,src=/home/datadog/mysql_config/my.cnf,dst=/etc/my.cnf
-\\
-
-\--mount
-type=bind,src=/home/datadog/mysql_config/scripts,dst=/docker-entrypoint-initdb.d
-\\
-
+```
+sudo docker run \
+-d \
+-l "com.datadoghq.ad.logs"='[{"source": "mysql container", "service": "mysql"}]' \
+--name=mysql1 \
+--network ddnetwork \
+--env="MYSQL_ROOT_PASSWORD=datadog" \
+--publish 6603:3306 \
+--mount type=bind,src=/home/datadog/mysql_config/my.cnf,dst=/etc/my.cnf \
+--mount type=bind,src=/home/datadog/mysql_config/data,dst=/var/lib/mysql \
+--mount type=bind,src=/home/datadog/mysql_config/scripts/,dst=/docker-entrypoint-initdb.d/ \
 mysql/mysql-server
-
 ```
 
 To create some data in the database, we run the create_city_stats.sql
@@ -157,8 +131,8 @@ script in MySQL.
 
 ***mysql\>** source /*create_city_stats.sql
 
-We can since we exposed the MySQL port to the host (publish 6603:3306)
-we can access the data in MySQL Workbench from the decktop
+Since we exposed the MySQL port to the host (-publish 6603:3306) we can
+access the data in MySQL Workbench from the decktop:
 
 ![](.//media/image6.png){width="5.1325in" height="2.0733333333333333in"}
 
@@ -176,7 +150,7 @@ using ddtrace-run to enable tracing :
 
 ```console
 
-\>docker cp ./flaskbuild/app/main.py flaskapp:/app
+\>docker cp ./flask_config/app/main.py flaskapp:/app
 
 \>docker exec -it flaskapp bash
 
@@ -188,7 +162,7 @@ using ddtrace-run to enable tracing :
 
 ```
 
-Data has a prebuilt [Docker
+Datadog has a prebuilt [Docker
 Dashboard](http://app.datadoghq.com/screen/integration/52/docker---overview)
 that lets us see the Docker containers are up and happy.
 
@@ -208,45 +182,29 @@ different methods, since we are deploying everything in Docker, and easy
 way is to use put the tags in the docker run command using and the TAG
 environment variable.
 
-[mysql-dd-config.sql](./run-dd-agent.sh)
+We'll put the Agent Docker run in a shell script:
 
-```console
+[run-dd-agent.sh](./run-dd-agent.sh)
 
-docker run -d \--name docker-dd-agent \\
-
-\--network ddnetwork \\
-
--v /var/run/docker.sock:/var/run/docker.sock:ro \\
-
--v /proc/:/host/proc/:ro \\
-
--v /home/datadog/dd_config/conf.d:/conf.d:ro \\
-
--v /home/datadog/dd_config/checks.d:/checks.d:ro \\
-
--v /home/datadog/dd_config/run:/opt/docker-dd-agent/run:rw \\
-
--v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \\
-
--e API_KEY=75cc324da0bc265b8883ce646853b814 \\
-
--e SD_BACKEND=docker \\
-
--e NON_LOCAL_TRAFFIC=false \\
-
--e DD_LOGS_ENABLED=true \\
-
--e DD_AC_EXCLUDE=\"name:datadog-agent\" \\
-
--e DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true \\
-
--e DD_APM_ENABLED=true \\
-
--e DD_APM_NON_LOCAL_TRAFFIC=true \\
-
-\-**e TAGS=docker:agent,env:testing \\**
-
-datadog/docker-dd-Agent:latest
+```
+sudo docker run -d --name docker-dd-agent \
+  --network ddnetwork \
+  -v /var/run/docker.sock:/var/run/docker.sock:ro \
+  -v /proc/:/host/proc/:ro \
+  -v /home/datadog/dd_config/conf.d:/conf.d:ro \
+  -v /home/datadog/dd_config/checks.d:/checks.d:ro \
+  -v /home/datadog/dd_config/run:/opt/docker-dd-agent/run:rw \
+  -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+  -e API_KEY=75cc324da0bc265b8883ce646853b814 \
+  -e SD_BACKEND=docker \
+  -e NON_LOCAL_TRAFFIC=false \
+  -e DD_LOGS_ENABLED=true \
+  -e DD_AC_EXCLUDE="name:datadog-agent" \
+  -e DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true \
+  -e DD_APM_ENABLED=true \
+  -e DD_APM_NON_LOCAL_TRAFFIC=true \
+  -e TAGS=docker:agent,env:testing \
+  datadog/docker-dd-agent:latest
 
 ```
 
@@ -266,7 +224,7 @@ Agent run script we have the line**
 This will copy the host file mysql.yaml to the conf.d directory in the
 Agent Docker container.
 
-[mysql-dd-config.sql](./dd_config/conf.d/mysql.yaml)
+[mysql.yaml](./dd_config/conf.d/mysql.yaml)
 
 **Once enabled, we can view MySQL metrics in a prebuilt** [MySQL
 Dashboard](http://app.datadoghq.com/dash/integration/12/mysql---overview?from_ts=1593464430382&to_ts=1593637230382&live=true)
@@ -275,51 +233,36 @@ Dashboard](http://app.datadoghq.com/dash/integration/12/mysql---overview?from_ts
 
 **Adding Custom Metrics**
 
-**We can add custom metrics using a custom Agent checks. For example,**
-submit a metric named my_metric with a random value between 0 and 1000,
-at certain interval. To do this, we first create a python script to
-generate the metrics and send to the Agent.
+**We can add custom metrics using a custom Agent checks. For example, we
+can** submit a metric named my_metric with a random value between 0 and
+1000, at a given interval. To do this, we first create a python script
+to generate the metrics and send to the Agent.
 
-[mysql-dd-config.sql](./dd_config/checks.d/mycheck.py)
+[mycheck.py](./dd_config/checks.d/mycheck.py)
 
 ```python
 
 import random
 
-\# the following try/except block will make the custom check compatible
-with any Agent version
-
+# the following try/except block will make the custom check compatible with any Agent version
 try:
-
-\# first, try to import the base class from new versions of the
-Agent\...
-
-from datadog_checks.base import AgentCheck
-
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
 except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
 
-\# \...if the above failed, the check is running in Agent version \<
-6.6.0
-
-from checks import AgentCheck
-
-\# content of the special variable \_\_version\_\_ will be shown in the
-Agent status page
-
-\_\_version\_\_ = \"1.0.0\"
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
 
 class HelloCheck(AgentCheck):
-
-def check(self, instance):
-
-self.gauge(\'my_metric\', random.randint(0,1000),
-tags=\[\'custom:check\'\])
-
+    def check(self, instance):
+      self.gauge('my_metric', random.randint(0,1000), tags=['custom:check'])
 ```
 
 **There also needs to be a corresponding yaml in conf.d.**
 
-[mysql-dd-config.sql](./dd_config/conf.d/mycheck.yaml)
+[mycheck.yaml](./dd_config/conf.d/mycheck.yaml)
 
 These are copied over in the above Agent run script with these lines:
 
@@ -347,8 +290,8 @@ For example, one that that contains:
 
 -   A metric from the Integration with MySQL with an anomaly function
     applied. The anomaly function lets us easily see when there are
-    outliers from normal behavior based on analysis of historical data.
-    See
+    outliers from normal behavior based on automated analysis of
+    historical data. See
     <https://docs.datadoghq.com/monitors/faq/anomaly-monitor/#pagetitle>
     for more info.
 
@@ -357,11 +300,15 @@ For example, one that that contains:
 
 Here is the script used to create the Dashboard/Timeboard.
 
-[create_timeboard.sh](./timeboard/conf.d/create_timeboard.sh)
+[create_timeboard.sh](./timeboard/create_timeboard.sh)
 
-*\*Note: I had an issue running the shell script when I introduce the
-anomaly function (worked fine without that), and ended up posting the
-json using Postman.*
+```
+*\*Note: I had an issue running the shell script when I introduced the
+**anomaly** function in the json (worked fine without that), and ended
+up posting the json using Postman which worked fine. The sample python
+script also failed when run. Probably user error.*
+
+```
 
 Once this is created, you can access the Dashboard from your Dashboard
 List in the UI:
@@ -382,7 +329,7 @@ We can also
 
 **Monitoring Data**
 
-Since we've already caught the custom my_metic going above 800 once, you
+Since we've already seen the custom my_metic going above 800 once, we
 don't want to have to continually watch this dashboard to be alerted
 when it goes above 800 again. So let's make life easier by creating a
 monitor.
@@ -408,8 +355,7 @@ We can also configure the monitor's message so that it will:
 -   Include the metric value that caused the monitor to trigger and host
     ip when the Monitor triggers an Alert state.
 
--   When this monitor sends you an email notification, take a screenshot
-    of the email that it sends you.
+> .
 
 ![](.//media/image12.png){width="6.5in" height="3.4798173665791774in"}
 
@@ -419,8 +365,8 @@ height="5.44956583552056in"}
 
 **Collecting APM Data:**
 
-We already deployed the Flask app in the setup. We can see the APM
-features of Datadog my exercising the REST API of that app, e..g. by
+We already deployed the Flask app in the setup. Now we can see the APM
+features of Datadog by exercising the REST API of that app, e..g. by
 making REST calls directly in a browser
 
 ![](.//media/image15.png){width="6.4991666666666665in"
@@ -434,11 +380,16 @@ this case).
 
 ![](.//media/image16.png){width="6.5in" height="2.7428641732283463in"}
 
-We can display trace metrics in the same Dashboard as infrastructure
-metrics, helping us correlate poor performing apps to infrastructure
-issues.
+![](.//media/image17.png){width="6.5in" height="3.329750656167979in"}
 
-![](.//media/image16.png){width="6.5in" height="2.7428641732283463in"}
+We can also display trace metrics in the same Dashboard as
+infrastructure metrics, helping us correlate poor performing apps to
+infrastructure issues.
+
+Below is the Timeboard we created via the API, but extended with Trace
+metrics from the Flask app.
+
+![](.//media/image18.png){width="6.5in" height="2.9156124234470693in"}
 
 Importantly, Datadog allows us to monitor both services and resources. A
 service is a set of processes that do the same job - for example a web
@@ -448,11 +399,18 @@ database query, or background job. See:
 
 [[https://docs.datadoghq.com/tracing/guide/resource_monitor/\#pagetitle]{.ul}](https://docs.datadoghq.com/tracing/guide/resource_monitor/#pagetitle)
 
-**Final Thoughts :**
+**Final Thoughts:**
 
 As you can see by this exercise, Datadog is very versatile and can
-collect data from any source in near real-time, visualize and correlate
-that data in many ways, and provide machine learning based alerting
-based on historical analysis. While typically used for IT application
-and infrastructure monitoring, certainly and IoT scenario would also be
-an area where Datadog can add tremendous value.
+collect data from any source in near real-time. Importantly, Datadog
+allows you to visualize and correlate that data in many ways, and
+provide machine-based learning alerts based on historical analysis.
+
+**Other uses of Datadog**
+
+While typically used for IT application and infrastructure monitoring,
+certainly any IoT scenario would also be an area where Datadog can add
+tremendous value.
+
+Another interesting area would be public health data, e.g. collecting
+Covid19 health data.
