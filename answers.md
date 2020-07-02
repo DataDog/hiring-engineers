@@ -12,6 +12,7 @@ Solutions to the hiring exercise are available as an interactive GCP tutorial an
 [Datadog and GCP Walkthrough](https://github.com/scarolan/hiring-engineers/blob/sean-carolan-answers/walkthrough.md)
 
 ## Answers with Screenshots
+My answers are included below, as inline blockquotes.
 
 ## Collecting Metrics:
 
@@ -43,7 +44,7 @@ Solutions to the hiring exercise are available as an interactive GCP tutorial an
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-**Yes. See the screenshot above, we simply update the collection interval in the yaml config file.**
+> Yes. See the screenshot above, we simply update the collection interval in the yaml config file.
 
 ## Visualizing Data:
 
@@ -73,7 +74,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-**The anomaly graph is showing the percentage of used connections on the database.  The orange line represents data points that are 'normal' or within the expected range. Purple indicates data points that have gone outside the expected bounds. More data is required to allow the algorithm to adjust to actual usage patterns.**
+> The anomaly graph is showing the percentage of used connections on the database.  The orange line represents data points that are 'normal' or within the expected range. Purple indicates data points that have gone outside the expected bounds. More data is required to allow the algorithm to adjust to actual usage patterns.
 
 ## Monitoring Data
 
@@ -92,7 +93,7 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-**The terraform code used to create the monitor and downtime schedules is in [solution/dd_monitor.tf](./solution/dd_monitor.tf)**
+> The terraform code used to create the monitor and downtime schedules is in [solution/dd_monitor.tf](./solution/dd_monitor.tf)
 
 ![](./images/2020-07-02-06-14-11.png)
 
@@ -104,7 +105,7 @@ Please configure the monitor’s message so that it will:
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-**NOTE: I used an offset for the timing of the downtime, to be kind to our US-based employees. The timezone offset is configurable in the Terraform code. Also, I added Sunday night to the 'weeknight' downtimes so as not to wake up our engineers between midnight at 7am on Monday morning...**
+> NOTE: I used an offset for the timing of the downtime, to be kind to our US-based employees. The timezone offset is configurable in the Terraform code. Also, I added Sunday night to the 'weeknight' downtimes so as not to wake up our engineers between midnight at 7am on Monday morning...
 
 ![](./images/2020-07-02-06-16-31.png)
 
@@ -151,17 +152,17 @@ if __name__ == '__main__':
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-**Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.**
+> Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
 
-https://docs.datadoghq.com/tracing/visualization/#services
+> https://docs.datadoghq.com/tracing/visualization/#services
 
-**Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.**
+> Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
 
-https://docs.datadoghq.com/tracing/visualization/#resources
+> https://docs.datadoghq.com/tracing/visualization/#resources
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-**Here is a quick dashboard I whipped up showing CPU (Infrastructure) and APM (Latency on sampleapp)**
+> Here is a quick dashboard I whipped up showing CPU (Infrastructure) and APM (Latency on sampleapp)
 
 ![](./images/2020-07-02-06-25-09.png)
 
@@ -175,13 +176,13 @@ https://app.datadoghq.com/monitors#downtime?id=878657787
 
 Please include your fully instrumented app in your submission, as well.
 
-**I used the sample code you included in the hiring exercise, it is stored in solution/assets/flaskapp.py. I ran it with the following command:**
+> I used the sample code you included in the hiring exercise, it is stored in solution/assets/flaskapp.py. I ran it with the following command:
 
 ```
 nohup ddtrace-run python3 /home/ubuntu/flaskapp.py &
 ```
 
-I then used the curl command to generate traffic on the endpoints.
+> I then used the curl command to generate traffic on the endpoints.
 
 ## Final Question:
 
@@ -189,8 +190,8 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-Absolutely. The NASA Mars Insight lander has a public API:
+>Absolutely. The NASA Mars Insight lander has a public API:
 
-https://mars.nasa.gov/insight/weather/
+> https://mars.nasa.gov/insight/weather/
 
-I would build a Datadog monitor that checks the weather at Elysium Planitia.
+> I would build a Datadog monitor that checks the weather at Elysium Planitia.
