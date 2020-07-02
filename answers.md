@@ -238,3 +238,14 @@ Please include your fully instrumented app in your submission, as well.
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+My interest is to use Datadog to provide end to end service visibility, which includes end user monitoring by synthetic monitoring, APM traces, metrics and application logs. Just knowing that the application performance is degraded is not good enough, we need to correlate to the business services so that we can quick identify when certain alerts were triggered, what specific business services that the application provides were affected. This will be very helpful to understand the real impact caused by the issue. For example, for Ecom application, “check-out” is definitely a critical service. Every time the alerts are triggered, I need to quickly verify if “check-out” service is being affected.  Datadog as the platform, that integrates end user monitoring, APM traces and logs, enables us to see this flow in one place. By configuring end user monitoring, we can pro-actively identify issues before real customers are getting impacted. APM metrics provide us indicators of performance degradation and it is also where correlation with business services happens by identifying the important APIs/classes/methods that contribute to the services and setup alerts against those metrics. And logs help us to dig in to understand “what” caused the issue.<br> 
+
+
+
+
+
+
+
+
+
