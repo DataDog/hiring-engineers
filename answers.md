@@ -94,9 +94,7 @@ Please configure the monitor’s message so that it will:
 
 **The terraform code used to create the monitor and downtime schedules is in [solution/dd_monitor.tf](./solution/dd_monitor.tf)**
 
-![](./images/2020-06-30-12-55-23.png)
-
-![](./images/2020-06-30-12-55-43.png)
+![](./images/2020-07-02-06-14-11.png)
 
 ![](./images/2020-06-30-12-56-07.png)
 
@@ -106,9 +104,9 @@ Please configure the monitor’s message so that it will:
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-**NOTE: I used an offset for the timing of the downtime, to be kind to our US-based employees. The timezone offset is configurable in the Terraform code.**
+**NOTE: I used an offset for the timing of the downtime, to be kind to our US-based employees. The timezone offset is configurable in the Terraform code. Also, I added Sunday night to the 'weeknight' downtimes so as not to wake up our engineers between midnight at 7am on Monday morning...**
 
-![](./images/2020-06-30-12-56-41.png)
+![](./images/2020-07-02-06-16-31.png)
 
 ## Collecting APM Data:
 
@@ -165,7 +163,15 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 **Here is a quick dashboard I whipped up showing CPU (Infrastructure) and APM (Latency on sampleapp)**
 
-![](./images/2020-06-30-13-16-11.png)
+![](./images/2020-07-02-06-25-09.png)
+
+## Dashboard and monitor links for Sean Carolan:
+https://app.datadoghq.com/dashboard/szg-x5q-3kt/datadog-tutorial-dashboard
+https://app.datadoghq.com/dashboard/a7v-mv2-3id/sean-carolan---hiring-exercise---infra-and-apm
+https://app.datadoghq.com/apm/service/sampleapp/flask.request
+https://app.datadoghq.com/monitors/19896526
+https://app.datadoghq.com/monitors#downtime?id=878657788
+https://app.datadoghq.com/monitors#downtime?id=878657787
 
 Please include your fully instrumented app in your submission, as well.
 
