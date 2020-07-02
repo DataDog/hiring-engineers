@@ -34,7 +34,7 @@ My answers are included below, as inline blockquotes.
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-![](./images/2020-06-30-12-43-54.png)
+![](./images/2020-07-02-06-59-02.png)
 
 ![](./images/2020-06-30-12-45-12.png)
 
