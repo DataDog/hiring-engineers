@@ -58,7 +58,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-**The terraform code used to create this timeboard is stored in [solution/dd_dashboard.tf](./solution/dd_dashboard.tf)**
+> The terraform code used to create this timeboard is stored in [solution/dd_dashboard.tf](./solution/dd_dashboard.tf)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -66,7 +66,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 ![](./images/2020-06-30-12-51-07.png)
 
-**Note: The pulldown menu only seems to go as granular as Past 15 minutes**
+> Note: The pulldown menu only seems to go as granular as Past 15 minutes
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
