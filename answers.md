@@ -128,10 +128,10 @@ sudo docker run \
 mysql/mysql-server
 ```
 
-To create some data in the database, we run the create_city_stats.sql
+To create some data in the database, we run the classicmodels_city_stats.sql
 script in MySQL.
 
-[create_city_stats.sql](./mysql_config/create_city_stats.sql)
+[classicmodels_city_stats.sql](./mysql_config/classicmodels_city_stats.sql)
 
 ***mysql\>** source /create_city_stats.sql
 
