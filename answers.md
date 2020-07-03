@@ -11,7 +11,7 @@ At the end I provide you with two small bits of feedback that I noticed over the
 
 Below you can find a screenshot of the hostmap that includes the Vagrant Ubuntu VM I created to fulfill the first task. In addition, there is a second screenshot that displays the information about the tags that correspond to the tags you can see in the first screenshot.
 
-![Host Map](./Screenshots/picture1.png)
+![Host Map](./Screenshots/Picture1.png)
 ![Tag Config](./Screenshots/picture2.png)
 
 
@@ -26,13 +26,13 @@ After all, this birds-eye view gives you a great entry point to your analysis an
 
 Not much to say here, the screenshot below displays an overview of the installed PostgreSQL. The DataDog integration will be shown on the dashboard later on.
 
-![database preview](./Screenshots/picture3.png) 
+![database preview](./Screenshots/Picture3.png) 
 
 ## Task: Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 In the screenshot below we can see the final result of how the custom Agent submits my_metric. Please note that the collection interval defaults to one collect every 15 seconds.
 
-![Custom Agent](./Screenshots/picture4.png) 
+![Custom Agent](./Screenshots/Picture4.png) 
 
 To create the custom Agent check we can simply enter the Python code below to a file in the agent’s checks.d folder (e.g., custom_my_metric.py). In addition, we only need to add a the following code snippet
 ```
@@ -60,8 +60,8 @@ class JaspersCheck(AgentCheck):
 
 ```
 
-![Custom Agent](./Screenshots/picture5.png) 
-![Custom Agent](./Screenshots/picture6.png) 
+![Custom Agent](./Screenshots/Picture5.png) 
+![Custom Agent](./Screenshots/Picture6.png) 
 
 
 _**Why this is cool!?**_
@@ -78,7 +78,7 @@ How cool is that!?
 
 The check’s collection interval can be easily configured using the same config file (“custom_my_metric.yaml”) in the ‘datadog-agent/confd.’ folder that we used above to instantiate the custom agent-check. 
 We simply add the following yaml configuration data to the file:
-![Adjusted Interval](./Screenshots/picture7.png)
+![Adjusted Interval](./Screenshots/Picture7.png)
 
 _**Why this is cool!?**_
 Regardless of how many times we could potentially collect a metric, sometimes there is good reason to lower the number of intervals per period. For example, network utilization is highly affected by this setting. If we collect the metric every 15 seconds that is an additional 5760 network requests per day for a single agent check. A lot, even for high speed networks. What if we collect hundreds or thousands of metrics? Moreover, a single graph on a timegraph usually displays only 300 pixels anyways so for most use cases the overall “picture” doesn’t change by increasing the interval to e.g., 45 seconds. Meanwhile, it saves us two-thirds of network traffic per metric.
@@ -91,7 +91,7 @@ The timeboard that I created as result of the “Visualization Data” section c
 
 This is what it should look like:
 
-![Dashboard1 myMetric](./Screenshots/picture8.png) 
+![Dashboard1 myMetric](./Screenshots/Picture8.png) 
 _Please note: If the host hasn’t been running the graphs might appear empty. For my_metric I chose to keep the collection interval to 15 seconds for this task._
 
 ## Tasks: Utilize the Datadog API to create a Timeboard that contains:
@@ -195,8 +195,8 @@ https://docs.datadoghq.com/dashboards/guide/custom_time_frames/#pagetitle
 ### Take a snapshot of this graph and use the @ notation to send it to yourself.
 I’m not sure which graph exactly you meant. I chose the “My_Metric scoped over my host” graph from the created timeboard. Below you can find a screenshot of the received mail and the corresponding @notation.
 
-![Screenshot Mail](./Screenshots/picture9.png) 
-![AtNotation](./Screenshots/picture10.png) 
+![Screenshot Mail](./Screenshots/Picture9.png) 
+![AtNotation](./Screenshots/Picture10.png) 
 
 _**Why this is cool?**_ 
 
@@ -222,21 +222,21 @@ The ability to alert users based on specific preset application conditions is ob
 Lastly, alerts as pages (for high severity) are there to wake up the right people asap with all necessary information provided in the alert.
 All in all, Datadog is well set to meet all requirements that users (should) have.
 
-![AtNotation](./Screenshots/picture11.png)
+![AtNotation](./Screenshots/Picture11.png)
 
 ## Task: Please configure the monitor’s message so that it will:
 ### - Send you an email whenever the monitor triggers.
 ### - Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-![AtNotation](./Screenshots/picture12.png) 
+![AtNotation](./Screenshots/Picture12.png) 
 ### - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 ### - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-![AtNotation](./Screenshots/picture13.png) 
+![AtNotation](./Screenshots/Picture13.png) 
 
 ## Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 ### One that silences it from 7pm to 9am daily on M-F,
 ### And one that silences it all day on Sat-Sun.
 ### Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-![AtNotation](./Screenshots/picture14.png) 
+![AtNotation](./Screenshots/Picture14.png) 
 
 # Collecting APM Data:
 
@@ -298,14 +298,14 @@ Here the code that I ran in different ways but last with the following CLI comma
  ```
 Below you can find the screenshot of the automatically created flask service dashboard:
 
-![AtNotation](./Screenshots/picture15.png)
+![AtNotation](./Screenshots/Picture15.png)
 
 _**Why this is cool!?**_
 Modern Internet services are usually widely distributed (at least figurately speaking) and highly complex. DataDog APM allows its users to address some of the major challenges that arise with the modern service architecture.
 For example, without tracing we can usually only measure an overall request time. Meanwhile, it is very difficult to get detailed insight in “long tail latency” of a distributed system. APM enables you to see which of the servers along the “tail” takes the longest and releases you from the need to guestimate on where the cause for long request-response duration may come from.
 Also, how well did your colleagues document the dependencies for your microservice? What are the chances the microservice relies on a second or third service? DataDog APM delivers the right visualization capabilities to answer these questions. Additional related use cases are debugging, network modeling, and troubleshooting/firefighting. In summary, DataDog APM provides multiple features that only grow in relevance over the coming years. Especially in the European market (and the DACH region) there is a huge need for this type of capabilities.
 
-![AtNotation](./Screenshots/picture16.png)
+![AtNotation](./Screenshots/Picture16.png)
 
 ## Bonus Question: What is the difference between a Service and a Resource?
 
