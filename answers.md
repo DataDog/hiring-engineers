@@ -99,7 +99,7 @@ I set up two scheduled downtimes as follows:
   * From 7pm to 9am daily on M-F
   * All day on Sat-Sun
 
-Here is the email that I received from setting up this downtime.
+Here is the email that I received from setting up the Monday-Friday downtime.
 
 ![downtime](downtime.png)
 
