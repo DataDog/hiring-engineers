@@ -13,7 +13,9 @@ This was a really fun project!  And you have an awesome product!
 * **Linux VM:**  
 
 I have experience with AWS, so I spun up an Ubuntu 18 instance on EC2.
+
 ![Linux VM](linux_vm.png)
+
 * **Datadog Free Trial:**  
 
 Note that I used z98alpha@gmail.com as the email address for this trial instance because I had already used larrymahoney98@gmail.com for a previous trial to learn more about your cool product!
@@ -44,8 +46,10 @@ Please see the files `my_metric.py` and `my_metric.yaml` for my agent check that
 
 Yes, you can set the collection interval in the YAML config file with this command:
 
-`instances:
-  - min_collection_interval: 45`
+```python
+instances:
+  - min_collection_interval: 45
+```
 
 ## Visualizing Data:
 
@@ -55,6 +59,7 @@ See the file `make_dashboard.py` for my use of the Datadog API to create a Timeb
 * The MongoDB Writes/Sec metric with the anomaly function applied.
 * 'my_metric' with the rollup function applied with a 1 hour range.
 
+
 ![dashboard 4h](my_dashboard_4h.png)
 
 ![dashboard 8h](my_dashboard_8h.png)
@@ -62,16 +67,16 @@ See the file `make_dashboard.py` for my use of the Datadog API to create a Timeb
 Link to dashboard:
 https://p.datadoghq.com/sb/wtoiabphsohwb8fi-c902bc17dca7f4b703f79280584690c8
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+* **Snapshot of Graph**
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* I sent a snapshot of this graph to myself.
+I set the timeframe to the past 5 minutes and sent a snapshot to myself:
+
 
 ![snapshot](snapshot.png)
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-The Anomaly graph is showing the actual measured metric and overlaying the systems prediction of 'normal' as a gray overlay. This allows the operator to very easily see when a metric is abnormal even if it experiences cyclical perturbations.
+The Anomaly graph is showing the actual measured metric with an overlay in gray that shows the 'normal' range of values. This allows the operator to very easily see when a metric is abnormal even if it experiences cyclical perturbations.
 
 ## Monitoring Data
 
