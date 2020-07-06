@@ -24,22 +24,25 @@ Note that I used z98alpha@gmail.com as the email address for this trial instance
 * **My Host & Tags:**
 
 Here is a screenshot from Infrastructure/Host Map showing my host and it's tags:
+
 ![My Host and Tags](my_host_tags.png)
+
 * **Database:**  
 
 
-I installed MongoDB version 4.2.8.\
+I installed MongoDB version 4.2.8.
 
 ![MongoDB](mongodb.png)
 
 * **Custom Agent Check:**  
 
-Please see the files my_metric.py and my_metric.yaml for my agent check that produces "My Metric".  I changed the metric interval to 45 seconds in the config file.
+Please see the files `my_metric.py` and `my_metric.yaml` for my agent check that produces "My Metric".  I changed the metric interval to 45 seconds in the config file.
+
 ![interval](my_metric_interval.png)
 
 * **Bonus Question:** Can you change the collection interval without modifying the Python check file you created?
 
-Yes.  You can set the collection interval in the YAML config file with this command:
+Yes, you can set the collection interval in the YAML config file with this command:
 
 `instances:
   - min_collection_interval: 45`
@@ -97,14 +100,14 @@ Here is the email that I received from setting up this downtime.
 
 ## Collecting APM Data:
 
-I instrumented the provided Flask app.  See 'flaskapp.py'.  I added code to enable analytics, and used ddtrace-run.
+I instrumented the provided Flask app.  See `flaskapp.py`.  I added code to enable analytics, and used ddtrace-run.
 
 * **Bonus Question**:
 What is the difference between a Service and a Resource?
 
 A Resource is typically an instrumented endpoint.  But it can also be a database query or a background job.
 A Service is a collection of endpoints, queries or jobs.
-In this example, the app 'flaskapp.py' embodies the service, whereas the endpoints /api/apm and /api/trace are resources.
+In this example, the app `flaskapp.py` embodies the service, whereas the endpoints /api/apm and /api/trace are resources.
 
 Screenshot and link to my Dashboard with both APM and Infrastructure Metrics:
 
