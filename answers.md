@@ -186,7 +186,8 @@ Here is the link to the dashboard: https://app.datadoghq.com/dashboard/m9w-te7-8
 ![screen5mins](images/Snip20200630_24.png)
 
 
-Timeboards have a very specific structure, so you are only able to add it to the grid of graphs. However Datadog provides another type of dashboard, screen boards, which I love as I can get more flexibility with the placement of graphs.
+Timeboards have a very specific structure, so you are only able to add it to the grid of graphs. However Datadog provides another type of dashboard, screen boards, which I love as I can get more flexibility with the placement of graphs. <br>
+So a time series line graph displays a line for each group of data. You can choose any metric collected, as long as the metric has seen new data in the last 24 hours.<br>
 
 ### * **Bonus Question**: What is the Anomaly graph displaying?
 
