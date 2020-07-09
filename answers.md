@@ -26,9 +26,9 @@
   Triggered alert email notification: see file -> [8-Triggered_alert_email](./8-Triggered_alert_email.png)
 
   ### Bonus Question: 
-  Downtime schedules: see file -> [9-Downtime_schedule_screenshot](./9-Downtime_schedule_screenshot.png)
+  Downtime schedules: see file -> [10-Downtime_schedule_screenshot](./10-Downtime_schedule_screenshot.png)
 
-  Downtime email notif : see file -> [10-Downtime_schedule_screenshot](./10-Downtime_schedule_screenshot.png)
+  Downtime email notif : see file -> [9-Downtime_schedule_email](./10-Downtime_schedule_email.png)
  
 
 
