@@ -41,7 +41,8 @@ Within the configuration file, you can set up the tags to use for this agent, wh
 ![screenshotHostMap](images/Snip20200629_11.png)
 
 After you make changes to the configuration of the agent, you have to restart the agent. <br>
-**/etc/init.d/datadog-agent restart** <br>
+**sudo systemctl stop datadog-agent** <br>
+**sudo systemctl start datadog-agent** <br>
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
