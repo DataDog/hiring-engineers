@@ -6,7 +6,7 @@
   My_metric.yaml: see file -> [3-my_metric_yaml](./3-my_metric_yaml.png)
 
   ### Bonus Question Can you change the collection interval without modifying the Python check file you created ?
-  DD: Yes through the metric’s config file …/conf.d/my_metric.d/my_metric.yaml)
+  DD: Yes through the metric’s config file …/conf.d/my_metric.d/my_metric.yaml
 
 # 2:Visualizing Data:
   Script: See file -> [my_dashboard.py](./my_dashboard.py)
