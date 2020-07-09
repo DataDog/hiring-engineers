@@ -44,9 +44,18 @@ After you make changes to the configuration of the agent, you have to restart th
 **sudo systemctl stop datadog-agent** <br>
 **sudo systemctl start datadog-agent** <br>
 
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+I am showing an agent that is running on a Linux VM.However, you might be wondering if anything is different if this were an instance on public cloud like AWS, Azure or GCP. For Azure for example, it is true that you could monitor all your VMs using Azure Monitor and not install any agent. However, the frequency of data collection is long so that a lot might missing from the story. For instance, CPU Memory usage metrics, it might not be able to capture all the spikes that you want to monitor. It is a similar story with all cloud platforms<br>
 
-MySql and integration installed. <br>
+### * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+Let's start looking how to bring in metrics from other applications. This is where the **integrations** come in. I installed MySQL in my example. <br>
+There are four types of integrations.
+* Hosted integrations: rely on an API key. These include services like AWS or Github.
+* Local integrations: rely on an endpoint we can reach to collect the metrics from like MySQL.
+* Notification integrations: primarily push information out instead of collecting information into Datadog like PagerDuty, Slack and Webhooks.
+* Frameworks, Libraries, APIs & Trace: instrument with your applications.
+
+
 Created /etc/datadog-agent/conf.d/mysql.d/conf.yaml <br>
 ```
     instances: 
