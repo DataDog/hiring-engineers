@@ -5,27 +5,27 @@
 # 2:Collecting Metrics:
   Tags is the datadog.yaml file [Tags](./tags_datadog_yaml.png)
   
-  Screenshot: see file -> [1-hostmap_screenshot](./1-hostmap_screenshot.png)
+  Host Map Screenshot: see file -> [1-hostmap_screenshot](./1-hostmap_screenshot.png)
 
   MYSQL installation: [MYSQL](./mysql.png)
   
   MYSQL config: [MYSQL conf.yaml](./mysql_conf.yaml)
   
-  My_metric.py: see file -> [2-my_metric_py](./2-my_metric_py.png)
+  Custom Check Agent My_metric.py: see file -> [2-my_metric_py](./2-my_metric_py.png)
   
-  My_metric.yaml: see file -> [3-my_metric_yaml](./3-my_metric_yaml.png)
+  Custome check agent My_metric.yaml: see file -> [3-my_metric_yaml](./3-my_metric_yaml.png)
 
   ### Bonus Question Can you change the collection interval without modifying the Python check file you created ?
   DD: Yes through the metric’s config file …/conf.d/my_metric.d/my_metric.yaml
 
 # 3:Visualizing Data:
-  Script: See file -> [my_dashboard.py](./my_dashboard.py)
+  Dashboard creation API Script: See file -> [my_dashboard.py](./my_dashboard.py)
   
-  Screenshot: see file -> [4-My_dashboard_screenshot](./4-My_dashboard_screenshot.png)
+  Resulting dashboard Screenshot: see file -> [4-My_dashboard_screenshot](./4-My_dashboard_screenshot.png)
 
-  5 min timeframe: see file -> [5-my_dashboard_5min_screenshot](./5-my_dashboard_5min_screenshot.png)
+  Dashboard with a 5 min timeframe: see file -> [5-my_dashboard_5min_screenshot](./5-my_dashboard_5min_screenshot.png)
 
-  Snapshot @notification: see file-> [6-snapshot_notation_email](./6-snapshot_notation_email.png)
+  Dashboard Snapshot and @notation email: see file-> [6-snapshot_notation_email](./6-snapshot_notation_email.png)
 
   ### Bonus Question: What is the Anomaly graph displaying? 
   DD: The anomaly graph is highlighting abnormal variations in data value as compared to the majority of values in the given interval. In my case it highlights spikes in cpu   utilization for the given timeframe.
@@ -43,7 +43,7 @@
  # 5:Collecting APM data
   Instrumented app: see file -> [./trial_app](trial_app.py)
   
-  Dashboard Screenshot: see file -> [11-Dasboard_with_APM_screenshot](./11-Dasboard_with_APM_screenshot.png)
+  Dashboard Screenshot with Infrastructure and APM metrics: see file -> [11-Dasboard_with_APM_screenshot](./11-Dasboard_with_APM_screenshot.png)
   
   Dashboard link: https://p.datadoghq.com/sb/pplgzjts4v4gyxk3-4a2301f4a537fdf031350b2b0cb55419
   
