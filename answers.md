@@ -3,7 +3,7 @@
   [VM](./Vagrant_VM.png)
 
 # 2:Collecting Metrics:
-  Tags is the yaml file [Tags](./tags_datadog_yaml)
+  Tags is the yaml file [Tags](./tags_datadog_yaml.png)
   
   Screenshot: see file -> [1-hostmap_screenshot](./1-hostmap_screenshot.png)
 
