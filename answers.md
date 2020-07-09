@@ -1,6 +1,16 @@
-# 1:Collecting Metrics:
+# 1:Setup the environment:
+  I used a vagrant VM running ubuntu
+  [VM](./Vagrant_VM.png)
+
+# 2:Collecting Metrics:
+  Tags is the yaml file [Tags](./tags_datadog_yaml)
+  
   Screenshot: see file -> [1-hostmap_screenshot](./1-hostmap_screenshot.png)
 
+  MYSQL installation: [MYSQL](./mysql.png)
+  
+  MYSQL config: [MYSQL conf.yaml](./mysql_conf.yaml)
+  
   My_metric.py: see file -> [2-my_metric_py](./2-my_metric_py.png)
   
   My_metric.yaml: see file -> [3-my_metric_yaml](./3-my_metric_yaml.png)
@@ -8,7 +18,7 @@
   ### Bonus Question Can you change the collection interval without modifying the Python check file you created ?
   DD: Yes through the metric’s config file …/conf.d/my_metric.d/my_metric.yaml
 
-# 2:Visualizing Data:
+# 3:Visualizing Data:
   Script: See file -> [my_dashboard.py](./my_dashboard.py)
   
   Screenshot: see file -> [4-My_dashboard_screenshot](./4-My_dashboard_screenshot.png)
@@ -20,7 +30,7 @@
   ### Bonus Question: What is the Anomaly graph displaying? 
   DD: The anomaly graph is highlighting abnormal variations in data value as compared to the majority of values in the given interval. In my case it highlights spikes in cpu   utilization for the given timeframe.
 
-# 3:Monitoring Data:
+# 4:Monitoring Data:
   Create a metric monitor : see file -> [7-metric_monitor](./7-metric_monitor.png)
 
   Triggered alert email notification: see file -> [8-Triggered_alert_email](./8-Triggered_alert_email.png)
@@ -30,10 +40,10 @@
   
   Downtime schedules: see file -> [10-Downtime_schedule_screenshot](./10-Downtime_schedule_screenshot.png)
 
- # 4:Collecting APM data
+ # 5:Collecting APM data
   Instrumented app: see file -> [./trial_app](trial_app.py)
   
-  Screenshot: see file -> [11-Dasboard_with_APM_screenshot](./11-Dasboard_with_APM_screenshot.png)
+  Dashboard Screenshot: see file -> [11-Dasboard_with_APM_screenshot](./11-Dasboard_with_APM_screenshot.png)
   
   Dashboard link: https://p.datadoghq.com/sb/pplgzjts4v4gyxk3-4a2301f4a537fdf031350b2b0cb55419
   
