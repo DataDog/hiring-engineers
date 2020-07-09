@@ -38,11 +38,13 @@ Configuration happens in the **datadog.conf** file. The location of this file de
 Within the configuration file, you can set up the tags to use for this agent, which is one of the most important sections to edit. You will get so much more out of the product if you assign tags to each host and integration you want to monitor. Tags make thing better. For example: you have several instances of different sizes on a cloud provider, you could assign a size tag to each of them. Some get a tag of size:small, some get size:medium, and the rest get size:large. These instances serve different rules, so you assign the tags role:database, role:web. Finally you assign tags based on availability zone: az:useast and az:uswest. Once thsoe tags are setup, you can more easily query the data and create dynamic dashboards that work with your environment. It is cruical to implement a good tagging strategy. <br>
 
 `tags: ["environment:demo", "os:ubuntu"]`
-![screenshotHostMap](images/Snip20200629_11.png)
 
 After you make changes to the configuration of the agent, you have to restart the agent. <br>
 **sudo systemctl stop datadog-agent** <br>
 **sudo systemctl start datadog-agent** <br>
+
+![screenshotHostMap](images/Snip20200629_11.png)
+
 
 I am showing an agent that is running on a Linux VM.However, you might be wondering if anything is different if this were an instance on public cloud like AWS, Azure or GCP. For Azure for example, it is true that you could monitor all your VMs using Azure Monitor and not install any agent. However, the frequency of data collection is long so that a lot might missing from the story. For instance, CPU Memory usage metrics, it might not be able to capture all the spikes that you want to monitor. It is a similar story with all cloud platforms<br>
 
