@@ -219,9 +219,9 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 Below is the 4 steps to set up monitors:<br>
 1. Pick the metric to watch for by the query editor. There is a dropdown menu below to select simple or multi alert. This option just reflects the settings configured in the group-by box in the query editor. for example if you choose to group by region, then the simple/multi dropdown will change to multi and trigger a separate alert for every region.
-2. Set the conditions
-3. Enter the message
-4. Define the recipients
+2. Set the conditions. The first option is to choose between threshold, change or anomaly. Threshold lets you set a static threshold, when the metric passes, will trigger an alert. The threshold alert can be useful for metrics that tent to be the same value most of time. A change alert looks for a change in value over time. You can look for a change in a specific amount or as a percentage of the average, max, min or mean, over a period of time compared to another period. With all types of alerts, you can specify the value to use to trigger an alert and a warning.
+3. Enter the message. You can use the conditional statements in the message body. You can define different messages to appear if it is or is not a warning, or is or is not an alert. If you forget the template variables available, just click the link above the message body for a quick hint on how to use them. 
+4. Define the recipients. you can @ notify by typing the **@** sign followed by the name of the person specified in the email notification setting.
 
 
 
@@ -272,7 +272,12 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 c.setFormatter(formatter)
 main_logger.addHandler(c)
 app = Flask(__name__)
-@app.route('/')
+
+
+
+
+
+app.route('/')
 def api_entry():
     return 'Entrypoint to the Application'
 @app.route('/api/apm')
