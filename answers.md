@@ -102,7 +102,7 @@ Created /etc/datadog-agent/conf.d/mysql.d/conf.yaml <br>
 
 ![screenYaml](images/Snip20200630_18.png)
 
-3. Run your custom check by `sudo -u dd-agent -- datadog-agent check custom-mycheck` to confirm the configuration works <br>
+3. Run your custom check by `sudo -u dd-agent -- datadog-agent check custom-mycheck` to confirm the configuration works. Find your custom metric name and you should see the status as OK. <br>
 
 ![screenCustomAgentCheck](images/Snip20200630_17.png)
 
@@ -187,7 +187,7 @@ Here is the link to the dashboard: https://app.datadoghq.com/dashboard/m9w-te7-8
 
 ### * **Bonus Question**: What is the Anomaly graph displaying?
 
-The anomly graph is designed to identify when a metric is deviating from the majority of historical behavior. <br>
+As you know, metrics change all the time. The problem is sometimes metrics fluctuate so much that it's tough to automatically detect what's normal and what's not. The anomly detection algorithm helps us to identify when a metric is deviating from the majority of historical behavior. The gray bands show us what is expected based on historical trends. The Anomaly graph displaying tells us that even though the metric fluctuates, it stays in the expected range based on past trends. However, for some cases, when the actual value didn't match the prediction, that is an anomaly. <br>
 
 
 ## Monitoring Data
