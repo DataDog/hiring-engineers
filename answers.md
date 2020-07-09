@@ -217,6 +217,13 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 
+Setting up monitors:
+1 Pick the metric
+2 Set the conditions
+3 Enter the message
+4 Define the recipients
+
+
 
 ![screenAlert1](images/Snip20200630_26.png)
 
