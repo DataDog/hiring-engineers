@@ -66,6 +66,7 @@ Regarding the MySQL example: <br>
 
 
 Created /etc/datadog-agent/conf.d/mysql.d/conf.yaml <br>
+**Note**: Wrap your password in single quotes in case a special character is present. <br>
 ```
     instances: 
        - server: 127.0.0.1
