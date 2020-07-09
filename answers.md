@@ -1,4 +1,5 @@
 Your answers to the questions go here.
+# Enterprise Sales Engineer - Zhang 
 
 # Prerequisites - Setup the environment
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
@@ -8,15 +9,15 @@ You can utilize a Containerized approach with Docker for Linux and our dockerize
 Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
 
-## Answer: Instruction for setup the environment:
+## Instruction for setup the environment:
 
 * Install virtualbox and vagrant for MacOS via brew.
   * brew cask install virtualbox
   * brew cask install vagrant
-* Bring up the vm
+* Bring up the vm.
   * vagrant init hashicorp/bionic64
   * vagrant up
-* SSH into the vm
+* SSH into the vm.
   * vagrant ssh
 
 **Note:** <br> 
@@ -24,7 +25,7 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 *If you are setting up on Windows, here is the [instruction](https://medium.com/@botdotcom/installing-virtualbox-and-vagrant-on-windows-10-2e5cbc6bd6ad) for setting up the environment.*<br>
 
 
-### Collecting Metrics
+# Collecting Metrics
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
