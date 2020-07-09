@@ -323,6 +323,7 @@ if __name__ == '__main__':
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 Steps: <br>
+
 Install ddtrace by **pip install ddtrace** <br>
 By default, Flask runs apps on port 5000. The Datadog agent also uses 5000 by default, so this command below specifies a different Flask port to avoid any conflit<br>
 
