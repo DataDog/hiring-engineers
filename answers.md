@@ -34,7 +34,7 @@ The first step to collect metrics and events is to install the agent. After you 
 
 ### * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-Configuration happens in the **datadog.conf** file under /etc/datadog-agent directory.<br>
+Configuration happens in the **datadog.conf** file. The location of this file depends on your OS, but you can find out more that [here](https://docs.datadoghq.com/agent/basic_agent_usage/?tab=agentv6v7). <br>
 
 
 `tags: ["environment:demo", "os:ubuntu"]`
