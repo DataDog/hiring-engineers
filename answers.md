@@ -102,7 +102,7 @@ Created /etc/datadog-agent/conf.d/mysql.d/conf.yaml <br>
 
 ![screenYaml](images/Snip20200630_18.png)
 
-3. Check by `sudo -u dd-agent -- datadog-agent check custom-mycheck` to confirm the configuration works <br>
+3. Run your custom check by `sudo -u dd-agent -- datadog-agent check custom-mycheck` to confirm the configuration works <br>
 
 ![screenCustomAgentCheck](images/Snip20200630_17.png)
 
