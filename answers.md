@@ -63,6 +63,8 @@ Regarding the MySQL example: <br>
   *sudo apt-get install mysql-server
 * Once MySQL is up and running, I created a database user for the Datadog agent based on [Instruction](https://app.datadoghq.com/account/settings#integrations/mysql)
 * Then I added this configuration block to the mysql.d/conf.yaml to collect the MySQL metrics
+* Whenever you add an integration or make any tweaks, run the info command **sudo /etc/init.d/datadog-agent info** to see that everything is ok
+* Restart the agent and verify if the agent is reporting to the dashboard. You should be able to see metrics reporting to the pre-built "MySQL - Overview" dashboard in **Dashboard** section. 
 
 
 Created /etc/datadog-agent/conf.d/mysql.d/conf.yaml <br>
@@ -73,6 +75,9 @@ Created /etc/datadog-agent/conf.d/mysql.d/conf.yaml <br>
          user: datadog
          pass: "password"
          port: 3306
+	 tags:
+	   - role:db
+	   - environment:demo
          options:
            replication: 0
            galera_cluster: 1
@@ -85,7 +90,7 @@ Created /etc/datadog-agent/conf.d/mysql.d/conf.yaml <br>
 
 ![screenshotMySQL](images/Snip20200630_14.png)
 
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. <br>
+### * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. <br>
 **Note:Documentation needs to be corrected. The example code doesn't work as expected. Should be updated as below https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7** <br>
 ![screenUpdate](images/Snip20200630_16.png)
 
