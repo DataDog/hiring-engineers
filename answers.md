@@ -55,6 +55,12 @@ There are four types of integrations.
 * Notification integrations: primarily push information out instead of collecting information into Datadog like PagerDuty, Slack and Webhooks.
 * Frameworks, Libraries, APIs & Trace: instrument with your applications.
 
+Regarding the MySQL example, firstly I installed MySQL on my VM via package manager. <br>
+
+**sudo apt-get update** <br>
+**sudo apt-get install mysql-server** <br>
+
+Once MySQL is up and running, I created a database user for the Datadog agent based on [Instruction](https://app.datadoghq.com/account/settings#integrations/mysql) <br>
 
 Created /etc/datadog-agent/conf.d/mysql.d/conf.yaml <br>
 ```
@@ -99,6 +105,7 @@ Modify the custom_mycheck.yaml file by changing **min_collection_interval: 45** 
 
 I did not change the Python file, instead I modified the yaml file above.<br>
 Another solution would be to create a cron job, which calls the check with "sudo -u dd-agent -- datadog-agent check custom_mycheck" <br>
+
 
 #### Documentation that I used to complete this section:
 https://www.vagrantup.com/intro/getting-started <br>
