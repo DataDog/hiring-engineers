@@ -102,25 +102,19 @@ Created /etc/datadog-agent/conf.d/mysql.d/conf.yaml <br>
 
 ![screenYaml](images/Snip20200630_18.png)
 
-3. Check by `sudo -u dd-agent -- datadog-agent check custom-mycheck` <br>
+3. Check by `sudo -u dd-agent -- datadog-agent check custom-mycheck` to confirm the configuration works <br>
 
 ![screenCustomAgentCheck](images/Snip20200630_17.png)
 
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
+### * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 Modify the custom_mycheck.yaml file by changing **min_collection_interval: 45** <br>
 
-* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+### * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 I did not change the Python file, instead I modified the yaml file above.<br>
 Another solution would be to create a cron job, which calls the check with "sudo -u dd-agent -- datadog-agent check custom_mycheck" <br>
 
-
-#### Documentation that I used to complete this section:
-https://www.vagrantup.com/intro/getting-started <br>
-https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7 <br>
-https://support.rackspace.com/how-to/install-mysql-server-on-the-ubuntu-operating-system/<br>
-https://docs.datadoghq.com/integrations/mysql/ <br>
 
 
 
