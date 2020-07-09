@@ -191,7 +191,7 @@ So a time series line graph displays a line for each group of data. You can choo
 
 ### * **Bonus Question**: What is the Anomaly graph displaying?
 
-As you know, metrics change all the time. The problem is sometimes metrics fluctuate so much that it's tough to automatically detect what's normal and what's not. The anomly detection algorithm helps us to identify when a metric is deviating from the majority of historical behavior. The gray bands show us what is expected based on historical trends. The Anomaly graph displaying tells us that even though the metric fluctuates, it stays in the expected range based on past trends. However, for some cases, when the actual value didn't match the prediction, that is an anomaly. <br>
+As you know, metrics change all the time. The problem is sometimes metrics fluctuate so much that it's tough to automatically detect what's normal and what's not. The anomly detection algorithm helps us to identify when a metric is deviating from the majority of historical behavior. As the snapshot above, I used MySQL CPU time anomaly as example. The gray bands show us what is expected based on historical trends. The Anomaly graph displaying tells us that even though the metric fluctuates, it stays in the expected range based on past trends. However, for some cases, when the actual value didn't match the prediction, that is an anomaly. <br>
 
 
 ## Monitoring Data
