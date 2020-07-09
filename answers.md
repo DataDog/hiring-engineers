@@ -185,6 +185,9 @@ Here is the link to the dashboard: https://app.datadoghq.com/dashboard/m9w-te7-8
 
 ![screen5mins](images/Snip20200630_24.png)
 
+
+Timeboards have a very specific structure, so you are only able to add it to the grid of graphs. However Datadog provides another type of dashboard, screen boards, which I love as I can get more flexibility with the placement of graphs.
+
 ### * **Bonus Question**: What is the Anomaly graph displaying?
 
 As you know, metrics change all the time. The problem is sometimes metrics fluctuate so much that it's tough to automatically detect what's normal and what's not. The anomly detection algorithm helps us to identify when a metric is deviating from the majority of historical behavior. The gray bands show us what is expected based on historical trends. The Anomaly graph displaying tells us that even though the metric fluctuates, it stays in the expected range based on past trends. However, for some cases, when the actual value didn't match the prediction, that is an anomaly. <br>
