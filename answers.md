@@ -94,11 +94,11 @@ Created /etc/datadog-agent/conf.d/mysql.d/conf.yaml <br>
 **Note:Documentation needs to be corrected. The example code doesn't work as expected. Should be updated as below https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7** <br>
 ![screenUpdate](images/Snip20200630_16.png)
 
-1. Create **custom_mycheck.py** under /etc/datadog-agent/checks.d folder <br>
+1. Create **custom_mycheck.py** under /etc/datadog-agent/checks.d folder, where you define your custom metric <br>
 
 ![screenPy](images/Snip20200630_19.png)
 
-2. Create **custom_mycheck.yaml** under /etc/datadog-agent/conf.d folder <br>
+2. Create **custom_mycheck.yaml** under /etc/datadog-agent/conf.d folder, where you configure the collection interval of your custom metric <br>
 
 ![screenYaml](images/Snip20200630_18.png)
 
