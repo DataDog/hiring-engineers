@@ -35,10 +35,13 @@ The first step to collect metrics and events is to install the agent. After you 
 ### * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 Configuration happens in the **datadog.conf** file. The location of this file depends on your OS, but you can find out more that [here](https://docs.datadoghq.com/agent/basic_agent_usage/?tab=agentv6v7). <br>
-
+Within the configuration file, you can set up the tags to use for this agent, which is one of the most important sections to edit. You will get so much more out of the product if you assign tags to each host and integration you want to monitor. Tags make thing better. For example: you have several instances of different sizes on a cloud provider, you could assign a size tag to each of them. Some get a tag of size:small, some get size:medium, and the rest get size:large. These instances serve different rules, so you assign the tags role:database, role:web. Finally you assign tags based on availability zone: az:useast and az:uswest. Once thsoe tags are setup, you can more easily query the data and create dynamic dashboards that work with your environment. It is cruical to implement a good tagging strategy. <br>
 
 `tags: ["environment:demo", "os:ubuntu"]`
 ![screenshotHostMap](images/Snip20200629_11.png)
+
+After you make changes to the configuration of the agent, you have to restart the agent. <br>
+**/etc/init.d/datadog-agent restart** <br>
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
