@@ -128,6 +128,14 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
+
+Firstly you need to generate a API and application keys in Datadog console by clicking **APIs** in **Integration** dropdown menu. An API key is required by the Datadog Agent to submit metrics and events to Datadog. And application key gives you full access to Datadog's programmatic API. You pick the option that you are comfortable with in the API documentation to write your script. For my example below, I used curl. curl assumes usage of BASH and GNU coreutils. On MacOS you can install coreutils via the Homebrew: **brew install coreutils** In order to add multiple graphs to the timeboard, I inserted multiple objects into the graph array.<br>
+
+To scope the custom metric over host, you can use the tags that you defined earlier to identify your host. 
+
+
+
+
 Script is as below: <br>
 
 ```
