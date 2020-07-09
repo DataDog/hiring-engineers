@@ -206,6 +206,8 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+Out of box, there are two types of notification supported: desktop notifications and emails. But more can be added with integrations like integrating with Slack, ServiceNow and etc. Once it's setup, you can @ notify by typing the **@** sign followed by the name of the person or channel specified in the notification setting.
+
 ![screenAlert1](images/Snip20200630_26.png)
 
 Please configure the monitor’s message so that it will:
