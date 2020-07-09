@@ -16,6 +16,7 @@ In this README, I'll walk through the configuration of the four following Datado
 - vagrant (ubuntu 18.04): One-step install with `DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=[YOUR_API_KEY] bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
 ![](screenshots/datadog_agent7_ubuntu_install.png) 
 
+
 # 1. Collecting Metrics
 
 ## Add tags in the agent config file
@@ -58,6 +59,7 @@ To change the collection interval of my check without modifying the Python check
 
 My_metric set up is confirmed:
 ![](screenshots/my_metric.png)
+
 
 # 2. Visualize Data
 
