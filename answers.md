@@ -294,6 +294,7 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 from flask import Flask
 import logging
 import sys
+
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
 main_logger.setLevel(logging.DEBUG)
@@ -320,14 +321,14 @@ if __name__ == '__main__':
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 
-Datadog covers many of the popular libraries and frameworks used you might be interested in manually instrumenting your application whether that be to get some additional visibility into your business logic or because of custom tooling you might want to get some insight into. Many cases manual instrumentation sounds intimidating. You will have to manually instrument the passing of trace headers span metadata between different parts of your code base. However by using data dogs tracing clients will actually be able to handle much of the underlying logic automatically.
+Datadog covers many of the popular libraries and frameworks used you might be interested in manually instrumenting your application whether that be to get some additional visibility into your business logic or because of custom tooling you might want to get some insight into. Many cases manual instrumentation sounds intimidating. You will have to manually instrument the passing of trace headers span metadata between different parts of your code base. However by using data dogs tracing clients will actually be able to handle much of the underlying logic automatically. All you need to do is to add a decorator to your actual function calls 
 
 You are able to search all your traces by any tag for real-time visibility. Each trace captures the end-to-end lifespan of a request, from frontend clients down to database. What's more, datadog automatically correlates the logs from all the services in the distributed trace as well as the metrics from infrastructure and the runtime, which is a big plus from operation support point of view. The correlation helps the application support team quickly pinpoint the root cause in a single place instead of jumping from different tools.
 
 When you want to investigate at the code level, Datadog profiling measures your code. You can get more context around performance issues. For example, find the hottest lines of code consuming the most CPU and memory.
 
 
-Here is the steps I took for implementing the demo app:
+Here is the steps I took for implementing demo app:
 
 Firstly, install ddtrace by **pip install ddtrace** 
 
@@ -335,7 +336,7 @@ By default, Flask runs apps on port 5000. The Datadog agent also uses 5000 by de
 
 Btw, APM is enabled by default in Agent 6 or higher so that you don't have to change anything in the datadog.yaml configuration file.
 
-Secondly, run the ddtrace as below, the trace agent begins to run. Then, go visit all of the routes on the flask app. You should be able to see app showed on traces on the APM. 
+Secondly, as this demo app is quite simeple, you don't have to manually import the agent in yoru code. Instead, run the ddtrace as below, the trace agent begins to run. Then, go visit all of the routes (/, /api/apm, /api/trace) on the flask app. You should be able to see app showed on traces on the APM. 
 
 ```
 FLASK_APP=sample_app.py DATADOG_ENV=flask_test ddtrace-run flask run --port=4999
