@@ -51,7 +51,7 @@ instances: [{}]
 ## Changing check collection interval 
 Please see below.
 
-## **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+## *Bonus Question* Can you change the collection interval without modifying the Python check file you created?
 
 To change the collection interval of my check without modifying the Python check file, I added min_collection_interval in the my_metric.yaml file. 
 ![](screenshots/bonus_interval_collection_45.png)
@@ -69,7 +69,7 @@ Using the Timeboard endpoints I programmatically created Timeboard (public URL: 
 
 ![](screenshots/timeboard.png)
 
-Script used to create the timeboard: new_timeboard.py
+Script used to create the timeboard: new_timeboard.py(https://github.com/jc-uk/hiring-engineers/blob/jc-uk-patch-1/new_timeboard.py)
 
 Once this is created, access the Dashboard from my Dashboard List in the UI:
 
@@ -111,14 +111,14 @@ For some reason the email notification did not fire off at the time of downtime 
 
 # 4. Collecting APM data
 
-First, I installed the Datadog Tracing library, ddtrace, using pip3 `pip install ddtrace`
+First, I installed the Datadog Tracing library, ddtrace, using `pip3 install ddtrace`
 ![](screenshots/pip_ddtrace.png)
 
 Then to instrument the Flask application, I ran the following: `ddtrace-run python3 flask_app.py` (No changes were made to the sample Flask app)
 
 To activate APM services, I restarted datadog-agent and started the flask_app.py using: 
 ```
-export DD_TRACE_ANALYTICS_ENABLED=true; ddtrace-run python3 flask_app.py
+FLASK_APP=app.py DATADOG_ENV=flask_test DD_RUNTIME_METRICS_ENABLED=true DD_TRACE_ANALYTICS_ENABLED=true ddtrace-run flask run --port=5050 --host=0.0.0.0
 ```
 ![](screenshots/flask_app_running.png)
 
