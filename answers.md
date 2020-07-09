@@ -1,13 +1,8 @@
-Your answers to the questions go here.
 # Enterprise Sales Engineer - Zhang 
 
-# Prerequisites - Setup the environment
-You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
-
-You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues.
-You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
-Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
-
+# Overview
+Datadog is the leading monitoring service for cloud-scale monitoring service for cloud-scale applications through a SaaS-based data analytics platform. We can describe Datadog as **Unify logs, metrics and traces** from across your distributed infrastructure. <br>
+I'll demostrate the capabilities of Datadog from both development and operation prospectives through the exercises and also provide you my personal feedback about this tool. 
 
 ## Instruction for setup the environment:
 
@@ -21,15 +16,27 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
   * vagrant ssh
 
 **Note:** <br> 
-*I am using MAC for this demo.*<br>
+*I am using macOS for this demo.*<br>
 *If you are setting up on Windows, here is the [instruction](https://medium.com/@botdotcom/installing-virtualbox-and-vagrant-on-windows-10-2e5cbc6bd6ad) for setting up the environment.*<br>
 
+# Answers
 
-# Collecting Metrics
+## Collecting Metrics
+
+This section covers collection: How do you get the metrics and events from your host up to Datadog. Firstly let me explain what a host is as far as Datadog is concerned. A host is any computing resource that you can run a job that you want to monitor and can also run the Datadog agent. That resource could be a physical box in a data center, or a virtual machine/instance on a cloud service, or even a Docker container. You can send metrics from a single host or thousands of hosts. <br>
+
+I will be leveraging various resources including the [documentation](https://docs.datadoghq.com/), the application and its [integration](https://docs.datadoghq.com/integrations/) tiles, which can help you solve most problems quickly. <br>
+
+The first step to collect metrics and events is to install the agent. After you setup a trial account, the installation process will be right in front of you. For established accounts, visit agent under **integrations** and choose the platform you wish to install. *I really appreciate the easiness of agent installation procedure that Datadog provides, especially the options for installing on automation tools like Chef, Puppet and Ansible. When you are working with thousands of instances in the data center, automation is the key for agent management. I'd also like to point out that Datadog combines features into one single agent, which is easy to maintain. From operation point of view, easy-to-automate and easy-to-maintain are 2 big advantages compared with major compatitors like New Relic and AppDynamic, where there are multiple agents to maintain and automate with. <br>
+
+
+
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-/etc/datadog-agent/datadog.yaml<br>
+Configuration happens in the **datadog.conf** file under /etc/datadog-agent directory.<br>
+
+
 `tags: ["environment:demo", "os:ubuntu"]`
 ![screenshotHostMap](images/Snip20200629_11.png)
 
