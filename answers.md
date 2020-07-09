@@ -178,7 +178,7 @@ Here is the link to the dashboard: https://app.datadoghq.com/dashboard/m9w-te7-8
 
 ### * Set the Timeboard's timeframe to the past 5 minutes
 
-**Note: Incrementing time frames via keyboard and entering custom timeframes is in beta, it doesn't work on timeboard. I had to select the past 15 mins and then click and zoom on one of the graph and selecting a 5 mins interval** <br>
+**Note:** Incrementing time frames via keyboard and entering custom timeframes is in beta, it doesn't work on timeboard. I had to select the past 15 mins and then click and zoom on one of the graph and selecting a 5 mins interval <br>
 ![screen5mins](images/Snip20200630_23.png)
 
 ### * Take a snapshot of this graph and use the @ notation to send it to yourself.
