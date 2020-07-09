@@ -218,7 +218,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 
 Below is the 4 steps to set up monitors:<br>
-1. Pick the metric
+1. Pick the metric to watch for by the query editor. There is a dropdown menu below to select simple or multi alert. This option just reflects the settings configured in the group-by box in the query editor. for example if you choose to group by region, then the simple/multi dropdown will change to multi and trigger a separate alert for every region.
 2. Set the conditions
 3. Enter the message
 4. Define the recipients
