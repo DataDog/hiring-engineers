@@ -39,6 +39,6 @@
 
 # Final Question:
   ### Is there anything creative you would use Datadog for? 
-  DD: I could see a very practical use of collecting metrics from kid’s sceen time. There are applications that can calculate the amount of time spent on each app/device per   kids. A custom Agent check could aggregate all this data an show it on a single pane of glass, while highlighting anomalies and keeping track of the SLO the family has       agreed on.
+  DD: I could see a very practical use of collecting metrics from kid’s sceen time. There are applications that can calculate the amount of time spent on each app/device per   kids. A custom Agent check could aggregate all this data and show it on a single pane of glass, while highlighting anomalies and keeping track of the SLO the family has       agreed on.
 
 
