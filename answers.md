@@ -1,6 +1,6 @@
 Your answers to the questions go here.
 
-##### Prerequisites - Setup the environment
+# Prerequisites - Setup the environment
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
 You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues.
@@ -8,15 +8,15 @@ You can utilize a Containerized approach with Docker for Linux and our dockerize
 Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
 
-#### Answer: Instruction for setup the environment:<br>
-### 1.Install virtualbox and vagrant for MacOS via brew.<br>
-##	a. brew cask install virtualbox<br>
-##	b. brew cask install vagrant<br>
-### 2.Bring up the vm<br>
-##	a. vagrant init hashicorp/bionic64<br>
-##	b. vagrant up<br>
-### 3.SSH into the vm<br>
-##	vagrant ssh<br>
+# Answer: Instruction for setup the environment:<br>
+# 1.Install virtualbox and vagrant for MacOS via brew.<br>
+#	a. brew cask install virtualbox<br>
+#	b. brew cask install vagrant<br>
+# 2.Bring up the vm<br>
+#	a. vagrant init hashicorp/bionic64<br>
+#	b. vagrant up<br>
+# 3.SSH into the vm<br>
+#	vagrant ssh<br>
 
 
 
