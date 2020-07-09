@@ -39,7 +39,7 @@
   
   ### Bonus Question: 
   DD: -A *service* is a group of processes \(queries, jobs, endpoints) that allow the creation of an application. \(i.e: The flask service in our examples)
-      -A *resource* is a specific domain of an application \(single endpoint, single query) \(i.e: The specific request \http://127.0.0.1:5050/api/trace)
+      -A *resource* is a specific domain of an application \(single endpoint, single query) \(i.e: The specific request http://127.0.0.1:5050/api/trace from the example)
 
 # Final Question:
   ### Is there anything creative you would use Datadog for? 
