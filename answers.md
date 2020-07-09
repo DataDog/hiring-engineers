@@ -176,16 +176,17 @@ curl  -X POST -H "Content-type: application/json" \
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 Here is the link to the dashboard: https://app.datadoghq.com/dashboard/m9w-te7-88z/my-timeboard-final-version?from_ts=1593539069918&to_ts=1593542669918&live=true <br>
 
-* Set the Timeboard's timeframe to the past 5 minutes
+### * Set the Timeboard's timeframe to the past 5 minutes
 
 **Note: Incrementing time frames via keyboard and entering custom timeframes is in beta, it doesn't work on timeboard. I had to select the past 15 mins and then click and zoom on one of the graph and selecting a 5 mins interval** <br>
 ![screen5mins](images/Snip20200630_23.png)
 
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
+### * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 ![screen5mins](images/Snip20200630_24.png)
 
-* **Bonus Question**: What is the Anomaly graph displaying?
+### * **Bonus Question**: What is the Anomaly graph displaying?
+
 The anomly graph is designed to identify when a metric is deviating from the majority of historical behavior. <br>
 
 
