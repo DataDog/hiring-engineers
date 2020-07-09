@@ -19,6 +19,10 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 * SSH into the vm
   * vagrant ssh
 
+**Note:** <br> 
+*I am using MAC for this demo.*<br>
+*If you are setting up on Windows, here is the [instruction](https://medium.com/@botdotcom/installing-virtualbox-and-vagrant-on-windows-10-2e5cbc6bd6ad) for setting up the environment.*<br>
+
 
 ### Collecting Metrics
 
