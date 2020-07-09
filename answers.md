@@ -26,20 +26,16 @@
   Triggered alert email notification: see file -> [8-Triggered_alert_email](./8-Triggered_alert_email.png)
 
   ### Bonus Question: 
+  Downtime email notif : see file -> [9-Downtime_schedule_emails](./9-Downtime_schedule_emails.png)
+  
   Downtime schedules: see file -> [10-Downtime_schedule_screenshot](./10-Downtime_schedule_screenshot.png)
 
-  Downtime email notif : see file -> [9-Downtime_schedule_email](./10-Downtime_schedule_email.png)
- 
-
-
-# 4:Collecting APM data
+ # 4:Collecting APM data
   Instrumented app: see file -> [./trial_app](trial_app.py)
   
   Screenshot: see file -> [11-Dasboard_with_APM_screenshot](./11-Dasboard_with_APM_screenshot.png)
   
   Dashboard link: https://p.datadoghq.com/sb/pplgzjts4v4gyxk3-4a2301f4a537fdf031350b2b0cb55419
-
-
 
 # Final Question:
   ### Is there anything creative you would use Datadog for? 
