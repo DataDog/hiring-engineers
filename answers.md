@@ -178,10 +178,12 @@ Here is the link to the dashboard: https://app.datadoghq.com/dashboard/m9w-te7-8
 
 ### * Set the Timeboard's timeframe to the past 5 minutes
 
-**Note:** Incrementing time frames via keyboard and entering custom timeframes is in beta, it doesn't work on timeboard. I had to select the past 15 mins and then click and zoom on one of the graph and selecting a 5 mins interval <br>
+You can select the past 15 mins and then click and zoom on one of the graph and selecting a 5 mins interval <br>
 ![screen5mins](images/Snip20200630_23.png)
 
 ### * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+Out of box, there are two types of notification supported: desktop notifications and emails. But more can be added with integrations like integrating with Slack, ServiceNow and etc. Once it's setup, you can @ notify by typing the **@** sign followed by the name of the person specified in the email notification setting.
 
 ![screen5mins](images/Snip20200630_24.png)
 
@@ -206,7 +208,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-Out of box, there are two types of notification supported: desktop notifications and emails. But more can be added with integrations like integrating with Slack, ServiceNow and etc. Once it's setup, you can @ notify by typing the **@** sign followed by the name of the person or channel specified in the notification setting.
+
 
 ![screenAlert1](images/Snip20200630_26.png)
 
