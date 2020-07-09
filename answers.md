@@ -13,11 +13,11 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 * Install virtualbox and vagrant for MacOS via brew.
   * brew cask install virtualbox
   * brew cask install vagrant
-2.Bring up the vm
-	1. vagrant init hashicorp/bionic64
-	2. vagrant up
-3.SSH into the vm
-	1. vagrant ssh
+* Bring up the vm
+  * vagrant init hashicorp/bionic64
+  * vagrant up
+* SSH into the vm
+  * vagrant ssh
 
 
 ### Collecting Metrics
