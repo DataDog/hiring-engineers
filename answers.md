@@ -57,12 +57,13 @@ There are four types of integrations.
 * Notification integrations: primarily push information out instead of collecting information into Datadog like PagerDuty, Slack and Webhooks.
 * Frameworks, Libraries, APIs & Trace: instrument with your applications.
 
-Regarding the MySQL example, firstly I installed MySQL on my VM via package manager. <br>
+Regarding the MySQL example: <br>
+* firstly I installed MySQL on my VM via package manager.
+  * sudo apt-get update
+  *sudo apt-get install mysql-server
+* Once MySQL is up and running, I created a database user for the Datadog agent based on [Instruction](https://app.datadoghq.com/account/settings#integrations/mysql)
+* Then I added this configuration block to the mysql.d/conf.yaml to collect the MySQL metrics
 
-**sudo apt-get update** <br>
-**sudo apt-get install mysql-server** <br>
-
-Once MySQL is up and running, I created a database user for the Datadog agent based on [Instruction](https://app.datadoghq.com/account/settings#integrations/mysql) <br>
 
 Created /etc/datadog-agent/conf.d/mysql.d/conf.yaml <br>
 ```
