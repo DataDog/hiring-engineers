@@ -95,8 +95,210 @@ o	Made edits as per the integration documentation
 •	Enable (un-comment) mysql.d/conf.yaml as per documentation for logging
 
 
-**HIT AN ISSUE HERE resulting in not seeing the mysql agent appear in the Datadog UI
-Needed to update the port access for 3306 on my machine**
+*** HIT AN ISSUE HERE resulting in not seeing the mysql agent appear in the Datadog UI
+Needed to update the port access for 3306 on my machine
 
 After resolving the communication issue, the mysql instance appeared. Here it is in the Host Map:
 ![](images/Hostmap_mysql.png)
+
+Clicked around and found the OOB report in the MySQL dashboard (also previously found the default host dashboard). This is a great touch as it offers an instant view of some key metrics for that particular end point. Excellent for customer who may not be an expert in an end point that they have been tasked to monitor (in my experience, this can be more common!).
+![](images/mysqloverview.png)
+
+
+##### Q. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+1.	Researching into this, I first created a yaml file: /etc/datadog-agent/conf.d/my_metric.yaml. The file ended up looking like this:
+```
+init_config:
+
+instances:
+
+  - min_collection_interval: 45
+```
+
+2.	Then created a second file: etc/datadog-agent/check.d/my_metric.py
+```
+import random
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+
+class my_metric(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', random.randint(0,1000), tags=['team:charlie'])
+```
+
+After running the check command on my host to see if the agent accepts my custom metric, everything came back OK. Ran a few times to manually check at the random number generator function works as expected. Below is a screenshot for confirming all was good in the Datadog UI.
+![](images/mymetric1.png)
+
+##### Q. Change your check's collection interval so that it only submits the metric once every 45 seconds
+
+Having found information about the min_collection_interval variable I used this to configure the collection time to 45 seconds. Editing the my_metric.yaml file to include this with 45 seconds.
+
+
+##### Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+I attempted to do this in the UI in the “Metrics” pages. 
+![](images/mymetric2.png)
+*(Having thought more about this, this will likely add the UI setting as a metadata type value to my_metric. I was unsure which would take precedence compared to configuring directly in the backend)*
+
+# Visualisation
+
+After creating the Mysql agent and my own metric (randomised), I had a play around with the dashboards. Looking at the dashboard vs timeboard visualisations, although similar it is powerful to have a ‘near real time’ dashboard intended for operations teams or NOC screens. These are best suited to be orderly showing useful metrics across multiple domains aligned with the same time frame for instant visual comparison. Dashboards, although similar, can be manipulated further and can be very useful for enabling Datadog value to all sorts of different team and user’s.
+
+##### Q. Utilize the Datadog API to create a Timeboard that contains:
+
+For the exercise, I use the UI driven timeboards to create the time board with the given features. NOTE: Using the limited dataset and not much activity, the timeboard content may not tell the most compelling story!
+
+Screenshot of my timeboard using the very useful public URL. The public URL is a great way for admin user’s to share ad hoc reports or snapshots to non-admin user’s (ie. Incident Manager, or end user). 
+![](images/luketimeboard.png)
+*Generated public URL for this dashboard:  
+https://p.datadoghq.eu/sb/y2xihlh11m1am90t-f0ae460c4e8ba470e4309249f6ce16fc*
+
+*[At this point I played around with more of the UI settings and pages and changed to dark theme! Hence the change of screenshots after this!]*
+
+
+##### Q. Your custom metric scoped over your host.
+
+Chose to lay these on the same graph. This could be done as separate graphs too as the timeboard allows visual alignment to a time frame.
+![](images/myhostmymetric.png)
+•	Blue line (I just selected a random system metric!) = system.net.conntrack.expect_max
+•	Purple line = my_metric
+
+
+##### Q. Any metric from the Integration on your Database with the anomaly function applied.
+
+One of the database agent metrics with anomaly detection applied. Time frame extended to show more activity (includes time when my host was offline!):
+![](images/anomoly.png)
+
+To achieve this, I used the ‘Edit’ wizard using the anomalies function and set to 4 bounds.
+![](images/anomoly2.png)
+
+
+##### Q. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+Sum of values for past hour rolled up. Show as a “query value” visualisation. The following screenshot shows a timeseries graph for the past hour to accompany the single sum value for my_metric.
+![](images/mymetric3.png)
+
+The configuration for this rolled up value was done using the timeboard UI options as follows. 
+![](images/mymetric4.png)
+
+*NOTE: In other monitoring products I have worked with in the past, this kind of metric has to be created as a separate entity and cannot easily be done on the fly due to the way the database structure works. This is a simple but stark reminder of legacy tools vs Datadog and the flexibility that is needed for these sorts of tools.*
+
+##### Q. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+No script created for this as I used the Datadog UI timeboard wizard to create the time board and the individual dashboard widgets/screenboards.
+
+
+##### Q. Set the Timeboard's timeframe to the past 5 minutes
+
+Wasn’t able to find where/how to configure the time interval 5 minute for a timeboard. For timeboards, I got as far as the UI option that takes you to 15 minutes. What I did find is that the dashboard visualisations allows individual screenboards to be set to 5 minute so I used this instead of timeboard for this section for the exercise.
+![](images/lukescreenboard.png)
+
+
+##### Q. Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+Having created a timeboard and then a dashboard with my metric (above), I looked at the Snapshot sharing in the Metrics Explorer. This is where to tag a snapshot of a graph or any screenboard using @ notation to send a snapshot 
+
+*** I later found out this can be done as a shortcut to the snapshot function simply by clicking the graph in the timeboard itself which is much quicker and easier!
+
+Set up here to tag my user and trigger email to be sent:
+![](images/snapshot.png)
+
+Result of this as seen in email (my personal email client):
+![](images/snapshotemail.png)
+
+
+##### Bonus Question: What is the Anomaly graph displaying?
+
+Anomaly graph is a visualisation of the anomaly detection feature of datadog. This visluations is shows metric deviation from normal behaviour. Using historic data patterns, datadog is able to highlight any behaviour that does not follow the normal for that time period. Eg. 7 day cycle for office hours traffic shows heavier utilisation patterns for Monday-Friday and minimal for Sat-Sun. Let’s say there was a change/maintenance window on a Sunday that, this would likely show as an anomaly because there is normally a peak in traffic on a Sunday! This can be a very useful analytical feature for alerting as well!
+
+
+# Monitoring
+
+
+##### Q. Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+•	Warning threshold of 500
+•	Alerting threshold of 800
+•	And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+In the Monitors menu, “New Monitor” and Threshold Trigger, specify my_metric as the definition and then 800 and 500 respectively for the alert and the warning thresholds. I kept the default values for duration time and set recovery to 1 less than the trigger value. Then enabled the No Data check keeping the default 10minute duration.
+![](images/monitor1.png)
+
+
+##### Q. Please configure the monitor’s message so that it will:
+##### •	Q. Send you an email whenever the monitor triggers.
+
+Selected this in the Monitor wizard UI and noticed that it updated the script with @<user/email addr> notation
+
+
+##### •	Q. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+
+Using the conditional variable tags {{#is_alert}}, {{#is_warning}}, {{#is_no_data}}…. I set a different message for each condition and also a recover condition. And to differentiate, I put a basic in context description in each message!
+
+
+##### •	Q. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+Using the message variables {{value}}, {{host_ip}} variables in the alert condition to fulfil this requirement. I included these variables as part of a sentence to make the message more descriptive. I ended up adding these variables to the other trigger conditions for warning and no data as a test the variables forward in the way I think they should!
+
+*** At this point, I realised that in order to enable the {{host_ip}} value…. The host has to be set in the “Define a Metric” row of the Monitor configuration
+![](images/enablehostip.png)
+
+
+For the above task requirements, the script I wrote ended up looking like this:
+```
+My Metric Monitor Message:
+
+{{#is_alert}} 
+My_Metric from {{host.ip}} is notifying of an ALERT condition because it has breached 800 and is showing: {{value}}. 
+Please contact the Critical Infrastructure support team to get this resolved
+{{/is_alert}}
+{{#is_alert_recovery}}
+My_Metric ALERT condition notification has been resolved and is now showing {{value}}. Thanks!
+{{/is_alert_recovery}}
+
+{{#is_warning}}
+My_Metric from {{host.ip}} is notifying of a WARNING condition because it has breached 500 and is showing: {{value}}.
+Please contact technical support to notify them of this status
+{{/is_warning}}
+{{#is_warning_recovery}}
+My_Metric WARNING condition notification has been resolved and is now showing {{value}}. Thanks!
+{{/is_warning_recovery}}
+
+{{#is_no_data}}
+My_Metric being received from {{host.ip}} is notifying that there has been NO DATA collected for at least 10 minutes.
+Please contact the Data Systems Architecture team urgently!
+{{/is_no_data}}
+{{#is_no_data_recovery}}
+My_Metric is now Receiving Data again. Thanks!
+{{/is_no_data_recovery}}
+
+@email@lukelim.com
+```
+
+##### •	Q. When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+![](images/emailmonitor1.png). ![](images/emailmonitor2.png)
+Screenshots showing Alert Monitor and No Data email notification including the expected host and value variables. Emails for warning condition and their respective recoveries also received.
+
+
+##### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+In the Manage Downtime tab of the Monitor page, clicked the Schedule Downtime button to use the UI driven configuration page for setting these schedules. Metric name selected and @<user/email addr> used to fulfil the settings in the question!
+
+NOTE: This is a great feature of a monitoring platform as most business have critical business hours and so alerts are not wanted in non-critical hours. Equally, if running a 24/7 alerting operation, downtime schedules are required for change windows that may take infrastructure down and alerts aren’t wanted for these times.
+
+
+##### •	Q. One that silences it from 7pm to 9am daily on M-F,
+##### •	Q. And one that silences it all day on Sat-Sun.
+
+Screenshots of these schedule downtime configs… 
+![](images/downtime1.png).  ![](images/downtime2.png)
+
+
+
