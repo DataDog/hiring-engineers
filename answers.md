@@ -263,8 +263,11 @@ Anomaly graph is a visualisation of the anomaly detection feature of datadog. Th
 
 ##### Q. Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 •	Warning threshold of 500
+
 •	Alerting threshold of 800
+
 •	And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
 
 In the Monitors menu, “New Monitor” and Threshold Trigger, specify my_metric as the definition and then 800 and 500 respectively for the alert and the warning thresholds. I kept the default values for duration time and set recovery to 1 less than the trigger value. Then enabled the No Data check keeping the default 10minute duration.
 ![](images/monitor1.png)
