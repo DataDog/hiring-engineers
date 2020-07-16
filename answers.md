@@ -403,8 +403,11 @@ if __name__ == '__main__':
 
 
 Then to run the app and instrument the Datadog tracing using the ddtrace-run option.
+
 •	export DD_SERVICE=lukeapp.py
+
 •	ddtrace-run python lukeapp.py
+
 
 With the app running, I needed to initiate some activity so that it would show in the tracing service report. Simply ran these commands a few times for the different pages of the app.
 ```
