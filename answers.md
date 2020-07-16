@@ -81,18 +81,27 @@ GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';
 The following updates were made to the configuration files as per the agent documentation which again was very well written.
 
 •	File: /etc/datadog-agent/conf.d/mysql.d/conf.yaml
+
 o	Made copy example config file and made appropriate edits for password, etc.
+
 o	Restart agent
 
+
 •	File: /etc/mysql/mysql.conf.d/mysqld_safe_syslog.cnf
+
 o	Made copy of file as backup 
+
 o	Remove config lines from mysqld_safe_syslog.cnf
 
+
 •	   File: /etc/mysql/my.cnf
+
 o	Made copy of file as backup
+
 o	Made edits as per the integration documentation
 
-•	   Restart mysql service
+
+•	Restart mysql service
 
 •	Enable Logs in DataDog agent config as per documentation
 
