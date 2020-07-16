@@ -195,6 +195,7 @@ https://p.datadoghq.eu/sb/y2xihlh11m1am90t-f0ae460c4e8ba470e4309249f6ce16fc*
 Chose to lay these on the same graph. This could be done as separate graphs too as the timeboard allows visual alignment to a time frame.
 ![](images/myhostmymetric.png)
 •	Blue line (I just selected a random system metric!) = system.net.conntrack.expect_max
+
 •	Purple line = my_metric
 
 
