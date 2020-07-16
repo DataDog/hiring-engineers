@@ -25,3 +25,4 @@ Tags – Tags area great thing for a data platform and monitoring system as one 
 
 Q. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 Didn’t want to go crazy with this but set up a few tags to see how they’d be reflected in the UI.
+
