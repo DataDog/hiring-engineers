@@ -18,11 +18,14 @@ Having never used Vagrant, I thought I’d give this a go as it’s something ne
 
 
 
+
+
 # Collection Metrics
 
 Had a browse through the options in the datadog.yaml file and realise there are a lot of options and all very well documented both in the yaml file itself and the product documentation! This gives and very good and starting point for a Datadog user to take up the basics and configure further.
 
 Tags – Tags area great thing for a data platform and monitoring system as one of the biggest challenges in the data is understanding context and versioning for long term data validity. Tags allow this by making sure the data is grouped correctly for my business/team’s needs and also helps if we tag a transient metric or datapoint in case the underlying infrastructure is dynamic. Ie. A service moves and changes spec but it’s use and therefore reporting remains the same… I want to ensure this is reflected in my reports/dashboards/alerts.
+
 
 
 ##### Q. Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
@@ -54,6 +57,7 @@ tags:
 
 Here is the screenshot of the Host Map pages showing the tags and also from the filter drop down
 ![](images/Hostmap.png)
+
 
 
 ##### Q. Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -105,6 +109,7 @@ Clicked around and found the OOB report in the MySQL dashboard (also previously 
 ![](images/mysqloverview.png)
 
 
+
 ##### Q. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 1.	Researching into this, I first created a yaml file: /etc/datadog-agent/conf.d/my_metric.yaml. The file ended up looking like this:
@@ -139,9 +144,12 @@ class my_metric(AgentCheck):
 After running the check command on my host to see if the agent accepts my custom metric, everything came back OK. Ran a few times to manually check at the random number generator function works as expected. Below is a screenshot for confirming all was good in the Datadog UI.
 ![](images/mymetric1.png)
 
+
+
 ##### Q. Change your check's collection interval so that it only submits the metric once every 45 seconds
 
 Having found information about the min_collection_interval variable I used this to configure the collection time to 45 seconds. Editing the my_metric.yaml file to include this with 45 seconds.
+
 
 
 ##### Bonus Question Can you change the collection interval without modifying the Python check file you created?
@@ -150,9 +158,15 @@ I attempted to do this in the UI in the “Metrics” pages.
 ![](images/mymetric2.png)
 *(Having thought more about this, this will likely add the UI setting as a metadata type value to my_metric. I was unsure which would take precedence compared to configuring directly in the backend)*
 
+
+
+
+
 # Visualisation
 
 After creating the Mysql agent and my own metric (randomised), I had a play around with the dashboards. Looking at the dashboard vs timeboard visualisations, although similar it is powerful to have a ‘near real time’ dashboard intended for operations teams or NOC screens. These are best suited to be orderly showing useful metrics across multiple domains aligned with the same time frame for instant visual comparison. Dashboards, although similar, can be manipulated further and can be very useful for enabling Datadog value to all sorts of different team and user’s.
+
+
 
 ##### Q. Utilize the Datadog API to create a Timeboard that contains:
 
@@ -166,12 +180,14 @@ https://p.datadoghq.eu/sb/y2xihlh11m1am90t-f0ae460c4e8ba470e4309249f6ce16fc*
 *[At this point I played around with more of the UI settings and pages and changed to dark theme! Hence the change of screenshots after this!]*
 
 
+
 ##### Q. Your custom metric scoped over your host.
 
 Chose to lay these on the same graph. This could be done as separate graphs too as the timeboard allows visual alignment to a time frame.
 ![](images/myhostmymetric.png)
 •	Blue line (I just selected a random system metric!) = system.net.conntrack.expect_max
 •	Purple line = my_metric
+
 
 
 ##### Q. Any metric from the Integration on your Database with the anomaly function applied.
@@ -181,6 +197,7 @@ One of the database agent metrics with anomaly detection applied. Time frame ext
 
 To achieve this, I used the ‘Edit’ wizard using the anomalies function and set to 4 bounds.
 ![](images/anomoly2.png)
+
 
 
 ##### Q. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
@@ -193,15 +210,19 @@ The configuration for this rolled up value was done using the timeboard UI optio
 
 *NOTE: In other monitoring products I have worked with in the past, this kind of metric has to be created as a separate entity and cannot easily be done on the fly due to the way the database structure works. This is a simple but stark reminder of legacy tools vs Datadog and the flexibility that is needed for these sorts of tools.*
 
+
+
 ##### Q. Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 No script created for this as I used the Datadog UI timeboard wizard to create the time board and the individual dashboard widgets/screenboards.
+
 
 
 ##### Q. Set the Timeboard's timeframe to the past 5 minutes
 
 Wasn’t able to find where/how to configure the time interval 5 minute for a timeboard. For timeboards, I got as far as the UI option that takes you to 15 minutes. What I did find is that the dashboard visualisations allows individual screenboards to be set to 5 minute so I used this instead of timeboard for this section for the exercise.
 ![](images/lukescreenboard.png)
+
 
 
 ##### Q. Take a snapshot of this graph and use the @ notation to send it to yourself.
@@ -217,12 +238,17 @@ Result of this as seen in email (my personal email client):
 ![](images/snapshotemail.png)
 
 
+
 ##### Bonus Question: What is the Anomaly graph displaying?
 
 Anomaly graph is a visualisation of the anomaly detection feature of datadog. This visluations is shows metric deviation from normal behaviour. Using historic data patterns, datadog is able to highlight any behaviour that does not follow the normal for that time period. Eg. 7 day cycle for office hours traffic shows heavier utilisation patterns for Monday-Friday and minimal for Sat-Sun. Let’s say there was a change/maintenance window on a Sunday that, this would likely show as an anomaly because there is normally a peak in traffic on a Sunday! This can be a very useful analytical feature for alerting as well!
 
 
+
+
+
 # Monitoring
+
 
 
 ##### Q. Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
@@ -234,15 +260,18 @@ In the Monitors menu, “New Monitor” and Threshold Trigger, specify my_metric
 ![](images/monitor1.png)
 
 
+
 ##### Q. Please configure the monitor’s message so that it will:
 ##### •	Q. Send you an email whenever the monitor triggers.
 
 Selected this in the Monitor wizard UI and noticed that it updated the script with @<user/email addr> notation
 
 
+
 ##### •	Q. Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
 Using the conditional variable tags {{#is_alert}}, {{#is_warning}}, {{#is_no_data}}…. I set a different message for each condition and also a recover condition. And to differentiate, I put a basic in context description in each message!
+
 
 
 ##### •	Q. Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
@@ -283,15 +312,19 @@ My_Metric is now Receiving Data again. Thanks!
 @email@lukelim.com
 ```
 
+
+
 ##### •	Q. When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 ![](images/emailmonitor1.png). ![](images/emailmonitor2.png)
 Screenshots showing Alert Monitor and No Data email notification including the expected host and value variables. Emails for warning condition and their respective recoveries also received.
+
 
 
 ##### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 In the Manage Downtime tab of the Monitor page, clicked the Schedule Downtime button to use the UI driven configuration page for setting these schedules. Metric name selected and @<user/email addr> used to fulfil the settings in the question!
 
 NOTE: This is a great feature of a monitoring platform as most business have critical business hours and so alerts are not wanted in non-critical hours. Equally, if running a 24/7 alerting operation, downtime schedules are required for change windows that may take infrastructure down and alerts aren’t wanted for these times.
+
 
 
 ##### •	Q. One that silences it from 7pm to 9am daily on M-F,
@@ -301,4 +334,102 @@ Screenshots of these schedule downtime configs…
 ![](images/downtime1.png).  ![](images/downtime2.png)
 
 
+
+##### Q. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+![](images/downtimeemail.png)
+Email showing Downtime scheduler email. Further emails received for the other downtime schedules configured.
+
+*** I switched Email alerting off after this by removing the notification setting in the monitor and downtime monitor schedule respectively to stop any more emails being sent!
+
+
+
+
+
+# Collection
+
+Pre-Req – Read up on Flask and virtualenv as I hadn’t used these before! Installed the necessary on my host machine
+
+Then after researching the instructions for setting this up I did the following…
+•	sudo apt-get install python-pip
+•	pip install flask
+•	pip install ddtrace
+
+•	Create Python application lukeapp.py (script below)
+
+```
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+
+Then to run the app and instrument the Datadog tracing using the ddtrace-run option.
+•	export DD_SERVICE=lukeapp.py
+•	ddtrace-run python lukeapp.py
+
+With the app running, I needed to initiate some activity so that it would show in the tracing service report. Simply ran these commands a few times for the different pages of the app.
+```
+•	curl http://0.0.0.0:5050/
+•	curl http://0.0.0.0:5050/api/apm
+•	curl http://0.0.0.0:5050/api/trace
+```
+
+Success!
+![](images/apm.png)
+
+
+
+##### Q. Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics
+
+Screenshot of APM & Infra (host) metrics
+![](images/apmandinfra.png)
+
+Export Public URL for this dashboard:
+https://p.datadoghq.eu/sb/y2xihlh11m1am90t-7736f4c41e825811bc616edc05e0fb5a
+
+
+
+##### Bonus Question: What is the difference between a Service and a Resource?
+Services are components of an application architecture that make up a service for an application. This could be something like a group of database queries for a particular database service/function or a group of URL endpoints.
+Resources are the calls/jobs to a service. This could be something like a database query or a call to an API endpoint
+
+
+Additional Note - To take a look at another Datadog agent type to see how straightforward other agents are. I also added my laptop as a host, firstly to add more ‘stuff’ to the UI to play around with the report types and see how to map specific metrics or grouped/tagged metrics into dashboards, but also to see how the networking would take place on the virtual machine and host machine. All worked as expected and was very straight forward in Datadog.
+
+
+
+##### Final Question:
+##### Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+##### Is there anything creative you would use Datadog for?
+
+**IT Industry related Use case**
+Coming from a large enterprise or SP persona and thinking about some interesting things that Datadog could do for them, I thought a nice use case would be to take the weather and temperature from a meteorological source via their API (met office in the UK perhaps), and map it to key office or datacentre temperature sensors to see how outside effects inside. Being able to take a simple metric from the infrastructure like temperature and enhancing it’s useful value to the business by analysing next to a third party supplied metric can make for interesting use! Things like seasonal trending to save on power consumption if less cooling is needed based on outside climate. Or predictive analytics based historic data when a heatwave or something hits an area. Similar concepts could apply to other power usage use cases which in turn could lead to enhanced green initiatives.
+
+**Non-IT related Use Case**
+Something that I hear constantly from my other half and her cousins. “Weight Loss”, “food”, “exercise”!  Datadog could collect data from the first source, a fitness tracker and its recorded data, to give a whole bunch of metrics one of which includes calories burned. The second source would be a data from a food tracking app which logs food intake and it’s various components, including calories. The first job for Datadog would be to align calories consumed vs calories burned. This would make a dashboard/timeboard and perhaps monitors to alert when calories consumed is too high for the day. This could potentially be taken further to notify when too much or too little of a particular food group (fat, carbs, etc.) is consumed.
 
