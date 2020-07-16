@@ -436,7 +436,7 @@ Services are components of an application architecture that make up a service fo
 Resources are the calls/jobs to a service. This could be something like a database query or a call to an API endpoint
 
 
-Additional Note - To take a look at another Datadog agent type to see how straightforward other agents are. I also added my laptop as a host, firstly to add more ‘stuff’ to the UI to play around with the report types and see how to map specific metrics or grouped/tagged metrics into dashboards, but also to see how the networking would take place on the virtual machine and host machine. All worked as expected and was very straight forward in Datadog.
+**Additional Note** - To take a look at another Datadog agent type to see how straightforward other agents are. I also added my laptop as a host, firstly to add more ‘stuff’ to the UI to play around with the report types and see how to map specific metrics or grouped/tagged metrics into dashboards, but also to see how the networking would take place on the virtual machine and host machine. All worked as expected and was very straight forward in Datadog.
 
 
 
@@ -447,8 +447,10 @@ Additional Note - To take a look at another Datadog agent type to see how straig
 ##### Is there anything creative you would use Datadog for?
 
 **IT Industry related Use case**
+
 Coming from a large enterprise or SP persona and thinking about some interesting things that Datadog could do for them, I thought a nice use case would be to take the weather and temperature from a meteorological source via their API (met office in the UK perhaps), and map it to key office or datacentre temperature sensors to see how outside effects inside. Being able to take a simple metric from the infrastructure like temperature and enhancing it’s useful value to the business by analysing next to a third party supplied metric can make for interesting use! Things like seasonal trending to save on power consumption if less cooling is needed based on outside climate. Or predictive analytics based historic data when a heatwave or something hits an area. Similar concepts could apply to other power usage use cases which in turn could lead to enhanced green initiatives.
 
 **Non-IT related Use Case**
+
 Something that I hear constantly from my other half and her cousins. “Weight Loss”, “food”, “exercise”!  Datadog could collect data from the first source, a fitness tracker and its recorded data, to give a whole bunch of metrics one of which includes calories burned. The second source would be a data from a food tracking app which logs food intake and it’s various components, including calories. The first job for Datadog would be to align calories consumed vs calories burned. This would make a dashboard/timeboard and perhaps monitors to alert when calories consumed is too high for the day. This could potentially be taken further to notify when too much or too little of a particular food group (fat, carbs, etc.) is consumed.
 
