@@ -25,7 +25,7 @@ Congratulations!  You have found the most powerful platform for monitoring metri
 
 ![Frank](Frankenstein.png)
 
-* Spin up a Linux VM  
+### Spin up a Linux VM  
 
 You will need a test host for the following trial of **Datadog**.  It can be any OS or host.  You can use Hashicorp's Vagrant to spin a dev environment. Or you can use IaaS.  The example that follows uses and Ubuntu 18 VM on AWS.  We recommend that you use a fresh Linux install (Ubuntu `v. 16.04` or later is recommended).  
 
@@ -44,25 +44,48 @@ Register for a free **Datadog** 14-day trial here [here](https://www.datadoghq.c
 
 ![Free Trial](FreeTrial.png)
 
+### Add Tags in the Datadog Agent config file
+
+Edit the `datadog.yaml` file in the `\etc\datadog-agent` directory.  Add your own custom tags using this syntax.
+
+```YAML
+tags:
+   - custom_OS:Ubuntu18
+   - custom_aws_host:Datadog-MondoDB
+   - custom_location:Denver
+```
+
+Then in Datadog, navigate to `Infrastructure > Host Map` and click on your host. You will see something like this with your custom tags shown in the `Tags` block:
+
+![My Host and Tags](my_host_tags.png)
+
+### Database
+
+It's time to install a database. Any database will do ... MongoDB, PostgreSQL, MySQL, etc.  In this example, we are using `MongoDB v. 4.2.8`.
+
+![database issues](database-issues.png)
+
+You can find instructions for installing MongoDB [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/).
+
+### Integrations !!!
+
+Datadog has more than 400 integrations.  What is an integration?  See an introduction [here](https://docs.datadoghq.com/getting_started/integrations/).
+
+![integrations](integrations.png)
+
+Datadog integrations span numerous categories.  You will find what you need.  Or let us know.  We're likely working on it.
+
+![int-cats](int-cats.png)
+
+Install the integration for the database that you installed on your test bench.  After you do, navigate to `Integrations` in Datadog and you will see confirmation of your installed integrations:
+
+![MongoDB](mongodb.png)
+
 ## Step 2 -- Metrics - Collecting, Visualizing and Monitoring
 
 ![Girl](Girl.png)
 
-
-* **My Host & Tags:**
-
-Here is a screenshot from Infrastructure/Host Map showing my host and it's tags:
-
-![My Host and Tags](my_host_tags.png)
-
-* **Database:**  
-
-
-I installed MongoDB version 4.2.8.
-
-![MongoDB](mongodb.png)
-
-* **Custom Agent Check:**  
+### Custom Agent Check:
 
 Please see the files `my_metric.py` and `my_metric.yaml` for my agent check that produces "My Metric".  I changed the metric interval to 45 seconds in the config file.
 
@@ -77,7 +100,7 @@ instances:
   - min_collection_interval: 45
 ```
 
-## Visualizing Data:
+### Visualizing Data:
 
 See the file `make_dashboard.py` for my use of the Datadog API to create a Timeboard that contains:
 
@@ -93,7 +116,7 @@ See the file `make_dashboard.py` for my use of the Datadog API to create a Timeb
 Link to dashboard:
 https://p.datadoghq.com/sb/wtoiabphsohwb8fi-c902bc17dca7f4b703f79280584690c8
 
-* **Snapshot of Graph**
+### Snapshot of Graph
 
 I set the timeframe to the past 5 minutes and sent a snapshot to myself:
 
@@ -104,7 +127,7 @@ I set the timeframe to the past 5 minutes and sent a snapshot to myself:
 
 The Anomaly graph is showing the actual measured metric with an overlay in gray that shows the 'normal' range of values. This allows the operator to very easily see when a metric is abnormal even if it experiences cyclical perturbations.
 
-## Monitoring Data
+### Monitoring Data
 
 I created a Monitor called "My_Metric Monitor" that triggers in these conditions:
 
@@ -117,7 +140,7 @@ I configured the monitor to email me with notification type, host IP and actual 
 
 ![monitor alert email](monitor_alert_email.png)
 
-* **Bonus Question**:  
+### Bonus Question  
 Set up two scheduled downtimes for this monitor.
 
 I set up two scheduled downtimes as follows:
@@ -129,11 +152,13 @@ Here is the email that I received from setting up the Monday-Friday downtime.
 
 ![downtime](downtime.png)
 
-## Collecting APM Data:
+# Step 3 -- APM - Trace that Call!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% - swicthboard
 
 I instrumented the provided Flask app.  See `flaskapp.py`.  I added code to enable analytics, and used ddtrace-run.
 
-* **Bonus Question**:
+### Bonus Question
 What is the difference between a Service and a Resource?
 
 A Resource is typically an instrumented endpoint.  But it can also be a database query or a background job.
