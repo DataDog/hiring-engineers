@@ -18,7 +18,7 @@ This was a really fun project!  And you have an awesome product that just works!
 
 # Let's take a tour of Datadog in three Easy Steps!
 
-Congratulations!  You have found **Datadog**, the most powerful platform for monitoring metrics, traces and logs on the planet.  Buckle in and lets take **Datadog** for a test drive.  In the following 3 steps, we will walk you through:
+Congratulations!  You have found **Datadog**, the most powerful platform for monitoring metrics, traces and logs on the planet.  Buckle in and let's take **Datadog** for a test drive.  In the following 3 steps, we will walk you through:
 
 * Step 1 -- Setting up your Datadog laboratory
 * Step 2 -- Metrics - Collecting, Visualizing and Monitoring  
@@ -31,7 +31,7 @@ Congratulations!  You have found **Datadog**, the most powerful platform for mon
 
 ### Spin up a Linux VM  
 
-You will need a test host for the following trial of **Datadog**.  It can be any OS or host.  You can use Hashicorp's Vagrant to spin a dev environment. Or you can use IaaS.  The example that follows uses and Ubuntu 18 VM on AWS.  We recommend that you use a fresh Linux install (Ubuntu `v. 16.04` or later is recommended).  
+You will need a test host for the following trial of **Datadog**.  It can be any OS or host.  You can use Hashicorp's Vagrant to spin up a dev environment. Or you can use IaaS.  The example that follows uses an Ubuntu 18 VM on AWS.  We recommend that you use a fresh Linux install (Ubuntu `v. 16.04` or later is recommended).  
 
 VM Specs - the following minimum specs will work fine for this trial:
 * 1 vcpu
@@ -260,7 +260,7 @@ You did it!  You finished your quick evaluation of Datadog with a tour of **Metr
 
 ![3pillars](3pillars1.png)
 
-## Please let your account team know how your evaluation went!
+## Please let your account team how your evaluation went!
 
 
 ![logo](datadog-logo.png)
