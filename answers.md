@@ -210,18 +210,18 @@ The Anomaly graph is showing the actual measured metric with an overlay in gray 
 
 ### Monitoring Data
 
-Now navigate in **Datadog** to 'Monitors > Manage Monitors'.  Using the instrucions [here](https://docs.datadoghq.com/monitors/monitor_types/), create a monitor called "My_Metric Monitor" that triggers in these conditions:
+Now navigate in **Datadog** to 'Monitors > Manage Monitors'.  Using the instructions [here](https://docs.datadoghq.com/monitors/monitor_types/), create a monitor called "My_Metric Monitor" that triggers in these conditions:
 
 * Warning if average above 500 over last 5 minutes
 * Alert if average above 800 over last 5 minutes
 
-And also set up the monitor to notify if you if there is no data for this query over the past 10m.  Set it up to email me with notification type, host IP and actual metric value.  Here is a sample email:
+And also set up the monitor to notify if you if there is no data for this query over the past 10m.  Set it up to email you with notification type, host IP and actual metric value.  Here is a sample email:
 
 ![monitor alert email](monitor_alert_email.png)
 
 ### Scheduled Downtimes
 
-Let's assume that you don't want to be alerted except during office hours Monday to Friday. Set up two scheduled downtimes for this monitor as follows:
+Let's assume that you don't want to be alerted except during office hours Monday to Friday. Using the instructions [here](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname), set up two scheduled downtimes for this monitor as follows:
 
   * From 7pm to 9am daily on Monday-Friday
   * All day on Saturday-Sunday
