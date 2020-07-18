@@ -90,20 +90,55 @@ Install the integration for the database that you installed on your test bench. 
 
 ![Girl](Girl.png)
 
-### Custom Agent Check:
+### Let's create a Custom Agent Check
 
-Please see the files `my_metric.py` and `my_metric.yaml` for my agent check that produces "My Metric".  I changed the metric interval to 45 seconds in the config file.
+We are going to create a **Custom Agent Check** named 'my_metric' that generates random values between 0 and 1000.  And we will set the collection interval to 45 seconds.  Here is the python code to create the **Custom Agent Check**.  Put this code in `/etc/datadog-agent/checks.d/my_metric.py`.
 
-![interval](my_metric_interval.png)
+```Python
+from random import random
+
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', value=random()*1000, tags=['TAG_KEY:TAG_VALUE'])
+```
+
+Then, to set the collection interval to 45 seconds, put the text below into `/etc/datadog-agent/conf.d/my_metric.yaml`.  Then be sure to restart the agent to start your custom check.
+
+```YAML
+# instances: [{}]
+
+init_config:
+
+instances:
+  - min_collection_interval: 45
+```
 
 * **Bonus Question:** Can you change the collection interval without modifying the Python check file you created?
 
 Yes, you can set the collection interval in the YAML config file with this command:
 
-```python
-instances:
-  - min_collection_interval: 45
-```
+
+![interval](my_metric_interval.png)
+
+### Datadog Agent Commands
+
+Action | Command for Linux
+Start the Agent | `	sudo service datadog-agent start`
+Stop the Agent | `sudo service datadog-agent stop`
+Restart the Agent | `sudo service datadog-agent restart`
+Agent Status | `sudo service datadog-agent status`
+
+See this page for more [Agent Command details](https://docs.datadoghq.com/agent/guide/agent-commands/?tab=agentv6v7).
 
 ### Visualizing Data:
 
@@ -182,6 +217,9 @@ https://p.datadoghq.com/sb/wtoiabphsohwb8fi-45cb1ab404e3e28e6792a2286b03646a
 
 
 ![logo](datadog-logo.png)
+
+
+#############################################################################################
 
 ## Final Question:
 
