@@ -25,7 +25,7 @@ Congratulations!  You have found **Datadog**, the most powerful platform for mon
 * Step 3 -- APM - Trace that Call!
 
 
-## Step 1 -- Setting up your Datadog laboratory
+## Step 1 -- Setting up your Datadog Laboratory
 
 ![Frank](Frankenstein.png)
 
