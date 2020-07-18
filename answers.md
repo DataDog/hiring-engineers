@@ -112,7 +112,7 @@ class HelloCheck(AgentCheck):
         self.gauge('my_metric', value=random()*1000, tags=['TAG_KEY:TAG_VALUE'])
 ```
 
-Then, to set the collection interval to 45 seconds, put the text below into `/etc/datadog-agent/conf.d/my_metric.yaml`.  Then be sure to restart the agent to start your custom check.
+Then, to set the collection interval to 45 seconds, put the text below into `/etc/datadog-agent/conf.d/my_metric.yaml`.  Then be sure to restart the agent to start your custom check.  See below for a table of **Agent Commands**.
 
 ```YAML
 # instances: [{}]
@@ -123,32 +123,71 @@ instances:
   - min_collection_interval: 45
 ```
 
+See this article for more details on [Writing a Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7).
+
 * **Bonus Question:** Can you change the collection interval without modifying the Python check file you created?
 
-Yes, you can set the collection interval in the YAML config file with this command:
-
+Yes, you can set the collection interval in the YAML config file as shown above.  Here is a screenshot showing the 45 second collection interval.  
 
 ![interval](my_metric_interval.png)
+
+**Note:** Setting the collection interval to 45 seconds does mean that Datadog will collect a metric every 45 seconds.  Rather, the agent will make a best effort to collect every 45 seconds (it will be collected as often as every 45 seconds).  The actual interval will be dependent on Agent loading (driven by, among other factors, the number of integrations enabled on that agent).
 
 ### Datadog Agent Commands
 
 Action | Linux Command
 ------ | -------------
-Start the Agent | `	sudo service datadog-agent start`
-Stop the Agent | `sudo service datadog-agent stop`
-Restart the Agent | `sudo service datadog-agent restart`
-Agent Status | `sudo service datadog-agent status`
+**Start** the Agent | `	sudo service datadog-agent start`
+**Stop** the Agent | `sudo service datadog-agent stop`
+**Restart** the Agent | `sudo service datadog-agent restart`
+Agent **Status** | `sudo service datadog-agent status`
 
 See this page for more [Agent Command details](https://docs.datadoghq.com/agent/guide/agent-commands/?tab=agentv6v7).
 
-### Visualizing Data:
+### Visualizing Data
 
-See the file `make_dashboard.py` for my use of the Datadog API to create a Timeboard that contains:
+Now let's use the Datadog API to create a Timeboard that contains:
 
-* 'my_metric' scoped over my host.
-* The MongoDB Writes/Sec metric with the anomaly function applied.
+* 'my_metric' scoped over your host
+* MongoDB Writes/Sec metric with the anomaly function applied
 * 'my_metric' with the rollup function applied with a 1 hour range.
 
+See the file `make_dashboard.py` for the detailed code to do this.  Here is the core of that code:
+
+```Python
+title = 'Mahoney Dashboard-7'
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:my_metric{host:i-0b2438f9031697d3c}'}
+        ],
+        'title': 'My Metric'
+    }
+    },
+    {
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:my_metric{host:i-0b2438f9031697d3c}.rollup(sum, 3600)'}
+        ],
+       'title': 'My Metric - Rollup 1 Hour'
+    }
+    }
+    ,
+    {
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'anomalies(mongodb.opcounters.updateps{*}, "basic", 2)'}
+        ],
+        'title': 'MongoDB Writes/Sec - Anomalies Function'
+    }
+    }
+    ]
+```
+
+And here is the resulting Timeboard, shown with 4h and 8h spans:
 
 ![dashboard 4h](my_dashboard_4h.png)
 
@@ -159,8 +198,7 @@ https://p.datadoghq.com/sb/wtoiabphsohwb8fi-c902bc17dca7f4b703f79280584690c8
 
 ### Snapshot of Graph
 
-I set the timeframe to the past 5 minutes and sent a snapshot to myself:
-
+Now set the timeframe to the past 5 minutes and send a snapshot to myself using the @'your user id' notation.
 
 ![snapshot](snapshot.png)
 
@@ -170,32 +208,29 @@ The Anomaly graph is showing the actual measured metric with an overlay in gray 
 
 ### Monitoring Data
 
-I created a Monitor called "My_Metric Monitor" that triggers in these conditions:
+Now nvaigate in Datadog to 'Monitors > Manage Monitors'.  Using the instrucions [here](https://docs.datadoghq.com/monitors/monitor_types/), create a monitor called "My_Metric Monitor" that triggers in these conditions:
 
 * Warning if average above 500 over last 5 minutes
 * Alert if average above 800 over last 5 minutes
 
-* No data notification: This monitor also notifies me if there is No Data for this query over the past 10m.
-
-I configured the monitor to email me with notification type, host IP and actual metric value.  Here is a sample email:
+And also set up the monitor to notify if you if there is no data for this query over the past 10m.  Set it up to email me with notification type, host IP and actual metric value.  Here is a sample email:
 
 ![monitor alert email](monitor_alert_email.png)
 
-### Bonus Question  
-Set up two scheduled downtimes for this monitor.
+### Scheduled Downtimes
 
-I set up two scheduled downtimes as follows:
+Let's assume that you don't want to be alerted except during office hours Monday to Friday. Set up two scheduled downtimes for this monitor as follows:
 
-  * From 7pm to 9am daily on M-F
-  * All day on Sat-Sun
+  * From 7pm to 9am daily on Monday-Friday
+  * All day on Saturday-Sunday
 
-Here is the email that I received from setting up the Monday-Friday downtime.
+Set it up to email you want the downtime is scheduled.  Here is a sample:
 
 ![downtime](downtime.png)
 
-# Step 3 -- APM - Trace that Call!
+# Step 3 -- APM - Trace that Call() !
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% - swicthboard
+![operator](operator.png)
 
 I instrumented the provided Flask app.  See `flaskapp.py`.  I added code to enable analytics, and used ddtrace-run.
 
