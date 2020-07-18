@@ -148,7 +148,7 @@ See this page for more [Agent Command details](https://docs.datadoghq.com/agent/
 
 ### Visualizing Data
 
-Now let's use the **Datadog** API to create a Timeboard that contains:
+Now let's use the [**Datadog** API](https://docs.datadoghq.com/api/) to create a Timeboard that contains:
 
 * 'my_metric' scoped over your host
 * MongoDB Writes/Sec metric with the anomaly function applied
