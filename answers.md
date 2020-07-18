@@ -1,14 +1,28 @@
-## Datadog Sales Engineer Technical Exercise
+# Datadog Sales Engineer Technical Exercise
 
 Larry Mahoney\
 larrymahoney98@gmail.com\
 Email address for Datadog Trial Instance:  z98alpha@gmail.com (because I had already done a free trial with larrymahoney98@gmail.com)
 
-## Answers
+## This document is meant to be Customer Facing
 
-This was a really fun project!  And you have an awesome product!
+I have formatted the remainder of this document to be a customer facing piece that you can leave with a prospect to help close a deal.
 
-## Prerequisites - Setup the environment
+This was a really fun project!  And you have an awesome product that just works!
+
+###########################################################################################################
+
+# Let's take a tour of Datadog!  Three Easy Steps!
+
+Congratulations!  You have found the most powerful platform for monitoring metrics, traces and logs on the planet.  Buckle in and lets take it for a test drive.  In the following 3 steps, we will walk you through:
+* Step 1 - Setting up your datadog laboratory
+* Step 2 - Metrics -- Collecting, Visualizing and Monitoring  
+* Step 3 - APM - Trace that Call!
+
+
+## Step 1 - Setting up your datadog laboratory
+
+![Frank](Frankenstein.png)
 
 * **Linux VM:**  
 

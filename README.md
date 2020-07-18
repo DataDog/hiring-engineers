@@ -10,7 +10,7 @@ Don’t forget to read the [References](https://github.com/DataDog/hiring-engine
 
 ## Questions
 
-Please provide screenshots and code snippets for all steps.
+Please provide screenshots and code snippets for all steps. 
 
 ## Prerequisites - Setup the environment
 
