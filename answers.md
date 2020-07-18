@@ -18,7 +18,7 @@ This was a really fun project!  And you have an awesome product that just works!
 
 # Let's take a tour of Datadog in three Easy Steps!
 
-Congratulations!  You have found the most powerful platform for monitoring metrics, traces and logs on the planet.  Buckle in and lets take it for a test drive.  In the following 3 steps, we will walk you through:
+Congratulations!  You have found **Datadog**, the most powerful platform for monitoring metrics, traces and logs on the planet.  Buckle in and lets take **Datadog** for a test drive.  In the following 3 steps, we will walk you through:
 
 * Step 1 -- Setting up your Datadog laboratory
 * Step 2 -- Metrics - Collecting, Visualizing and Monitoring  
