@@ -6,11 +6,15 @@ Email address for Datadog Trial Instance:  z98alpha@gmail.com (because I had alr
 
 ## This document is meant to be Customer Facing
 
-I have formatted the remainder of this document to be a customer facing piece that you can leave with a prospect to help close a deal.  This is a guide prospects that want to learn more about about Datadog by taking it for a test drive.  It will walk them through 3 easy steps where they will learn about Metrics (collecting, visualizing and monitoring) and get a taste of APM (instrumenting code and viewing performance).
+I have formatted the remainder of this document to be a customer facing piece that you can leave with a prospect to help close a deal.  This is a guide for prospects that want to learn more about about **Datadog** by taking it for a test drive.  It will walk them through 3 easy steps where they will learn about Metrics (collecting, visualizing and monitoring) and get a taste of APM (instrumenting code and viewing performance).
 
 This was a really fun project!  And you have an awesome product that just works!
 
-#######################################################################################################
+#############################################################################################
+
+
+![logo](datadog-logo.png)
+
 
 # Let's take a tour of Datadog in three Easy Steps!
 
@@ -46,7 +50,7 @@ Register for a free **Datadog** 14-day trial here [here](https://www.datadoghq.c
 
 ### Add Tags in the Datadog Agent config file
 
-Edit the `datadog.yaml` file in the `\etc\datadog-agent` directory.  Add your own custom tags using this syntax.
+Edit the `datadog.yaml` file in the `\etc\datadog-agent` directory.  Add your own custom tags using this syntax:
 
 ```YAML
 tags:
@@ -71,13 +75,14 @@ You can find instructions for installing MongoDB [here](https://docs.mongodb.com
 
 Datadog has more than 400 integrations.  What is an integration?  See an introduction [here](https://docs.datadoghq.com/getting_started/integrations/).
 
+
 ![integrations](integrations.png)
 
 Datadog integrations span numerous categories.  You will find what you need.  Or let us know.  We're likely working on it.
 
 ![int-cats](int-cats.png)
 
-Install the integration for the database that you installed on your test bench.  After you do, navigate to `Integrations` in Datadog and you will see confirmation of your installed integrations:
+Install the integration for the database that you installed on your test bench.  After you do, navigate to `Integrations` in **Datadog** and you will see confirmation of your installed integrations:
 
 ![MongoDB](mongodb.png)
 
@@ -170,6 +175,13 @@ Screenshot and link to my Dashboard with both APM and Infrastructure Metrics:
 ![dash apm](dash_apm.png)
 
 https://p.datadoghq.com/sb/wtoiabphsohwb8fi-45cb1ab404e3e28e6792a2286b03646a
+
+
+# Thank you for evaluating Datadog!
+## Let us know how it went!
+
+
+![logo](datadog-logo.png)
 
 ## Final Question:
 
