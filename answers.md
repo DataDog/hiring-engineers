@@ -27,7 +27,7 @@ Congratulations!  You have found **Datadog**, the most powerful platform for mon
 
 ## Step 1 -- Setting up your Datadog Laboratory
 
-![Frank](Frankenstein.png)
+![Frank](Frankenstein1.png)
 
 ### Spin up a Linux VM  
 
