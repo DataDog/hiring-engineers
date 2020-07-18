@@ -260,7 +260,7 @@ You did it!  You finished your quick evaluation of Datadog with a tour of **Metr
 
 ![3pillars](3pillars1.png)
 
-## Please let your account team how your evaluation went!
+## Please let your account team know how your evaluation went!
 
 
 ![logo](datadog-logo.png)
