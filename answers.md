@@ -63,7 +63,7 @@ Then in Datadog, navigate to `Infrastructure > Host Map` and click on your host.
 
 It's time to install a database. Any database will do ... MongoDB, PostgreSQL, MySQL, etc.  In this example, we are using `MongoDB v. 4.2.8`.
 
-![database issues](database-issues.png)
+![database issues](database-issues.jpg)
 
 You can find instructions for installing MongoDB [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/).
 
