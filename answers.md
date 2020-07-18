@@ -6,36 +6,48 @@ Email address for Datadog Trial Instance:  z98alpha@gmail.com (because I had alr
 
 ## This document is meant to be Customer Facing
 
-I have formatted the remainder of this document to be a customer facing piece that you can leave with a prospect to help close a deal.
+I have formatted the remainder of this document to be a customer facing piece that you can leave with a prospect to help close a deal.  This is a guide prospects that want to learn more about about Datadog by taking it for a test drive.  It will walk them through 3 easy steps where they will learn about Metrics (collecting, visualizing and monitoring) and get a taste of APM (instrumenting code and viewing performance).
 
 This was a really fun project!  And you have an awesome product that just works!
 
-###########################################################################################################
+#######################################################################################################
 
-# Let's take a tour of Datadog!  Three Easy Steps!
+# Let's take a tour of Datadog in three Easy Steps!
 
 Congratulations!  You have found the most powerful platform for monitoring metrics, traces and logs on the planet.  Buckle in and lets take it for a test drive.  In the following 3 steps, we will walk you through:
-* Step 1 - Setting up your datadog laboratory
-* Step 2 - Metrics -- Collecting, Visualizing and Monitoring  
-* Step 3 - APM - Trace that Call!
+
+* Step 1 -- Setting up your Datadog laboratory
+* Step 2 -- Metrics - Collecting, Visualizing and Monitoring  
+* Step 3 -- APM - Trace that Call!
 
 
-## Step 1 - Setting up your datadog laboratory
+## Step 1 -- Setting up your Datadog laboratory
 
 ![Frank](Frankenstein.png)
 
-* **Linux VM:**  
+* Spin up a Linux VM  
 
-I have experience with AWS, so I spun up an Ubuntu 18 instance on EC2.
+You will need a test host for the following trial of **Datadog**.  It can be any OS or host.  You can use Hashicorp's Vagrant to spin a dev environment. Or you can use IaaS.  The example that follows uses and Ubuntu 18 VM on AWS.  We recommend that you use a fresh Linux install (Ubuntu `v. 16.04` or later is recommended).  
+
+VM Specs - the following minimum specs will work fine for this trial:
+* 1 vcpu
+* 1 GB memory
+* 8 GB storage
+
+On AWS, the t2.micro instance is sufficient.  Here is what our test VM looks like on the Instances dashboard:
 
 ![Linux VM](linux_vm.png)
 
-* **Datadog Free Trial:**  
+* Sign up for a Datadog Free Trial
 
-Note that I used z98alpha@gmail.com as the email address for this trial instance because I had already used larrymahoney98@gmail.com for a previous trial to learn more about your cool product!
+Register for a free **Datadog** 14-day trial here [here](https://www.datadoghq.com/free-datadog-trial/). And let us know if you need more time.  We can extend your trial!
 
+![Free Trial](FreeTrial.png)
 
-## Collecting Metrics -- Host and Tags on the Host Map
+## Step 2 -- Metrics - Collecting, Visualizing and Monitoring
+
+![Girl](Girl.png)
+
 
 * **My Host & Tags:**
 
