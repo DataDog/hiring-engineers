@@ -63,7 +63,7 @@ Then in Datadog, navigate to `Infrastructure > Host Map` and click on your host.
 
 ![My Host and Tags](my_host_tags.png)
 
-### Database
+### Install a Database
 
 It's time to install a database. Any database will do ... MongoDB, PostgreSQL, MySQL, etc.  In this example, we are using `MongoDB v. 4.2.8`.
 
