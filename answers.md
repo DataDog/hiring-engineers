@@ -90,7 +90,7 @@ Install the integration for the database that you installed on your test bench. 
 
 ## Step 2 -- Metrics - Collecting, Visualizing and Monitoring
 
-![Girl](Girl.png)
+![Girl](Girl1.png)
 
 ### Let's create a Custom Agent Check
 
