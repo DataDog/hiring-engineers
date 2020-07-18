@@ -232,7 +232,11 @@ Set it up to email you want the downtime is scheduled.  Here is a sample:
 
 ![operator](operator.png)
 
-I instrumented the provided Flask app.  See `flaskapp.py`.  I added code to enable analytics, and used ddtrace-run.
+Now let's learn about **Datadog's powerful APM** capabilities.  There are two ways to instrument code for APM:
+* Use ddtrace-run at the command inline
+* Insert APM middleware inline
+
+You see a sample by inspecting `flaskapp.py` where you will see that we added code to enable analytics.  We then used ddtrace-run to capture APM data.
 
 ### Bonus Question
 What is the difference between a Service and a Resource?
@@ -241,7 +245,7 @@ A Resource is typically an instrumented endpoint.  But it can also be a database
 A Service is a collection of endpoints, queries or jobs.
 In this example, the app `flaskapp.py` embodies the service, whereas the endpoints /api/apm and /api/trace are resources.
 
-Screenshot and link to my Dashboard with both APM and Infrastructure Metrics:
+Screenshot and link to an example Dashboard with both APM and Infrastructure Metrics:
 
 ![dash apm](dash_apm.png)
 
@@ -249,7 +253,7 @@ https://p.datadoghq.com/sb/wtoiabphsohwb8fi-45cb1ab404e3e28e6792a2286b03646a
 
 
 # Thank you for evaluating Datadog!
-## Let us know how it went!
+## Let your account team how it went!
 
 
 ![logo](datadog-logo.png)
