@@ -132,7 +132,8 @@ Yes, you can set the collection interval in the YAML config file with this comma
 
 ### Datadog Agent Commands
 
-Action | Command for Linux
+Action | Linux Command
+------ | -------------
 Start the Agent | `	sudo service datadog-agent start`
 Stop the Agent | `sudo service datadog-agent stop`
 Restart the Agent | `sudo service datadog-agent restart`
