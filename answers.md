@@ -42,9 +42,9 @@ On AWS, the t2.micro instance is sufficient.  Here is what our test VM looks lik
 
 ![Linux VM](linux_vm.png)
 
-* Sign up for a Datadog Free Trial
+### Sign up for a Datadog Free Trial
 
-Register for a free **Datadog** 14-day trial here [here](https://www.datadoghq.com/free-datadog-trial/). And let us know if you need more time.  We can extend your trial!
+Register for a free **Datadog** 14-day trial here [here](https://www.datadoghq.com/free-datadog-trial/). And let your account team know if you need more time.  We can extend your trial!
 
 ![Free Trial](FreeTrial.png)
 
@@ -76,9 +76,11 @@ You can find instructions for installing MongoDB [here](https://docs.mongodb.com
 Datadog has more than 400 integrations.  What is an integration?  See an introduction [here](https://docs.datadoghq.com/getting_started/integrations/).
 
 
+
 ![integrations](integrations.png)
 
-Datadog integrations span numerous categories.  You will find what you need.  Or let us know.  We're likely working on it.
+
+Datadog integrations span numerous categories.  You will find what you need.  Or let your account team know.  We're likely working on it.
 
 ![int-cats](int-cats.png)
 
@@ -131,7 +133,7 @@ Yes, you can set the collection interval in the YAML config file as shown above.
 
 ![interval](my_metric_interval.png)
 
-**Note:** Setting the collection interval to 45 seconds does mean that Datadog will collect a metric every 45 seconds.  Rather, the agent will make a best effort to collect every 45 seconds (it will be collected as often as every 45 seconds).  The actual interval will be dependent on Agent loading (driven by, among other factors, the number of integrations enabled on that agent).
+**Note:** Setting the collection interval to 45 seconds does mean that **Datadog** will collect a metric every 45 seconds.  Rather, the agent will make a best effort to collect every 45 seconds (it will be collected as often as every 45 seconds).  The actual interval will be dependent on Agent loading (driven by, among other factors, the number of integrations enabled on that agent).
 
 ### Datadog Agent Commands
 
@@ -146,7 +148,7 @@ See this page for more [Agent Command details](https://docs.datadoghq.com/agent/
 
 ### Visualizing Data
 
-Now let's use the Datadog API to create a Timeboard that contains:
+Now let's use the **Datadog** API to create a Timeboard that contains:
 
 * 'my_metric' scoped over your host
 * MongoDB Writes/Sec metric with the anomaly function applied
@@ -208,7 +210,7 @@ The Anomaly graph is showing the actual measured metric with an overlay in gray 
 
 ### Monitoring Data
 
-Now nvaigate in Datadog to 'Monitors > Manage Monitors'.  Using the instrucions [here](https://docs.datadoghq.com/monitors/monitor_types/), create a monitor called "My_Metric Monitor" that triggers in these conditions:
+Now navigate in **Datadog** to 'Monitors > Manage Monitors'.  Using the instrucions [here](https://docs.datadoghq.com/monitors/monitor_types/), create a monitor called "My_Metric Monitor" that triggers in these conditions:
 
 * Warning if average above 500 over last 5 minutes
 * Alert if average above 800 over last 5 minutes
@@ -263,9 +265,9 @@ https://p.datadoghq.com/sb/wtoiabphsohwb8fi-45cb1ab404e3e28e6792a2286b03646a
 
 ## Final Question:
 
-Is there anything creative you would use Datadog for?
+Is there anything creative you would use **Datadog** for?
 
-COVID Park Alert!
+COVID-19 Park Alert!
 I would get public access to municipal cameras at the city's parks and feed them into a crowd-counting service like Amazon Rekognition.  And then pull that data into Datadog and do analytics on the crowd size data as well as weather data to send alerts when the crowd size is low on days that are sunny!  The alerts would let you know when you can throw your frisbee to your dog at the park with extra social distancing!
 
 ## Thanks!
