@@ -256,9 +256,11 @@ https://p.datadoghq.com/sb/wtoiabphsohwb8fi-45cb1ab404e3e28e6792a2286b03646a
 
 # Thank you for evaluating Datadog!
 
-You did it!  You finished your quick evaluation of Datadog with a tour of **Metrics** and **APM**.  Keep in mind that Datadog also monitors **Logs** rounding out the the [Three Pillars of Observability](https://www.datadoghq.com/blog/apm-watchdog-service-map-trace-search/). 
+You did it!  You finished your quick evaluation of Datadog with a tour of **Metrics** and **APM**.  Keep in mind that Datadog also monitors **Logs** rounding out the the [Three Pillars of Observability](https://www.datadoghq.com/blog/apm-watchdog-service-map-trace-search/).
 
-## Let your account team how it went!
+[3pillars](3pillars.png)
+
+## Please let your account team how your evaluation went!
 
 
 ![logo](datadog-logo.png)
