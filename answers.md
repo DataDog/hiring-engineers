@@ -200,7 +200,7 @@ https://p.datadoghq.com/sb/wtoiabphsohwb8fi-c902bc17dca7f4b703f79280584690c8
 
 ### Snapshot of Graph
 
-Now set the timeframe to the past 5 minutes and send a snapshot to myself using the @'your user id' notation.
+Now set the timeframe to the past 5 minutes and send a snapshot to yourself using the @'your user id' notation.
 
 ![snapshot](snapshot.png)
 
