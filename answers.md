@@ -127,7 +127,8 @@ instances:
 
 See this article for more details on [Writing a Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7).
 
-* **Bonus Question:** Can you change the collection interval without modifying the Python check file you created?
+### Bonus Question
+Can you change the collection interval without modifying the Python check file you created?
 
 Yes, you can set the collection interval in the YAML config file as shown above.  Here is a screenshot showing the 45 second collection interval.  
 
@@ -204,7 +205,8 @@ Now set the timeframe to the past 5 minutes and send a snapshot to yourself usin
 
 ![snapshot](snapshot.png)
 
-* **Bonus Question**: What is the Anomaly graph displaying?
+### Bonus Question
+What is the Anomaly graph displaying?
 
 The Anomaly graph is showing the actual measured metric with an overlay in gray that shows the 'normal' range of values. This allows the operator to very easily see when a metric is abnormal even if it experiences cyclical perturbations.
 
