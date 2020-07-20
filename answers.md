@@ -1,14 +1,57 @@
 # 1:Setup the environment:
-  I used a vagrant VM running ubuntu ![](./Vagrant_VM.png)
-
-# 2:Collecting Metrics:
-  Tags in the datadog.yaml file ![Tags](./tags_datadog_yaml.png)
+  #### * The first step of this exercise was to setup the environment. I followed the recommendation and decided to use a Vagrant VM running Ubuntu. I had a lot of experience deploying VM using VMware product, but it was a first for me with Vagrant. I used *VirtualBox 6.1.12 for Linux* as a virtualizer, pre-packaged with *Ubuntu 19.10 / 20.04*. Then I downloaded and launched *Vagrant 2.2.9_x86_64*
+  ```
+  > vagrant init hashicorp/bionic64
+  > vagrant up
+   ```
   
-  Host Map Screenshot: ![hostmap_screenshot](./1-hostmap_screenshot.png)
+  Here is the result:
+  ![](./Vagrant_VM.png)
 
+#### * I then went ahead and installed the Datadog Agent for Ubuntu by running the one-step install command:
+```
+DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=3163017dc099bcab6c9860e05f3a7ade DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+```
+```
+vagrant@vagrant:/etc/datadog-agent$ ls -ltr
+total 148
+-r--r-----   1 dd-agent dd-agent   918 Jun 17 10:28 system-probe.yaml.example
+-rw-r--r--   1 dd-agent dd-agent 55687 Jun 17 10:28 datadog.yaml.example
+drwxr-xr-x   2 dd-agent dd-agent  4096 Jul  7 02:45 selinux
+-rw-r--r--   1 dd-agent dd-agent   117 Jul  7 02:45 install_info
+-rw-------   1 dd-agent dd-agent    64 Jul  7 02:45 auth_token
+-rw-r-----   1 dd-agent dd-agent 55700 Jul  7 03:33 datadog.yaml
+drwxr-xr-x 144 dd-agent dd-agent  4096 Jul  7 03:41 conf.d
+drwxr-xr-x   3 dd-agent dd-agent  4096 Jul  7 03:51 checks.d
+-rw-r--r--   1 root     root      1195 Jul  7 16:43 my_dashboard.py
+drwxr-xr-x   2 root     root      4096 Jul  8 15:45 DD_test
+-rw-r--r--   1 root     root       685 Jul  8 18:13 trial_app.py
+```
+# 2:Collecting Metrics:
+  #### * The next step was to setup tags in the agent config file. I decided to change the hostname, add a tag for the specific geolocalized area, and define the environment into which the host will be running. Those tags were changed in the datadog.yaml file ![Tags](./tags_datadog_yaml.png)
+  
+  Here is the resulting Host Map Screenshot take from the Datadog WebUI: ![hostmap_screenshot](./1-hostmap_screenshot.png)
+
+  #### * I went on and installed a local MySQL server and created the datadog user with the suggested grants
+  ```
+  sudo apt install mysql-server
+  sudo mysql
+  mysql>CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'datadog';
+  mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
+  mysql> GRANT PROCESS ON *.* TO 'datadog'@'localhost';
+  mysql> GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';
+  mysql>
+  mysql> show databases like 'performance_schema';
+  +-------------------------------+
+  | Database (performance_schema) |
+  +-------------------------------+
+  | performance_schema            |
+  +-------------------------------+
+  1 row in set (0.00 sec)
+  ```
   MYSQL installation: ![MYSQL](./mysql.png)
   
-  MYSQL config: [MYSQL conf.yaml](./mysql_conf.yaml)
+  * I then edited the MYSQL config file to add the metric collection configuration block: [MYSQL conf.yaml](./mysql_conf.yaml)
   
   Custom Check Agent My_metric.py: ![my_metric_py](./2-my_metric_py.png)
   
