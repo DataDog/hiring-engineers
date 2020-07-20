@@ -51,7 +51,25 @@ drwxr-xr-x   2 root     root      4096 Jul  8 15:45 DD_test
   ```
   MYSQL installation: ![MYSQL](./mysql.png)
   
-  * I then edited the MYSQL config file to add the metric collection configuration block: [MYSQL conf.yaml](./mysql_conf.yaml)
+  * I then edited the MYSQL config file to add the metric collection configuration block. I also added a tag for dbtype because I thought in a multi-DB system it would be easier to track some metrics:
+  ```
+  instances:
+  - server: 127.0.0.1
+    user: datadog
+    pass: datadog
+    port: 3306
+    tags:
+       - dbtype:mysql
+    options:
+      replication: false
+      galera_cluster: true
+      extra_status_metrics: true
+      extra_innodb_metrics: true
+      extra_performance_metrics: true
+      schema_size_metrics: false
+      disable_innodb_metrics: false
+   ```
+   [MYSQL conf.yaml](./mysql_conf.yaml)
   
   Custom Check Agent My_metric.py: ![my_metric_py](./2-my_metric_py.png)
   
