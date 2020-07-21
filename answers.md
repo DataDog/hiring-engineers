@@ -49,7 +49,7 @@ drwxr-xr-x   2 root     root      4096 Jul  8 15:45 DD_test
   +-------------------------------+
   1 row in set (0.00 sec)
   ```
-  MYSQL installation: ![MYSQL](./mysql.png)
+  MySQL runtime PID: ![MYSQL](./mysql.png)
   
   * #### I then edited the MYSQL config file to add the metric collection configuration block. I also added a tag for dbtype because I thought in a multi-DB system it would be easier to track some metrics:
   ```
@@ -150,7 +150,7 @@ api.Dashboard.create(title=title, description=description, layout_type=layout_ty
 ```
 The script file can be found [here](./my_dashboard.py)
   
-* #### Visualy the resulting dashboard looks like this.
+* #### Visually, the resulting dashboard looks like this.
 ![My_dashboard_screenshot](./4-My_dashboard_screenshot.png)
 
 * #### In order to dive deeper into the data values, we can change the timeframe to get more granular datapoints. Here's the result using a 5 minutes timeframe.
@@ -163,14 +163,31 @@ The script file can be found [here](./my_dashboard.py)
   DD: The anomaly graph is highlighting abnormal variations in data value as compared to the majority of values in the given interval. In my case it highlights spikes in cpu   utilization for the given timeframe.
 
 # 4:Monitoring Data:
-  Create a metric monitor : ![metric_monitor](./7-metric_monitor.png)
-
-  Triggered alert email notification: ![Triggered_alert_email](./8-Triggered_alert_email.png)
-
-  ### Bonus Question: 
-  Downtime email notif : ![Downtime_schedule_emails](./9-Downtime_schedule_emails.png)
+* #### The objective of an effective dashboard is to keep track of certains metrics, data and KPI. But for the operations' side of business, it's mostly useful to generate alerts on failing systems based on preconfigured data threshold. In the case of my_metric, we are generating random numbers between 0-1000, and for the sake of example, we will assume that :
+  - Any value over 500 should be considered a Warning state
+  - Any value over 800 is considered critical and should trigger an alert
+  - If there is no data for this query for the last 10 minutes, it should also trigger an alert
   
-  Downtime schedules: ![Downtime_schedule_screenshot](./10-Downtime_schedule_screenshot.png)
+  To make sense to the recepients of the alert, I had to edit the outgoing message to include valuable information such as:
+  - Send myself an email whenever the monitor triggers.
+  - Create different messages based on whether the monitor is in an Alert, Warning, or No Data state... and include the metric value and host ip.
+
+Here is the metric monitor configuration page to incorporate all of the above parameters
+  ![metric_monitor](./7-metric_monitor.png)
+
+Here is the resulting triggered alert email notification
+![Triggered_alert_email](./8-Triggered_alert_email.png)
+
+* #### Bonus Question: 
+  - In normal operating conditions, we may not want to be alerted of certain threshold during specific periods. To showcase this, I created 2 scheduled downtimes for the previous monitor:
+      - Silence the alert from 7pm to 9am daily on weekdays
+      - Silence the alert during the Weekends
+  
+  - Here is the resulting downtime schedules:
+  ![Downtime_schedule_screenshot](./10-Downtime_schedule_screenshot.png)
+  
+  - I also made sure that my email was notified when setting those downtimes. Here are the notification emails:  
+  ![Downtime_schedule_emails](./9-Downtime_schedule_emails.png)
 
  # 5:Collecting APM data
   Instrumented app: [trial_app](./trial_app.py)
