@@ -1,5 +1,5 @@
 # 1:Setup the environment:
-  #### * The first step of this exercise was to setup the environment. I followed the recommendation and decided to use a Vagrant VM running Ubuntu. I had a lot of experience deploying VM using VMware product, but it was a first for me with Vagrant. I used *VirtualBox 6.1.12 for Linux* as a virtualizer, pre-packaged with *Ubuntu 19.10 / 20.04*. Then I downloaded and launched *Vagrant 2.2.9_x86_64*
+*  #### The first step of this exercise was to setup the environment. I followed the recommendation and decided to use a Vagrant VM running Ubuntu. I had a lot of experience deploying VM using VMware product, but it was a first for me with Vagrant. I used *VirtualBox 6.1.12 for Linux* as a virtualizer, pre-packaged with *Ubuntu 19.10 / 20.04*. Then I downloaded and launched *Vagrant 2.2.9_x86_64*
   ```
   > vagrant init hashicorp/bionic64
   > vagrant up
@@ -8,7 +8,7 @@
   Here is the result:
   ![](./Vagrant_VM.png)
 
-#### * I then went ahead and installed the Datadog Agent for Ubuntu by running the one-step install command:
+* #### I then went ahead and installed the Datadog Agent for Ubuntu by running the one-step install command:
 ```
 DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=3163017dc099bcab6c9860e05f3a7ade DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 ```
@@ -28,11 +28,11 @@ drwxr-xr-x   2 root     root      4096 Jul  8 15:45 DD_test
 -rw-r--r--   1 root     root       685 Jul  8 18:13 trial_app.py
 ```
 # 2:Collecting Metrics:
-  #### * The next step was to setup tags in the agent config file. I decided to change the hostname, add a tag for the specific geolocalized area, and define the environment into which the host will be running. Those tags were changed in the datadog.yaml file ![Tags](./tags_datadog_yaml.png)
+*  #### The next step was to setup tags in the agent config file. I decided to change the hostname, add a tag for the specific geolocalized area, and define the environment into which the host will be running. Those tags were changed in the datadog.yaml file ![Tags](./tags_datadog_yaml.png)
   
   Here is the resulting Host Map Screenshot take from the Datadog WebUI: ![hostmap_screenshot](./1-hostmap_screenshot.png)
 
-  #### * I went on and installed a local MySQL server and created the datadog user with the suggested grants
+*  #### I went on and installed a local MySQL server and created the datadog user with the suggested grants
   ```
   sudo apt install mysql-server
   sudo mysql
@@ -69,14 +69,34 @@ drwxr-xr-x   2 root     root      4096 Jul  8 15:45 DD_test
       schema_size_metrics: false
       disable_innodb_metrics: false
    ```
-   [MYSQL conf.yaml](./mysql_conf.yaml)
+  You can find the complete yaml file here: [MYSQL conf.yaml](./mysql_conf.yaml)
   
-  Custom Check Agent My_metric.py: ![my_metric_py](./2-my_metric_py.png)
-  
-  Custom check agent My_metric.yaml: ![my_metric_yaml](./3-my_metric_yaml.png)
+* #### Then I had to setup a custom check agent that submits a metric named my_metric with a random value between 0 and 1000: Here is the Custom Check Agent python script */etc/datadog-agent/checks.d/my_metric.py*:
+```python
+import random
 
-  ### Bonus Question Can you change the collection interval without modifying the Python check file you created ?
-  DD: Yes through the metric’s config file …/conf.d/my_metric.d/my_metric.yaml
+from datadog_checks.base import AgentCheck
+
+__version__ = "1.0.0"
+
+class MyClass(AgentCheck):
+ def check(self, instance):
+  self.gauge(
+   "my_metric.gauge",
+   random.randint(0, 1000),
+   tags=["env:sandbox","metric_submission_type:gauge"])
+```
+  
+* #### Next, I was asked to change the collection interval so that it only submits the metric once every 45 seconds. To do so I added a parameter *min_collection_interval: 45* to the */etc/datadog-agent/conf.d/my_metric.d/my_metric.yaml*
+```yaml
+init_config:
+
+instances:
+ - min_collection_interval: 45
+```
+
+### Bonus Question Can you change the collection interval without modifying the Python check file you created ?
+DD: Yes through the metric’s config file …/conf.d/my_metric.d/my_metric.yaml
 
 # 3:Visualizing Data:
   Dashboard creation API Script: [my_dashboard.py](./my_dashboard.py)
