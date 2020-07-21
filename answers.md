@@ -49,9 +49,9 @@ drwxr-xr-x   2 root     root      4096 Jul  8 15:45 DD_test
   +-------------------------------+
   1 row in set (0.00 sec)
   ```
-  MySQL runtime PID: ![MYSQL](./mysql.png)
+  - MySQL runtime PID: ![MYSQL](./mysql.png)
   
-  * #### I then edited the MYSQL config file to add the metric collection configuration block. I also added a tag for dbtype because I thought in a multi-DB system it would be easier to track some metrics:
+* #### I then edited the MYSQL config file to add the metric collection configuration block. I also added a tag for dbtype because I thought in a multi-DB system it would be easier to track some metrics:
   ```
   instances:
   - server: 127.0.0.1
@@ -69,8 +69,72 @@ drwxr-xr-x   2 root     root      4096 Jul  8 15:45 DD_test
       schema_size_metrics: false
       disable_innodb_metrics: false
    ```
-  You can find the complete yaml file here: [MYSQL conf.yaml](./mysql_conf.yaml)
+  - You can find the complete yaml file here: [MYSQL conf.yaml](./mysql_conf.yaml)
   
+  - Then in order to facilitate the log collection, I changed the default logging directory from */var/log/syslog* to */var/log/mysql/*. To do so, I went and edit the */etc/mysql/my.cnf* to add the following block:
+  ```
+  [mysqld_safe]
+  log_error = /var/log/mysql/mysql_error.log
+
+  [mysqld]
+  general_log = on
+  general_log_file = /var/log/mysql/mysql.log
+  log_error = /var/log/mysql/mysql_error.log
+  slow_query_log = on
+  slow_query_log_file = /var/log/mysql/mysql_slow.log
+  long_query_time = 2
+  ```
+  - I restarted the MySQL server using  `sudo service mysql restart`
+  - I made sure the Agent had read access on the /var/log/mysql directory using
+  ```
+   cd /var/log/
+   sudo chmod -R 777 mysql
+   ```
+   - I made sure that logrotate would take these logs into account by editing */etc/logrotate.d/mysql-server* with the following
+     ```
+     /var/log/mysql.log /var/log/mysql/*log {
+        daily
+        rotate 7
+        missingok
+        create 640 mysql adm
+        compress
+       
+      }
+      ```
+  - I edited the agent's *datadog.yaml* file to enable the log collection
+  ``` 
+  logs_enabled: true
+  ```
+  - Then, as per the documentation, I added the following code block to */etc/datadog-agent/conf.d/mysql.d* configuration file
+  ```
+    logs:
+    - type: file
+      path: "<ERROR_LOG_FILE_PATH>"
+      source: mysql
+      service: "<SERVICE_NAME>"
+
+    - type: file
+      path: "<SLOW_QUERY_LOG_FILE_PATH>"
+      source: mysql
+      service: "<SERVICE_NAME>"
+      log_processing_rules:
+        - type: multi_line
+          name: new_slow_query_log_entry
+          pattern: "# Time:"
+          # If mysqld was started with `--log-short-format`, use:
+          # pattern: "# Query_time:"
+
+    - type: file
+      path: "<GENERAL_LOG_FILE_PATH>"
+      source: mysql
+      service: "<SERVICE_NAME>"
+      # For multiline logs, if they start by the date with the format yyyy-mm-dd uncomment the following processing rule
+      # log_processing_rules:
+      #   - type: multi_line
+      #     name: new_log_start_with_date
+      #     pattern: \d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])
+   ```
+
 * #### Then I had to setup a custom check agent that submits a metric named my_metric with a random value between 0 and 1000: Here is the Custom Check Agent python script */etc/datadog-agent/checks.d/my_metric.py*:
 ```python
 import random
@@ -190,11 +254,78 @@ Here is the resulting triggered alert email notification
   ![Downtime_schedule_emails](./9-Downtime_schedule_emails.png)
 
  # 5:Collecting APM data
-  Instrumented app: [trial_app](./trial_app.py)
+* #### To collect APM data on an application, I used the provided flask application:
+```flask
+from flask import Flask
+import logging
+import sys
+import ddtrace.profile.auto
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+File version of the app: [trial_app](./trial_app.py)
+
+  - To succesfully run the app, I first had to install pip, flask and ddtrace.
+  ```
+  sudo apt install python-pip
+  pip install ddtrace
+  pip install flask
+  ```
+  - Also, as recommended by the documentation, I configured some important environment variables to explicitely describe what environment and service the application was running.
+  ```
+  export DD_ENV=sandbox
+  export DD_SERVICE=flask_service
+  ```
+  - I also edited the agent's *datadog.yaml* file to setup the API_KEY.
+  ```
+  api_key: 3163017dc099bcab6c9860e05f3a7ade
+  ```
   
-  Dashboard Screenshot with Infrastructure and APM metrics: ![Dasboard_with_APM_screenshot](./11-Dasboard_with_APM_screenshot.png)
+  - Then I could succesfully instrument the application, I launched it using the ddtrace-run command, as follows:
+  ```
+  ddtrace-run python trial_app.py
+  ```
   
-  Dashboard link: https://p.datadoghq.com/sb/pplgzjts4v4gyxk3-4a2301f4a537fdf031350b2b0cb55419
+  - To generate traffic to the application, I generated resource calls to the service by typing multiple times these curl requests in the CLI. Note that I've intentionally inserted an invalid resource call to generate a 404 http response:
+  ```
+  curl http://127.0.0.1:5050/
+  curl http://127.0.0.1:5050/api/trace
+  curl http://127.0.0.1:5050/api/apm
+  curl http://127.0.0.1:5050/asdf
+  ```
+  
+* #### Then I logged onto my Dashboard and added 3 widgets related to the APM metrics.
+  - Max http hits on the the flask app
+  - Average request duration
+  - Sum of each http response status
+
+    - Here is the Dashboard Screenshot with Infrastructure and APM metrics: 
+    ![Dasboard_with_APM_screenshot](./11-Dasboard_with_APM_screenshot.png)
+  
+  You can access the Dashboard through this link. I keep the VM up and resend the curl requests from time to time to keep data in the Dashboard: https://p.datadoghq.com/sb/pplgzjts4v4gyxk3-4a2301f4a537fdf031350b2b0cb55419
   
   ### Bonus Question: What is the difference between a Service and a Resource?
   DD: 
@@ -203,6 +334,6 @@ Here is the resulting triggered alert email notification
 
 # Final Question:
   ### Is there anything creative you would use Datadog for? 
-  DD: I could see a very practical use of collecting metrics from kid’s sceen time. There are applications that can calculate the amount of time spent on each app/device per   kids. A custom Agent check could aggregate all this data and show it on a single pane of glass, while highlighting anomalies and keeping track of the SLO the family has       agreed on.
+  DD: I could see a very practical use of collecting metrics from kid’s sceen time. There are applications that can calculate the amount of time spent on each app/device per kids. A custom Agent check could aggregate all this data and show it on a single pane of glass, while highlighting anomalies and keeping track of the objectives the family has agreed on.
 
 
