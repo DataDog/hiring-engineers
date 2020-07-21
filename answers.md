@@ -51,7 +51,7 @@ drwxr-xr-x   2 root     root      4096 Jul  8 15:45 DD_test
   ```
   MYSQL installation: ![MYSQL](./mysql.png)
   
-  * I then edited the MYSQL config file to add the metric collection configuration block. I also added a tag for dbtype because I thought in a multi-DB system it would be easier to track some metrics:
+  * #### I then edited the MYSQL config file to add the metric collection configuration block. I also added a tag for dbtype because I thought in a multi-DB system it would be easier to track some metrics:
   ```
   instances:
   - server: 127.0.0.1
@@ -95,19 +95,71 @@ instances:
  - min_collection_interval: 45
 ```
 
-### Bonus Question Can you change the collection interval without modifying the Python check file you created ?
-DD: Yes through the metric’s config file …/conf.d/my_metric.d/my_metric.yaml
+* #### Bonus Question Can you change the collection interval without modifying the Python check file you created ?
+Yes, through the metric’s config file located in */etc/datadog-agent/conf.d/my_metric.d/my_metric.yaml*
 
 # 3:Visualizing Data:
-  Dashboard creation API Script: [my_dashboard.py](./my_dashboard.py)
+* #### After that I had to use the API to create a dashboard containing 
+  - my_metric scoped over my host.
+  - Cpu_time taken by the Mysql Database with the anomaly function applied.
+  - my_metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+I decided to use python to script the creation of the Dashboard: 
+```python
+from datadog import initialize, api
+import time
+my_time = time.ctime(time.time())
+
+
+options = {
+        'api_key': '3163017dc099bcab6c9860e05f3a7ade',
+        'app_key': '0c8be5163923b75f191e4e63c35f098dd172be3a'
+        }
+
+initialize(**options)
+
+# Dashboard information
+title = "My dashboard using API "+ my_time
+description = "Dashboard created through the API"
+layout_type = "ordered"
+
+#Widgets
+widgets = [{
+    'definition': {
+        'type' : 'timeseries',
+        'requests' : [{'q' : 'avg:my_metric.gauge{host:mymachine.learning}'}],
+        'title' : 'Avg of my_metric over mymachine.learning'
+        }},
+
+        {
+    'definition' : {
+        'type' : 'timeseries',
+        'requests' : [{'q' : "anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)"}],
+        'title' : 'Avg of Mysql CPU_time over * w/ anomaly'
+        }},
+        {
+    'definition' : {
+         'type' : 'timeseries',
+         'requests' : [{'q' : "sum:my_metric.gauge{*}.rollup(avg, 3600)", "display_type": "bars" }],
+         'title' : 'my_metric summed over 1hr'
+         }}
+     ]
+
+#Create Dashboard
+api.Dashboard.create(title=title, description=description, layout_type=layout_type, widgets=widgets)
+```
+The script file can be found [here](./my_dashboard.py)
   
-  Resulting dashboard Screenshot: ![My_dashboard_screenshot](./4-My_dashboard_screenshot.png)
+* #### Visualy the resulting dashboard looks like this.
+![My_dashboard_screenshot](./4-My_dashboard_screenshot.png)
 
-  Dashboard with a 5 min timeframe: ![my_dashboard_5min_screenshot](./5-my_dashboard_5min_screenshot.png)
+* #### In order to dive deeper into the data values, we can change the timeframe to get more granular datapoints. Here's the result using a 5 minutes timeframe.
+![my_dashboard_5min_screenshot](./5-my_dashboard_5min_screenshot.png)
 
-  Dashboard Snapshot and @notation email: ![snapshot_notation_email](./6-snapshot_notation_email.png)
+* #### For collaboration purposes, we can snapshot a certain timeframe of our widget and share it with teammates using the @notation. This is the email I received after being tagged in the snapshot.
+![snapshot_notation_email](./6-snapshot_notation_email.png)
 
-  ### Bonus Question: What is the Anomaly graph displaying? 
+ * #### Bonus Question: What is the Anomaly graph displaying? 
   DD: The anomaly graph is highlighting abnormal variations in data value as compared to the majority of values in the given interval. In my case it highlights spikes in cpu   utilization for the given timeframe.
 
 # 4:Monitoring Data:
