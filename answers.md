@@ -6,9 +6,11 @@
    ```
   
   Here is the result:
+  
   ![](./Vagrant_VM.png)
 
 * #### I then went ahead and installed the Datadog Agent for Ubuntu by running the one-step install command:
+
 ```
 DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=3163017dc099bcab6c9860e05f3a7ade DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 ```
@@ -27,6 +29,7 @@ drwxr-xr-x   3 dd-agent dd-agent  4096 Jul  7 03:51 checks.d
 drwxr-xr-x   2 root     root      4096 Jul  8 15:45 DD_test
 -rw-r--r--   1 root     root       685 Jul  8 18:13 trial_app.py
 ```
+
 # 2:Collecting Metrics:
 *  #### The next step was to setup tags in the agent config file. I decided to change the hostname, add a tag for the specific geolocalized area, and define the environment into which the host will be running. Those tags were changed in the datadog.yaml file ![Tags](./tags_datadog_yaml.png)
   
@@ -49,7 +52,7 @@ drwxr-xr-x   2 root     root      4096 Jul  8 15:45 DD_test
   +-------------------------------+
   1 row in set (0.00 sec)
   ```
-  - MySQL runtime PID: ![MYSQL](./mysql.png)
+   - MySQL runtime PID: ![MYSQL](./mysql.png)
   
 * #### I then edited the MYSQL config file to add the metric collection configuration block. I also added a tag for dbtype because I thought in a multi-DB system it would be easier to track some metrics:
   ```
@@ -72,6 +75,7 @@ drwxr-xr-x   2 root     root      4096 Jul  8 15:45 DD_test
   - You can find the complete yaml file here: [MYSQL conf.yaml](./mysql_conf.yaml)
   
   - Then in order to facilitate the log collection, I changed the default logging directory from */var/log/syslog* to */var/log/mysql/*. To do so, I went and edit the */etc/mysql/my.cnf* to add the following block:
+  
   ```
   [mysqld_safe]
   log_error = /var/log/mysql/mysql_error.log
@@ -158,6 +162,26 @@ init_config:
 instances:
  - min_collection_interval: 45
 ```
+   - Using the command *sudo datadog-agent status* I could validate that my_metric was successfully loaded.
+  
+  ```
+  =========
+  Collector
+  =========
+    Running Checks
+    ==============
+      my_metric (1.0.0)
+      -----------------
+      Instance ID: my_metric:5ba864f3937b5bad [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/my_metric.d/my_metric.yaml
+      Total Runs: 53
+      Metric Samples: Last Run: 1, Total: 53
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2020-07-22 21:08:19.000000 UTC
+      Last Successful Execution Date : 2020-07-22 21:08:19.000000 UTC
+  ```
 
 * #### Bonus Question Can you change the collection interval without modifying the Python check file you created ?
 Yes, through the metric’s config file located in */etc/datadog-agent/conf.d/my_metric.d/my_metric.yaml*
@@ -224,7 +248,7 @@ The script file can be found [here](./my_dashboard.py)
 ![snapshot_notation_email](./6-snapshot_notation_email.png)
 
  * #### Bonus Question: What is the Anomaly graph displaying? 
-  DD: The anomaly graph is highlighting abnormal variations in data value as compared to the majority of values in the given interval. In my case it highlights spikes in cpu   utilization for the given timeframe.
+  The anomaly graph is highlighting abnormal variations in data value as compared to the majority of values in the given interval. In my case it highlights spikes in cpu   utilization for the given timeframe.
 
 # 4:Monitoring Data:
 * #### The objective of an effective dashboard is to keep track of certains metrics, data and KPI. But for the operations' side of business, it's mostly useful to generate alerts on failing systems based on preconfigured data threshold. In the case of my_metric, we are generating random numbers between 0-1000, and for the sake of example, we will assume that :
@@ -300,7 +324,7 @@ File version of the app: [trial_app](./trial_app.py)
   export DD_SERVICE=flask_service
   ```
  
-  - Then I could succesfully instrument the application, I launched it using the ddtrace-run command, as follows:
+  - Then I could succesfully instrument the application, I launched it using the *ddtrace-run* command, as follows:
   ```
   ddtrace-run python trial_app.py
   ```
@@ -363,7 +387,7 @@ class MyClass(AgentCheck):
     tags=["env:sandbox","metric_submission_type:gauge"])
    ```
    
-The resulting Dashboard would look like that
+The resulting Dashboard would look like that. (Note: Time scale is wrong because for that example I assumed one datapoint was one day)
 ![12-kids_screen_time](./12-kids_screen_time.png)
 
 #### I realy enjoyed discovering the Datadog product and I hope you enjoyed the reading too. 
