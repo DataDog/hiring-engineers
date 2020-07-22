@@ -105,7 +105,7 @@ drwxr-xr-x   2 root     root      4096 Jul  8 15:45 DD_test
   ``` 
   logs_enabled: true
   ```
-  - Then, as per the documentation, I added the following code block to */etc/datadog-agent/conf.d/mysql.d* configuration file
+  - Then, as per the documentation, I added the following code block to */etc/datadog-agent/conf.d/mysql.d* configuration file to start collecting MySQL logs.
   ```
     logs:
     - type: file
@@ -324,12 +324,14 @@ File version of the app: [trial_app](./trial_app.py)
   You can access the Dashboard through this link. I keep the VM up and resend the curl requests from time to time to keep data in the Dashboard: https://p.datadoghq.com/sb/pplgzjts4v4gyxk3-4a2301f4a537fdf031350b2b0cb55419
   
   ### Bonus Question: What is the difference between a Service and a Resource?
-  DD: 
   - A *service* is a group of processes \(queries, jobs, endpoints) that allow the creation of an application. \(i.e: The flask service in our examples)
   - A *resource* is a specific domain of an application \(single endpoint, single query) \(i.e: The specific request http://127.0.0.1:5050/api/trace from the example)
 
 # Final Question:
   ### Is there anything creative you would use Datadog for? 
-  DD: I could see a very practical use of collecting metrics from kid’s sceen time. There are applications that can calculate the amount of time spent on each app/device per kids. A custom Agent check could aggregate all this data and show it on a single pane of glass, while highlighting anomalies and keeping track of the objectives the family has agreed on.
+  I could see a very practical use of collecting metrics from kid’s screen time. There are applications that can calculate the amount of time spent on each app/device per kids. A custom Agent check could aggregate all this data and show it on a single pane of glass, while highlighting anomalies and keeping track of the objectives the family has agreed on. These measures could be presented with clear visual markers to quickly show if the screentime is within the acceptable -green- range or is exceeding -red- the daily limit. 
+  Personally, I like to agree on some rules with my kids that, if they are bored and wish to use the tablet or phone or video game, I want them to first do some reading. I could setup a very simple webpage that they could enter their reading time into. That metric could be retreived by the agent on Then the reading time could also be shown, per kid, on the Dashboard. Again, we could agree on a target screentime VS reading ratio, for example 1:2, and keep track of it.
+  Finally, I'd set a monitoring alert that would send me an email notification on a weekly basis, if one my kid has reached their target ratio. That email would be tied to their weekly allowance and/or special movie night. :)
+  
 
 
