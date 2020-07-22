@@ -299,11 +299,7 @@ File version of the app: [trial_app](./trial_app.py)
   export DD_ENV=sandbox
   export DD_SERVICE=flask_service
   ```
-  - I also edited the agent's *datadog.yaml* file to setup the API_KEY.
-  ```
-  api_key: 3163017dc099bcab6c9860e05f3a7ade
-  ```
-  
+ 
   - Then I could succesfully instrument the application, I launched it using the ddtrace-run command, as follows:
   ```
   ddtrace-run python trial_app.py
