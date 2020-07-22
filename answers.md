@@ -329,9 +329,46 @@ File version of the app: [trial_app](./trial_app.py)
 
 # Final Question:
   ### Is there anything creative you would use Datadog for? 
-  I could see a very practical use of collecting metrics from kid’s screen time. There are applications that can calculate the amount of time spent on each app/device per kids. A custom Agent check could aggregate all this data and show it on a single pane of glass, while highlighting anomalies and keeping track of the objectives the family has agreed on. These measures could be presented with clear visual markers to quickly show if the screentime is within the acceptable -green- range or is exceeding -red- the daily limit. 
-  Personally, I like to agree on some rules with my kids that, if they are bored and wish to use the tablet or phone or video game, I want them to first do some reading. I could setup a very simple webpage that they could enter their reading time into. That metric could be retreived by the agent on Then the reading time could also be shown, per kid, on the Dashboard. Again, we could agree on a target screentime VS reading ratio, for example 1:2, and keep track of it.
-  Finally, I'd set a monitoring alert that would send me an email notification on a weekly basis, if one my kid has reached their target ratio. That email would be tied to their weekly allowance and/or special movie night. :)
+  I could see a very practical use of collecting metrics from kid’s screen time. There are applications that can calculate the amount of time spent on each app/device per kids. A custom Agent check could aggregate all this data and show it on a single pane of glass and keep track of the objectives the family has agreed on. These measures could be presented with clear visual markers to quickly show if the screentime is within the acceptable -green- range or is exceeding -red- the daily limit. 
+
+Personally, I like to agree on some rules with my kids that, if they are bored and wish to use the tablet or phone or video game, I want them to first do some reading. I could setup a very simple webpage that they could enter their reading time into. That metric could be retreived by the agent on Then the reading time could also be shown, per kid, on the Dashboard. Again, we could agree on a target reading - screentime, and keep track of it to make sure it is always positive (equal or more reading time than screentime).
+
+Finally, I'd set a monitoring alert that would send me an email notification on a weekly basis, if one my kid has reached their target ratio. That email would be tied to their weekly allowance and/or special movie night. :)
+
+Just for the fun of it, I created a custom check agent that generates random screentime and reading time for my 2 kids.
+```python
+import random
+
+from datadog_checks.base import AgentCheck
+
+__version__ = "1.0.0"
+
+class MyClass(AgentCheck):
+ def check(self, instance):
+  self.gauge(
+   "my_kids.kid1.screentime",
+   random.randint(0, 120),
+   tags=["env:sandbox","metric_submission_type:gauge"])
+  self.gauge(
+   "my_kids.kid1.readtime",
+   random.randint(0, 120),
+   tags=["env:sandbox","metric_submission_type:gauge"])
+  self.gauge(
+   "my_kids.kid2.screentime",
+   random.randint(0, 120),
+   tags=["env:sandbox","metric_submission_type:gauge"])
+  self.gauge(
+    "my_kids.kid2.readtime",
+    random.randint(0, 120),
+    tags=["env:sandbox","metric_submission_type:gauge"])
+   ```
+   
+The resulting Dashboard would look like that
+![12-kids_screen_time](./12-kids_screen_time.png)
+
+#### I realy enjoyed discovering the Datadog product and I hope you enjoyed the reading too. 
+#### David Doiron
+   
   
 
 
