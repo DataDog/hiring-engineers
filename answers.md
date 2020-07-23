@@ -318,7 +318,7 @@ File version of the app: [trial_app](./trial_app.py)
   pip install ddtrace
   pip install flask
   ```
-  - Also, as recommended by the documentation, I configured some important environment variables to explicitely describe what environment and service the application was running.
+  - Also, as recommended by the documentation, I configured some important environment variables to explicitly describe what environment and service the application was running.
   ```
   export DD_ENV=sandbox
   export DD_SERVICE=flask_service
