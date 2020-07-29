@@ -1,0 +1,414 @@
+import { Head, Notes } from 'mdx-deck'
+import { duskOwl } from './src/dusk-owl'
+import { AppearList } from './src/appear-list'
+import { nightOwl } from '@code-surfer/themes'
+import { CodeSurfer } from 'code-surfer'
+import Provider from './provider'
+export const theme = { ...nightOwl, Provider}
+import HostMap from './assets/hostmap_.png'
+import Timeboard from './assets/apm_metrics.png'
+import TimeboardNotion from './assets/timeboard_5min_notion.png'
+import CreateMonitor from './assets/monitor/monitor_.png'
+import EmailMonitorAlert from './assets/monitor/email_monitor.png'
+import EmailDowntimeNotif from './assets/monitor/emailed_downtime.png'
+import CreateDowntimeSchedule from './assets/monitor/downtime_schedule.png'
+
+<Head>
+   <title>DataDog Exercise</title>
+    <link rel="icon" href="https://imgix.datadoghq.com/img/favicons/favicon-32x32.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@datadoghq" />
+    <meta name="twitter:title" content="Hiring Engineers" />
+    <meta name="twitter:description" content="A really great presentation" />
+    <meta name="twitter:image" content="https://imgix.datadoghq.com/img/og/OG_Homepage.png?fit=crop&w=1200&h=630" />
+    <meta name="og:title" content="Cloud Monitoring as a Service | Datadog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://p.datadoghq.com/sb/uurj1fs1fj927eap-75e437c1d0eb8ba2e3aad3e2cbeb8ed1" />
+    <meta name="og:image" content="https://imgix.datadoghq.com/img/og/OG_Homepage.png?fit=crop&w=1200&h=630" />
+</Head>
+
+<div>
+  <h1 style={{textAlign: "center"}}>DataDog Hiring Engineers</h1>
+  <h2 style={{textAlign: "center", paddingBottom: "50px"}}>Exercise Deck</h2>
+</div>
+
+<AppearList >
+  <ul> To view the presenter notes press `option + p` on mac</ul>
+</AppearList>
+
+---
+
+<h1 style={{textAlign: "center"}}>Deck Contents Overview</h1>
+<AppearList >
+  <ul>Collecting Metrics</ul>
+  <ul>Visualizing Data: Dashboards</ul>
+  <ul>Monitoring Data: Notifications</ul>
+  <ul>APM Collection</ul>
+  <ul>DataDog Creative Uses</ul>
+</AppearList>
+
+---
+
+<h1 style={{textAlign: "center"}}>Collecting Metrics</h1>
+<p style={{marginLeft: "15px"}}>
+ Installing the Agents gets metrics from a host up to datadog. The host map on the next slide shows:
+</p>
+
+<AppearList>
+<li>Tags are important for decoupling collection and reporting</li>
+<li>An installed PostgreSQL database & dd integration</li>
+</AppearList>
+
+<Notes>
+
+- Tagging: Datadog recommends using unified service tagging when assigning tags. 
+- Unified service tagging ties Datadog telemetry together through the use of three standard tags: env, service, and version.
+
+</Notes>
+
+---
+<h4 style={{textAlign: "center"}}>Host Map</h4>
+<div style={{ marginTop: "-10px"}}>
+  <img
+  src={HostMap}
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }} />
+</div>
+
+<Notes>
+Shown
+
+- Tags submitted by the Agent, configured in /etc/datadog-agent/datadog.yaml
+- PostgreSQL
+- custom check
+- agent
+- apache web server
+- ddtrace
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```py 6:16 file=./snippets/custom_check.py title="Custom Agent Check"
+```
+
+```diff 6 title="Custom check py, yaml file best practice - prefix with custom_"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```yaml title="Configured collection interval for 45 seconds without modifying the Python check file"
+# conf.d/custom_check.d/custom_metric_check.yaml snippet
+# 4500 milliseconds `min_collection_time` configuration
+
+instances:
+    min_collection_interval: 45
+    
+```
+
+```diff 5 title="Apply configuration within conf.d/custom_check.d/custom_metric_check.yaml"
+```
+
+</CodeSurfer>
+
+---
+
+<h2 style={{textAlign: "center"}}>Visualizing Data: 
+  <a style={{ textDecoration: "none" }} href="https://p.datadoghq.com/sb/uurj1fs1fj927eap-75e437c1d0eb8ba2e3aad3e2cbeb8ed1" target="_blank" rel="noopener noreferrer">
+       Timeboard Public Link
+  </a>
+</h2>
+
+<div>
+  <img
+  src={Timeboard}
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+   
+  }} />
+</div>
+
+<Notes>
+
+- 1. Database integration metric with anomaly function applied 
+
+- 2. Custom metric scoped over host
+
+- 3. APM request success/failure metric
+
+- 4. Custom metric sum of data points rolled up for the past hour 
+
+- 5. APM service latency metric
+
+- 6. APM error percentage metric
+
+- 7. Public Link to Timeboard: https://p.datadoghq.com/sb/uurj1fs1fj927eap-75e437c1d0eb8ba2e3aad3e2cbeb8ed1
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```ts file=./timeboard.tf title="Terraform Timeboard Script"
+
+```diff 1:5 subtitle="DataDog Provider needs API and APP Keys"
+```
+
+```diff 6[1:39] title="Ideal when working with teams at scale - Automate DataDog Timeboard creation"
+```
+
+```diff 12:32 title="Custom metric sum of data points rolled up for the past hour"
+```
+
+```diff 33:54 title="Anomaly function applied to Database integration metric"
+```
+
+```diff 55:97 title="Custom metric scoped over host"
+```
+
+</CodeSurfer>
+
+<Notes>
+Utilized the Datadog API through Terraform to create a Timeboard that contains:
+  
+<li>My custom metric scoped over my host.</li>
+<li>Any metric from the Integration on my Database with an anomaly function applied.</li>
+<li>My custom metric with the rollup function applied to sum up all the points for the past hour into one bucket</li>
+
+</Notes>
+
+---
+
+<h2 style={{textAlign: "center"}}>Timeboard 5 minute timeframe  @ notation</h2>
+<div>
+  <img
+  src={TimeboardNotion}
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }} />
+</div>
+<li>Timeboard window adjustment command `option + ]`</li>
+
+--- 
+
+# What is the Anomaly graph displaying?
+<div>
+  <h3 style={{textAlign: "center"}}>Anomaly detection uncovers metrics that do not act the way the metric used to act</h3>
+</div>
+<p style={{marginLeft: "15px", marginRight: "15px"}}>
+- History based. Anomaly detection observes the metrics past history to see whether it's deviating from where the algorithm infers the metric should be. 💡 To view the presenter notes press `option + p`
+</p>
+
+
+<Notes>
+
+When considering whether to use anomaly detection reference the note under: 
+
+- [Should I use anomaly detection for everything?](https://docs.datadoghq.com/monitors/faq/anomaly-monitor/#should-i-use-anomaly-detection-for-everything)
+    
+    - **Note:** Understanding how an _Outlier_ is defined within Datadog is essential to comprehending Datadog's Anomaly definition because the nomenclature for _Outlier & Anomaly_ are not standardize across the industry. 
+    
+    - An **Outlier:** compares metrics that should be behaving similarly to one another. Said differently, one of these data points is not like the others.
+
+</Notes>
+
+---
+
+<h2 style={{textAlign: "center"}}>Create a Monitor with the following parameters watching the custom metric avg</h2>
+
+<div style={{marginLeft: "15px"}}>  
+<ol> 1.  Alert if metric is above the following values over the past 5 minutes</ol>
+<ul> 2.  Alerting threshold of 800</ul>
+<ul> 3. Warning threshold of 500</ul>
+<ul> 4. Over 10min of no data sends notif for query</ul>
+<ul> 5. Create different messages triggered for an Alert, Warning, or No Data state</ul>
+<ul> 6. Sends me an email whenever the monitor triggers</ul>
+<ul> 7. Metric value included that caused the monitor to trigger with host ip when the Monitor triggers an Alert state</ul>
+</div>
+
+<Notes> This is be a numbered list. The Green Numbers on the next slide correspond to the list items</Notes>
+
+---
+
+<div>
+  <img
+  src={CreateMonitor}
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }} />
+</div>
+
+<Notes>
+
+<ol> 1 - Alert if metric is above the following values over the past 5 minutes</ol>
+<ul> 2 - Alerting threshold of 800</ul>
+<ul> 3 - Warning threshold of 500</ul>
+<ul> 4 - Over 10min of no data sends notif for query</ul>
+<ul> 5 - Create different messages triggered for an Alert, Warning, or No Data state.</ul>
+<ul> 6 - Sends me an email whenever the monitor triggers</ul>
+<ul> 7 - Metric value included that caused the monitor to trigger with host ip when the Monitor triggers an Alert state.</ul>
+
+</Notes>
+
+---
+
+<h2 style={{textAlign: "center"}}>Screenshot from Monitor email notification received </h2>
+
+ <div>
+  <img
+  src={EmailMonitorAlert}
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }} />
+</div>
+
+---
+
+<h2 style={{textAlign: "center"}}>Bonus: Set up two scheduled downtimes for this monitor</h2>
+
+<div style={{marginLeft: "15px", marginTop: "-40px"}}>
+
+1. Send an email when schedule the downtime
+
+2.  Silent from 7pm to 9am daily on M-F
+
+3. Silent all day on Sat-Sun And until Monday at 9AM
+
+</div>
+
+<Notes>
+
+- For me this notif was more challenging than it looked because of the time window options available. I thought the correct approach would be to use days but I ended up using hours. Using hours allowed me to narrow down spurious monitors.
+
+- Next slide displays the monitor
+
+</Notes>
+
+---
+
+<div>
+  <img
+  src={CreateDowntimeSchedule}
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+   
+  }} />
+</div>
+
+---
+
+<div>
+  <h1 style={{textAlign: "center"}}>Email Downtime Notif</h1>
+</div>
+
+<div>
+  <img
+  src={EmailDowntimeNotif}
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+   
+  }} />
+</div>
+
+---
+
+<CodeSurfer>
+
+```python file=./snippets/init_flaskapp.py title="Instrument a python app using Datadog’s APM solution"
+```
+
+```python file=./snippets/flaskapp.py title="APM Instrumented"
+```
+
+</CodeSurfer>
+
+---
+
+<h2 style={{textAlign: "center"}}>Collecting APM Data: 
+  <a style={{ textDecoration: "none" }} href="https://p.datadoghq.com/sb/uurj1fs1fj927eap-75e437c1d0eb8ba2e3aad3e2cbeb8ed1" target="_blank" rel="noopener noreferrer">
+       Timeboard Public Link
+  </a>
+</h2>
+
+<div>
+  <img
+  src={Timeboard}
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+   
+  }} />
+</div>
+
+<Notes>
+
+- 1. Database integration metric with anomaly function applied 
+
+- 2. Custom metric scoped over host
+
+- 3. APM request success/failure metric
+
+- 4. Custom metric sum of data points rolled up for the past hour 
+
+- 5. APM service latency metric
+
+- 6. APM error percentage metric
+
+- 7. Public Link to Timeboard: https://p.datadoghq.com/sb/uurj1fs1fj927eap-75e437c1d0eb8ba2e3aad3e2cbeb8ed1
+
+</Notes>
+
+---
+
+  ## **Bonus Question**: What is the difference between a Service and a Resource?
+
+<div style={{marginLeft: "15px"}}> 
+    <p style={{marginLeft: "15px", marginRight: "15px"}}><a style={{ textDecoration: "none" }} href="https://docs.datadoghq.com/tracing/visualization/#services" target="_blank" rel="noopener noreferrer">
+          Service: APM Glossary (source):
+        </a> Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application. </p>
+      <p style={{marginLeft: "15px", marginRight: "15px"}}><a style={{ textDecoration: "none" }} href=" https://docs.datadoghq.com/tracing/visualization/#resources" target="_blank" rel="noopener noreferrer">
+          Resource: APM Glossary (source):
+        </a> Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.</p>
+</div>
+
+---
+
+<h1 style={{textAlign: "center"}}>Is there anything creative you would use Datadog for?</h1>
+<div style={{marginLeft: "15px"}}>  
+ In these challenging times, I'd monitor <a style={{ textDecoration: "none" }} href="https://data.sfgov.org/Housing-and-Buildings/Eviction-Notices/5cei-gny5" target="_blank" rel="noopener noreferrer"> Eviction Notices in San Francisco</a> to assess the impact Covid-19 will have on housing. The City and County of San Francisco have 538 published open datasets <a style={{ textDecoration: "none" }} href="https://datasf.org" target="_blank" rel="noopener noreferrer">accessible here</a> with more data sets scheduled to be published in the future. 
+ These data sets can be accessed through a REST API and there are  <a style={{ textDecoration: "none" }} href="https://datasf.org/opendata/developers" target="_blank" rel="noopener noreferrer"> developer docs</a>.
+These data sets combined with dogstatsD offer endless opportunities to be creative with DataDog. 
+</div>
+
+---
+  
+ <h1>Au revoir <span class="wave">👋</span></h1>
+
+<iframe src="https://app.datadoghq.com/graph/embed?token=f62f3ca2b268984b0d1754a09cf3754d86154269e16518acadeb88294e49c9c9&height=400&width=800&legend=true" width="800" height="400" frameborder="0"></iframe>
+<iframe src="https://app.datadoghq.com/graph/embed?token=9366cb676bd830f24a646a1bcf134518ce4cb6c8e2739670603c0c6774327cc7&height=400&width=800&legend=true" width="800" height="400" frameborder="0"></iframe>
+<iframe src="https://app.datadoghq.com/graph/embed?token=1d2243ec0f64432419267aebbc06c7bbb72fbbc4ef1d682136e81b198acf029c&height=400&width=800&legend=true" width="800" height="400" frameborder="0"></iframe>
+
+

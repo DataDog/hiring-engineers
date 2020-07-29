@@ -1,0 +1,17 @@
+{
+  "name": "datadog",
+  "private": true,
+  "version": "0.0.2",
+  "scripts": {
+    "start": "mdx-deck answers.mdx",
+    "build": "mdx-deck build answers.mdx"
+  },
+  "devDependencies": {
+    "code-surfer": "3.1.1",
+    "mdx-deck": "3.1.0",
+    "prettier": "^1.19.1"
+  },
+  "dependencies": {
+    "styled-components": "^5.1.1"
+  }
+}
