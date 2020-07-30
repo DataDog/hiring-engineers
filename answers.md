@@ -94,7 +94,7 @@ curl -X POST -H "Content-Type: application/json" -H "DD-API-KEY: ae9774213091cc6
 I also did:
 - Set the timeboard timeframe to past 5 min (and that was odd... I had to manually set the time by selecting a window in a widget, I was not able just to write 5min on the time picker)
 - I took a snapshot and sent it to myself (pretty cool feature I might add)
-(SCREENSHOT SNAPSHOT)
+![dashboard](/snapshot.png)
 
 ### Bonus Question
 What is the anomaly graph displaying: My chart is not that interesting since the metric I selected does not vary that much. When I created a chart with my custom metric, things changed. The chart displays the selected metric and the expected range of values based on the algorithm that looks at past performance, previous performance at a particular time of the day, trends, etc. The expected performance range is then represented by the gray area. The metric timeseries will also change its color from blue to red if the value is considered anomalous (i.e. above or beyond the expected range)
@@ -109,11 +109,8 @@ I did create the monitor asrequested:
 - Created the alert message with different content depending on the type of notification
 - Added the host and metric value in the message
 
-Here's the threshold configuration
-SCREENSHOT XXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-Here are the different messages according to severity and the host/ip/metric values
-SCREENSHOT XXXXXXXXXXXXXXXXXXXXXXXXXXX
+Here's the monitor: https://app.datadoghq.com/monitors/19451403
+![dashboard](/new_monitor_definition.png)
 
 
 ## Bonus Question
@@ -121,14 +118,15 @@ SCREENSHOT XXXXXXXXXXXXXXXXXXXXXXXXXXX
   - 1 Silence alerts from 7pm to 9am, M-F
   - 1 Silence alerts on Saturdays and Sundays
   - Screenshot 
-  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  ![dashboard](/downtime_1.png)
+  ![dashboard](/downtime_2.png)
 
 
 # APM
 
 I instrumented two apps:
-Spring Pet Clinic (no code change, just using regular auto instrumentation)
-Sample Flask App
+- Spring Pet Clinic (no code change, just using regular auto instrumentation)
+- Sample Flask App
 
 Here’s the code for Flask App:
 
