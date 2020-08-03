@@ -42,7 +42,7 @@ You could set up a cron job to periodically run the script.
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-The Anomaly graph is displaying the average of mysql.net.connections over Host RG-DD-Ubuntu.  The anomaly graph indicates the acceptable range in a grey outline on the graph.  If this metric outside of the accepted range it can trigger a notification.
+The Anomaly graph is displaying the Percentage of CPU time spent in user space by MySQL Anomaly function over Host RG-DD-Ubuntu.  The anomaly graph indicates the acceptable range in a grey outline on the graph.  If this metric outside of the accepted range it can trigger a notification.
 
 # Monitoring Data:
 
