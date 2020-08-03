@@ -34,7 +34,7 @@ You could set up a cron job to periodically run the script.
 * <a href="./APIscript.sh">API Script</a>
 * <a href="https://p.datadoghq.com/sb/drfdxdm02hunipvo-541245c1ebdda33a953ccbdc6ba175f0">Timeboard Link</a>
 
-<img src="images/timeboard.png" width="825">
+<img src="images/timeboard-5mins.png" width="825">
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
