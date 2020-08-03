@@ -23,6 +23,8 @@
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
+You could set up a cron job to periodically run the script.
+
 # Visualizing Data:
 
 * Your custom metric scoped over your host.
@@ -135,6 +137,12 @@ A resource is a specific action for a service.  Typically it is an individual en
 
 # Final Question:
 
-• Ski lift Lines
+* Ski lift Lines
 
-• Concert Lines
+* Concert Lines
+
+* Concert ticket website
+
+* Xbox Live Status
+
+* I70 Traffic
