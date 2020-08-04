@@ -131,7 +131,7 @@ A resource is a specific action for a service.  Typically it is an individual en
 
 * Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-* <a href="https://p.datadoghq.com/sb/drfdxdm02hunipvo-57581713bd080937d6cef2e1510c135f">Link to Dashboard Script</a>
+* <a href="https://p.datadoghq.com/sb/drfdxdm02hunipvo-57581713bd080937d6cef2e1510c135f">Link to Dashboard</a>
 
 <img src="images/APM-Infrastructure.png" width="825">
 
