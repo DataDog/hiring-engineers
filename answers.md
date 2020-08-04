@@ -132,18 +132,20 @@ A resource is a specific action for a service.  Typically it is an individual en
 
 * Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
+* <a href="https://p.datadoghq.com/sb/drfdxdm02hunipvo-57581713bd080937d6cef2e1510c135f">Link to Dashboard Script</a>
+
 <img src="images/APM-Infrastructure.png" width="825">
 
 * Please include your fully instrumented app in your submission, as well.
 
 # Final Question:
 
-* Ski lift Lines
+* I70 Traffic - https://www.cotrip.org/travelAlerts.htm#?roadId= believe this would require cotrip to create a test API for this
 
-* Concert Lines
+* Ski lift Lines / Concert Lines - Would require some input from some type from some raspberry pis and cooperation from the ski mountains.  
 
-* Concert ticket website
+* Xbox Gaming dashboard using the https://xapi.us/  
 
-* Xbox Live Status
+* Dog usage of doggy door.  Similar to the restroom raspberry pi bathroom concept
 
-* I70 Traffic
+* Tennis playing using output from a tennis racket sensor https://www.youtube.com/watch?time_continue=163&v=SXzhn7Ud4B0&feature=emb_logo
