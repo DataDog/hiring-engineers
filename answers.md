@@ -119,7 +119,7 @@ Host {{host.name}} with IP {{host.ip}} Has no data @ryangarofalo100+100@gmail.co
 # Collecting APM Data:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-<img src="images/flask-app.png" width="825">
+<img src="images/flask-app-2.png" width="825">
 
 <img src="images/flask-request.png" width="825">
 
