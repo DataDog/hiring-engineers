@@ -123,7 +123,6 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 
 <img src="images/flask-request.png" width="825">
 
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
@@ -140,12 +139,14 @@ A resource is a specific action for a service.  Typically it is an individual en
 
 # Final Question:
 
+* Xbox Gaming dashboard using the https://xapi.us/ . Using Datadog you could track and monitor progress and achievements
+
+* Results from any fitness tracker really.  I'm not sure what the best one out there would be for this but there must be one that makes it easy to access the data via an API.  Strava is a good example http://developers.strava.com/
+
 * I70 Traffic - https://www.cotrip.org/travelAlerts.htm#?roadId= believe this would require cotrip to create a test API for this
+
+* Tennis playing using output from a tennis racket sensor https://www.youtube.com/watch?time_continue=163&v=SXzhn7Ud4B0&feature=emb_logo
 
 * Ski lift Lines / Concert Lines - Would require some input from some type from some raspberry pis and cooperation from the ski mountains.  
 
-* Xbox Gaming dashboard using the https://xapi.us/  
-
 * Dog usage of doggy door.  Similar to the restroom raspberry pi bathroom concept
-
-* Tennis playing using output from a tennis racket sensor https://www.youtube.com/watch?time_continue=163&v=SXzhn7Ud4B0&feature=emb_logo
