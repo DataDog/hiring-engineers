@@ -89,6 +89,8 @@ MySQL was chosen for this exercise, we can see the installation from different v
 
 MySQL – Overview Dashboard
 
+This OOB Dashboard offers a quick visibility into MySQL only with a few clicks.
+
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic13.png "MySQL Overview Dashboard")
  
 •	Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. I named it testSupportRandom
