@@ -200,6 +200,12 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 ## Collecting APM Data:
 
 
+For this exercise I used Flask APP (Python) and it was instrument by Datadog’s APM,  I had to do some research since I had never use FLASK in my carreer !
+
+Print screen of the code
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic33.png "Flask Code")
+
 
  
  
