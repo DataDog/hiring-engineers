@@ -1,0 +1,6 @@
+this was the curl command to genarate traces
+TAG009442361643:flask patricio.martinez$ while True
+> do
+> curl http://localhost:5050/api/trace
+> sleep $(( RANDOM % 15 ))
+> done
