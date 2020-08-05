@@ -57,7 +57,7 @@ In conclusion, for the first phase I was very satisfied with what I saw ! The ea
 
 # Phase II: The assignment
 
-Collecting Metrics:
+## Collecting Metrics:
 
 •	Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
@@ -107,35 +107,48 @@ And I was able to see
 
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic17.png "Status")
 
- 
 From the UI:
 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic18.png "From UI")
+
 
  
-
 •	Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 
-Visualizing Data:
+## Visualizing Data:
 
 
 
-Monitoring Data
+## Monitoring Data
+
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
 •	Warning threshold of 500
 •	Alerting threshold of 800
 •	And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
 Configuration of the new Monitor Metric “Test Support Random”
- 
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic19.png "Monitor Metric") 
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic20.png "Monitor Metric 1") 
  
 
 Here are all the email received from the alert:
+
 •	Send you an email whenever the monitor triggers.
 •	Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 •	Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 •	When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic21.png "Email")
 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic22.png "Email 1")
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic23.png "Email 2")
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic24.png "Email 3")
 
  
 
