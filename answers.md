@@ -207,6 +207,25 @@ Print screen of the code
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic33.png "Flask Code")
 
 
+Before running the application:
+
+•	sudo apt-get install python-pip
+•	pip install flask
+•	pip install ddtrace
+
+To run the app and instrument the tracing:
+
+export DD_service=app.py
+ddtrace-run python app.py
+
+But at first try it did not work, I had to update the package installer by  
+python3 -m pip install --upgrade pip fallow by pip install ddtrace for the tracing library for Python
+
+Re-run
+ddtrace-run python app.py
+
+And application is working
+
  
  
 
