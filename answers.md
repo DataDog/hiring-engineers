@@ -152,21 +152,17 @@ Here are all the email received from the alert:
 
  
 
- 
-
- 
- 
-
 More print screens from the Monitor Message with detail graphics
 
- 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic25.png "More Detail")
 
- 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic26.png "More Detail 1 ")
 
- 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic27.png "More Detail 2") 
 
 Example of event sent @user
- 
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic28.png "Example of event")
 
 
 
