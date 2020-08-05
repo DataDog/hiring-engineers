@@ -3,7 +3,7 @@ Your answers to the questions go here.
 
 To be prepared for this exercise, the work was divided into two phases: The first phase was exploratory to understand the Datadog interface, the agent deployment options and some basic as agent install, Azure Integration, Synthetics Monitoring and browse functionality. In the second phase it was to explore the deployment and assignment requirements.
 
-# Phase I: The exploratory
+# Phase I: The exploratory 
 
 Environment that was use for the tests:
 
@@ -15,39 +15,41 @@ Environment that was use for the tests:
 
 
 Screen shot of the Host Map
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic1.png "All Systems")
  
 
-Azure Integration less than 5 minutes
- 
+ ## Azure Integration less than 5 minutes ! ##
 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic2.png "Azure Integration") 
 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic3.png "No agent")
  
 With DataDog, you don’t need to install any agent to start collecting metrics
 
 As showed below no agent install on this VM and we are able to see some MetaData and Metrics
- 
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic4.png "MetaData and Metrics")
 
 
-
-Synthetic Monitoring
+## Synthetic Monitoring ##
 
 During the trial I also wanted to test the Synthetic Monitoring, I was able to configure in some very easy step, please note that this is only an HTTP test. Synthetics test provide END-to-END visibility for validating that end users can perform critical business transactions.
 
 In this test I setup an HTTP test on on www.saq.com (liquor store are manage by the government of Quebec), choose 3 different regions Canada Central – N. California and Oregon
- 
 
-
-
-
-
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic5.png "Robots Location")
 
 
 Information on the synthetic test
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic6.png "Information Synthetics")
  
 
 From this view here you have some information to fine tune your website*
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic7.png "Information Synthetics")
  
-In conclusion, for the first phase I was very satisfied with what I saw! the easiness, the simplicity and integration of DataDog. 
+In conclusion, for the first phase I was very satisfied with what I saw ! The easiness, the simplicity and integration of DataDog. 
 
 
 
