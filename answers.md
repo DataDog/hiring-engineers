@@ -246,6 +246,12 @@ TAG009442361643:flask patricio.martinez$ while True
 > done
 
 
+Traces from the Datadog console
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic36.png "Traces")
+
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic37.png "Traces 1")
 
 
  
