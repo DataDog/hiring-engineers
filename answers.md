@@ -260,4 +260,15 @@ Traces from the Datadog console
  ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic38.png "Services")
  
  
+### Bonus Question: What is the difference between a Service and a Resource?
+
+A resource is a particular action for a given service (typically an individual endpoint or query).
+
+Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of scaling instances. Some examples:
+
+•	A group of URL endpoints may be grouped together under an API service.
+
+•	A group of DB queries that are grouped together within one database service.
+
+•	A group of periodic jobs configured in the crond service.
 
