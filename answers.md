@@ -61,6 +61,8 @@ In conclusion, for the first phase I was very satisfied with what I saw ! The ea
 
 •	Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+Tags that were added: environment:dev, region: Canada, role:database
+
  ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic8.png "Tags")
 
 Config of the datadog.yaml file
