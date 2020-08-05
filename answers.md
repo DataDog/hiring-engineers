@@ -76,7 +76,7 @@ MySQL was chosen for this exercise, we can see the installation from different v
 
 1.	From the Host Map
 
-![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic10.png "MySQL Host Map")
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic10_1.png "MySQL Host Map")
  
 2.	From the Infrastructure list 
 
