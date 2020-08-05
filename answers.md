@@ -7,11 +7,11 @@ To be prepared for this exercise, the work was divided into two phases: The firs
 
 Environment that was use for the tests:
 
-- On-premise 		 Windows 10 Desktop
+- On-premise 		 Windows 10 Desktop (kids gaming PC)
 - On-Premise		  Vagrant Ubuntu Release 18.04  (for the assignment)
-- On-Premise 		 Vagrant Ubuntu  Release 18.04   
-- Azure VM 		   Windows Server 2019 
-- Azure VM		    Windows Server 2012 R2 (no agent)
+- On-Premise 		 Vagrant Ubuntu  Release 18.04 (test box)   
+- Azure VM 		   Windows Server 2019 (Azure integration with agent) 
+- Azure VM		    Windows Server 2012 R2 (Azure integration / no agent)
 
 
 Screen shot of the Host Map
