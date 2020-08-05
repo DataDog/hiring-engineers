@@ -173,16 +173,16 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 •	Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 
-
-
-
-
 •	One that silences it from 7pm to 9am daily on M-F,
- 
 
- 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic29.png "Silence M-F")
 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic30.png "Silence M-F 1")
+ 
 •	And one that silences it all day on Sat-Sun.
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic31.png "Silence S-S ")
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic32.png "Silence S-S 1")
  
  
 
