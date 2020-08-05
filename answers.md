@@ -58,29 +58,36 @@ In conclusion, for the first phase I was very satisfied with what I saw ! The ea
 # Phase II: The assignment
 
 Collecting Metrics:
+
 •	Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
- 
+ ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic8.png "Tags")
 
 Config of the datadog.yaml file
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic9.png "Tags DataDog yaml")
  
 
 •	Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 MySQL was chosen for this exercise, we can see the installation from different views:
+
 1.	From the Host Map
 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic10.png "MySQL Host Map")
  
-
 2.	From the Infrastructure list 
 
- 
-
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic11.png "MySQL Infra List")
 
 3.	Intetagrations
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic12.png "Integration")
  
 
 MySQL – Overview Dashboard
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic13.png "MySQL Overview Dashboard")
  
 
 
