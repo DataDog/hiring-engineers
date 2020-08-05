@@ -210,13 +210,16 @@ Print screen of the code
 Before running the application:
 
 •	sudo apt-get install python-pip
+
 •	pip install flask
+
 •	pip install ddtrace
 
 To run the app and instrument the tracing:
 
-export DD_service=app.py
-ddtrace-run python app.py
+- export DD_service=app.py
+
+- ddtrace-run python app.py
 
 But at first try it did not work, I had to update the package installer by  
 python3 -m pip install --upgrade pip fallow by pip install ddtrace for the tracing library for Python
@@ -225,6 +228,25 @@ Re-run
 ddtrace-run python app.py
 
 And application is working
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic34.png "Flask App")
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic35.png "Flask Code 1")
+
+A simple command was create to generate traces
+
+TAG009442361643:flask patricio.martinez$ while True
+
+> do
+
+> curl http://localhost:5050/api/trace
+
+> sleep $(( RANDOM % 15 ))
+
+> done
+
+
+
 
  
  
