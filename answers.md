@@ -115,6 +115,8 @@ From the UI:
 
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic18.png "From UI")
 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic18_1.png "From UI")
+
 
  
 •	Bonus Question Can you change the collection interval without modifying the Python check file you created?
