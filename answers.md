@@ -3,15 +3,15 @@ Your answers to the questions go here.
 
 To be prepared for this exercise, the work was divided into two phases: The first phase was exploratory to understand the Datadog interface, the agent deployment options and some basic as agent install, Azure Integration, Synthetics Monitoring and browse functionality. In the second phase it was to explore the deployment and assignment requirements.
 
-Phase I: The exploratory
+# Phase I: The exploratory
 
 Environment that was use for the tests:
 
-On-premise 		Windows 10 Desktop
-On-Premise		Vagrant Ubuntu Release 18.04  (for the assignment)
-On-Premise 		Vagrant Ubuntu  Release 18.04   
-Azure VM 		Windows Server 2019 
-Azure VM		Windows Server 2012 R2 (no agent)
+On-premise 		 Windows 10 Desktop
+On-Premise		  Vagrant Ubuntu Release 18.04  (for the assignment)
+On-Premise 		 Vagrant Ubuntu  Release 18.04   
+Azure VM 		   Windows Server 2019 
+Azure VM		    Windows Server 2012 R2 (no agent)
 
 
 Screen shot of the Host Map
@@ -53,7 +53,8 @@ In conclusion, for the first phase I was very satisfied with what I saw! the eas
 
 
 
-Phase II: The assignment
+# Phase II: The assignment
+
 Collecting Metrics:
 •	Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
