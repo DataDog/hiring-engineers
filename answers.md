@@ -89,27 +89,29 @@ MySQL – Overview Dashboard
 
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic13.png "MySQL Overview Dashboard")
  
-
-
 •	Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. I named it testSupportRandom
 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic14.png "Custom Agent Check")
  
-
 •	Change your check's collection interval so that it only submits the metric once every 45 seconds.
 The yaml file was create under /etc/datadog-agent/conf.d$ ls
- 
 
- 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic15.png "Path")
 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic16.png "Custom Test")
+ 
 Run the command:
-sudo -u dd-agent -- datadog-agent status
+sudo -u dd-agent -- datadog-agent status to validate
 
 And I was able to see 
- 
 
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic17.png "Status")
+
+ 
 From the UI:
- 
 
+
+ 
 
 •	Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
