@@ -13,9 +13,9 @@ Environment that was use for the tests:
 - Azure VM 		   Windows Server 2019 (Azure integration with agent) 
 - Azure VM		    Windows Server 2012 R2 (Azure integration / no agent)
 
- Account that was used to signed up to DataDog (patolecanard@gmail.com)
+ * Account that was used to signed up to DataDog (patolecanard@gmail.com)
  
- All source codes and Screenshots are in folder:
+ * All source codes and Screenshots are in folder:
 
 •	hiring-engineers/Code/
 
