@@ -55,7 +55,7 @@ From this view here you have some information to fine tune your website*
 
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic7.png "Information Synthetics")
  
-In conclusion, for the first phase I was very satisfied with what I saw ! The easiness, the simplicity and integration of DataDog. 
+In conclusion, for the first phase, I was very satisfied with what I saw! The easiness, the simplicity and the integration of DataDog with other components, everything worked as expected and was very straight forward. Now let’s start the assigment and I hope everything goes well! 
 
 
 
