@@ -1,6 +1,5 @@
 Your answers to the questions go here.
-Prerequisites - Setup the environment
-•	You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
+
 
 To be prepared for this exercise, the work was divided into two phases: The first phase was exploratory to understand the Datadog interface, the agent deployment options and some basic as agent install, Azure Integration, Synthetics Monitoring and browse functionality. In the second phase it was to explore the deployment and assignment requirements.
 
