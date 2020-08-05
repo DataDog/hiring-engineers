@@ -183,6 +183,11 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic31.png "Silence S-S ")
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic32.png "Silence S-S 1")
+
+
+## Collecting APM Data:
+
+
  
  
 
