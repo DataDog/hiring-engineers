@@ -287,11 +287,15 @@ View of the list of Dashboards available
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic40.png "Mobile Dashboards list")
 
 
-Infra Info view
+** **Infra Info view** **
 
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic41.png "Infra Info view")
 
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic42.png "APM Info View")
+
+
+
+For more information I can always be reach via email at patolecanard@gmail.com
 
 
 
