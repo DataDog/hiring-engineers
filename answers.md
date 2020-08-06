@@ -287,7 +287,7 @@ View of the list of Dashboards available
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic40.png "Mobile Dashboards list")
 
 
-** **Infra Infoview** ** 
+Infra Info view
 
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic41.png "Infra Info view")
 
@@ -295,9 +295,20 @@ View of the list of Dashboards available
 
 
 
+## Is there anything creative you would use Datadog for?
+
+Coming from the industry I am, I have met with plenty of retails that wanted to know if we could help them increase their sales every time the season changed or the weather changed. As per example. where I live we have 25km underground shopping and no visibility to the outside world, so let's say it rain one day we could have an alert send to the store manager so he could change the showcase, put some umbrellas in front and etc...  
+
+The same concept could be for any eCommerce, to have a dynamic webpage that changes the images on a daily base depending on the outside weather. And all this my automating everything by integrating other tools to DataDog.
+
+
+
 
 It was a very fun and instructive exercise, I was able to learn more on DataDog and its possibilities.
+
 For more information I can always be reach via email at patolecanard@gmail.com
+
+
 
 
 
