@@ -287,7 +287,7 @@ View of the list of Dashboards available
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic40.png "Mobile Dashboards list")
 
 
-** **Infra Info view** **
+** **Infra Infoview** ** 
 
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic41.png "Infra Info view")
 
@@ -295,6 +295,8 @@ View of the list of Dashboards available
 
 
 
+
+It was a very fun and instructive exercise, I was able to learn more on DataDog and its possibilities.
 For more information I can always be reach via email at patolecanard@gmail.com
 
 
