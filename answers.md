@@ -17,6 +17,7 @@ Environment that was use for the tests:
 - On-Premise 		 Vagrant Ubuntu  Release 18.04 (test box)   
 - Azure VM 		   Windows Server 2019 (Azure integration with agent) 
 - Azure VM		    Windows Server 2012 R2 (Azure integration / no agent)
+- App           Datadog Mobile App 
 
  Account that was used to signed up to DataDog (patolecanard@gmail.com)
  
@@ -93,7 +94,7 @@ MySQL was chosen for this exercise, we can see the installation from different v
 
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic11.png "MySQL Infra List")
 
-3.	Intetagrations
+3.	Integrations
 
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic12.png "Integration")
  
@@ -131,9 +132,50 @@ From the UI:
 
  
 •	Bonus Question Can you change the collection interval without modifying the Python check file you created?
+Not sure of this one but from the yaml file !
 
 
 ## Visualizing Data:
+
+I use the UI to create the Timeboard with the provide information, unfortunate I have very limited dataset and activity, but it provides you an idea on what we are able to achieve.
+
+
+•	Your custom metric scoped over your host.
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic43.png "Scoped Metric")
+
+Details on the metric over my host
+Dashed line = sytem.cpu.sytem and Solid line = test.support.random 
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic44.png "Detail Scoped Metric")
+
+•	Any metric from the Integration on your Database with the anomaly function applied.
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic45.png "Database with anomaly")
+
+•	Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+Public link to the Dashboard:
+https://p.datadoghq.com/sb/ux96onlxksd2lnfq-a04416aa149fc88df8591afac3939ada
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic46.png "Hourly rollup")
+
+
+The configuration for the rolled up dashboard was done as:
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic47.png "Hourly rollup detail")
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+•	Set the Timeboard's timeframe to the past 5 minutes
+** **This was not clear for me** **
+
+•	Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic48.png "email")
+
+•	Bonus Question: What is the Anomaly graph displaying? 
+It’s a simple way to identified irregularities in the data, and to raise a flag if it’s not a regular behavior (a deviation).
 
 
 
@@ -155,8 +197,11 @@ Configuration of the new Monitor Metric “Test Support Random”
 Here are all the email received from the alert:
 
 •	Send you an email whenever the monitor triggers.
+
 •	Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+
 •	Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
 •	When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic21.png "Email")
@@ -186,7 +231,9 @@ Example of event sent @user
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 •	One that silences it from 7pm to 9am daily on M-F,
+
 •	And one that silences it all day on Sat-Sun.
+
 •	Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 
