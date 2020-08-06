@@ -3,7 +3,8 @@ Your answers to the questions go here.
 
 To be prepared for this exercise, the work was divided into two phases: The first phase was exploratory to understand the Datadog interface, the agent deployment options and some basic as agent install, Azure Integration, Synthetics Monitoring and browse functionality. In the second phase it was to explore the deployment and assignment requirements.
 
-In French
+#### In French as I would be suporting the French community 
+
 Pour se préparer à cet exercice, le travail a été divisé en deux phases: La première phase était exploratoire pour comprendre l'interface Datadog, les options de déploiement d'agent et certaines fonctionnalités de base comme l'installation d'agent, l'intégration Azure, la surveillance synthétique et les fonctionnalités de navigation. Dans la deuxième phase, il s'agissait d'explorer les exigences de déploiement et d'affectation.
 
 
