@@ -282,6 +282,20 @@ A dashboard that includes some Infrastructure and APM Metric over the last 30 mi
 From the the DataDog Mobile Application
 
 
+View of the list of Dashboards available 
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic40.png "Mobile Dashboards list")
+
+
+Infra Info view
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic41.png "Infra Info view")
+
+![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic42.png "APM Info View")
+
+
+
+
 
 
 
