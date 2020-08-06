@@ -280,6 +280,11 @@ Services are the building blocks of modern microservice architectures - broadly 
 
 A dashboard that includes some Infrastructure and APM Metric over the last 30 minutes.  I was also curious to see how it would look in the DataDog mobile app since nowadays every customer wants the possibility to have access to the Dashboards from anywhere.
 
+Here is the public url for the dashboard:
+
+https://p.datadoghq.com/sb/ux96onlxksd2lnfq-494884b8aa636f35556417f71f106e28?from_ts=1596727202486&live=true&to_ts=1596728102486
+
+
 
 ![alt text](https://github.com/Patolecanard/hiring-engineers/blob/master/Screenshots/pic39.png "Infra and APM Dashboard")
 
