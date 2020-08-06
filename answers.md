@@ -303,7 +303,7 @@ The same concept could be for any eCommerce, to have a dynamic webpage that chan
 
 
 
-
+__________
 It was a very fun and instructive exercise, I was able to learn more on DataDog and its possibilities.
 
 For more information I can always be reach via email at patolecanard@gmail.com
