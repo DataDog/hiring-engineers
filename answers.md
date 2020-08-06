@@ -273,3 +273,8 @@ Services are the building blocks of modern microservice architectures - broadly 
 •	A group of periodic jobs configured in the crond service.
 
 
+A dashboard that includes some Infrastructure and APM Metric over the last 30 minutes.  I was also curious to see how it would look in the DataDog mobile app since nowadays every customer wants the possibility to have access to the Dashboards from anywhere.
+
+
+
+
