@@ -1,0 +1,6 @@
+# /etc/datadog-agent/conf.d/hello.yaml
+# agent check configuration file for hello.world metric
+init_config:
+
+instances:
+        - min_collection_interval: 45

@@ -1,0 +1,24 @@
+# /etc/datadog-agent/datadog.yaml
+
+#########################
+## Basic Configuration ##
+#########################
+
+## @param api_key - string - required
+## The Datadog API key to associate your Agent's data with your organization.
+## Create a new API key here: https://app.datadoghq.com/account/settings
+#
+api_key: 0faa49ba34b19d7ec50f5e4f6c7808fa
+
+## @param site - string - optional - default: datadoghq.com
+## The site of the Datadog intake to send Agent data to.
+## Set to 'datadoghq.eu' to send data to the EU site.
+#
+site: datadoghq.com
+
+## @param tags  - list of key:value elements - optional
+## List of host tags. Attached in-app to every metric, event, log, trace, and service check emitted by this Agent.
+##
+## Learn more about tagging: https://docs.datadoghq.com/tagging/
+#
+tags: ["availability-zone:us-east-1", "environment:dev", "operating_system:ubuntu", "cloud_provider:aws", "database:mysql"]
