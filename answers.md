@@ -180,7 +180,15 @@ if __name__ == '__main__':
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
+```
+Service is the app running on the host using the resources available for it, what can be cpu, memory, disk space, iops
+```
+
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+https://p.datadoghq.com/sb/ipxpic8ey7wlh788-ac113c5271312b02504a2ff36636e955
+
+<img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/apm_dashboard.JPG">
 
 Please include your fully instrumented app in your submission, as well.
 
