@@ -104,11 +104,42 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
+```
+{
+	"id": 0,
+	"name": "Metric Monitoring",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:my_metric{*} > 800",
+	"message": "{{#is_alert}} Metric is above the threshold {{value}} for the host with IP {{host.ip}}!! {{/is_alert}}\n\n{{#is_warning}} Metric is in warning state {{value}} for the host with IP {{host.ip}}!! {{/is_warning}}\n\n{{#is_no_data}} Metric is currently not reporting any data for the host with IP {{host.ip}}!! {{/is_no_data}}\n\n @yoyis_erik@hotmail.com",
+	"tags": [],
+	"options": {
+		"notify_audit": true,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}
+```
+
+<img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/monitor_alerting.JPG">
+
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  
+ <img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/monitor_downtime.JPG"> 
 
 ## Collecting APM Data:
 
