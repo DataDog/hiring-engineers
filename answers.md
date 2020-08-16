@@ -65,13 +65,29 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
+<img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/Timeboard.JPG">
+
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+```
+{"title":"Timeboard","description":"","widgets":[{"id":4277638947435944,"definition":{"type":"timeseries","requests":[{"q":"avg:my_metric{*}"}],"title":"My Metric","show_legend":false,"legend_size":"0"}},{"id":4275078505207606,"definition":{"type":"timeseries","requests":[{"q":"anomalies(avg:mysql.performance.cpu_time{*}, 'basic', 2)","display_type":"line","style":{"palette":"dog_classic","line_type":"solid","line_width":"normal"}}],"yaxis":{"label":"","scale":"linear","min":"auto","max":"auto","include_zero":true},"title":"Avg of mysql.performance.cpu_time over *","time":{},"show_legend":false}},{"id":110550056585550,"definition":{"type":"query_value","requests":[{"q":"avg:my_metric{*}.rollup(sum)","aggregator":"sum"}],"title":"Sum Last Hour My Metric","time":{},"precision":2}}],"template_variables":[{"name":"server-01","default":"my-host","prefix":"host"}],"layout_type":"ordered","is_read_only":true,"notify_list":[],"id":"fi2-yt2-4cr"}
+```
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
+
+<img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/timeborad_5_mins.JPG">
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+<img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/graph_snapshot.JPG">
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+
+```
+Its displaying when the metric selected start having an unspected behavior, in this case the cpu performance of the mysql database
+```
 
 ## Monitoring Data
 
