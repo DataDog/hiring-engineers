@@ -3,7 +3,6 @@ from flask import Flask
 import logging
 import sys
 from cowpy import cow
-import ddtrace.profiling.auto
 ddtrace.config.analytics_enabled = True
 
 main_logger = logging.getLogger()
@@ -37,4 +36,3 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
-
