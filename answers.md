@@ -7,50 +7,63 @@ https://app.datadoghq.com/account/settings#agent/ubuntu
 <INSERT IMAGE OF SINGLE STEP INSTALL>
 
 ***Collecting Metrics***
-I installed vim and added tags to the datadog.yaml file. I had a little issue getting this to work at first because of some indentation issues.
+I installed vim and added tags to the /etc/datadog-agent/datadog.yaml file. I had a little issue getting this to work at first because of some indentation issues.
 
-<INSERT IMAGE OF TAGS>
+<INSERT IMAGE OF TAGS IN YAML>
+<INSERT IMAGE OF TAGS IN HOST MAP>
 
+INSTALL DATABASE & INTEGRATION
 I chose MySQL as my database since I had some experience with it from college and followed the instructions via this resource:
 	* https://app.datadoghq.com/account/settings#integrations/mysql
 
 <INSERT IMAGE OF SQL COMMANDS>
+For some reason I couldn't find the mysql.d/conf.yaml file. I had to create it and then fill it with example text from the DataDog documentation.
+
+<INSERT IMAGE OF SQL CONFIG>
+<INSERT IMAGE OF SQL HOST MAP>
 
 Creating My Metric Custom Agent Check
-This was the first point of friction that I experienced in the exercise. I don't have much experience with Python so I had to utilize a few resources to feel confident editing the example.
+This was the first point of friction that I experienced in the exercise. I don't have much experience with Python so I had to utilize a few resources to feel confident editing the .py example script. I started by creating the /conf.d/my_metric.yaml to match my /checks.d/my_metric.py file. I was able to find a method called "randint" from a class called "random". I used this resource: https://www.w3schools.com/python/ref_random_randint.asp
 
 <INSERT IMAGE OF MY_METRIC.PY>
 
 I successfully updated the min_collection_interval to 45 seconds.
-
 <INSERT IMAGE OF min_collection_interval>
 
-Bonus Question Can you change the collection interval without modifying the Python check file you created?
+Bonus Question: Can you change the collection interval without modifying the Python check file you created?
+Yes, this can be changed in the .yaml config file.
 
-Resources Used:
+Other Resources Used:
 
 	* https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
 	* https://datadoghq.dev/summit-training-session/handson/customagentcheck/
 	* https://docs.datadoghq.com/developers/metrics/types/?tab=count
   * https://stackoverflow.com/questions/710551/use-import-module-or-from-module-import
-	* https://www.w3schools.com/python/numpy_random.asp
-
-Can you change the collection interval without modifying the Python check file you created?
-Yes, this can be changed in the .yaml config file.
 
 ***Visualizing Data***
-Utilize the Datadog API to create a Timeboard that contains:
+Timeboard Public URL:https://p.datadoghq.com/sb/tih4blia4g5rapfz-a7a3536999bd52534f23fb4bd086b3af
 
-Your custom metric scoped over your host.
-Any metric from the Integration on your Database with the anomaly function applied.
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 Bonus Question: What is the Anomaly graph displaying?
+The Anomaly function identifies when a metric is behaving differently than it has in the past, taking into account trends and patterns. The graph in my timeboard is programmatically displaying database CPU anomalies and deviations from normal behavior.
+
 ---
 ***Monitoring Data***
-<INSERT IMAGES HERE>
+See screenshots for the monitors I configured per instructions.
+<INSERT IMAGES  of Monitor HERE>
+
+<INSERT IMAGES OF EMAILS>
+
+<INSERT IMAGES OF DOWNTIME FOR BONUS QUESTION>
 
 ***Collecting APM Data***
----need to finish this section--- having issues getting to the services section after running the flask app.
+I installed ddtrace per these instructions (I had to upgrade pip and install flask first):
+https://app.datadoghq.com/apm/docs?architecture=host-based&language=python
+
+<INSERT IMAGE HERE>
+And then executed the flask app provided:
+<INSERT IMAGE OF RUNNING APP HERE>
+
+
 
 ***Final Question***
 Is there anything creative you would use Datadog for?
