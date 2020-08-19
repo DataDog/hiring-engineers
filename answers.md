@@ -1,6 +1,6 @@
 ## Prerequisites - Setup the environment
 
-For this challenge I'm using a CentOS server hosted on a public cloud.
+**_For this challenge I'm using a CentOS server hosted on a public cloud._**
 
 ```
 [root@server-01 ~]# cat /etc/redhat-release
@@ -11,7 +11,7 @@ CentOS Linux release 7.8.2003 (Core)
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-*On the screenshot you can find the tags on the lower-right corner circled in green.*
+**_On the screenshot you can find the tags on the lower-right corner circled in green._**
 
 <img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/Tags.JPG">
 
@@ -51,9 +51,7 @@ instances:
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-```
-This can be modify at instance level as do it in the past question
-```
+**_This can be modify at instance level as do it in the past question_**
 
 <img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/my_metric.JPG">
 
@@ -167,9 +165,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-```
-Its displaying when the metric selected start having an unspected behavior, in this case the cpu performance of the mysql database
-```
+**_Its displaying when the metric selected start having an unspected behavior, in this case the cpu performance of the mysql database_**
 
 ## Monitoring Data
 
@@ -264,7 +260,7 @@ if __name__ == '__main__':
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-*Service is the app running on the host using the resources available for it, what can be cpu, memory, disk space, iops*
+**_Service is the app running on the host using the resources available for it, what can be cpu, memory, disk space, iops_**
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
@@ -280,6 +276,6 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-*I probably wil try to use it for my smart home devices, trying to check and monitor how often my kids use them and how they do it, like how many calls to alexa they made as well the average time the light switches are on.*
+**_I probably wil try to use it for my smart home devices, trying to check and monitor how often my kids use them and how they do it, like how many calls to alexa they made as well the average time the light switches are on._**
 
 <img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/Alexa.jpeg">
