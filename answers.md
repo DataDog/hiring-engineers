@@ -157,7 +157,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
-> **_This can be changed clicking on the top-right corner and selecting the requiered timeframe on the drop-down menu_**
+> **_This can be changed clicking on the top-right corner and selecting the requiered timeframe of the drop-down menu._**
 
 <img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/timeborad_5_mins.JPG">
 
