@@ -276,6 +276,6 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-> **_I probably wil try to use it for my smart home devices, trying to check and monitor how often my kids use them and how they do it, like how many calls to alexa they made as well the average time the light switches are on._**
+> **_I'll probably try to use it for my smart home devices, trying to check and monitor how often my kids use them and how they do it, like how many calls to alexa they made as well the average time the light switches are on._**
 
 <img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/Alexa.jpeg">
