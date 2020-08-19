@@ -63,7 +63,12 @@ https://app.datadoghq.com/apm/docs?architecture=host-based&language=python
 And then executed the flask app provided:
 <INSERT IMAGE OF RUNNING APP HERE>
 
+----Need to insert trace here---
 
+Bonus Question: What is the difference between a Service and a Resource?
+ A service is a set of processes that do the same job (like a database or a group of endpoints). A resource is a particular action/component for a given service (typically an individual endpoint or database query).
+ https://docs.datadoghq.com/tracing/visualization/#resources
+ https://docs.datadoghq.com/tracing/visualization/#services
 
 ***Final Question***
 Is there anything creative you would use Datadog for?
