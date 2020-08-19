@@ -1,6 +1,6 @@
 ***Setting Up the Environment***
 
-I spun up an Vagrant Ubuntu VM since I was using a Windows machine. And had little issue installing the datadog agent with the single-step command.
+I spun up a Vagrant Ubuntu VM since I was using a Windows machine. I had no issues installing the Datadog agent with the single-step command.
 
 https://app.datadoghq.com/account/settings#agent/ubuntu
 
@@ -17,13 +17,13 @@ I chose MySQL as my database since I had some experience with it from college an
 	* https://app.datadoghq.com/account/settings#integrations/mysql
 
 <INSERT IMAGE OF SQL COMMANDS>
-For some reason I couldn't find the mysql.d/conf.yaml file. I had to create it and then fill it with example text from the DataDog documentation.
+For some reason, I couldn't find the mysql.d/conf.yaml file. I had to create it and then fill it with example text from the DataDog documentation.
 
 <INSERT IMAGE OF SQL CONFIG>
 <INSERT IMAGE OF SQL HOST MAP>
 
 Creating My Metric Custom Agent Check
-This was the first point of friction that I experienced in the exercise. I don't have much experience with Python so I had to utilize a few resources to feel confident editing the .py example script. I started by creating the /conf.d/my_metric.yaml to match my /checks.d/my_metric.py file. I was able to find a method called "randint" from a class called "random". I used this resource: https://www.w3schools.com/python/ref_random_randint.asp
+This was the first point of friction that I experienced in the exercise. I don't have much experience with Python so I had to utilize a few resources to feel confident editing the .py example script. I started by creating the /conf.d/my_metric.yaml to correspond with my /checks.d/my_metric.py file. I found a method called "randint" from a class called "random". I used this resource: https://www.w3schools.com/python/ref_random_randint.asp
 
 <INSERT IMAGE OF MY_METRIC.PY>
 
@@ -46,7 +46,6 @@ Timeboard Public URL:https://p.datadoghq.com/sb/tih4blia4g5rapfz-a7a3536999bd525
 Bonus Question: What is the Anomaly graph displaying?
 The Anomaly function identifies when a metric is behaving differently than it has in the past, taking into account trends and patterns. The graph in my timeboard is programmatically displaying database CPU anomalies and deviations from normal behavior.
 
----
 ***Monitoring Data***
 See screenshots for the monitors I configured per instructions.
 <INSERT IMAGES  of Monitor HERE>
@@ -63,7 +62,9 @@ https://app.datadoghq.com/apm/docs?architecture=host-based&language=python
 And then executed the flask app provided:
 <INSERT IMAGE OF RUNNING APP HERE>
 
-----Need to insert trace here---
+I got a bit caught up when attempting to simulate traffic in the app and view the APM Services. I eventually realized that I needed simulate traffic to the app by opening a second terminal window since the one running the flask app was busy.
+
+<INSERT TRACING PICTURES HERE>
 
 Bonus Question: What is the difference between a Service and a Resource?
  A service is a set of processes that do the same job (like a database or a group of endpoints). A resource is a particular action/component for a given service (typically an individual endpoint or database query).
