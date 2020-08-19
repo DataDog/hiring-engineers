@@ -11,7 +11,7 @@ CentOS Linux release 7.8.2003 (Core)
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-**_On the screenshot you can find the tags on the lower-right corner circled in green._**
+> **_On the screenshot you can find the tags on the lower-right corner._**
 
 <img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/Tags.JPG">
 
