@@ -11,6 +11,8 @@ CentOS Linux release 7.8.2003 (Core)
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
+On the screenshot you can find the tags on the lower-right corner circled in green.
+
 <img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/Tags.JPG">
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
@@ -280,6 +282,6 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-```
 I probably wil try to use it for my smart home devices, trying to check and monitor how often my kids use them and how they do it, like how many calls to alexa they made as well the average time the light switches are on.
-```
+
+<img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/Alexa.jpeg">
