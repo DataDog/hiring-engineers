@@ -165,7 +165,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-**_Its displaying when the metric selected start having an unspected behavior, in this case the cpu performance of the mysql database_**
+**_This graph is displaying when the metric selected start having an unspected behavior, in this case the cpu performance of the mysql database_**
 
 ## Monitoring Data
 
