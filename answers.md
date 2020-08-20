@@ -1,4 +1,4 @@
-***Setting Up the Environment:***
+<h1>Setting Up the Environment</h1>
 
 I spun up a Vagrant Ubuntu VM since I was using a Windows machine. I had no issues installing the Datadog agent with the single-step command.
 images/vagrant_init.png
@@ -8,8 +8,8 @@ Resource: https://app.datadoghq.com/account/settings#agent/ubuntu
 ![images/vagrant_init.png](images/vagrant_init.png)
 ![images/datadog_1step_install.png](images/datadog_1step_install.png)
 
-***Collecting Metrics:***
-I installed vim.
+<h1>Collecting Metrics</h1>
+First, I installed vim.
 ![images/install_vim.png](images/install_vim.png)
 
 Then, I added tags to the /etc/datadog-agent/datadog.yaml file. I had a little issue getting this to work at first because of some indentation issues.
@@ -18,7 +18,7 @@ Then, I added tags to the /etc/datadog-agent/datadog.yaml file. I had a little i
 ![images/tags_in_yaml.png](images/tags_in_yaml.png)
 ![images/host_tags.png](images/host_tags.png)
 
-INSTALL DATABASE & INTEGRATION: 
+<h2>Installing Database & Integration</h2>
 I chose MySQL as my database since I had some experience with it from college and followed the instructions via this resource:
 * https://app.datadoghq.com/account/settings#integrations/mysql
 
@@ -31,7 +31,7 @@ For some reason, I couldn't find the mysql.d/conf.yaml file. I had to create it 
 Here is a view of my database on the host map.
 ![images/mysql_host_view.png](images/mysql_host_view.png)
 
-Creating My Metric Custom Agent Check:
+<h2>Creating My Metric Custom Agent Check</h2>
 This was the first point of friction that I experienced in the exercise. I don't have much experience with Python so I had to utilize a few resources to feel confident editing the .py example script. I started by creating the /conf.d/my_metric.yaml to correspond with my /checks.d/my_metric.py file. I found a method called "randint" from a class called "random". I used this resource: https://www.w3schools.com/python/ref_random_randint.asp
 
 ![images/my_metric_py.png](images/my_metric_py.png)
@@ -40,7 +40,7 @@ I successfully updated the min_collection_interval to 45 seconds.
 ![images/my_metric.yaml](images/my_metric.yaml)
 ![images/my_metric_dashboard.png](images/my_metric_dashboard.png)
 
-Bonus Question: Can you change the collection interval without modifying the Python check file you created?
+<strong>Bonus Question:</strong> Can you change the collection interval without modifying the Python check file you created?
 Yes, this can be changed in the .yaml config file.
 
 Other Resources Used:
@@ -50,7 +50,7 @@ Other Resources Used:
 	* https://docs.datadoghq.com/developers/metrics/types/?tab=count
 	* https://stackoverflow.com/questions/710551/use-import-module-or-from-module-import
 
-***Visualizing Data:***
+<h1>Visualizing Data</h1>
 Timeboard Public URL:https://p.datadoghq.com/sb/tih4blia4g5rapfz-a7a3536999bd52534f23fb4bd086b3af
 
 Creating the timeboard was the most challenging part of the exercise for me since I don't have any experience with Python. I used examples from the Datadog documentation and iterated upon them with some help from Google.
@@ -66,10 +66,10 @@ https://docs.datadoghq.com/api/v1/dashboards/
 https://docs.datadoghq.com/monitors/monitor_types/anomaly/
 https://docs.datadoghq.com/dashboards/functions/rollup/
 
-Bonus Question: What is the Anomaly graph displaying?
+<strong>Bonus Question:</strong> What is the Anomaly graph displaying?
 The Anomaly function identifies when a metric is behaving differently than it has in the past, taking into account trends and patterns. The graph in my timeboard is programmatically displaying database CPU anomalies and deviations from normal behavior.
 
-***Monitoring Data:***
+<h1>Monitoring Data</h1>
 See screenshots for the monitors I configured per instructions.
 
 Monitor Settings:
@@ -87,7 +87,7 @@ Weekend Downtime
 ![images/scheduled_downtime_weekend.png](images/scheduled_downtime_weekend.png)
 ![images/scheduled_downtime_email_weekend.png](images/scheduled_downtime_email_weekend.png)
 
-***Collecting APM Data:***
+<h1>Collecting APM Data</h1>
 I installed ddtrace per these instructions (I had to upgrade pip and install flask first). I did not make any changes to the flask app.
 Resource: https://app.datadoghq.com/apm/docs?architecture=host-based&language=python
 
@@ -103,12 +103,12 @@ I got a bit caught up when attempting to simulate traffic in the app and view th
 ![images/trace_examples.png](images/trace_examples.png)
 ![images/final_dash.png](images/final_dash.png)
 
-Bonus Question: What is the difference between a Service and a Resource?
+<strong>Bonus Question</strong>: What is the difference between a Service and a Resource?
  A service is a set of processes that do the same job (like a database or a group of endpoints). A resource is a particular action/component for a given service (typically an individual endpoint or database query).
  https://docs.datadoghq.com/tracing/visualization/#resources
  https://docs.datadoghq.com/tracing/visualization/#services
 
-***Final Question***
+<h1>Final Question</h1>
 Is there anything creative you would use Datadog for?
 
 The worst part of being a human is having to go the DMV. I think that Dante would have made the DMV the first circle of hell if he had lived in modern times. The most altruistic application of Datadog APM would be to apply it's monitoring to DMV foot-traffic/check-ins. Leveraging Datadog's monitoring tools could help find patterns in DMV surge times, improve staffing and resource allocation, and alert community members with appointments of upticks in wait times. It could help everyone spend the smallest amount of time possible in the DMV and minimize human suffering.
