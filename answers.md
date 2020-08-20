@@ -53,7 +53,9 @@ Other Resources Used:
 ***Visualizing Data***
 Timeboard Public URL:https://p.datadoghq.com/sb/tih4blia4g5rapfz-a7a3536999bd52534f23fb4bd086b3af
 
-<INSERT my_metric.py>
+Creating the timeboard was the most challenging part of the exercise for me since I don't have any experience with Python. I used examples from the Datadog documentation and iterated upon them with some help from Google.
+(visualize_metrics.py)
+
 ![images/basic_time_series.png](images/basic_time_series.png)
 
 Here is a snapshot sent to myself of the Anomalies graph.
@@ -69,19 +71,21 @@ The Anomaly function identifies when a metric is behaving differently than it ha
 
 ***Monitoring Data***
 See screenshots for the monitors I configured per instructions.
-<INSERT IMAGES  of Monitor HERE>
-![images/monitor.png](images/monitor.png)
-![images/monitor_emailconfig.png](images/monitor_emailconfig.png)
 
-<INSERT IMAGES OF EMAILS>
+Monitor Settings:
+![images/monitor.png](images/monitor.png)
+Email Config:
+![images/monitor_emailconfig.png](images/monitor_emailconfig.png)
 ![images/metric_email_warning.png](images/metric_email_warning.png)
 
-<INSERT IMAGES OF DOWNTIME FOR BONUS QUESTION>
+Bonus: Scheduled Downtime
+Weekday Downtime
 ![images/scheduled_downtime_week.png](images/scheduled_downtime_week.png)
 ![images/scheduled_downtime_email.png](images/scheduled_downtime_email.png)
+
+Weekend Downtime
 ![images/scheduled_downtime_weekend.png](images/scheduled_downtime_weekend.png)
 ![images/scheduled_downtime_email_weekend.png](images/scheduled_downtime_email_weekend.png)
-
 
 ***Collecting APM Data***
 I installed ddtrace per these instructions (I had to upgrade pip and install flask first). I did not make any changes to the flask app.
