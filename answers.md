@@ -69,18 +69,18 @@ The Anomaly function identifies when a metric is behaving differently than it ha
 <h1>Monitoring Data</h1>
 See screenshots for the monitors I configured per instructions.
 
-<h2>Monitor Settings:</h2>
+<h3>Monitor Settings:</h3>
 ![images/monitor.png](images/monitor.png)
 
-<h2>Email Config & Email Warning:</h2>
+<h3>Email Config & Email Warning:</h3>
 ![images/monitor_emailconfig.png](images/monitor_emailconfig.png)
 ![images/metric_email_warning.png](images/metric_email_warning.png)
 
-<h2>Bonus: Scheduled Weekday Downtime</h2>
+<h3>Bonus: Scheduled Weekday Downtime</h3>
 ![images/scheduled_downtime_week.png](images/scheduled_downtime_week.png)
 ![images/scheduled_downtime_email.png](images/scheduled_downtime_email.png)
 
-<h2>Weekend Downtime</h2>
+<h3>Weekend Downtime</h3>
 ![images/scheduled_downtime_weekend.png](images/scheduled_downtime_weekend.png)
 ![images/scheduled_downtime_email_weekend.png](images/scheduled_downtime_email_weekend.png)
 
