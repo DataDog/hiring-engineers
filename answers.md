@@ -1,8 +1,9 @@
 ***Setting Up the Environment***
 
 I spun up a Vagrant Ubuntu VM since I was using a Windows machine. I had no issues installing the Datadog agent with the single-step command.
+images/vagrant_init.png
 
-https://app.datadoghq.com/account/settings#agent/ubuntu
+resource: https://app.datadoghq.com/account/settings#agent/ubuntu
 
 <INSERT IMAGE OF SINGLE STEP INSTALL>
 
