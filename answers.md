@@ -1,6 +1,6 @@
 ## Prerequisites - Setup the environment
 
-> **_For this challenge I'm using a Linux CentOS 7 server hosted on the Rackspace public cloud. This election was because its was the fastest and easiest way to deploy a server from which I can take snapshots of it and recreate it in case that I run into any issue. And the main reason for the Linux distro is due I have a lot of experience working with it and felt more confortable._**
+> **_For this challenge I'm using a Linux CentOS 7 server hosted on the Rackspace public cloud. This election was because its was the fastest and easiest way to deploy a server from which I can take snapshots of it and recreate it in case that run into any issue. And the main reason for the Linux distro is due I have a lot of experience working with it and felt more confortable._**
 
 ```
 [root@server-01 ~]# cat /etc/redhat-release
