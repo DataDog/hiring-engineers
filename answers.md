@@ -5,7 +5,7 @@ images/vagrant_init.png
 
 resource: https://app.datadoghq.com/account/settings#agent/ubuntu
 
-<INSERT IMAGE OF SINGLE STEP INSTALL>
+[images/vagrant_init.png](images/vagrant_init.png)
 
 ***Collecting Metrics***
 I installed vim and added tags to the /etc/datadog-agent/datadog.yaml file. I had a little issue getting this to work at first because of some indentation issues.
