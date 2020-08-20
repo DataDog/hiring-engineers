@@ -9,10 +9,7 @@ Resource: https://app.datadoghq.com/account/settings#agent/ubuntu
 ![images/datadog_1step_install.png](images/datadog_1step_install.png)
 
 <h1>Collecting Metrics</h1>
-First, I installed vim.
-![images/install_vim.png](images/install_vim.png)
-
-Then, I added tags to the /etc/datadog-agent/datadog.yaml file. I had a little issue getting this to work at first because of some indentation issues.
+First, I installed vim. Then, I added tags to the /etc/datadog-agent/datadog.yaml file. I had a little issue getting this to work at first because of some indentation issues.
 
 ![images/edit_yaml_tags.png](images/edit_yaml_tags.png)
 ![images/tags_in_yaml.png](images/tags_in_yaml.png)
