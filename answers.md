@@ -1,4 +1,4 @@
-***Setting Up the Environment***
+***Setting Up the Environment:***
 
 I spun up a Vagrant Ubuntu VM since I was using a Windows machine. I had no issues installing the Datadog agent with the single-step command.
 images/vagrant_init.png
@@ -8,7 +8,7 @@ Resource: https://app.datadoghq.com/account/settings#agent/ubuntu
 ![images/vagrant_init.png](images/vagrant_init.png)
 ![images/datadog_1step_install.png](images/datadog_1step_install.png)
 
-***Collecting Metrics***
+***Collecting Metrics:***
 I installed vim.
 ![images/install_vim.png](images/install_vim.png)
 
@@ -18,9 +18,9 @@ Then, I added tags to the /etc/datadog-agent/datadog.yaml file. I had a little i
 ![images/tags_in_yaml.png](images/tags_in_yaml.png)
 ![images/host_tags.png](images/host_tags.png)
 
-INSTALL DATABASE & INTEGRATION
+INSTALL DATABASE & INTEGRATION: 
 I chose MySQL as my database since I had some experience with it from college and followed the instructions via this resource:
-	* https://app.datadoghq.com/account/settings#integrations/mysql
+* https://app.datadoghq.com/account/settings#integrations/mysql
 
 ![images/installing_mysql_db.png](images/installing_mysql_db.png)
 
@@ -31,7 +31,7 @@ For some reason, I couldn't find the mysql.d/conf.yaml file. I had to create it 
 Here is a view of my database on the host map.
 ![images/mysql_host_view.png](images/mysql_host_view.png)
 
-Creating My Metric Custom Agent Check
+Creating My Metric Custom Agent Check:
 This was the first point of friction that I experienced in the exercise. I don't have much experience with Python so I had to utilize a few resources to feel confident editing the .py example script. I started by creating the /conf.d/my_metric.yaml to correspond with my /checks.d/my_metric.py file. I found a method called "randint" from a class called "random". I used this resource: https://www.w3schools.com/python/ref_random_randint.asp
 
 ![images/my_metric_py.png](images/my_metric_py.png)
@@ -48,13 +48,13 @@ Other Resources Used:
 	* https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
 	* https://datadoghq.dev/summit-training-session/handson/customagentcheck/
 	* https://docs.datadoghq.com/developers/metrics/types/?tab=count
-  * https://stackoverflow.com/questions/710551/use-import-module-or-from-module-import
+	* https://stackoverflow.com/questions/710551/use-import-module-or-from-module-import
 
-***Visualizing Data***
+***Visualizing Data:***
 Timeboard Public URL:https://p.datadoghq.com/sb/tih4blia4g5rapfz-a7a3536999bd52534f23fb4bd086b3af
 
 Creating the timeboard was the most challenging part of the exercise for me since I don't have any experience with Python. I used examples from the Datadog documentation and iterated upon them with some help from Google.
-(visualize_metrics.py)
+![visualize_metrics.py](visualize_metrics.py)
 
 ![images/basic_time_series.png](images/basic_time_series.png)
 
@@ -69,7 +69,7 @@ https://docs.datadoghq.com/dashboards/functions/rollup/
 Bonus Question: What is the Anomaly graph displaying?
 The Anomaly function identifies when a metric is behaving differently than it has in the past, taking into account trends and patterns. The graph in my timeboard is programmatically displaying database CPU anomalies and deviations from normal behavior.
 
-***Monitoring Data***
+***Monitoring Data:***
 See screenshots for the monitors I configured per instructions.
 
 Monitor Settings:
@@ -87,7 +87,7 @@ Weekend Downtime
 ![images/scheduled_downtime_weekend.png](images/scheduled_downtime_weekend.png)
 ![images/scheduled_downtime_email_weekend.png](images/scheduled_downtime_email_weekend.png)
 
-***Collecting APM Data***
+***Collecting APM Data:***
 I installed ddtrace per these instructions (I had to upgrade pip and install flask first). I did not make any changes to the flask app.
 Resource: https://app.datadoghq.com/apm/docs?architecture=host-based&language=python
 
