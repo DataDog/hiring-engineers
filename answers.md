@@ -179,6 +179,8 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+<img src="https://github.com/erikhvc/hiring-engineers/blob/solutions-engineer/images/monitor.JPG">
+
 Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
