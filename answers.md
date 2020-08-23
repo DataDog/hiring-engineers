@@ -1,8 +1,8 @@
 ## Prerequisites - Setup the environment
 
-In the Datadog UI, chose Integrations, Agent to get the Agent install instructions and downloads.
+In the Datadog UI, select Integrations, Agent to get the Agent install instructions and downloads.
 
-For my exercise I chose the Windows Agent.  Follow on screen instructions for download and installation.
+For my exercise I chose the Windows Agent.  Follow the on screen instructions for download and installation.
 
 Note: there is a command line option as well.  This is convenient for integrating the agent install into CI/CD Devops systems.
 
@@ -10,7 +10,7 @@ Note: there is a command line option as well.  This is convenient for integratin
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-On a Windows host there is an Agent GUI available to manage the Agent.  I'll use this GUI to add the tags to the Agent config file and to restart the Agent.   
+On a Windows host there is an Agent GUI available to manage the Agent.  l used this GUI to add the tags to the Agent config file and to restart the Agent.   
 
 Find tags section and add tag key pair (or single value) in YAML format.
 
@@ -28,9 +28,9 @@ Note: may take a few minutes for the tags to show up in Datadog.
 
 *  Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-I have installed PostgreSQL db on my Windows host.
+I installed PostgreSQL db on my Windows host.
 
-Install the PostgreSQL integration from the Datadog UI.   Select the Integrations page from the UI and find the integration you need.  Find the PostgreSQL integration in Datadog and follow instructions on Configuration tab.
+Install the PostgreSQL integration from the Datadog UI.  Select the Integrations page from the UI and find the integration you need.  I chose the PostgreSQL integration in Datadog and follow instructions on Configuration tab.
 
 Create the read-only datadog user with proper access to PostgreSQL server as described on this tab
 
@@ -50,7 +50,7 @@ After server minutes check the Host Map in Datadog.  You will see PostgreSQL has
 
 
 
-And metrics are collected.  In the Datadog UI navigate to the Dashboards, Dashboard List.  Select the Postgres - Metrics dashboard
+PostgreSQL metrics are being collected as well.  In the Datadog UI navigate to the Dashboards, Dashboard List.  Select the Postgres - Metrics dashboard
 
 <img src="postgresql-metric.png" style="zoom:50%;" />
 
@@ -65,7 +65,6 @@ Create a python script to setup the custom Agent check.  For Windows OS, the .py
 Created Sample custom Agent file *C:\ProgramData\Datadog\checks.d\custom_my_metric.py* that collects a metric called my_metric.  
 
 ```python
-
 # the following try/except block will make the custom check compatible with any Agent version
 try:
     # first, try to import the base class from new versions of the Agent...
@@ -118,10 +117,6 @@ The dashboard "Datadog Tech Excercise - Visualizing Data" was created by using t
 
 
 
-<img src="visualizing-data-dashboard.png" style="zoom:50%;" />
-
-
-
 <img src="visualizing-data-create-dashboard-with-API.png" style="zoom:50%;" />
 
 Here is the body used with the create dashboard API post
@@ -171,6 +166,8 @@ Here is the body used with the create dashboard API post
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
+<img src="visualizing-data-dashboard.png" style="zoom:50%;" />
+
 - Set the Timeboard's timeframe to the past 5 minutes
 
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
@@ -185,7 +182,7 @@ And below is the email received.
 
 - **Bonus Question**: What is the Anomaly graph displaying?
 
-The Anomaly graph shows in wide grey band what the usual historical trend line for the metric being monitored.  When the metric is outside of the grey band the graph line shows in red.  This indicates that the metric is behaving outside of the usual and historic trend for this metric.   In my example that is outside of 2 standard deviations from the norm.
+The Anomaly graph shows in grey band what the usual historical trend line for the metric being monitored.  When the metric is outside of the grey band the graph line shows in red.  This indicates that the metric is behaving outside of the usual and historic trend for this metric.   In my example that is outside of 2 standard deviations from the norm.
 
 ## Monitoring Data:
 
@@ -213,6 +210,12 @@ In the 'Notify your team' section, enter the recipients of the message.  In this
 <img src="monitor-email-setup.png" style="zoom:50%;" />
 
 
+
+Screen shot of email received. 
+
+
+
+<img src="monitoring-data-warning-email.png" style="zoom:50%;" />
 
 - **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -260,7 +263,7 @@ Instrumented app, apm-test.py, included in submission.
 
 - **Bonus Question**: What is the difference between a Service and a Resource?
 
-Services are a logical grouping of components of highly distributed systems, like microservice architectures.  Examples of services would be API endpoints, db queries and jobs.  
+Services are a logical grouping of components.  Examples of services would be API endpoints, db queries and jobs.  
 
 Resources are the particular action for a given service.  Typically an individual API endpoint or db query.  
 
@@ -270,7 +273,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-The Covid-19 pandemic has changed life for all of us.  From wearing masks, social distancing, remote work and schooling from home, we are confronted with a new normal every day in so many ways.  We are all learning to adapt as we begin to open up as safely as we can.  Part of the steps that have been taken to open customer facing businesses safely, is to monitor staff and customers for Covid 19 symptoms.  When we go a doctor's office, hair salon, or gym we are screened before entry: temperature taken, an a brief QA related to symptoms and if we were in contact with persons infected with Covid-19.  In many places, staff are also screen before entering their workplace.  I have come to learn that this screening is also done for all restaurant workers.   
+The Covid-19 pandemic has changed life for all of us.  From wearing masks, social distancing, remote work and schooling from home, we are confronted with a new normal every day in so many ways.  We are all learning to adapt as we begin to open up as safely as we can.  Part of the steps that have been taken to open customer facing businesses safely, is to monitor staff and customers for Covid 19 symptoms.  When we go a doctor's office, hair salon, or gym we are screened before entry: temperature is taken, and a brief Q&A related to symptoms and if we were in contact with persons infected with Covid-19.  In many places, staff are also screen before entering their workplace.  I have come to learn that this screening is also done for all restaurant workers.   
 
 What if this data could be monitored real time across all locations?  This looks like perfect scenario for Datadog.  Many sources of data streaming in that need to be collected and presented in such a way that meaningful actions and decisions can be made from it.
 
