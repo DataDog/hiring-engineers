@@ -11,7 +11,7 @@ Here's my agent manager, up and running.
 ### Collecting Metrics
 #### Tagging
 
-Agent configuration occurs in the datadog.yaml file, which is my first stop in the tagging task. On a Windows OS, the file's located in C:\ProgramData\Datadog, and in /etc/datadog-agent/ in a Linux environment. 
+Agent configuration occurs in the datadog.yaml file, which is my first stop in the tagging task. On a Windows OS, the file's located in C:\ProgramData\Datadog, and /etc/datadog-agent/ in a Linux environment. 
 
 Within datadog.yaml, I add a variety of tags under the tags section. 
 
@@ -27,7 +27,7 @@ Once the tags are added, the file gets saved, the agent service is restarted, an
 
 I utilized PostgreSQL for this portion of the exercise and started the database integration process by creating a dummy Datadog database. This was followed by the creation of the datadog user. 
 
-Note that in the user creation screenshot below, the 1234 password for the user is for show only. In a live Production environment, 1234 would be the last password you'd want to use. Highly insecure. 0/10--would not recommend. 
+Note that in the user creation screenshot below, the 1234 password for the user is for show only. In a live Production environment, 1234 would be the last password you'd want to use. Highly unsecure. 0/10--would not recommend. 
 
 ![SQL Datadog User Creation](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/datadog_sql_user_creation.PNG "Datadog DB User Creation")
 
@@ -35,13 +35,21 @@ Once the user's created, we enable the postgres.d configuration file in C:\Progr
 
 ![Postgresql Config Enable](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgres_config_updated.PNG "Postgres.d Configuration")
 
-Following the enabling of the PostgresSQL integration, I'm now able to pull metrics related to postgresql. 
+Following the enabling of the Postgres integration, I'm now able to pull metrics related to postgresql. To check how the integration allows Datadog to interact with Postgres, I pull up the db.count Postgres metric graph. An initial look shows I have one database, and upon creating another Test database, the graph count jumps to two. Configurations within Postgres are monitored and mapped in Datadog.
 
 ![Postgresql Metrics](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgresql_metrics.PNG "Postgres Metrics")
 
+#### Custom Agent Check
+
+Setting up a custom agent check begins with the creation of a configuration file in C:\ProgramData\Datadog\conf.d and a check file in C:\ProgramData\Datadog\checks.d. To ensure a proper setup, the names of both files must match, and in our case, we're naming both "my_metric".  
+
+There are a number of different functions or metric types that can be used for custom agent checks. Different functions/metric types result in different graphing capabilities and ultimately different displays. 
+
+For my custom metric, I'm using the gauge function, which takes a value from a specific time interval and then continuously does so for each time interval after. This seemed to be the most appropriate type since we're looking to include a random value between 0 and 1000 in our check.
+
+![Custom Agent Check](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/custom_check_code.PNG "Custom Agent Check")
+
 ### Visualizing Data
-
-
 
 ### Monitoring Data
 
