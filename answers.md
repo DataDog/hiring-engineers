@@ -75,11 +75,11 @@ Having worked with APIs in the past, I'm utilizing Postman to send my API calls 
 
 Postman's an API client that allows developers to better test and create APIs. I have it installed on my Windows OS and just need to download the Datadog Postman collection, which includes pre-configured API templates. 
 
-![Postman Datadog API Collection]
+![Postman Datadog API Collection](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postman_datadog_collection.PNG "API Collection")
 
 Upon importing the Datadog collection json, I'm able to view a large variety of Datadog-specific API calls. Before I can start sending calls though, I need to setup my environment, which includes my Datadog site, API and applications keys required for authentication. 
 
-![Postman Datadog Env Creation]
+![Postman Datadog Env Creation](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postman_env_creation.PNG "Postman Env Creation")
 
 The environment is now setup. I just need to define which environment I'm in, and I'm ready to create this timeboard! 
 
