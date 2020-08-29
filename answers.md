@@ -35,9 +35,13 @@ Once the user's created, we enable the postgres.d configuration file in C:\Progr
 
 ![Postgresql Config Enable](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgres_config_updated.PNG "Postgres.d Configuration")
 
-Following the enabling of the Postgres integration, I'm now able to pull metrics related to postgresql. To check how the integration allows Datadog to interact with Postgres, I pull up the db.count Postgres metric graph. An initial look shows I have one database, and upon creating another Test database, the graph count jumps to two. Configurations within Postgres are monitored and mapped in real time in Datadog. 
+Following the enabling of the Postgres integration, I'm now able to pull metrics related to postgresql. To do a simple check of how the integration allows Datadog to interact with Postgres, I pull up the db.count Postgres metric graph. An initial look shows I have one database, and upon creating another Test database, the graph count jumps to two. I can confirm now that configurations within Postgres are monitored and mapped in real time in Datadog. 
 
 ![Postgresql Metrics](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgresql_metrics.PNG "Postgres Metrics")
+
+Check out the Agent Manager--a postgres collector displays now too.
+
+![Postgres Agent Manager](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/agent_manager_postgres_collector.PNG "Postgres Agent Manager")
 
 #### Custom Agent Check
 
@@ -57,13 +61,111 @@ To update our collection interval, we'll add a min_collection_interval of 45, so
 
 ![Interval Change](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/instances_yaml.PNG "Interval Change")
 
-In case you were wondering, and I know you are--yes, the collection interval can be changed without needing to modify the configuration file. In the Datadog Metrics - Summary GUI, you can pull up individual metrics and edit their metadata accordingly, which includes an interval field. 
+In case you were wondering, and I know you are--yes, the collection interval can be changed without needing to modify the configuration file. In the Datadog Metrics - Summary GUI, you can pull up individual metrics and edit their metadata accordingly.
 
 ![Interval GUI Change](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/my_metric_interval_gui_change.PNG "Interval GUI Change")
 
-
-
 ### Visualizing Data
+
+Having worked with APIs in the past, I'm utilizing Postman to send my API calls to Datadog in this portion of the exercise. 
+
+Postman's an API client that allows developers to better test and create APIs. I have it installed on my Windows OS and just need to download the Datadog Postman collection, which includes pre-configured API templates. 
+
+![Postman Datadog API Collection]
+
+Upon importing the Datadog collection json, I'm able to view a large variety of Datadog-specific API calls. Before I can start sending calls though, I need to setup my environment, which includes my Datadog site, API and applications keys required for authentication. 
+
+![Postman Datadog Env Creation]
+
+The environment is now setup, and I'm ready to create this timeboard! 
+
+Within the Dashboard dropdown in Postman, I choose POST - Create a Dashboard. The Body tab includes the code I need to edit to fit my customizations. My goal here is to create one dashboard that includes three separate graphing displays--one for my custom metric, one for my Postgres integration with the anomaly function applied, and one for my custom metric with the rollup function applied. 
+
+I'm using timeseries widgets here to visualize the evolution of these metrics over time. 
+
+The first one is relatively straightforward. We're specifying the definition of this code block with the type of widget (timeseries) and the request we want the widget to display (average of all my_metric.gauge calls).
+```
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:my_metric.gauge{*}"
+                    }
+                ],
+                "title": "Avg of my_metric.gauge"
+            }
+        },
+```
+
+The code below is my finished script for the requested timeboard. 
+
+```
+{
+    "title": "Data Visualization: A Story of Metrics",
+    "widgets": [
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:my_metric.gauge{*}"
+                    }
+                ],
+                "title": "Avg of my_metric.gauge"
+            }
+        },
+         {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:my_metric.gauge{*}.rollup(sum, 3600)"
+                    }
+                ],
+                "title": "Avg of my_metric.gauge with Rollup"
+            }
+        },
+         {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(avg:postgresql.buffer_hit{*}, 'basic', 2)"
+                    }
+                ],
+                "title": "Avg of PostgreSQL.buffer_hit with Anomalies"
+            }
+        }
+    ],
+    "layout_type": "ordered",
+    "description": "A variety of metrics displayed.",
+    "is_read_only": true,
+    "notify_list": [],
+    "template_variables": [
+        {
+            "name": "host",
+            "prefix": "host",
+            "default": "<HOSTNAME_1>"
+        }
+    ],
+    "template_variable_presets": [
+        {
+            "name": "Saved views for hostname 2",
+            "template_variables": [
+                {
+                    "name": "host",
+                    "value": "<HOSTNAME_2>"
+                }
+            ]
+        }
+    ]
+}
+```
+
+After sending the API call, the Dashboard is created in Datadog's GUI. 
+
+
 
 ### Monitoring Data
 
