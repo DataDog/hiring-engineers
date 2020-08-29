@@ -49,7 +49,7 @@ Setting up a custom agent check begins with the creation of a configuration file
 
 There are a number of different functions or metric types that can be used for custom agent checks. Different functions/metric types result in different graphing capabilities and ultimately different displays. 
 
-For my custom metric, I'm using the gauge function, which takes a value from a specific time interval and then continuously does so for each specified time interval after. This seemed to be the most appropriate type since we're looking to include a random value between 0 and 1000 in our check.
+For my custom metric, I'm using the gauge function, which takes a value from a specific time interval and then continuously does so for each specified time interval after. This seemed to be the most appropriate type since we're looking to include a random value between 0 and 1000 in our check. 
 
 ![Custom Agent Check](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/custom_check_code.PNG "Custom Agent Check")
 
@@ -57,9 +57,13 @@ Changing the check's collection interval involves updating the config file (my_m
 
 ![My_Metric.yaml Empty](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/my_metric_yaml.PNG "Empty my_metric.yaml")
 
-To update our collection interval, we'll add a min_collection_interval of 45, so our check submits its metric once every 45 seconds as opposed to the default of 15 seconds.
+To update our collection interval, we'll add a min_collection_interval of 45, so our check submits its metric once every 45 seconds as opposed to the default of 15 seconds. 
 
 ![Interval Change](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/instances_yaml.PNG "Interval Change")
+
+Once the code is run, a random value between 0 and 1000 is chosen every 45 seconds. 
+
+![my_metric Fullscreen](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/metric_stats_fullscreen.PNG "My_metric.gauge Fullscreen")
 
 In case you were wondering, and I know you are--yes, the collection interval can be changed without needing to modify the configuration file. In the Datadog Metrics - Summary GUI, you can pull up individual metrics and edit their metadata accordingly.
 
@@ -77,7 +81,7 @@ Upon importing the Datadog collection json, I'm able to view a large variety of 
 
 ![Postman Datadog Env Creation]
 
-The environment is now setup, and I'm ready to create this timeboard! 
+The environment is now setup. I just need to define which environment I'm in, and I'm ready to create this timeboard! 
 
 Within the Dashboard dropdown in Postman, I choose POST - Create a Dashboard. The Body tab includes the code I need to edit to fit my customizations. My goal here is to create one dashboard that includes three separate graphing displays--one for my custom metric, one for my Postgres integration with the anomaly function applied, and one for my custom metric with the rollup function applied. 
 
@@ -96,6 +100,43 @@ The first one is relatively straightforward. We're specifying the definition of 
                 "title": "Avg of my_metric.gauge"
             }
         },
+```
+For my second widget code block, I'm pulling a Postgres integration metric (buffer hits) with the addition of the anomaly function. The anomaly function detects abnormal metric fluctuations and is displayed on our graph as a gray band that maps expected behavior based on historical trends. Anything out of the expected behavior range is flagged.
+
+Within my anomalies function, I've specified which metric I want to utilize, the algorithm to detect said anomalies and the bounds. Algorithms to detect anomalies include basic, agile and robust. Here we're using basic as this is a metric with no repeating seasonal patterns. Bounds dictate the width of the gray band and are essentially the standard deviations for your metric. As indicated in the Datadog dashboard documentation, "2 or 3 should be large enough to include most 'normal' points". 
+
+```
+        {
+             "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(avg:postgresql.buffer_hit{*}, 'basic', 2)"
+                    }
+                ],
+                "title": "Avg of PostgreSQL.buffer_hit with Anomalies"
+            }
+        }
+
+```
+
+The final widget block pulls my custom metric gauge with the rollup function applied. The rollup function allows you to define the time intervals for your graph and how the data points are collected during that time interval. 
+
+In my code snippet, my method is sum, and my the time interval is set to 3600 seconds (1 hour).
+
+```
+        {
+             "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:my_metric.gauge{*}.rollup(sum, 3600)"
+                    }
+                ],
+                "title": "Avg of my_metric.gauge with Rollup"
+            }
+        }
+
 ```
 
 The code below is my finished script for the requested timeboard. 
@@ -120,10 +161,10 @@ The code below is my finished script for the requested timeboard.
                 "type": "timeseries",
                 "requests": [
                     {
-                        "q": "avg:my_metric.gauge{*}.rollup(sum, 3600)"
+                        "q": "anomalies(avg:postgresql.buffer_hit{*}, 'basic', 2)"
                     }
                 ],
-                "title": "Avg of my_metric.gauge with Rollup"
+                "title": "Avg of PostgreSQL.buffer_hit with Anomalies"
             }
         },
          {
@@ -131,10 +172,10 @@ The code below is my finished script for the requested timeboard.
                 "type": "timeseries",
                 "requests": [
                     {
-                        "q": "anomalies(avg:postgresql.buffer_hit{*}, 'basic', 2)"
+                        "q": "avg:my_metric.gauge{*}.rollup(sum, 3600)"
                     }
                 ],
-                "title": "Avg of PostgreSQL.buffer_hit with Anomalies"
+                "title": "Avg of my_metric.gauge with Rollup"
             }
         }
     ],
@@ -163,9 +204,18 @@ The code below is my finished script for the requested timeboard.
 }
 ```
 
-After sending the API call, the Dashboard is created in Datadog's GUI. 
+After sending the API call, the timeboard is created in Datadog's Dashboard GUI. 
 
+![Timeboard GUI](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Timeboard_with_anomalies_new.PNG "Timeboard GUI")
 
+My last step in visualizing this data is to interact with it via the UI. I've set my Timeboard timeframe to 5 minutes and have taken a snapshot and sent it to myself. 
+
+![Timeboard GUI 5 Minutes](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Timeboard_5_Mins.PNG "Timeboard GUI - 5 Mins")
+![Timeboard Snapshot](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Timeboard_snapshot.PNG "Timeboard Snapshot")
+
+I know what you're thinking... "What in the world is this anomaly graph showing me?" Great question!
+
+The gray band is the anomaly overlay that our function creates over our metric graph. The width of it was set to 2 in our API call, so it's measuring this standard deviation. The consistency of the overlay is dictated by the basic algorithm we specified in our function. The basic algorithm identifies potential anomalies but doesn't incorporate the spike and dip pattern that's occuring throughout the time interval. A robust or agile algorithm would account for that pattern. 
 
 ### Monitoring Data
 
