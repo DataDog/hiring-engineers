@@ -57,9 +57,9 @@ To update our collection interval, we'll add a min_collection_interval of 45, so
 
 ![Interval Change](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/instances_yaml.PNG "Interval Change")
 
-In case you were wondering, and I know you are--yes, the collection interval can be changed without needing to modify the configuration file. In the Datadog Metrics - Summary GUI, you can pull up individual metrics and edit their metadata accordingly. There's an interval section in this field that can be modified.
+In case you were wondering, and I know you are--yes, the collection interval can be changed without needing to modify the configuration file. In the Datadog Metrics - Summary GUI, you can pull up individual metrics and edit their metadata accordingly, which includes an interval field. 
 
-<img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/my_metric_interval_gui_change.PNG" width="50">
+![Interval GUI Change]("https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/my_metric_interval_gui_change.PNG "Interval GUI Change")
 
 
 
