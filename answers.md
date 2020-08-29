@@ -10,8 +10,10 @@ Upon downloading the Datadog Agent on my localhost, I'm now able to browse to ht
 
 Here's my agent manager, up and running. 
 
+***
+
 ### Collecting Metrics
-#### Tagging
+#### _Tagging_
 
 Agent configuration occurs in the datadog.yaml file, which is my first stop in the tagging task. On a Windows OS, the file's located in C:\ProgramData\Datadog, and /etc/datadog-agent/ in a Linux environment. 
 
@@ -25,7 +27,7 @@ Once the tags are added, the file gets saved, the agent service is restarted, an
 ![Host Map](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/host_map_windows_tags.PNG "Windows Host Map - Tags")
 ![Host Map](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/host_map_vagrant_tags.PNG "Vagrant Host Map - Tags")
 
-#### Database Install and Integration
+#### _Database Install and Integration_
 
 I utilized PostgreSQL for this portion of the exercise and started the database integration process by creating a dummy Datadog database. This was followed by the creation of the datadog user. 
 
@@ -45,7 +47,7 @@ Check out the Agent Manager--a postgres collector displays now too.
 
 ![Postgres Agent Manager](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/agent_manager_postgres_collector.PNG "Postgres Agent Manager")
 
-#### Custom Agent Check
+#### _Custom Agent Check_
 
 Setting up a custom agent check begins with the creation of a configuration file in C:\ProgramData\Datadog\conf.d and a check file in C:\ProgramData\Datadog\checks.d. To ensure a proper setup, the file names for both must match, and in our case, we're naming both "my_metric".  
 
@@ -70,6 +72,8 @@ Once the code is run, a random value between 0 and 1000 is chosen every 45 secon
 In case you were wondering, and I know you are--yes, the collection interval can be changed without needing to modify the configuration file. In the Datadog Metrics - Summary GUI, you can pull up individual metrics and edit their metadata accordingly.
 
 ![Interval GUI Change](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/my_metric_interval_gui_change.PNG "Interval GUI Change")
+
+***
 
 ### Visualizing Data
 
@@ -212,7 +216,7 @@ After sending the API call, the timeboard is created in Datadog's Dashboard GUI.
 
 ![Timeboard GUI](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Timeboard_with_anomalies_new.PNG "Timeboard GUI")
 
-#### Timeboard UI Tasks
+#### _Timeboard UI Tasks_
 
 My last step in visualizing this data is to interact with it via the UI. I've set my Timeboard timeframe to 5 minutes and have taken a snapshot and sent it to myself. 
 
@@ -222,6 +226,8 @@ My last step in visualizing this data is to interact with it via the UI. I've se
 I know what you're thinking... "What in the world is this anomaly graph showing me?" Great question!
 
 The gray band is the anomaly overlay that our function creates over our metric graph. The width of it was set to 2 in our API call, so it's measuring this standard deviation. The consistency of the overlay is dictated by the basic algorithm we specified in our function. The basic algorithm identifies potential anomalies but doesn't incorporate the spike and dip pattern that's occuring throughout the time interval. A robust or agile algorithm would account for that pattern. 
+
+***
 
 ### Monitoring Data
 
@@ -260,6 +266,10 @@ With these monitors setup, I'm noticing I'm getting quite a few notifications th
 ![Sat-Sun Downtime Monitor](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime1.PNG)
 ![Weekends](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime_Weekend.PNG)
 
+***
+
 ### Collecting APM Data
+
+***
 
 ### Final Question
