@@ -33,7 +33,9 @@ I utilized PostgreSQL for this portion of the exercise and started the database 
 
 Note that in the user creation screenshot below, the 1234 password for the user is for show only. In a live Production environment, 1234 would be the last password you'd want to use. Highly unsecure. 0/10--would not recommend. 
 
-![SQL Datadog User Creation](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/datadog_sql_user_creation.PNG "Datadog DB User Creation")
+<p align="center">
+        <img width="800" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/datadog_sql_user_creation.PNG">
+</p>
 
 Once the user's created, we enable the postgres.d configuration file in C:\ProgramData\Datadog\conf.d\postgres.d. The config file is filled out accordingly, and the agent gets restarted for the integration changes to take effect. 
 
@@ -87,15 +89,21 @@ Having worked with APIs in the past, I'm utilizing Postman to send my API calls 
 
 Postman's an API client that allows developers to better test and create APIs. I have it installed on my Windows OS and just need to download the Datadog Postman collection, which includes pre-configured API templates. 
 
-![Postman Datadog API Collection](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postman_datadog_collection.PNG "API Collection")
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postman_datadog_collection.PNG">
+</p>
 
 Upon importing the Datadog collection json, I'm able to view a large variety of Datadog-specific API calls. Before I can start sending calls though, I need to setup my environment, which includes my Datadog site, API and applications keys required for authentication. 
 
-![Postman Datadog Env Creation](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postman_env_creation.PNG "Postman Env Creation")
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postman_env_creation.PNG">
+</p>
 
 With the environment now setup, all I need to do is define the environment I'm in, and I'm ready to create this timeboard! 
 
-![Env Define](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Postman_datadog_env.PNG)
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Postman_datadog_env.PNG">
+</p>
 
 Within the Dashboard dropdown in Postman, I choose POST - Create a Dashboard. The Body tab includes the code I need to edit to fit my customizations. My goal here is to create one dashboard that includes three separate graphing displays--one for my custom metric, one for my Postgres integration with the anomaly function applied, and one for my custom metric with the rollup function applied. 
 
