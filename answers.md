@@ -35,25 +35,33 @@ Once the user's created, we enable the postgres.d configuration file in C:\Progr
 
 ![Postgresql Config Enable](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgres_config_updated.PNG "Postgres.d Configuration")
 
-Following the enabling of the Postgres integration, I'm now able to pull metrics related to postgresql. To check how the integration allows Datadog to interact with Postgres, I pull up the db.count Postgres metric graph. An initial look shows I have one database, and upon creating another Test database, the graph count jumps to two. Configurations within Postgres are monitored and mapped in Datadog.
+Following the enabling of the Postgres integration, I'm now able to pull metrics related to postgresql. To check how the integration allows Datadog to interact with Postgres, I pull up the db.count Postgres metric graph. An initial look shows I have one database, and upon creating another Test database, the graph count jumps to two. Configurations within Postgres are monitored and mapped in real time in Datadog. 
 
 ![Postgresql Metrics](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgresql_metrics.PNG "Postgres Metrics")
 
 #### Custom Agent Check
 
-Setting up a custom agent check begins with the creation of a configuration file in C:\ProgramData\Datadog\conf.d and a check file in C:\ProgramData\Datadog\checks.d. To ensure a proper setup, the names of both files must match, and in our case, we're naming both "my_metric".  
+Setting up a custom agent check begins with the creation of a configuration file in C:\ProgramData\Datadog\conf.d and a check file in C:\ProgramData\Datadog\checks.d. To ensure a proper setup, the file names for both must match, and in our case, we're naming both "my_metric".  
 
 There are a number of different functions or metric types that can be used for custom agent checks. Different functions/metric types result in different graphing capabilities and ultimately different displays. 
 
-For my custom metric, I'm using the gauge function, which takes a value from a specific time interval and then continuously does so for each time interval after. This seemed to be the most appropriate type since we're looking to include a random value between 0 and 1000 in our check.
+For my custom metric, I'm using the gauge function, which takes a value from a specific time interval and then continuously does so for each specified time interval after. This seemed to be the most appropriate type since we're looking to include a random value between 0 and 1000 in our check.
 
 ![Custom Agent Check](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/custom_check_code.PNG "Custom Agent Check")
 
-Changing the check's collection interval involves updating the config file (my_metric.yaml) we created prior. The original instance of this file is populated by an empty sequence called instances. In the updated version, we'll add a min_collection_interval of 45, so our check submits its metric once every 45 seconds as opposed to the default of 15 seconds.
+Changing the check's collection interval involves updating the config file (my_metric.yaml) we created prior. The original instance of this file is populated by an empty sequence called instances.
 
-In case you were wondering, and I know you are... Yes, the collection interval can be changed without needing to modify the configuration file.
+![My_Metric.yaml Empty](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/my_metric_yaml.PNG "Empty my_metric.yaml")
+
+To update our collection interval, we'll add a min_collection_interval of 45, so our check submits its metric once every 45 seconds as opposed to the default of 15 seconds.
 
 ![Interval Change](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/instances_yaml.PNG "Interval Change")
+
+In case you were wondering, and I know you are--yes, the collection interval can be changed without needing to modify the configuration file. In the Datadog Metrics - Summary GUI, you can pull up individual metrics and edit their metadata accordingly. There's an interval section in this field that can be modified.
+
+<img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/my_metric_interval_gui_change.PNG" width="50">
+
+
 
 ### Visualizing Data
 
