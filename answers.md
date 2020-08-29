@@ -49,6 +49,12 @@ For my custom metric, I'm using the gauge function, which takes a value from a s
 
 ![Custom Agent Check](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/custom_check_code.PNG "Custom Agent Check")
 
+Changing the check's collection interval involves updating the config file (my_metric.yaml) we created prior. The original instance of this file is populated by an empty sequence called instances. In the updated version, we'll add a min_collection_interval of 45, so our check submits its metric once every 45 seconds as opposed to the default of 15 seconds.
+
+In case you were wondering, and I know you are... Yes, the collection interval can be changed without needing to modify the configuration file.
+
+![Interval Change](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/instances_yaml.PNG "Interval Change")
+
 ### Visualizing Data
 
 ### Monitoring Data
