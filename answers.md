@@ -43,11 +43,15 @@ Once the user's created, we enable the postgres.d configuration file in C:\Progr
 
 Following the enabling of the Postgres integration, I'm now able to pull metrics related to postgresql. To do a simple check of how the integration allows Datadog to interact with Postgres, I pull up the db.count Postgres metric graph. An initial look shows I have one database, and upon creating another Test database, the graph count jumps to two. I can confirm now that configurations within Postgres are monitored and mapped in real time in Datadog. 
 
-![Postgresql Metrics](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgresql_metrics.PNG "Postgres Metrics")
+<p align="center">
+        <img width="700" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgresql_metrics.PNG">
+</p>
 
 Check out the Agent Manager--a postgres collector displays now too.
 
-![Postgres Agent Manager](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/agent_manager_postgres_collector.PNG "Postgres Agent Manager")
+<p align="center">
+        <img width="700" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/agent_manager_postgres_collector.PNG">
+</p>
 
 #### _Custom Agent Check_
 
