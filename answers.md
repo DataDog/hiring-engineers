@@ -4,7 +4,9 @@ My Datadog environment setup includes an agent install on my laptop Windows OS a
 
 Upon downloading the Datadog Agent on my localhost, I'm now able to browse to http://127.0.0.1:5002/ where I can view my connection as well as other agent info. This UI also provides the ability to restart the agent service. Neat!
 
-![Agent Manager](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/agent_manager.PNG "Agent Manager")
+<p align="center">
+        <img width="700" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/agent_manager.PNG">
+</p>
 
 Here's my agent manager, up and running. 
 
@@ -15,7 +17,7 @@ Agent configuration occurs in the datadog.yaml file, which is my first stop in t
 
 Within datadog.yaml, I add a variety of tags under the tags section. 
 
-![Windows datadog.yaml File](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/windows_tags_config.PNG "Windows datadog.yaml")
+![Windows datadog.yaml File](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/windows_tags_config.PNG "Windows datadog.yaml") 
 ![Linux datadog.yaml File](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/ubuntu_tags_config.PNG "Linux datadog.yaml")
 
 Once the tags are added, the file gets saved, the agent service is restarted, and after 15-30 minutes, the newly-added tags appear in the host info section within the host map. 
@@ -81,7 +83,9 @@ Upon importing the Datadog collection json, I'm able to view a large variety of 
 
 ![Postman Datadog Env Creation](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postman_env_creation.PNG "Postman Env Creation")
 
-The environment is now setup. I just need to define which environment I'm in, and I'm ready to create this timeboard! 
+With the environment now setup, all I need to do is define the environment I'm in, and I'm ready to create this timeboard! 
+
+![Env Define](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Postman_datadog_env.PNG)
 
 Within the Dashboard dropdown in Postman, I choose POST - Create a Dashboard. The Body tab includes the code I need to edit to fit my customizations. My goal here is to create one dashboard that includes three separate graphing displays--one for my custom metric, one for my Postgres integration with the anomaly function applied, and one for my custom metric with the rollup function applied. 
 
@@ -139,7 +143,7 @@ In my code snippet, my method is sum, and my the time interval is set to 3600 se
 
 ```
 
-The code below is my finished script for the requested timeboard. 
+The code below is my finished script for the requested timeboard (displayed in raw json). 
 
 ```
 {
@@ -208,6 +212,8 @@ After sending the API call, the timeboard is created in Datadog's Dashboard GUI.
 
 ![Timeboard GUI](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Timeboard_with_anomalies_new.PNG "Timeboard GUI")
 
+#### Timeboard UI Tasks
+
 My last step in visualizing this data is to interact with it via the UI. I've set my Timeboard timeframe to 5 minutes and have taken a snapshot and sent it to myself. 
 
 ![Timeboard GUI 5 Minutes](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Timeboard_5_Mins.PNG "Timeboard GUI - 5 Mins")
@@ -218,6 +224,41 @@ I know what you're thinking... "What in the world is this anomaly graph showing 
 The gray band is the anomaly overlay that our function creates over our metric graph. The width of it was set to 2 in our API call, so it's measuring this standard deviation. The consistency of the overlay is dictated by the basic algorithm we specified in our function. The basic algorithm identifies potential anomalies but doesn't incorporate the spike and dip pattern that's occuring throughout the time interval. A robust or agile algorithm would account for that pattern. 
 
 ### Monitoring Data
+
+Earlier we setup our custom metric to measure a value from 0 to 1000 every 45 seconds. Now we're going to create a few monitors that'll alert us when that metric goes above a certain value.
+
+When navigating to Monitors - Create New Monitor, you're presented with a variety of monitor types. For our purposes, we're choosing a metric monitor and the threshold alert detection method, which will trigger an alert anytime a metric crosses a specific threshold. 
+
+The monitor setup UI gives users the ability to customize their monitors seamlessly. 
+
+![Monitor Setup UI](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_setup_gui.PNG)
+
+I'm defining the parameters for the metric to include three separate monitors:
+
+- Warning threshold of 500
+
+![Threshold Warning](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Warning_Monitor.PNG)
+
+- Alerting threshold of 800
+- Although the image below displays a test notification, notice how the alert includes the metric value and the host IP.
+
+![Threshold Alert](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Alert_Monitor.PNG)
+
+- Notification if there's No Data for the query over the last 10 minutes. 
+
+![No Data Alert](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Missing_Data_Monitor.PNG)
+
+With these monitors setup, I'm noticing I'm getting quite a few notifications throughout the day. Scheduling a couple of downtime monitors will help manage this.
+
+- Downtime monitor that silences notifications from 7PM to 9PM daily, Monday through Friday.
+
+![M-F Downtime Monitor](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime.PNG)
+![Weekdays](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime_Weekdays.PNG)
+
+- Downtime monitor that silences notifications all day Saturday and Sunday. 
+
+![Sat-Sun Downtime Monitor](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime1.PNG)
+![Weekends](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime_Weekend.PNG)
 
 ### Collecting APM Data
 
