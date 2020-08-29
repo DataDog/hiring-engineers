@@ -105,7 +105,13 @@ With the environment now setup, all I need to do is define the environment I'm i
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Postman_datadog_env.PNG">
 </p>
 
-Within the Dashboard dropdown in Postman, I choose POST - Create a Dashboard. The Body tab includes the code I need to edit to fit my customizations. My goal here is to create one dashboard that includes three separate graphing displays--one for my custom metric, one for my Postgres integration with the anomaly function applied, and one for my custom metric with the rollup function applied. 
+Within the Dashboard dropdown in Postman, I choose POST - Create a Dashboard. The Body tab includes the code I need to work with to create my dashboard. 
+
+<p align="center">
+        <img width="800" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postman%20GUI.PNG">
+</p>
+
+My goal here is to create one dashboard that includes three separate graphing displays--one for my custom metric, one for my Postgres integration with the anomaly function applied, and one for my custom metric with the rollup function applied. 
 
 I'm using timeseries widgets here to visualize the evolution of these metrics over time. 
 
@@ -234,8 +240,13 @@ After sending the API call, the timeboard is created in Datadog's Dashboard GUI.
 
 My last step in visualizing this data is to interact with it via the UI. I've set my Timeboard timeframe to 5 minutes and have taken a snapshot and sent it to myself. 
 
-![Timeboard GUI 5 Minutes](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Timeboard_5_Mins.PNG "Timeboard GUI - 5 Mins")
-![Timeboard Snapshot](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Timeboard_snapshot.PNG "Timeboard Snapshot")
+<p align="center">
+        <img width="900" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Timeboard_5_Mins.PNG">
+</p>
+
+<p align="center">
+        <img width="600" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Timeboard_snapshot.PNG">
+</p>
 
 I know what you're thinking... "What in the world is this anomaly graph showing me?" Great question!
 
