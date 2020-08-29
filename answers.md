@@ -266,7 +266,9 @@ When navigating to Monitors - Create New Monitor, you're presented with a variet
 
 The monitor setup UI gives users the ability to customize their monitors seamlessly. 
 
-![Monitor Setup UI](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_setup_gui.PNG)
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_setup_gui1.PNG">
+</p>
 
 I'm defining the parameters for the metric to include three separate monitors:
 
