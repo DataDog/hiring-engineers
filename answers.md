@@ -1,6 +1,6 @@
 ### Prerequisites - Setting up the Environment
 
-My Datadog environment setup includes an agent install on my laptop Windows OS and a Ubuntu Linux VM via Vagrant. The setup directions mention that any OS can be used, but having never worked with Vagrant before, I didn't want to pass up an opportunity to challenge myself and learn something new. It was certainly also a backup in case I really did run into dependency issues--best to be prepared!
+My Datadog environment setup includes an agent install on my laptop Windows OS and an Ubuntu Linux VM via Vagrant. I utilize my Windows OS for a majority of the exercises and the Linux VM to test tagging and complete the APM instrumentation.
 
 Upon downloading the Datadog Agent on my localhost, I'm now able to browse to http://127.0.0.1:5002/ where I can view my connection as well as other agent info. This UI also provides the ability to restart the agent service. Neat!
 
@@ -8,7 +8,7 @@ Upon downloading the Datadog Agent on my localhost, I'm now able to browse to ht
         <img width="700" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/agent_manager.PNG">
 </p>
 
-Here's my agent manager, up and running. 
+Here's my Windows OS agent manager, up and running. 
 
 ***
 
@@ -55,15 +55,21 @@ There are a number of different functions or metric types that can be used for c
 
 For my custom metric, I'm using the gauge function, which takes a value from a specific time interval and then continuously does so for each specified time interval after. This seemed to be the most appropriate type since we're looking to include a random value between 0 and 1000 in our check. 
 
-![Custom Agent Check](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/custom_check_code.PNG "Custom Agent Check")
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/custom_check_code.PNG">
+</p>
 
 Changing the check's collection interval involves updating the config file (my_metric.yaml) we created prior. The original instance of this file is populated by an empty sequence called instances.
 
-![My_Metric.yaml Empty](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/my_metric_yaml.PNG "Empty my_metric.yaml")
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/my_metric_yaml.PNG">
+</p>
 
 To update our collection interval, we'll add a min_collection_interval of 45, so our check submits its metric once every 45 seconds as opposed to the default of 15 seconds. 
 
-![Interval Change](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/instances_yaml.PNG "Interval Change")
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/instances_yaml.PNG">
+</p>
 
 Once the code is run, a random value between 0 and 1000 is chosen every 45 seconds. 
 
