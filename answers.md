@@ -48,10 +48,16 @@ Fill out the config file accordingly and then restart the agent for the integrat
 
 ![Postgresql Config Enable](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgres_config_updated.PNG "Postgres.d Configuration")
 
-Following the enabling of the Postgres integration, I'm now able to pull metrics related to postgresql. To do a simple check of how the integration allows Datadog to interact with Postgres, I pull up the db.count Postgres metric graph. An initial look shows I have one database, and upon creating another Test database, the graph count jumps to two. I can confirm now that configurations within Postgres are monitored and mapped in real time in Datadog. 
+Following the enabling of the Postgres integration, I'm now able to pull metrics related to postgresql. 
 
 <p align="center">
         <img width="700" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgresql_metrics.PNG">
+</p>
+
+To do a simple check of how the integration allows Datadog to interact with Postgres, I pull up the db.count Postgres metric graph. An initial look shows I have one database, and upon creating another Test database, the graph count jumps to two. Deleting the Test database changes the db value back to one. I can confirm now that configurations within Postgres are monitored and mapped in real time in Datadog. 
+
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgres_dbcount_monitor_after_deletion.PNG">
 </p>
 
 Check out the Agent Manager--a postgres collector displays now too.
