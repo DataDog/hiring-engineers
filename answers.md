@@ -318,7 +318,7 @@ I'm defining the parameters for the custom metric monitor to include three separ
 
 With these monitors setup, I'm getting quite a few notifications throughout the day. Scheduling downtime monitors will help manage this.
 
-In Monitors - Manage Downtime, you can create and customize downtime montiors to fit your schedule.
+In Monitors - Manage Downtime, you can create and customize downtime monitors to fit your schedule.
 
 <p align="center">
         <img width="600" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/downtime_monitor.PNG">
@@ -428,7 +428,7 @@ Cue a new way to utilize Datadog... security package monitoring.
 
 In this use case, the Datadog Agent gets installed on a Raspberry Pi, which is connected to a scale or pressure mat located conveniently in your mailbox or by your front door. Whenever a package is delivered to one of these locations, the scale detects the change in weight and sends that metric to Datadog. Datadog could track the fluctuation in expected weight and send the user a notification when that value meets an expected threshold or doesn't. Sounds a lot like metric monitoring with the anomaly function attached would be useful here.
 
-Imagine you had this setup and were expecting a package. You turn the scale on while you're not home and eventually you're notified that the package was delivered. Your setup could include additional components such as cameras to monitor who's delivering or what's been delivered. Now imagine you go a step further and install a net above your front door. Your package was successfully delivered two hours ago, but now you've been notified that the expected weight has suddenly dropped to zero. Your camera activates, you see the culprit, and **_bam_** you activate your net trap! It works everytime! At least in the movies.
+Imagine you had this setup and were expecting a package. You turn the scale on while you're not home and eventually you're notified that the package was delivered. Your setup could include additional components such as cameras to monitor who's delivering or what's been delivered. Now imagine you go a step further and install a net above your front door. Your package was successfully delivered two hours ago, but now you've been notified that the expected weight has suddenly dropped to zero. Your camera activates, you see the culprit, and **_bam_** you activate your net trap! It works every time! At least in the movies.
 
 <p align="center">
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/giphy.gif">
