@@ -37,7 +37,7 @@ Note that in the user creation screenshot below, the 1234 password for the user 
         <img width="800" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/datadog_sql_user_creation.PNG">
 </p>
 
-Once the user's created, we enable the postgres.d configuration file in C:\ProgramData\Datadog\conf.d\postgres.d. The config file is filled out accordingly, and the agent gets restarted for the integration changes to take effect. 
+Once the user's created, we enable the postgres.d configuration file in C:\ProgramData\Datadog\conf.d\postgres.d. Fill out the config file accordingly and then restart the agent for the integration changes to take effect. 
 
 ![Postgresql Config Enable](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgres_config_updated.PNG "Postgres.d Configuration")
 
@@ -59,7 +59,7 @@ Setting up a custom agent check begins with the creation of a configuration file
 
 There are a number of different functions or metric types that can be used for custom agent checks. Different functions/metric types result in different graphing capabilities and ultimately different displays. 
 
-For my custom metric, I'm using the gauge function, which takes a value from a specific time interval and then continuously does so for each specified time interval after. This seemed to be the most appropriate type since we're looking to include a random value between 0 and 1000 in our check. 
+For my custom metric, I'm using the gauge function, which maps a value from a specific time interval and then continuously does so for each specified time interval after. This seemed to be the most appropriate type since we're looking to include a random value between 0 and 1000 in our check. 
 
 <p align="center">
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/custom_check_code.PNG">
@@ -77,11 +77,11 @@ To update our collection interval, we'll add a min_collection_interval of 45, so
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/instances_yaml.PNG">
 </p>
 
-Once the code is run, a random value between 0 and 1000 is chosen every 45 seconds. 
+Once the code is run, a random value between 0 and 1000 is mapped at minimum every 45 seconds. 
 
 ![my_metric Fullscreen](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/metric_stats_fullscreen.PNG "My_metric.gauge Fullscreen")
 
-In case you were wondering, and I know you are--yes, the collection interval can be changed without needing to modify the configuration file. In the Datadog Metrics - Summary GUI, you can pull up individual metrics and edit their metadata accordingly.
+In case you were wondering, and I know you are--yes, the collection interval can be changed without needing to modify the configuration file. In the Datadog Metrics - Summary GUI, you can pull up individual metrics and edit their metadata accordingly. Notice the interval field in the screenshot below. 
 
 ![Interval GUI Change](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/my_metric_interval_gui_change.PNG "Interval GUI Change")
 
@@ -97,19 +97,19 @@ Postman's an API client that allows developers to better test and create APIs. I
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postman_datadog_collection.PNG">
 </p>
 
-Upon importing the Datadog collection json, I'm able to view a large variety of Datadog-specific API calls. Before I can start sending calls though, I need to setup my environment, which includes my Datadog site, API and applications keys required for authentication. 
+Upon importing the Datadog collection json, I'm now able to view a large variety of Datadog-specific API calls. Before I can start sending calls though, I need to setup my environment, which includes configuring my Datadog site, API and applications keys required for authentication. 
 
 <p align="center">
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postman_env_creation.PNG">
 </p>
 
-With the environment now setup, all I need to do is define the environment I'm in, and I'm ready to create this timeboard! 
+With the environment now setup, all I need to do is define the environment I'm in (located in the top right portion of the Postman GUI), and I'm ready to start creating this timeboard! 
 
 <p align="center">
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Postman_datadog_env.PNG">
 </p>
 
-Within the Dashboard dropdown in Postman, I choose POST - Create a Dashboard. The Body tab includes the code I need to work with to create my dashboard. 
+Within the Dashboard dropdown in Postman, I choose POST - Create a Dashboard. The Body tab includes the code I need to work with to create my dashboard. In the screenshot below, I've already defined a title for my dashboard and values for my first widget.
 
 <p align="center">
         <img width="800" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postman%20GUI.PNG">
@@ -133,9 +133,9 @@ The first one is relatively straightforward. We're specifying the definition of 
             }
         },
 ```
-For my second widget code block, I'm pulling a Postgres integration metric (buffer hits) with the addition of the anomaly function. The anomaly function detects abnormal metric fluctuations and is displayed on our graph as a gray band that maps expected behavior based on historical trends. Anything out of the expected behavior range is flagged.
+For my second widget, I'm pulling a Postgres integration metric (buffer hits) with the addition of the anomaly function. The anomaly function detects abnormal metric fluctuations and is displayed on our graph as a gray band that maps expected behavior based on historical trends. Anything out of the expected behavior range is flagged.
 
-Within my anomalies function, I've specified which metric I want to utilize, the algorithm to detect said anomalies and the bounds. Algorithms to detect anomalies include basic, agile and robust. Here we're using basic as this is a metric with no repeating seasonal patterns. Bounds dictate the width of the gray band and are essentially the standard deviations for your metric. As indicated in the Datadog dashboard documentation, "2 or 3 should be large enough to include most 'normal' points". 
+Within my anomalies function, I've specified which metrics I want to utilize--the algorithm to detect anomalies and bounds. Algorithms to detect anomalies include basic, agile and robust. The basic algorithm is best suited for metrics with no repeating seasonal pattern. Bounds dictate the width of the gray band and are essentially the standard deviations for your metric. As indicated in the Datadog dashboard documentation, "2 or 3 should be large enough to include most 'normal' points". 
 
 ```
         {
@@ -152,9 +152,11 @@ Within my anomalies function, I've specified which metric I want to utilize, the
 
 ```
 
-The final widget block pulls my custom metric gauge with the rollup function applied. The rollup function allows you to define the time intervals for your graph and how the data points are collected during that time interval. 
+My final widget block pulls my custom metric gauge with the rollup function applied. 
 
-In my code snippet, my method is sum, and my the time interval is set to 3600 seconds (1 hour).
+The rollup function allows you to define the time intervals for your graph and how the data points are collected during that time interval. 
+
+In my code snippet, my method is sum, and the time interval is set to 3600 seconds (1 hour).
 
 ```
         {
@@ -242,7 +244,7 @@ After sending the API call, the timeboard is created in Datadog's Dashboard GUI.
 
 #### _Timeboard UI Tasks_
 
-My last step in visualizing this data is to interact with it via the UI. I've set my Timeboard timeframe to 5 minutes and have taken a snapshot and sent it to myself. 
+My last step in visualizing this data is to interact with it via the GUI. I've set my timeboard timeframe to 5 minutes and have taken a snapshot and sent it to myself. 
 
 <p align="center">
         <img width="900" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Timeboard_5_Mins.PNG">
@@ -270,32 +272,48 @@ The monitor setup UI gives users the ability to customize their monitors seamles
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_setup_gui1.PNG">
 </p>
 
-I'm defining the parameters for the metric to include three separate monitors:
+I'm defining the parameters for the custom metric monitor to include three separate monitors:
 
 - Warning threshold of 500
 
-![Threshold Warning](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Warning_Monitor.PNG)
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Warning_Monitor.PNG">
+</p>
 
 - Alerting threshold of 800
-- Although the image below displays a test notification, notice how the alert includes the metric value and the host IP.
+  - Although the image below displays a test notification, notice how the alert includes the metric value and the host IP.
 
-![Threshold Alert](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Alert_Monitor.PNG)
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Alert_Monitor.PNG">
+</p>
 
 - Notification if there's No Data for the query over the last 10 minutes. 
 
-![No Data Alert](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Missing_Data_Monitor.PNG)
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Missing_Data_Monitor.PNG">
+</p>
 
 With these monitors setup, I'm noticing I'm getting quite a few notifications throughout the day. Scheduling a couple of downtime monitors will help manage this.
 
 - Downtime monitor that silences notifications from 7PM to 9PM daily, Monday through Friday.
 
-![M-F Downtime Monitor](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime.PNG)
-![Weekdays](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime_Weekdays.PNG)
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime.PNG">
+</p>
+
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime_Weekdays.PNG">
+</p>
 
 - Downtime monitor that silences notifications all day Saturday and Sunday. 
 
-![Sat-Sun Downtime Monitor](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime1.PNG)
-![Weekends](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime_Weekend.PNG)
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime1.PNG">
+</p>
+
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime_Weekend.PNG">
+</p>
 
 ***
 
