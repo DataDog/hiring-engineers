@@ -94,6 +94,8 @@ Once the code is run, a random value between 0 and 1000 is mapped at minimum eve
 
 ![my_metric Fullscreen](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/metric_stats_fullscreen.PNG "My_metric.gauge Fullscreen")
 
+#### _Bonus Q_
+
 In case you were wondering, and I know you are--yes, the collection interval can be changed without needing to modify the configuration file. In the Datadog Metrics - Summary GUI, you can pull up individual metrics and edit their metadata accordingly. Notice the interval field in the screenshot below. 
 
 ![Interval GUI Change](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/my_metric_interval_gui_change.PNG "Interval GUI Change")
@@ -255,7 +257,7 @@ The code below is my finished body script for the requested timeboard (displayed
 }
 ```
 
-After sending the API call through Postman, the timeboard is created in Datadog's Dashboard GUI. 
+After sending the API call through Postman, the timeboard is created in Datadog's Dashboard GUI. Here's a [link](https://p.datadoghq.com/sb/2t60f85wulhjxh6f-9e0f7fdc177879c354759a2ad206fa89) if you want to check it out!
 
 ![Timeboard GUI](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Timeboard_with_anomalies_new.PNG "Timeboard GUI")
 
@@ -270,6 +272,8 @@ My last step in visualizing this data is to interact with it via the GUI. I've s
 <p align="center">
         <img width="600" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Timeboard_snapshot.PNG">
 </p>
+
+#### _Bonus Q_
 
 I know what you're thinking... "What in the world is this anomaly graph showing me?" Great question!
 
@@ -310,7 +314,7 @@ I'm defining the parameters for the custom metric monitor to include three separ
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Missing_Data_Monitor.PNG">
 </p>
 
-#### _Downtime Scheduling_
+#### _Downtime Scheduling (Bonus Q)_ 
 
 With these monitors setup, I'm getting quite a few notifications throughout the day. Scheduling downtime monitors will help manage this.
 
@@ -403,6 +407,14 @@ The issue this time was that the GUI no longer populated any active services, an
 </p>
 
 I've spent more hours than I'd like to admit on this portion of the exercise, so if the issue is obvious, please let me know!
+
+#### _Bonus Q_
+
+Despite the minor setback, I can still answer the bonus question. What's the difference between a Service and a Resource? 
+
+A Service is a grouping of processes that perform the same functionality, divided into types (cache, custom, web, database) to provide efficient scaling capabilities for a growing organization. 
+
+A Resource is an action for a Service that's typically a URL, query or job--essentially one of the processes mentioned in the Service definition.
 
 ***
 
