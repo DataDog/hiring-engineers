@@ -31,7 +31,7 @@ Once the tags are added, the file gets saved, the agent service is restarted, an
 
 I utilized PostgreSQL for this portion of the exercise and started the database integration process by creating a dummy Datadog database. This was followed by the creation of the datadog user. 
 
-Note that in the user creation screenshot below, the 1234 password for the user is for show only. In a live Production environment, 1234 would be the last password you'd want to use. Highly unsecure. 0/10--would not recommend. 
+Note that in the user creation screenshot below, the 1234 password for the user is for show only. In a live Production environment, 1234 would be the last password you'd want to use. It's highly unsecure and a 0/10--would not recommend. 
 
 <p align="center">
         <img width="800" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/datadog_sql_user_creation.PNG">
@@ -327,13 +327,15 @@ In Monitors - Manage Downtime, you can create and customize downtime montiors to
 
 ### Collecting APM Data
 
-This section honestly threw me for a loop. At one point, I was able to get the Flask application instrumented and visible in the APM - Services GUI. The issue though was that I couldn't replicate what I had done after creating a new VM when I ran into problems applying additional configurations to my first application. 
+This section honestly threw me for a loop. 
+
+I was able to get the Flask application instrumented and visible in the APM - Services GUI the first time I attempted the process but ultimately unable to add additional configurations so that they'd also reflect in the interface. I decided after some troubleshooting to spin up a new VM to retry the process. The second time around, I could instrument the app but none of the information would pull into the UI, not even the service itself despite confirming the connection.  
 
 I'll go through what I succeeded in doing the first time around and where I'm stuck scratching my head today.
 
-I began this process by booting up the Linux VM I had created earlier for this exercise. The Datadog agent had already been installed, so it was just a matter of ensuring the agent was running, and APM was enabled in the datadog.yaml file. With both confirmed, I moved onto installing pip, flask and ddtrace. 
+I began by booting up the Linux VM I had created earlier for this exercise. The Datadog agent had already been installed, so it was just a matter of ensuring the agent was running, and APM was enabled in the datadog.yaml file. 
 
-I then created my Flask app Python file (datadog_flask.py) and ran the following against it.
+With both confirmed, I moved onto installing pip, flask and ddtrace. Once installed, I created my Flask app Python file (datadog_flask.py) and ran the following against it.
 
 ```
 export DD_SERVICE=hello 
@@ -345,15 +347,7 @@ followed by:
 ddtrace-run python datadog_flask.py
 ```
 
-The first time I did this, the service popped up in the APM - Services GUI. 
-
-(I spun up another Flask app and instrumented it the same way I did the first following this success, which is why there's a hello2 service as well.)
-
-<p align="center">
-        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_vagrant3.PNG">
-</p>
-
-I was also able to confirm it was working by running the curl command below in a separate terminal. 
+I received the expected response and confirmed it by running the curl command below in a separate terminal. 
 
 ```
 curl http://0.0.0.0:5050/
@@ -363,9 +357,17 @@ curl http://0.0.0.0:5050/
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_vagrant.PNG">
 </p>
 
+The service popped up in the APM - Services GUI shortly after.
+
+(I spun up another Flask app and instrumented it the same way I did the first following this success, which is why there's a hello2 service as well.)
+
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_vagrant3.PNG">
+</p>
+
 At this point, I was ready to configure additional environment variables, but this is where I started running into issues. 
 
-Running the configurations below ultimately didn't result in a change to the APM GUI. 
+Running the configurations below weren't resulting in a change to the APM GUI. 
 
 ```
 DD_SERVICE="hello" DD_ENV="test" DD_TRACE_ANALYTICS_ENABLED=true DD_PROFILING_ENABLED=true
@@ -377,13 +379,13 @@ The second time around, I installed the pre-requisites and confirmed the datadog
 
 I tested the setup again with the curl command and received a success. 
 
-The issue this time was that the GUI no longer showed active services, and this is where I'm stuck. 
+The issue this time was that the GUI no longer populated any active services, and this is where I've been stuck. 
 
 <p align="center">
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_no_services.PNG">
 </p>
 
-I spent more hours than I'd care to share on this portion of the exercise, so if the issue is obvious, please let me know!
+I spent more hours than I'd like to admit on this portion of the exercise, so if the issue is obvious, please let me know!
 
 ***
 
