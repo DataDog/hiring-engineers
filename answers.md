@@ -339,8 +339,16 @@ I'll go through what I did to attempt to instrument the Flask application provid
 
 I came home two weeks ago to an empty front door after I was informed by a tracking app that a package I ordered had been delivered. I didn't want to jump to conclusions when it occurred, so I checked the address I had specified for the delivery, rechecked the tracking application, and walked around my apartment for half an hour wondering if the mailman had dropped it off in a mailroom I had no knowledge of. 
 
-After a thorough investigation, I concluded the package was stolen. Luckily it was an item that could easily be replaced by the company I ordered it through, but imagine if grandma had sent her world famous chocolate chip cookies, or if you ordered a one-of-a-kind holographic pokemon card, or if the company you ordered it through simply couldn't do anything about it. You'd be saltier than I've been for the past two weeks.
+After a thorough investigation, I concluded the package was stolen. Luckily it was an item that was replaced by the company I ordered it through, but imagine if grandma had sent her world famous chocolate chip cookies, or if you ordered a one-of-a-kind holographic pokemon card, or if the company you ordered it through simply didn't do anything about it. You'd be saltier than I've been for the past two weeks.
 
 Cue a new way to utilize Datadog... security package monitoring. 
 
-In this use case, the Datadog Agent gets installed on a Raspberry Pi, which is connected to a scale or pressure mat located conveniently in your mailbox or by your front door. Whenever a package is delivered to one of these locations, the scale detects the change in weight and sends that metric to Datadog. We could use an anomaly function to track what's expected versus not expected and activate a camera if the value goes outside of that bound. 
+In this use case, the Datadog Agent gets installed on a Raspberry Pi, which is connected to a scale or pressure mat located conveniently in your mailbox or by your front door. Whenever a package is delivered to one of these locations, the scale detects the change in weight and sends that metric to Datadog. Datadog could track the fluctuation in expected weight and send the user a notification when that value goes outside the expected range. Sounds a lot like metric monitoring with the anomaly function attached would be useful here. 
+
+Imagine you had this setup and were expecting a package. You turn the scale on while you're not home and eventually you're notified that the package was delivered. Your setup could include additional components such as cameras to monitor who's delivering or what's been delivered. Now imagine you go a step further and install a net trap above your front door. Your package was successfully delivered two hours ago, but now you're notified that the expected weight has suddenly dropped to zero. Your camera activates, you see the culprit, and **_bam_** you activate your net trap! 
+
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/giphy.gif">
+</p>
+
+The mailman may find himself the victim more often than not, but hey, we're just brainstorming here. 
