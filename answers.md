@@ -301,6 +301,18 @@ With these monitors setup, I'm noticing I'm getting quite a few notifications th
 
 ### Collecting APM Data
 
+I'm going to be completely honest about this section. It kicked my ass, and the process of troubleshooting left me more confused than when I started. 
+
+I'll go through what I did to attempt to instrument the Flask application provided and ultimately show you where I was stuck. Hopefully someone will notice where I went wrong immediately and point it out, so I can sleep easy at night knowing the resolution.
+
+
+
 ***
 
-### Final Question
+### Final Question - Is there anything creative you'd use Datadog for?
+
+I came home two weeks ago to an empty front door after I was informed by a tracking app that a package I ordered had been delivered. I didn't want to jump to conclusions when it occurred, so I checked the address I had specified for the delivery, rechecked the tracking application, and walked around my apartment for half an hour wondering if the mailman had dropped it off in a mailroom I had no knowledge of. 
+
+After a thorough investigation, I concluded the package was stolen. Luckily it was an item that could easily be replaced by the company I ordered it through, but imagine if grandma had sent her world famous chocolate chip cookies, or if you ordered a one-of-a-kind holographic pokemon card, or if the company you ordered it through simply didn't believe you. You'd be saltier than I've been for the past two weeks.
+
+Cue a new way to utilize Datadog... security package monitoring. We install the Datadog Agent on a Raspberry Pi, which is connected to a scale or pressure mat located conveniently in your mailbox or by your front door. 
