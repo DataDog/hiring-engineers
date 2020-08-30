@@ -300,7 +300,7 @@ With these monitors setup, I'm getting quite a few notifications throughout the 
 In Monitors - Manage Downtime, you can create and customize downtime montiors to fit your schedule.
 
 <p align="center">
-        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/downtime_monitor.PNG">
+        <img width="600" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/downtime_monitor.PNG">
 </p>
 
 - Downtime monitor that silences notifications from 7PM to 9PM daily, Monday through Friday.
@@ -310,7 +310,7 @@ In Monitors - Manage Downtime, you can create and customize downtime montiors to
 </p>
 
 <p align="center">
-        <img width="600" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime_Weekdays.PNG">
+        <img width="700" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime_Weekdays.PNG">
 </p>
 
 - Downtime monitor that silences notifications all day Saturday and Sunday. 
@@ -320,7 +320,7 @@ In Monitors - Manage Downtime, you can create and customize downtime montiors to
 </p>
 
 <p align="center">
-        <img width="600" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime_Weekend.PNG">
+        <img width="700" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_Downtime_Weekend.PNG">
 </p>
 
 ***
