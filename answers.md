@@ -2,7 +2,7 @@
 
 My Datadog environment setup includes an agent install on my laptop Windows OS and an Ubuntu Linux VM via Vagrant. I utilize my Windows OS for a majority of the exercises and the Linux VM to test tagging and complete the APM instrumentation.
 
-Upon downloading the Datadog Agent on my localhost, I'm now able to browse to http://127.0.0.1:5002/ where I can view my connection as well as other agent info. This UI also provides the ability to restart the agent service. Neat!
+Upon downloading the Datadog Agent on my localhost, I'm now able to browse to http://127.0.0.1:5002/ where I can view my connection to Datadog as well as other agent info. This UI also provides the ability to restart the agent service.
 
 <p align="center">
         <img width="700" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/agent_manager.PNG">
