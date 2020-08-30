@@ -394,7 +394,7 @@ DD_SERVICE="hello" DD_ENV="test" DD_TRACE_ANALYTICS_ENABLED=true DD_PROFILING_EN
 
 I got to a point where I wanted to start again and recreate my VM. Maybe I had missed something.
 
-The second time around, I installed the pre-requisites and confirmed the datadog agent was running and trace logs were generating. I ran the same export and ddtrace-run commands, and tested the setup again with the curl command. Everything looked functional.  
+The second time around, I installed the pre-requisites and confirmed the agent was running and trace logs were generating. I ran the same export and ddtrace-run commands, and tested the setup again with the curl command. Everything looked functional.  
 
 The issue this time was that the GUI no longer populated any active services, and this is where I've been stuck. 
 
