@@ -327,11 +327,63 @@ In Monitors - Manage Downtime, you can create and customize downtime montiors to
 
 ### Collecting APM Data
 
-I'm going to be completely honest about this section. It kicked my ass, and the process of troubleshooting left me more confused than when I started. 
+This section honestly threw me for a loop. At one point, I was able to get the Flask application instrumented and visible in the APM - Services GUI. The issue is that I couldn't replicate what I had done after the creation of a new VM when I ran into issues applying additional configurations to my first application. 
 
-I'll go through what I did to attempt to instrument the Flask application provided and ultimately show you where I was stuck. Hopefully someone will notice where I went wrong immediately and point it out, so I can sleep easy at night knowing the resolution.
+I'll go through what I succeeded in doing the first time around and where I'm stuck scratching my head today.
 
+I began this process by booting up the Linux VM I had created earlier for this exercise. The Datadog agent had already been installed, so it was just a matter of ensuring the agent was running, and APM was enabled in the datadog.yaml file. With both confirmed, I moved onto installing pip, flask and ddtrace. 
 
+I then created my Flask app Python file (datadog_flask.py) and ran the following against it.
+
+```
+export DD_SERVICE=hello 
+```
+
+followed by:
+
+```
+ddtrace-run python datadog_flask.py
+```
+
+The first time I did this, the service popped up in the APM - Services GUI. 
+
+(I spun up another Flask app and instrumented it the same way I did the first following this success, which is why there's a hello2 service as well.)
+
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_vagrant3.PNG">
+</p>
+
+I was also able to confirm it was working by running the curl command below in a separate terminal. 
+
+```
+curl http://0.0.0.0:5050/
+```
+
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_vagrant.PNG">
+</p>
+
+At this point, I was ready to configure additional environment variables, but this is where I started running into issues. 
+
+Running the configurations below ultimately didn't result in a change to the APM GUI. 
+
+```
+DD_SERVICE="hello" DD_ENV="test" DD_TRACE_ANALYTICS_ENABLED=true DD_PROFILING_ENABLED=true
+```
+
+I got to a point where I wanted to start again and recreate my VM. Maybe I had missed something.
+
+The second time around, I installed the pre-requisites and confirmed the datadog agent was running and trace logs were generating. From there I ran the same two commands--export and ddtrace-run. 
+
+I tested the setup again with the curl command and received a success. 
+
+The issue this time was that the GUI no longer showed active services, and this is where I'm stuck. 
+
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_no_services.PNG">
+</p>
+
+I spent more hours than I'd care to share on this portion of the exercise, so if the issue is obvious, please let me know!
 
 ***
 
@@ -351,4 +403,4 @@ Imagine you had this setup and were expecting a package. You turn the scale on w
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/giphy.gif">
 </p>
 
-The mailman may find himself the victim more often than not, but hey, we're just brainstorming here. 
+The mailman may find himself the victim more often than not, but hey, we're just brainstorming here!
