@@ -352,7 +352,9 @@ I'll go through what I succeeded in doing the first time around and where I'm st
 
 I began by booting up the Linux VM I had created earlier for this exercise. The Datadog agent had already been installed, so it was just a matter of ensuring the agent was running, and APM was enabled in the datadog.yaml file. 
 
-With both confirmed, I moved onto installing pip, flask and ddtrace. Once installed, I created my Flask app Python file (datadog_flask.py) and ran the following against it.
+With both confirmed, I moved onto installing pip, flask and ddtrace. 
+
+Once installed, I created my Flask app Python file (datadog_flask.py) and ran the following against it.
 
 ```
 export DD_SERVICE=hello 
@@ -384,7 +386,7 @@ The service popped up in the APM Services GUI shortly after.
 
 At this point, I was ready to configure additional environment variables, but this is where I started running into issues. 
 
-Running the configurations below weren't resulting in a change to the APM GUI, aka I wasn't seeing the additional information that the configurations should've enabled.
+Running the configurations below weren't resulting in a change to the APM GUI aka I wasn't seeing the additional information that the configurations should've enabled.
 
 ```
 DD_SERVICE="hello" DD_ENV="test" DD_TRACE_ANALYTICS_ENABLED=true DD_PROFILING_ENABLED=true
