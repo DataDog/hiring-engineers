@@ -327,7 +327,7 @@ In Monitors - Manage Downtime, you can create and customize downtime montiors to
 
 ### Collecting APM Data
 
-This section honestly threw me for a loop. At one point, I was able to get the Flask application instrumented and visible in the APM - Services GUI. The issue though was that I couldn't replicate what I had done after creating a new VM when I ran into issues applying additional configurations to my first application. 
+This section honestly threw me for a loop. At one point, I was able to get the Flask application instrumented and visible in the APM - Services GUI. The issue though was that I couldn't replicate what I had done after creating a new VM when I ran into problems applying additional configurations to my first application. 
 
 I'll go through what I succeeded in doing the first time around and where I'm stuck scratching my head today.
 
