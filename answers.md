@@ -24,20 +24,27 @@ Within datadog.yaml, I can add a variety of tags under the tags section.
 
 Once the tags are added, the file gets saved, the agent service is restarted, and after 15-30 minutes, the newly-added tags appear in the host info section within the host map. 
 
-![Host Map](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/host_map_windows_tags.PNG "Windows Host Map - Tags")
-![Host Map](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/host_map_vagrant_tags.PNG "Vagrant Host Map - Tags")
+<p align="center">
+        <img width="780" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/host_map_windows_tags.PNG">
+</p>
+
+<p align="center">
+        <img width="780" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/host_map_vagrant_tags.PNG">
+</p>
 
 #### _Database Install and Integration_
 
 I utilized PostgreSQL for this portion of the exercise and started the database integration process by creating a dummy Datadog database. This was followed by the creation of the datadog user. 
 
-Note that in the user creation screenshot below, the 1234 password for the user is for show only. In a live Production environment, 1234 would be the last password you'd want to use. It's highly unsecure and a 0/10--would not recommend. 
+Note that in the user creation screenshot below, the 1234 password for the user is for show only. In a live Production environment, 1234 would be the last password you'd want to use. It's highly unsecure and scores a 0/10 in password security--would not recommend. 
 
 <p align="center">
         <img width="800" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/datadog_sql_user_creation.PNG">
 </p>
 
-Once the user's created, we enable the postgres.d configuration file in C:\ProgramData\Datadog\conf.d\postgres.d. Fill out the config file accordingly and then restart the agent for the integration changes to take effect. 
+Once the user's created, we enable the postgres.d configuration file in C:\ProgramData\Datadog\conf.d\postgres.d. 
+
+Fill out the config file accordingly and then restart the agent for the integration changes to take effect. 
 
 ![Postgresql Config Enable](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgres_config_updated.PNG "Postgres.d Configuration")
 
