@@ -48,7 +48,7 @@ Fill out the config file accordingly and then restart the agent for the integrat
 
 ![Postgresql Config Enable](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgres_config_updated.PNG "Postgres.d Configuration")
 
-Following the enabling of the Postgres integration, I'm now able to pull metrics related to postgresql. 
+Following the enabling of the Postgres integration, I'm now able to pull metrics related to Postgres. 
 
 <p align="center">
         <img width="700" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgresql_metrics.PNG">
@@ -60,7 +60,7 @@ To do a simple check of how the integration allows Datadog to interact with Post
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postgres_dbcount_monitor_after_deletion.PNG">
 </p>
 
-Check out the Agent Manager--a postgres collector displays now too.
+Check out the Agent Manager--a new Postgres collector displays now too.
 
 <p align="center">
         <img width="700" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/agent_manager_postgres_collector.PNG">
@@ -72,7 +72,7 @@ Setting up a custom agent check begins with the creation of a configuration file
 
 There are a number of different functions or metric types that can be used for custom agent checks. Different functions/metric types result in different graphing capabilities and ultimately different displays. 
 
-For my custom metric, I'm using the gauge function, which maps a value from a specific time interval and then continuously does so for each specified time interval after. This seemed to be the most appropriate type since we're looking to include a random value between 0 and 1000 in our check. 
+For my custom metric, I'm using the gauge function, which maps a value from a specified time interval and then continuously does so for each specified time interval after. This seemed to be the most appropriate type since we're looking to include a random value between 0 and 1000 in our check and random.randint() does just that.
 
 <p align="center">
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/custom_check_code.PNG">
@@ -110,13 +110,13 @@ Postman's an API client that allows developers to better test and create APIs. I
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postman_datadog_collection.PNG">
 </p>
 
-Upon importing the Datadog collection json, I'm now able to view a large variety of Datadog-specific API calls. Before I can start sending calls though, I need to setup my environment, which includes configuring my Datadog site, API and applications keys required for authentication. 
+Upon importing the Datadog collection json, I'm now able to view a large variety of Datadog-specific API calls. Before I can start sending calls though, I need to setup my environment, which includes configuring my Datadog site, API, and applications keys required for authentication. 
 
 <p align="center">
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postman_env_creation.PNG">
 </p>
 
-With the environment now setup, all I need to do is define the environment I'm in (located in the top right portion of the Postman GUI), and I'm ready to start creating this timeboard! 
+Once the environment is setup, I define the environment I'm in, and voila--I'm ready to create my timeboard.
 
 <p align="center">
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Postman_datadog_env.PNG">
@@ -128,7 +128,7 @@ Within the Dashboard dropdown in Postman, I choose POST - Create a Dashboard. Th
         <img width="800" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/postman%20GUI.PNG">
 </p>
 
-My goal here is to create one dashboard that includes three separate graphing displays--one for my custom metric, one for my Postgres integration with the anomaly function applied, and one for my custom metric with the rollup function applied. 
+My goal is to create one dashboard that includes three separate graphing displays--one for my custom metric, one for my Postgres integration with the anomaly function applied, and one for my custom metric with the rollup function applied. 
 
 I'm using timeseries widgets here to visualize the evolution of these metrics over time. 
 
@@ -146,9 +146,13 @@ The first one is relatively straightforward. We're specifying the definition of 
             }
         },
 ```
-For my second widget, I'm pulling a Postgres integration metric (buffer hits) with the addition of the anomaly function. The anomaly function detects abnormal metric fluctuations and is displayed on our graph as a gray band that maps expected behavior based on historical trends. Anything out of the expected behavior range is flagged.
+For my second widget, I'm pulling a Postgres integration metric (buffer hits) with the addition of the anomaly function. 
 
-Within my anomalies function, I've specified which metrics I want to utilize--the algorithm to detect anomalies and bounds. Algorithms to detect anomalies include basic, agile and robust. The basic algorithm is best suited for metrics with no repeating seasonal pattern. Bounds dictate the width of the gray band and are essentially the standard deviations for your metric. As indicated in the Datadog dashboard documentation, "2 or 3 should be large enough to include most 'normal' points". 
+The anomaly function detects abnormal metric fluctuations and displays on our graph as a gray band that maps expected behavior based on historical trends. Anything out of the expected behavior range is flagged.
+
+Within my anomalies function, I've specified two parameters--the algorithm to detect anomalies and bounds. 
+
+Algorithms to detect anomalies include basic, agile and robust. We'll utilize the basic algorithm as it's best suited for metrics with no repeating seasonal pattern. Bounds dictate the width of the gray band and are essentially the standard deviations for your metric. As indicated in the Datadog dashboard documentation, "2 or 3 should be large enough to include most 'normal' points". 
 
 ```
         {
@@ -165,9 +169,9 @@ Within my anomalies function, I've specified which metrics I want to utilize--th
 
 ```
 
-My final widget block pulls my custom metric gauge with the rollup function applied. 
+My final widget pulls my custom metric gauge with the rollup function applied. 
 
-The rollup function allows you to define the time intervals for your graph and how the data points are collected during that time interval. 
+The rollup function allows you to graph custom time aggregations and includes method and time parameters.
 
 In my code snippet, my method is sum, and the time interval is set to 3600 seconds (1 hour).
 
@@ -186,7 +190,7 @@ In my code snippet, my method is sum, and the time interval is set to 3600 secon
 
 ```
 
-The code below is my finished script for the requested timeboard (displayed in raw json). 
+The code below is my finished body script for the requested timeboard (displayed in raw json). 
 
 ```
 {
@@ -251,7 +255,7 @@ The code below is my finished script for the requested timeboard (displayed in r
 }
 ```
 
-After sending the API call, the timeboard is created in Datadog's Dashboard GUI. 
+After sending the API call through Postman, the timeboard is created in Datadog's Dashboard GUI. 
 
 ![Timeboard GUI](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Timeboard_with_anomalies_new.PNG "Timeboard GUI")
 
@@ -275,7 +279,7 @@ The gray band is the anomaly overlay that our function creates over our metric g
 
 ### Monitoring Data
 
-Earlier we setup our custom metric to measure a value from 0 to 1000 every 45 seconds. Now we're going to create a few monitors that'll alert us when that metric goes above a certain value.
+Earlier we setup our custom metric to measure a value from 0 to 1000 at minimum every 45 seconds. Now we're going to create a few monitors that'll alert us when that metric goes above a certain value.
 
 When navigating to Monitors - Create New Monitor, you're presented with a variety of monitor types. For our purposes, we're choosing a metric monitor and the threshold alert detection method, which will trigger an alert anytime a metric crosses a specific threshold. 
 
@@ -285,7 +289,7 @@ The monitor setup UI gives users the ability to customize their monitors seamles
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_setup_gui2.PNG">
 </p>
 
-I'm defining the parameters for the custom metric monitor to include three separate monitors. Notice in each notification, the message can be customized to fit the alert.
+I'm defining the parameters for the custom metric monitor to include three separate monitors. Notice in each notification, the message is customized to fit the alert.
 
 - Warning threshold of 500
 
@@ -294,7 +298,7 @@ I'm defining the parameters for the custom metric monitor to include three separ
 </p>
 
 - Alerting threshold of 800
-  - Although the image below displays a test notification, notice how the alert includes the metric value and the host IP.
+  - Although the image below displays a test notification, notice that the alert includes the metric value that triggered the alert and host IP.
 
 <p align="center">
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Alert_Monitor.PNG">
@@ -342,7 +346,7 @@ In Monitors - Manage Downtime, you can create and customize downtime montiors to
 
 This section honestly threw me for a loop. 
 
-I was able to get the Flask application instrumented and visible in the APM - Services GUI the first time I attempted the process but ultimately unable to add additional configurations so that they'd also reflect in the interface. I decided after some troubleshooting to spin up a new VM to retry the process. The second time around, I could instrument the app but none of the information would pull into the UI, not even the service itself despite confirming the connection.  
+I was successful in getting the Flask application instrumented and visible in the APM Services GUI the first time I attempted the process, but I was ultimately unable to add additional configurations so that they'd also reflect in the interface. I decided after some troubleshooting to spin up a new VM to start the process over. The second time around, I could instrument the app, but none of the information pulled into the APM GUI, not even the service itself despite confirming the connection.  
 
 I'll go through what I succeeded in doing the first time around and where I'm stuck scratching my head today.
 
@@ -370,7 +374,7 @@ curl http://0.0.0.0:5050/
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_vagrant.PNG">
 </p>
 
-The service popped up in the APM - Services GUI shortly after.
+The service popped up in the APM Services GUI shortly after.
 
 (I spun up another Flask app and instrumented it the same way I did the first following this success, which is why there's a hello2 service as well.)
 
@@ -380,7 +384,7 @@ The service popped up in the APM - Services GUI shortly after.
 
 At this point, I was ready to configure additional environment variables, but this is where I started running into issues. 
 
-Running the configurations below weren't resulting in a change to the APM GUI. 
+Running the configurations below weren't resulting in a change to the APM GUI, aka I wasn't seeing the additional information that the configurations should've enabled.
 
 ```
 DD_SERVICE="hello" DD_ENV="test" DD_TRACE_ANALYTICS_ENABLED=true DD_PROFILING_ENABLED=true
@@ -388,9 +392,7 @@ DD_SERVICE="hello" DD_ENV="test" DD_TRACE_ANALYTICS_ENABLED=true DD_PROFILING_EN
 
 I got to a point where I wanted to start again and recreate my VM. Maybe I had missed something.
 
-The second time around, I installed the pre-requisites and confirmed the datadog agent was running and trace logs were generating. From there I ran the same two commands--export and ddtrace-run. 
-
-I tested the setup again with the curl command and received a success. 
+The second time around, I installed the pre-requisites and confirmed the datadog agent was running and trace logs were generating. I ran the same export and ddtrace-run commands, and tested the setup again with the curl command. Everything looked functional.  
 
 The issue this time was that the GUI no longer populated any active services, and this is where I've been stuck. 
 
@@ -398,24 +400,22 @@ The issue this time was that the GUI no longer populated any active services, an
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_no_services.PNG">
 </p>
 
-I spent more hours than I'd like to admit on this portion of the exercise, so if the issue is obvious, please let me know!
+I've spent more hours than I'd like to admit on this portion of the exercise, so if the issue is obvious, please let me know!
 
 ***
 
 ### Final Question - Is there anything creative you'd use Datadog for?
 
-I came home two weeks ago to an empty front door after I was informed by a tracking app that a package I ordered had been delivered. I didn't want to jump to conclusions when it occurred, so I checked the address I had specified for the delivery, rechecked the tracking application, and walked around my apartment for half an hour wondering if the mailman had dropped it off in a mailroom I had no knowledge of. 
+I came home two weeks ago to an empty front door after I was informed by a tracking app that a package I ordered had been delivered. I didn't want to jump to conclusions when it occurred, so I checked the address I had specified for the delivery, rechecked the tracking app, and walked around my apartment for half an hour wondering if the mailman had dropped it off in a mailroom I had no knowledge of. 
 
-After a thorough investigation, I concluded the package was stolen. Luckily it was an item that was replaced by the company I ordered it through, but imagine if grandma had sent her world famous chocolate chip cookies, or if you ordered a one-of-a-kind holographic pokemon card, or if the company you ordered it through simply didn't do anything about it. You'd be saltier than I've been for the past two weeks.
+After a thorough investigation, I concluded the package was stolen. Luckily it was an item that was replaced by the company I ordered it through, but imagine if grandma had sent her world famous chocolate chip cookies, or if you won an eBay auction for a one-of-a-kind item, or if the company you ordered it through simply didn't do anything about it. You'd be saltier than I've been for the past two weeks.
 
 Cue a new way to utilize Datadog... security package monitoring. 
 
-In this use case, the Datadog Agent gets installed on a Raspberry Pi, which is connected to a scale or pressure mat located conveniently in your mailbox or by your front door. Whenever a package is delivered to one of these locations, the scale detects the change in weight and sends that metric to Datadog. Datadog could track the fluctuation in expected weight and send the user a notification when that value goes outside the expected range. Sounds a lot like metric monitoring with the anomaly function attached would be useful here. 
+In this use case, the Datadog Agent gets installed on a Raspberry Pi, which is connected to a scale or pressure mat located conveniently in your mailbox or by your front door. Whenever a package is delivered to one of these locations, the scale detects the change in weight and sends that metric to Datadog. Datadog could track the fluctuation in expected weight and send the user a notification when that value meets an expected threshold or doesn't. Sounds a lot like metric monitoring with the anomaly function attached would be useful here.
 
-Imagine you had this setup and were expecting a package. You turn the scale on while you're not home and eventually you're notified that the package was delivered. Your setup could include additional components such as cameras to monitor who's delivering or what's been delivered. Now imagine you go a step further and install a net trap above your front door. Your package was successfully delivered two hours ago, but now you're notified that the expected weight has suddenly dropped to zero. Your camera activates, you see the culprit, and **_bam_** you activate your net trap! 
+Imagine you had this setup and were expecting a package. You turn the scale on while you're not home and eventually you're notified that the package was delivered. Your setup could include additional components such as cameras to monitor who's delivering or what's been delivered. Now imagine you go a step further and install a net above your front door. Your package was successfully delivered two hours ago, but now you've been notified that the expected weight has suddenly dropped to zero. Your camera activates, you see the culprit, and **_bam_** you activate your net trap! It works everytime! At least in the movies.
 
 <p align="center">
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/giphy.gif">
 </p>
-
-The mailman may find himself the victim more often than not, but hey, we're just brainstorming here!
