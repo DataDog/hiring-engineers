@@ -15,9 +15,9 @@ Here's my Windows OS agent manager, up and running.
 ### Collecting Metrics
 #### _Tagging_
 
-Agent configuration occurs in the datadog.yaml file, which is my first stop in the tagging task. On a Windows OS, the file's located in C:\ProgramData\Datadog, and /etc/datadog-agent/ in a Linux environment. 
+Agent configuration occurs in the datadog.yaml file, which is my first stop in the tagging task. On a Windows OS, the file's located in C:\ProgramData\Datadog, and in a Linux environment, /etc/datadog-agent/. 
 
-Within datadog.yaml, I add a variety of tags under the tags section. 
+Within datadog.yaml, I can add a variety of tags under the tags section. 
 
 ![Windows datadog.yaml File](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/windows_tags_config.PNG "Windows datadog.yaml") 
 ![Linux datadog.yaml File](https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/ubuntu_tags_config.PNG "Linux datadog.yaml")
