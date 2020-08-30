@@ -269,10 +269,10 @@ When navigating to Monitors - Create New Monitor, you're presented with a variet
 The monitor setup UI gives users the ability to customize their monitors seamlessly. 
 
 <p align="center">
-        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_setup_gui1.PNG">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Monitor_setup_gui2.PNG">
 </p>
 
-I'm defining the parameters for the custom metric monitor to include three separate monitors:
+I'm defining the parameters for the custom metric monitor to include three separate monitors. Notice in each notification, the message can be customized to fit the alert.
 
 - Warning threshold of 500
 
@@ -293,7 +293,15 @@ I'm defining the parameters for the custom metric monitor to include three separ
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/Missing_Data_Monitor.PNG">
 </p>
 
-With these monitors setup, I'm noticing I'm getting quite a few notifications throughout the day. Scheduling a couple of downtime monitors will help manage this.
+#### _Downtime Scheduling_
+
+With these monitors setup, I'm getting quite a few notifications throughout the day. Scheduling downtime monitors will help manage this.
+
+In Monitors - Manage Downtime, you can create and customize downtime montiors to fit your schedule.
+
+<p align="center">
+        <img width="600" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/downtime_monitor.PNG">
+</p>
 
 - Downtime monitor that silences notifications from 7PM to 9PM daily, Monday through Friday.
 
@@ -331,6 +339,8 @@ I'll go through what I did to attempt to instrument the Flask application provid
 
 I came home two weeks ago to an empty front door after I was informed by a tracking app that a package I ordered had been delivered. I didn't want to jump to conclusions when it occurred, so I checked the address I had specified for the delivery, rechecked the tracking application, and walked around my apartment for half an hour wondering if the mailman had dropped it off in a mailroom I had no knowledge of. 
 
-After a thorough investigation, I concluded the package was stolen. Luckily it was an item that could easily be replaced by the company I ordered it through, but imagine if grandma had sent her world famous chocolate chip cookies, or if you ordered a one-of-a-kind holographic pokemon card, or if the company you ordered it through simply didn't believe you. You'd be saltier than I've been for the past two weeks.
+After a thorough investigation, I concluded the package was stolen. Luckily it was an item that could easily be replaced by the company I ordered it through, but imagine if grandma had sent her world famous chocolate chip cookies, or if you ordered a one-of-a-kind holographic pokemon card, or if the company you ordered it through simply couldn't do anything about it. You'd be saltier than I've been for the past two weeks.
 
-Cue a new way to utilize Datadog... security package monitoring. We install the Datadog Agent on a Raspberry Pi, which is connected to a scale or pressure mat located conveniently in your mailbox or by your front door. 
+Cue a new way to utilize Datadog... security package monitoring. 
+
+In this use case, the Datadog Agent gets installed on a Raspberry Pi, which is connected to a scale or pressure mat located conveniently in your mailbox or by your front door. Whenever a package is delivered to one of these locations, the scale detects the change in weight and sends that metric to Datadog. We could use an anomaly function to track what's expected versus not expected and activate a camera if the value goes outside of that bound. 
