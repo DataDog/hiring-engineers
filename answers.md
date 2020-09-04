@@ -348,20 +348,14 @@ In Monitors - Manage Downtime, you can create and customize downtime monitors to
 
 ### Collecting APM Data
 
-This section honestly threw me for a loop. 
+For the last portion of this exercise, I'm back on the Linux VM I created earlier. The Datadog agent has already been installed, so now it's just a matter of ensuring the agent is running, and APM is enabled in the datadog.yaml file. 
 
-I was successful in getting the Flask application instrumented and visible in the APM Services GUI the first time I attempted the process, but I was ultimately unable to add additional configurations so that they'd also reflect in the interface. I decided after some troubleshooting to spin up a new VM to start the process over. The second time around, I could instrument the app, but none of the information pulled into the APM GUI, not even the service itself despite confirming the connection.  
+With both confirmed, I move onto installing pip, flask and ddtrace. 
 
-I'll go through what I succeeded in doing the first time around and where I'm stuck scratching my head today.
-
-I began by booting up the Linux VM I had created earlier for this exercise. The Datadog agent had already been installed, so it was just a matter of ensuring the agent was running, and APM was enabled in the datadog.yaml file. 
-
-With both confirmed, I moved onto installing pip, flask and ddtrace. 
-
-Once installed, I created my Flask app Python file (datadog_flask.py) and ran the following against it.
+Once installed, I create my Flask app Python file (datadog_flask.py) and run the following:
 
 ```
-export DD_SERVICE=hello 
+export DD_SERVICE=flask 
 ```
 
 followed by:
@@ -370,43 +364,29 @@ followed by:
 ddtrace-run python datadog_flask.py
 ```
 
-I received the expected response and confirmed it by running the curl command below in a separate terminal. 
+I receive a response stating that the application is now running on http://0.0.0.0:5050/ and confirm it by running the curl command below in a separate terminal. 
 
 ```
 curl http://0.0.0.0:5050/
 ```
 
 <p align="center">
-        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_vagrant.PNG">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_curl.PNG">
 </p>
 
-The service popped up in the APM Services GUI shortly after.
-
-(I spun up another Flask app and instrumented it the same way I did the first following this success, which is why there's a hello2 service as well.)
+Looks good! Within a few minutes, the service also pops up in the APM GUI. 
 
 <p align="center">
-        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_vagrant3.PNG">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_services.PNG">
 </p>
 
-At this point, I was ready to configure additional environment variables, but this is where I started running into issues. 
-
-Running the configurations below weren't resulting in a change to the APM GUI aka I wasn't seeing the additional information that the configurations should've enabled.
+Now that I've confirmed the initial configuration is functional, I'm ready to add additional variables by running:
 
 ```
-DD_SERVICE="hello" DD_ENV="test" DD_TRACE_ANALYTICS_ENABLED=true DD_PROFILING_ENABLED=true
+DD_SERVICE="flask" DD_ENV="test" DD_LOGS_INJECTION=true DD_TRACE_ANALYTICS_ENABLED=true DD_PROFILING_ENABLED=true ddtrace-run python datadog_flask.py
 ```
 
-I got to a point where I wanted to start again and recreate my VM. Maybe I had missed something.
 
-The second time around, I installed the pre-requisites and confirmed the agent was running and trace logs were generating. I ran the same export and ddtrace-run commands, and tested the setup again with the curl command. Everything looked functional.  
-
-The issue this time was that the GUI no longer populated any active services, and this is where I've been stuck. 
-
-<p align="center">
-        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_no_services.PNG">
-</p>
-
-I've spent more hours than I'd like to admit on this portion of the exercise, so if the issue is obvious, please let me know!
 
 #### _Bonus Q_
 
