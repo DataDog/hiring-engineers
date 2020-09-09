@@ -386,53 +386,59 @@ The APM GUI has a number of tabs to explore, so let's dive a little deeper.
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_tabs.PNG">
 </p>
 
-On the Services page, clicking on the Flask service opens its own service page that provides insights into requests, latency, and a variety of other infrastructure metrics. Each component can be added to a dashboard to track resource metrics that matter to you. 
+On the Services page, clicking on the Flask service opens its own service page that provides insights into requests, latency, and other infrastructure metrics. Each component can be added to a dashboard to track resource metrics that matter to you. 
 
 <p align="center">
-        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_flask_service.PNG">
+        <img width="850" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_flask_service.PNG">
 </p>
 
 <p align="center">
-        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_infrastructure_metrics1.PNG">
+        <img width="850" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_infrastructure_metrics1.PNG">
 </p>
 
 In the next tab over, you can view Traces, which are used to track the amount of time an application spends processing a request and the status of said request.
 
 <p align="center">
-        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_traces1.PNG">
+        <img width="850" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_traces1.PNG">
 </p>
 
-Clicking on a trace displays its spans, which represent a unit of work in the system for a given time period. 
+Clicking on a trace displays a flamegraph with spans, which represent a unit of work in the system for a given time period. 
 
 <p align="center">
-        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_trace_info.PNG">
+        <img width="850" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_trace_info.PNG">
 </p>
 
 In that same screen, you can also view tags, infrastructure, metrics, logs and processes. The metrics seen below can also be added to any dashboard.
 
 <p align="center">
-        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_trace_metrics.PNG">
+        <img width="850" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_trace_metrics.PNG">
 </p>
 
 The next tab over is App Analytics, which is used to filter analyzed spans through user-defined or infrastructure tags. This allows a more detailed view of the web requests that flow through your service.
 
 <p align="center">
-        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_app_analytics.PNG">
+        <img width="850" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_app_analytics.PNG">
 </p>
 
 The last tab is Profiles, which is an environment code profiler that allows for better performance troubleshooting. Profiler allows users to pinpoint resource-consuming functions for better optimization. 
 
 <p align="center">
-        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_profiler.PNG">
+        <img width="850" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_profiler.PNG">
+</p>
+
+As mentioned before, the metrics that APM pulls for your particular services can easily be added to dashboards--old or new. I created one below that pulls disk utilization, CPU utilization, network throughtput and more. Feel free to check it out [here](https://p.datadoghq.com/sb/2t60f85wulhjxh6f-e2cc9b2231badf85443afe77b49b6392)!
+
+<p align="center">
+        <img width="900" src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_dashboard.PNG">
 </p>
 
 #### _Bonus Q_
 
 Now that we've had an opportunity to view services and resources--what's the difference between the two? 
 
-A Service is a grouping of processes that perform the same functionality, divided into types (cache, custom, web, database) to provide efficient scaling capabilities for a growing organization. 
+A Service is a grouping of processes that perform the same functionality, which are divided into types (cache, custom, web, database) to provide efficient scaling capabilities for a growing organization. 
 
-A Resource is an action for a Service that's typically a URL, query or job--essentially one of the processes mentioned in the Service definition.
+A Resource is an action for a Service that's typically a URL, query or job. It's essentially one of the processes mentioned in the Service definition above.
 
 ***
 
