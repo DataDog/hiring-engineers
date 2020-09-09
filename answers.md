@@ -348,11 +348,13 @@ In Monitors - Manage Downtime, you can create and customize downtime monitors to
 
 ### Collecting APM Data
 
-For the last portion of this exercise, I'm back on the Linux VM I created earlier. The Datadog agent has already been installed, so now it's just a matter of ensuring the agent is running, and APM is enabled in the datadog.yaml file. 
+For the last portion of this exercise, I'm back on the Linux VM I created earlier. Since the Datadog agent has already been installed, it's now just a matter of ensuring I have the appropriate pre-requisites in place. 
 
-With both confirmed, I move onto installing pip, flask and ddtrace. 
+I start by confirming that the Datadog agent is running and that APM is enabled in the datadog.yaml file. 
 
-Once installed, I create my Flask app Python file (datadog_flask.py) and run the following:
+I then install pip, flask and ddtrace. 
+
+Once installed, I create my Flask app Python file (datadog_flask.py), and run the following command:
 
 ```
 export DD_SERVICE=flask 
@@ -361,36 +363,39 @@ export DD_SERVICE=flask
 followed by:
 
 ```
-ddtrace-run python datadog_flask.py
+DD_SERVICE="flask" DD_ENV="test" DD_LOGS_INJECTION=true DD_TRACE_ANALYTICS_ENABLED=true DD_PROFILING_ENABLED=true ddtrace-run python datadog_flask.py
 ```
 
-I receive a response stating that the application is now running on http://0.0.0.0:5050/ and confirm it by running the curl command below in a separate terminal. 
-
-```
-curl http://0.0.0.0:5050/
-```
+I receive a response stating that the application is now running and confirm it by running the curl command in a separate terminal. 
 
 <p align="center">
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_curl.PNG">
 </p>
 
-Looks good! Within a few minutes, the service also pops up in the APM GUI. 
+Looks good! 
+
+Within a few minutes, the service pops up in my Services list in the APM GUI. At this point, the Flask application has been instrumented in APM, and I'm ready to view a variety of metrics pertaining to my service.
 
 <p align="center">
         <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_services.PNG">
 </p>
 
-Now that I've confirmed the initial configuration is functional, I'm ready to add additional variables by running:
+Let's dive a little deeper...
 
-```
-DD_SERVICE="flask" DD_ENV="test" DD_LOGS_INJECTION=true DD_TRACE_ANALYTICS_ENABLED=true DD_PROFILING_ENABLED=true ddtrace-run python datadog_flask.py
-```
+Clicking on the Flask service open its Service page that provides insight into requests, latency, and a variety of other infrastructure metrics. Each component can be added to a dashboard to track resource metrics that matter to you. 
 
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_flask_service.PNG">
+</p>
+
+<p align="center">
+        <img src="https://raw.githubusercontent.com/ehuang930/datadog_screenshots/master/APM_infrastructure_metrics1.PNG">
+</p>
 
 
 #### _Bonus Q_
 
-Despite the minor setback, I can still answer the bonus question. What's the difference between a Service and a Resource? 
+Now that we've had an opportunity to view services and resources--what's the difference between the two? 
 
 A Service is a grouping of processes that perform the same functionality, divided into types (cache, custom, web, database) to provide efficient scaling capabilities for a growing organization. 
 
