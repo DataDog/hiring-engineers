@@ -5,20 +5,23 @@
   <p align="center">Keep your eyes on the horizon</p>
 </p>
 
-Building a successful business is not about climbing ladders, or fending off competition in a particular space; it's about building momentum and continuing to move forward. Spending time troubleshooting your product shouldn't push you away from your goal. You've lost sight of your horizon, that's really what I'm here to talk about today.
+Building a successful business is not about climbing ladders, or fending off competition in a particular space; it's about building momentum and continuing to move forward. Spending time troubleshooting your product shouldn't push you away from your goal. 
+
+If you feel you're spending too much time fixing technical issues, you've lost sight of your horizon, that's really what I'm here to talk about today.
 
 Datadog's way to keep the visual open through metrics, traces and logs visualizations in one integrated platform are the most effective way to stay on course; collecting data from hundreds of technologies for troubleshooting, machine learning, alerting and more, keep your compass sharp. 
 
 Don't lose your way. Never lose sight of the direction you want to go. Don't get lost in a troubleshooting sea, look up to the north star for direction.
 
-Let's dig deeper on exactly how Data-dog works, set that troubleshooting-free horizon and take advantage of what it offers...
+Let's see how Datadog works, set that troubleshooting-free horizon and take advantage of what it offers...
 
 
 ### Smart Setup
-Whether you're a master of Microsoft Operating Systems, a Linux Ninja, or a Mac OS Wizard; or have containerized applications in an enterprise (look at you, seriously, that's an accomplishment!) Datadog has you covered. 
-Sign up for a free Datadog account, click on Integrations > Agent, download your agent and get ready to ingest.
+Whether you're a master of Microsoft Operating Systems, a Linux Ninja, or a Mac OS Wizard; or have containerized applications for an enterprise (look at you, seriously, that's an accomplishment!) Datadog has you covered. 
 
-For my purposes, I'll be using a Windows 10 Development Desktop; once the Agent is installed, you'll be able to access the Datadog Agent Manager (or DAM) on (Windows/MacOS) by visiting it's default location http://127.0.0.1:5002
+Sign up for a free Datadog account, click on ***Integrations > Agent***, download your OS specific agent and get ready to analyze data.
+
+Throughout this guide, I'll be using a Windows 10 Development Desktop. I have installed the Agent, now I can access the Datadog Agent Manager (or DAM) on (Windows/MacOS) by visiting it's default location http://127.0.0.1:5002
 
 ![WindowsPCDatadogAgent](https://i.imgur.com/ZCVWw2Z.png)
 
@@ -27,11 +30,11 @@ DAM allows you to review the Agent's Status, look at Logs, review Settings, reac
 
 ### Thrilling Tagging
 
-As part of our setup, we'll want to use Tags in our Agent config file. Think of tags as a way of adding dimensions to Datadog telemetries so they can be filtered, aggregated, and compared in Datadog visualizations. 
+As part of our setup, we'll want to use Tags in the Agent's datadog.yaml config file. Think of tags as a way to add dimensions to Datadog telemetries so they can be filtered, aggregated, and compared in Datadog visualizations. 
 
-We'll find the Agent config file (in my particular case, again, using Windows) in C:\ProgramData\Datadog\datadog.yaml
+We'll find the Agent config file (in my particular case, using Windows 10) in C:\ProgramData\Datadog\datadog.yaml
 
-```python
+```yaml
 ...
 syslog_key: ""
 syslog_pem: ""
@@ -48,36 +51,36 @@ tracemalloc_whitelist: ""
 use_dogstatsd: true 
 ...
 ```
-I have added 3 tags, ENV for Environment, OS for Operating System, and location for... well you guessed it, location. "columbia" works for me as it's the street where I live.
 
-:point_up: Don't forget to restart your agent once you've added your tags to the Agent config file, and see the new host in Datadog Console.
+As you can see above, I have added 3 tags, Environment (ENV), Operating System (OS), and Location (location). "columbia" works for me as it's the street where I live.
+
+:point_up: Don't forget to restart your agent through DAM once you've added your tags to the Agent config file, and see the new host in Datadog Console.
 
 ### Crafty conf.d 
 
-Now that we have the Agent running, we can really start to customize our Agent. Navigate to C:\ProgramData\Datadog\conf.d\ and here you'll find all the out-of-the-box integrations Datadog can talk to. Let's say you want to monitor Apache, boom open apache.d/ or maybe a connection to nagios, get in that nagios.d/ folder. The world is your oyster (or at least your Datadog directory is).
+Now that we have the Agent running, we can start to customize our Agent. For Windows, navigate to ***C:\ProgramData\Datadog\conf.d\**** and you'll find all the out-of-the-box integrations Datadog communicates with. Let's say you want to monitor Apache, boom open ****apache.d/**** or maybe a connection to nagios, get in that ****nagios.d/**** folder. The world is your oyster (or at least your Datadog integration directory is).  :smirk:
 
-Every folder has a corresponding conf.yaml.example to get you started, just make sure you create a conf.yaml per each configuration on it's corresponding folder, edit the values for each integration and restart your Agent. 
+Every folder has a corresponding ****conf.yaml.example**** to get you started, copy the example file and rename it to ****conf.yaml**** on each integration's folder, edit corresponding values and restart your Agent. 
 
-Let's go over a few integrations I need to setup :smirk:
+Next Up!
+   Let's go over a few integrations I need to setup :smirk:
 
 
 ### Delightful Databases
 
-But what if we want to monitor Databases? I hear you saying out loud :bowtie:
+:question: What if we want to monitor Databases? I hear you saying out loud :bowtie:
 
 Funny you asked, that's EXACTLY what I needed to configure next... By the way, Datadog has well over 400 [supported integrations](https://docs.datadoghq.com/integrations/) and each integration has detailed instructions, I recommend you browse through and see what you can take advantage of
 
-:point_up:Remember, make sure to edit the correct configuration file (conf.yaml) like I've done below, in my particular case I needed to monitor a postgreSQL database on my Windows Development Desktop.
+:point_up:Remember, make sure to edit the correct configuration file (conf.yaml) like I've done below, in my case I needed to monitor a postgreSQL database on my Windows 10 desktop.
 
 ![PostgreSQLConf](https://i.imgur.com/7FuMCKn.png)
-I created the conf.yaml, following the instructions from Datadog's integration page. Easy Peasy.
+I created the conf.yaml, following the instructions from Datadog's integration page. Easy Peasy. :thumbsup:
 
 
 ## Capable Custom Checks
 
-You: Well... what about scripts Luis? What if I wrote a script and I wanted the result to be shipped to Datadog uh?!
-
-Me:  I know, I know exactly what you're saying, this is getting a little weird..
+:question: What if you wrote a script and  wanted the result to be shipped to Datadog? *gasp*!
 
 As long as the check is written on a supported language (think Go, NodeJS, Python, etc), you won't have any problems.
 In fact, I have written a short python script you can reference below.
@@ -182,7 +185,7 @@ Now let's build the body of the request:
 3. Query for each graph
 4. Title for each graph
 
-As far as the Dashboard, let's call it "Postman Integration Dashboard", 
+As far as the Dashboard, let's call it  :sparkles: "Postman Integration Dashboard" :sparkles: 
 
 ### Graph 1:
 We are ready to define what the first graph will look like; For q (which is query) we'll want the Average of the CMetric gauge, we created this integration in a previous excercise. 
@@ -227,7 +230,7 @@ As always, feel free to dive deeper into the Datadog documentation. Our dashboar
 
 2 out of 3! Well done you!
 
-:white_check_mark: Payload 2: PostgreSQL with Anomalies :thumbsup:
+:white_check_mark: Graph 2: PostgreSQL with Anomalies :thumbsup:
 
 ### Graph 3:
 Lastly, we need "CMetric" with the [rollup function](https://docs.datadoghq.com/dashboards/functions/rollup/) for custom time aggregation, basically to sum up all points for the past hour into one entry. Once the dashboard is created, change the timeframe for this dashboard to 24 hours, so we get 24 data points.
@@ -252,7 +255,7 @@ Lastly, we need "CMetric" with the [rollup function](https://docs.datadoghq.com/
 
 :white_check_mark: Graph 3: CMetric with RollUp :thumbsup:
 
-Well done Overachieving Oscar! Let's combine all our powers, submit the payload and...
+Well done! Let's combine all our graphs into one epic JSON formatted payload, submit it and...
 
 ```JSON
 {
@@ -317,7 +320,7 @@ Well done Overachieving Oscar! Let's combine all our powers, submit the payload 
 }
 ```
 
-...this is what it looks like once submitted through Postman! We've just created a dashboard via API in a few minutes. Super. Easy.
+...this is what it looks like once submitted through Postman! We've just created a dashboard via API in a few minutes. Super. Easy.  :ok_hand:
 ![PostmanDashboard](https://i.imgur.com/Epc79Ra.png)
 
 For your live viewing pleasure, you can find the dashboard [here](https://p.datadoghq.com/sb/i3rc15h7hhkukyes-bd3e3184ece0639a6e384539b80d9fdc)
@@ -337,10 +340,13 @@ Say we found something interesting in a graph, if you click on the Share button 
 ![DatadogAnnotation](https://i.imgur.com/YjcNVY3.png)
 
 ## Magnificent Monitors (or Monitoring Data)
-So far we have installed the agent on a system, added integrations (built-in and scripting languaged based); we have also created timeline dashboards and are able to collaborate with team members on existing data, but we wouldn't expect someone to sit on a 24/7/365 NOC looking at monitors.
+So far we have installed the agent on a system, added integrations (built-in and scripting languaged based); we have also created timeline dashboards and are able to collaborate with team members on existing data. 
+
+:question: What about notifications? but we wouldn't expect someone to sit on a 24/7/365 NOC looking at monitors...
+
 Here is where Monitoring Data comes into place.
 
-For our first monitor, let's use "CMetric" (our 45 second-ever running-python script-that returns a random number between 0 and 10000) we'll configure a few monitors that will notify us when the metric goes above a certain value.
+For our first monitor, let's use "CMetric" (our 45 second-ever running-python script-that returns a random number between 0 and 1000) we'll configure a few monitors that will notify us when the metric goes above a certain value.
 
 Navigate to Monitors > Create New Monitor: 
 
