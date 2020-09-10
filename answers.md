@@ -497,15 +497,18 @@ Navigate to ***APM > Services***, we'll find our Flask application here. The Ser
 
 ~[APMServices](https://i.imgur.com/kyg0YIb.png)
 
+
 Below the service specific, we can see how our host is doing. Average CPU Utilization, usable memory, disk utilization, etc.
 This gives you an idea of how well the host is doing, and the relationship to end-users using the web application.
 
 ![APMInfraMetrics](https://i.imgur.com/YI5RTVz.png)
 
+
 Let's move on to the next tab, Traces.
 Traces track the amount of time an app takes on processing a single request, and the status of said request, and we can expand our search from here...
 
 ![APMTraces](https://i.imgur.com/2eLzi78.png)
+
 
 ...and we can expand it from here. Click on a specific Trace. You'll find Tags associated with the trace, as well as a timeline.
 
@@ -520,6 +523,7 @@ You will also find how the trace impacted the infrastructure by clicking on Metr
 Moving on to App Analytics, we can use specific filters for tags, allowing us to get a more detailed view of the requests.
 
 ![APMAppAnalytics](https://i.imgur.com/vO42Gc4.png)
+
 
 
 And last but not least:
@@ -547,14 +551,18 @@ As a DevOps Engineer, you can imagine everything I would visualize. (and I'm goi
 One of the pleasures of working with Datadog is the ability to communicate visually. I would love to integrate Datadog to Hospitals (display wait time dashboards, emergency broadcasting messages, number of incidents today, specific related illnesses), Airports (display wait time for flights, number of delayed outgoing flights, security check processes in tables with estimated processing times) and Retail Businesses (how much did we make today in sales? any reocurring customers? what were my numbers exactly a year ago). 
 
 Visualizing data enables you. It allows you to understand what's working and what isn't. And ultimately, that's what we're here to do. 
+
 ..and we've just scratched beginning. Set your horizon with Datadog, focus on what matters.
 
 
 
 Did you experience any problems through the guide? Do you have any questions or care to give us feedback? 
+
 Shoot us a message at sales-help@datadoghq.com
 
-/*---
+
+
+/*
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Hi Datadog employee,
 Thanks for taking the time to read this, I really enjoyed working on this guide and I hope you can see my personality in it.
