@@ -13,7 +13,7 @@ Datadog's way to keep the visual open through metrics, traces and logs visualiza
 
 Don't get lost in a troubleshooting sea, look up to the north star for direction.
 
-Join me and see how Datadog works, set that troubleshooting-free horizon and take advantage of what it offers...
+Join me and learn how Datadog works, what it offers and how it can help you.
 
 
 ### Smart Setup
