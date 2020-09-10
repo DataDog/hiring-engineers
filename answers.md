@@ -5,15 +5,15 @@
   <p align="center">Keep your eyes on the horizon</p>
 </p>
 
-Building a successful business is not about climbing ladders, or fending off competition in a particular space; it's about building momentum and continuing to move forward. Spending time troubleshooting your product shouldn't push you away from your goal. 
+Building a successful business is not about climbing ladders, or fending off competition in a particular space; it's about building momentum and continuing to move forward. Spending too much time troubleshooting your product shouldn't push you away from your goal. 
 
 If you feel you're spending too much time fixing technical issues, you've lost sight of your horizon, that's really what I'm here to talk about today.
 
 Datadog's way to keep the visual open through metrics, traces and logs visualizations in one integrated platform are the most effective way to stay on course; collecting data from hundreds of technologies for troubleshooting, machine learning, alerting and more, keep your compass sharp. 
 
-Don't lose your way. Never lose sight of the direction you want to go. Don't get lost in a troubleshooting sea, look up to the north star for direction.
+Don't get lost in a troubleshooting sea, look up to the north star for direction.
 
-Let's see how Datadog works, set that troubleshooting-free horizon and take advantage of what it offers...
+Join me and see how Datadog works, set that troubleshooting-free horizon and take advantage of what it offers...
 
 
 ### Smart Setup
@@ -21,12 +21,12 @@ Whether you're a master of Microsoft Operating Systems, a Linux Ninja, or a Mac 
 
 Sign up for a free Datadog account, click on ***Integrations > Agent***, download your OS specific agent and get ready to analyze data.
 
-Throughout this guide, I'll be using a Windows 10 Development Desktop. I have installed the Agent, now I can access the Datadog Agent Manager (or DAM) on (Windows/MacOS) by visiting it's default location http://127.0.0.1:5002
+Throughout this guide, I'll be using a Windows 10 Development Desktop. I have installed the Agent, now I can access the Datadog Agent Manager (or DAM) on  by visiting it's default location http://127.0.0.1:5002, or by double clicking the Datadog icon in the task bar.
 
 ![WindowsPCDatadogAgent](https://i.imgur.com/ZCVWw2Z.png)
 
 :high_brightness: Pro Tip:
-DAM allows you to review the Agent's Status, look at Logs, review Settings, reach out to Support by using Flare and Restart the Agent after making any configuration change. Super Helpful  :thumbsup:
+DAM allows you to review the Agent's Status, examine Logs, review Settings, reach out to Support by using Flare and Restart the Agent after making any configuration change. Super Helpful  :thumbsup:
 
 ### Thrilling Tagging
 
@@ -82,13 +82,13 @@ I created the conf.yaml, following the instructions from Datadog's integration p
 
 :question: What if you wrote a script and  wanted the result to be shipped to Datadog? *gasp*!
 
-As long as the check is written on a supported language (think Go, NodeJS, Python, etc), you won't have any problems.
+As long as the script check is written on a [supported language](https://docs.datadoghq.com/developers/libraries/) (think Go, NodeJS, Python, etc), you won't have any problems.
 In fact, I have written a short python script you can reference below.
 In order to create a custom Agent check, both files must have the same name and must be created as follows:
 
 *Script file:* (This file lives in C:\ProgramData\Datadog\checks.d\)
 
-This is my Python script, our goal is to randomly get a number between 0 and 10000. This number will then be sent to Datadog, to test the custom check functionality.
+This is my Python script, our goal is to randomly get a number between 0 and 1000. This number will then be sent to Datadog, to test the custom check functionality.
 
 ```python
 import random
@@ -104,7 +104,7 @@ class cmetric(AgentCheck):
     def check(self, instance):
         self.gauge(
                 "cmetric_gauge",
-                random.randint(0,10000),
+                random.randint(0,1000),
                 tags=["cmetric_type:gauge"],
         )
 ```
@@ -368,7 +368,7 @@ Let's customize the monitor's message! We'll want it to:
 
 
 ### Say what's happening
-Luckily for us, we can customize all these settings through "Say what's happening"
+We can customize all these settings through "Say what's happening"
 Let's say this is an Alert, this should be considered Priority 1 and must be addressed immediately:
 
 We can use variables like {{value}} and {{#is_alert}} to specify key components of the message. You can spend a lot of time customizing this settings, so I'll be nice and leave the [notifications documentation here](https://docs.datadoghq.com/monitors/notifications/?tab=is_warning#message-template-variables) for you.
@@ -391,9 +391,9 @@ I'll leave the code associated with each notification type, as well as the actua
 #### Alerts
 ```
 {{#is_alert}}
-P1 Alert!!
+Priority 1 Alert!!
 CMetric is at {{value}}, and has been above 800 for the past 5 minutes 
-You should troubleshoot this ASAP, contact someone who knows how to fix this or maybe call your boss...
+You should troubleshoot this ASAP, contact someone who knows how to fix this or maybe escalate!
 REMEMBER, SENSE OF URGENCY!
 {{/is_alert}}
 ```
@@ -402,9 +402,9 @@ REMEMBER, SENSE OF URGENCY!
 
 ```
 {{#is_warning}}
-OMG, You should take a look at this...
+Warning Alert!!
 CMetric is at {{value}}, and has been above 500 for the past 5 minutes
-I don't want to say you should look at this, but I think you should look at this...
+You should probably look at this...
 {{/is_warning}}
 ```
 ![AlertWarn](https://i.imgur.com/ze0SM5l.png)
@@ -412,8 +412,9 @@ I don't want to say you should look at this, but I think you should look at this
 
 ```
 {{#is_recovery}}
-CMetric has recovered! Hurray!! Current Value is {{value}}
-I don't want to tell you what to do, but should this alert be recovering?
+Recovery Alert! Phew!
+CMetric has recovered! Current Value is {{value}}
+Should this service be failing...?
 {{/is_recovery}}
 ```
 ![AlertNoData](https://i.imgur.com/kTb5Epr.png)
@@ -423,7 +424,7 @@ I don't want to tell you what to do, but should this alert be recovering?
 {{#is_no_data}}
 P1 Alert!!
 CMetric has not reported any data over the last 5 minutes
-You should troubleshoot this ASAP, contact someone who knows how to fix this or maybe call your boss...
+You should troubleshoot this ASAP, contact someone who knows how to fix this or maybe escalate...
 {{/is_no_data}}
 ```
 ![AlertRecovery](https://i.imgur.com/G9VHnqT.png)
@@ -448,7 +449,7 @@ From the beginning of this guide, our promise has been we visualize and monitor 
 
 On this section, I'd like to share with you a quick example on how we achieve this. (Don't worry, I'll assume I'm speaking to a broad audience, so you don't need to be very technical to hear me out)
 
-Let me picture a little picture. Your development team has been working on it's latest flag webapp, and it's ready to go live! Everyone is excited as you offer a testing period, inviting specific customers, before you Go-To-Market. Let's say that your applications (BusinessApp.py) looks a little bit like this script:
+Let's picture a scenario. Your development team has been working on it's latest flag webapp, and it's ready to go live! Everyone is excited as you offer a testing period, inviting specific customers, before you Go-To-Market. Let's say that your applications (BusinessApp.py) looks a little bit like this script:
 
 ```Python
 from flask import Flask
@@ -481,8 +482,8 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-Very simple application with minimal effort. We'll define the ingestion parameters and start the application by running this:
-(If you don't understand what this means, you may want to visit our [documentation guide](https://docs.datadoghq.com/tracing/) on it. It has a lot of examples and it's very well explained)
+Simple application with minimal effort. We'll define the ingestion parameters and start the application by running this:
+(If you don't understand what this means, or you need more detail, feel free to visit our [documentation guide](https://docs.datadoghq.com/tracing/) on it. It has a lot of examples and it's very well explained)
 
 
 ```python
@@ -492,9 +493,9 @@ DD_SERVICE="flask" DD_ENV="test" DD_LOGS_INJECTION=true DD_TRACE_ANALYTICS_ENABL
 
 we receive a notification that is running correctly
 
-![BusinessAppRunningCorrectly]()
+![BusinessAppRunningCorrectly](https://i.imgur.com/3G71V7p.png)
 
-and within a few minutes, this application service is displayed in Datadog Console. At this point, the Flask component has been instructed in APM.
+and within a few minutes, this application service is displayed in Datadog Console. At this point, the Flask component has been instructed to ingest in APM.
 We are now ready to review metrics associated with BusinessApp.py
 
 Navigate to ***APM > Services***, we'll find our Flask application here. The Services tab gives you specific information on the health of your service (How many requests are incoming, what our error rate looks like, how far is latency getting to, endpoint specific information and more).
@@ -550,9 +551,11 @@ A Resource, however, is an action for a service. It's typically seen as a query 
 
 ## What else would you visualize?
 
-As a DevOps Engineer, you can imagine everything I would visualize. (and I'm going to.)
+One of the pleasures of working with Datadog is the ability to communicate visually. As a DevOps Engineer, you should know I would visualize everything I can if I have the time...(and I'm going to try)
 
-One of the pleasures of working with Datadog is the ability to communicate visually. I would love to integrate Datadog to Hospitals (display wait time dashboards, emergency broadcasting messages, number of incidents today, specific related illnesses), Airports (display wait time for flights, number of delayed outgoing flights, security check processes in tables with estimated processing times) and Retail Businesses (how much did we make today in sales? any reocurring customers? what were my numbers exactly a year ago). 
+If I had a professional choice, outside of technology partners, it would be to integrate Datadog to Hospitals, Airports and Retail Businesses.
+
+Integrating to display wait times, number of custom incidents, emergency broadcasting messages is something I would love to see as a consumer. As a Business owner, comparing year over year sales, viewing returning customers, or most purchased items in real time, can certainly make an impact on decisions.
 
 Visualizing data enables you. It allows you to understand what's working and what isn't. And ultimately, that's what we're here to do. 
 
@@ -560,16 +563,20 @@ Visualizing data enables you. It allows you to understand what's working and wha
 
 
 
+Luis Arano
+Sales Engineer, Datadog
+
+
+
 Did you experience any problems through the guide? Do you have any questions or care to give us feedback? 
-
-Shoot us a message at sales-help@datadoghq.com
-
+Shoot us a message at saleshelp@datadoghq.com
 
 
-/*
+
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Hi Datadog employee,
-Thanks for taking the time to read this, I really enjoyed working on this guide and I hope you can see my personality in it.
+Thanks for taking the time to read this, I really enjoyed working on this guide. I'm confident you can see my personality in it.
 I hope to make it to the next phase and meet you. You all seem like a really smart group of people, I'd love to work by your side.
 
 Thank you for the chance to know you,
@@ -577,4 +584,3 @@ Thank you for the chance to know you,
 -Luis
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-*/
