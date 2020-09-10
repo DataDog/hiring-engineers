@@ -428,7 +428,7 @@ You should troubleshoot this ASAP, contact someone who knows how to fix this or 
 Email notifications are not the only way to notify humans for alerts. You can configure [Slack](https://docs.datadoghq.com/integrations/slack/?tab=standardintegration), [PagerDuty](https://docs.datadoghq.com/integrations/pagerduty/), [Microsoft Teams](https://docs.datadoghq.com/integrations/microsoft_teams/) and others. If you're curious on what integrations are available, check out our Documentation on integrations [here](https://docs.datadoghq.com/integrations)
 
 #### Manage Downtime (Sleepy Time)
-Say you're out of the office on vacation, maybe you don't work on weekends, or you're not part of the OnCall rotation group; you don't need this many notifications, now do you? Managing your downtime is as easy as navigating to Monitors > Manage Downtime and creating/customizing downtime monitors:
+Say you're out of the office on vacation, maybe you don't work on weekends, or you're not part of the OnCall rotation group; Do you really need notifications on those times? Managing your downtime is as easy as navigating to ***Monitors > Manage Downtime*** and creating/customizing downtime monitors:
 
 ![SleepyTime](https://i.imgur.com/sGZ4W6X.png)
 
@@ -437,15 +437,132 @@ You should receive an email notification explaining the downtime:
 ![SleepyTimeExplanation](https://i.imgur.com/i0PStKT.png)
 
 
-## APM Data
+## Analyzing Amazing APM Data
+From the beginning of this guide, our promise has been we visualize and monitor everything so that you can run your business, so that you can keep your focus on what matters most. We've been able to add and monitor hosts, log files, integrations, handle notifications and manage downtime; what you don't know is that we consider Application Performance Management (or APM for short) one of Datadog's core components.
+
+[APM](https://www.datadoghq.com/product/apm/), on it's direct definition, allows you to monitor, troubleshoot, and optimize end-to-end application performance; it grants you granular and scalable hawk eye view of your applications, and it's SUPER easy to implement on your applications.
+
+On this section, I'd like to share with you a quick example on how we achieve this. (Don't worry, I'll assume I'm speaking to a broad audience, so you don't need to be very technical to hear me out)
+
+Let me picture a little picture. Your development team has been working on it's latest flag webapp, and it's ready to go live! Everyone is excited as you offer a testing period, inviting specific customers, before you Go-To-Market. Let's say that your applications (BusinessApp.py) looks a little bit like this script:
+
+```Python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+Very simple application with minimal effort. We'll define the ingestion parameters and start the application by running this:
+(If you don't understand what this means, you may want to visit our [documentation guide](https://docs.datadoghq.com/tracing/) on it. It has a lot of examples and it's very well explained)
 
 
-## Other Uses?
+```python
+export DD_SERVICE=flask
+DD_SERVICE="flask" DD_ENV="test" DD_LOGS_INJECTION=true DD_TRACE_ANALYTICS_ENABLED=true DD_PROFILING_ENABLED=true ddtrace-run python BusinessApp.py
+```
+
+we receive a notification that is running correctly
+
+![BusinessAppRunningCorrectly]()
+
+and within a few minutes, this application service is displayed in Datadog Console. At this point, the Flask component has been instructed in APM.
+We are now ready to review metrics associated with BusinessApp.py
+
+Navigate to ***APM > Services***, we'll find our Flask application here. The Services tab gives you specific information on the health of your service (How many requests are incoming, what our error rate looks like, how far is latency getting to, endpoint specific information and more).
+
+~[APMServices](https://i.imgur.com/kyg0YIb.png)
+
+Below the service specific, we can see how our host is doing. Average CPU Utilization, usable memory, disk utilization, etc.
+This gives you an idea of how well the host is doing, and the relationship to end-users using the web application.
+
+![APMInfraMetrics](https://i.imgur.com/YI5RTVz.png)
+
+Let's move on to the next tab, Traces.
+Traces track the amount of time an app takes on processing a single request, and the status of said request, and we can expand our search from here...
+
+![APMTraces](https://i.imgur.com/2eLzi78.png)
+
+...and we can expand it from here. Click on a specific Trace. You'll find Tags associated with the trace, as well as a timeline.
+
+![APMTracesSpecific](https://i.imgur.com/Ut26YRj.png)
 
 
+You will also find how the trace impacted the infrastructure by clicking on Metrics.
+
+![APMTracesSpecificMetrics](https://i.imgur.com/pFEpYvS.png)
 
 
+Moving on to App Analytics, we can use specific filters for tags, allowing us to get a more detailed view of the requests.
+
+![APMAppAnalytics](https://i.imgur.com/vO42Gc4.png)
+
+
+And last but not least:
+
+Profiles. Profiles allows better troubleshooting performance, using environment specific, pinpoint resource-consuming functions for optimization. Very useful!
+
+![APMProfiles](https://i.imgur.com/FvFt0kL.png)
+
+As a last "treat",I've created a dashboard that has the underlying infrastructure associated with our web app.
+
+![APMFlaskDashboard](https://i.imgur.com/5cawALc.png)
+
+with a [direct link](https://p.datadoghq.com/sb/i3rc15h7hhkukyes-10e5a3a67255d1cb2051e1f5ec7872ea) for your viewing pleasure.
+
+
+:high_brightness: Pro Tip:
+Remember that a Service is software that performs automated tasks, listens for data requests, store data, or run as designed by their developer. These are usually divided into (web front end, api, cache, custom and databases).
+
+A Resource, however, is an action for a service. It's typically seen as a query orn job. It's a process that belongs to a Service.
+
+## What else would you visualize?
+
+As a DevOps Engineer, you can imagine everything I would visualize. (and I'm going to.)
+
+One of the pleasures of working with Datadog is the ability to communicate visually. I would love to integrate Datadog to Hospitals (display wait time dashboards, emergency broadcasting messages, number of incidents today, specific related illnesses), Airports (display wait time for flights, number of delayed outgoing flights, security check processes in tables with estimated processing times) and Retail Businesses (how much did we make today in sales? any reocurring customers? what were my numbers exactly a year ago). 
+
+Visualizing data enables you. It allows you to understand what's working and what isn't. And ultimately, that's what we're here to do. 
 ..and we've just scratched beginning. Set your horizon with Datadog, focus on what matters.
 
+
+
 Did you experience any problems through the guide? Do you have any questions or care to give us feedback? 
-Shoot me a message at lf.arano@datadoghq.com
+Shoot us a message at sales-help@datadoghq.com
+
+/*---
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Hi Datadog employee,
+Thanks for taking the time to read this, I really enjoyed working on this guide and I hope you can see my personality in it.
+I hope to make it to the next phase and meet you. You all seem like a really smart group of people, I'd love to work by your side.
+
+Thank you for the chance to know you,
+
+-Luis
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
