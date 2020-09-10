@@ -68,9 +68,9 @@ Next Up!
 
 ### Delightful Databases
 
-:question: What if we want to monitor Databases? I hear you saying out loud :bowtie:
+:question: What if we want to monitor Databases?
 
-Funny you asked, that's EXACTLY what I needed to configure next... By the way, Datadog has well over 400 [supported integrations](https://docs.datadoghq.com/integrations/) and each integration has detailed instructions, I recommend you browse through and see what you can take advantage of
+That's EXACTLY what I needed to configure next... By the way, Datadog has well over 400 [supported integrations](https://docs.datadoghq.com/integrations/) and each integration has detailed instructions, I recommend you browse through and see what you can take advantage of
 
 :point_up:Remember, make sure to edit the correct configuration file (conf.yaml) like I've done below, in my case I needed to monitor a postgreSQL database on my Windows 10 desktop.
 
@@ -130,7 +130,7 @@ We are good to go!
 :high_brightness: Pro Tip:
 Did you know you can change the collection interval without modifying script check files you created?
 
-In Datadog's Console > Metrics > Summary > Select the Metric > Under Metadata, Edit > Enter new Interval value
+In Datadog's Console > ***Metrics > Summary > Select the Metric >*** Under ****Metadata, Edit > Enter new Interval value****
 
 ![CMetricIntervalChangethroughConsole](https://i.imgur.com/ivXVdPB.png)
 
