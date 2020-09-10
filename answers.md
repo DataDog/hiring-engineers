@@ -1,17 +1,15 @@
 <p align="center">
-    <img src="http://cdn.lowgif.com/full/4c0f211082b1edb6-.gif" height="400">
-    <h1 align="center">Data Visualization: Datadog's North Star :star:</h1>
+    <img src="http://cdn.lowgif.com/full/4c0f211082b1edb6-.gif" height="450">
+    <h1 align="center">Data Visualization: Datadog's Troubleshooting North Star :star:</h1>
   </a>
-  <p align="center">Always see the horizon</p>
+  <p align="center">Keep your eyes on the horizon</p>
 </p>
 
-Building a successful business is not about climbing ladders, or fending off competition in a particular space; it's about building momentum and continuing to move forward.
-When a business grows, "Growing pains" are more than just obstacles or obstructions, sometimes you find yourself not moving as much as you'd like to. 
-You've lost sight of that horizon, and that's really what I'm here to talk about today.
+Building a successful business is not about climbing ladders, or fending off competition in a particular space; it's about building momentum and continuing to move forward. Spending time troubleshooting your product shouldn't push you away from your goal. You've lost sight of your horizon, that's really what I'm here to talk about today.
 
-Datadog's way to keep the visual open through visualization of metrics, traces and logs in one integrated platform are the most effective way to always see the horizon; collecting data
-from hundred of technologies for visualization, troubleshooting, machine learning, alerting and more, keep the visual open. Don't lose your way.
-Never lose sight of the direction you want to go. Don't get lost in a troubleshooting sea, look up to the north star for direction.
+Datadog's way to keep the visual open through metrics, traces and logs visualizations in one integrated platform are the most effective way to stay on course; collecting data from hundreds of technologies for troubleshooting, machine learning, alerting and more, keep your compass sharp. 
+
+Don't lose your way. Never lose sight of the direction you want to go. Don't get lost in a troubleshooting sea, look up to the north star for direction.
 
 Let's dig deeper on exactly how Data-dog works, set that troubleshooting-free horizon and take advantage of what it offers...
 
