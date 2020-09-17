@@ -12,7 +12,7 @@ initialize(**options)
 description= "DataDog Dashboard for colorado"
 is_read_only= False
 layout_type= "ordered"
-title= "AAAAAPI Dashboard for Data Visualization"
+title= "API Dashboard for Data Visualization"
 widgets= [
 {
   "definition":{
