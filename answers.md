@@ -30,8 +30,8 @@ The Agent config file `datadog.yaml` is located in the `/etc/datadog-agent` fold
 Referencing the [Assigning Tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/?tab=noncontainerizedenvironments#configuration-files) user guide, I added the following tags.
 
 `tags: ["environment:dev", "env:prod", "service: flask_app", "os:ubuntu", "application:datadog", "location:sanfrancisco"]`. 
-I saved the file and restarted the agent
-`sudo service datadog-agent restart`
+
+I saved the file and restarted the agent `sudo service datadog-agent restart`
 
 The tags should show up under Infrastructure > Host Map
 
@@ -77,14 +77,14 @@ instances:
       schema_size_metrics: false
       disable_innodb_metrics: false
 ```
-I restarted the Agent to apply the changes. MySQL metrics are now avaialble to monitor under the Metrics > Explorer section.
+I restarted the Agent to apply the changes. MySQL metrics are now available to monitor under the Metrics > Explorer section.
 ![MySQL metrics](https://github.com/agentAWP/hiring-engineers/blob/master/MySQLMetrics.png)
 
 #### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 To write my first custom check, I read through the examples in the [Writing a Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) and [Metric Submission](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=count) articles
 
-I created a `checks.d` folder under `/etc/datadod-agent` and created the `my_metric.py` file.
+I created a `checks.d` folder under `/etc/datadod-agent` and created `my_metric.py` file.
 
 ```
 $ cat my_metric.py
@@ -187,6 +187,7 @@ A dashboard contains widgets, and there are multiple types of [widgets](https://
       "type":"timeseries",
       "requests": [
           {
+	  # 'q' represents query
               "q":"avg:my_metric.gauge{*}"
           }
       ],
@@ -237,7 +238,7 @@ Next is the [rollup](https://docs.datadoghq.com/dashboards/functions/rollup/) fu
 The final code is linked [here](https://github.com/agentAWP/hiring-engineers/blob/master/DataDogDashboard.py) 
 
 #### Once this is created, access the Dashboard from your Dashboard List in the UI:
-Upon executing my [DataDogDashboard.py](https://github.com/agentAWP/hiring-engineers/blob/master/DataDogDashboard.py) file, I was able to create the "*API Dashboard for Data Visualization* dashboard" ![API Dashboard for Data Visualization](https://github.com/agentAWP/hiring-engineers/blob/master/DataDogDashboard.png)
+Upon executing my [DataDogDashboard.py](https://github.com/agentAWP/hiring-engineers/blob/master/DataDogDashboard.py) file, I was able to create the "*API Dashboard for Data Visualization*" dashboard ![API Dashboard for Data Visualization](https://github.com/agentAWP/hiring-engineers/blob/master/DataDogDashboard.png)
 
 Here is my [API Dashboard for Data Visualization Snapshot](https://p.datadoghq.com/sb/frevxrj12y7as0m5-9b70b4bdc31e0f0189105ae1de430e34?from_ts=1600221199321&live=true&to_ts=1600235599321&theme=dark)
 
