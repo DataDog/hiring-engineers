@@ -163,3 +163,98 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 * **Bonus Question**: What is the Anomaly graph displaying?
 
     The anomoly function detects when a metric is behaving differently than it has in the past. More documentation on anomoly monitoring [here](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#anomaly-detection-algorithms).
+
+
+# Monitoring Data #
+
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+* **Warning threshold of 500**
+* **Alerting threshold of 800**
+* **And also ensure that it will notify you if there is No Data for this query over the past 10m.**
+    
+    1. To create a Metric Monitor that watches the average of our custom metric, Navigate to the _Monitors_ tab found in the left hand navigation menu.
+    2. Click _New Monitor_ and select the Metric monitor type
+        ![Image of metric monitor](./img/metric_monitor.png)
+    3. In Step 1. Choose the detection method, lets set this to be a _Change Alert_
+        ![Image of Step 1](./img/metric_step1.png)
+    4. In Step 2. Define the Metric, we will want to select *my_metric* from our custom agent check
+        ![Image of Step 2](./img/metric_step2.png) 
+    5. In Step 3. Set Alert Conditions, we need to set our conditions in which we will be notified.
+        ![Image of Step 3](./img/metric_step3.png)
+
+* **Send you an email whenever the monitor triggers.**    
+* **Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.**
+* **Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.**
+* **When this monitor sends you an email notification, take a screenshot of the email that it sends you.**
+
+    _The following steps are a continuation of the process listed above_
+
+    6. In Step 4. Say whats happening, we need to create a message to meet the requirements listed above.
+        ![Image of Step 4](./img/metric_step4.png)
+    7. Here is a screenshot of the email datadog sends me for an Alert based on the configuration.
+        ![Image of email](./img/email_metric.png)
+
+* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+  * One that silences it from 7pm to 9am daily on M-F,
+    
+    To create this downtime monitor, navigate to the Monitors tab as mentioned above, and toggle _Manage Downtime_. From there you will be able to schedule a downtime monitor.
+    ![Image of downtime monitor 1](./img/downtime_monitor1.png)
+
+  * And one that silences it all day on Sat-Sun.
+
+    ![Image of downtime monitor 2](./img/downtime_monitor2.png)
+  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+
+## Collecting APM Data:
+
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+```python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
+* **Bonus Question**: What is the difference between a Service and a Resource?
+
+Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+Please include your fully instrumented app in your submission, as well.
+
+## Final Question:
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
