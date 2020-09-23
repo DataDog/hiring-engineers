@@ -1,3 +1,7 @@
+# Prerequisites - Setup the environment
+
+I decided to spin up a linux VM using vagrant.
+
 # Collecting Metrics:
 * **Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
     
@@ -12,7 +16,7 @@
 
 * **Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
     
-    _The following steps show how we can install the respective Datadog integration for MongoDB Atlas._
+    _The following steps show how we can install the respective Datadog integration for MongoDB Atlas. Important note to make is that the Atlas integration for Datadog only supports cluster tiers M10+._
 
     1. In [MongoDB Atlas](https://docs.atlas.mongodb.com/getting-started/), create an account start a project, and create a cluster.
     2. Back inside of Datadog, click on the *Integrations > Integrations* tab found in the left hand navigation menu.
@@ -193,7 +197,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
     _The following steps are a continuation of the process listed above_
 
     6. In Step 4. Say whats happening, we need to create a message to meet the requirements listed above.
-        ![Image of Step 4](./img/metric_step4.png)
+        ![Image of Step 4](./img/monitor_step4.png)
     7. Here is a screenshot of the email datadog sends me for an Alert based on the configuration.
         ![Image of email](./img/email_metric.png)
 
@@ -218,6 +222,9 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 from flask import Flask
 import logging
 import sys
+from ddtrace import tracer, config
+
+config.flask['service_name'] = 'flask-app'
 
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
@@ -229,14 +236,17 @@ main_logger.addHandler(c)
 
 app = Flask(__name__)
 
+@tracer.wrap('flask-app.home', service='flask-entry')
 @app.route('/')
 def api_entry():
     return 'Entrypoint to the Application'
 
+@tracer.wrap('flask-app.apm', service='flask-apm')
 @app.route('/api/apm')
 def apm_endpoint():
     return 'Getting APM Started'
 
+@tracer.wrap('flask-app.trace', service='flask-trace')
 @app.route('/api/trace')
 def trace_endpoint():
     return 'Posting Traces'
@@ -245,16 +255,31 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+ By following the steps to [get started with APM](https://app.datadoghq.com/apm/install), I got the above application up and running.
 
-* **Bonus Question**: What is the difference between a Service and a Resource?
+![Image of APM dashboard](./img/apm.png)
+**Bonus Question: What is the difference between a Service and a Resource?**
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+    A Service can be seen as a collection of resources such as api endpoints or database queries.
 
-Please include your fully instrumented app in your submission, as well.
+    A Resource can represent a specific part of a service such as an api endpoint or query.
+
+    The two terms rely on eachother but the way I see it is you have a group of resources that make up a service.
+
+**Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.**
+
+I created a dashboard with a service map as well as infrastructure metrics. https://p.datadoghq.com/sb/r40agyv44zd7xocm-f3954d51c5b94c0ca5c1ba1b7e8abcd1
+
+
+**Please include your fully instrumented app in your submission, as well.**
 
 ## Final Question:
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+**Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!**
 
-Is there anything creative you would use Datadog for?
+**Is there anything creative you would use Datadog for?**
+
+I would propose the MBTA uses datadog to monitor the real time updates to their application. There have been a few times I have missed the train because the application says it is 3 stops away and I find out Ive missed it by 5 minutes.
+
+@MBTA
+![gif of shaking head](https://media.giphy.com/media/xT9DPJVjlYHwWsZRxm/giphy.gif)
