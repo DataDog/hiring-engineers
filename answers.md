@@ -1,12 +1,18 @@
 # Prerequisites - Setup the environment
 
-I decided to spin up a linux VM using vagrant.
+For environment setup, I decided to spin up an Ubuntu VM using Vagrant for 2 reasons.
+    
+1. Prior to this exercise I have never heard of Vagrant , so I figured why not learn a new technology am I right?
+![Curb Interested](https://media.giphy.com/media/jRGGQMWvYvYraZ5kvI/source.gif)
+2. After I read some documentation on Vagrant I was impressed to know how quick and easy it was to manage VM's and isolate environment dependencies. I also loved how everything with Vagrant is pretty much done through the CLI. 
+
+![Curb](https://media.giphy.com/media/fAQTC4B3OOEczglXNT/source.gif)
 
 # Collecting Metrics:
 * **Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
     
-    _Documentation I referred to get started with tags. https://docs.datadoghq.com/getting_started/tagging/_    
-    The steps below were used to add a tag to the Agent config file.
+    In order to get started I referred to Datadogs documentation on host tags. https://docs.datadoghq.com/getting_started/tagging/_    
+    
     1. [Methods for assigning Tags](http://google.com) states "The Agent configuration file (datadog.yaml) is used to set host tags which apply to all metrics, traces, and logs forwarded by the Datadog Agent." Based on this information, I went ahead and modified the datadog.yaml file which can be accessed using `vi ~/.datadog-agent/datadog.yaml`. 
     2. In datadog.yaml I added a tag of `project:hiring_engineers`. I used this host tag to filter by a common app/project
     3. The following screenshot displays the Host Map within Datadog filtering by the project tag set above.
@@ -16,9 +22,9 @@ I decided to spin up a linux VM using vagrant.
 
 * **Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
     
-    _The following steps show how we can install the respective Datadog integration for MongoDB Atlas. Important note to make is that the Atlas integration for Datadog only supports cluster tiers M10+._
+    _The following steps show how we can install the respective Datadog integration for MongoDB Atlas. Important note is that the Atlas integration for Datadog only supports cluster tiers M10+._
 
-    1. In [MongoDB Atlas](https://docs.atlas.mongodb.com/getting-started/), create an account start a project, and create a cluster.
+    1. In [MongoDB Atlas](https://docs.atlas.mongodb.com/getting-started/), create an account, start a project, and create a cluster.
     2. Back inside of Datadog, click on the *Integrations > Integrations* tab found in the left hand navigation menu.
     ![Image of integrations tab](./img/integrations_tab.png)
     3. In the Integrations tab, search for _MongoDB_ and click install.
@@ -26,6 +32,8 @@ I decided to spin up a linux VM using vagrant.
     4. Next, visit the *Configuration* tab of the MongoDB integration modal and follow the steps provided. 
     5. Jump back into MongoDB Atlas and verify that datadog is configured. Your integrations tab should display the following.
     ![Image of MongoDB Atlas](./img/mongodbatlas_configured.png)
+
+    ... ![Seth Meyers](https://media.giphy.com/media/3o7btNa0RUYa5E7iiQ/source.gif)
 
 * **Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
 
@@ -62,15 +70,15 @@ I decided to spin up a linux VM using vagrant.
 * **Change your check's collection interval so that it only submits the metric once every 45 seconds.**
     
     * Modify the YAML file created in your Custom Agent check folder located in the conf.d directory. Include the following snippet
-    ```yaml
+        ```yaml
         init_config:
 
         instances:
             - min_collection_interval: 45 
-    ```
+        ```
 * **Bonus Question Can you change the collection interval without modifying the Python check file you created?**
 
-    According to the Datadog documentation on "Writing a Custom Check", the collection interval can be set at the configuration level (YAML file) opposed to the Python script provided.
+    The collection interval can be set at the configuration level (YAML file) as well as the Python script provided.
 
 # Visualizing Data
 
@@ -84,9 +92,9 @@ I decided to spin up a linux VM using vagrant.
 
 * For more information on creating a Timeboard using the Datadog API, please see the documentation attached [here](https://docs.datadoghq.com/dashboards/guide/timeboard-api-doc/?tab=python)
 
-    The steps listed below detail my implementation to complete the tasks listed above.
+    The steps listed below detail my implementation to complete the specifications above.
     
-    First, lets set up our Timeboard. I created a python script (shown below). This code creates a Dashboard named Visualize Data Exercise and creates widgets that allow us to do the following
+    First, lets go ahead and setup our Timeboard. I created a python script (shown below). This code creates a Dashboard named Visualize Data Exercise and enables widgets that allow us to do the following
      - View the custom metric created in the collecting metrics section.
      - View the normalized CPU kernel space for mongodb processes.
      - View a rollup of our custom metric that summed up all the points over a 1 hour time span into a single bucket. the rollup function allows us to perform time aggregation.
@@ -179,7 +187,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * **Alerting threshold of 800**
 * **And also ensure that it will notify you if there is No Data for this query over the past 10m.**
     
-    1. To create a Metric Monitor that watches the average of our custom metric, Navigate to the _Monitors_ tab found in the left hand navigation menu.
+    To create a Metric Monitor that watches the average of our custom metric, Navigate to the _Monitors_ tab found in the left hand navigation menu.
     2. Click _New Monitor_ and select the Metric monitor type
         ![Image of metric monitor](./img/metric_monitor.png)
     3. In Step 1. Choose the detection method, lets set this to be a _Change Alert_
@@ -194,12 +202,14 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * **Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.**
 * **When this monitor sends you an email notification, take a screenshot of the email that it sends you.**
 
-    _The following steps are a continuation of the process listed above_
+    _The following steps are a continuation of the implementation detailed above_
 
-    6. In Step 4. Say whats happening, we need to create a message to meet the requirements listed above.
+    6. In "Step 4. Say whats happening", we need to create a message to meet the requirements listed above.
         ![Image of Step 4](./img/monitor_step4.png)
     7. Here is a screenshot of the email datadog sends me for an Alert based on the configuration.
         ![Image of email](./img/email_metric.png)
+
+    
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
@@ -260,11 +270,11 @@ if __name__ == '__main__':
 ![Image of APM dashboard](./img/apm.png)
 **Bonus Question: What is the difference between a Service and a Resource?**
 
-    A Service can be seen as a collection of resources such as api endpoints or database queries.
+A Service can be seen as a collection of resources such as api endpoints or database queries.
 
-    A Resource can represent a specific part of a service such as an api endpoint or query.
+A Resource can represent a specific part of a service such as an api endpoint or query.
 
-    The two terms rely on eachother but the way I see it is you have a group of resources that make up a service.
+The two terms rely on eachother but the way I see it is you have a group of resources that make up a service.
 
 **Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.**
 
@@ -278,8 +288,12 @@ I created a dashboard with a service map as well as infrastructure metrics. http
 **Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!**
 
 **Is there anything creative you would use Datadog for?**
+    
+As a hack project in the near future I would like to complete some home automation. For the past year we have had spikes in our electrical bill but have had a tough time diagnosing where the root problem is coming from.
 
-I would propose the MBTA uses datadog to monitor the real time updates to their application. There have been a few times I have missed the train because the application says it is 3 stops away and I find out Ive missed it by 5 minutes.
+Datadog would provide insights on spikes in power usage and notify me whenever there seems to be an issue and trace it back to the host.
+
+Another idea would be for the MBTA to use datadog with monitoring the real time updates to their application. There have been a few times I have missed the train because the application says it is 3 stops away and I find out Ive missed it by 5 minutes.
 
 @MBTA
 ![gif of shaking head](https://media.giphy.com/media/xT9DPJVjlYHwWsZRxm/giphy.gif)
