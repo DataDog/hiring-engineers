@@ -1,8 +1,8 @@
-Prerequisites - Setup the environment
+**Prerequisites - Setup the environment**
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
 Downloaded Vagrant 2.2.10 for Mac OSX 64-bit. Added Vagrant Box xenial64 to utilize Ubuntu 16.04.
-Installed the agent with the documentation provided [here] (https://app.datadoghq.com/signup/agent#ubuntu)
+Installed the agent with the documentation provided [here](https://app.datadoghq.com/signup/agent#ubuntu)
 
 You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues.
 You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
