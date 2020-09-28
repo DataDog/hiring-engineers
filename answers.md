@@ -13,8 +13,8 @@ For environment setup, I decided to spin up an Ubuntu VM using Vagrant for 2 rea
     
     In order to get started I referred to Datadogs documentation on host tags. https://docs.datadoghq.com/getting_started/tagging/_    
     
-    1. [Methods for assigning Tags](http://google.com) states "The Agent configuration file (datadog.yaml) is used to set host tags which apply to all metrics, traces, and logs forwarded by the Datadog Agent." Based on this information, I went ahead and modified the datadog.yaml file which can be accessed using `vi ~/.datadog-agent/datadog.yaml`. 
-    2. In datadog.yaml I added a tag of `project:hiring_engineers`. I used this host tag to filter by a common app/project
+    1. [Methods for assigning Tags](https://docs.datadoghq.com/getting_started/tagging/assigning_tags/?tab=noncontainerizedenvironments) laysout for us that The Agent configuration file (datadog.yaml) is used to set host tags which apply to all metrics, traces, and logs. Based on this information, lets go ahead and modify the datadog.yaml file which can be accessed using `vi ~/.datadog-agent/datadog.yaml`. 
+    2. In datadog.yaml I added a tag of `project:hiring_engineers` but this can display OS, environment, etc. I used this host tag to filter by a common app/project
     3. The following screenshot displays the Host Map within Datadog filtering by the project tag set above.
     ![Image of host map](./img/host_map.png)   
 
@@ -39,8 +39,8 @@ For environment setup, I decided to spin up an Ubuntu VM using Vagrant for 2 rea
 
     _Documentation I referred to get started creating a Custom Agent Check can be found **[here](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#should-you-write-an-agent-check-or-an-integration)**._ 
 
-    1. To get started writing a custom Agent check, create a new directory as a child of conf.d (ex: custom_agent_check.d)
-    2. In the newly created directory, create a YAML file (ex: custom_agent_check.yaml)
+    1. To get started writing a custom Agent check, lets create a new directory as a child of conf.d (ex: custom_agent_check.d)
+    2. In the newly created directory, create a YAML file (ex: custom_agent_check.yaml). make sure to add atleast one sequence (instance).
     3. Change to the datadog agent root and jump into the checks.d directory.
     4. In the checks.d directory, create a check file (ex: custom_agent_check.py) with the following code snippet.
     ```python
