@@ -6,7 +6,7 @@ For environment setup, I decided to spin up an Ubuntu VM using Vagrant for 2 rea
 ![Curb Interested](https://media.giphy.com/media/jRGGQMWvYvYraZ5kvI/source.gif)
 2. After I read some documentation on Vagrant I was impressed to know how quick and easy it was to manage VM's and isolate environment dependencies. I also loved how everything with Vagrant is pretty much done through the CLI. 
 
-![Curb](https://media.giphy.com/media/fAQTC4B3OOEczglXNT/source.gif)
+![Steve Irwin](https://media.giphy.com/media/k2bbmbmvUo7gA/source.gif)
 
 # Collecting Metrics:
 * **Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
@@ -22,10 +22,10 @@ For environment setup, I decided to spin up an Ubuntu VM using Vagrant for 2 rea
 
 * **Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
     
-    _The following steps show how we can install the respective Datadog integration for MongoDB Atlas. Important note is that the Atlas integration for Datadog only supports cluster tiers M10+._
+    _The following steps show how we can install the respective Datadog integration for MongoDB Atlas in 5 steps. One important note to make is that the Atlas integration for Datadog only supports cluster tiers M10+._
 
     1. In [MongoDB Atlas](https://docs.atlas.mongodb.com/getting-started/), create an account, start a project, and create a cluster.
-    2. Back inside of Datadog, click on the *Integrations > Integrations* tab found in the left hand navigation menu.
+    2. Back inside of Datadog, we will click on the *Integrations > Integrations* tab found in the left hand navigation menu.
     ![Image of integrations tab](./img/integrations_tab.png)
     3. In the Integrations tab, search for _MongoDB_ and click install.
     ![Image of MongoDB Atlas Install](./img/mongodb_install.png)
@@ -33,7 +33,9 @@ For environment setup, I decided to spin up an Ubuntu VM using Vagrant for 2 rea
     5. Jump back into MongoDB Atlas and verify that datadog is configured. Your integrations tab should display the following.
     ![Image of MongoDB Atlas](./img/mongodbatlas_configured.png)
 
-    ... ![Seth Meyers](https://media.giphy.com/media/3o7btNa0RUYa5E7iiQ/source.gif)
+    ... 
+    
+    ![Seth Meyers](https://media.giphy.com/media/3o7btNa0RUYa5E7iiQ/source.gif)
 
 * **Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
 
@@ -297,3 +299,6 @@ Another idea would be for the MBTA to use datadog with monitoring the real time 
 
 @MBTA
 ![gif of shaking head](https://media.giphy.com/media/xT9DPJVjlYHwWsZRxm/giphy.gif)
+
+Aside, I think its only right that I share a picture of my 4 month old beagle puppies for the pupculture!
+![Puppies](./img/beagles.jpg)
