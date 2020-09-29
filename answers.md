@@ -1,8 +1,10 @@
+# DataDog Solutions Engineer Assignment - Jason Dunlap
 **Prerequisites - Setup the environment**
+
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
-Downloaded Vagrant 2.2.10 for Mac OSX 64-bit. Added Vagrant Box xenial64 to utilize Ubuntu 16.04.
-Installed the agent with the documentation provided [here](https://app.datadoghq.com/signup/agent#ubuntu)
+I downloaded Vagrant 2.2.10 for Mac OSX 64-bit. Added Vagrant Box xenial64 to utilize Ubuntu 16.04.
+Installed the agent with the documentation provided [here.](https://app.datadoghq.com/signup/agent#ubuntu)
 
 You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues.
 You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
@@ -15,9 +17,32 @@ Agent 7.22.1 - Commit: 6f0f0d5 - Serialization version: v4.40.0 - Go version: go
 ```
 
 
-Collecting Metrics:
+**Collecting Metrics**
+
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+The documentation I followed for this section can be found [here](https://docs.datadoghq.com/getting_started/tagging/)
+I navigated to ```/etc/datadog-agent/datadog.yaml``` and navigated to @param tags and added the following:
+```
+
+#tags:
+# -environment:dev
+# -project:solutionsengineerassignment
+
+```
+I restarted Agent running as a service ```sudo service datadog-agent restart``` For agent usage specific to Ubuntu, I followed the documentation [here](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7)
+
+    ! [Tags] (/Users/jmdunlap/Desktop/DD/tags.png)
+
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+I chose to install MySQL database with the following steps
+```
+$ sudo apt-get update
+$ sudo apt-get install mysql-server
+$ mysql_secure_installation
+
+```
+I followed [these](https://docs.datadoghq.com/integrations/mysql/?tab=host) steps in regards to the Datadog integration.
+
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
