@@ -1,4 +1,4 @@
-# DataDog Solutions Engineer Assignment - Jason Dunlap
+# DataDog Enterprise Sales Engineer Assignment - Jason Dunlap
 **Prerequisites - Setup the environment**
 
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
@@ -31,7 +31,7 @@ I navigated to ```/etc/datadog-agent/datadog.yaml``` and navigated to @param tag
 ```
 I restarted Agent running as a service ```sudo service datadog-agent restart``` For agent usage specific to Ubuntu, I followed the documentation [here](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7)
 
-    ! [Tags] (/Users/jmdunlap/Desktop/DD/tags.png)
+    ! [Tags] (Users/jmdunlap/Desktop/DD/tags.png)
 
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 I chose to install MySQL database with the following steps
@@ -42,6 +42,47 @@ $ mysql_secure_installation
 
 ```
 I followed [these](https://docs.datadoghq.com/integrations/mysql/?tab=host) steps in regards to the Datadog integration.
+```
+
+mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'JasonPW;
+
+mysql -u datadog --password=JASONPW -e "show status" | \
+grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
+echo -e "\033[0;31mCannot connect to MySQL\033[0m"
+# The Agent needs a few privileges to collect metrics. Grant the user the following limited privileges ONLY:
+mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> GRANT PROCESS ON *.* TO 'datadog'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+
+```
+After that I updated the configuration file located at ```/etc/datadog-agent/conf.d/mysql.d/conf.yaml```
+
+```
+
+init_config:
+
+instances:
+- host: localhost
+  user: datadog
+  pass: "JasonPW" # replace and update with your password
+  port:  3306
+  options:
+    replication: false
+    galera_cluster: true
+    extra_status_metrics: true
+    extra_innodb_metrics: true
+    extra_performance_metrics: true
+    schema_size_metrics: false
+    disable_innodb_metrics: false
+
+    ```
+   Restart the agent ```sudo service datadog-agent restart```
+
+   And you can go to Metrics Explorer to view MySQL
+
+   ! [Tags] (Users/jmdunlap/Desktop/DD/tags.png)
 
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
