@@ -1,4 +1,4 @@
-# DataDog Enterprise Sales Engineer Assignment - Jason Dunlap
+# Datadog Enterprise Sales Engineer Assignment - Jason Dunlap
 **Prerequisites - Setup the environment**
 
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
@@ -89,6 +89,8 @@ instances:
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
+I went to ```/etc/datadod-agent/checks.d/``` and create the file ```my_metric.py``` which you can see below. 
+
 ```
 
 import random
@@ -114,10 +116,32 @@ instances:
   - min_collection_interval: 45
 
   ```
-I found this [tutorial](https://datadoghq.dev/summit-training-session/handson/customagentcheck/)
+I found this [tutorial](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=count) and this [one](https://datadoghq.dev/summit-training-session/handson/customagentcheck/)
+
+to doubleck check everything is working ok, run ```sudo -u dd-agent -- datadog-agent check my_metric```
+
+```  
+
+  Running Checks
+  ==============
+    
+    my_metric (1.0.0)
+    -----------------
+      Instance ID: my_metric:5ba864f3937b5bad [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/my_metric.yaml
+      Total Runs: 1
+      Metric Samples: Last Run: 1, Total: 1
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2020-09-30 23:51:30.000000 UTC
+      Last Successful Execution Date : 2020-09-30 23:51:30.000000 UTC
+
+      ```
 
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
-Visualizing Data:
+
+**Visualizing Data**
 Utilize the Datadog API to create a Timeboard that contains:
 
 Your custom metric scoped over your host.
@@ -153,7 +177,7 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-Collecting APM Data:
+**Collecting APM Data**
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
 from flask import Flask
@@ -192,7 +216,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 Please include your fully instrumented app in your submission, as well.
 
-Final Question:
+**Final Question**
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
