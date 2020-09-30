@@ -31,7 +31,7 @@ I navigated to ```/etc/datadog-agent/datadog.yaml``` and navigated to @param tag
 ```
 I restarted Agent running as a service ```sudo service datadog-agent restart``` For agent usage specific to Ubuntu, I followed the documentation [here](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7)
 
-    ! [Tags] (Users/jmdunlap/Desktop/DD/tags.png)
+    ! [Tags] (https://github.com/jasondunlap/hiring-engineers/blob/master/DD_tags.png)
 
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 I chose to install MySQL database with the following steps
@@ -82,10 +82,40 @@ instances:
 
    And you can go to Metrics Explorer to view MySQL
 
-   ! [Tags] (Users/jmdunlap/Desktop/DD/tags.png)
+   ! [Tags] (https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
+   ! [Metrics Explorer] (https://github.com/jasondunlap/hiring-engineers/blob/master/metricsexplorer_mysql.png)
+
 
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+```
+
+import random
+
+try:
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    from checks import AgentCheck
+
+__version__ = "1.0.0"
+    
+    class My_Metric(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', random.randrange(0,1000), tags=['TAG_KEY:TAG_VALUE'])
+
+```
+```/etc/datadog/conf.d/my_metric.yaml```
+```
+
+init_config:
+
+instances:
+  - min_collection_interval: 45
+
+  ```
+I found this [tutorial](https://datadoghq.dev/summit-training-session/handson/customagentcheck/)
+
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 Visualizing Data:
 Utilize the Datadog API to create a Timeboard that contains:
