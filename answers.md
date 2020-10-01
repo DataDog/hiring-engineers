@@ -1,4 +1,4 @@
-# Datadog Enterprise Sales Engineer Assignment - Southern California
+# Datadog Enterprise Sales Engineer Assignment - Los Angeles
 **Prerequisites - Setup the environment**
 
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
@@ -31,7 +31,7 @@ I navigated to ```/etc/datadog-agent/datadog.yaml``` and navigated to @param tag
 ```
 I restarted Agent running as a service ```sudo service datadog-agent restart``` For agent usage specific to Ubuntu, I followed the documentation [here](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7)
 
-    ! [Tags](DD_tags.png)
+    ![Tags](https://github.com/jasondunlap/hiring-engineers/blob/master/DD_tags.png)
 
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 I chose to install MySQL database with the following steps
@@ -81,7 +81,7 @@ instances:
 
  Restart the agent and you can go to Metrics Explorer to view MySQL
 
-   ![Tags](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
+   ![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
    ![Metrics Explorer](https://github.com/jasondunlap/hiring-engineers/blob/master/metricsexplorer_mysql.png)
 
 
@@ -93,7 +93,6 @@ I went to ```/etc/datadod-agent/checks.d/``` and create the file ```my_metric.py
 ```
 
 #!/usr/bin/python
-#- * -coding: utf - 8 - * -
 
 import random
 
@@ -142,6 +141,11 @@ Finally, to double check everything is working ok, run ```sudo -u dd-agent -- da
 
       ```
 
+      And you can go to Metrics > Explore in the Datadog Dashboard and see it works
+
+
+   ![My_Metric](https://github.com/jasondunlap/hiring-engineers/blob/master/my_metric.png)
+
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
 **Visualizing Data**
@@ -166,8 +170,8 @@ Once all the above is setup, you execute the Python script ```python3 datadogdas
 from datadog import initialize, api
 
 options = {
-    'api_key': 'aeed679477c85311414442251434bfef',
-    'app_key': '21b51d9968f9ad63538566b5c7f0ca17ee63878d'
+    'api_key': 'API Key Hidden',
+    'app_key': 'App Key Hidden'
 }
 initialize(**options)
 
@@ -232,6 +236,8 @@ I created my Application and API keys from the Datadog dashboard, Under Integrat
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
+![Dashboard List](https://github.com/jasondunlap/hiring-engineers/blob/master/data.png)
+
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 Bonus Question: What is the Anomaly graph displaying?
@@ -291,6 +297,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 
     ```
+
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 I used ddtrace-run
 
