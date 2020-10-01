@@ -31,7 +31,7 @@ I navigated to ```/etc/datadog-agent/datadog.yaml``` and navigated to @param tag
 ```
 I restarted Agent running as a service ```sudo service datadog-agent restart``` For agent usage specific to Ubuntu, I followed the documentation [here](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7)
 
-    ! [Tags](https://github.com/jasondunlap/hiring-engineers/blob/master/DD_tags.png)
+    ! [Tags](DD_tags.png)
 
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 I chose to install MySQL database with the following steps
@@ -81,8 +81,8 @@ instances:
 
  Restart the agent and you can go to Metrics Explorer to view MySQL
 
-   ! [Tags](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
-   ! [Metrics Explorer](https://github.com/jasondunlap/hiring-engineers/blob/master/metricsexplorer_mysql.png)
+   ![Tags](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
+   ![Metrics Explorer](https://github.com/jasondunlap/hiring-engineers/blob/master/metricsexplorer_mysql.png)
 
 
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
@@ -92,18 +92,21 @@ I went to ```/etc/datadod-agent/checks.d/``` and create the file ```my_metric.py
 
 ```
 
+#!/usr/bin/python
+#- * -coding: utf - 8 - * -
+
 import random
 
-try:
-    from datadog_checks.base import AgentCheck
-except ImportError:
-    from checks import AgentCheck
+from datadog_checks.base import AgentCheck
 
-__version__ = "1.0.0"
-    
-    class My_Metric(AgentCheck):
+__version__ = '1.0.0'
+
+
+class My_Metric(AgentCheck):
+
     def check(self, instance):
-        self.gauge('my_metric', random.randrange(0,1000), tags=['TAG_KEY:TAG_VALUE'])
+       self.gauge('my_metric', random.randrange(0, 1000),
+        tags = ['TAG_KEY:TAG_VALUE'])
 
 ```
 ```/etc/datadog/conf.d/my_metric.yaml```
@@ -115,9 +118,10 @@ instances:
   - min_collection_interval: 45
 
   ```
-I found this [tutorial](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=count) and this [one](https://datadoghq.dev/summit-training-session/handson/customagentcheck/)
+I found this [tutorial](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=count) and this [one.](https://datadoghq.dev/summit-training-session/handson/customagentcheck/)
+[Writing a Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) has everything you need to help with the python script. 
 
-to doubleck check everything is working ok, run ```sudo -u dd-agent -- datadog-agent check my_metric```
+Finally, to double check everything is working ok, run ```sudo -u dd-agent -- datadog-agent check my_metric```
 
 ```  
 
@@ -145,8 +149,86 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Your custom metric scoped over your host.
 Any metric from the Integration on your Database with the anomaly function applied.
+I found MySQL integrations in Python [here.](https://github.com/DataDog/integrations-core/blob/master/mysql/datadog_checks/mysql/mysql.py) [This](https://www.datadoghq.com/blog/monitoring-mysql-performance-metrics/) blog post was very helpful as well. 
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard. 
+
+Prior to running the Python script, you need to complete a few steps to setup your environment on your Vagrant box. 
+1. ```apt-get update```
+2. ```curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"```
+3. ```python get-pip.py```
+4. Verify pip is installed correctly ```pip --version``` ```pip 20.2.3 from /home/vagrant/.local/lib/python3.5/site-packages/pip (python 3.5)```
+5. ```pip install datadog```
+
+Once all the above is setup, you execute the Python script ```python3 datadogdashboard.py```
+```
+
+from datadog import initialize, api
+
+options = {
+    'api_key': 'aeed679477c85311414442251434bfef',
+    'app_key': '21b51d9968f9ad63538566b5c7f0ca17ee63878d'
+}
+initialize(**options)
+
+title= "Visualizing Data"
+widgets= [
+{
+  "definition":{
+      "type":"timeseries",
+      "requests": [
+          {
+      
+              "q":"avg:my_metric{*}"
+          }
+      ],
+      "title":"my_metric_average"
+  }
+},
+{
+    "definition":{
+        "type":"timeseries",
+        "requests":[
+            {
+       
+        # change this 
+                "q":"anomalies(avg:mysql.performance.cpu_time{*},'basic',2)"
+            }
+        ],
+        "title":"anomolies cpu function"
+    }
+},
+{
+    "definition":{
+        "type":"timeseries",
+        "requests":[
+            {
+       
+                "q":"avg:my_metric{*}.rollup(sum,3600)"
+            }
+        ],
+        "title":"my_metric rollup"
+    }
+}
+]
+
+layout_type = 'ordered'
+description = 'the dashboard exercise'
+is_read_only = True
+notify_list = ['dunlap.jason@gmail.com']
+
+
+api.Dashboard.create(title=title,
+                     widgets=widgets,
+                     layout_type=layout_type,
+                     description=description,
+                     is_read_only=is_read_only,
+                     notify_list=notify_list) 
+
+                     ```
+The code example for the Python script is located [here](https://docs.datadoghq.com/api/v1/dashboards/)
+
+I created my Application and API keys from the Datadog dashboard, Under Integrations > [API's.](https://app.datadoghq.com/account/settings#api)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -179,7 +261,7 @@ Make sure that your email is notified when you schedule the downtime and take a 
 **Collecting APM Data**
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-from flask import Flask
+```from flask import Flask
 import logging
 import sys
 
@@ -207,7 +289,10 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
+
+    ```
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+I used ddtrace-run
 
 Bonus Question: What is the difference between a Service and a Resource?
 
