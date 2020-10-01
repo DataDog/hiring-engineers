@@ -16,7 +16,6 @@ Agent 7.22.1 - Commit: 6f0f0d5 - Serialization version: v4.40.0 - Go version: go
 
 ```
 
-
 **Collecting Metrics**
 
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
@@ -31,8 +30,9 @@ I navigated to ```/etc/datadog-agent/datadog.yaml``` and navigated to @param tag
 ```
 I restarted Agent running as a service ```sudo service datadog-agent restart``` For agent usage specific to Ubuntu, I followed the documentation [here](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7)
 
-    ![Tags](https://github.com/jasondunlap/hiring-engineers/blob/master/DD_tags.png)
+ ![Tags](https://github.com/jasondunlap/hiring-engineers/blob/master/DD_tags.png) 
 
+   
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 I chose to install MySQL database with the following steps
 ```
@@ -122,10 +122,10 @@ I found this [tutorial](https://docs.datadoghq.com/developers/metrics/agent_metr
 
 Finally, to double check everything is working ok, run ```sudo -u dd-agent -- datadog-agent check my_metric```
 
-```  
+```
 
-  Running Checks
-  ==============
+    Running Checks
+    ==============
     
     my_metric (1.0.0)
     -----------------
@@ -139,9 +139,9 @@ Finally, to double check everything is working ok, run ```sudo -u dd-agent -- da
       Last Execution Date : 2020-09-30 23:51:30.000000 UTC
       Last Successful Execution Date : 2020-09-30 23:51:30.000000 UTC
 
-      ```
-
       And you can go to Metrics > Explore in the Datadog Dashboard and see it works
+
+      ```
 
 
    ![My_Metric](https://github.com/jasondunlap/hiring-engineers/blob/master/my_metric.png)
