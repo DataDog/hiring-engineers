@@ -1,4 +1,4 @@
-# Datadog Enterprise Sales Engineer Assignment - Jason Dunlap
+# Datadog Enterprise Sales Engineer Assignment - Southern California
 **Prerequisites - Setup the environment**
 
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
@@ -31,7 +31,7 @@ I navigated to ```/etc/datadog-agent/datadog.yaml``` and navigated to @param tag
 ```
 I restarted Agent running as a service ```sudo service datadog-agent restart``` For agent usage specific to Ubuntu, I followed the documentation [here](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7)
 
-    ! [Tags] (https://github.com/jasondunlap/hiring-engineers/blob/master/DD_tags.png)
+    ! [Tags](https://github.com/jasondunlap/hiring-engineers/blob/master/DD_tags.png)
 
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 I chose to install MySQL database with the following steps
@@ -77,13 +77,12 @@ instances:
     schema_size_metrics: false
     disable_innodb_metrics: false
 
-    ```
-   Restart the agent ```sudo service datadog-agent restart```
+   ```
 
-   And you can go to Metrics Explorer to view MySQL
+ Restart the agent and you can go to Metrics Explorer to view MySQL
 
-   ! [Tags] (https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
-   ! [Metrics Explorer] (https://github.com/jasondunlap/hiring-engineers/blob/master/metricsexplorer_mysql.png)
+   ! [Tags](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
+   ! [Metrics Explorer](https://github.com/jasondunlap/hiring-engineers/blob/master/metricsexplorer_mysql.png)
 
 
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
