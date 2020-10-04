@@ -44,7 +44,7 @@ $ mysql_secure_installation
 I followed [these](https://docs.datadoghq.com/integrations/mysql/?tab=host) steps in regards to the Datadog integration.
 ```
 
-mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'JasonPW;
+mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'JasonPW';
 
 mysql -u datadog --password=JASONPW -e "show status" | \
 grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
@@ -108,7 +108,7 @@ class My_Metric(AgentCheck):
         tags = ['TAG_KEY:TAG_VALUE'])
 
 ```
-```/etc/datadog/conf.d/my_metric.yaml```
+```/etc/datadog/conf.d/my_metric.yaml``` It's important to note the specific locations of these two files. It's also important that both the names of the configuration and check files are matching. 
 ```
 
 init_config:
@@ -147,6 +147,7 @@ Finally, to double check everything is working ok, run ```sudo -u dd-agent -- da
    ![My_Metric](https://github.com/jasondunlap/hiring-engineers/blob/master/my_metric.png)
 
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
+You can change the following parameter ```min_collection_interval``` to whatever value you want on the ```my_metric.yaml``` You wouldn't need to change anything in the Python script. 
 
 **Visualizing Data**
 Utilize the Datadog API to create a Timeboard that contains:
@@ -160,7 +161,7 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 Prior to running the Python script, you need to complete a few steps to setup your environment on your Vagrant box. 
 1. ```apt-get update```
 2. ```curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"```
-3. ```python get-pip.py```
+3. ```python3 get-pip.py```
 4. Verify pip is installed correctly ```pip --version``` ```pip 20.2.3 from /home/vagrant/.local/lib/python3.5/site-packages/pip (python 3.5)```
 5. ```pip install datadog```
 
@@ -267,7 +268,26 @@ Make sure that your email is notified when you schedule the downtime and take a 
 **Collecting APM Data**
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-```from flask import Flask
+Getting [started](https://app.datadoghq.com/apm/docs?architecture=host-based)
+
+```pip install ddtrace``` and ```pip install flask```
+
+```
+
+vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ddtrace-run python3 flaskapp.py 
+ * Serving Flask app "flaskapp" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+INFO:werkzeug: * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+2020-10-04 22:40:24,506 - werkzeug - INFO -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit) 
+
+```
+
+```
+
+from flask import Flask
 import logging
 import sys
 
@@ -299,7 +319,7 @@ if __name__ == '__main__':
     ```
 
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-I used ddtrace-run
+I used ddtrace and the documentation I followed is [here.](https://docs.datadoghq.com/tracing/setup/python/)
 
 Bonus Question: What is the difference between a Service and a Resource?
 
