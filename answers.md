@@ -299,5 +299,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 Is there anything creative you would use Datadog for?
 
 ***Ans:***
+##
 ***1. Monitor solar panel production efficiency, enable anomaly detection to predict abnormal patterns***
+##
 ***2. Monitor using IoT of things in combination with Big Data and ML to potentially predict next pandemic*** 
