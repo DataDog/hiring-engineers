@@ -77,8 +77,7 @@ instances:
     schema_size_metrics: false
     disable_innodb_metrics: false
 
-   ```
-
+    ```
  Restart the agent and you can go to Metrics Explorer to view MySQL
 
    ![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
@@ -272,6 +271,9 @@ Getting [started](https://app.datadoghq.com/apm/docs?architecture=host-based)
 
 ```pip install ddtrace``` and ```pip install flask```
 
+the following commmand starts the application
+```sudo  DD_SERVICE="test" DD_ENV="dev" DD_LOGS_INJECTION=true DD_PROFILING_ENABLED=true ddtrace-run python3 flaskapp.py ```
+
 ```
 
 vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ddtrace-run python3 flaskapp.py 
@@ -331,6 +333,8 @@ Please include your fully instrumented app in your submission, as well.
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+plant growing, covid-19, more cloud partnerships like azure
 
 Instructions
 If you have a question, create an issue in this repository.
