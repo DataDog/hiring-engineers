@@ -117,7 +117,7 @@ init_config:
 instances:
   - min_collection_interval: 45
 
-  ```
+```
 I found this [tutorial](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=count) and this [one.](https://datadoghq.dev/summit-training-session/handson/customagentcheck/)
 [Writing a Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) has everything you need to help with the python script. 
 
@@ -142,7 +142,7 @@ Finally, to double check everything is working ok, run ```sudo -u dd-agent -- da
 
       And you can go to Metrics > Explore in the Datadog Dashboard and see it works
 
-      ```
+```
 
 
    ![My_Metric](https://github.com/jasondunlap/hiring-engineers/blob/master/my_metric.png)
@@ -232,7 +232,7 @@ api.Dashboard.create(title=title,
                      is_read_only=is_read_only,
                      notify_list=notify_list)
 
-                     ```
+```
 The code example for the Python script is located [here](https://docs.datadoghq.com/api/v1/dashboards/)
 
 I created my Application and API keys from the Datadog dashboard, Under Integrations > [API's.](https://app.datadoghq.com/account/settings#api)
@@ -335,7 +335,7 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 
-    ```
+```
 
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 I used ddtrace and the documentation I followed is [here.](https://docs.datadoghq.com/tracing/setup/python/)
