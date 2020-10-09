@@ -274,7 +274,7 @@ And one that silences it all day on Sat-Sun.
 ![weekend2](https://github.com/jasondunlap/hiring-engineers/blob/master/weekenddowntime2.png)
 ![weekend3](https://github.com/jasondunlap/hiring-engineers/blob/master/weekenddowntime3.png)
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-![weekend](https://github.com/jasondunlap/hiring-engineers/blob/master/weekend4.png)
+![weekend](https://github.com/jasondunlap/hiring-engineers/blob/master/weekenddowntime4.png)
 ![weekend](https://github.com/jasondunlap/hiring-engineers/blob/master/downtime4.png)
 
 **Collecting APM Data**
@@ -287,7 +287,8 @@ Getting [started](https://app.datadoghq.com/apm/docs?architecture=host-based)
 the following commmand starts the application
 
      sudo  DD_SERVICE="test" DD_ENV="dev" DD_LOGS_INJECTION=true DD_PROFILING_ENABLED=true ddtrace-run python3 flaskapp.py 
-
+ 
+  This shows the app is running
 
     vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ddtrace-run python3 flaskapp.py 
     * Serving Flask app "flaskapp" (lazy loading)
@@ -298,7 +299,7 @@ the following commmand starts the application
     INFO:werkzeug: * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
     2020-10-04 22:40:24,506 - werkzeug - INFO -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit) 
 
-
+  Here is the file
 
     from flask import Flask
     import logging
@@ -333,8 +334,10 @@ Note: Using both ddtrace-run and manually inserting the Middleware has been know
 I used ddtrace and the documentation I followed is [here.](https://docs.datadoghq.com/tracing/setup/python/)
 
 Bonus Question: What is the difference between a Service and a Resource?
-
+Service is a collection of resources such as DB queries and a resource is part of a service such as an endpoint 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+[link to dashboard](https://p.datadoghq.com/sb/x6w2dmyiho29dvdu-0aed1950a4bf74c63ee271b2e42474a7
+)
 ![app_infra](https://github.com/jasondunlap/hiring-engineers/blob/master/apm_infra.png)
 ![infra](https://github.com/jasondunlap/hiring-engineers/blob/master/apm_services.png)
 ![trace](https://github.com/jasondunlap/hiring-engineers/blob/master/apm_trace.png)
