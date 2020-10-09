@@ -78,7 +78,8 @@ instances:
     disable_innodb_metrics: false
 
     ```
- Restart the agent and you can go to Metrics Explorer to view MySQL
+
+ You need to restart the agent and you can go to Metrics Explorer to view MySQL
 
    ![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
    ![Metrics Explorer](https://github.com/jasondunlap/hiring-engineers/blob/master/metricsexplorer_mysql.png)
@@ -107,6 +108,7 @@ class My_Metric(AgentCheck):
         tags = ['TAG_KEY:TAG_VALUE'])
 
 ```
+
 ```/etc/datadog/conf.d/my_metric.yaml``` It's important to note the specific locations of these two files. It's also important that both the names of the configuration and check files are matching. 
 ```
 
