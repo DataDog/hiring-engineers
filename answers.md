@@ -334,7 +334,8 @@ Note: Using both ddtrace-run and manually inserting the Middleware has been know
 I used ddtrace and the documentation I followed is [here.](https://docs.datadoghq.com/tracing/setup/python/)
 
 Bonus Question: What is the difference between a Service and a Resource?
-Service is a collection of resources such as DB queries and a resource is part of a service such as an endpoint 
+Service is a collection of resources such as DB queries and a resource is part of a service such as an endpoint.
+
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 [link to dashboard](https://p.datadoghq.com/sb/x6w2dmyiho29dvdu-0aed1950a4bf74c63ee271b2e42474a7
 )
