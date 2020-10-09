@@ -165,6 +165,7 @@ Prior to running the Python script, you need to complete a few steps to setup yo
 5. ```pip install datadog```
 
 Once all the above is setup, you execute the Python script ```python3 datadogdashboard.py```
+
 ```
 
 from datadog import initialize, api
@@ -227,7 +228,7 @@ api.Dashboard.create(title=title,
                      layout_type=layout_type,
                      description=description,
                      is_read_only=is_read_only,
-                     notify_list=notify_list) 
+                     notify_list=notify_list)
 
                      ```
 The code example for the Python script is located [here](https://docs.datadoghq.com/api/v1/dashboards/)
