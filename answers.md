@@ -241,30 +241,44 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
+![?](https://github.com/jasondunlap/hiring-engineers/blob/master/mention.png)
 Bonus Question: What is the Anomaly graph displaying?
 Monitoring Data
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 Warning threshold of 500
+![800500](https://github.com/jasondunlap/hiring-engineers/blob/master/800_500.png)
+![500](https://github.com/jasondunlap/hiring-engineers/blob/master/500warning.png)
 Alerting threshold of 800
+![800](https://github.com/jasondunlap/hiring-engineers/blob/master/800.png)
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
 Please configure the monitor’s message so that it will:
+![No Data](https://github.com/jasondunlap/hiring-engineers/blob/master/nodata.png)
+
 
 Send you an email whenever the monitor triggers.
+![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
 
 Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
 
 Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
 
 When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
+![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/weekend1.png)
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/Screen%20Shot%202020-10-04%20at%203.58.43%20PM.png)
+
 **Collecting APM Data**
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
@@ -327,6 +341,11 @@ I used ddtrace and the documentation I followed is [here.](https://docs.datadogh
 Bonus Question: What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
+![infra](https://github.com/jasondunlap/hiring-engineers/blob/master/infra.png)
+![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
+![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
+![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
 
 Please include your fully instrumented app in your submission, as well.
 
