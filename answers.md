@@ -80,12 +80,11 @@ After that I updated the configuration file located at ```/etc/datadog-agent/con
 
  You need to restart the agent and you can go to Metrics Explorer to view MySQL
 
-   ![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
-   ![Metrics Explorer](https://github.com/jasondunlap/hiring-engineers/blob/master/metricsexplorer_mysql.png)
+![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
+![Metrics Explorer](https://github.com/jasondunlap/hiring-engineers/blob/master/metricsexplorer_mysql.png)
 
 
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-Change your check's collection interval so that it only submits the metric once every 45 seconds.
+Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 I went to ```/etc/datadod-agent/checks.d/``` and create the file ```my_metric.py``` which you can see below. 
 
@@ -108,7 +107,8 @@ I went to ```/etc/datadod-agent/checks.d/``` and create the file ```my_metric.py
 
 
 
-```/etc/datadog/conf.d/my_metric.yaml``` It's important to note the specific locations of these two files. It's also important that both the names of the configuration and check files are matching. 
+It's important to note the specific locations of these two files. It's also important that both the names of the configuration and check files are matching. The YAML file below is located at ```/etc/datadog/conf.d/my_metric.yaml``` 
+
 ```
 
 init_config:
@@ -117,6 +117,7 @@ instances:
   - min_collection_interval: 45
 
 ```
+
 I found this [tutorial](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=count) and this [one.](https://datadoghq.dev/summit-training-session/handson/customagentcheck/)
 [Writing a Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) has everything you need to help with the python script. 
 
@@ -126,7 +127,7 @@ Finally, to double check everything is working ok, run ```sudo -u dd-agent -- da
 
     Running Checks
     ==============
-    
+     
     my_metric (1.0.0)
     -----------------
       Instance ID: my_metric:5ba864f3937b5bad [OK]
@@ -139,19 +140,16 @@ Finally, to double check everything is working ok, run ```sudo -u dd-agent -- da
       Last Execution Date : 2020-09-30 23:51:30.000000 UTC
       Last Successful Execution Date : 2020-09-30 23:51:30.000000 UTC
 
-      And you can go to Metrics > Explore in the Datadog Dashboard and see it works
 
+   You can go to Metrics > Explore in the Datadog Dashboard and see it works
 
-
-
-   ![My_Metric](https://github.com/jasondunlap/hiring-engineers/blob/master/my_metric.png)
+![My_Metric](https://github.com/jasondunlap/hiring-engineers/blob/master/my_metric.png)
 
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 You can change the following parameter ```min_collection_interval``` to whatever value you want on the ```my_metric.yaml``` You wouldn't need to change anything in the Python script. 
 
 **Visualizing Data**
 Utilize the Datadog API to create a Timeboard that contains:
-
 Your custom metric scoped over your host.
 Any metric from the Integration on your Database with the anomaly function applied.
 I found MySQL integrations in Python [here.](https://github.com/DataDog/integrations-core/blob/master/mysql/datadog_checks/mysql/mysql.py) [This](https://www.datadoghq.com/blog/monitoring-mysql-performance-metrics/) blog post was very helpful as well. 
@@ -165,18 +163,18 @@ Prior to running the Python script, you need to complete a few steps to setup yo
 4. Verify pip is installed correctly ```pip --version``` ```pip 20.2.3 from /home/vagrant/.local/lib/python3.5/site-packages/pip (python 3.5)```
 5. ```pip install datadog```
 
-Once all the above is setup, you execute the Python script ```python3 datadogdashboard.py```
+Once all the steps above are completed, you execute the Python script ```python3 datadogdashboard.py```
 
 
 
     from datadog import initialize, api
-
+     
     options = {
     'api_key': 'API Key Hidden',
     'app_key': 'App Key Hidden'
     }
     initialize(**options)
-
+     
     title= "Visualizing Data"
     widgets= [
     {
@@ -185,27 +183,27 @@ Once all the above is setup, you execute the Python script ```python3 datadogdas
     "requests": [
     {
       
-    "q":"avg:my_metric{*}"
+      "q":"avg:my_metric{*}"
        }
       ],
       "title":"my_metric_average"
      }
        },
     {
-    "definition":{
+        "definition":{
         "type":"timeseries",
         "requests":[
             {
        
-        # change this 
+      
                 "q":"anomalies(avg:mysql.performance.cpu_time{*},'basic',2)"
             }
         ],
         "title":"anomolies cpu function"
-     }
-     },
-    {
-    "definition":{
+       }
+    },
+     {
+        "definition":{
         "type":"timeseries",
         "requests":[
             {
@@ -215,15 +213,15 @@ Once all the above is setup, you execute the Python script ```python3 datadogdas
         ],
         "title":"my_metric rollup"
     }
-    }
+     }
     ]
-
+     
     layout_type = 'ordered'
     description = 'the dashboard exercise'
     is_read_only = True
     notify_list = ['dunlap.jason@gmail.com']
-
-
+     
+     
     api.Dashboard.create(title=title,
                      widgets=widgets,
                      layout_type=layout_type,
@@ -242,54 +240,53 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
-![?](https://github.com/jasondunlap/hiring-engineers/blob/master/mention.png)
+![?](https://github.com/jasondunlap/hiring-engineers/blob/master/anomolies_email.png)
 Bonus Question: What is the Anomaly graph displaying?
-Monitoring Data
+The anamoly graph is displays changes in value from previous patterns. You can see those changes in red. 
+
+**Monitoring Data**
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
-![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 Warning threshold of 500
-![800500](https://github.com/jasondunlap/hiring-engineers/blob/master/800_500.png)
-![500](https://github.com/jasondunlap/hiring-engineers/blob/master/500warning.png)
 Alerting threshold of 800
-![800](https://github.com/jasondunlap/hiring-engineers/blob/master/800.png)
+![800500](https://github.com/jasondunlap/hiring-engineers/blob/master/800_500.png)
 And also ensure that it will notify you if there is No Data for this query over the past 10m.
 Please configure the monitor’s message so that it will:
-![No Data](https://github.com/jasondunlap/hiring-engineers/blob/master/nodata.png)
-
 
 Send you an email whenever the monitor triggers.
-![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
-
 Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
 
-Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
+![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/warn.png)
+![800](https://github.com/jasondunlap/hiring-engineers/blob/master/800.png)
+![No Data](https://github.com/jasondunlap/hiring-engineers/blob/master/nodata.png)
 
-When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
-![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/weekend1.png)
+![downtime1](https://github.com/jasondunlap/hiring-engineers/blob/master/downtime1.png)
+![downtime2](https://github.com/jasondunlap/hiring-engineers/blob/master/downtime2.png)
+![downtime3](https://github.com/jasondunlap/hiring-engineers/blob/master/downtime3.png)
+![weekend1](https://github.com/jasondunlap/hiring-engineers/blob/master/weekenddowntime1.png)
+![weekend2](https://github.com/jasondunlap/hiring-engineers/blob/master/weekenddowntime2.png)
+![weekend3](https://github.com/jasondunlap/hiring-engineers/blob/master/weekenddowntime3.png)
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/Screen%20Shot%202020-10-04%20at%203.58.43%20PM.png)
+![weekend](https://github.com/jasondunlap/hiring-engineers/blob/master/weekend4.png)
+![weekend](https://github.com/jasondunlap/hiring-engineers/blob/master/downtime4.png)
 
 **Collecting APM Data**
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 Getting [started](https://app.datadoghq.com/apm/docs?architecture=host-based)
 
 ```pip install ddtrace``` and ```pip install flask```
 
 the following commmand starts the application
-```sudo  DD_SERVICE="test" DD_ENV="dev" DD_LOGS_INJECTION=true DD_PROFILING_ENABLED=true ddtrace-run python3 flaskapp.py ```
 
+     sudo  DD_SERVICE="test" DD_ENV="dev" DD_LOGS_INJECTION=true DD_PROFILING_ENABLED=true ddtrace-run python3 flaskapp.py 
 
 
     vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ddtrace-run python3 flaskapp.py 
@@ -303,12 +300,10 @@ the following commmand starts the application
 
 
 
-
-
     from flask import Flask
     import logging
     import sys
-
+     
     # Have flask use stdout as the logger
     main_logger = logging.getLogger()
     main_logger.setLevel(logging.DEBUG)
@@ -316,25 +311,23 @@ the following commmand starts the application
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     c.setFormatter(formatter)
     main_logger.addHandler(c)
-
+     
     app = Flask(__name__)
-
+     
     @app.route('/')
     def api_entry():
     return 'Entrypoint to the Application'
-
+     
     @app.route('/api/apm')
     def apm_endpoint():
     return 'Getting APM Started'
-
+     
     @app.route('/api/trace')
     def trace_endpoint():
     return 'Posting Traces'
-
+     
     if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')   
-
-
 
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 I used ddtrace and the documentation I followed is [here.](https://docs.datadoghq.com/tracing/setup/python/)
@@ -342,12 +335,12 @@ I used ddtrace and the documentation I followed is [here.](https://docs.datadogh
 Bonus Question: What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
-![infra](https://github.com/jasondunlap/hiring-engineers/blob/master/infra.png)
-![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
-![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
-![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
-
+![app_infra](https://github.com/jasondunlap/hiring-engineers/blob/master/apm_infra.png)
+![infra](https://github.com/jasondunlap/hiring-engineers/blob/master/apm_services.png)
+![trace](https://github.com/jasondunlap/hiring-engineers/blob/master/apm_trace.png)
+![profile](https://github.com/jasondunlap/hiring-engineers/blob/master/apm_profiles.png)
+![analytics](https://github.com/jasondunlap/hiring-engineers/blob/master/appanalytics.png)
+![cpu](https://github.com/jasondunlap/hiring-engineers/blob/master/infras.png)
 Please include your fully instrumented app in your submission, as well.
 
 **Final Question**
@@ -355,7 +348,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-plant growing, covid-19, more cloud partnerships like azure
+Personally, I would like to build a plant monitoring application on my Rasberry PI. It would be cool to monitor the app using Datadog. I would like to see Datadog used for Covid-19 contact tracing apps too. I would also like to see more cloud partnerships like the recently announced one with Azure :)
 
 Instructions
 If you have a question, create an issue in this repository.
