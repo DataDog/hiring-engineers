@@ -59,25 +59,24 @@ Query OK, 0 rows affected (0.00 sec)
 ```
 After that I updated the configuration file located at ```/etc/datadog-agent/conf.d/mysql.d/conf.yaml```
 
-```
 
-init_config:
 
-instances:
-- host: localhost
-  user: datadog
-  pass: "JasonPW" # replace and update with your password
-  port:  3306
-  options:
-    replication: false
-    galera_cluster: true
-    extra_status_metrics: true
-    extra_innodb_metrics: true
-    extra_performance_metrics: true
-    schema_size_metrics: false
-    disable_innodb_metrics: false
+    init_config:
+     
+    instances:
+    - host: localhost
+     user: datadog
+     pass: "JasonPW" # replace and update with your password
+     port:  3306
+     options:
+     replication: false
+     galera_cluster: true
+     extra_status_metrics: true
+     extra_innodb_metrics: true
+     extra_performance_metrics: true
+     schema_size_metrics: false
+     disable_innodb_metrics: false
 
-    ```
 
  You need to restart the agent and you can go to Metrics Explorer to view MySQL
 
@@ -90,24 +89,24 @@ Change your check's collection interval so that it only submits the metric once 
 
 I went to ```/etc/datadod-agent/checks.d/``` and create the file ```my_metric.py``` which you can see below. 
 
-```
-
-#!/usr/bin/python
-
-import random
-
-from datadog_checks.base import AgentCheck
-
-__version__ = '1.0.0'
 
 
-class My_Metric(AgentCheck):
-
+    #!/usr/bin/python
+     
+    import random
+     
+    from datadog_checks.base import AgentCheck
+     
+    __version__ = '1.0.0'
+     
+     
+    class My_Metric(AgentCheck):
+     
     def check(self, instance):
        self.gauge('my_metric', random.randrange(0, 1000),
         tags = ['TAG_KEY:TAG_VALUE'])
 
-```
+
 
 ```/etc/datadog/conf.d/my_metric.yaml``` It's important to note the specific locations of these two files. It's also important that both the names of the configuration and check files are matching. 
 ```
@@ -123,7 +122,7 @@ I found this [tutorial](https://docs.datadoghq.com/developers/metrics/agent_metr
 
 Finally, to double check everything is working ok, run ```sudo -u dd-agent -- datadog-agent check my_metric```
 
-```
+
 
     Running Checks
     ==============
@@ -142,7 +141,7 @@ Finally, to double check everything is working ok, run ```sudo -u dd-agent -- da
 
       And you can go to Metrics > Explore in the Datadog Dashboard and see it works
 
-```
+
 
 
    ![My_Metric](https://github.com/jasondunlap/hiring-engineers/blob/master/my_metric.png)
@@ -168,31 +167,31 @@ Prior to running the Python script, you need to complete a few steps to setup yo
 
 Once all the above is setup, you execute the Python script ```python3 datadogdashboard.py```
 
-```
 
-from datadog import initialize, api
 
-options = {
+    from datadog import initialize, api
+
+    options = {
     'api_key': 'API Key Hidden',
     'app_key': 'App Key Hidden'
-}
-initialize(**options)
+    }
+    initialize(**options)
 
-title= "Visualizing Data"
-widgets= [
-{
-  "definition":{
-      "type":"timeseries",
-      "requests": [
-          {
+    title= "Visualizing Data"
+    widgets= [
+    {
+    "definition":{
+    "type":"timeseries",
+    "requests": [
+    {
       
-              "q":"avg:my_metric{*}"
-          }
+    "q":"avg:my_metric{*}"
+       }
       ],
       "title":"my_metric_average"
-  }
-},
-{
+     }
+       },
+    {
     "definition":{
         "type":"timeseries",
         "requests":[
@@ -203,9 +202,9 @@ widgets= [
             }
         ],
         "title":"anomolies cpu function"
-    }
-},
-{
+     }
+     },
+    {
     "definition":{
         "type":"timeseries",
         "requests":[
@@ -216,23 +215,23 @@ widgets= [
         ],
         "title":"my_metric rollup"
     }
-}
-]
+    }
+    ]
 
-layout_type = 'ordered'
-description = 'the dashboard exercise'
-is_read_only = True
-notify_list = ['dunlap.jason@gmail.com']
+    layout_type = 'ordered'
+    description = 'the dashboard exercise'
+    is_read_only = True
+    notify_list = ['dunlap.jason@gmail.com']
 
 
-api.Dashboard.create(title=title,
+    api.Dashboard.create(title=title,
                      widgets=widgets,
                      layout_type=layout_type,
                      description=description,
                      is_read_only=is_read_only,
                      notify_list=notify_list)
 
-```
+
 The code example for the Python script is located [here](https://docs.datadoghq.com/api/v1/dashboards/)
 
 I created my Application and API keys from the Datadog dashboard, Under Integrations > [API's.](https://app.datadoghq.com/account/settings#api)
@@ -291,51 +290,51 @@ Getting [started](https://app.datadoghq.com/apm/docs?architecture=host-based)
 the following commmand starts the application
 ```sudo  DD_SERVICE="test" DD_ENV="dev" DD_LOGS_INJECTION=true DD_PROFILING_ENABLED=true ddtrace-run python3 flaskapp.py ```
 
-```
 
-vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ddtrace-run python3 flaskapp.py 
- * Serving Flask app "flaskapp" (lazy loading)
- * Environment: production
-   WARNING: This is a development server. Do not use it in a production deployment.
-   Use a production WSGI server instead.
- * Debug mode: off
-INFO:werkzeug: * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
-2020-10-04 22:40:24,506 - werkzeug - INFO -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit) 
 
-```
+    vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ddtrace-run python3 flaskapp.py 
+    * Serving Flask app "flaskapp" (lazy loading)
+    * Environment: production
+    WARNING: This is a development server. Do not use it in a production deployment.
+    Use a production WSGI server instead.
+    * Debug mode: off
+    INFO:werkzeug: * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+    2020-10-04 22:40:24,506 - werkzeug - INFO -  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit) 
 
-```
 
-from flask import Flask
-import logging
-import sys
 
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
 
-app = Flask(__name__)
 
-@app.route('/')
-def api_entry():
+    from flask import Flask
+    import logging
+    import sys
+
+    # Have flask use stdout as the logger
+    main_logger = logging.getLogger()
+    main_logger.setLevel(logging.DEBUG)
+    c = logging.StreamHandler(sys.stdout)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    c.setFormatter(formatter)
+    main_logger.addHandler(c)
+
+    app = Flask(__name__)
+
+    @app.route('/')
+    def api_entry():
     return 'Entrypoint to the Application'
 
-@app.route('/api/apm')
-def apm_endpoint():
+    @app.route('/api/apm')
+    def apm_endpoint():
     return 'Getting APM Started'
 
-@app.route('/api/trace')
-def trace_endpoint():
+    @app.route('/api/trace')
+    def trace_endpoint():
     return 'Posting Traces'
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
+    if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')   
 
-```
+
 
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 I used ddtrace and the documentation I followed is [here.](https://docs.datadoghq.com/tracing/setup/python/)
