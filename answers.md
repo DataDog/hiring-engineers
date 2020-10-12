@@ -1,5 +1,5 @@
 - [Basic Info](#basic-info)
-        * [Organization](#organization)
+    * [Organization](#organization)
 - [Setup the Envirionment](#setup-the-envirionment)
     + [VMs](#vms)
     + [Sign up for DataDog](#sign-up-for-datadog)
