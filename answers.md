@@ -1,4 +1,5 @@
 - [Basic Info](#basic-info)
+        * [Organization](#organization)
 - [Setup the Envirionment](#setup-the-envirionment)
     + [VMs](#vms)
     + [Sign up for DataDog](#sign-up-for-datadog)
@@ -19,7 +20,14 @@
 - [Monitoring Data](#monitoring-data)
     + [New Monitor for `my_metric`](#new-monitor-for--my-metric-)
     + [Bonus Question](#bonus-question-2)
+        * [Downtime for 7pm to 9am:](#downtime-for-7pm-to-9am-)
+        * [Downtime for Sat-Sun:](#downtime-for-sat-sun-)
+        * [Email confirmations (2 images):](#email-confirmations--2-images--)
 - [Collecting APM Data](#collecting-apm-data)
+    + [Setup](#setup)
+    + [Dashboard](#dashboard)
+    + [Bonus Question](#bonus-question-3)
+- [Conclusion](#conclusion)
 - [Appendix](#appendix)
     + [Insert Rows into DB (Anomaly)](#insert-rows-into-db--anomaly-)
     + [Timeboard - Postman Method](#timeboard---postman-method)
@@ -32,14 +40,21 @@
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
-
 # Basic Info
 
 **Name:** Sam Cipriani
 
 **Position:** Solutions Engineer
 
-**NOTE:** I used another repo for a few of my hosts. The `host0` in this repo was for code snippets and screenshots; the other hosts I used were for my own edification.
+**Email:** sjcip@umich.edu
+
+**Phone:** (571) 271-9166
+
+##### Organization
+
+I attempted to follow the basic structure in the `README` here. For example, where the `README` says "Create a new Metric Monitor...," I have made a subsection under "Monitoring Data" called "New Monitor for `my_metric`" and so on.
+
+**NOTE:** I used another repo for a few of my hosts. The `host0` in this repo was for code snippets and screenshots; the other hosts I used were for my own edification. `host0` is AKA `dd-hiring`.
 
 # Setup the Envirionment
 
@@ -48,7 +63,7 @@
 I decided to use Vagrant to set up a handful of VMs on my local machine. I used the following code each time to create the VMs:
 
 ```shell
-$ vagrant init ubuntu/xenial64
+$ vagrant init ubuntu/xenial6
 $ vagrant up
 $ vagrant ssh
 ```
@@ -556,15 +571,15 @@ After saving the monitor, it was not a long wait before I received this `warning
 
 ​     ***- Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.***
 
-Downtime for 7pm to 9am:
+##### Downtime for 7pm to 9am:
 
 ![7-9-downtime](./img/7-9-downtime.png)
 
-Downtime for Sat-Sun:
+##### Downtime for Sat-Sun:
 
 ![sat-sun-downtime](./img/sat-sun-downtime.png)
 
-Email confirmations (2 images):
+##### Email confirmations (2 images):
 
 ![downtime-email-1](./img/downtime-email-1.png)
 
@@ -574,11 +589,60 @@ Email confirmations (2 images):
 
 # Collecting APM Data
 
-Tbd
+### Setup
 
+I followed the in-app instructions on the APM page. I also drew from [this blog post](https://www.datadoghq.com/blog/monitoring-flask-apps-with-datadog/) and several other sources. I chose to use the `ddtrace-run` method.
 
+First, I had to install `python-pip` and get the `ddtrace` package (for `python3`):
 
+```shell
+$ sudo apt-get install python3-pip
+$ python3 -m pip install --upgrade pip
+$ python3 -m pip install ddtrace
+```
 
+Next, I copied the Flask app from the instructions page to `apm_app.py`. I ran it on the `dd-hiring` host with the following command:
+
+```shell
+$ DD_SERVICE="apm_app" DD_ENV="prod" ddtrace-run python3 apm_app.py --port=5050
+```
+
+Finally, I `curl`ed the app so there would be some traffic to trace:
+
+```shell
+# Note that I ran these dozens of times each...
+$ curl 0.0.0.0:5050
+$ curl 0.0.0.0:5050/api/trace
+$ curl 0.0.0.0:5050/api/apm
+```
+
+### Dashboard
+
+Shortly after running the `ddtrace-run` command, a new service named `apm_app` showed up in my Services list:
+
+![service_list](./img/service_list.png)
+
+A view of the service page:
+
+![service_page](./img/service_page.png)
+
+The next screenshot shows the `traces_bytes` metric from the `trace_agent.receiver` and the CPU from the same host. I sent a bunch of requests in a short time to the Flask endpoint - the spike shows up in `traces_bytes` and in `CPU` at the same time:
+
+![cpu-and-trace](./img/cpu-and-trace.png)
+
+### Bonus Question
+
+***What is the difference between a Service and a Resource?***
+
+Derived from the [APM glossary](https://docs.datadoghq.com/tracing/visualization/):
+
+A **service** is a (hopefully, logical) group of endpoints or jobs that make up a part of a scalable application. Services should be related sets of functions.
+
+A **resource** is just that - an asset that can be accessed or referenced by a *service* or other aspect of an application. Resources enable services to do their jobs.
+
+# Conclusion
+
+Thank you for the opportunity to complete this exercise - I had fun working through the challenges. I created an appendix (below) which contains some side-work and extra stuff I did, just for kicks.
 
 # Appendix
 
