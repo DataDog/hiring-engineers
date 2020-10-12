@@ -22,7 +22,7 @@ $ vagrant ssh
 
 ### Sign up for DataDog
 
-I signed up for a free trial using the email `sjcip@umich.edu` 
+I signed up for a free trial using the email `sjcip@umich.edu`
 
 ![account](./img/account.png)
 
@@ -38,7 +38,7 @@ $ DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=<my-api-key> DD_SITE="datadoghq.com" bash 
 
 Shortly after the command above is executed, DataDog discovers the host (in this case, I haven't added any tags yet).
 
-![host_ubuntu-xenial](/Users/samcipriani/GDrive/Code/hiring-engineers/img/host_ubuntu-xenial.png)
+![host_ubuntu-xenial](./img/host_ubuntu-xenial.png)
 
 # Collecting Metrics
 
@@ -84,7 +84,7 @@ $ sudo service datadog-agent status
 
 After restarting the agent, the dashboard picks up the new tags:
 
-![ubuntu-xenial-new-tags](/Users/samcipriani/GDrive/Code/hiring-engineers/img/ubuntu-xenial-new-tags.png)
+![ubuntu-xenial-new-tags](./img/ubuntu-xenial-new-tags.png)
 
 >  Note the new tags in the screenshot above.
 
@@ -101,7 +101,7 @@ hostname: dd-hiring
 
 After editing the file, I restarted the service and checked the infrastructure list dashboard:
 
-![new_hostname](/Users/samcipriani/GDrive/Code/hiring-engineers/img/new_hostname.png)
+![new_hostname](./img/new_hostname.png)
 
 > NOTE: I started with the name `dd_hiring`, but the change never appeared. I decided to troubleshoot it, and apparently it didn't like the `_` character. I renamed it to `dd-hiring`, and it showed right up.
 
@@ -223,7 +223,7 @@ instances:
 
 Once this was done, I restarted the agent and clicked on the "install integration" button at the bottom of the instructions page:
 
-![install-integration](/Users/samcipriani/GDrive/Code/hiring-engineers/img/install-integration.png)
+![install-integration](./img/install-integration.png)
 
 I also ran the `status` command to verify that the agent was checking postgres:
 
@@ -235,11 +235,11 @@ Oct 09 18:07:31 ubuntu-xenial agent[11152]: 2020-10-09 18:07:31 UTC | CORE | INF
 
 The integration page showed postgres successfully installed:
 
-![postgres-installed](/Users/samcipriani/GDrive/Code/hiring-engineers/img/postgres-installed.png)
+![postgres-installed](./img/postgres-installed.png)
 
 Since all that looked good, I came back to DataDog and checked that it was receiving data by creating a timeseries plot showing the `postgresql.db.count` from `host:dd-hiring`:
 
-![dd-hiring-host-count](/Users/samcipriani/GDrive/Code/hiring-engineers/img/dd-hiring-host-count.png)
+![dd-hiring-host-count](./img/dd-hiring-host-count.png)
 
 The image above shows a count of 1 database on the `dd-hiring` host.
 
@@ -330,7 +330,7 @@ Check has run only once, if some metrics are missing you can try again with --ch
 
 Finally, I went back to the DataDog UI and added a timeseries graph to my dashboard showing the metric from the `dd-hiring` host.
 
- ![my_metric-host-dd-hiring](/Users/samcipriani/GDrive/Code/hiring-engineers/img/my_metric-host-dd-hiring.png)
+ ![my_metric-host-dd-hiring](./img/my_metric-host-dd-hiring.png)
 
 ### Change the Collection Interval
 
@@ -350,7 +350,7 @@ As alwyas, restart the agent.
 
 I checked the timeseries in the dashboard, and the new checks were clearly coming in less frequently:
 
-![changed_interval](/Users/samcipriani/GDrive/Code/hiring-engineers/img/changed_interval.png)
+![changed_interval](./img/changed_interval.png)
 
 By hovering over the timeseries, I was able to verify that before my change, the metric was report every 15 seconds, and after the change, every 45 seconds. Success!
 
@@ -366,7 +366,7 @@ I changed the collection interval without modifying the `.py` file. From the gui
 
 > **NOTE:** The `timeboards` endpoint is outdated; I used the `dashboard` endpoint instead.
 >
-> ![timeboard-outdated](/Users/samcipriani/GDrive/Code/hiring-engineers/img/timeboard-outdated.png)
+> ![timeboard-outdated](./img/timeboard-outdated.png)
 
 First, I installed the python library:
 
@@ -376,7 +376,7 @@ $ python -m pip install datadog
 
 Next, I created an application key:
 
-![python-timeboard-app-key](/Users/samcipriani/GDrive/Code/hiring-engineers/img/python-timeboard-app-key.png)
+![python-timeboard-app-key](./img/python-timeboard-app-key.png)
 
 Then, I followed the excelent python example on the [dashboards API reference page](https://docs.datadoghq.com/api/v1/dashboards/). I also looked at the `JSON` definitions from my existing dashboard widgets and wrote `timeboard_api.py`:
 
@@ -444,7 +444,7 @@ $ python timeboard_api.py
 
 After running the python code, a new timeboard showed up in my Dashboard list:
 
-![new-timeboard-in-dashboard-list](/Users/samcipriani/GDrive/Code/hiring-engineers/img/new-timeboard-in-dashboard-list.png)
+![new-timeboard-in-dashboard-list](./img/new-timeboard-in-dashboard-list.png)
 
 To get it to show an anomaly, I added a row to my `test_table` in the Postgres database:
 
@@ -454,7 +454,7 @@ demo_db=# INSERT INTO test_table VALUES ('john', 'doe');
 
 The dashboard looks like this:
 
-![python-timeboard-dashboard](/Users/samcipriani/GDrive/Code/hiring-engineers/img/python-timeboard-dashboard.png)
+![python-timeboard-dashboard](./img/python-timeboard-dashboard.png)
 
 (Note the red anomaly "spike" in the central graph.)
 
@@ -462,11 +462,11 @@ The dashboard looks like this:
 
 The instructions didn't specify which graph to snapshot, so I took a snapshot of the most interesting graph of the three - the `my_metric` timeseries:
 
-![send-snapshot](/Users/samcipriani/GDrive/Code/hiring-engineers/img/send-snapshot.png)
+![send-snapshot](./img/send-snapshot.png)
 
 I promptly received a notification in my email:
 
-![email-snapshot](/Users/samcipriani/GDrive/Code/hiring-engineers/img/email-snapshot.png)
+![email-snapshot](./img/email-snapshot.png)
 
 ### Bonus Question
 
@@ -482,25 +482,25 @@ Basically, the trendline changes color if it goes outside an "expected" range at
 
 I created a new Monitor to keep track of high average values of `my_metric`. Two screenshots showing the settings follow:
 
-![monitor-1](/Users/samcipriani/GDrive/Code/hiring-engineers/img/monitor-1.png)
+![monitor-1](./img/monitor-1.png)
 
-![monitor-2](/Users/samcipriani/GDrive/Code/hiring-engineers/img/monitor-2.png)
+![monitor-2](./img/monitor-2.png)
 
 The full text from the "Say what's happening" section:
 
 ```
 @sjcip@umich.edu
 {{^is_no_data}}
-The average value of `my_metric` over the last 5 minutes is {{value}} 
-{{/is_no_data}} 
+The average value of `my_metric` over the last 5 minutes is {{value}}
+{{/is_no_data}}
 
 {{#is_alert}}
 ALERT! `my_metric` has averaged very high over the last 5 minutes.
-{{/is_alert}} 
+{{/is_alert}}
 
 {{#is_warning}}
 Warning - `my_metric` has averaged slightly high over the last 5 minutes.
-{{/is_warning}} 
+{{/is_warning}}
 
 {{#is_no_data}}
 There has been no data from `my_metric` for the past 5 minutes.
@@ -509,7 +509,7 @@ There has been no data from `my_metric` for the past 5 minutes.
 
 After saving the monitor, it was not a long wait before I received this `warning` alert:
 
-![monitor-alert](/Users/samcipriani/GDrive/Code/hiring-engineers/img/monitor-alert.png)
+![monitor-alert](./img/monitor-alert.png)
 
 ### Bonus Question
 
@@ -523,17 +523,17 @@ After saving the monitor, it was not a long wait before I received this `warning
 
 Downtime for 7pm to 9am:
 
-![7-9-downtime](/Users/samcipriani/GDrive/Code/hiring-engineers/img/7-9-downtime.png)
+![7-9-downtime](./img/7-9-downtime.png)
 
 Downtime for Sat-Sun:
 
-![sat-sun-downtime](/Users/samcipriani/GDrive/Code/hiring-engineers/img/sat-sun-downtime.png)
+![sat-sun-downtime](./img/sat-sun-downtime.png)
 
 Email confirmations (2 images):
 
-![downtime-email-1](/Users/samcipriani/GDrive/Code/hiring-engineers/img/downtime-email-1.png)
+![downtime-email-1](./img/downtime-email-1.png)
 
-![downtime-email-2](/Users/samcipriani/GDrive/Code/hiring-engineers/img/downtime-email-2.png)
+![downtime-email-2](./img/downtime-email-2.png)
 
 
 
@@ -602,11 +602,11 @@ demo_db=# select * from test_table;
 
 Just for fun, I also created a dashboard using POSTman. Here's a screenshot of the call (note that the headers are not show, but include the api and app keys):
 
-![postman-dashboard](/Users/samcipriani/GDrive/Code/hiring-engineers/img/postman-dashboard.png)
+![postman-dashboard](./img/postman-dashboard.png)
 
 And the resulting dashboard:
 
-![dashboard-made-by-postman](/Users/samcipriani/GDrive/Code/hiring-engineers/img/dashboard-made-by-postman.png)
+![dashboard-made-by-postman](./img/dashboard-made-by-postman.png)
 
 
 
@@ -616,27 +616,27 @@ And the resulting dashboard:
 
 To create a new timeboard, I went to the dashboards page and clicked New Dashboard:
 
-![new-dashboard](/Users/samcipriani/GDrive/Code/hiring-engineers/img/new-dashboard.png)
+![new-dashboard](./img/new-dashboard.png)
 
 From there, I clicked on New Timeboard and named it `demo-timeboard`:
 
-![new-timeboard](/Users/samcipriani/GDrive/Code/hiring-engineers/img/new-timeboard.png)
+![new-timeboard](./img/new-timeboard.png)
 
 Once this was done, I added a timeseries for `my_metric` scoped to the `dd-hiring` host:
 
-![my_metric-dd-hiring-host](/Users/samcipriani/GDrive/Code/hiring-engineers/img/my_metric-dd-hiring-host.png)
+![my_metric-dd-hiring-host](./img/my_metric-dd-hiring-host.png)
 
 Next, I added a postgres "rows inserted" timeseries and added the anomaly detection function:
 
-![rows-inserted-anomaly](/Users/samcipriani/GDrive/Code/hiring-engineers/img/rows-inserted-anomaly.png)
+![rows-inserted-anomaly](./img/rows-inserted-anomaly.png)
 
 Finally, I added a "query value" display that uses the rollup function to sum up the past 3,600 seconds (1 hour):
 
-![rollup-my_metric](/Users/samcipriani/GDrive/Code/hiring-engineers/img/rollup-my_metric.png)
+![rollup-my_metric](./img/rollup-my_metric.png)
 
 The resulting timecard looks like this:
 
-![gui-method-timeboard](/Users/samcipriani/GDrive/Code/hiring-engineers/img/gui-method-timeboard.png)
+![gui-method-timeboard](./img/gui-method-timeboard.png)
 
 > See "Appendix -> Insert Rows into DB (Anomaly)" for info on how I got the anomaly spike to appear.
 
@@ -652,7 +652,7 @@ datadog_host3_db=# exit
 
 The screenshot shows a spike in the "rows inserted" graph. It only goes up to about `0.07` which appears to be a sort of average over time. Since only 1 row was inserted, the number of ROWS/TIME could be small depending on the TIME window.
 
-![rows_inserted](/Users/samcipriani/GDrive/Code/hiring-engineers/img/rows_inserted.png)
+![rows_inserted](./img/rows_inserted.png)
 
 ### Add a DB
 
@@ -714,5 +714,4 @@ testdb=# select * from test_table;
 
 The Screenshot shows the DB count increasing.
 
-![add_db_count](/Users/samcipriani/GDrive/Code/hiring-engineers/img/add_db_count.png)
-
+![add_db_count](./img/add_db_count.png)
