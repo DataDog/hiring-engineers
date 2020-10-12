@@ -138,6 +138,10 @@ After restarting the agent, the dashboard picks up the new tags:
 
 >  Note the new tags in the screenshot above.
 
+The Host Map page also shows the host(s) and tags:
+
+![host-map](./img/host-map.png)
+
 ##### For fun - change the hostname
 
 Since `ubuntu-xenial` is not a very descriptive hostname, I changed the hostname on this host to `dd-hiring`. To do this, I edited the `datadog.yaml` file again:
@@ -607,7 +611,7 @@ Next, I copied the Flask app from the instructions page to `apm_app.py`. I ran i
 $ DD_SERVICE="apm_app" DD_ENV="prod" ddtrace-run python3 apm_app.py --port=5050
 ```
 
-Finally, I `curl`ed the app so there would be some traffic to trace:
+Finally, I `curl`ed the app from another terminal window so there would be some traffic to display:
 
 ```shell
 # Note that I ran these dozens of times each...
@@ -642,7 +646,9 @@ A **resource** is just that - an asset that can be accessed or referenced by a *
 
 # Conclusion
 
-Thank you for the opportunity to complete this exercise - I had fun working through the challenges. I created an appendix (below) which contains some side-work and extra stuff I did, just for kicks.
+Thank you for the opportunity to complete this exercise - I had fun working through the challenges.
+
+I also created an appendix (below) which contains some side-work and extra stuff I did.
 
 # Appendix
 
@@ -695,11 +701,11 @@ demo_db=# select * from test_table;
 (2 rows)
 ```
 
-
+After this, I inserted the "John Doe" row I referenced above.
 
 ### Timeboard - Postman Method
 
-Just for fun, I also created a dashboard using POSTman. Here's a screenshot of the call (note that the headers are not show, but include the api and app keys):
+Just for fun, I also created a dashboard using POSTman. Here's a screenshot of the call (note that the headers are not shown, but include the api and app keys):
 
 ![postman-dashboard](./img/postman-dashboard.png)
 
@@ -811,6 +817,6 @@ testdb=# select * from test_table;
 
 #### Screenshot
 
-The Screenshot shows the DB count increasing.
+The Screenshot shows the DB count increasing when another database was added.
 
 ![add_db_count](./img/add_db_count.png)
