@@ -1,4 +1,37 @@
-[TOC]
+- [Basic Info](#basic-info)
+- [Setup the Envirionment](#setup-the-envirionment)
+    + [VMs](#vms)
+    + [Sign up for DataDog](#sign-up-for-datadog)
+    + [Get Agent Reporting Metrics](#get-agent-reporting-metrics)
+- [Collecting Metrics](#collecting-metrics)
+    + [Add Tags to the Agent](#add-tags-to-the-agent)
+        * [For fun - change the hostname](#for-fun---change-the-hostname)
+    + [Install a Database and Integration](#install-a-database-and-integration)
+        * [Install the Database](#install-the-database)
+        * [Install the Integration](#install-the-integration)
+    + [Custom Agent Check](#custom-agent-check)
+    + [Change the Collection Interval](#change-the-collection-interval)
+    + [Bonus Question](#bonus-question)
+- [Visualizing Data](#visualizing-data)
+    + [Timeboard - API Method](#timeboard---api-method)
+    + [Timeboard - Snapshot](#timeboard---snapshot)
+    + [Bonus Question](#bonus-question-1)
+- [Monitoring Data](#monitoring-data)
+    + [New Monitor for `my_metric`](#new-monitor-for--my-metric-)
+    + [Bonus Question](#bonus-question-2)
+- [Collecting APM Data](#collecting-apm-data)
+- [Appendix](#appendix)
+    + [Insert Rows into DB (Anomaly)](#insert-rows-into-db--anomaly-)
+    + [Timeboard - Postman Method](#timeboard---postman-method)
+    + [Timeboard - GUI Method](#timeboard---gui-method)
+    + [Insert rows into DB (Rows Inserted Graph)](#insert-rows-into-db--rows-inserted-graph-)
+    + [Add a DB](#add-a-db)
+      - [Add Table](#add-table)
+      - [Insert into table](#insert-into-table)
+      - [Screenshot](#screenshot)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 # Basic Info
 
