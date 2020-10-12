@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+
+from datadog import initialize, api                                                    
+                                                                                       
+options = {
+    'api_key': 'e588909df5b6fa7741f3bae41b3144d3',
+    'app_key': 'f96d902364b06c48171eccd68f0664e150386ab5'
+    }
+
+initialize(**options)
+
+dashboard_id = 'vf6-nwj-ht3'
+# Toms Dashboard create 10/8 'cbp-sck-852' 
+# My Dashboard created 10/8 "rci-qsx-dtt'
+# Toms Dashboard created 10/8 'f86-qph-miw'
+
+# api.Timeboard.delete(newboard['dash']['id'])
+api.Dashboard.delete(dashboard_id)

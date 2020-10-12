@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+
+from datadog import initialize, api                                                    
+                                                                                       
+options = {
+        'api_key': 'e588909df5b6fa7741f3bae41b3144d3',
+        'app_key': 'f96d902364b06c48171eccd68f0664e150386ab5'
+        }
+
+initialize(**options)
+
+# dashboard_id = 'cbp-sck-852'    # My Dashboard
+# dashboard_id = 'u2n-fid-68b'    #Toms Dashboard
+count = 0
+dashboards = api.Dashboard.get_all()
+for dashboard in dashboards["dashboards"]:
+    count = count + 1
+    json_data = api.Dashboard.get(dashboard["id"])
+    # print("Dashboard: ".format(dashboard["title"].encode('utf')))
+    print("Dashboard: ", dashboard["title"], "ID: ", dashboard["id"])
