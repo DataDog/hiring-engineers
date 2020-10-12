@@ -1,0 +1,40 @@
+## Every instance is scheduled independent of the others.
+#
+instances:
+
+    ## @param host - string - required
+    ## The hostname to connect to.
+    ## NOTE: Even if the server name is `localhost`, the Agent connects to PostgreSQL using TCP/IP unless you also
+    ## provide a value for the sock key.
+    #
+  - host: localhost
+
+    ## @param port - integer - optional - default: 5432
+    ## The port to use when connecting to PostgreSQL.
+    #
+    port: 5432
+
+    ## @param username - string - required
+    ## The Datadog username created to connect to PostgreSQL.
+    #
+    username: datadog
+
+    ## @param password - string - optional
+    ## The password associated with the Datadog user.
+    #
+    password: password
+
+    ## @param dbname - string - optional - default: postgres
+    ## The name of the PostgresSQL database to monitor.
+    ## Note: If omitted, the default system Postgres database is queried.
+
+logs:
+  - type: file
+    path: /var/log/postgresql/postgresql-13-main.log  #/path/to/postgres.log        
+    source: postgresql
+    service: postgresql
+    #    log_processing_rules:
+    #- type: multi_line
+    #  pattern: \d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])
+    #  name: new_log_start_with_date
+                                           
