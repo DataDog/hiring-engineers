@@ -530,6 +530,10 @@ The Anomaly detection graph displays a trendline with grey bar indicating the "e
 
 Basically, the trendline changes color if it goes outside an "expected" range at a given time, alerting the user to a potential *anomaly* in the data trend.
 
+### Link
+
+[HERE](https://p.datadoghq.com/sb/g9guv517ual7vfmf-4d73ed8f3c6bd64203ac8ba311d0a9c9) is a link to the timeboard I made with the Python API.
+
 # Monitoring Data
 
 ### New Monitor for `my_metric`
@@ -643,6 +647,20 @@ Derived from the [APM glossary](https://docs.datadoghq.com/tracing/visualization
 A **service** is a (hopefully, logical) group of endpoints or jobs that make up a part of a scalable application. Services should be related sets of functions.
 
 A **resource** is just that - an asset that can be accessed or referenced by a *service* or other aspect of an application. Resources enable services to do their jobs.
+
+### Link
+
+[HERE](https://p.datadoghq.com/sb/g9guv517ual7vfmf-b35e0c83e408750a2e32a9c7347a580d) is a link to my main dashboard ("Dashboard 0") which shows a variety of measures over my hosts.
+
+# Final Question
+
+***Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!***
+
+***Is there anything creative you would use Datadog for?***
+
+I particularly like the idea of using DataDog to monitor IOT systems. As more and more devices are connected to the internet, the need for monitoring solutions will rise. I think DataDog has the potential to fit that bill.
+
+One example of an absolutely *GIANT* network of sensors/IOT devices comes from the aviation industry. In addition to collecting data from many public/partner sources, [FlightAware](https://flightaware.com/) operates a network of volunteers who [build](https://flightaware.com/adsb/piaware/build)/host ADS-B sensors. One example of a volunteer from my area (Boulder, CO) is [AirplaneNerd's sensor](https://flightaware.com/adsb/stats/user/AirplaneNerd#stats-120728). The sensor reports many different measurements in near-real-time. I think DataDog's APM capability is particularly well-suited to monitor complicated sensor systems (like the ADS-B sensor).
 
 # Conclusion
 
