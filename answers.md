@@ -24,7 +24,7 @@ $ vagrant ssh
 
 I signed up for a free trial using the email `sjcip@umich.edu` 
 
-![account](/Users/samcipriani/GDrive/Code/hiring-engineers/img/account.png)
+![account](./img/account.png)
 
 
 
