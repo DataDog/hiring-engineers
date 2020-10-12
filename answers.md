@@ -1,3 +1,5 @@
+[TOC]
+
 # Basic Info
 
 **Name:** Sam Cipriani
