@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+
+from datadog import initialize, api
+
+options = {'api_key': 'e588909df5b6fa7741f3bae41b3144d3',
+            'app_key': 'f96d902364b06c48171eccd68f0664e150386ab5'}
+
+initialize(**options)
+
+title = "MyDashboard"
+description = 'Datadog Recruit Timeboard'
+
+graphs = [
+    {
+        'title': 'my metric over host',
+        'definition': {
+            'events': [],
+            'requests': [{'q': 'avg:hello.world{host:tomshost}'}],
+            },
+        'viz': 'timeseries'
+    },
+    {
+        'title': 'system cpu w/ rollup sum over hour',
+        'definition': {
+            'events': [],
+            'requests': [
+                {'q': 'avg:system.cpu.system{host:tomshost}.rollup(\"sum\",3600)'}] 
+            }
+    },
+    {
+        'title': 'postgresql anomalies',
+        'definition': {
+            'events': [],
+            'requests': [
+                {'q': 'avg:anomalies(postgresql.bgwriter.checkpoints_timed{host:tomshost}), \"basic\"'}],
+        },
+        'viz': 'timeseries'
+    },
+#   {
+#        'title': 'CPU Anomalies',
+#        'definition': {
+#            'events': [],
+#            'requests': [
+#                {'q': 'avg(last_1h):anomalies(avg:system.cpu.system{host:tomshost}, \"basic\", 3, direction=\"above\", alert_window=\"last_5m\", interval=20, count_default_zero=\"true\") >= 1'}]
+#        },
+#        'viz': 'timeseries'
+#    },
+#
+#    {
+#        'title': 'my_metric w/ rollup sum over hour',
+#        'definition': {
+#            'events': [],
+#            'requests': [
+#                {'q': 'avg:system.cpu.system{host:tomshost}.rollup(\"sum\",3600)'}]#        }
+#    }
+
+]
+
+template_variables = [{
+    'name': 'DatadogTimeboard',
+    'prefix': 'host',
+    'default': 'tomshost'
+    }]
+
+read_only = False
+
+api.Timeboard.update(
+     '78j-ajc-u94',
+     title=title,
+     description=description,
+     graphs=graphs,
+     template_variables=template_variables,
+     read_only=read_only,
+     )

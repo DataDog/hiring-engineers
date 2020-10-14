@@ -1,0 +1,62 @@
+#########################
+## Basic Configuration ##
+#########################
+
+## @param api_key - string - required
+## The Datadog API key to associate your Agent's data with your organization.       
+## Create a new API key here: https://app.datadoghq.com/account/settings
+#
+api_key: e588909df5b6fa7741f3bae41b3144d3
+
+
+## @param site - string - optional - default: datadoghq.com
+## The site of the Datadog intake to send Agent data to.
+## Set to 'datadoghq.eu' to send data to the EU site.
+#
+site: datadoghq.com
+
+
+## @param hostname - string - optional - default: auto-detected
+## Force the hostname name.
+#
+hostname: tomshost
+
+
+## @param tags  - list of key:value elements - optional
+## List of host tags. Attached in-app to every metric, event, log, trace, and service check emitted by this Agent.
+##
+## Learn more about tagging: https://docs.datadoghq.com/tagging/
+#
+tags:
+   - environment:dev
+   - project:training
+   - owner:tom
+   - os:ubuntu
+     # - <TAG_KEY>:<TAG_VALUE>
+
+
+##################################
+## Log collection Configuration ##
+##################################
+
+## @param logs_enabled - boolean - optional - default: false
+## Enable Datadog Agent log collection by setting logs_enabled to true.
+#
+logs_enabled: true
+
+
+####################################
+## Trace Collection Configuration ##
+####################################
+
+## @param apm_config - custom object - optional
+## Enter specific configurations for your trace collection.
+## Uncomment this parameter and the one below to enable them.
+## See https://docs.datadoghq.com/agent/apm/
+#
+apm_config:
+
+  ## @param enabled - boolean - optional - default: true
+  ## Set to true to enable the APM Agent.
+  #
+  enabled: true
