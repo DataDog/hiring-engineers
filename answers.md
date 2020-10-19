@@ -487,28 +487,26 @@ Please configure the monitor’s message so that it will:
 >
 >				next enter the custom message based on the type of alert
 >
->```
->		{{#is_alert}}
->  			My_Metric_Check_Value is over the "Alert" threshold
->  			Average over past 5 minutes  --- "{{value}}"
->  			Hostname is --- "{{host.name}}" 
->  			Host IP is --- "{{host.ip}}" <@-NOTIFICATION>
->		{{/is_alert}} 
+>				{{#is_alert}}
+>  					My_Metric_Check_Value is over the "Alert" threshold
+>  					Average over past 5 minutes  --- "{{value}}"
+>  					Hostname is --- "{{host.name}}" 
+>		  			Host IP is --- "{{host.ip}}" <@-NOTIFICATION>
+>				{{/is_alert}} 
 >
->		{{#is_warning}}
->  			My_Metric_Check_Value is over the "Warning" threshold
->  			Average over past 5 minutes  --- "{{value}}" 
->  			Hostname is --- "{{host.name}}" 
->  			Host IP is --- "{{host.ip}}" <@-NOTIFICATION>
->		{{/is_warning}} 
+>				{{#is_warning}}
+>  					My_Metric_Check_Value is over the "Warning" threshold
+>		  			Average over past 5 minutes  --- "{{value}}" 
+>  					Hostname is --- "{{host.name}}" 
+>  					Host IP is --- "{{host.ip}}" <@-NOTIFICATION>
+>				{{/is_warning}} 
 >
->		{{#is_no_data}}
->  			My_Metric_Check_Value is "MISSING"
->  			Average over past 10 minutes  --- "{{value}}"
->  			Hostname is --- "{{host.name}}" 
->  			Host IP is --- "{{host.ip}}" <@-NOTIFICATION>
->		{{/is_no_data}}
->```
+>				{{#is_no_data}}
+>  					My_Metric_Check_Value is "MISSING"
+>  					Average over past 10 minutes  --- "{{value}}"
+>  					Hostname is --- "{{host.name}}" 
+>  					Host IP is --- "{{host.ip}}" <@-NOTIFICATION>
+>				{{/is_no_data}}
 >
 	
 ><img src="Monitor Screenshot.png">
