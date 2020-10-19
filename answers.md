@@ -106,8 +106,8 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 >
 >Tags allow you add dimension to Datadog telemetries so you can filter, aggregate, and/or compare the data in Datadog visualizations for meaningful analytics.  Many reserved tags are already imbeded in Datadog, some examples are: host, device, service, env, version, etc...  For this exercise we will create some custom tags for the 2 host integrations we did in the last section.
 
-<br>
->###***Adding tags to Windows 10 Pro host***
+
+>### ***Adding tags to Windows 10 Pro host***
 >
 >2 ways you can add tags to the Windows 10 Pro agent
 >
@@ -737,7 +737,7 @@ Please include your fully instrumented app in your submission, as well.
 >>```
 >>
 >
->###***The difference between the 2 apps is that they run on different IPs and different ports***
+>### ***The difference between the 2 apps is that they run on different IPs and different ports***
 <br>
 ----
 
@@ -747,7 +747,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
->###***SOLUTION***
+>### ***SOLUTION***
 >
 >Datadog has already been used creatively for so so many applications.  What I feel would be some additional creative use cases (if someone has not already thought of these) are the following:
 >
