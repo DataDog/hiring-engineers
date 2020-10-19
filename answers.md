@@ -111,11 +111,11 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 >
 >2 ways you can add tags to the Windows 10 Pro agent
 >
->* 1. edit the C:\ProgramData\Datadog\datadog.yaml file directly
+>* I. edit the C:\ProgramData\Datadog\datadog.yaml file directly
 >
 ><img src="wintags1.png">
 >
->* 2. go the the configuration screen, click on settings from the left navigation menu, and edit the setting, then click "Save" on the top right.
+>* II. go the the configuration screen, click on settings from the left navigation menu, and edit the setting, then click "Save" on the top right.
 >
 ><img src="wintags2.png">
 >
