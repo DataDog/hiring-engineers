@@ -327,9 +327,10 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 >## ***SOLUTION***
 >
 >We will use the following python script to create the Visualization of the Data.  We will have 3 widgets which will all be of type "timeseries".
-> *		1.	For our Windows 10 Pro Host for the custom metric for the custom Agent check we just created
-> *		2.	For PostgreSQL buffer hit utilizing the anomaly function
-> *		3.	For the custom metric that rollups the total for all points for the past hour
+>
+> * I.	For our Windows 10 Pro Host for the custom metric for the custom Agent check we just created
+> * II.	For PostgreSQL buffer hit utilizing the anomaly function
+> * III.	For the custom metric that rollups the total for all points for the past hour
 > 
 > Here is the script that was used to create the dashboard.
 > 
