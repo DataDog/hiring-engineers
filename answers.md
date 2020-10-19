@@ -457,23 +457,34 @@ Please configure the monitor’s message so that it will:
 >
 >We will create a new Metric Monitor by selecting "New Monitor" from the Monitors navigation menu in the left side in the Datadog portal
 >
->Section 1.  Choose the detection method (modify the following value as shown below)
+> Section 1.  Choose the detection method (modify the following value as shown below)
+>
 >				select "Threshold Alert"
 >
->Section 2.  Define the metric (modify the following value as shown below)
+> Section 2.  Define the metric (modify the following value as shown below)
+>
 >				metric = "<enter metric name created earlier>"
+>	
 >				*metric = "my_check_metric_value"* 
+>
 >				from = "host:<Windows 10 Pro Host>"
 >
->Section 3.	Set alert conditions (modify the following value as shown below)
+> Section 3.	Set alert conditions (modify the following value as shown below)
+>
 >				Trigger when metric is *above* the threshold *on average* during the last *5 minutes*
+>
 >				Alert Threshold > *800*
+>
 >				Warning Threshold > *500*
+>
 >				*Notify* if data is missing for more than *10* minutes
->							
->Section 4.	Say What's Happening
+>	
+> Section 4.	Say What's Happening
+>
 >				Metric Name = <enter a meaningful name for the metric>
+>
 >				*Metric Name = My_Metric_Check_Value for "{{host.name}}" is out of range*
+>
 >				next enter the custom message based on the type of alert
 >
 >```
