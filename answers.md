@@ -115,6 +115,8 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 >
 ><img src="wintags1.png">
 >
+<br></br>
+>
 >* II. go the the configuration screen, click on settings from the left navigation menu, and edit the setting, then click "Save" on the top right.
 >
 ><img src="wintags2.png">
