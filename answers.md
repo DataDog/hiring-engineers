@@ -26,29 +26,29 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 >Datadog offers over 400+ integrations for systems, apps, and services.  Whether your applications reside on-premises or in the cloud, they all can be monitered by Datadog's modern monitoring and security solution for any stack, any app, at any scale, anywhere.  A full list of integrations can be found here (https://www.datadoghq.com/product/platform/integrations/#all) and more intergrations are continously being added.
 
 >For this part of we will install the dockerized Datadog Agent on Windows 10 Pro as well as a Windows Datadog Agent on Windows 10 Pro upon which we will perform PostgreSQL integration
+>
 
-<br>
->###***Here are the steps to install the dockerzied Datadog Agent on Windows 10 Pro***
+>### ***Here are the steps to install the dockerzied Datadog Agent on Windows 10 Pro***
 
->###***Step 1.  Install Docker Desktop on your Windows 10 Pro (if not allready installed)***
+>### ***Step 1.  Install Docker Desktop on your Windows 10 Pro (if not allready installed)***
 
 >*Instruction to install Docker can be found [here](https://docs.docker.com/docker-for-windows/install/)*
 
 ><img src="dockerSS.png">
 
->###***Step 2.  Sign up for Datadog by clicking on "GET STARTED FREE" and filling out the your info for a new account.***
+>### ***Step 2.  Sign up for Datadog by clicking on "GET STARTED FREE" and filling out the your info for a new account.***
 
 ><img src="DDsignup.png">
 
->###***Step 3.  Install Dockerized Datadog agent***
+>### ***Step 3.  Install Dockerized Datadog agent***
 
 >General instruction found [here](https://docs.datadoghq.com/agent/docker/?tab=windows) 
 
 >*From a Windows command promt run the following command*
 
-```
->*docker run -d --name <dd-agent> -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=<API_KEY> -e DD_SITE="datadoghq.com" datadog/agent:latest*
-```
+>```
+>docker run -d --name <dd-agent> -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=<API_KEY> -e DD_SITE="datadoghq.com" datadog/agent:latest
+>```
 > * since this is Docker the environmental variables need to be passed into the command as well such as the DD_SITE, also you have to provide a unique name for the agent in place of \<dd\_agent>
 
 > * replace the \<API\_KEY> with your \<API\_KEY> which can be found in the by going selecting APIs from the Integrations option from the navagation menu on the Left side of the Datadog portal
@@ -62,9 +62,9 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 ><img src="inappinstructions.png">
 
 <br>
-
+>
 >###***Here are the steps to install the Datadog Agent directly on Windows 10 Pro***
-
+>
 >###***Step 1.  From your Datadog portal navigate to the Integrations Agent's screen***
 >
 ><img src="windowsagent.png">
