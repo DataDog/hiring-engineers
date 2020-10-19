@@ -546,14 +546,23 @@ Please configure the monitor’s message so that it will:
 >
 ><img src="downtime.png">
 >
+
+##
+
 >Then select the Monitor we want to silence from the dropdown list of monitors.  Next we will fill in the schedule.  In this case it will be a recurring daily schedule Mon thru Fri starting 7pm and ending 9am
 >
 ><img src="MtoFdowntime.png">
 >
+
+##
+
 >Next we will create another schdule for Sat and Sun.  This schdule will start at 9am Saturday and end at 9am Monday.
 >
 ><img src="satsundowntime.png">  
 >
+
+##
+
 >Here is the screenshot of the email we received from these scheduled downtimes.
 >
 ><img src="scheduled downtime email.png">
