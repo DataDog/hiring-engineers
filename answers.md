@@ -128,7 +128,7 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 <img src="Tags Screenshot 1.png">
 
->###***Adding tags to Dockerized Agent on Windows 10 Pro***
+>### ***Adding tags to Dockerized Agent on Windows 10 Pro***
 >
 >In order to add tags to the Dockerized Agent we need to pass the tags in with environment variables and restart the container
 >
