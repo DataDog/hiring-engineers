@@ -153,7 +153,7 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-> ###***SOLUTION***
+> ## ***SOLUTION***
 > 
 > Datadog provides many Database monitoring solution including PostgreSQL.  For this step we will install PostgreSQL database on Windows 10 Pro.  A full list of database integration can be found [here](https://docs.datadoghq.com/integrations/#cat-data-store)
 > 
@@ -242,7 +242,7 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
->###***SOLUTION***
+>## ***SOLUTION***
 >
 >Datadog has Checks that allow you to monitor the health of an agent, service, integration, or app.
 >
@@ -283,7 +283,7 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
->###***SOLUTION***
+>## ***SOLUTION***
 >
 >The default collection interval for a custom Agent check is 15 seconds.  To change the interval modify the yaml file *my_check.yaml* and specific the interval in seconds as shown below.
 >
@@ -306,7 +306,7 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
->###***SOLUTION***
+>## ***SOLUTION***
 >
 >Yes, to modify the collection interval is to modify the yaml file *my_check.yaml* as shown above.  
 >
@@ -324,7 +324,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
->###***SOLUTION***
+>## ***SOLUTION***
 >
 >We will use the following python script to create the Visualization of the Data.  We will have 3 widgets which will all be of type "timeseries".
 > *		1.	For our Windows 10 Pro Host for the custom metric for the custom Agent check we just created
