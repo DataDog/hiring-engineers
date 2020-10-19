@@ -616,10 +616,14 @@ if __name__ == '__main__':
 >
 >We will start the Docker Datadog Image with the following parameters
 >
->*DD_APM_ENABLED=true*  
+>*DD_APM_ENABLED=true*
+>
 >*DD_TRACE_ANALYTICS_ENABLED=true* 
+>
 >*DD_PROFILING_ENABLED=true* 
+>
 >*DD_TRACE_ANALYTICS_ENABLED=true*
+>
 >*DD_LOGS_INJECTION=true* optional
 >
 >```
@@ -657,7 +661,6 @@ if __name__ == '__main__':
 >Run the following command to Instrument the application
 >
 >> **ddtrace-run python FLASKapp.py**
->
 >
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
@@ -769,7 +772,6 @@ Please include your fully instrumented app in your submission, as well.
 >
 >### ***The difference between the 2 apps is that they run on different IPs and different ports***
 <br></br>
-<br></br>
 
 ## Final Question:
 
@@ -784,7 +786,6 @@ Is there anything creative you would use Datadog for?
 > ***1. Monitor solar panel production efficiency, enable anomaly detection to predict abnormal patterns***
 >
 > ***2. Monitor using IoT of things in combination with Big Data and ML to potentially predict next pandemic*** 
-<br></br>
 <br></br>
 
 ## Thank you for allowing me to participate in this exercise ##
