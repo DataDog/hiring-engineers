@@ -343,7 +343,7 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 >    'app_key': '<APP_KEY>'
 >}
 >
->initialize(**options)
+>initialize(options)
 >
 >title = 'VIMAL KANERIA - DatadogNew Hire Dashboard Solution'
 >widgets = [
@@ -402,7 +402,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
->###***SOLUTION***
+>## ***SOLUTION***
 >
 >Go to the Datadog portal change the timeframe to "5 minutes" at the top right hand of the dashboard
 
@@ -410,7 +410,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
->###***SOLUTION***
+>## ***SOLUTION***
 >
 >From the dashboard screen click on one of the widgets.  Then from the top right hand select the icon with the arrow point up and then select "Send snapshot..."
 >
@@ -431,7 +431,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
->###***SOLUTION***
+>## ***SOLUTION***
 >
 >The anomaly graph is displaying when data is out of normal ranges based on historical predictable patterns, without historical data the graph is not meaningful.
 
@@ -454,7 +454,7 @@ Please configure the monitor’s message so that it will:
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
->###***Solution***
+>## ***Solution***
 >
 >Monitors allow you to get notified based on the threshold values set to trigger the monitors.  These notifications can be very helpful in managing and monitoring production environments and allowing you to take appropriate corrective actions.
 >
@@ -507,7 +507,7 @@ Please configure the monitor’s message so that it will:
 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
->###***SOLUTION***
+>## ***SOLUTION***
 
 <img src="email notification screenshot.png">
 
@@ -520,7 +520,7 @@ Please configure the monitor’s message so that it will:
   * And one that silences it all day on Sat-Sun.
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   
->###***SOLUTION***
+>## ***SOLUTION***
 >
 >In order to create downtime schedules, go to "Manage Downtime" tab by selecting "Manage Downtime" from the Monitors navigation menu on the left of the Datadog portal.
 >
@@ -580,13 +580,13 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
->###***SOLUTION***
+>## ***SOLUTION***
 >
 >Datadog is able to get trace and application analytics from services and apps being monitored by Datadog.  You just have to enable APM and tracing to get data from your apps and services.
 >
 >We will be using the Dockerized Datadog agent for this part
 >
->###***Step 1. First we have to setup the environment for docker image***
+>### ***Step 1. First we have to setup the environment for docker image***
 >
 >We will start the Docker Datadog Image with the following parameters
 >
@@ -600,7 +600,7 @@ if __name__ == '__main__':
 >docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=<API_KEY> -e DD_SITE="datadoghq.com" -e DD_TAGS="systemname:vk_docker systemtype:vk_docker_demo" -e DD_SERVICE="vk-ddtrace-service" -e DD_ENV="vk-ddtrace-env" -e DD_TRACE_ANALYTICS_ENABLED=true -e DD_APM_ENABLED=true -e DD_PROFILING_ENABLED=true -e DD_LOGS_INJECTION=true -p 8126:8126/tcp datadog/agent:latest
 >``` 
 >
->###***Step 2. Install/Update Python Client and Related Packages***
+>### ***Step 2. Install/Update Python Client and Related Packages***
 >
 >Open CLI window for the Docker Container and update apt-get
 >
@@ -616,29 +616,29 @@ if __name__ == '__main__':
 >
 >Install ddtrace
 >
->>**pip install ddtrace**
+>> **pip install ddtrace**
 >
 >Install flask
 >
->>**pip install flask**
+>> **pip install flask**
 >
 >
 >
->###***Step 3. Instrument the flask application***
+>### ***Step 3. Instrument the flask application***
 >
 >Copy the above code and create a file name "FLASKapp.py" *file can be any name except flask.py.  Modify code as need
 >
 >Run the following command to Instrument the application
 >
->>**ddtrace-run python FLASKapp.py**
+>> **ddtrace-run python FLASKapp.py**
 >
 >
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
->###***SOLUTION***
+>### ***SOLUTION***
 >
->###***A service is a set of processes that do the same job \[i.e. database].  A resource is a particular action within a given service \[i.e query]***
+>### ***A service is a set of processes that do the same job \[i.e. database].  A resource is a particular action within a given service \[i.e query]***
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
@@ -652,18 +652,18 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 Please include your fully instrumented app in your submission, as well.
 
->###***SOLUTION***
+>## ***SOLUTION***
 >
 >I instrumented 2 flask apps by running the following commands
 >
->>**ddtrace-run python FLASKapp.py**
+>> **ddtrace-run python FLASKapp.py**
 >
 >and
 >
->>**ddtrace-run python FLASKapp.py**
+>> **ddtrace-run python FLASKapp.py**
 >
 >
->###***here is the code from FLASKapp.py***
+>### ***here is the code from FLASKapp.py***
 >
 >>```
 >>from flask import Flask
@@ -701,7 +701,7 @@ Please include your fully instrumented app in your submission, as well.
 >>    app.run(host=host_ip, port='5050')
 >>```
 >
->###***here is the code from FLASKapp2.py***
+>### ***here is the code from FLASKapp2.py***
 >
 >
 >>```
@@ -755,9 +755,10 @@ Is there anything creative you would use Datadog for?
 >
 >Datadog has already been used creatively for so so many applications.  What I feel would be some additional creative use cases (if someone has not already thought of these) are the following:
 >
->***1. Monitor solar panel production efficiency, enable anomaly detection to predict abnormal patterns***
+> ***1. Monitor solar panel production efficiency, enable anomaly detection to predict abnormal patterns***
 >
->***2. Monitor using IoT of things in combination with Big Data and ML to potentially predict next pandemic*** 
+> ***2. Monitor using IoT of things in combination with Big Data and ML to potentially predict next pandemic*** 
 <br>
 ----
+
 ## Thank you for allowing me to participate in this exercise ##
