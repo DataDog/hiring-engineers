@@ -326,8 +326,8 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 >
 >We will use the following python script to create the Visualization of the Data.  We will have 3 widgets which will all be of type "timeseries".
 >
-> * I.	For our Windows 10 Pro Host for the custom metric for the custom Agent check we just created
-> * II.	For PostgreSQL buffer hit utilizing the anomaly function
+> * I.		For our Windows 10 Pro Host for the custom metric for the custom Agent check we just created
+> * II.		For PostgreSQL buffer hit utilizing the anomaly function
 > * III.	For the custom metric that rollups the total for all points for the past hour
 > 
 > Here is the script that was used to create the dashboard.
@@ -407,7 +407,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 ><img src="Timeboard 5 mins.png">
 >
->
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 >## ***SOLUTION***
@@ -416,12 +416,18 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 >
 ><img src="snapshotgraph.png">
 >
+
+##
+
 >
 >Now type @ at the bottom of the graph in the light blue box and you will see a dropdown list, select your name from the list and hit enter.  
 >
 >
 ><img src="atnotation.png">
 >
+
+##
+
 >
 >You will get an email with a snapshot of the graph.  Repeat the process of the other 2 widgets.
 >
