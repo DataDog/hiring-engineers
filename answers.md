@@ -55,27 +55,27 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 ><img src="APIs.png">
 
->###*Alternatively*
+>### *Alternatively*
 
 >*From the Datadog in-app installation portal you can also use the easy one-setup install which includes your \<API_KEY>*
 
 ><img src="inappinstructions.png">
+>
 
-<br>
 >
->###***Here are the steps to install the Datadog Agent directly on Windows 10 Pro***
+>### ***Here are the steps to install the Datadog Agent directly on Windows 10 Pro***
 >
->###***Step 1.  From your Datadog portal navigate to the Integrations Agent's screen***
+>### ***Step 1.  From your Datadog portal navigate to the Integrations Agent's screen***
 >
 ><img src="windowsagent.png">
 
->###***Step 2. Download .msi package for windows and follow installation instructions to enter API Key and Datadog Region***
+>### ***Step 2. Download .msi package for windows and follow installation instructions to enter API Key and Datadog Region***
 >
->###***Step 3. Start your the Datadog Agent Manager with Administrator privileges***
+>### ***Step 3. Start your the Datadog Agent Manager with Administrator privileges***
 >
 ><img src="ddadmin.png">
 >
->###***Step 4.  Open the configuration screen by right-clicking on the Datadog icon in the taskbar and selecting configure***
+>### ***Step 4.  Open the configuration screen by right-clicking on the Datadog icon in the taskbar and selecting configure***
 >
 >In the configuration screen you should see "Connected to Agent" in the top right.  If you don't see that, you may need to right-cllick on the Datadog icon in the taskbar and start the agent by selecting "Start"
 >
@@ -83,13 +83,13 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 >
 >
 >
->##At this point you will have 2 integrations functional
+>## At this point you will have 2 integrations functional
 >
->>*1.  Windows 10 Pro Datadog agent*
+>> *1.  Windows 10 Pro Datadog agent*
 >>
->>*2.  Dockerized Datadog agent on top of Windows 10 Pro*
+>> *2.  Dockerized Datadog agent on top of Windows 10 Pro*
 >
->##In your Datadog portal you will see 2 hosts in your Infrasturcture List
+>## In your Datadog portal you will see 2 hosts in your Infrasturcture List
 >
 ><img src="infrastructurelist.png">
 >
