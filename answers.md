@@ -116,11 +116,12 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 ><img src="wintags1.png">
 >
 <br></br>
->
+
 >* II. go the the configuration screen, click on settings from the left navigation menu, and edit the setting, then click "Save" on the top right.
 >
 ><img src="wintags2.png">
 >
+<br></br>
 >Format for entering tags is as follows:  *tags: ["hostname:vk_demo_docker", "hosttype:vk_demo_box"]*
 >
 >Both ways will update the "datadog.yaml" file.  Then you will need to restart the agent for the new setting to take effect.
