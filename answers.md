@@ -148,8 +148,7 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 ><img src="Tags Screenshot 2.png">
 
-<br>
---------------------------
+<br></br>
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
@@ -237,8 +236,7 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 <img src="hostmappostgresql.png">
 
 >
-<br>
--------
+<br></br>
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
@@ -435,8 +433,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 >
 >The anomaly graph is displaying when data is out of normal ranges based on historical predictable patterns, without historical data the graph is not meaningful.
 
-<br>
------
+<br></br>
 
 ## Monitoring Data
 
@@ -540,8 +537,7 @@ Please configure the monitor’s message so that it will:
 >
 ><img src="scheduled downtime email.png">
 >
-<br>
------
+<br></br>
 
 ## Collecting APM Data:
 
@@ -742,8 +738,8 @@ Please include your fully instrumented app in your submission, as well.
 >>
 >
 >### ***The difference between the 2 apps is that they run on different IPs and different ports***
-<br>
-----
+<br></br>
+<br></br>
 
 ## Final Question:
 
@@ -758,7 +754,7 @@ Is there anything creative you would use Datadog for?
 > ***1. Monitor solar panel production efficiency, enable anomaly detection to predict abnormal patterns***
 >
 > ***2. Monitor using IoT of things in combination with Big Data and ML to potentially predict next pandemic*** 
-<br>
-----
+<br></br>
+<br></br>
 
 ## Thank you for allowing me to participate in this exercise ##
