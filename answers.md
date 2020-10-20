@@ -25,7 +25,10 @@ Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Comp
 
 >Datadog offers over 400+ integrations for systems, apps, and services.  Whether your applications reside on-premises or in the cloud, they all can be monitered by Datadog's modern monitoring and security solution for any stack, any app, at any scale, anywhere.  A full list of integrations can be found here (https://www.datadoghq.com/product/platform/integrations/#all) and more intergrations are continously being added.
 
->For this part of we will install the dockerized Datadog Agent on Windows 10 Pro as well as a Windows Datadog Agent on Windows 10 Pro upon which we will perform PostgreSQL integration
+>For this part of we will install the dockerized Datadog Agent on Windows 10 Pro as well as a Windows Datadog Agent on Windows 10 Pro upon which we will perform PostgreSQL integration.  
+>
+
+>*Although running 2 agents on 1 physical hosts is not recommended, I did so in order to show the functionality and intergrations from a physical host as well as from contanier.  Doing this in a production environment will result in higher resource utilization as well as additional billing from Datadog, since both the physical host and the container will show up as individual integrations.  In a production environment you will want to deploy on or the other.  Also when utilizing a Docker container you are able to get full Host level metrics as well as Container metrics.* 
 >
 
 >### ***Here are the steps to install the dockerzied Datadog Agent on Windows 10 Pro***
@@ -432,11 +435,11 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 >You will get an email with a snapshot of the graph.  Repeat the process of the other 2 widgets.
 >
 >
-><img src="PostgreSQL Anomaly Metric.png">
+><img src="New PostgreSQL Anomaly Metric.png">
 
-><img src="My Random Check Metric.png">
+><img src="New My Random Check Metric.png">
 
-><img src="My Random Check Metric Rollup.png">
+><img src="New My Random Check Metric Rollup.png">
 
 
 * **Bonus Question**: What is the Anomaly graph displaying?
