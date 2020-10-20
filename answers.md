@@ -441,6 +441,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 ><img src="New My Random Check Metric Rollup.png">
 
+>### ***[Here is link to the dashboard we just created](https://p.datadoghq.com/sb/jz1ihhw7w5m1qtc4-2042c883b2a4993a142b9f87c5c48746)***
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
@@ -674,7 +675,7 @@ if __name__ == '__main__':
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
->[here is link to the Dashboard with both APM and Infrastructure Metrics](https://p.datadoghq.com/sb/jz1ihhw7w5m1qtc4-3d4ffce1148d890c733dacea56865e66)
+>### ***[here is link to the Dashboard with both APM and Infrastructure Metrics](https://p.datadoghq.com/sb/jz1ihhw7w5m1qtc4-3d4ffce1148d890c733dacea56865e66)***
 
 >here is a screenshot of the Dashboard
 >
