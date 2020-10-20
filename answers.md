@@ -405,7 +405,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 >Go to the Datadog portal change the timeframe to "5 minutes" at the top right hand of the dashboard
 >
 
-><img src="Timeboard 5 mins.png">
+><img src="dashboardSS.png">
 >
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
