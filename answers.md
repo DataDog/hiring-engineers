@@ -341,8 +341,8 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 	import socket
 	
 	options = {
-	    'api_key': '288290909c34019493e03d1963f4f814',
-	    'app_key': 'ea8acbc4ed117e87d40e50c1c092f1b9d44dad7d'
+	    'api_key': '<API_KEY>',
+	    'app_key': '<APP_KEY>'
 	}
 
 	initialize(**options)
