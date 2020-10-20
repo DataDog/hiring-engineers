@@ -344,7 +344,7 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 
 	initialize(**options)
 
-	title = 'VIMAL KANERIA - Datadog - New Hire Dashboard Solution'
+	title = 'VIMAL KANERIA - Datadog New Hire Dashboard Solution'
 	widgets = [
 	
 	{   'definition': {
