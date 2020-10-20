@@ -332,66 +332,67 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 > 
 > Here is the script that was used to create the dashboard.
 > 
->```
->from datadog import initialize, api
->import socket
 >
->options = {
->    'api_key': '288290909c34019493e03d1963f4f814',
->    'app_key': 'ea8acbc4ed117e87d40e50c1c092f1b9d44dad7d'
->}
->
->initialize(\*\*options)
->
->title = 'VIMAL KANERIA - Datadog - New Hire Dashboard Solution'
->widgets = [
->
->{   'definition': {
->        'type': 'timeseries',
->        'requests': [
->            {'q': 'avg:my_check_metric_value{host:DESKTOP-0S76KLQ}'}
->        ],
->        'title': 'My Random Check Metric'
->}},
->
->{   'definition': {
->        'type': 'timeseries',
->        'requests': [
->            {"q": "anomalies(avg:postgresql.buffer_hit{host:DESKTOP-0S76KLQ}, 'basic', 1)"}
->        ],
->        'title': 'Postgres Anomaly Metric'
->}},
->
->{       'definition': {
->        'type': 'timeseries',
->        'requests': [
->            {"q": "my_check_metric_value{host:DESKTOP-0S76KLQ}.rollup(sum, 300)"}
->        ],
->        'title': 'My Random Check Metric Rollup'
->}}
->
->]
->
->layout_type = 'ordered'
->description = 'A dashboard of my custom check metric value'
->is_read_only = True
->notify_list = ['vimal@kaneria.com']
->template_variables = [{
->    'name': 'scope',
->    'prefix': 'host',
->    'default': socket.gethostname()
->}]
->
->
->
->api.Dashboard.create(title=title,
->                     widgets=widgets,
->                     layout_type=layout_type,
->                     description=description,
->                     is_read_only=is_read_only,
->                     notify_list=notify_list,
->                     template_variables=template_variables)
->```
+```
+	from datadog import initialize, api
+	import socket
+	
+	options = {
+	    'api_key': '288290909c34019493e03d1963f4f814',
+	    'app_key': 'ea8acbc4ed117e87d40e50c1c092f1b9d44dad7d'
+	}
+
+	initialize(**options)
+
+	title = 'VIMAL KANERIA - Datadog - New Hire Dashboard Solution'
+	widgets = [
+	
+	{   'definition': {
+	        'type': 'timeseries',
+        	'requests': [
+	            {'q': 'avg:my_check_metric_value{host:DESKTOP-0S76KLQ}'}
+	        ],
+	'title': 'My Random Check Metric'
+	}},
+
+	{   'definition': {
+		'type': 'timeseries',
+        	'requests': [
+            		{"q": "anomalies(avg:postgresql.buffer_hit{host:DESKTOP-0S76KLQ}, 'basic', 1)"}
+        	],
+        	'title': 'Postgres Anomaly Metric'
+	}},
+
+	{       'definition': {
+	        'type': 'timeseries',
+	        'requests': [
+	            {"q": "my_check_metric_value{host:DESKTOP-0S76KLQ}.rollup(sum, 300)"}
+        	],
+		'title': 'My Random Check Metric Rollup'
+	}}
+
+	]
+
+	layout_type = 'ordered'
+	description = 'A dashboard of my custom check metric value'
+	is_read_only = True
+	notify_list = ['vimal@kaneria.com']
+	template_variables = [{
+	    'name': 'scope',
+	    'prefix': 'host',
+	    'default': socket.gethostname()
+	}]
+
+
+
+	api.Dashboard.create(title=title,
+	                     widgets=widgets,
+	                     layout_type=layout_type,
+	                     description=description,
+	                     is_read_only=is_read_only,
+	                     notify_list=notify_list,
+	                     template_variables=template_variables)
+```
 >
 >
 >
