@@ -337,13 +337,13 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 >import socket
 >
 >options = {
->    'api_key': '<API_KEY>',
->    'app_key': '<APP_KEY>'
+>    'api_key': '288290909c34019493e03d1963f4f814',
+>    'app_key': 'ea8acbc4ed117e87d40e50c1c092f1b9d44dad7d'
 >}
 >
->initialize(options)
+>initialize(\*\*options)
 >
->title = 'VIMAL KANERIA - DatadogNew Hire Dashboard Solution'
+>title = 'VIMAL KANERIA - Datadog - New Hire Dashboard Solution'
 >widgets = [
 >
 >{   'definition': {
@@ -362,11 +362,10 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 >        'title': 'Postgres Anomaly Metric'
 >}},
 >
->{
->	'definition': {
+>{       'definition': {
 >        'type': 'timeseries',
 >        'requests': [
->            {"q": "my_check_metric_value{host:DESKTOP-0S76KLQ}.rollup(sum, 3600)"}
+>            {"q": "my_check_metric_value{host:DESKTOP-0S76KLQ}.rollup(sum, 300)"}
 >        ],
 >        'title': 'My Random Check Metric Rollup'
 >}}
