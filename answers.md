@@ -87,7 +87,7 @@ After that I updated the configuration file located at ```/etc/datadog-agent/con
      disable_innodb_metrics: false
 
 
- You need to restart the agent and you can go to Metrics Explorer to view MySQL
+ You need to restart the agent by running sudo service datadog-agent restart and you can go to Metrics Explorer to view MySQL
 
 ![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
 ![Metrics Explorer](https://github.com/jasondunlap/hiring-engineers/blob/master/metricsexplorer_mysql.png)
@@ -116,7 +116,7 @@ I went to ```/etc/datadod-agent/checks.d/``` and create the file ```my_metric.py
 
 
 
-It's important to note the specific locations of these two files. It's also important that both the names of the configuration and check files are matching. The YAML file below is located at ```/etc/datadog/conf.d/my_metric.yaml``` 
+**Please Note** It's important to note the specific locations of these two files. It's also important that both the names of the configuration and check files are matching. The YAML file below is located at ```/etc/datadog/conf.d/my_metric.yaml``` 
 
 ```
 
@@ -165,7 +165,7 @@ I found MySQL integrations in Python [here.](https://github.com/DataDog/integrat
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard. 
 
-Prior to running the Python script, you need to complete a few steps to setup your environment on your Vagrant box. 
+Prior to running the Python script, it's necessary to complete a few steps to setup your environment on your Vagrant box. The first thing that I need to is install [pip](https://pip.pypa.io/en/stable/) pip is the Python package installer which allows people to install verious different packages from the [python package index.](https://pypi.org) Once pip is installed, we will use it to install the Datadog Python Library.
 1. ```apt-get update```
 2. ```curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"```
 3. ```python3 get-pip.py```
