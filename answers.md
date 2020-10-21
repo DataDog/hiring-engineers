@@ -1,5 +1,6 @@
 # Datadog Enterprise Sales Engineer Assignment - Los Angeles
-**Prerequisites - Setup the environment**
+
+# Setup the Environment
 
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
@@ -16,7 +17,7 @@ Agent 7.22.1 - Commit: 6f0f0d5 - Serialization version: v4.40.0 - Go version: go
 
 ```
 
-**Collecting Metrics**
+# Collecting Metrics
 
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 The documentation I followed for this section can be found [here](https://docs.datadoghq.com/getting_started/tagging/)
@@ -148,7 +149,7 @@ Finally, to double check everything is working ok, run ```sudo -u dd-agent -- da
 Bonus Question Can you change the collection interval without modifying the Python check file you created?
 You can change the following parameter ```min_collection_interval``` to whatever value you want on the ```my_metric.yaml``` You wouldn't need to change anything in the Python script. 
 
-**Visualizing Data**
+# Visualizing Data
 Utilize the Datadog API to create a Timeboard that contains:
 Your custom metric scoped over your host.
 Any metric from the Integration on your Database with the anomaly function applied.
@@ -244,7 +245,7 @@ Take a snapshot of this graph and use the @ notation to send it to yourself.
 Bonus Question: What is the Anomaly graph displaying?
 The anamoly graph is displays changes in value from previous patterns. You can see those changes in red. 
 
-**Monitoring Data**
+# Monitoring Data
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
@@ -277,14 +278,16 @@ Make sure that your email is notified when you schedule the downtime and take a 
 ![weekend](https://github.com/jasondunlap/hiring-engineers/blob/master/weekenddowntime4.png)
 ![weekend](https://github.com/jasondunlap/hiring-engineers/blob/master/downtime4.png)
 
-**Collecting APM Data**
+# Collecting APM Data
+
+If you're new to Application Performance Monitoring, I would highly recommend going [here](https://docs.datadoghq.com/tracing/visualization/) to familiarize yourself with APM terminology. Also, it's important to [here](https://app.datadoghq.com/apm/intro) for the Datadog APM introduction. There is an introduction to APM video along with all of the documentation necessary to complete this section. 
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
-Getting [started](https://app.datadoghq.com/apm/docs?architecture=host-based)
+Getting [started](https://app.datadoghq.com/apm/docs?architecture=host-based) only takes five minutes and your configuration snippet is created dynamically on the page. 
 
-```pip install ddtrace``` and ```pip install flask```
+Let's first download```pip install ddtrace``` and ```pip install flask```on our Vagrant host.
 
-the following commmand starts the application
+The following commmand starts the application
 
      sudo  DD_SERVICE="test" DD_ENV="dev" DD_LOGS_INJECTION=true DD_PROFILING_ENABLED=true ddtrace-run python3 flaskapp.py 
  
@@ -331,7 +334,7 @@ the following commmand starts the application
     app.run(host='0.0.0.0', port='5050')   
 
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
-I used ddtrace and the documentation I followed is [here.](https://docs.datadoghq.com/tracing/setup/python/)
+I used ddtrace and the documentation I followed for tracing python applications is [here.](https://docs.datadoghq.com/tracing/setup/python/) If you're looking for more advanced usage of ddtrace, please look at this [link.](https://ddtrace.readthedocs.io/en/stable/advanced_usage.html#ddtracerun)
 
 Bonus Question: What is the difference between a Service and a Resource?
 Service is a collection of resources such as DB queries and a resource is part of a service such as an endpoint.
@@ -347,22 +350,13 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 ![cpu](https://github.com/jasondunlap/hiring-engineers/blob/master/infras.png)
 Please include your fully instrumented app in your submission, as well.
 
-**Final Question**
+# Final Question
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
 
 Personally, I would like to build a plant monitoring application on my Rasberry PI. It would be cool to monitor the app using Datadog. I would like to see Datadog used for Covid-19 contact tracing apps too. I would also like to see more cloud partnerships like the recently announced one with Azure :)
 
-Instructions
-If you have a question, create an issue in this repository.
 
-To submit your answers:
-
-Fork this repo.
-Answer the questions in answers.md
-Commit as much code as you need to support your answers.
-Submit a pull request.
-Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
 
 
