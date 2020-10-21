@@ -15,13 +15,15 @@ You can spin up a fresh linux VM via Vagrant or other tools so that you don’t 
 You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
 Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
-Once I had my VM environment setup correctly, I created my Datadog trial and installed the agent with the documentation provided [here.](https://app.datadoghq.com/signup/agent#ubuntu) All I needed to do was run this command ```DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=Your API key goes here DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
-``` and I was all setup and ready to go. I verified installation with the following command
-```
-$ datadog-agent version
-Agent 7.22.1 - Commit: 6f0f0d5 - Serialization version: v4.40.0 - Go version: go1.13.11
+Once I had my VM environment setup correctly, I created my Datadog trial and installed the agent with the documentation provided [here.](https://app.datadoghq.com/signup/agent#ubuntu) All I needed to do was run this command 
 
-```
+     DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=Your API key goes here DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)" 
+and I was all setup and ready to go. I verified installation with the following command
+
+    $ datadog-agent version
+    Agent 7.22.1 - Commit: 6f0f0d5 - Serialization version: v4.40.0 - Go version: go1.13.11
+
+
 
 # Collecting Metrics
 
