@@ -4,13 +4,19 @@
 
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
-I downloaded Vagrant 2.2.10 for Mac OSX 64-bit. Added Vagrant Box xenial64 to utilize Ubuntu 16.04.
-Installed the agent with the documentation provided [here.](https://app.datadoghq.com/signup/agent#ubuntu)
+I downloaded Vagrant 2.2.10 for Mac OSX 64-bit [here.](https://www.vagrantup.com/downloads) Since I've never used Vagrant so I followed [this](https://learn.hashicorp.com/tutorials/vagrant/getting-started-index?in=vagrant/getting-started) quickstart guide to get up and running. When I'm doing work on a VM, it's always important for me to have backups enabled so I can do a point in time restore if I need to. It's a little different with Vagrant, since you're working locally. I came across exactly what I needed with ```vagrant snapshot``` and everything about saving and restoring snapshots can be found [here.](https://www.vagrantup.com/docs/cli/snapshot)
 
+It's recommended to use Ubuntu 16.04 and the Vagrant box for that is [xenial64.](https://app.vagrantup.com/ubuntu/boxes/xenial64)
+To get my new image running I simply needed to run the following commands
+
+    vagrant init ubuntu/xenial64
+    vagrant up
 You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues.
 You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
 Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
+Once I had my VM environment setup correctly, I created my Datadog trial and installed the agent with the documentation provided [here.](https://app.datadoghq.com/signup/agent#ubuntu) All I needed to do was run this command ```DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=Your API key goes here DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+``` and I was all setup and ready to go. I verified installation with the following command
 ```
 $ datadog-agent version
 Agent 7.22.1 - Commit: 6f0f0d5 - Serialization version: v4.40.0 - Go version: go1.13.11
