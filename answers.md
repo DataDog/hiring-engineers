@@ -13,10 +13,10 @@ To get my new image running I simply needed to run the following commands
     vagrant init ubuntu/xenial64
     vagrant up
 
-Once I had my VM environment setup correctly, I created my Datadog trial (with “Datadog Recruiting Candidate” in the “Company” field)and installed the agent with the documentation provided [here.](https://app.datadoghq.com/signup/agent#ubuntu) All I needed to do was run this command 
+Once I had my VM environment setup correctly, I created my Datadog trial (with “Datadog Recruiting Candidate” in the “Company” field) and installed the agent with the documentation provided [here.](https://app.datadoghq.com/signup/agent#ubuntu) All I needed to do was run this command 
 
      DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=Your API key goes here DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)" 
-and I was all setup and ready to go. I verified installation with the following command
+I verified installation with the following command
 
     $ datadog-agent version
     Agent 7.22.1 - Commit: 6f0f0d5 - Serialization version: v4.40.0 - Go version: go1.13.11
@@ -125,10 +125,10 @@ instances:
 
 ```
 
-I found this [tutorial](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=count) and this [one.](https://datadoghq.dev/summit-training-session/handson/customagentcheck/)
+For this section, I followed this [tutorial](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=count) and this [one.](https://datadoghq.dev/summit-training-session/handson/customagentcheck/)
 [Writing a Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) has everything you need to help with the python script. 
 
-Finally, to double check everything is working ok, run ```sudo -u dd-agent -- datadog-agent check my_metric```
+Finally, to verify that your check is running properly, run ```sudo -u dd-agent -- datadog-agent check my_metric```
 
 
 
