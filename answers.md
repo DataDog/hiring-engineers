@@ -286,7 +286,7 @@ Make sure that your email is notified when you schedule the downtime and take a 
 
 # Collecting APM Data
 
-If you're new to Application Performance Monitoring, I would highly recommend going [here](https://docs.datadoghq.com/tracing/visualization/) to familiarize yourself with APM terminology. Also, it's important to [here](https://app.datadoghq.com/apm/intro) for the Datadog APM introduction. There is an introduction to APM video along with all of the documentation necessary to complete this section. 
+If you're new to Application Performance Monitoring, I would highly recommend going [here](https://docs.datadoghq.com/tracing/visualization/) to familiarize yourself with APM terminology. Also, it's important to go [here](https://app.datadoghq.com/apm/intro) for the Datadog APM introduction. There is an introduction to APM video along with all of the documentation necessary to complete this section. 
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 Getting [started](https://app.datadoghq.com/apm/docs?architecture=host-based) only takes five minutes and your configuration snippet is created dynamically on the page. 
@@ -341,6 +341,38 @@ The following commmand starts the application
 
 Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 I used ddtrace and the documentation I followed for tracing python applications is [here.](https://docs.datadoghq.com/tracing/setup/python/) If you're looking for more advanced usage of ddtrace, please look at this [link.](https://ddtrace.readthedocs.io/en/stable/advanced_usage.html#ddtracerun)
+
+One last thing I needed to do is send some traffic to the various endpoints such as ```/api/apm``` and ```api/trace``` We know our application is running at ```http://0.0.0.0:5050/``` so we can 
+
+      curl http://0.0.0.0:5050/
+      curl http://0.0.0.0:5050/api/apm
+      curl http://0.0.0.0:5050/api/trace
+
+You can see the requests in real time from your terminal window
+     
+
+     2020-10-07 22:38:44,875 - ddtrace.tracer - DEBUG - 
+      name flask.request
+        id 666318657609852178
+    trace_id 1098856669353764473
+    parent_id None
+    service flaskapm-app
+    resource GET /
+      type web
+     start 1602110324.873107
+       end 1602110324.875369
+    duration 0.002262s
+     error 0
+      tags 
+           env:dev
+           flask.endpoint:api_entry
+           flask.url_rule:/
+           flask.version:1.1.2
+           http.method:GET
+           http.status_code:200
+           http.url:http://0.0.0.0:5050/
+           runtime-id:d10bd7f1adbe4bc895c5f33e94c7be23
+           version:1.1
 
 Bonus Question: What is the difference between a Service and a Resource?
 Service is a collection of resources such as DB queries and a resource is part of a service such as an endpoint.
