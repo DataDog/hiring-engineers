@@ -3,19 +3,17 @@
 # Setup the Environment
 
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
+You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues. You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image. Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
-I downloaded Vagrant 2.2.10 for Mac OSX 64-bit [here.](https://www.vagrantup.com/downloads) Since I've never used Vagrant so I followed [this](https://learn.hashicorp.com/tutorials/vagrant/getting-started-index?in=vagrant/getting-started) quickstart guide to get up and running. When I'm doing work on a VM, it's always important for me to have backups enabled so I can do a point in time restore if I need to. It's a little different with Vagrant, since you're working locally. I came across exactly what I needed with ```vagrant snapshot``` and everything about saving and restoring snapshots can be found [here.](https://www.vagrantup.com/docs/cli/snapshot)
+I downloaded Vagrant 2.2.10 for Mac OSX 64-bit [here.](https://www.vagrantup.com/downloads) I've never used Vagrant so I followed [this](https://learn.hashicorp.com/tutorials/vagrant/getting-started-index?in=vagrant/getting-started) quickstart guide to get up and running. When I'm doing work on a VM, it's always important for me to have backups enabled so I can do a point in time restore if I need to. It's a little different with Vagrant, since you're working locally. I came across exactly what I needed with ```vagrant snapshot``` and everything about saving and restoring snapshots can be found [here.](https://www.vagrantup.com/docs/cli/snapshot)
 
 It's recommended to use Ubuntu 16.04 and the Vagrant box for that is [xenial64.](https://app.vagrantup.com/ubuntu/boxes/xenial64)
 To get my new image running I simply needed to run the following commands
 
     vagrant init ubuntu/xenial64
     vagrant up
-You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues.
-You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
-Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
-Once I had my VM environment setup correctly, I created my Datadog trial and installed the agent with the documentation provided [here.](https://app.datadoghq.com/signup/agent#ubuntu) All I needed to do was run this command 
+Once I had my VM environment setup correctly, I created my Datadog trial (with “Datadog Recruiting Candidate” in the “Company” field)and installed the agent with the documentation provided [here.](https://app.datadoghq.com/signup/agent#ubuntu) All I needed to do was run this command 
 
      DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=Your API key goes here DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)" 
 and I was all setup and ready to go. I verified installation with the following command
@@ -28,7 +26,7 @@ and I was all setup and ready to go. I verified installation with the following 
 # Collecting Metrics
 
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-The documentation I followed for this section can be found [here](https://docs.datadoghq.com/getting_started/tagging/)
+The documentation I followed for this section can be found [here.](https://docs.datadoghq.com/getting_started/tagging/)
 I navigated to ```/etc/datadog-agent/datadog.yaml``` and navigated to @param tags and added the following:
 ```
 
@@ -37,7 +35,7 @@ I navigated to ```/etc/datadog-agent/datadog.yaml``` and navigated to @param tag
 # -project:solutionsengineerassignment
 
 ```
-I restarted Agent running as a service ```sudo service datadog-agent restart``` For agent usage specific to Ubuntu, I followed the documentation [here](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7)
+I restarted Agent running as a service ```sudo service datadog-agent restart``` For agent usage specific to Ubuntu, I followed the documentation [here.](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7) [This](https://www.datadoghq.com/blog/tagging-best-practices/) blog post is really helpful to understand best practices for tagging your infrastructure and applications. 
 
  ![Tags](https://github.com/jasondunlap/hiring-engineers/blob/master/DD_tags.png) 
 
@@ -50,7 +48,8 @@ $ sudo apt-get install mysql-server
 $ mysql_secure_installation
 
 ```
-I followed [these](https://docs.datadoghq.com/integrations/mysql/?tab=host) steps in regards to the Datadog integration.
+[This](https://www.datadoghq.com/blog/monitoring-mysql-performance-metrics/) blog post is really helpful to determine which MySQL metrics that you should be monitoring to ensure optimal database performance. 
+I followed [these](https://docs.datadoghq.com/integrations/mysql/?tab=host) steps in MySQL so that the Datadog agent can start collecting metrics. 
 ```
 
 mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY 'JasonPW';
@@ -86,8 +85,7 @@ After that I updated the configuration file located at ```/etc/datadog-agent/con
      schema_size_metrics: false
      disable_innodb_metrics: false
 
-
- You need to restart the agent by running sudo service datadog-agent restart and you can go to Metrics Explorer to view MySQL
+You need to restart the agent ```sudo service datadog-agent restart``` and you can go to Metrics Explorer to view MySQL
 
 ![MySQL](https://github.com/jasondunlap/hiring-engineers/blob/master/mysql.png)
 ![Metrics Explorer](https://github.com/jasondunlap/hiring-engineers/blob/master/metricsexplorer_mysql.png)
@@ -165,7 +163,7 @@ I found MySQL integrations in Python [here.](https://github.com/DataDog/integrat
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard. 
 
-Prior to running the Python script, it's necessary to complete a few steps to setup your environment on your Vagrant box. The first thing that I need to is install [pip](https://pip.pypa.io/en/stable/) pip is the Python package installer which allows people to install verious different packages from the [python package index.](https://pypi.org) Once pip is installed, we will use it to install the Datadog Python Library.
+Prior to running the Python script, it's necessary to complete a few steps to setup your environment on your Vagrant box. The first thing that I need to is install [pip.](https://pip.pypa.io/en/stable/) pip is the Python package installer which allows people to install verious different packages from the [python package index.](https://pypi.org) Once pip is installed, we will use it to install the Datadog Python Library.
 1. ```apt-get update```
 2. ```curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"```
 3. ```python3 get-pip.py```
@@ -241,7 +239,7 @@ Once all the steps above are completed, you execute the Python script ```python3
 
 The code example for the Python script is located [here](https://docs.datadoghq.com/api/v1/dashboards/)
 
-I created my Application and API keys from the Datadog dashboard, Under Integrations > [API's.](https://app.datadoghq.com/account/settings#api)
+I created my Application and API keys from the Datadog dashboard, Under Integrations > [API's.](https://app.datadoghq.com/account/settings#api) **Please note** Be careful not to accidentally commit your API keys or any other credentials to Github. 
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -348,7 +346,7 @@ Bonus Question: What is the difference between a Service and a Resource?
 Service is a collection of resources such as DB queries and a resource is part of a service such as an endpoint.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-[link to dashboard](https://p.datadoghq.com/sb/x6w2dmyiho29dvdu-0aed1950a4bf74c63ee271b2e42474a7
+[link to dashboard.](https://p.datadoghq.com/sb/x6w2dmyiho29dvdu-0aed1950a4bf74c63ee271b2e42474a7
 )
 ![app_infra](https://github.com/jasondunlap/hiring-engineers/blob/master/apm_infra.png)
 ![infra](https://github.com/jasondunlap/hiring-engineers/blob/master/apm_services.png)
