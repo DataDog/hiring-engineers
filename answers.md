@@ -160,7 +160,7 @@ You can change the following parameter ```min_collection_interval``` to whatever
 Utilize the Datadog API to create a Timeboard that contains:
 Your custom metric scoped over your host.
 Any metric from the Integration on your Database with the anomaly function applied.
-I found MySQL integrations in Python [here.](https://github.com/DataDog/integrations-core/blob/master/mysql/datadog_checks/mysql/mysql.py) [This](https://www.datadoghq.com/blog/monitoring-mysql-performance-metrics/) blog post was very helpful as well. 
+I found MySQL integrations in Python [here.](https://github.com/DataDog/integrations-core/blob/master/mysql/datadog_checks/mysql/mysql.py) [This](https://www.datadoghq.com/blog/monitoring-mysql-performance-metrics/) blog post was very helpful as well. I also read up on [anomalies](https://docs.datadoghq.com/dashboards/functions/algorithms/) and [rollup.](https://docs.datadoghq.com/dashboards/functions/rollup/)
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard. 
 
@@ -253,6 +253,7 @@ Bonus Question: What is the Anomaly graph displaying?
 The anomaly graph is displays changes in value from previous patterns. You can see those changes in red. 
 
 # Monitoring Data
+For this section I followed the documentation linked [here.](https://docs.datadoghq.com/monitors/monitor_types/metric/?tab=threshold)
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
