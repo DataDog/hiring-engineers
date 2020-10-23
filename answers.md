@@ -5,7 +5,7 @@
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. Here are instructions for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum v. 16.04 to avoid dependency issues. You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image. Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
 
-I downloaded Vagrant 2.2.10 for Mac OSX 64-bit [here.](https://www.vagrantup.com/downloads) I've never used Vagrant so I followed [this](https://learn.hashicorp.com/tutorials/vagrant/getting-started-index?in=vagrant/getting-started) quickstart guide to get up and running. When I'm doing work on a VM, it's always important to have backups enabled so I can do a point in time restore if I need to. It's a little different with Vagrant, since you're working locally. I came across exactly what I needed with ```vagrant snapshot``` and everything about saving and restoring snapshots can be found [here.](https://www.vagrantup.com/docs/cli/snapshot)
+I downloaded Vagrant 2.2.10 for Mac OSX 64-bit [here.](https://www.vagrantup.com/downloads) I've never used Vagrant so I followed [this](https://learn.hashicorp.com/tutorials/vagrant/getting-started-index?in=vagrant/getting-started) quick start guide to get up and running. When I'm doing work on a VM, it's always important to have backups enabled so I can do a point in time restore if I need to. It's a little different with Vagrant since you're working locally. I came across exactly what I needed with ```vagrant snapshot``` and everything about saving and restoring snapshots can be found [here.](https://www.vagrantup.com/docs/cli/snapshot)
 
 It's recommended to use Ubuntu 16.04 and the Vagrant box for that is [xenial64.](https://app.vagrantup.com/ubuntu/boxes/xenial64)
 To get my new image running I simply needed to run the following commands:
@@ -14,10 +14,10 @@ To get my new image running I simply needed to run the following commands:
     vagrant up
     vagrant ssh
 
-Once I had my VM environment setup correctly, I created my Datadog trial (with “Datadog Recruiting Candidate” in the “Company” field) and installed the agent with the documentation provided [here.](https://app.datadoghq.com/signup/agent#ubuntu) All I needed to do was run this command:
+Once I had my VM environment configured, I created my Datadog trial (with “Datadog Recruiting Candidate” in the “Company” field) and installed the agent with the documentation provided [here.](https://app.datadoghq.com/signup/agent#ubuntu) All I needed to do was run this command:
 
      DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=Your API key goes here DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)" 
-I verified installation with the following command:
+I verified the installation with the following command:
 
     $ datadog-agent version
     Agent 7.22.1 - Commit: 6f0f0d5 - Serialization version: v4.40.0 - Go version: go1.13.11
@@ -66,7 +66,7 @@ mysql> GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 Query OK, 0 rows affected (0.00 sec)
 
 ```
-After that I updated the configuration file located at ```/etc/datadog-agent/conf.d/mysql.d/conf.yaml```
+After that, I updated the configuration file located at ```/etc/datadog-agent/conf.d/mysql.d/conf.yaml```
 
 
 
@@ -164,7 +164,7 @@ I found MySQL integrations in Python [here.](https://github.com/DataDog/integrat
 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard. 
 
-Prior to running the Python script, it's necessary to complete a few steps to setup your environment on your Vagrant box. The first thing that I need to is install [pip.](https://pip.pypa.io/en/stable/) pip is the Python package installer which allows people to install various different packages from the [python package index.](https://pypi.org) Once pip is installed, we will use it to install the Datadog Python Library.
+Prior to running the Python script, it's necessary to complete a few steps to set up your environment on your Vagrant box. The first thing that I need to is to install [pip.](https://pip.pypa.io/en/stable/) pip is the Python package installer which allows people to install various different packages from the [python package index.](https://pypi.org) Once pip is installed, we will use it to install the Datadog Python Library.
 1. ```apt-get update```
 2. ```curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"```
 3. ```python3 get-pip.py```
@@ -250,7 +250,7 @@ Set the Timeboard's timeframe to the past 5 minutes
 Take a snapshot of this graph and use the @ notation to send it to yourself.
 ![?](https://github.com/jasondunlap/hiring-engineers/blob/master/anomolies_email.png)
 Bonus Question: What is the Anomaly graph displaying?
-The anamoly graph is displays changes in value from previous patterns. You can see those changes in red. 
+The anomaly graph is displays changes in value from previous patterns. You can see those changes in red. 
 
 # Monitoring Data
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
@@ -294,7 +294,7 @@ Getting [started](https://app.datadoghq.com/apm/docs?architecture=host-based) on
 
 Let's first download```pip install ddtrace``` and ```pip install flask```on our Vagrant host.
 
-The following commmand starts the application:
+The following command starts the application:
 
      sudo  DD_SERVICE="test" DD_ENV="dev" DD_LOGS_INJECTION=true DD_PROFILING_ENABLED=true ddtrace-run python3 flaskapp.py 
  
@@ -349,7 +349,7 @@ One last thing I needed to do is send some traffic to the various endpoints such
       curl http://0.0.0.0:5050/api/apm
       curl http://0.0.0.0:5050/api/trace
 
-You can see the requests in real time from your terminal window
+You can see the requests in real-time from your terminal window
      
 
      2020-10-07 22:38:44,875 - ddtrace.tracer - DEBUG - 
@@ -394,7 +394,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-Personally, I would like to build a plant monitoring application on my Rasberry PI. It would be cool to monitor the app using Datadog. I would like to see Datadog used for Covid-19 contact tracing apps too. I would also like to see more cloud partnerships like the recently announced one with Azure :)
+Personally, I would like to build a plant monitoring application on my Rasberry Pi. It would be cool to monitor the app using Datadog. I would like to see Datadog used for Covid-19 contact tracing apps too. I would also like to see more cloud partnerships like the recently announced one with Azure :)
 
 
 
