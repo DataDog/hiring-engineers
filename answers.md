@@ -69,3 +69,69 @@ response = requests.request("POST", url, headers=headers, data=payload)
 
 print(response.text)
 ```
+
+I did not include any options to change the axis, color, line styles, etc. However, that is all possible through the UI and API and recommended for ideal readability. 
+
+To send a snapshot to myself, I clicked the my_metric graph and clicked on the snapshot option. There I had the option to write a comment and include @beardbradleyj@gmail.com to send the snapshot to myself. Here is what the email looks like as well as an image of the dashboard itself with the timeframe set to 5 minutes:
+
+[![Datadog-snapshot.png](https://i.postimg.cc/2jxBQLW4/Datadog-snapshot.png)](https://postimg.cc/NL5MYMpM)
+
+[![my-metric-dashboard.png](https://i.postimg.cc/TYwhn7f6/my-metric-dashboard.png)](https://postimg.cc/K46Z251q)
+
+From left to right we have the my_metric timeseries graph, the MySQL Connection anomoly graph, and the average of my_metric over the chose timeframe. The middle anomoloy graph shows the average mysql connections, as well as a gray outline to show the expect bounds of normal behavior for this metric. 
+
+
+### Monitoring Data 
+
+To create a monitor around my_metric I went to the Monitor section of the UI and followed the workflow. I set the monitor to warn if the average of my_metric stays above 500 for 5 minutes and alerts if it stays over 800. It also notifies me if there is no data for more than 10 minutes. Here are the monitor settings:
+
+[![Monitor-Settings.png](https://i.postimg.cc/x8dHJ96r/Monitor-Settings.png)](https://postimg.cc/XGTXt6Mx)
+
+One interesting aspect to this section is the ability to create different email templates based on which monitor is triggered. My template for these emails is shown here:
+
+```
+{{#is_alert}} 
+my_metric has exceeded 800 on host {{host.ip}} with a value of {{value}} over the last 5 minutes
+{{/is_alert}} 
+
+{{#is_warning}} Warning: my_metric is between 500 and 800 over the last 5 minutes {{/is_warning}}
+
+{{#is_no_data}} No data received from monitor for the past 10 minutes {{/is_no_data}} @beardbradleyj@gmail.com
+```
+
+To schedule downtime for this monitor, I simply went to the 'Manage Downtime' tab. The example for my weekday nightly downtime can be found here: 
+
+[![Downtime-Settings.png](https://i.postimg.cc/dV0qbLLc/Downtime-Settings.png)](https://postimg.cc/dLzPdQ25)
+
+When this downtime was scheduled, I made sure I was notified through email, shown below:
+
+[![Downtime-Notification-Email.png](https://i.postimg.cc/43tjqgbT/Downtime-Notification-Email.png)](https://postimg.cc/v1YPxCNP)
+
+Time is shown in UTC. 
+
+### Collecting APM Data
+
+To collect APM data, I used the following Flask python script and instrumented it by running 'ddtrace-run python3 my_app.py' in the command line. 
+
+```python
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return 'hello world'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5050)
+```
+
+After doing this and restarting the agent, traces start collecting in the APM section of the UI. 
+
+
+### Final Question 
+
+It's clear that Datadog can be used almost anywhere through the out-of-the-box integrations and ability to create custom integrations. Coming from a networking background, one creative use case I can imagine is to detect wireless clients in a building and send the total clients to Datadog to monitor building capacity. This would be a very nice use case during the pandemic, as capacity rules are changing often and many businesses could use a simple way to track their capacity in real-time. 
+
+
+Thank you for taking the time to read through this exercise, I learned quite a bit. Again, if there's any clarification I can provide please don't hesitate to reach out. 
+
