@@ -125,7 +125,13 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050)
 ```
 
-After doing this and restarting the agent, traces start collecting in the APM section of the UI. 
+After doing this and restarting the agent, traces start collecting in the APM section of the UI:
+
+[![Traces.png](https://i.postimg.cc/L5wjPrqx/Traces.png)](https://postimg.cc/7J1C8tnz)
+
+Below is a simple dashboard I created using a my_metric, the CPU usage, the service map, and the CPU percentage the trace agent is using:
+
+[![APM-Dashboard.png](https://i.postimg.cc/dVpSvVJx/APM-Dashboard.png)](https://postimg.cc/YvNxzkG6)
 
 
 ### Final Question 
