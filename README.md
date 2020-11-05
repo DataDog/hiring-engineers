@@ -19,7 +19,11 @@ You can utilize any OS/host that you would like to complete this exercise. Howev
 * You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
 * You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
 
-Then, sign up for Datadog (use “Datadog Recruiting Candidate” in the “Company” field), get the Agent reporting metrics from your local machine.
+Once this is ready, sign up for a trial Datadog at https://www.datadoghq.com/
+
+**Please make sure to use “Datadog Recruiting Candidate” in [the “Company” field](https://a.cl.ly/wbuPdEBy)**
+
+Then, get the Agent reporting metrics from your local machine and move on to the next section...
 
 ## Collecting Metrics:
 
