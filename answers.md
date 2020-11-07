@@ -2,7 +2,7 @@
 
 ### 0. Prerequisites - Setup the environment ###
 
-Installing Ubuntu/xenial64 OS with MySQL on My MAC laptop with Vagrant file
+Installing Ubuntu/xenial64 OS with MySQL on My MAC laptop with Vagrant (Oracle VM VirtualBox)
 
 #### Installing mysql on ubuntu VM ####
 ```vb
