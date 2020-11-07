@@ -172,13 +172,13 @@ root@main:/etc/datadog-agent# diff -u datadog.yaml.backup datadog.yaml
  
  ## @param log_file - string - optional
  ## Path of the log file for the Datadog Agent.
+```
 
 
  ##### 1.1.2 Restarting the datadog-agent #####
  
 ```vb
  sudo service datadog-agent restart
- 
 ```
 
 
