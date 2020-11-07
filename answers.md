@@ -132,14 +132,14 @@ diff -u datadog.yaml.backup datadog.yaml
 
 root@main:/etc/datadog-agent# diff -u datadog.yaml.backup datadog.yaml
 --- datadog.yaml.backup 2020-11-07 19:27:13.197969195 +0900
-+++ datadog.yaml        2020-11-07 20:10:18.703853347 +0900
++++ datadog.yaml        2020-11-07 20:32:38.870388214 +0900
 @@ -48,8 +48,7 @@
  
  ## @param hostname - string - optional - default: auto-detected
  ## Force the hostname name.
 -#
 -# hostname: <HOSTNAME_NAME>
-+hostname: Ubuntu-vm01
++hostname: ubuntu-vm01
  
  ## @param hostname_fqdn - boolean - optional - default: false
  ## When the Agent relies on the OS to determine the hostname, make it use the
@@ -151,10 +151,10 @@ root@main:/etc/datadog-agent# diff -u datadog.yaml.backup datadog.yaml
 -#   - environment:dev
 -#   - <TAG_KEY>:<TAG_VALUE>
 +tags:
-+    - environment:dev
-+    - host_os:Ubuntu/xenial64
-+    - hostname:Ubuntu-vm01
-+    - MySQL_ver:5.7.32 
++  - location:Tokyo
++  - host_os:Ubuntu_xenial64
++  - mysql_version:5.7.32
++  - flask_version:1.1.2 
  
  ## @param env - string - optional
  ## The environment name where the agent is running. Attached in-app to every
@@ -174,6 +174,7 @@ root@main:/etc/datadog-agent# diff -u datadog.yaml.backup datadog.yaml
  
  ## @param log_file - string - optional
  ## Path of the log file for the Datadog Agent.
+
 
 
 ```
