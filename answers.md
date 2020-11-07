@@ -177,7 +177,9 @@ root@main:/etc/datadog-agent# diff -u datadog.yaml.backup datadog.yaml
  ##### 1.1.2 Restarting the datadog-agent #####
  
 ```vb
+
  sudo service datadog-agent restart
+ 
  ```
 
 
