@@ -7,6 +7,9 @@ Installing Ubuntu/xenial64 OS with MySQL on My MAC laptop running Vagrant
 ## Collecting Metrics: ##
 
 Installing mysql
+```vb
+sudo apt install mysql-server
+```
 
 Creating the DB user for datadog agent
 ```vb
