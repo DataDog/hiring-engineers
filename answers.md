@@ -212,8 +212,8 @@ root@main:/etc/datadog-agent# datadog-agent status
 
 `MySQL` was already installed on ubuntu-vm as part of `0.Prerequisites` and DD integration for MySQL DB also done.
 
-![DD Integration for MySQL DB](https://user-images.githubusercontent.com/47805074/98442378-915b3380-2147-11eb-800d-dfdf39ae8eed.png)
-
+![DD Integration for MySQL DB#1](https://user-images.githubusercontent.com/47805074/98442378-915b3380-2147-11eb-800d-dfdf39ae8eed.png)
+![DD integration for MySQL DB#2](https://user-images.githubusercontent.com/47805074/98442560-a97f8280-2148-11eb-9ace-933de667d8d1.png)
 
 #### 1.3 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000 ####
 
