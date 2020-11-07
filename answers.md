@@ -28,7 +28,7 @@ Query OK, 0 rows affected (0.00 sec)
 
 #### Creating the `conf.yaml` under the `/etc/datadog-agent/conf.d/mysql.d/` as per the instruction below ####
 
-[MySQL Metrics] (https://docs.datadoghq.com/integrations/mysql/)
+[MySQL Metrics] (https://docs.datadoghq.com/ja/integrations/mysql/?tab=host)
 
 ```vb
 cp conf.yaml.example conf.yaml
@@ -118,8 +118,66 @@ root@main:/etc/datadog-agent/conf.d/mysql.d# diff -u conf.yaml.example conf.yaml
 
 ### 1. Collecting Metrics: ###
 
-#### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog ####
+#### 1.1 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog ####
+
+##### 1.1.1 Modifying the `datadog.yaml` under the `/etc/datadog-agent/` as per the instruction below #####
+
+[How to set tagging] (https://docs.datadoghq.com/ja/getting_started/tagging/)
+
+```vb
+cp datadog.yaml datadog.yaml.backup
+vi datadog.yaml
+diff -u datadog.yaml.backup datadog.yaml
+
+root@main:/etc/datadog-agent# diff -u datadog.yaml.backup datadog.yaml
+--- datadog.yaml.backup 2020-11-07 19:27:13.197969195 +0900
++++ datadog.yaml        2020-11-07 19:35:47.684066490 +0900
+@@ -49,7 +49,7 @@
+ ## @param hostname - string - optional - default: auto-detected
+ ## Force the hostname name.
+ #
+-# hostname: <HOSTNAME_NAME>
++  hostname: Ubuntu-vm#1
+ 
+ ## @param hostname_fqdn - boolean - optional - default: false
+ ## When the Agent relies on the OS to determine the hostname, make it use the
+@@ -63,15 +63,17 @@
+ ##
+ ## Learn more about tagging: https://docs.datadoghq.com/tagging/
+ #
+-# tags:
+-#   - environment:dev
+-#   - <TAG_KEY>:<TAG_VALUE>
++  tags:
++    - environment:dev
++    - host_os: Ubuntu/xenial64
++    - hostname: Ubuntu-vm#1
++    - MySQL_ver: 5.7.32 
+ 
+ ## @param env - string - optional
+ ## The environment name where the agent is running. Attached in-app to every
+ ## metric, event, log, trace, and service check emitted by this Agent.
+ #
+-# env: <environment name>
++  env: dev
+ 
+ ## @param tag_value_split_separator - list of key:value elements - optional
+ ## Split tag values according to a given separator. Only applies to host tags,
+@@ -1102,7 +1104,7 @@
+ ## Valid log levels are: trace, debug, info, warn, error, critical, and off.
+ ## Note: When using the 'off' log level, quotes are mandatory.
+ #
+-# log_level: 'info'
++ log_level: 'info'
+ 
+ ## @param log_file - string - optional
+ ## Path of the log file for the Datadog Agent.
 
 
+ ##### 1.1.2 Restarting the datadog-agent #####
+ 
+```vb
+ sudo service datadog-agent restart
+ ```
 
 
