@@ -132,7 +132,7 @@ diff -u datadog.yaml.backup datadog.yaml
 
 root@main:/etc/datadog-agent# diff -u datadog.yaml.backup datadog.yaml
 --- datadog.yaml.backup 2020-11-07 19:27:13.197969195 +0900
-+++ datadog.yaml        2020-11-07 20:00:18.724023092 +0900
++++ datadog.yaml        2020-11-07 20:10:18.703853347 +0900
 @@ -48,8 +48,7 @@
  
  ## @param hostname - string - optional - default: auto-detected
@@ -152,9 +152,9 @@ root@main:/etc/datadog-agent# diff -u datadog.yaml.backup datadog.yaml
 -#   - <TAG_KEY>:<TAG_VALUE>
 +tags:
 +    - environment:dev
-+    - host_os: Ubuntu/xenial64
-+    - hostname: Ubuntu-vm01
-+    - MySQL_ver: 5.7.32 
++    - host_os:Ubuntu/xenial64
++    - hostname:Ubuntu-vm01
++    - MySQL_ver:5.7.32 
  
  ## @param env - string - optional
  ## The environment name where the agent is running. Attached in-app to every
@@ -174,6 +174,7 @@ root@main:/etc/datadog-agent# diff -u datadog.yaml.backup datadog.yaml
  
  ## @param log_file - string - optional
  ## Path of the log file for the Datadog Agent.
+
 
 ```
 
