@@ -123,7 +123,7 @@ root@main:/etc/datadog-agent/conf.d/mysql.d# diff -u conf.yaml.example conf.yaml
 
 ##### 1.1.1 Modifying the `datadog.yaml` under the `/etc/datadog-agent/` as per the instruction below #####
 
-[How to set tagging] (https://docs.datadoghq.com/ja/getting_started/tagging/)
+[How to enable tagging] (https://docs.datadoghq.com/ja/getting_started/tagging/)
 
 ```vb
 cp datadog.yaml datadog.yaml.backup
