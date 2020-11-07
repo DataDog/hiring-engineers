@@ -23,7 +23,95 @@ Query OK, 0 rows affected, 1 warning (0.00 sec)
 mysql> grant process on *.* to 'datadog'@'localhost';
 Query OK, 0 rows affected (0.00 sec)
 
+mysql> grant select on performance_schema.* to 'datadog'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+
 ```
 
-#### Creating the `conf.yaml` under the `/etc/datadog-agent/conf.d/mysql.d/` ####
+#### Creating the `conf.yaml` under the `/etc/datadog-agent/conf.d/mysql.d/` as per the url below ####
+
+[MySQL Metrics] (https://docs.datadoghq.com/integrations/mysql/)
+
+```vb
+cp conf.yaml.example conf.yaml
+vi conf.yaml
+diff -u conf.yaml.example conf.yaml 
+
+root@main:/etc/datadog-agent/conf.d/mysql.d# diff -u conf.yaml.example conf.yaml 
+--- conf.yaml.example   2020-10-21 07:42:49.000000000 +0900
++++ conf.yaml   2020-11-07 18:59:26.638507112 +0900
+@@ -40,7 +40,7 @@
+     ## @param pass - string - optional
+     ## Password associated to the MySQL user.
+     #
+-    pass: <PASS>
++    pass: datadog
+ 
+     ## @param port - number - optional - default: 3306
+     ## Port to use when connecting to MySQL.
+@@ -153,7 +153,7 @@
+         ## @param replication - boolean - optional - default: false
+         ## Set to `true` to collect replication metrics.
+         #
+-        # replication: false
++          replication: false
+ 
+         ## @param replication_channel - string - optional
+         ## If using multiple sources, set the channel name to monitor.
+@@ -168,21 +168,21 @@
+         ## @param galera_cluster - boolean - optional - default: false
+         ## Set to `true` to collect Galera cluster metrics.
+         #
+-        # galera_cluster: false
++          galera_cluster: true
+ 
+         ## @param extra_status_metrics - boolean - optional - default: true
+         ## Set to `false` to disable extra status metrics.
+         ##
+         ## See also the MySQL metrics listing: https://docs.datadoghq.com/integrations/mysql/#metrics
+         #
+-        # extra_status_metrics: true
++          extra_status_metrics: true
+ 
+         ## @param extra_innodb_metrics - boolean - optional - default: true
+         ## Set to `false` to disable extra InnoDB metrics.
+         ##
+         ## See also the MySQL metrics listing: https://docs.datadoghq.com/integrations/mysql/#metrics
+         #
+-        # extra_innodb_metrics: true
++          extra_innodb_metrics: true
+ 
+         ## @param disable_innodb_metrics - boolean - optional - default: false
+         ## Set to `true` only if experiencing issues with older (unsupported) versions of MySQL
+@@ -192,7 +192,7 @@
+         ##
+         ## see also the MySQL metrics listing: https://docs.datadoghq.com/integrations/mysql/#metrics
+         #
+-        # disable_innodb_metrics: false
++          disable_innodb_metrics: false
+ 
+         ## @param schema_size_metrics - boolean - optional - default: false
+         ## Set to `true` to collect schema size metrics.
+@@ -203,7 +203,7 @@
+         ##
+         ## See also the MySQL metrics listing: https://docs.datadoghq.com/integrations/mysql/#metrics
+         #
+-        # schema_size_metrics: false
++          schema_size_metrics: false
+ 
+         ## @param extra_performance_metrics - boolean - optional - default: true
+         ## These metrics are reported if `performance_schema` is enabled in the MySQL instance
+@@ -222,7 +222,7 @@
+         ## to have PROCESS and SELECT privileges. Take a look at the
+         ## MySQL integration tile in the Datadog Web UI for further instructions.
+         #
+-        # extra_performance_metrics: true
++          extra_performance_metrics: true
+ 
+     ## @param tags - list of strings - optional
+     ## A list of tags to attach to every metric and service check emitted by this instance.
+```
+
+
+
 
