@@ -338,3 +338,34 @@ Agent (v7.23.1)
 
 ![Custom Agent Check#2](https://user-images.githubusercontent.com/47805074/98443848-7ee5f780-2151-11eb-832d-880ae9742b6f.png)
 
+#### 1.4 Change your check's collection interval so that it only submits the metric once every 45 seconds. ####
+
+##### 1.4.1 Modifying the YAML file named `custom-agent-check.yaml` under`/etc/datadog-agent/conf.d` #####
+
+ ```vb
+cd /etc/datadog-agent/conf.d
+vi custom-agent-check.yaml 
+
+#instances: [{}]
+init_config:
+instances:
+  - min_collection_interval: 45
+
+```
+##### 1.4.2 Restarting Datadog-Agent and then verify the custom check #####
+ ```vb
+sudo service datadog-agent restart
+sudo -u dd-agent -- datadog-agent check custom-agent-check --check-rate
+ 
+ ```
+
+#### 1.5 Bonus Question Can you change the collection interval without modifying the Python check file you created? ####
+
+That is doable by modifying the `YAML file` under instance configuration as per the URL below.
+The default check interval is `15 sec`, but we can change it with `min_collection_interval` in the YAML file.
+
+[How to enable a custom agent check] (https://docs.datadoghq.com/ja/developers/write_agent_check/?tab=agentv6v7)
+
+
+
+
