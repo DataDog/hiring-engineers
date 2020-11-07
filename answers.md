@@ -219,7 +219,7 @@ root@main:/etc/datadog-agent# datadog-agent status
 
 [How to enable a custom agent check] (https://docs.datadoghq.com/ja/developers/write_agent_check/?tab=agentv6v7)
 
-##### 1.3.1 Creating the python file named `custom-agent-check.py` under`/etc/datadog-agent/checks.d` #####
+##### 1.3.1 Creating the python file named `custom-agent-check.py` under`/etc/datadog-agent/checks.d` in my setup #####
 
  ```vb
 root@main:/etc/datadog-agent/checks.d# pwd
@@ -237,7 +237,7 @@ class HelloCheck(AgentCheck):
     self.gauge('my_metric', random_value)
 ```
 
-##### 1.3.2 Creating the YAML file named `custom-agent-check.yaml` under`/etc/datadog-agent/conf.d` #####
+##### 1.3.2 Creating the YAML file named `custom-agent-check.yaml` under`/etc/datadog-agent/conf.d` in my setup #####
 
  ```vb
 root@main:/etc/datadog-agent/conf.d# pwd
@@ -340,7 +340,7 @@ Agent (v7.23.1)
 
 #### 1.4 Change your check's collection interval so that it only submits the metric once every 45 seconds. ####
 
-##### 1.4.1 Modifying the YAML file named `custom-agent-check.yaml` under`/etc/datadog-agent/conf.d` #####
+##### 1.4.1 Modifying the YAML file named `custom-agent-check.yaml` under`/etc/datadog-agent/conf.d` in my setup #####
 
  ```vb
 cd /etc/datadog-agent/conf.d
@@ -352,7 +352,7 @@ instances:
   - min_collection_interval: 45
 
 ```
-##### 1.4.2 Restarting Datadog-Agent and then verify the custom check #####
+##### 1.4.2 Restarting Datadog-Agent and then verifying the custom check #####
  ```vb
 sudo service datadog-agent restart
 sudo -u dd-agent -- datadog-agent check custom-agent-check --check-rate
