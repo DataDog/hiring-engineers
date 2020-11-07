@@ -206,6 +206,6 @@ root@main:/etc/datadog-agent# datadog-agent status
     hostname provider: configuration
 
 ```
- ![Adding tags 8 35 56](https://user-images.githubusercontent.com/47805074/98442036-98814200-2145-11eb-8c4f-0439f57b056e.png)
+ ![The screenshot taken from the hostmap](https://user-images.githubusercontent.com/47805074/98442036-98814200-2145-11eb-8c4f-0439f57b056e.png)
  
 
