@@ -189,6 +189,7 @@ root@main:/etc/datadog-agent# diff -u datadog.yaml.backup datadog.yaml
  ##### 1.1.3 Verifying all the tags are assigned to the host #####
  ```vb
 datadog-agent status
+
 root@main:/etc/datadog-agent# datadog-agent status 
 <snip>
    Hostnames
@@ -205,6 +206,6 @@ root@main:/etc/datadog-agent# datadog-agent status
     hostname provider: configuration
 
 ```
- 
+ ![Adding tags](https://user-images.githubusercontent.com/47805074/98442036-98814200-2145-11eb-8c4f-0439f57b056e.png)
  
 
