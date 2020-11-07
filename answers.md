@@ -13,17 +13,20 @@ from checks import AgentCheck
 
 **version** = "1.0.0"
 
+```
 import random
 
 class CustomMyMetricCheck(AgentCheck):
-def check(self, instance):
-randomNum = random.randint(0,1000)
-self.gauge('random.number', randomNum, tags=['RandomKey:RandomValue'])
-~  
-~  
-~  
-~ b
+    def check(self, instance):
+        randomNum = random.randint(0,1000)
+        self.gauge('random.number', randomNum, tags=['RandomKey:RandomValue'])
+~
+~
+~
+~
 "custom_my_metric.py" 17L, 668C
+
+```
 
 Utilize the Datadog API to create a Timeboard that contains:
 
