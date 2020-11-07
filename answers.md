@@ -186,4 +186,25 @@ root@main:/etc/datadog-agent# diff -u datadog.yaml.backup datadog.yaml
  datadog-agent status
 ```
 
+ ##### 1.1.3 Verifying all the tags are assigned to the host #####
+ ```vb
+datadog-agent status
+root@main:/etc/datadog-agent# datadog-agent status 
+<snip>
+   Hostnames
+  =========
+    hostname: ubuntu-vm01
+    socket-fqdn: main
+    socket-hostname: main
+    host tags:
+      location:Tokyo
+      host_os:Ubuntu_xenial64
+      mysql_version:5.7.32
+      flask_version:1.1.2
+      env:dev
+    hostname provider: configuration
+
+```
+ 
+ 
 
