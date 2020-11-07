@@ -334,6 +334,7 @@ Agent (v7.23.1)
 
 ##### 1.3.4 Verifying the custom check from the Datadog-agnet GUI #####
 
+![Custom Agent Check](https://user-images.githubusercontent.com/47805074/98443791-11d26200-2151-11eb-9539-2de0a63d2eda.png)
 
 
 
