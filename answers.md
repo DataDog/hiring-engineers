@@ -210,7 +210,7 @@ root@main:/etc/datadog-agent# datadog-agent status
  
 #### 1.2 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database ####
 
-`MySQL` was already installed on ubuntu-vm as part of `0.Prerequisites`.
+`MySQL` was already installed on ubuntu-vm as part of `0.Prerequisites` and DD integration for MySQL DB also done.
 
 ![DD Integration for MySQL DB](https://user-images.githubusercontent.com/47805074/98442378-915b3380-2147-11eb-800d-dfdf39ae8eed.png)
 
