@@ -1,10 +1,8 @@
 ## Answering all the technical exercise by Kazutoshi Shimazu ###
 
-### Prerequisites - Setup the environment ###
+### 0. Prerequisites - Setup the environment ###
 
 Installing Ubuntu/xenial64 OS with MySQL on My MAC laptop with Vagrant file
-
-### Collecting Metrics: ###
 
 #### Installing mysql on ubuntu VM ####
 ```vb
@@ -28,7 +26,7 @@ Query OK, 0 rows affected (0.00 sec)
 
 ```
 
-#### Creating the `conf.yaml` under the `/etc/datadog-agent/conf.d/mysql.d/` as per the url below ####
+#### Creating the `conf.yaml` under the `/etc/datadog-agent/conf.d/mysql.d/` as per the instruction below ####
 
 [MySQL Metrics] (https://docs.datadoghq.com/integrations/mysql/)
 
@@ -111,6 +109,16 @@ root@main:/etc/datadog-agent/conf.d/mysql.d# diff -u conf.yaml.example conf.yaml
      ## @param tags - list of strings - optional
      ## A list of tags to attach to every metric and service check emitted by this instance.
 ```
+
+#### Restarting the datadog-agent ####
+
+```vb
+ sudo service datadog-agent restart
+ ```
+
+### 1. Collecting Metrics: ###
+
+#### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog ####
 
 
 
