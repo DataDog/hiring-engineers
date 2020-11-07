@@ -215,7 +215,125 @@ root@main:/etc/datadog-agent# datadog-agent status
 ![DD Integration for MySQL DB#1](https://user-images.githubusercontent.com/47805074/98442378-915b3380-2147-11eb-800d-dfdf39ae8eed.png)
 ![DD integration for MySQL DB#2](https://user-images.githubusercontent.com/47805074/98442560-a97f8280-2148-11eb-9ace-933de667d8d1.png)
 
-#### 1.3 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000 ####
+#### 1.3 Create a custom Agent check that submits a metric named `my_metric` with a random value between `0` and `1000` ####
+
+[How to enable a custom agent check] (https://docs.datadoghq.com/ja/developers/write_agent_check/?tab=agentv6v7)
+
+##### 1.3.1 Creating the python file named `custom-agent-check.py` under`/etc/datadog-agent/checks.d` #####
+
+ ```vb
+root@main:/etc/datadog-agent/checks.d# pwd
+/etc/datadog-agent/checks.d
+
+root@main:/etc/datadog-agent/checks.d# cat custom-agent-check.py 
+from datadog_checks.checks import AgentCheck
+import random
+
+__version__ = "1.0.0"
+
+class HelloCheck(AgentCheck):
+  def check(self, instance):
+    random_value = random.randint(1, 1000)
+    self.gauge('my_metric', random_value)
+```
+
+##### 1.3.2 Creating the YAML file named `custom-agent-check.yaml` under`/etc/datadog-agent/conf.d` #####
+
+ ```vb
+root@main:/etc/datadog-agent/conf.d# pwd
+/etc/datadog-agent/conf.d
+
+root@main:/etc/datadog-agent/conf.d# cat custom-agent-check.yaml 
+instances: [{}]
+```
+
+##### 1.3.3 Verifying the custom check from the Datadog-agnet CLI #####
+
+ ```vb
+sudo service datadog-agent restart
+sudo -u dd-agent -- datadog-agent check custom-agent-check --check-rate
+
+root@main:/etc/datadog-agent/conf.d# sudo -u dd-agent -- datadog-agent check custom-agent-check --check-rate
+=== Series ===
+{
+  "series": [
+    {
+      "metric": "my_metric",
+      "points": [
+        [
+          1604758910,
+          494
+        ]
+      ],
+      "tags": [],
+      "host": "ubuntu-vm01",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    },
+    {
+      "metric": "my_metric",
+      "points": [
+        [
+          1604758911,
+          26
+        ]
+      ],
+      "tags": [],
+      "host": "ubuntu-vm01",
+      "type": "gauge",
+      "interval": 0,
+      "source_type_name": "System"
+    }
+  ]
+}
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+    
+    custom-agent-check (1.0.0)
+    --------------------------
+      Instance ID: custom-agent-check:d884b5186b651429 [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/custom-agent-check.yaml
+      Total Runs: 2
+      Metric Samples: Last Run: 1, Total: 2
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2020-11-07 23:21:51.000000 JST
+      Last Successful Execution Date : 2020-11-07 23:21:51.000000 JST
+
+root@main:/etc/datadog-agent/conf.d# datadog-agent status 
+Getting the status from the agent.
+<snip>
+
+===============
+Agent (v7.23.1)
+===============
+
+  Status date: 2020-11-07 23:23:40.514383 JST
+  Agent start: 2020-11-07 23:00:20.509259 JST
+  Pid: 31494
+  Go Version: go1.14.7
+  Python Version: 3.8.5
+  Build arch: amd64
+  Agent flavor: agent
+  Check Runners: 4
+  Log Level: info
+
+  Paths
+  =====
+    Config File: /etc/datadog-agent/datadog.yaml
+    conf.d: /etc/datadog-agent/conf.d
+    checks.d: /etc/datadog-agent/checks.d
+
+```
+
+##### 1.3.4 Verifying the custom check from the Datadog-agnet GUI #####
+
 
 
 
