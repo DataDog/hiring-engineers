@@ -594,6 +594,7 @@ Process finished with exit code 0
 #### 2.2 Take a snapshot of this graph and use the @ notation to send it to yourself ####
 
 
+![How to send an email](https://user-images.githubusercontent.com/47805074/98464879-24a86d80-2209-11eb-8289-341c6a270e3c.png)
 
 
 
