@@ -587,10 +587,7 @@ Here is the response from datadoghq.com after performing the python script above
 Process finished with exit code 0
  ```
 
-
-
-
-
+![Verifying all the graphs](https://user-images.githubusercontent.com/47805074/98464187-75699780-2204-11eb-9374-200a51f30514.png)
 
 #### 2.2 Set the Timeboard's timeframe to the past 5 minutes ####
 #### 2.2 Take a snapshot of this graph and use the @ notation to send it to yourself ####
