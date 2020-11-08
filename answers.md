@@ -587,3 +587,16 @@ Here is the response from datadoghq.com after performing the python script above
 Process finished with exit code 0
  ```
 
+
+
+
+
+
+#### 2.2 Set the Timeboard's timeframe to the past 5 minutes ####
+#### 2.2 Take a snapshot of this graph and use the @ notation to send it to yourself ####
+
+
+
+
+
+
