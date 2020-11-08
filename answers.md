@@ -602,9 +602,9 @@ Process finished with exit code 0
 
 [The anomaly detection] (https://docs.datadoghq.com/ja/monitors/monitor_types/anomaly/)
 
-The anomaly graph that I was showing helps us understand 'how much metrics you want to monitor can vary in a give period of time and how you can handle these deviations from the reference value and potential risks based on the historical data'.
-I used Basic algorithm to determine the range of expected values as desceibed in the url above. 
-You can also use other alogorihms like Agile and Robust (e.g. seasonal trends) as per your requirements.
+The anomaly graph that I was showing helps us understand `how much metrics you want to monitor can vary in a give period of time and how you can handle these deviations from the reference value and potential risks based on the historical data`.
+I used `Basic` algorithm to determine the range of expected values as desceibed in the url above. 
+You can also use other alogorihms like `Agile` and `Robust` (e.g. seasonal trends) as per your requirements.
 
 ### 3. Monitoring Data ###
 
