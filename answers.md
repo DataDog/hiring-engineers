@@ -8,7 +8,7 @@
 ```vb
 sudo apt install mysql-server
 ```
-#### Installing flask on ubuntu VM as part of APM demo ####
+#### Installing flask and mysql-connector-python-rf on ubuntu VM as part of APM demo ####
 
 ```vb
 sudo python3 -m pip install -U flask
