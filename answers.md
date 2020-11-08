@@ -379,8 +379,12 @@ The default check interval is `15 sec`, but we can change it with `min_collectio
 #### 2.1 Any metric from the Integration on your Database with the anomaly function applied ####
 #### 2.1 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket ####
 
+##### 2.1.1 Creating Datadog-dog Application Key via Datadog GUI #####
+
+DD-APPLICATION-KEY needs to be created first as per the url below.
+
 [How to create a dashboard via REST API] (https://docs.datadoghq.com/ja/api/v1/dashboards/)
 
-##### 2.1.1 Creating Datadog-dog Application Key via Datadog GUI #####
+![Creating DD-APPLICATION-KEY](https://user-images.githubusercontent.com/47805074/98455688-5abd0180-21b7-11eb-8191-12365a67b197.png)
 
 
