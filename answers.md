@@ -613,6 +613,8 @@ You can also use other alogorihms like `Agile` and `Robust` (e.g. seasonal trend
 #### 3.1 `Alerting threshold of 800` ####
 #### 3.1 It will notify you if there is `No Data` for this query over `the past 10m` ####
 
+##### 3.1.1 The JSON configuration from Export Monitor #####
+
  ```vb
 {
 	"id": 25447132,
