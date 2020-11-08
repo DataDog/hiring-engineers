@@ -375,9 +375,9 @@ The default check interval is `15 sec`, but we can change it with `min_collectio
 
 ### 2. Visualizing Data: Utilize the Datadog API to create a Timeboard that contains ###
 
-#### 2.1 Your custom metric scoped over your host ####
-#### 2.1 Any metric from the Integration on your Database with the anomaly function applied ####
-#### 2.1 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket ####
+#### 2.1 `Your custom metric` scoped over your host ####
+#### 2.1 Any metric from the Integration on your Database with `the anomaly function applied` ####
+#### 2.1 Your custom metric with the rollup function applied to sum up all the points for `the past hour` into one bucket ####
 
 ##### 2.1.1 Creating Datadog-dog Application Key via Datadog GUI #####
 
@@ -590,8 +590,8 @@ Process finished with exit code 0
 ![Verifying all the graphs](https://user-images.githubusercontent.com/47805074/98464288-2708c880-2205-11eb-8930-830510e69424.png)
 
 
-#### 2.2 Set the Timeboard's timeframe to the past 5 minutes ####
-#### 2.2 Take a snapshot of this graph and use the @ notation to send it to yourself ####
+#### 2.2 Set the Timeboard's timeframe to `the past 5 minutes` ####
+#### 2.2 Take a snapshot of this graph and use `the @ notation` to send it to yourself ####
 
 
 ![How to send an email with attached screenshot](https://user-images.githubusercontent.com/47805074/98464879-24a86d80-2209-11eb-8289-341c6a270e3c.png)
@@ -609,8 +609,8 @@ You can also use other alogorihms like Agile and Robust (e.g. seasonal trends) a
 ### 3. Monitoring Data ###
 
 #### 3.1 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes: ####
-#### 3.1 Warning threshold of 500 ####
-#### 3.1 Alerting threshold of 800 ####
-#### 3.1 It will notify you if there is No Data for this query over the past 10m ####
+#### 3.1 `Warning threshold of 500` ####
+#### 3.1 `Alerting threshold of 800` ####
+#### 3.1 It will notify you if there is `No Data` for this query over `the past 10m` ####
 
 
