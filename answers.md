@@ -496,7 +496,7 @@ if __name__ == '__main__':
 
  ```
 
-Here is the response from datadog after performing the python script above.
+Here is the response from datadoghq.com after performing the python script above.
 
  ```vb
 {
