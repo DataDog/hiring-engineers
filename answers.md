@@ -598,5 +598,11 @@ Process finished with exit code 0
 ![E-mail notification to myself using @notation](https://user-images.githubusercontent.com/47805074/98464944-7e109c80-2209-11eb-90be-02a7962a7331.png)
 
 
+#### 2.3 Bonus Question: What is the Anomaly graph displaying? ####
+
+[The anomaly detection] (https://docs.datadoghq.com/ja/monitors/monitor_types/anomaly/)
+
+The anomaly graph that I was showing helps us understand how much metrics you want to monitor can vary in a give period of time and how you can handle these deviations and potential risks based on the historical data.
+I used Basic algorithm to determine the range of expected values as desceibed in the url above. You can also use Agile and Robust algorithm as per your requirements.
 
 
