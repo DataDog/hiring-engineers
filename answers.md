@@ -606,7 +606,7 @@ The anomaly graph that I was showing helps us understand how much metrics you wa
 I used Basic algorithm to determine the range of expected values as desceibed in the url above. 
 You can also use other alogorihm like Agile and Robust (e.g. seasonal trends) as per your requirements.
 
-### 3. Monitooring Data ###
+### 3. Monitoring Data ###
 
 #### 3.1 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes: ####
 #### 3.1 Warning threshold of 500 ####
