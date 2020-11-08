@@ -379,5 +379,6 @@ The default check interval is `15 sec`, but we can change it with `min_collectio
 #### 2.2 Any metric from the Integration on your Database with the anomaly function applied ####
 #### 2.3 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket ####
 
+[How to create a dashboard via REST API] (https://docs.datadoghq.com/ja/api/v1/dashboards/)
 
 
