@@ -641,10 +641,10 @@ You can also use other alogorihms like `Agile` and `Robust` (e.g. seasonal trend
 	}
 }
  ```
-#### 3.2 Send you an email 'whenever the monitor triggers' ####
-#### 3.2 Create 'different messages' based on whether the monitor is in an 'Alert', 'Warning', or 'No Data' state ####
-#### 3.2 Include 'the metric value' that caused the monitor to trigger and 'host ip' when the Monitor triggers an 'Alert' state ####
-#### 3.2 When this monitor sends you an email notification, take a 'screenshot of the email' that it sends you ####
+#### 3.2 Send you an email `whenever the monitor triggers` ####
+#### 3.2 Create `different messages` based on whether the monitor is in an `Alert`, `Warning`, or `No Data` state ####
+#### 3.2 Include `the metric value` that caused the monitor to trigger and `host ip` when the Monitor triggers an `Alert' state` ####
+#### 3.2 When this monitor sends you an email notification, take a `screenshot of the email` that it sends you ####
 
 
 
