@@ -373,12 +373,14 @@ The default check interval is `15 sec`, but we can change it with `min_collectio
 [How to enable a custom agent check] (https://docs.datadoghq.com/ja/developers/write_agent_check/?tab=agentv6v7)
 
 
-### 2. Visualizing Data ###
+### 2. Visualizing Data: Utilize the Datadog API to create a Timeboard that contains ###
 
 #### 2.1 Your custom metric scoped over your host ####
-#### 2.2 Any metric from the Integration on your Database with the anomaly function applied ####
-#### 2.3 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket ####
+#### 2.1 Any metric from the Integration on your Database with the anomaly function applied ####
+#### 2.1 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket ####
 
 [How to create a dashboard via REST API] (https://docs.datadoghq.com/ja/api/v1/dashboards/)
+
+##### 2.1.1 Creating Datadog-dog Application Key via Datadog GUI #####
 
 
