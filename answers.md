@@ -8,6 +8,12 @@
 ```vb
 sudo apt install mysql-server
 ```
+#### Installing flask on ubuntu VM ####
+
+```vb
+sudo python3 -m pip install -U flask
+pip3 install mysql-connector-python-rf
+```
 
 #### Creating the MySQL DB user for datadog agent instead of using root user ####
 ```vb
@@ -117,7 +123,7 @@ root@main:/etc/datadog-agent/conf.d/mysql.d# diff -u conf.yaml.example conf.yaml
  datadog-agent status
  ```
 
-### 1. Collecting Metrics: ###
+### 1. Collecting Metrics ###
 
 #### 1.1 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog ####
 
@@ -366,6 +372,12 @@ The default check interval is `15 sec`, but we can change it with `min_collectio
 
 [How to enable a custom agent check] (https://docs.datadoghq.com/ja/developers/write_agent_check/?tab=agentv6v7)
 
+
+### 2. Visualizing Data ###
+
+#### 2.1 Your custom metric scoped over your host ####
+#### 2.2 Any metric from the Integration on your Database with the anomaly function applied ####
+#### 2.3 Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket ####
 
 
 
