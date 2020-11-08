@@ -123,7 +123,7 @@ root@main:/etc/datadog-agent/conf.d/mysql.d# diff -u conf.yaml.example conf.yaml
  datadog-agent status
  ```
 
-### 1. Collecting Metrics ###
+### 1. The requirements for Collecting Metrics ###
 
 #### 1.1 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog ####
 
@@ -373,7 +373,7 @@ The default check interval is `15 sec`, but we can change it with `min_collectio
 [How to enable a custom agent check] (https://docs.datadoghq.com/ja/developers/write_agent_check/?tab=agentv6v7)
 
 
-### 2. Visualizing Data: Utilize the Datadog API to create a Timeboard that contains ###
+### 2. The requirements for Visualizing Data: Utilize the Datadog API to create a Timeboard that contains ###
 
 #### 2.1 `Your custom metric` scoped over your host ####
 #### 2.1 Any metric from the Integration on your Database with `the anomaly function applied` ####
@@ -606,7 +606,7 @@ The anomaly graph that I was showing helps us understand `how much metrics you w
 I used `Basic` algorithm to determine the range of expected values as desceibed in the url above. 
 You can also use other alogorihms like `Agile` and `Robust` (e.g. seasonal trends) as per your requirements.
 
-### 3. Monitoring Data ###
+### 3. The requirements for Monitoring Data ###
 
 #### 3.1 Create a new Metric Monitor that watches the average of your custom metric (`my_metric`) and will alert if it’s above the following values over `the past 5 minutes` ####
 #### 3.1 `Warning threshold of 500` ####
