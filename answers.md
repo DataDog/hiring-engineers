@@ -15,7 +15,7 @@ sudo python3 -m pip install -U flask
 pip3 install mysql-connector-python-rf
 ```
 
-#### Creating the MySQL DB user for datadog agent instead of using root user ####
+#### Creating the MySQL DB user for datadog agent instead of using root user as per datadog's document ####
 ```vb
 
 mysql> create user datadog@localhost identified by 'datadog';
