@@ -359,10 +359,10 @@ instances:
 
 ```
 ##### 1.4.2 Restarting Datadog-Agent and then verifying the custom check #####
+ 
  ```vb
 sudo service datadog-agent restart
 sudo -u dd-agent -- datadog-agent check custom-agent-check --check-rate
- 
  ```
 
 #### 1.5 Bonus Question Can you change the collection interval without modifying the Python check file you created? ####
@@ -387,4 +387,203 @@ DD-APPLICATION-KEY needs to be created first as per the url below.
 
 ![Creating DD-APPLICATION-KEY](https://user-images.githubusercontent.com/47805074/98455688-5abd0180-21b7-11eb-8191-12365a67b197.png)
 
+I used the python script to create a dashboard with 3 graphs in line with the requirements above.
+
+ ```vb
+#!/usr/bin/python3
+import requests
+import json
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+
+# Ignore SSL warnings
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+"""
+Nov, 8 2020
+This script is for creating a dashboard through REST API
+Author: Kazutoshi Shimazu
+"""
+
+PROTOCOL = 'https'
+ADDRESS = 'api.datadoghq.com'
+URL = '%s://%s/api/v1/dashboard' % (PROTOCOL, ADDRESS)
+API_KEY = 'ea5e05c10b35b658cf07123746f5815b'
+APP_KEY = '1de7f2d3abdbc8dce688fc3461bb8a42f8a713e1'
+
+JSON_DATA_PAYLOAD = json.dumps({
+    "title": "Visualizing Data through Datadog API",
+    "widgets": [
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(max:mysql.performance.queries{host:ubuntu-vm01}, 'basic', 2)",
+                        "display_type": "line",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        }
+                    }
+                ],
+                "yaxis": {
+                    "max": "auto",
+                    "scale": "linear",
+                    "min": "auto",
+                    "label": "",
+                },
+                "title": "Max of MySQL Performance Queries with the anomaly function applied"
+            }
+        },
+
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "my_metric{host:ubuntu-vm01}"
+                    }
+                ],
+                "yaxis": {
+                    "max": "auto",
+                    "scale": "linear",
+                    "min": "auto",
+                    "label": "",
+                },
+                "title": "my_metric with the default  setting"
+            }
+        },
+
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "sum:my_metric{host:ubuntu-vm01}.rollup(sum,3600)"
+                    }
+                ],
+                "yaxis": {
+                    "max": "auto",
+                    "scale": "linear",
+                    "min": "auto",
+                    "label": "",
+                },
+                "title": "my_metric summed up for the past hour"
+            }
+        },
+    ],
+
+    "layout_type": "ordered",
+    "description": "A dashboard created via REST API",
+    # "is_read_only": true,
+    "notify_list": ["shimadyu9999@gmail.com"],
+    "template_variables": [
+        {
+            "name": "host",
+            "prefix": "host",
+            "default": "ubuntu-vm01"
+        }
+    ],
+
+})
+
+if __name__ == '__main__':
+    response = requests.post(url=URL, data=JSON_DATA_PAYLOAD,
+                             headers={'Content-Type': 'application/json', 'DD-API-KEY': API_KEY,
+                                      'DD-APPLICATION-KEY': APP_KEY, }, verify=False)
+    print(json.dumps(response.json(), indent=4))
+
+ ```
+
+Here is the response from datadog after performing the python script above.
+
+ ```vb
+{
+    "notify_list": [
+        "shimadyu9999@gmail.com"
+    ],
+    "description": "A dashboard created via REST API",
+    "author_name": "Kazutoshi Shimazu",
+    "template_variables": [
+        {
+            "default": "ubuntu-vm01",
+            "prefix": "host",
+            "name": "host"
+        }
+    ],
+    "is_read_only": false,
+    "id": "td5-qm9-vsn",
+    "title": "Visualizing Data through Datadog API",
+    "url": "/dashboard/td5-qm9-vsn/visualizing-data-through-datadog-api",
+    "created_at": "2020-11-08T11:43:56.571363+00:00",
+    "modified_at": "2020-11-08T11:43:56.571363+00:00",
+    "author_handle": "shimadyu9999@gmail.com",
+    "widgets": [
+        {
+            "definition": {
+                "requests": [
+                    {
+                        "q": "anomalies(max:mysql.performance.queries{host:ubuntu-vm01}, 'basic', 2)",
+                        "style": {
+                            "line_width": "normal",
+                            "palette": "dog_classic",
+                            "line_type": "solid"
+                        },
+                        "display_type": "line"
+                    }
+                ],
+                "title": "Max of MySQL Performance Queries with the anomaly function applied",
+                "type": "timeseries",
+                "yaxis": {
+                    "max": "auto",
+                    "scale": "linear",
+                    "label": "",
+                    "min": "auto"
+                }
+            },
+            "id": 7753171838786262
+        },
+        {
+            "definition": {
+                "requests": [
+                    {
+                        "q": "my_metric{host:ubuntu-vm01}"
+                    }
+                ],
+                "title": "my_metric with the default  setting",
+                "type": "timeseries",
+                "yaxis": {
+                    "max": "auto",
+                    "scale": "linear",
+                    "label": "",
+                    "min": "auto"
+                }
+            },
+            "id": 8291163223111479
+        },
+        {
+            "definition": {
+                "requests": [
+                    {
+                        "q": "sum:my_metric{host:ubuntu-vm01}.rollup(sum,3600)"
+                    }
+                ],
+                "title": "my_metric summed up for the past hour",
+                "type": "timeseries",
+                "yaxis": {
+                    "max": "auto",
+                    "scale": "linear",
+                    "label": "",
+                    "min": "auto"
+                }
+            },
+            "id": 632619508899250
+        }
+    ],
+    "layout_type": "ordered"
+}
+
+Process finished with exit code 0
+ ```
 
