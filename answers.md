@@ -613,4 +613,29 @@ You can also use other alogorihms like `Agile` and `Robust` (e.g. seasonal trend
 #### 3.1 `Alerting threshold of 800` ####
 #### 3.1 It will notify you if there is `No Data` for this query over `the past 10m` ####
 
-
+ ```vb
+{
+	"id": 25447132,
+	"name": "my_metrics spikes observed {{host.name}}",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:my_metric{host:ubuntu-vm01} > 800",
+	"message": "{{#is_alert}} The threshold value of 800 for my_metrics was exceeded {{/is_alert}}\n{{#is_alert}} The affected host has {{host.name}}  and {{host.ip}}  {{/is_alert}} \n{{#is_alert}} Please take an remediate action if this is something that you're not expecting  {{/is_alert}} \n\n{{#is_warning}} The threshold value of 500 for my_metrics was exceeded {{/is_warning}} \n{{#is_warning}} The affected host has {{host.name}}  and {{host.ip}} {{/is_warning}} \n{{#is_warning}}Please take a look at the host to make sure that the {{host.name}} works as intended {{/is_warning}} \n @shimadyu9999@gmail.com",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}
+ ```
