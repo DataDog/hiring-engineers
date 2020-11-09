@@ -682,7 +682,7 @@ Here is the screenshot of the email.
 
 ##### 4.1.1 Lab Diagram #####
 
-My simple web applicaiton showcases a CRUD (Create, Read, Update and Delete) to create/read/modify/delete a user account with Python Flask and MySQL DB on ubuntu VM.
+My simple web applicaition showcases a CRUD (Create, Read, Update and Delete) to create/read/modify/delete a user account with Python Flask and MySQL DB on ubuntu VM.
 
 ![Diagram](https://user-images.githubusercontent.com/47805074/98517039-ad2e1900-22b0-11eb-9809-2425eb6de899.png)
 
