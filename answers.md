@@ -661,6 +661,15 @@ Here is the screenshot of the email.
 #### 3.3 And one that `silences` it `all day` on `Sat-Sun` ####
 #### 3.3 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification ####
 
+##### 3.3.1 The configuration of mmanage Downtime###
+
+![from 7pm to 9am daily on M-F](https://user-images.githubusercontent.com/47805074/98496712-9de5a600-2285-11eb-9103-d939efd68f1a.png)
+
+![all day on Sat-Sun](https://user-images.githubusercontent.com/47805074/98496808-cf5e7180-2285-11eb-94a2-4db8c72a9c65.png)
+
+##### 3.3.2 The screenshot of e-mail after scheduling the downtime #####
+
+
 
 
 
