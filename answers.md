@@ -663,7 +663,7 @@ Here is the screenshot of the email.
 #### 3.3 And one that `silences` it `all day` on `Sat-Sun` ####
 #### 3.3 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification ####
 
-##### 3.3.1 The configuration of mmanage Downtime###
+##### 3.3.1 The configuration of manage Downtime###
 
 ![from 7pm to 9am daily on M-F](https://user-images.githubusercontent.com/47805074/98496712-9de5a600-2285-11eb-9103-d939efd68f1a.png)
 
