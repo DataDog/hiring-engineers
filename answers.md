@@ -684,10 +684,10 @@ Here is the screenshot of the email.
 
 My simple web applicaition showcases a CRUD (Create, Read, Update and Delete) to create/read/modify/delete a user account with Python Flask and MySQL DB on ubuntu VM.
 
-![Diagram](https://user-images.githubusercontent.com/47805074/98517039-ad2e1900-22b0-11eb-9809-2425eb6de899.png)
+![Diagram](https://user-images.githubusercontent.com/47805074/98524484-9db3cd80-22ba-11eb-91f7-44db6b87bffd.png)
 
 1. Rest Client can register a user (e.g. kazu in my setup) through the commonly-used HTTP methods (GET/POST/PUT/DELETE operations) using the python/shell script.
-2. Flask Web app will connect to MySQL DB and then the perform the SQL commands (Select/INSERT/UPDATE/DELETE) based on the HTTP methods.
+2. Flask Web app will connect to MySQL DB and then the perform the SQL commands (SELECT/INSERT/UPDATE/DELETE) based on the HTTP methods.
 3. Flask Web app will return the HTTP response with the username, HTTP status code and user's DB ID to the Rest Client as long as the required transactions are successfully committed to MySQL DB.
 
 ```vb
