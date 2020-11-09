@@ -618,17 +618,17 @@ You can also use other alogorihms like `Agile` and `Robust` (e.g. seasonal trend
  ```vb
 {
 	"id": 25447132,
-	"name": "my_metrics spikes observed {{host.name}}",
+	"name": "Notification on my_metrics value changes from {{host.name}}",
 	"type": "metric alert",
 	"query": "avg(last_5m):avg:my_metric{host:ubuntu-vm01} > 800",
-	"message": "{{#is_alert}} The threshold value of 800 for my_metrics was exceeded {{/is_alert}}\n{{#is_alert}} The affected host has {{host.name}}  and {{host.ip}}  {{/is_alert}} \n{{#is_alert}} Please take an remediate action if this is something that you're not expecting  {{/is_alert}} \n\n{{#is_warning}} The threshold value of 500 for my_metrics was exceeded {{/is_warning}} \n{{#is_warning}} The affected host has {{host.name}}  and {{host.ip}} {{/is_warning}} \n{{#is_warning}}Please take a look at the host to make sure that the {{host.name}} works as intended {{/is_warning}} \n @shimadyu9999@gmail.com",
+	"message": "{{#is_alert}} The observed value {{value}} has crossed the current alert threshold {{threshold}} over the past 5 minutes. {{/is_alert}}\n{{#is_alert}} The affected host is {{host.name}}  with IP {{host.ip}}. {{/is_alert}}\n{{#is_alert}} Please take an remediate action if this is something that you're not expecting.  {{/is_alert}} \n\n{{#is_recovery}} The alert raised on {{host.name}}  with {{host.ip}} was cleared.  {{/is_recovery}} \n\n{{#is_warning}} The observed value {{value}} has crossed  the current warning threshold {{warn_threshold}} over the past 5 minutes  {{/is_warning}} \n{{#is_warning}} The affected hostname is {{host.name}}. {{/is_warning}} \n{{#is_warning}}Please take a look at the host to make sure that the {{host.name}} works as intended. {{/is_warning}} \n\n{{#is_warning_recovery}} The warning raised on {{host.name}} was cleared. {{/is_warning_recovery}} \n\n{{#is_no_data}} No data is received. The issue could be either {{host.name}} down or network connectivity issue in between that you can't manage. {{/is_no_data}} \n{{#is_no_data}} Please take an remediate action if this is something that you're not expecting. {{/is_no_data}} \n\n{{#is_no_data_recovery}} The metrics on {{host.name}} has been received at datadog end. {{/is_no_data_recovery}} \n\n\n @shimadyu9999@gmail.com",
 	"tags": [],
 	"options": {
-		"notify_audit": false,
+		"notify_audit": true,
 		"locked": false,
 		"timeout_h": 0,
 		"new_host_delay": 300,
-		"require_full_window": true,
+		"require_full_window": false,
 		"notify_no_data": true,
 		"renotify_interval": "0",
 		"escalation_message": "",
