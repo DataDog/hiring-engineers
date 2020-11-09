@@ -957,5 +957,48 @@ root@main:~/apm_demo# DD_SERVICE="web-app-flask" DD_ENV="dev" DD_LOGS_INJECTION=
 ![APM#7](https://user-images.githubusercontent.com/47805074/98533436-53384e00-22c6-11eb-87e1-b4c9339709d3.png)
 
 
+#### 4.2 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics ####
 
+The dashboard below has `system.cpu.idle (max)`, `system.io.await` and `system.load.1` as part of `infra metrics` and `trace.flask.requests.error/hits` and `mysql.query.hits` as part of `APM`.
+
+Constanly correlating between Web `App/DB` and `infra resource utilization (CPU/Disk IO etc)` with the same dashboard is really helpful to figure out user impact and root cause analysis
+
+![APM#8](https://user-images.githubusercontent.com/47805074/98535036-c5aa2d80-22c8-11eb-8390-b7dd4e958398.png)
+
+https://app.datadoghq.com/dashboard/46d-vf4-7if/dashboard-created-manually-to-check-the-json-payload?from_ts=1604916251654&live=true&to_ts=1604919851654
+https://app.datadoghq.com/dashboard/46d-vf4-7if/dashboard-created-manually-to-check-the-json-payload?from_ts=1604916251654&fullscreen_section=overview&fullscreen_widget=6668561559221867&live=true&to_ts=1604919851654&fullscreen_start_ts=1604917283925&fullscreen_end_ts=1604920883925&fullscreen_paused=false
+
+#### 4.3 Bonus Question: What is the difference between `a Service` and a `Resource?` ####
+
+[Resource] (https://docs.datadoghq.com/tracing/visualization/resource/)
+
+`Resource` means a particualr action for a given endpoint. In my setup lab with flask and MySQL DB, The exact `Resource` should be below.
+
+```vb
+
+The Resouce of Flask:
+
+1. GET /account/<name>
+2. POST /accounts
+3. PUT /accounts
+4. DELETE /accounts
+	
+The Resource of MySQL:
+
+1. CREATE TABLE IF NOT EXISTS USER_CRUD ('id integer not null AUTO_INCREMENT,'name varchar(14) NOT NULL,'PRIMARY KEY (id)')
+2. CREATE DATABASE IF NOT EXISTS mysql_db_demo
+3. SELECT * FROM USER_CRUD WHERE name = ?
+4. UPDATE USER_CRUD set name = "{}" WHERE name = ?
+5. INSERT INTO USER_CRUD(name) values(kazu)
+6. DELETE from USER_CRUD WHERE name = ?
+
+```
+[Service] (https://docs.datadoghq.com/tracing/visualization/#services)
+
+`Service` means a given endpoint (e.g. App and DB, etc). In my setup lab, `flask` and `MySQL` are the exact `services`.
+`Services` are also the building blocks of modernized infra like micro-service architectrure.
+
+### 5. Final Question ###
+
+#### 5.1 Is there anything creative you would use Datadog for? ####
 
