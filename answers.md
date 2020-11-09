@@ -686,9 +686,9 @@ My simple web applicaition showcases a CRUD (Create, Read, Update and Delete) to
 
 ![Diagram](https://user-images.githubusercontent.com/47805074/98517039-ad2e1900-22b0-11eb-9809-2425eb6de899.png)
 
-1. Rest Client can register a user (e.g. kazu in my setup) through the commonly-used HTTP methods (GET/POST/PUT/DELETE operation) using the python/shell script.
-2. Flask Web app will connect to MySQL DB and the perform the SQL commands (Select/INSERT/UPDATE/DELETE) based on the HTTP methods.
-3. Flask Web app will return the HTTP response with the username, HTTP status code and user-ID to the Rest Client as long as the required transactions are successfully committed to MySQL DB.
+1. Rest Client can register a user (e.g. kazu in my setup) through the commonly-used HTTP methods (GET/POST/PUT/DELETE operations) using the python/shell script.
+2. Flask Web app will connect to MySQL DB and then the perform the SQL commands (Select/INSERT/UPDATE/DELETE) based on the HTTP methods.
+3. Flask Web app will return the HTTP response with the username, HTTP status code and user's DB ID to the Rest Client as long as the required transactions are successfully committed to MySQL DB.
 
 ```vb
 ├── apm_demo
