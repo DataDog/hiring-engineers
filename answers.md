@@ -618,10 +618,10 @@ You can also use other alogorihms like `Agile` and `Robust` (e.g. seasonal trend
  ```vb
 {
 	"id": 25447132,
-	"name": "Notification on my_metrics value changes from {{host.name}}",
+	"name": "Notification on my_metrics value changes  from {{host.name}}",
 	"type": "metric alert",
 	"query": "avg(last_5m):avg:my_metric{host:ubuntu-vm01} > 800",
-	"message": "{{#is_alert}} The observed value {{value}} has crossed the current alert threshold {{threshold}} over the past 5 minutes. {{/is_alert}}\n{{#is_alert}} The affected host is {{host.name}}  with IP {{host.ip}}. {{/is_alert}}\n{{#is_alert}} Please take an remediate action if this is something that you're not expecting.  {{/is_alert}} \n\n{{#is_recovery}} The alert raised on {{host.name}}  with {{host.ip}} was cleared.  {{/is_recovery}} \n\n{{#is_warning}} The observed value {{value}} has crossed  the current warning threshold {{warn_threshold}} over the past 5 minutes  {{/is_warning}} \n{{#is_warning}} The affected hostname is {{host.name}}. {{/is_warning}} \n{{#is_warning}}Please take a look at the host to make sure that the {{host.name}} works as intended. {{/is_warning}} \n\n{{#is_warning_recovery}} The warning raised on {{host.name}} was cleared. {{/is_warning_recovery}} \n\n{{#is_no_data}} No data is received. The issue could be either {{host.name}} down or network connectivity issue in between that you can't manage. {{/is_no_data}} \n{{#is_no_data}} Please take an remediate action if this is something that you're not expecting. {{/is_no_data}} \n\n{{#is_no_data_recovery}} The metrics on {{host.name}} has been received at datadog end. {{/is_no_data_recovery}} \n\n\n @shimadyu9999@gmail.com",
+	"message": "{{#is_alert}} The observed value {{value}} has crossed the current alert threshold {{threshold}} over the past 5 minutes. {{/is_alert}}\n{{#is_alert}} The affected host is {{host.name}}  with IP {{host.ip}}. {{/is_alert}}\n{{#is_alert}} Please take an appropriate corrective action if this is something that you're not expecting.  {{/is_alert}} \n\n{{#is_recovery}} The alert raised on {{host.name}}  with {{host.ip}} was cleared.  {{/is_recovery}} \n\n{{#is_warning}} The observed value {{value}} has crossed  the current warning threshold {{warn_threshold}} over the past 5 minutes  {{/is_warning}} \n{{#is_warning}} The affected hostname is {{host.name}}. {{/is_warning}} \n{{#is_warning}}Please take remedial actions if needed to make sure that the system named {{host.name}} still is working as intended. {{/is_warning}} \n\n{{#is_warning_recovery}} The warning raised on {{host.name}} was cleared. {{/is_warning_recovery}} \n\n{{#is_no_data}} No data is received. The issue could be either {{host.name}} brought down for some reason or network connectivity issue in between that you can't manage. {{/is_no_data}} \n{{#is_no_data}} Please take an remediate action if this is something that you're not expecting. {{/is_no_data}} \n\n{{#is_no_data_recovery}} The metrics on {{host.name}} has been received at datadog end. {{/is_no_data_recovery}} \n\n\n @shimadyu9999@gmail.com",
 	"tags": [],
 	"options": {
 		"notify_audit": true,
@@ -646,5 +646,10 @@ You can also use other alogorihms like `Agile` and `Robust` (e.g. seasonal trend
 #### 3.2 Include `the metric value` that caused the monitor to trigger and `host ip` when the Monitor triggers an `Alert state` ####
 #### 3.2 When this monitor sends you an email notification, take a `screenshot of the email` that it sends you ####
 
+[How to set up alerting for your metrics] (https://docs.datadoghq.com/ja/monitors/notifications/?tab=is_alert)
+
+The tag variables of `{{host.name}}` showing the hostname, `{{host.ip}}` showing the IP and `{{value}}` showing the value observed on average during the past 5 minutes are available to populate actual values in the message field.
+
+Conditional variables of `#is_alert`, `#is_warning` and `is_no_data` also availble to notify a different message depending on the state (Alert/Warning/No Data).
 
 
