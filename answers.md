@@ -656,8 +656,7 @@ Conditional variables of `#is_alert`, `#is_warning` and `is_no_data` also availb
 
 Here is the screenshot of the email.
 
-
-
+![E-mail notification about a warning state](https://user-images.githubusercontent.com/47805074/98498450-22d2be80-228a-11eb-96db-0115ffb7a7c0.png)
 
 #### 3.3 Bonus Question: Set up `two scheduled downtimes` for this monitor ####
 #### 3.3 One that `silences` it from `7pm` to `9am` `daily` on `M-F` ####
@@ -676,7 +675,9 @@ Here is the screenshot of the email.
 
 ![e-mail-2](https://user-images.githubusercontent.com/47805074/98497839-9c69ad00-2288-11eb-9454-59837368e8d8.png)
 
+### 4. Collecting APM Data ###
 
+#### 4.1 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution ####
 
 
 
