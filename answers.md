@@ -109,7 +109,7 @@ To schedule downtime for this monitor, I simply went to the 'Manage Downtime' ta
 
 When this downtime was scheduled, I made sure I was notified through email, shown below:
 
-[![Downtime-Notification-Email.png](https://i.postimg.cc/43tjqgbT/Downtime-Notification-Email.png)](https://postimg.cc/v1YPxCNP)
+[![Downtime-Notification-Email.png](https://i.postimg.cc/Pr1wDT62/Downtime-Notification-Email.png)](https://postimg.cc/nCcrbbfD)
 
 Time is shown in UTC. 
 
