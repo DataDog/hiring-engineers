@@ -743,8 +743,24 @@ DD_LOGS_INJECTION=true
 DD_HOST="ubuntu-vm01" 
 DD_TRACE_SAMPLE_RATE="1" 
 DD_PROFILING_ENABLED=true 
-ddtrace-run python3 flask-demo-v2.py
+ddtrace-run python3 flask-mysql-demo.py
+
+root@main:~/apm_demo# DD_SERVICE="web-app-flask" DD_ENV="dev" DD_LOGS_INJECTION=true DD_HOST="ubuntu-vm01" DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true ddtrace-run python3 flask-mysql-demo.py
+ * Serving Flask app "flask-mysql-demo" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+2020-11-09 18:40:22,203 INFO [werkzeug] [_internal.py:113] [dd.service=web-app-flask dd.env=dev dd.version= dd.trace_id=0 dd.span_id=0] -  * Running on http://127.0.0.1:10005/ (Press CTRL+C to quit)
+2020-11-09 18:40:22,203 - werkzeug - INFO -  * Running on http://127.0.0.1:10005/ (Press CTRL+C to quit)
+2020-11-09 18:40:22,203 INFO [werkzeug] [_internal.py:113] [dd.service=web-app-flask dd.env=dev dd.version= dd.trace_id=0 dd.span_id=0] -  * Restarting with stat
+2020-11-09 18:40:22,203 - werkzeug - INFO -  * Restarting with stat
+2020-11-09 18:40:24,802 WARNING [werkzeug] [_internal.py:113] [dd.service=web-app-flask dd.env=dev dd.version= dd.trace_id=0 dd.span_id=0] -  * Debugger is active!
+2020-11-09 18:40:24,802 - werkzeug - WARNING -  * Debugger is active!
+2020-11-09 18:40:24,803 INFO [werkzeug] [_internal.py:113] [dd.service=web-app-flask dd.env=dev dd.version= dd.trace_id=0 dd.span_id=0] -  * Debugger PIN: 949-885-547
+2020-11-09 18:40:24,803 - werkzeug - INFO -  * Debugger PIN: 949-885-547
 ```
+
 
 
 
