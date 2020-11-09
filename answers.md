@@ -701,7 +701,7 @@ Please see all the scripts used for APM demo.
 
 ```vb
 
-root@main:~/apm_demo# cat 'flask-mysql-demo.py' 
+root@main:~/apm_demo# cat `flask-mysql-demo.py`
 #!/usr/bin/python3
 import mysql.connector
 import sys
@@ -794,7 +794,7 @@ if __name__ == '__main__':
 ```
 
 ```vb
-root@main:~/apm_demo# cat rest_client.py 
+root@main:~/apm_demo# cat `rest_client.py`
 #!/usr/bin/python3
 import requests
 
@@ -838,7 +838,7 @@ print("Response {}: Status code {}".format(response.text,response.status_code))
 ```
 
 ```vb
-root@main:~/apm_demo# cat test_flask.sh 
+root@main:~/apm_demo# cat `test_flask.sh` 
 #!/bin/bash
 
 #
@@ -878,7 +878,7 @@ wait
 Here are the outputs collected from my setup when the python/shell script performed.
 
 ```vb
-root@main:~/apm_demo# sh test_flask.sh 
+root@main:~/apm_demo# sh `test_flask.sh` 
 <snip>
 Response ### [Read] Notice The user named kazu is not yet registered in the MySQL DB ###: Status code 404
 Response ### [Create] The user named kazu is successfully created and then registered into the MySQL DB ###: Status code 201
