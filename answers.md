@@ -939,7 +939,22 @@ root@main:~/apm_demo# DD_SERVICE="web-app-flask" DD_ENV="dev" DD_LOGS_INJECTION=
 2020-11-09 18:40:24,803 - werkzeug - INFO -  * Debugger PIN: 949-885-547
 ```
 
+##### 4.1.5 Checking whether both of wep-app-flask and mysql are displayed #####
 
+
+![APM#1](https://user-images.githubusercontent.com/47805074/98531836-3f8be800-22c4-11eb-9af3-b236265f56e9.png)
+
+![APM#2](https://user-images.githubusercontent.com/47805074/98532127-9f828e80-22c4-11eb-9464-53e6cc87a8b8.png)
+
+![APM#3](https://user-images.githubusercontent.com/47805074/98532229-c5a82e80-22c4-11eb-9a6f-5416e15a13ed.png)
+
+![APM#4](https://user-images.githubusercontent.com/47805074/98532665-5979fa80-22c5-11eb-9c14-49f5c819ed57.png)
+
+![APM#5](https://user-images.githubusercontent.com/47805074/98533006-c3929f80-22c5-11eb-85ea-aab8f5767029.png)
+
+![APM#6](https://user-images.githubusercontent.com/47805074/98533253-11a7a300-22c6-11eb-916c-5980cb545382.png)
+
+![APM#7](https://user-images.githubusercontent.com/47805074/98533436-53384e00-22c6-11eb-87e1-b4c9339709d3.png)
 
 
 
