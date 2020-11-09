@@ -697,11 +697,11 @@ My simple web applicaition showcases a CRUD (Create, Read, Update and Delete) to
        ├── test_flask.sh
 ```
 
-Please see all the scripts used for APM demo.
+Please see all the scripts above used for APM demo.
 
 ```vb
 
-root@main:~/apm_demo# cat `flask-mysql-demo.py`
+root@main:~/apm_demo# cat flask-mysql-demo.py
 #!/usr/bin/python3
 import mysql.connector
 import sys
@@ -794,7 +794,7 @@ if __name__ == '__main__':
 ```
 
 ```vb
-root@main:~/apm_demo# cat `rest_client.py`
+root@main:~/apm_demo# cat rest_client.py
 #!/usr/bin/python3
 import requests
 
@@ -838,7 +838,7 @@ print("Response {}: Status code {}".format(response.text,response.status_code))
 ```
 
 ```vb
-root@main:~/apm_demo# cat `test_flask.sh` 
+root@main:~/apm_demo# cat test_flask.sh 
 #!/bin/bash
 
 #
