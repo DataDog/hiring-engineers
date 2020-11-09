@@ -680,6 +680,73 @@ Here is the screenshot of the email.
 
 #### 4.1 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution ####
 
+##### 4.1.1 Lab Diagram #####
+
+My simple web applicaiton showcases a CRUD (Create, Read, Update and Delete) to create/read/modify/delete a user account with Python Flask and MySQL DB on ubuntu VM.
+
+![Diagram](https://user-images.githubusercontent.com/47805074/98517039-ad2e1900-22b0-11eb-9809-2425eb6de899.png)
+
+1. Rest Client can register a user (e.g. kazu in my setup) through the commonly-used HTTP methods (GET/POST/PUT/DELETE operation) using the python/shell script.
+2. Flask Web app will connect to MySQL DB and the perform the SQL commands (Select/INSERT/UPDATE/DELETE) based on the HTTP methods.
+3. Flask Web app will return the HTTP response with the username, HTTP status code and user-ID to the Rest Client as long as the required transactions are successfully committed to MySQL DB.
+
+```vb
+├── apm_demo
+       ├── flask-mysql-demo.py
+       ├── rest_client.py
+       ├── test_flask.sh
+```
+
+Here are the outputs collected from my setup when the python/shell script performed.
+
+```vb
+root@main:~/apm_demo# sh test_flask.sh 
+<snip>
+Response ### [Read] Notice The user named kazu is not yet registered in the MySQL DB ###: Status code 404
+Response ### [Create] The user named kazu is successfully created and then registered into the MySQL DB ###: Status code 201
+Response ### [Read] The user namaed kazu is already registered into the MySQL DB with the User-ID 227 ###: Status code 200
+Response ### [Update] The existing user named kazu is changed to user kazutoshi in the MySQL DB ###: Status code 200
+Response ### [Read] The user namaed kazutoshi is already registered into the MySQL DB with the User-ID 227 ###: Status code 200
+Response ### [Delete] The existing user named kazutoshi is successfully deleted from the MySQL DB ###: Status code 200
+```
+##### 4.1.2 Installing Cython and ddtrace on ubuntu VM #####
+
+```vb
+pip3 install Cython
+pip3 install ddtrace
+```
+##### 4.1.3 Adding the service tag named `wep-app-flask` to `the datadog.yaml` under the `/etc/datadog-agent` #####
+
+[Unified Service Tagging] (https://docs.datadoghq.com/getting_started/tagging/unified_service_tagging/?tab=kubernetes#non-containerized-environment)
+
+```vb
+cd /etc/datadog-agent
+vi datadog.yaml
+<snip>
+tags:
+  - location:Tokyo
+  - host_os:Ubuntu_xenial64
+  - mysql_version:5.7.32
+  - flask_version:1.1.2
+  - service:web-app-flask <<< HERE!
+
+sudo service datadog-agent restart
+```
+##### 4.1.4 Adding the `DD_XXX` arguments to my application `ddtrace-run` command #####
+
+[The trace for python application] (https://docs.datadoghq.com/ja/tracing/setup/python/)
+
+```vb
+DD_SERVICE="web-app-flask" 
+DD_ENV="dev" 
+DD_LOGS_INJECTION=true  
+DD_HOST="ubuntu-vm01" 
+DD_TRACE_SAMPLE_RATE="1" 
+DD_PROFILING_ENABLED=true 
+ddtrace-run python3 flask-demo-v2.py
+```
+
+
 
 
 
