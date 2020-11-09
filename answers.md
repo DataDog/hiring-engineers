@@ -646,7 +646,7 @@ You can also use other alogorihms like `Agile` and `Robust` (e.g. seasonal trend
 #### 3.2 Include `the metric value` that caused the monitor to trigger and `host ip` when the Monitor triggers an `Alert state` ####
 #### 3.2 When this monitor sends you an email notification, take a `screenshot of the email` that it sends you ####
 
-##### 3.2.1 The screenshot of the email taken when the monitor triggers an alert state #####
+##### 3.2.1 The screenshot of the email taken when the monitor triggers an Warning state #####
 
 [How to set up alerting for your metrics] (https://docs.datadoghq.com/ja/monitors/notifications/?tab=is_alert)
 
@@ -655,6 +655,9 @@ The tag variables of `{{host.name}}` showing the hostname, `{{host.ip}}` showing
 Conditional variables of `#is_alert`, `#is_warning` and `is_no_data` also availble to notify a different message depending on the state (Alert/Warning/No Data).
 
 Here is the screenshot of the email.
+
+
+
 
 #### 3.3 Bonus Question: Set up `two scheduled downtimes` for this monitor ####
 #### 3.3 One that `silences` it from `7pm` to `9am` `daily` on `M-F` ####
