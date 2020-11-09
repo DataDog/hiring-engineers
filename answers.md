@@ -878,7 +878,7 @@ wait
 Here are the outputs collected from my setup when the python/shell script performed.
 
 ```vb
-root@main:~/apm_demo# sh `test_flask.sh` 
+root@main:~/apm_demo# sh test_flask.sh 
 <snip>
 Response ### [Read] Notice The user named kazu is not yet registered in the MySQL DB ###: Status code 404
 Response ### [Create] The user named kazu is successfully created and then registered into the MySQL DB ###: Status code 201
