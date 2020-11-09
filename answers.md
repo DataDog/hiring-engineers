@@ -99,6 +99,10 @@ my_metric has exceeded 800 on host {{host.ip}} with a value of {{value}} over th
 {{#is_no_data}} No data received from monitor for the past 10 minutes {{/is_no_data}} @beardbradleyj@gmail.com
 ```
 
+Here is an example of the email I received when my_metric stayed in the warning zone for 5 minutes: 
+
+[![Monitor-Email.png](https://i.postimg.cc/c4kcDs7Z/Monitor-Email.png)](https://postimg.cc/RNffhxbb)
+
 To schedule downtime for this monitor, I simply went to the 'Manage Downtime' tab. The example for my weekday nightly downtime can be found here: 
 
 [![Downtime-Settings.png](https://i.postimg.cc/dV0qbLLc/Downtime-Settings.png)](https://postimg.cc/dLzPdQ25)
