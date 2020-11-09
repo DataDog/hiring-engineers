@@ -669,6 +669,9 @@ Here is the screenshot of the email.
 
 ##### 3.3.2 The screenshot of e-mail after scheduling the downtime #####
 
+![email-1](https://user-images.githubusercontent.com/47805074/98497562-ad65ee80-2287-11eb-9837-5d183700f4f8.png)
+
+![e-mail-2](https://user-images.githubusercontent.com/47805074/98497839-9c69ad00-2288-11eb-9454-59837368e8d8.png)
 
 
 
