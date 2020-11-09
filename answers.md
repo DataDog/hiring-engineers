@@ -697,6 +697,184 @@ My simple web applicaition showcases a CRUD (Create, Read, Update and Delete) to
        ├── test_flask.sh
 ```
 
+Please see all the scripts used for APM demo.
+
+```vb
+
+root@main:~/apm_demo# cat 'flask-mysql-demo.py' 
+#!/usr/bin/python3
+import mysql.connector
+import sys
+import logging
+from flask import Flask
+from flask import g
+from flask import render_template
+from flask import request
+from flask import Response
+
+"""
+Nov, 9 2020
+This script is created to showcase APM with flask and MySQL.
+Author: Kazutoshi Shimazu
+"""
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        conn = mysql.connector.connect(user='root',password='root',host='127.0.0.1')
+        cursor = conn.cursor()
+        cursor.execute('CREATE DATABASE IF NOT EXISTS mysql_db_demo')
+        cursor.close()
+        conn.close()
+        db = g._database = mysql.connector.connect(user='root',password='root',host='127.0.0.1',database='mysql_db_demo')
+    return db
+
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
+
+@app.route('/accounts', methods=['POST', 'PUT', 'DELETE'])
+@app.route('/accounts/<name>', methods=['GET'])
+
+def accounts(name=None):
+    db = get_db()
+    curs = db.cursor()
+    curs.execute(
+        'CREATE TABLE IF NOT EXISTS USER_CRUD ('
+              'id integer not null AUTO_INCREMENT,'
+               'name varchar(14) NOT NULL,'
+               'PRIMARY KEY (id))')
+    db.commit()
+    name = request.values.get('name', name)
+
+    if request.method == 'GET':
+        curs.execute('SELECT * FROM USER_CRUD WHERE name = "{}"'.format(name))
+        person = curs.fetchone()
+        if not person:
+            return '### [Read] Notice The user named {} is not yet registered in the MySQL DB ###'.format(name), 404
+        user_id, name = person
+        return '### [Read] The user namaed {} is already registered into the MySQL DB with the User-ID {} ###'.format(name, user_id), 200
+
+    if request.method == 'POST':
+        curs.execute('INSERT INTO USER_CRUD(name) values("{}")'.format(name))
+        db.commit()
+        return '### [Create] The user named {} is successfully created and then registered into the MySQL DB ###'.format(name), 201
+
+    if request.method == 'PUT':
+        new_name = request.values['new_name']
+        curs.execute('UPDATE USER_CRUD set name = "{}" WHERE name = "{}"'.format(new_name, name))
+        db.commit()
+        return '### [Update] The existing user named {} is changed to user {} in the MySQL DB ###'.format(name, new_name), 200
+
+    if request.method == 'DELETE':
+        curs.execute('DELETE from USER_CRUD WHERE name = "{}"'.format(name))
+        db.commit()
+        return '### [Delete] The existing user named {} is successfully deleted from the MySQL DB ###'.format(name), 200
+
+    curs.close()
+
+def main():
+    app.debug = True
+    app.run(host='127.0.0.1', port=10005)
+
+if __name__ == '__main__':
+    main()
+
+
+```
+
+```vb
+root@main:~/apm_demo# cat rest_client.py 
+#!/usr/bin/python3
+import requests
+
+"""
+Nov, 9 2020
+This script was created to perform the commonly-used HTTP methods (GET/POST/PUT/DELETE operations) to register a user into MySQL DB through flask web app
+Author: Kazutoshi Shimazu
+"""
+PROTOCOL = 'http'
+ADDRESS ='127.0.0.1'
+PORT ='10005'
+TEST_USER1 ='kazu'
+TEST_USER2 ='kazutoshi'
+
+GET_URL1 ='%s://%s:%s/accounts/%s'% (PROTOCOL,ADDRESS,PORT,TEST_USER1)
+GET_URL2 ='%s://%s:%s/accounts/%s'% (PROTOCOL,ADDRESS,PORT,TEST_USER2)
+POST_PUT_DELETE_URL ='%s://%s:%s/accounts'% (PROTOCOL,ADDRESS,PORT)
+
+PAYLOAD_POST = {'name':'kazu'}
+PAYLOAD_PUT = {'name': 'kazu', 'new_name': 'kazutoshi' }
+PAYLOAD_DELETE =  {'name':'kazutoshi'}
+
+response = requests.get(url=GET_URL1)
+print("Response {}: Status code {}".format(response.text,response.status_code))
+
+response = requests.post(url=POST_PUT_DELETE_URL, data=PAYLOAD_POST)
+print("Response {}: Status code {}".format(response.text,response.status_code))
+
+response = requests.get(url=GET_URL1)
+print("Response {}: Status code {}".format(response.text,response.status_code))
+
+response = requests.put(url=POST_PUT_DELETE_URL, data=PAYLOAD_PUT)
+print("Response {}: Status code {}".format(response.text,response.status_code))
+
+response = requests.get(url=GET_URL2)
+print("Response {}: Status code {}".format(response.text,response.status_code))
+
+response = requests.delete(url=POST_PUT_DELETE_URL, data=PAYLOAD_DELETE)
+print("Response {}: Status code {}".format(response.text,response.status_code))
+
+```
+
+```vb
+root@main:~/apm_demo# cat test_flask.sh 
+#!/bin/bash
+
+#
+#Nov, 9 2020
+#This script was created to perform the commonly-used HTTP methods (GET/POST/PUT/DELETE operations) to register a user into MySQL DB through flask web app
+#Author: Kazutoshi Shimazu
+
+set -e
+Count=1
+Total_num=11
+
+func1() {
+ while [ $Count -lt $Total_num ]
+  do 
+  echo "### $Count.Performing REST API calls (CRUD operations) towards Flask Web App with MySQL DB ###"
+  func2
+  python3 rest_client.py
+  Count=$((Count + 1))
+ done
+}
+
+func2() {
+  if [ "$Count" = "5" ]; then
+   echo "MySQL intentionally stopped to mimic the MySQL error"
+   systemctl stop mysql
+  elif [ "$Count" = "7" ]; then
+   echo "MySQL started"
+   systemctl start mysql
+  fi
+}
+
+func1 &
+func2 &
+wait
+```
+
 Here are the outputs collected from my setup when the python/shell script performed.
 
 ```vb
