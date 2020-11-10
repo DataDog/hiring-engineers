@@ -216,7 +216,7 @@ httpsp.datadoghq.comsbdzuqk188by5mh7ni-5051b5d89878a5eff90fc7af0e0b52c2
 Python application code is included in, empapp.zip file.
 
 I utilized PythonFlask code below.
-[Reference Site](httpscodeloop.orgflask-crud-application-with-sqlalchemy)
+[Reference Site](https://codeloop.org/flask-crud-application-with-sqlalchemy)
 
 
 ## What is the difference between a Service and a Resource
