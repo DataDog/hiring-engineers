@@ -179,9 +179,11 @@ Note I temporary change the threshold value, because I could not receive alert w
 
 
 Notified email when I create.
+
 ![downNotified](https://github.com/kikakazuri/hiring-engineers/blob/images/3-2-1-DowntimeConfig2_Notified.png)
 
 Notified email when it enters downtime.
+
 ![downEnter](https://github.com/kikakazuri/hiring-engineers/blob/images/3-2-1-DowntimeEnterEmail.png)
 
 
@@ -196,6 +198,7 @@ Notified email when it enters downtime.
 
 
 Notified email
+
 ![](https://github.com/kikakazuri/hiring-engineers/blob/images/3-2-2-DowntimeConfig2_Notified.png)
 
 
