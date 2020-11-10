@@ -210,7 +210,7 @@ Notified email
 
 ### Link of dashboard.
 httpsp.datadoghq.comsbdzuqk188by5mh7ni-5051b5d89878a5eff90fc7af0e0b52c2
-[Dashboard Link](httpsp.datadoghq.comsbdzuqk188by5mh7ni-5051b5d89878a5eff90fc7af0e0b52c2)
+[Dashboard Link](https://p.datadoghq.com/sb/dzuqk188by5mh7ni-5051b5d89878a5eff90fc7af0e0b52c2)
 
 ### Application code
 Python application code is included in, empapp.zip file.
