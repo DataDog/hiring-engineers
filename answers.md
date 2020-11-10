@@ -961,7 +961,7 @@ root@main:~/apm_demo# DD_SERVICE="web-app-flask" DD_ENV="dev" DD_LOGS_INJECTION=
 
 The dashboard below has `system.cpu.idle (max)`, `system.io.await` and `system.load.1` as part of `infra metrics` and `trace.flask.requests.error/hits` and `mysql.query.hits` as part of `APM`.
 
-Constanly correlating between Web `App/DB` and `infra resource utilization (CPU/Disk IO etc)` with the same dashboard is really helpful to figure out user impact and root cause analysis
+Constanly correlating between Web `App/DB` and `infra resource utilization (CPU/Disk IO etc)` with the same dashboard is really helpful to figure out both  of doing user impact and root cause analysis
 
 ![APM#8](https://user-images.githubusercontent.com/47805074/98535036-c5aa2d80-22c8-11eb-8390-b7dd4e958398.png)
 
@@ -1002,7 +1002,7 @@ The Resource of MySQL:
 
 #### 5.1 Is there anything creative you would use Datadog for? ####
 
-For mission critical use cases like connected and autonomous vehicles, V2X (vehicle to Everything)), The vehicle will be changed to internet-connected endpoint.
+For mission critical use cases like connected and autonomous vehicles, V2X (vehicle to Everything), The vehicle will be changed to internet-connected endpoint.
 According to the url below, The global connected car market was valued at $63.03 billion in 2019, and is projected to reach $225.16 billion by 2027.
 [Connected Car Market Statistics – 2027] https://www.alliedmarketresearch.com/connected-car-market
 
