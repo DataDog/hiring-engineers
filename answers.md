@@ -203,7 +203,7 @@ Notified email
 [Dashboard Link](https://p.datadoghq.com/sb/dzuqk188by5mh7ni-5051b5d89878a5eff90fc7af0e0b52c2)
 
 ### Application code
-Python application code is included in [zip file](/tree/solutions-engineer/empapp.zip)
+Python application code is included in empapp.zip
 
 I utilized PythonFlask code below.
 [Reference Site](https://codeloop.org/flask-crud-application-with-sqlalchemy)
