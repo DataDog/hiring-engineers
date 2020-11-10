@@ -1,16 +1,6 @@
                          
 -------------------------
                          
-Technical exercise Report
-                         
-
-
-
-
-
-
-
-
 
 
 #
@@ -24,8 +14,6 @@ On the other side, as a self-learning I used following platform too.
    Minikube
    Windows10 with SQL Server
    AWS
-
-![](mediaimage1.png)![](mediaimage2.png)
 
 
 
@@ -87,7 +75,7 @@ Custom Agent code etcdatadog-agentchecks.dmy_metric.py
 
 # Visualizing Data
 ## Datadog API script
-Please check attached ddTimeboard1.py
+Please check attached [Script](/ddTimeboard1.py)
 
 ## Screenshot of Timeboard
 Past 1 Hour
@@ -215,7 +203,7 @@ Notified email
 [Dashboard Link](https://p.datadoghq.com/sb/dzuqk188by5mh7ni-5051b5d89878a5eff90fc7af0e0b52c2)
 
 ### Application code
-Python application code is included in, empapp.zip file.
+Python application code is included in, file.[Script](/empapp.zip)
 
 I utilized PythonFlask code below.
 [Reference Site](https://codeloop.org/flask-crud-application-with-sqlalchemy)
