@@ -1007,7 +1007,7 @@ According to the url below, The global connected car market was valued at $63.03
 [Connected Car Market Statistics – 2027] https://www.alliedmarketresearch.com/connected-car-market
 
 The generic connected vehicle use case would be to push vehicle data to the public clouds (also MEC) to let them process an enormous amount of data (e.g. environment information to drivers, road conditionsetc) to get the necessasry information in real time for safe driving.
-However, the mobile network stability from vehicle to Cloud is also challenging due to handover interruption between 4G/5G base stations (RU/CU/DU).
+However, the mobile network stability from vehicle to Cloud is also challenging due to handover interruption between 4G/5G base stations (RU/CU/DU) or external depedencies in between.
 
 Another concern is a huge amount of data that single car generates. 
 It's thought that one autonomous car generates 5TB and 20TB of data per day that could be exorbitant costs of cloud storage subscriptios.
