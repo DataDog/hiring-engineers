@@ -1002,11 +1002,11 @@ The Resource of MySQL:
 
 #### 5.1 Is there anything creative you would use Datadog for? ####
 
-For mission critical use cases like connected and autonomous vehicles, V2X (Vehicle to Everything)), The car will be changed to internet-connected endpoint.
+For mission critical use cases like connected and autonomous vehicles, V2X (vehicle to Everything)), The vehicle will be changed to internet-connected endpoint.
 According to the url below, The global connected car market was valued at $63.03 billion in 2019, and is projected to reach $225.16 billion by 2027.
 [Connected Car Market Statistics – 2027] https://www.alliedmarketresearch.com/connected-car-market
 
-The generic connected vehicle use case would be to push vehicle data to the public clouds (also MEC) to let them process an enormous amount of data (e.g. environment information to drivers, road conditionsetc) to get the necessasry information in real time for safe driving.
+The generic connected vehicle use case would be to push Vehicle data to the public clouds (also MEC) to let them process an enormous amount of data (e.g. environment information to drivers, road conditionsetc) to get the necessasry information in real time for safe driving.
 However, the mobile network stability from vehicle to Cloud is also challenging due to handover interruption between 4G/5G base stations (RU/CU/DU) or external depedencies in between.
 
 Another concern is a huge amount of data that single car generates. 
@@ -1015,7 +1015,7 @@ It's thought that one autonomous car generates 5TB and 20TB of data per day that
 [Connected Vehicle Platform using Cloud IoT core on Google Cloud] https://cloud.google.com/solutions/designing-connected-vehicle-platform
 [storage estimates for intelligent vehicles vary widely] [https://blocksandfiles.com/2020/01/17/connected-car-data-storage-estimates-vary-widely/
 
-Hence, the connected car needs to analyze the data by the vehicle itself.
+Hence, the connected vehicle needs to analyze the data by the vehicle itself.
 I'm hoping vehicles will have more compute resources as part of an edge device in the future and containerized vehicle applications could be deployed on a connected Vehicle acting as K8s worker nodes which are managed by K8s master node on public clouds.
 
 For instance, DENSO is one of the global automobile manufactures and developing Kubernetes based connected vehicle platform named Misaki. 
@@ -1023,7 +1023,7 @@ That still seems to be under development, but it will change the way how connect
 
 [DENSO: Kubernetes based connected vehicle platform] https://www.youtube.com/watch?v=2x7jQTBUT5w&feature=emb_logo
 
-In such context, The use case with Datadog would be to monitor vehicle as an edge device or trace Vehicle application between Vehicle and multi public clouds environments.
+In such context, The use case with Datadog would be to monitor vehicle as an edge device or trace Vehicle application amongst vehicles and multi-public clouds environments.
 
-Datadog can display service map representing how V2V (Vehicle to Vhicle) or V2C (Vehicle to Cloud) applications communicate between them and find any Vechicle in service map topology that are relevant to the poorest resources and infra (connected car itself) metrics.
+Datadog can display service map representing how V2V (vehicle to vehicle) or V2C (vehicle to cloud or everything) applications communicate between them behind the scenes and they can find any problematic Vehicle in service map topology that are relevant to the poorest resources and infrastructure (vehicle itself hosting vehicle app) metrics.
 
