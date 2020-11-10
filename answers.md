@@ -1015,10 +1015,10 @@ It's thought that one autonomous car generates 5TB and 20TB of data per day that
 [Connected Vehicle Platform using Cloud IoT core on Google Cloud] https://cloud.google.com/solutions/designing-connected-vehicle-platform
 [storage estimates for intelligent vehicles vary widely] [https://blocksandfiles.com/2020/01/17/connected-car-data-storage-estimates-vary-widely/
 
-Hence, the connected car needs analyze the data by the vehicle itself.
-I'm hoping vehicles will have more compute resources as part of an edge device in the future and containerized vehicle applications could be deployed on a connected Vehicle acting as K8s worker node which is managed by K8s master node on public clouds.
+Hence, the connected car needs to analyze the data by the vehicle itself.
+I'm hoping vehicles will have more compute resources as part of an edge device in the future and containerized vehicle applications could be deployed on a connected Vehicle acting as K8s worker nodes which are managed by K8s master node on public clouds.
 
-DENSO is one of the global automobile manufactures and developing Kubernetes based connected vehicle platform named Misaki. 
+For instance, DENSO is one of the global automobile manufactures and developing Kubernetes based connected vehicle platform named Misaki. 
 That still seems to be under development, but it will change the way how connected vehicles build their applications.
 
 [DENSO: Kubernetes based connected vehicle platform] https://www.youtube.com/watch?v=2x7jQTBUT5w&feature=emb_logo
