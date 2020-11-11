@@ -89,3 +89,35 @@ using the DataDog Postman API package I generated the Tiemboard using the Dashbo
     ]
 }
 ```
+
+Bonus Question: What is the Anomaly graph displaying? -
+
+DD_SERVICE="sample-app" DD_ENV="dev" DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true ddtrace-run python sampleApp.py
+
+start python env
+source my_env/bin/activate
+
+https://docs.datadoghq.com/tracing/visualization/
+Service Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
+Resource Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
+
+APM App
+
+```
+const tracer = require('dd-trace').init(DD_ENV="sampleAppNode", DD_LOGS_INJECTION=true, DD_TRACE_SAMPLE_RATE="1")
+const http = require('http');
+
+// Create an instance of the http server to handle HTTP requests
+let app = http.createServer((req, res) => {
+    // Set a response type of plain text for the response
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+
+    // Send back a response and end the connection
+    res.end('Hello World!\n');
+});
+
+// Start the server on port 3000
+app.listen(3000, '127.0.0.1');
+console.log('Node server running on port 3000');
+
+```
