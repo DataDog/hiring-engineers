@@ -92,7 +92,7 @@ _Utilize the Datadog API to create a Timeboard that contains:_
 - _Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket_
 
 **First I used the Dashboard UI to understand the JSON request to the Timeboard API and read [Using Postman with Datadog APIs Docs](https://docs.datadoghq.com/getting_started/api/).**
-**After I understood how the API worked and the request's shape, I wrote a small node.js script to send the request**
+**After I understood how the API worked and the request's shape, I wrote a small node.js script to send the request.**
 **I revisited these dashboards after connecting a new APM app to monitor DB operations.**
 
 Postman Request Body
