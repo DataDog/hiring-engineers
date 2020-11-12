@@ -29,21 +29,21 @@ Setup the environment
 
 - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-#### Using the python script provided by the [Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
+  - #### Using the python script provided by the [Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
 
-#### I slightly modified it and added a variable which generated a random number 0 - 1000
+  - #### I slightly modified it and added a variable which generated a random number 0 - 1000
 
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+mymetric.png" width="600">
+  - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+mymetric.png" width="600">
 
 - Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+AgentCheck+-+check+file+-+interval.png" width="600">
+  - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+AgentCheck+-+check+file+-+interval.png" width="600">
 
 - **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-  Per the [docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) the interval is set on the instance level within the check file.
+  - #### Per the [docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) the interval is set on the instance level within the check file.
 
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+Interval.png" width="600">
+  - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+Interval.png" width="600">
 
 ```
 
