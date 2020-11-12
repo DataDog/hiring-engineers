@@ -23,19 +23,19 @@ _Add tags in the Agent config file and show us a screenshot of your host and its
 
 _Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database._
 
-- **I setup the DB and connected it to the DataDog Agent**
+- **Using PostgreSQL I setup a DB and connected it to the DataDog Agent**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.2+CollectingMetrics+-+PostgreSQL.png" width="600">
 
 _Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000._
 
-- **Using the python script provided by the [Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)**
-
-- **I slightly modified it and added a variable which generated a random number 0 - 1000**
+- **Using the python script provided by the [Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) I slightly modified it and added a variable which generated a random number 0 - 1000**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+mymetric.png" width="600">
 
 _Change your check's collection interval so that it only submits the metric once every 45 seconds_
+
+- **Following the naming convention best practices per the docs, I updated the yaml file for custom_my_metric.yaml to reflect the updated interval.**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+AgentCheck+-+check+file+-+interval.png" width="600">
 
