@@ -91,24 +91,32 @@ I used Postman to send a request to the timeboard api using the Postman Datadog 
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/2.2+VisualizingData+-+metrics.png" width="600">
 
+API Script Request:
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/2.5+VisualizingData+-+API+Request.png" width="600">
+
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 ```
+<!-- Postman Request -->
 {
-    "title": "API TIMEBOARD SINGLE GRAPH w/style",
+    "title": "API Timeboard Multiple graphs w/style",
     "widgets": [
+        {
+            "definition": {
+                "type": "query_value",
+                "requests": [
+                    {
+                        "q": "avg:my_metric{*} by {data_cat}.rollup(sum, 3600)"
+                    }
+                ],
+                "title": "My Metric - Roll up 1hr (3600 sec)"
+            }
+        },
         {
             "definition": {
                 "type": "timeseries",
                 "requests": [
-                    {
-                        "q": "avg:my_metric{*} by {data_cat}.rollup(sum, 3600)",
-                        "style": {
-                            "palette": "warm",
-                            "line_type": "solid",
-                            "line_width": "normal"
-                        }
-                    },
                     {
                         "q": "avg:my_metric{*}",
                         "style": {
@@ -116,17 +124,65 @@ Please be sure, when submitting your hiring challenge, to include the script tha
                             "line_type": "solid",
                             "line_width": "normal"
                         }
+                    }
+                ],
+                "title": "My Metric - Instance"
+            }
+        },
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(avg:trace.pg.query.duration.by.service.50p{env:none,service:node-postgres}, 'basic', 2)",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        }
                     },
                     {
-                        "q": "anomalies(avg:postgresql.db.count{*}, 'basic', 2)",
+                        "q": "anomalies(avg:trace.pg.query.duration.by.service.75p{env:none,service:node-postgres}, 'basic', 2)",
                         "style": {
-                            "palette": "orange",
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        }
+                    },
+                    {
+                        "q": "anomalies(avg:trace.pg.query.duration.by.service.90p{env:none,service:node-postgres}, 'basic', 2)",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        }
+                    },
+                    {
+                        "q": "anomalies(avg:trace.pg.query.duration.by.service.95p{env:none,service:node-postgres}, 'basic', 2)",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        }
+                    },
+                    {
+                        "q": "anomalies(avg:trace.pg.query.duration.by.service.99p{env:none,service:node-postgres}, 'basic', 2)",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        }
+                    },
+                    {
+                        "q": "anomalies(avg:trace.pg.query.duration.by.service.100p{env:none,service:node-postgres}.rollup(max), 'basic', 2)",
+                        "style": {
+                            "palette": "dog_classic",
                             "line_type": "solid",
                             "line_width": "normal"
                         }
                     }
                 ],
-                "title": "My Metric - Roll up 1hr (3600 sec), Instance, PostgreSQL DB Size: Anomaly fn"
+                "title": "PostgreSQL DB Latency: Anomaly fn"
             }
         }
     ],
@@ -146,13 +202,42 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 }
 ```
 
+```
+<!-- timeboard.js  -->
+
+var axios = require('axios');
+var data = JSON.stringify({"title":"API Timeboard Multiple graphs w/style","widgets":[{"definition":{"type":"query_value","requests":[{"q":"avg:my_metric{*} by {data_cat}.rollup(sum, 3600)"}],"title":"My Metric - Roll up 1hr (3600 sec)"}},{"definition":{"type":"timeseries","requests":[{"q":"avg:my_metric{*}","style":{"palette":"dog_classic","line_type":"solid","line_width":"normal"}}],"title":"My Metric - Instance"}},{"definition":{"type":"timeseries","requests":[{"q":"anomalies(avg:trace.pg.query.duration.by.service.50p{env:none,service:node-postgres}, 'basic', 2)","style":{"palette":"dog_classic","line_type":"solid","line_width":"normal"}},{"q":"anomalies(avg:trace.pg.query.duration.by.service.75p{env:none,service:node-postgres}, 'basic', 2)","style":{"palette":"dog_classic","line_type":"solid","line_width":"normal"}},{"q":"anomalies(avg:trace.pg.query.duration.by.service.90p{env:none,service:node-postgres}, 'basic', 2)","style":{"palette":"dog_classic","line_type":"solid","line_width":"normal"}},{"q":"anomalies(avg:trace.pg.query.duration.by.service.95p{env:none,service:node-postgres}, 'basic', 2)","style":{"palette":"dog_classic","line_type":"solid","line_width":"normal"}},{"q":"anomalies(avg:trace.pg.query.duration.by.service.99p{env:none,service:node-postgres}, 'basic', 2)","style":{"palette":"dog_classic","line_type":"solid","line_width":"normal"}},{"q":"anomalies(avg:trace.pg.query.duration.by.service.100p{env:none,service:node-postgres}.rollup(max), 'basic', 2)","style":{"palette":"dog_classic","line_type":"solid","line_width":"normal"}}],"title":"PostgreSQL DB Latency: Anomaly fn"}}],"layout_type":"ordered","description":"Timeboard API","is_read_only":true,"notify_list":["J.Tustin@gmail.com"],"template_variables":[{"name":"host","prefix":"host","default":"vagrant"}]});
+
+var config = {
+  method: 'post',
+  url: 'https://api.datadoghq.com/api/v1/dashboard',
+  headers: {
+    'Content-Type': 'application/json',
+    'DD-API-KEY': 'eb8bc284a2d4e2c8409c4cbaaeb41f46',
+    'DD-APPLICATION-KEY': '7ffca8d9603755f04c0f7b5df77ba8138464bb33',
+    'Cookie': 'DD-PSHARD=157'
+  },
+  data : data
+};
+
+axios(config)
+    .then(function (response) {
+        console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+```
+
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 - Set the Timeboard's timeframe to the past 5 minutes
 
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/2.3+MonitoringData+-+graph.png" width="600">
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/2.5+VisualizingData+-+5minGraph.png" width="600">
 
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+[DashboardURL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-dd81669030a2ebedf65ca4358517d8fd)
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/2.2+VisualizingData+-+graph.png" width="600">
 
