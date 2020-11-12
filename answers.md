@@ -16,16 +16,16 @@ Setup the environment
 
 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-#### I added tags via the agent config file
+  - #### I added tags via the agent config file
 
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.2+SetupEnv-map.png" width="600">
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.1+CollectingMetrics+-+AgentConfig+-+tags.png" width="600">
+  - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.2+SetupEnv-map.png" width="600">
+  - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.1+CollectingMetrics+-+AgentConfig+-+tags.png" width="600">
 
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-####I setup the DB and connected it to the DataDog Agent.
+  - #### I setup the DB and connected it to the DataDog Agent.
 
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.2+CollectingMetrics+-+PostgreSQL.png" width="600">
+  - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.2+CollectingMetrics+-+PostgreSQL.png" width="600">
 
 - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
