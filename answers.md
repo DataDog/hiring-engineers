@@ -8,37 +8,25 @@ Please provide screenshots and code snippets for all steps.
 
 Setup the environment
 
-<!-- ![vagrant](https://datadog-examples.s3.us-east-2.amazonaws.com/0.1+SetupEnv+-+vagrant.png) -->
-
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.1+SetupEnv+-+vagrant.png" width="600">
 
 ## Collecting Metrics:
 
 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-  <!-- - ![Map](https://datadog-examples.s3.us-east-2.amazonaws.com/0.2+SetupEnv-map.png) -->
-
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.2+SetupEnv-map.png" width="600">
-
-  <!-- - ![Tags](https://datadog-examples.s3.us-east-2.amazonaws.com/1.1+CollectingMetrics+-+AgentConfig+-+tags.png) -->
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.1+CollectingMetrics+-+AgentConfig+-+tags.png" width="600">
 
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-  <!-- - ![psql](https://datadog-examples.s3.us-east-2.amazonaws.com/1.2+CollectingMetrics+-+PostgreSQL.png) -->
-
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.2+CollectingMetrics+-+PostgreSQL.png" width="600">
 
 - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-  <!-- - ![my_metric](https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+AgentCheck+-+code+sample.png) -->
-
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+AgentCheck+-+code+sample.png" width="600">
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+mymetric.png" width="600">
 
 - Change your check's collection interval so that it only submits the metric once every 45 seconds.
-
-  <!-- - ![Interval](https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+AgentCheck+-+check+file+-+interval.png) -->
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+AgentCheck+-+check+file+-+interval.png" width="600">
 
@@ -46,34 +34,36 @@ Setup the environment
 
   Per the [docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) the interval is set on the instance level within the check file.
 
-<!-- ![Docs](https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+Interval.png) -->
-
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+Interval.png" width="600">
 
 ```
 
 # the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
 
-try: # first, try to import the base class from new versions of the Agent...
-from datadog_checks.base import AgentCheck
-except ImportError: # ...if the above failed, the check is running in Agent version < 6.6.0
-from checks import AgentCheck
-
-# content of the special variable **version** will be shown in the Agent status page
-
-**version** = "1.0.0"
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
 
 import random
 
 class CustomMyMetricCheck(AgentCheck):
     def check(self, instance):
         randomNum = random.randint(0,1000)
-        self.gauge('random.number', randomNum, tags=['RandomKey:RandomValue'])
+        self.gauge('my_metric', randomNum, tags=['RandomKey:RandomValue'])
 ~
 ~
 ~
 ~
-"custom_my_metric.py" 17L, 668C
+~
+~
+~
+~
+"custom_my_metric.py" 17L, 664C
 
 ```
 
@@ -88,11 +78,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 I used Postman to send a request to the timeboard api using the Postman Datadog collection.
 [Using Postman with Datadog APIs](https://docs.datadoghq.com/getting_started/api/)
 
-<!-- ![Postman](https://datadog-examples.s3.us-east-2.amazonaws.com/2.1+VisualizingData+-+Postman+request.png) -->
-
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/2.1+VisualizingData+-+Postman+request.png" width="600">
-
-<!-- ![Timeboard](https://datadog-examples.s3.us-east-2.amazonaws.com/2.2+VisualizingData+-+metrics.png) -->
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/2.2+VisualizingData+-+metrics.png" width="600">
 
@@ -155,13 +141,9 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 - Set the Timeboard's timeframe to the past 5 minutes
 
-<!-- ![Timeframe](https://datadog-examples.s3.us-east-2.amazonaws.com/2.3+MonitoringData+-+graph.png) -->
-
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/2.3+MonitoringData+-+graph.png" width="600">
 
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
-
-<!-- ![Snapshot](https://datadog-examples.s3.us-east-2.amazonaws.com/2.2+VisualizingData+-+graph.png) -->
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/2.2+VisualizingData+-+graph.png" width="600">
 
@@ -173,8 +155,6 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
   It is very hard to set sensible thresholds for these alerts. DataDog provides four algorithms to help identify strange behavior.
 
-  <!-- [Anomaly Detection](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/) -->
-
 - <img src="https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/" width="600">
 
 ## Monitoring Data
@@ -182,8 +162,6 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 - Warning threshold of 500
 - Alerting threshold of 800
 - And also ensure that it will notify you if there is No Data for this query over the past 10m.
-
-<!-- ![Alert Logic](https://datadog-examples.s3.us-east-2.amazonaws.com/3.1+MonitoringData+-+Alert+logic.png) -->
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.1+MonitoringData+-+Alert+logic.png" width="600">
 
@@ -194,9 +172,6 @@ Please configure the monitor’s message so that it will:
 - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-  <!-- - ![Alert Message](https://datadog-examples.s3.us-east-2.amazonaws.com/3.2+VisualizingData+-+Email+template.png) -->
-  <!-- - ![Alert Email](https://datadog-examples.s3.us-east-2.amazonaws.com/3.3+VisualizingData+-+Email+Example.png) -->
-
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.2+VisualizingData+-+Email+template.png" width="600">
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.3+VisualizingData+-+Email+Example.png" width="600">
 
@@ -206,15 +181,11 @@ Please configure the monitor’s message so that it will:
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.4+VisualizingData+-+Alert+Settings.png" width="600">
 
-    <!-- - ![Custom Alert1](https://datadog-examples.s3.us-east-2.amazonaws.com/3.4+VisualizingData+-+Alert+Settings.png) -->
-
   - And one that silences it all day on Sat-Sun.
-    <!-- - ![SatSun](https://datadog-examples.s3.us-east-2.amazonaws.com/3.4+VisializingData+-+SatSun.png) -->
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.4+VisializingData+-+SatSun.png" width="600">
 
   - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-    <!-- - ![Email Alert](https://datadog-examples.s3.us-east-2.amazonaws.com/3.5+VisualizingData+-+Alert+Setting+Confirmation.png) -->
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.5+VisualizingData+-+Alert+Setting+Confirmation.png" width="600">
 
@@ -223,12 +194,6 @@ Please configure the monitor’s message so that it will:
 - **Bonus Question**: What is the difference between a Service and a Resource?
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-<!-- [Public Dashboard URL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-f0b825c240327f6a2ed765e673e75275)
-
-- ![SampleApp](https://datadog-examples.s3.us-east-2.amazonaws.com/4.1+CollectingAPMData+-+sampleApp.png)
-- ![APM Dashboard](https://datadog-examples.s3.us-east-2.amazonaws.com/4.3+CollectingAPMData+-+Dashboard.png)
-- ![APM](https://datadog-examples.s3.us-east-2.amazonaws.com/4.2+CollectingAPMData+-+Services.png) -->
 
 [Public Dashboard URL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-f0b825c240327f6a2ed765e673e75275)
 
