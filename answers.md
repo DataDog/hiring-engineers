@@ -388,3 +388,8 @@ console.log("Node server running on port 3000");
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+## Extra Credit: GitGuardian
+
+I also learned about GitGuardian monitoring after accidentally committing my API key in my code sample. I was notified by GitGuardian and by Skylar in Datadog Support within ~30 mins of _committing_ my mistake.
+<img src="https://i.imgur.com/UIWXBQU.gif" width="300">
