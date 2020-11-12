@@ -291,32 +291,74 @@ Please configure the monitor’s message so that it will:
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-[Public Dashboard URL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-f0b825c240327f6a2ed765e673e75275)
+[Public Dashboard URL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-dd81669030a2ebedf65ca4358517d8fd)
 
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/4.1+CollectingAPMData+-+sampleApp.png" width="600">
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/4.3+CollectingAPMData+-+Dashboard.png" width="600">
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/4.2+CollectingAPMData+-+Services.png" width="600">
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.1+CollectingAPMData+-+ConnectedApp.png" width="600">
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.2+CollectingAPMData+-+Service+List.png" width="600">
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.2+CollectingAPMData+-+Service+Map.png" width="600">
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.2+CollectingAPMData+-+Dashboard.png" width="600">
 
 Please include your fully instrumented app in your submission, as well.
 
 ```
 <!-- DataDog config variables -->
-const tracer = require('dd-trace').init(DD_ENV="sampleAppNode", DD_LOGS_INJECTION=true, DD_TRACE_SAMPLE_RATE="1")
-const http = require('http');
+const tracer = require("dd-trace").init(
+  (DD_ENV = "sampleAppNode"),
+  (DD_LOGS_INJECTION = true),
+  (DD_TRACE_SAMPLE_RATE = "1")
+);
+const http = require("http");
+const { Client } = require("pg");
+var random_name = require("node-random-name");
+
+// Simple app that generates a random pet name and type :: Example - 'Anthony the Cow'
+// Each time the application is pinged, a random pet is generated and added to the pets table
+
+// postgreSQL db connection information
+const client = new Client({
+  user: "datadog2",
+  host: "localhost",
+  database: "vagrant",
+  password: "22",
+  post: 5432,
+});
+
+// Array of pet types
+const type = ["Cat", "Dog", "Cow", "Lizard", "Fish"];
+
+// Function to generate a random number between 0 - 4
+// Used for index position for pet type
+function randomPetType() {
+  return Math.floor(Math.random() * (4 - 0 + 1) + 0);
+}
+
+// connect to the DB
+client.connect();
 
 // Create an instance of the http server to handle HTTP requests
 let app = http.createServer((req, res) => {
-// Set a response type of plain text for the response
-res.writeHead(200, {'Content-Type': 'text/plain'});
+  // Set a response type of plain text for the response
+  res.writeHead(200, { "Content-Type": "text/plain" });
 
-    // Send back a response and end the connection
-    res.end('Hello World!\n');
+  const newPet = `
+  INSERT INTO pets (name, type)
+  VALUES ('${random_name({ first: true })}', '${type[randomPetType()]}')
+  `;
 
+  client.query(newPet, (err, psqlRes) => {
+    if (err) {
+      console.error(err);
+      res.end(`Error with DB: ${err}`);
+      return;
+    }
+    console.log("Data insert successful", newPet);
+    res.end("Data insert successful", newPet);
+  });
 });
 
 // Start the server on port 3000
-app.listen(3000, '127.0.0.1');
-console.log('Node server running on port 3000');
+app.listen(3000, "127.0.0.1");
+console.log("Node server running on port 3000");
 
 ```
 
