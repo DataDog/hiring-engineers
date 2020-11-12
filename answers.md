@@ -211,8 +211,8 @@ var config = {
   url: 'https://api.datadoghq.com/api/v1/dashboard',
   headers: {
     'Content-Type': 'application/json',
-    'DD-API-KEY': 'eb8bc284a2d4e2c8409c4cbaaeb41f46',
-    'DD-APPLICATION-KEY': '7ffca8d9603755f04c0f7b5df77ba8138464bb33',
+    'DD-API-KEY': 'XXXXXX',
+    'DD-APPLICATION-KEY': 'XXXXX',
     'Cookie': 'DD-PSHARD=157'
   },
   data : data
