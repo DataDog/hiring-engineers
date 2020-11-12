@@ -1,5 +1,20 @@
 Your answers to the questions go here.
 
+---
+
+Thank you, DataDog team, for the opportunity! I enjoyed this exercise, learning about the platform, and understanding the experience of DataDog's users. I researched each step of the challenge using the DataDog docs, user-submitted blog posts, product-specific docs, and personal notes.
+
+After spending time in the product, it is clear how powerful the analytic and reporting tools are and a clear focus on creating an easy to use UX. It seems there is an endless combination of metrics to develop but provided in a way that isn't overwhelming. I can understand how impactful this platform could be to members across the organization, regardless of job function or level.
+
+I learned a lot about the technologies used in the exercise and feel I have a deeper understanding of what it would be like being a Sales Engineer at DataDog. I imagine there is an endless stream of new and creative ideas from users using DataDog, which enables the experience of both student and teacher; learning from and teaching customers new ways to impact their business.
+
+Again, thank you for the opportunity, and please let me know if I can provide anything additional. I look forward to speaking with you soon!
+
+Thank you,
+Joe Tustin
+
+---
+
 ## Questions
 
 Please provide screenshots and code snippets for all steps.
@@ -76,9 +91,9 @@ _Utilize the Datadog API to create a Timeboard that contains:_
 - _Any metric from the Integration on your Database with the anomaly function applied._
 - _Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket_
 
-**First I used the Dashboard UI to understand the JSON request to the Timeboard API and read [Using Postman with Datadog APIs Docs](https://docs.datadoghq.com/getting_started/api/)**
-**After I understood how the API worked and the shape of the request I wrote a small node.js script to send the request**
-**I revisted these dashboards after connecting a new APM app to monitor DB operations**
+**First I used the Dashboard UI to understand the JSON request to the Timeboard API and read [Using Postman with Datadog APIs Docs](https://docs.datadoghq.com/getting_started/api/).**
+**After I understood how the API worked and the request's shape, I wrote a small node.js script to send the request**
+**I revisited these dashboards after connecting a new APM app to monitor DB operations.**
 
 Postman Request Body
 
