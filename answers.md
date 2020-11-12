@@ -70,19 +70,15 @@ class CustomMyMetricCheck(AgentCheck):
 
 ## Visualizing Data:
 
-Utilize the Datadog API to create a Timeboard that contains:
+_Utilize the Datadog API to create a Timeboard that contains:_
 
-- Your custom metric scoped over your host.
-- Any metric from the Integration on your Database with the anomaly function applied.
-- Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+- _Your custom metric scoped over your host._
+- _Any metric from the Integration on your Database with the anomaly function applied._
+- _Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket_
 
-#### I used Postman to send test requests to the Timeboard API using the Postman Datadog collection.
-
-[Using Postman with Datadog APIs](https://docs.datadoghq.com/getting_started/api/)
-
-API Script Request:
-
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/2.5+VisualizingData+-+API+Request.png" width="600">
+**First I used the Dashboard UI to understand the JSON request to the Timeboard API and read [Using Postman with Datadog APIs Docs](https://docs.datadoghq.com/getting_started/api/)**
+**After I understood how the API worked and the shape of the request I wrote a small node.js script to send the request**
+**I revisted these dashboards after connecting a new APM app to monitor DB operations**
 
 Postman Request Body
 
@@ -191,7 +187,11 @@ Postman Request Body
 }
 ```
 
-The script I used to send a request to the Timeboard API using node.js and axios
+**API Script Request:**
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/2.5+VisualizingData+-+API+Request.png" width="600">
+
+**The script I used to send a request to the Timeboard API using node.js and axios**
 
 ```
 <!-- timeboard.js  -->
@@ -220,15 +220,15 @@ axios(config)
     });
 ```
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+_Once this is created, access the Dashboard from your Dashboard List in the UI:_
 
-- First, I used the 'Query Value' graph to represent the roll-up sum of My_Metric. I felt this showed the best information per the metric.
-- Second I used a 'Timeseries' graph to chart the change in My_Metric over time.
-- Third, I used a 'Timeseries' graph with the anomaly function applied to my database's latency metrics. FYI: I connected the PostgreSQL DB to my APM app and fired off a group of requests to create new rows within the DB. This graph charts the changes in latency for those requests.
+**First, I used the 'Query Value' graph to represent the roll-up sum of My_Metric. I felt this represented the information best for the metric.**
+**Second I used a 'Timeseries' graph to chart the change in My_Metric over time.**
+**Third, I used a 'Timeseries' graph with the anomaly function applied to my database's latency metrics. FYI: I connected the PostgreSQL DB to my APM app and fired off a group of requests to create new rows within the DB. This graph charts the changes in latency for those requests.**
 
-  - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/2.5+VisualizingData+-+5minGraph.png" width="600">
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/2.5+VisualizingData+-+5minGraph.png" width="600">
 
-- Take a snapshot of this graph and use the @ notation to send it to yourself.
+_Take a snapshot of this graph and use the @ notation to send it to yourself._
 
 [DashboardURL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-dd81669030a2ebedf65ca4358517d8fd)
 
@@ -244,41 +244,54 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 ## Monitoring Data
 
-- Warning threshold of 500
-- Alerting threshold of 800
-- And also ensure that it will notify you if there is No Data for this query over the past 10m.
+- _Warning threshold of 500_
+- _Alerting threshold of 800_
+- _And also ensure that it will notify you if there is No Data for this query over the past 10m._
+
+**I used the UI to create a new metric which tracked my_metric and triggered alerts per the threshold.**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.1+MonitoringData+-+Alert+logic.png" width="600">
 
-Please configure the monitor’s message so that it will:
+_Please configure the monitor’s message so that it will:_
 
-- Send you an email whenever the monitor triggers.
-- Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-- Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-- When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+- _Send you an email whenever the monitor triggers._
+- _Create different messages based on whether the monitor is in an Alert, Warning, or No Data state._
+- _Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state._
+- _When this monitor sends you an email notification, take a screenshot of the email that it sends you._
+
+**The monitor message template using the message template variables to send relevant messages per the alert**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.2+VisualizingData+-+Email+template.png" width="600">
+
+**Email message example of a warning**
+
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.3+VisualizingData+-+Email+Example.png" width="600">
 
 - **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-  - One that silences it from 7pm to 9am daily on M-F,
+  - _One that silences it from 7pm to 9am daily on M-F,_
+
+  **Using Monitors > Manage Downtime > New Monitor. Here I was able to programatically set the downtime for the team members to respect their off hours and weekends.**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.4+VisualizingData+-+Alert+Settings.png" width="600">
 
-  - And one that silences it all day on Sat-Sun.
+  - _And one that silences it all day on Sat-Sun._
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.4+VisializingData+-+SatSun.png" width="600">
 
-  - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  - _Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification._
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.5+VisualizingData+-+Alert+Setting+Confirmation.png" width="600">
 
 ## Collecting APM Data:
 
-- **Bonus Question**: What is the difference between a Service and a Resource?
+**I created a small node.js app which used the local server of the vagrant machine. Within the postgreSQL database there is a table called 'pets' which stores a pet's name and type. While the script is running, each request generates a 'newPet' which consists of a random name and selects an animal type. The 'newPet' item is then inserted into the 'pets' table.**
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+**One aspect that took a bit of thought was troubleshooting how to connect to the app. Since it was running locally on the VM, I needed to send requests to the localhost via the VM, which I did through a curl call to the port identified - curl 127.0.0.1:3000**
+
+**Once the app is connected to the postgreSQL db it is able to send back metrics on the data operations per the APM integration.**
+
+_Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics._
 
 [Public Dashboard URL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-dd81669030a2ebedf65ca4358517d8fd)
 
@@ -287,7 +300,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.2+CollectingAPMData+-+Service+Map.png" width="600">
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.2+CollectingAPMData+-+Dashboard.png" width="600">
 
-Please include your fully instrumented app in your submission, as well.
+_Please include your fully instrumented app in your submission, as well._
 
 ```
 <!-- DataDog config variables -->
@@ -350,6 +363,8 @@ app.listen(3000, "127.0.0.1");
 console.log("Node server running on port 3000");
 
 ```
+
+- **Bonus Question**: What is the difference between a Service and a Resource?
 
 ## Final Question:
 
