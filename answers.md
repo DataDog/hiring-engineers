@@ -8,21 +8,30 @@ Please provide screenshots and code snippets for all steps.
 
 Setup the environment
 
+#### I spun up a fresh VM via Vagrant per the docs.
+
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.1+SetupEnv+-+vagrant.png" width="600">
 
 ## Collecting Metrics:
 
 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.2+SetupEnv-map.png" width="600">
+#### I added tags via the agent config file
 
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.2+SetupEnv-map.png" width="600">
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.1+CollectingMetrics+-+AgentConfig+-+tags.png" width="600">
 
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
+####I setup the DB and connected it to the DataDog Agent.
+
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.2+CollectingMetrics+-+PostgreSQL.png" width="600">
 
 - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+#### Using the python script provided by the [Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
+
+#### I slightly modified it and added a variable which generated a random number 0 - 1000
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+mymetric.png" width="600">
 
