@@ -93,11 +93,9 @@ _Utilize the Datadog API to create a Timeboard that contains:_
 - _Any metric from the Integration on your Database with the anomaly function applied._
 - _Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket_
 
-**First, I used the Dashboard UI to understand the JSON object needed to send a request to the Timeboard API.**
-
-**Second, with the [DataDog Postman collection's assistance](https://docs.datadoghq.com/getting_started/api/), I understood precisely how the Timeboard API worked and what the endpoint expected.**
-
-**Last, after testing using Postman, I understood how the API worked and the expected request's shape; I wrote a small node.js script to send the request. After connecting the new APM app, I revisited these dashboards to monitor DB operations triggered via the APM app.**
+1. **I used the Dashboard UI to understand the JSON object needed to send a request to the Timeboard API.**
+2. **With the [DataDog Postman collection's assistance](https://docs.datadoghq.com/getting_started/api/), I understood precisely how the Timeboard API worked and what the endpoint expected.**
+3. **After testing using Postman, I understood how the API worked and the expected request's shape; I wrote a small node.js script to send the request. After connecting the new APM app, I revisited these dashboards to monitor DB operations triggered via the APM app.**
 
 Postman Request Body
 
