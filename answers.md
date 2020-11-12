@@ -8,6 +8,8 @@ After spending time in the product, it is clear how powerful the analytic and re
 
 I learned a lot about the technologies used in the exercise and feel I have a deeper understanding of what it would be like being a Sales Engineer at DataDog. I imagine there is an endless stream of new and creative ideas from users using DataDog, which enables the experience of both student and teacher; learning from and teaching customers new ways to impact their business.
 
+I provided screenshots in this file via an S3 bucket and added code samples where needed.
+
 Again, thank you for the opportunity, and please let me know if I can provide anything additional. I look forward to speaking with you soon!
 
 Thank you,
