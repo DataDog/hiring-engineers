@@ -84,12 +84,8 @@ Utilize the Datadog API to create a Timeboard that contains:
 - Any metric from the Integration on your Database with the anomaly function applied.
 - Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-I used Postman to send a request to the timeboard api using the Postman Datadog collection.
+I used Postman to send test requests to the Timeboard API using the Postman Datadog collection.
 [Using Postman with Datadog APIs](https://docs.datadoghq.com/getting_started/api/)
-
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/2.1+VisualizingData+-+Postman+request.png" width="600">
-
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/2.2+VisualizingData+-+metrics.png" width="600">
 
 API Script Request:
 
@@ -202,6 +198,8 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 }
 ```
 
+Script used to send a request to the Timeboard API using node.js and axios
+
 ```
 <!-- timeboard.js  -->
 
@@ -233,13 +231,17 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 - Set the Timeboard's timeframe to the past 5 minutes
 
+  - First, I used the 'Query Value' graph to represent the roll-up sum of My_Metric. I felt this showed the best information per the metric.
+    - Second I used a 'Timeseries' graph to chart the change in My_Metric over time.
+    - Third, I used a 'Timeseries' graph with the anomaly function applied to my database's latency metrics. FYI: I connected the PostgreSQL DB to my APM app and fired off a group of requests to create new rows within the DB. This graph charts the changes in latency for those requests.
+
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/2.5+VisualizingData+-+5minGraph.png" width="600">
 
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 [DashboardURL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-dd81669030a2ebedf65ca4358517d8fd)
 
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/2.2+VisualizingData+-+graph.png" width="600">
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/2.5+VisualizingData+-+Snapshot.png" width="600">
 
 - **Bonus Question**: What is the Anomaly graph displaying?
 
