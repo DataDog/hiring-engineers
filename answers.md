@@ -8,33 +8,47 @@ Please provide screenshots and code snippets for all steps.
 
 Setup the environment
 
-![vagrant](https://datadog-examples.s3.us-east-2.amazonaws.com/0.1+SetupEnv+-+vagrant.png)
+<!-- ![vagrant](https://datadog-examples.s3.us-east-2.amazonaws.com/0.1+SetupEnv+-+vagrant.png) -->
 
-<!-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.1+SetupEnv+-+vagrant.png" width="1000" height="332"> -->
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.1+SetupEnv+-+vagrant.png" width="600">
 
 ## Collecting Metrics:
 
 - Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-![tags](https://datadog-examples.s3.us-east-2.amazonaws.com/1.1+CollectingMetrics+-+AgentConfig+-+tags.png)
+  <!-- - ![Map](https://datadog-examples.s3.us-east-2.amazonaws.com/0.2+SetupEnv-map.png) -->
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.2+SetupEnv-map.png" width="600">
+
+  <!-- - ![Tags](https://datadog-examples.s3.us-east-2.amazonaws.com/1.1+CollectingMetrics+-+AgentConfig+-+tags.png) -->
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.1+CollectingMetrics+-+AgentConfig+-+tags.png" width="600">
 
 - Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-![psql](https://datadog-examples.s3.us-east-2.amazonaws.com/1.2+CollectingMetrics+-+PostgreSQL.png)
+  <!-- - ![psql](https://datadog-examples.s3.us-east-2.amazonaws.com/1.2+CollectingMetrics+-+PostgreSQL.png) -->
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.2+CollectingMetrics+-+PostgreSQL.png" width="600">
 
 - Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-![my_metric](https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+AgentCheck+-+code+sample.png)
+  <!-- - ![my_metric](https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+AgentCheck+-+code+sample.png) -->
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+AgentCheck+-+code+sample.png" width="600">
 
 - Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-![Interval](https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+AgentCheck+-+check+file+-+interval.png)
+  <!-- - ![Interval](https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+AgentCheck+-+check+file+-+interval.png) -->
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+AgentCheck+-+check+file+-+interval.png" width="600">
 
 - **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
   Per the [docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) the interval is set on the instance level within the check file.
 
-![docs](https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+Interval.png)
+<!-- ![Docs](https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+Interval.png) -->
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+Interval.png" width="600">
 
 ```
 
@@ -74,9 +88,13 @@ Utilize the Datadog API to create a Timeboard that contains:
 I used Postman to send a request to the timeboard api using the Postman Datadog collection.
 [Using Postman with Datadog APIs](https://docs.datadoghq.com/getting_started/api/)
 
-![Postman](https://datadog-examples.s3.us-east-2.amazonaws.com/2.1+VisualizingData+-+Postman+request.png)
+<!-- ![Postman](https://datadog-examples.s3.us-east-2.amazonaws.com/2.1+VisualizingData+-+Postman+request.png) -->
 
-![Timeboard](https://datadog-examples.s3.us-east-2.amazonaws.com/2.2+VisualizingData+-+metrics.png)
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/2.1+VisualizingData+-+Postman+request.png" width="600">
+
+<!-- ![Timeboard](https://datadog-examples.s3.us-east-2.amazonaws.com/2.2+VisualizingData+-+metrics.png) -->
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/2.2+VisualizingData+-+metrics.png" width="600">
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
@@ -137,11 +155,15 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 - Set the Timeboard's timeframe to the past 5 minutes
 
-![Timeframe](https://datadog-examples.s3.us-east-2.amazonaws.com/2.3+MonitoringData+-+graph.png)
+<!-- ![Timeframe](https://datadog-examples.s3.us-east-2.amazonaws.com/2.3+MonitoringData+-+graph.png) -->
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/2.3+MonitoringData+-+graph.png" width="600">
 
 - Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-![Snapshot](https://datadog-examples.s3.us-east-2.amazonaws.com/2.2+VisualizingData+-+graph.png)
+<!-- ![Snapshot](https://datadog-examples.s3.us-east-2.amazonaws.com/2.2+VisualizingData+-+graph.png) -->
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/2.2+VisualizingData+-+graph.png" width="600">
 
 - **Bonus Question**: What is the Anomaly graph displaying?
 
@@ -151,7 +173,9 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
   It is very hard to set sensible thresholds for these alerts. DataDog provides four algorithms to help identify strange behavior.
 
-  [Anomaly Detection](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/)
+  <!-- [Anomaly Detection](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/) -->
+
+- <img src="https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/" width="600">
 
 ## Monitoring Data
 
@@ -159,7 +183,9 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 - Alerting threshold of 800
 - And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-![Alert Logic](https://datadog-examples.s3.us-east-2.amazonaws.com/3.1+MonitoringData+-+Alert+logic.png)
+<!-- ![Alert Logic](https://datadog-examples.s3.us-east-2.amazonaws.com/3.1+MonitoringData+-+Alert+logic.png) -->
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.1+MonitoringData+-+Alert+logic.png" width="600">
 
 Please configure the monitor’s message so that it will:
 
@@ -168,17 +194,29 @@ Please configure the monitor’s message so that it will:
 - Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 - When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-  - ![Alert Message](https://datadog-examples.s3.us-east-2.amazonaws.com/3.2+VisualizingData+-+Email+template.png)
-  - ![Alert Email](https://datadog-examples.s3.us-east-2.amazonaws.com/3.3+VisualizingData+-+Email+Example.png)
+  <!-- - ![Alert Message](https://datadog-examples.s3.us-east-2.amazonaws.com/3.2+VisualizingData+-+Email+template.png) -->
+  <!-- - ![Alert Email](https://datadog-examples.s3.us-east-2.amazonaws.com/3.3+VisualizingData+-+Email+Example.png) -->
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.2+VisualizingData+-+Email+template.png" width="600">
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.3+VisualizingData+-+Email+Example.png" width="600">
 
 - **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   - One that silences it from 7pm to 9am daily on M-F,
-    - ![Custom Alert1](https://datadog-examples.s3.us-east-2.amazonaws.com/3.4+VisualizingData+-+Alert+Settings.png)
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.4+VisualizingData+-+Alert+Settings.png" width="600">
+
+    <!-- - ![Custom Alert1](https://datadog-examples.s3.us-east-2.amazonaws.com/3.4+VisualizingData+-+Alert+Settings.png) -->
+
   - And one that silences it all day on Sat-Sun.
-    - ![SatSun](https://datadog-examples.s3.us-east-2.amazonaws.com/3.4+VisializingData+-+SatSun.png)
+    <!-- - ![SatSun](https://datadog-examples.s3.us-east-2.amazonaws.com/3.4+VisializingData+-+SatSun.png) -->
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.4+VisializingData+-+SatSun.png" width="600">
+
   - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-    - ![Email Alert](https://datadog-examples.s3.us-east-2.amazonaws.com/3.5+VisualizingData+-+Alert+Setting+Confirmation.png)
+    <!-- - ![Email Alert](https://datadog-examples.s3.us-east-2.amazonaws.com/3.5+VisualizingData+-+Alert+Setting+Confirmation.png) -->
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.5+VisualizingData+-+Alert+Setting+Confirmation.png" width="600">
 
 ## Collecting APM Data:
 
@@ -186,11 +224,17 @@ Please configure the monitor’s message so that it will:
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-[Public Dashboard URL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-f0b825c240327f6a2ed765e673e75275)
+<!-- [Public Dashboard URL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-f0b825c240327f6a2ed765e673e75275)
 
 - ![SampleApp](https://datadog-examples.s3.us-east-2.amazonaws.com/4.1+CollectingAPMData+-+sampleApp.png)
 - ![APM Dashboard](https://datadog-examples.s3.us-east-2.amazonaws.com/4.3+CollectingAPMData+-+Dashboard.png)
-- ![APM](https://datadog-examples.s3.us-east-2.amazonaws.com/4.2+CollectingAPMData+-+Services.png)
+- ![APM](https://datadog-examples.s3.us-east-2.amazonaws.com/4.2+CollectingAPMData+-+Services.png) -->
+
+[Public Dashboard URL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-f0b825c240327f6a2ed765e673e75275)
+
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/4.1+CollectingAPMData+-+sampleApp.png" width="600">
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/4.3+CollectingAPMData+-+Dashboard.png" width="600">
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/4.2+CollectingAPMData+-+Services.png" width="600">
 
 Please include your fully instrumented app in your submission, as well.
 
