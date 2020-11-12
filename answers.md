@@ -245,11 +245,11 @@ _Once this is created, access the Dashboard from your Dashboard List in the UI:_
 
 - **FYI: I connected the PostgreSQL DB to my APM app and fired off a group of requests to create new rows within the DB. This graph charts the changes in latency for those requests.**
 
+[DashboardURL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-dd81669030a2ebedf65ca4358517d8fd)
+
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/2.5+VisualizingData+-+5minGraph.png" width="600">
 
 _Take a snapshot of this graph and use the @ notation to send it to yourself._
-
-[DashboardURL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-dd81669030a2ebedf65ca4358517d8fd)
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/2.5+VisualizingData+-+Snapshot.png" width="600">
 
