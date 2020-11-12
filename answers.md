@@ -300,6 +300,8 @@ _Provide a link and a screenshot of a Dashboard with both APM and Infrastructure
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.2+CollectingAPMData+-+Service+Map.png" width="600">
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.2+CollectingAPMData+-+Dashboard.png" width="600">
 
+---
+
 _Please include your fully instrumented app in your submission, as well._
 
 ```
