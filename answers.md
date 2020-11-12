@@ -155,7 +155,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
   It is very hard to set sensible thresholds for these alerts. DataDog provides four algorithms to help identify strange behavior.
 
-- <img src="https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/" width="600">
+[DataDog Anomaly Detection](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/)
 
 ## Monitoring Data
 
