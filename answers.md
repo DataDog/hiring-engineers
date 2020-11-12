@@ -33,7 +33,7 @@ _Setup the environment_
 
 _Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog._
 
-- **I added tags via the agent config file**
+- **I added tags via the agent config file and checked they were reporting correctly via the UI**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.2+SetupEnv-map.png" width="600">
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.1+CollectingMetrics+-+AgentConfig+-+tags.png" width="600">
@@ -46,7 +46,7 @@ _Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then ins
 
 _Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000._
 
-- **Using the python script provided by the [Docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) I slightly modified it and added a variable which generated a random number 0 - 1000**
+- **Using the python script provided by the [docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7), I slightly modified it and added a variable which generated a random number 0 - 1000**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+mymetric.png" width="600">
 
@@ -58,11 +58,11 @@ _Change your check's collection interval so that it only submits the metric once
 
 _**Bonus Question** Can you change the collection interval without modifying the Python check file you created?_
 
-- **Per the [docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) the interval is set on the instance level within the check file.**
+- **Per the [docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) the interval is set on the instance level within the check file. I do not believe there is any other way to change the interval for a specific check outside of this action.**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+Interval.png" width="600">
 
-#### Custom_My_Metric script
+**Custom_My_Metric script**
 
 ```
 # the following try/except block will make the custom check compatible with any Agent version
@@ -93,9 +93,9 @@ _Utilize the Datadog API to create a Timeboard that contains:_
 - _Any metric from the Integration on your Database with the anomaly function applied._
 - _Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket_
 
-**First I used the Dashboard UI to understand the JSON request to the Timeboard API and read [Using Postman with Datadog APIs Docs](https://docs.datadoghq.com/getting_started/api/).**
-**After I understood how the API worked and the request's shape, I wrote a small node.js script to send the request.**
-**I revisited these dashboards after connecting a new APM app to monitor DB operations.**
+**First, I used the Dashboard UI to understand the JSON object needed to send a request to the Timeboard API.**
+**Second, with the [DataDog Postman collection's assistance](https://docs.datadoghq.com/getting_started/api/), I understood precisely how the Timeboard API worked and what the endpoint expected.**
+**Last, after testing using Postman, I understood how the API worked and the expected request's shape; I wrote a small node.js script to send the request. After connecting the new APM app, I revisited these dashboards to monitor DB operations triggered via the APM app.**
 
 Postman Request Body
 
@@ -204,7 +204,7 @@ Postman Request Body
 }
 ```
 
-**API Script Request:**
+**Timeboard API Script Response:**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/2.5+VisualizingData+-+API+Request.png" width="600">
 
@@ -239,9 +239,11 @@ axios(config)
 
 _Once this is created, access the Dashboard from your Dashboard List in the UI:_
 
-**First, I used the 'Query Value' graph to represent the roll-up sum of My_Metric. I felt this represented the information best for the metric.**
+**First, I used the 'Query Value' graph to represent the roll-up sum of My_Metric. I felt this represented the information best for this specific metric.**
 **Second I used a 'Timeseries' graph to chart the change in My_Metric over time.**
-**Third, I used a 'Timeseries' graph with the anomaly function applied to my database's latency metrics. FYI: I connected the PostgreSQL DB to my APM app and fired off a group of requests to create new rows within the DB. This graph charts the changes in latency for those requests.**
+**Third, I used a 'Timeseries' graph with the anomaly function applied to my database's latency metrics.**
+
+- **FYI: I connected the PostgreSQL DB to my APM app and fired off a group of requests to create new rows within the DB. This graph charts the changes in latency for those requests.**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/2.5+VisualizingData+-+5minGraph.png" width="600">
 
