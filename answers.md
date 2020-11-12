@@ -13,6 +13,7 @@ I learned a lot about the technologies used in the exercise and feel I have a de
 Again, thank you for the opportunity, and please let me know if I can provide anything additional. I look forward to speaking with you soon!
 
 Thank you,
+
 Joe Tustin
 
 ---
@@ -33,7 +34,7 @@ _Setup the environment_
 
 _Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog._
 
-- **I added tags via the agent config file and checked they were reporting correctly via the UI**
+- **I added tags via the agent config file and checked they were reporting correctly via the UI. Hashbrown is the name of my cat, seemed reasonable to add a tag representing him via data_cat**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.2+SetupEnv-map.png" width="600">
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.1+CollectingMetrics+-+AgentConfig+-+tags.png" width="600">
@@ -93,9 +94,13 @@ _Utilize the Datadog API to create a Timeboard that contains:_
 - _Any metric from the Integration on your Database with the anomaly function applied._
 - _Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket_
 
-1. **I used the Dashboard UI to understand the JSON object needed to send a request to the Timeboard API.**
-2. **With the [DataDog Postman collection's assistance](https://docs.datadoghq.com/getting_started/api/), I understood precisely how the Timeboard API worked and what the endpoint expected.**
-3. **After testing using Postman, I understood how the API worked and the expected request's shape; I wrote a small node.js script to send the request. After connecting the new APM app, I revisited these dashboards to monitor DB operations triggered via the APM app.**
+---
+
+**First, I used the Dashboard UI to understand the JSON object needed to send a request to the Timeboard API.**
+
+**Second, with the [DataDog Postman collection's assistance](https://docs.datadoghq.com/getting_started/api/), I understood precisely how the Timeboard API worked and what the endpoint expected.**
+
+**Last, after testing using Postman, I understood how the API worked and the expected request's shape; I wrote a small node.js script to send the request. After connecting the new APM app, I revisited these dashboards to monitor DB operations triggered via the APM app.**
 
 Postman Request Body
 
@@ -239,8 +244,12 @@ axios(config)
 
 _Once this is created, access the Dashboard from your Dashboard List in the UI:_
 
+---
+
 **First, I used the 'Query Value' graph to represent the roll-up sum of My_Metric. I felt this represented the information best for this specific metric.**
+
 **Second I used a 'Timeseries' graph to chart the change in My_Metric over time.**
+
 **Third, I used a 'Timeseries' graph with the anomaly function applied to my database's latency metrics.**
 
 - **FYI: I connected the PostgreSQL DB to my APM app and fired off a group of requests to create new rows within the DB. This graph charts the changes in latency for those requests.**
@@ -257,7 +266,7 @@ _Take a snapshot of this graph and use the @ notation to send it to yourself._
 
   The Anomaly graph Identifies strange behavior in a single metric based on the metrics past performance.
   Used for metrics that by nature have natural peaks and valleys.
-  It is very hard to set sensible thresholds for these alerts. DataDog provides four algorithms to help identify strange behavior.
+  It is very hard to set sensible thresholds for these alerts. DataDog provides four algorithms to help identify strange behavior and does so using historical data.
 
 [DataDog Anomaly Detection Docs](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/)
 
@@ -266,6 +275,8 @@ _Take a snapshot of this graph and use the @ notation to send it to yourself._
 - _Warning threshold of 500_
 - _Alerting threshold of 800_
 - _And also ensure that it will notify you if there is No Data for this query over the past 10m._
+
+---
 
 **I used the UI to create a new metric which tracked my_metric and triggered alerts per the threshold.**
 
@@ -278,7 +289,7 @@ _Please configure the monitor’s message so that it will:_
 - _Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state._
 - _When this monitor sends you an email notification, take a screenshot of the email that it sends you._
 
-**The monitor message template using the message template variables to send relevant messages per the alert**
+**The monitor message using the message template variables to send relevant information per the alert**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.2+VisualizingData+-+Email+template.png" width="600">
 
@@ -290,7 +301,9 @@ _Please configure the monitor’s message so that it will:_
 
   - _One that silences it from 7pm to 9am daily on M-F,_
 
-  **Using Monitors > Manage Downtime > New Monitor. Here I was able to programatically set the downtime for the team members to respect their off hours and weekends.**
+---
+
+**Using Monitors > Manage Downtime > New Monitor. Here I was able to programatically set the downtime for the team members to respect their off hours and weekends.**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.4+VisualizingData+-+Alert+Settings.png" width="600">
 
@@ -306,7 +319,7 @@ _Please configure the monitor’s message so that it will:_
 
 **I created a small node.js app which used the local server of the vagrant machine. Within the postgreSQL database there is a table called 'pets' which stores a pet's name and type. While the script is running, each request generates a 'newPet' which consists of a random name and selects an animal type. The 'newPet' item is then inserted into the 'pets' table.**
 
-**One aspect that took a bit of thought was troubleshooting how to connect to the app. Since it was running locally on the VM, I needed to send requests to the localhost via the VM, which I did through a curl call to the port identified - curl 127.0.0.1:3000**
+**One aspect that took a bit of thought was troubleshooting how to connect to the app. Since it was running locally on the VM, I needed to send requests to the localhost via the VM, which I did through a curl call to the port identified - `curl 127.0.0.1:3000`**
 
 **Once the app is connected to the postgreSQL db it is able to send back metrics on the data operations per the APM integration.**
 
@@ -314,6 +327,7 @@ _Provide a link and a screenshot of a Dashboard with both APM and Infrastructure
 
 [Public Dashboard URL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-dd81669030a2ebedf65ca4358517d8fd)
 
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.4+CollectingAPMData+-+Commands+to+interact+with+DB.png" width="600">
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.1+CollectingAPMData+-+ConnectedApp.png" width="600">
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.2+CollectingAPMData+-+Service+List.png" width="600">
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.2+CollectingAPMData+-+Service+Map.png" width="600">
@@ -324,7 +338,7 @@ _Provide a link and a screenshot of a Dashboard with both APM and Infrastructure
 _Please include your fully instrumented app in your submission, as well._
 
 ```
-<!-- DataDog config variables -->
+<!-- DataDog config Variables -->
 const tracer = require("dd-trace").init(
   (DD_ENV = "sampleAppNode"),
   (DD_LOGS_INJECTION = true),
@@ -352,7 +366,7 @@ const type = ["Cat", "Dog", "Cow", "Lizard", "Fish"];
 // Function to generate a random number between 0 - 4
 // Used for index position for pet type
 function randomPetType() {
-  return Math.floor(Math.random() * (4 - 0 + 1) + 0);
+  return type[Math.floor(Math.random() * (4 - 0 + 1) + 0)];
 }
 
 // connect to the DB
@@ -365,7 +379,7 @@ let app = http.createServer((req, res) => {
 
   const newPet = `
   INSERT INTO pets (name, type)
-  VALUES ('${random_name({ first: true })}', '${type[randomPetType()]}')
+  VALUES ('${random_name({ first: true })}', '${randomPetType()}')
   `;
 
   client.query(newPet, (err, psqlRes) => {
@@ -382,6 +396,7 @@ let app = http.createServer((req, res) => {
 // Start the server on port 3000
 app.listen(3000, "127.0.0.1");
 console.log("Node server running on port 3000");
+
 
 ```
 
