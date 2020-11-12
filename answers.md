@@ -8,7 +8,7 @@ Thank you for the opportunity! I enjoyed this exercise, learning about the platf
 
 After spending time in the product, it is clear how powerful the analytic and reporting tools are and a clear focus on creating an easy to use UX. It seems there is an endless combination of metrics to develop but provided in a way that isn't overwhelming. I can understand how impactful this platform could be to members across the organization, regardless of job function or level.
 
-I learned a lot about the technologies used in the exercise and feel I have a deeper understanding of what it would be like being a Sales Engineer at DataDog. I imagine there is an endless stream of new and creative ideas from users using DataDog, which enables the experience of both student and teacher; learning from and teaching customers new ways to impact their business.
+I learned a lot about the technologies used in the exercise and feel I have a deeper understanding of what it would be like being a Sales Engineer at DataDog. I imagine there is an endless stream of new and creative ideas from users using DataDog, which enables the experience of both student and teacher; learning from and teaching customers new ways to gain insights into their business.
 
 Again, thank you for the opportunity, and please let me know if I can provide anything additional. I look forward to speaking with you soon!
 
