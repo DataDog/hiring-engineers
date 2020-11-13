@@ -6,7 +6,7 @@ Hello DataDog Team,
 
 Thank you for the opportunity! I enjoyed this exercise, learning about the platform, and understanding the experience of DataDog's users. I researched each step of the challenge using the DataDog docs, user-submitted blog posts, product-specific docs, and personal notes. I provided screenshots in this file via an S3 bucket and added code samples where needed.
 
-After spending time in the product, it is clear how useful the tools are in unlocking insights into customers' applications and overall business. While robust, the analytic and reporting tools provide a clear picture and do so through an easy to use UX. It seems there is an endless combination of metrics to create but presented in a way that isn't overwhelming. I can understand how impactful this platform could be to members across the organization, regardless of job function or level.
+After spending time in the product, it is clear how useful the tools are in unlocking insights into customers' applications and overall business. While robust, the analytic and reporting tools provide a clear picture and do so through an easy to use UX. It seems there is an endless combination of metrics to create but presented in a way that isn't overwhelming. I can understand how impactful this platform could be to members across an organization, regardless of job function or level.
 
 I learned a lot about the technologies used in the exercise and feel I have a deeper understanding of what it would be like being a Sales Engineer at DataDog. I imagine there is an endless stream of new and creative ideas from users using DataDog, which enables the experience of both student and teacher; learning from and teaching customers new ways to gain insights into their business.
 
