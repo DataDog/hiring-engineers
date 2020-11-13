@@ -317,7 +317,7 @@ _Please configure the monitor’s message so that it will:_
 
 ## Collecting APM Data:
 
-**I created a small node.js app which used the local server of the vagrant machine. Within the postgreSQL database there is a table called 'pets' which stores a pet's name and type. While the script is running, each request generates a 'newPet' which consists of a random name and selects an animal type. The 'newPet' item is then inserted into the 'pets' table.**
+**I created a small node.js app which used the local server of the vagrant machine. Within the postgreSQL database there is a table called `pets` which stores a pet's name and type. While the script is running, each request generates a `newPet` which consists of a random name and selects an animal type. The `newPet` item is then inserted into the `pets` table.**
 
 **One aspect that took a bit of thought was troubleshooting how to connect to the app. Since it was running locally on the VM, I needed to send requests to the localhost via the VM, which I did through a curl call to the port identified - `curl 127.0.0.1:3000`**
 
