@@ -16,7 +16,7 @@ Thank you,
 
 Joe Tustin
 
-[LinkedIn](https://www.linkedin.com/in/joetustin/) | [GitHub](https://github.com/drbarq) | [Travel Blog](www.qr646.com) | [JoeTustin.com](www.JoeTustin.com) | [Blog](www.jtustin.com)
+[LinkedIn](https://www.linkedin.com/in/joetustin/) | [GitHub](https://github.com/drbarq) | [Travel Blog](https://www.qr646.com) | [JoeTustin.com](https://www.JoeTustin.com) | [Blog](https://www.jtustin.com)
 
 ---
 
