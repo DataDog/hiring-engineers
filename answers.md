@@ -28,7 +28,7 @@ _Setup the environment_
 
 **I spun up a fresh VM via Vagrant per the docs.**
 
-- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.1+SetupEnv+-+vagrant.png" width="600">
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.1+SetupEnv+-+vagrant.png" width="600" title="vagrant file">
 
 **Collecting Metrics:**
 
@@ -104,6 +104,8 @@ _Utilize the Datadog API to create a Timeboard that contains:_
 **Second, with the [DataDog Postman collection's assistance](https://docs.datadoghq.com/getting_started/api/), I understood precisely how the Timeboard API worked and what the endpoint expected.**
 
 **Last, after testing using Postman, I understood how the API worked and the expected request's shape; I wrote a small node.js script to send the request. After connecting the new APM app, I revisited these dashboards to monitor DB operations triggered via the APM app.**
+
+- The Timeboard presents information in an easy to use and customizable way. I added in the style properties to differentiate the graphs and make them more presentable. Below I explain the content of each graph and the logic in their selection.
 
 Postman Request Body
 
@@ -216,7 +218,7 @@ Postman Request Body
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/2.5+VisualizingData+-+API+Request.png" width="600">
 
-**The script I used to send a request to the Timeboard API using node.js and axios**
+**The script I used to send a request to the Timeboard API using node.js and axios.**
 
 ```
 <!-- timeboard.js  -->
@@ -249,13 +251,14 @@ _Once this is created, access the Dashboard from your Dashboard List in the UI:_
 
 ---
 
-**First, I used the 'Query Value' graph to represent the roll-up sum of My_Metric. I felt this represented the information best for this specific metric.**
+**First, I used the 'Query Value' graph to represent the roll-up sum of my_metric. I felt this represented the information best for this specific metric.**
 
-**Second I used a 'Timeseries' graph to chart the change in My_Metric over time.**
+**Second I used a 'Timeseries' graph to chart the change in my_metric over time.**
 
 **Third, I used a 'Timeseries' graph with the anomaly function applied to my database's latency metrics.**
 
 - **FYI: I connected the PostgreSQL DB to my APM app and fired off a group of requests to create new rows within the DB. This graph charts the changes in latency for those requests.**
+  - **I was surprised by how the platform could take a small amount of historical data and make predictions immediately.**
 
 [DashboardURL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-dd81669030a2ebedf65ca4358517d8fd)
 
@@ -330,10 +333,24 @@ _Provide a link and a screenshot of a Dashboard with both APM and Infrastructure
 
 [Public Dashboard URL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-dd81669030a2ebedf65ca4358517d8fd)
 
+Terminal windows showing the network requests to the app | feedback confirmation of the data inserted into the `pets` table | the PostgreSQL `pets` table with data rows.
+
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.4+CollectingAPMData+-+Commands+to+interact+with+DB.png" width="600">
+
+Confirmation of the APM connection when starting the app.
+
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.1+CollectingAPMData+-+ConnectedApp.png" width="600">
+
+Host 'List' View.
+
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.2+CollectingAPMData+-+Service+List.png" width="600">
+
+Host 'Map' View.
+
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.2+CollectingAPMData+-+Service+Map.png" width="600">
+
+Updated dashboard with new APM graph.
+
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/4.2+CollectingAPMData+-+Dashboard.png" width="600">
 
 ---
