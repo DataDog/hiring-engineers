@@ -399,10 +399,11 @@ console.log("Node server running on port 3000");
 ```
 
 - **Bonus Question**: What is the difference between a Service and a Resource?
-  In reading the docs I came across [APM Glossary & Walkthrough](https://docs.datadoghq.com/tracing/visualization/) which allowed me to dig into the differences
 
-  - **[Service](https://docs.datadoghq.com/tracing/visualization/#services) Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.**
-  - **[Resource](https://docs.datadoghq.com/tracing/visualization/#resources) Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.**
+In reading the docs I came across [APM Glossary & Walkthrough](https://docs.datadoghq.com/tracing/visualization/) which allowed me to dig into the differences
+
+- **[Service](https://docs.datadoghq.com/tracing/visualization/#services) Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.**
+- **[Resource](https://docs.datadoghq.com/tracing/visualization/#resources) Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.**
 
 ## Final Question:
 
