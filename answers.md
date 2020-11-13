@@ -62,7 +62,7 @@ _Change your check's collection interval so that it only submits the metric once
 
 _**Bonus Question** Can you change the collection interval without modifying the Python check file you created?_
 
-- **Per the [docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) the collection interval is set on the instance level within the check file. I do not believe there is any other way to change the collection interval for a specific check outside of this action**
+- **Per the [docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) the collection interval is set on the instance level within the check file. I do not believe there is any other way to change the collection interval for a specific check outside of this action.**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+Interval.png" width="600">
 
@@ -258,7 +258,7 @@ _Once this is created, access the Dashboard from your Dashboard List in the UI:_
 **Third, I used a 'Timeseries' graph with the anomaly function applied to my database's latency metrics.**
 
 - **FYI: I connected the PostgreSQL DB to my APM app and fired off a group of requests to create new rows within the DB. This graph charts the changes in latency for those requests.**
-  - **I was surprised by how the platform could take a small amount of historical data and make predictions immediately.**
+  - **I was surprised by how the platform could take a small amount of historical data and make predictions nearly immediately.**
 
 [DashboardURL](https://p.datadoghq.com/sb/bhyiy9gxxdsm6lqv-dd81669030a2ebedf65ca4358517d8fd)
 
