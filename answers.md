@@ -346,7 +346,7 @@ const tracer = require("dd-trace").init(
 );
 const http = require("http");
 const { Client } = require("pg");
-var random_name = require("node-random-name");
+const random_name = require("node-random-name");
 
 // Simple app that generates a random pet name and type :: Example - 'Anthony the Cow'
 // Each time the application is pinged, a random pet is generated and added to the pets table
@@ -402,8 +402,8 @@ console.log("Node server running on port 3000");
 
 In reading the docs I came across [APM Glossary & Walkthrough](https://docs.datadoghq.com/tracing/visualization/) which allowed me to dig into the differences
 
-- **[Service](https://docs.datadoghq.com/tracing/visualization/#services) Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.**
-- **[Resource](https://docs.datadoghq.com/tracing/visualization/#resources) Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.**
+- **[Service](https://docs.datadoghq.com/tracing/visualization/#services) are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.**
+- **[Resource](https://docs.datadoghq.com/tracing/visualization/#resources) represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.**
 
 ## Final Question:
 
