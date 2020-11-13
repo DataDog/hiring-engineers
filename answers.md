@@ -396,17 +396,23 @@ let app = http.createServer((req, res) => {
 // Start the server on port 3000
 app.listen(3000, "127.0.0.1");
 console.log("Node server running on port 3000");
-
-
 ```
 
 - **Bonus Question**: What is the difference between a Service and a Resource?
+  In reading the docs I came across [APM Glossary & Walkthrough](https://docs.datadoghq.com/tracing/visualization/) which allowed me to dig into the differences
+
+  - **[Service](https://docs.datadoghq.com/tracing/visualization/#services) Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.**
+  - **[Resource](https://docs.datadoghq.com/tracing/visualization/#resources) Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.**
 
 ## Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+**I think a project with many individual components that come together to create something impactful -a 'hive' of sorts- would be a great use of DataDog—enabling insights into behavior that would be too complicated to view individually or manually.**
+
+**At burning man in 2019, I saw Paul Stamets speak about his [BeeMushroomed Feeder](https://fungi.com/pages/bees). Paul is very passionate about solving colony collapse impacting our bee populations and had created a prototype to help bee populations stay healthy. Part of the design was an IoT component that helped keep metrics around the feeders use. I think it would be fascinating to monitor the digital aspects of the product and the physical part of the conditions in which it is placed. For example, it would be interesting to see if the anomaly detection tools would pick up on a die off event based on a dip in network traffic sent from the feeder.**
 
 ## Extra Credit: GitGuardian
 
