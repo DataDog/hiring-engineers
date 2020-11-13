@@ -6,7 +6,7 @@ Hello DataDog Team,
 
 Thank you for the opportunity! I enjoyed this exercise, learning about the platform, and understanding the experience of DataDog's users. I researched each step of the challenge using the DataDog docs, user-submitted blog posts, product-specific docs, and personal notes. I provided screenshots in this file via an S3 bucket and added code samples where needed.
 
-After spending time in the product, it is clear how powerful the analytic and reporting tools are and a clear focus on creating an easy to use UX. It seems there is an endless combination of metrics to develop but provided in a way that isn't overwhelming. I can understand how impactful this platform could be to members across the organization, regardless of job function or level.
+After spending time in the product, it is clear how useful the tools are in unlocking insights into customers' applications and overall business. While robust, the analytic and reporting tools provide a clear picture and do so through an easy to use UX. It seems there is an endless combination of metrics to create but presented in a way that isn't overwhelming. I can understand how impactful this platform could be to members across the organization, regardless of job function or level.
 
 I learned a lot about the technologies used in the exercise and feel I have a deeper understanding of what it would be like being a Sales Engineer at DataDog. I imagine there is an endless stream of new and creative ideas from users using DataDog, which enables the experience of both student and teacher; learning from and teaching customers new ways to gain insights into their business.
 
@@ -34,32 +34,35 @@ _Setup the environment_
 
 _Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog._
 
-- **I added tags via the agent config file and checked they were reporting correctly via the UI. Hashbrown is the name of my cat, seemed reasonable to add a tag representing him via data_cat**
+- **I added tags via the agent config file and checked they were reporting correctly via the UI. Hashbrown is the name of my cat; it seemed reasonable to add a tag representing him via data_cat.**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/0.2+SetupEnv-map.png" width="600">
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.1+CollectingMetrics+-+AgentConfig+-+tags.png" width="600">
 
 _Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database._
 
-- **Using PostgreSQL I setup a DB and connected it to the DataDog Agent**
+- **Using PostgreSQL I setup a DB and connected it to the DataDog Agent.**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.2+CollectingMetrics+-+PostgreSQL.png" width="600">
 
+- **I created a simple table called `pets` which held information abouts the pets' name and animal type.**
+- <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/UpdatedFiles/1.3+CollectingMetrics+-+Pets+Schema.png" width="600">
+
 _Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000._
 
-- **Using the python script provided by the [docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7), I slightly modified it and added a variable which generated a random number 0 - 1000**
+- **Using the python script provided by the [docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7), I slightly modified it and added a variable which generated a random number 0 - 1000.**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+mymetric.png" width="600">
 
 _Change your check's collection interval so that it only submits the metric once every 45 seconds_
 
-- **Following the naming convention best practices per the docs, I updated the yaml file for custom_my_metric.yaml to reflect the updated interval.**
+- **Following the naming convention best practices per the docs, I updated the yaml file for custom_my_metric.yaml to reflect the corrected interval.**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+AgentCheck+-+check+file+-+interval.png" width="600">
 
 _**Bonus Question** Can you change the collection interval without modifying the Python check file you created?_
 
-- **Per the [docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) the interval is set on the instance level within the check file. I do not believe there is any other way to change the interval for a specific check outside of this action.**
+- **Per the [docs](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) the collection interval is set on the instance level within the check file. I do not believe there is any other way to change the collection interval for a specific check outside of this action**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/1.3+CollectingMetrics+-+Interval.png" width="600">
 
@@ -264,9 +267,9 @@ _Take a snapshot of this graph and use the @ notation to send it to yourself._
 
 - **Bonus Question**: What is the Anomaly graph displaying?
 
-  The Anomaly graph Identifies strange behavior in a single metric based on the metrics past performance.
+  The anomaly graph identifies strange behavior in a single metric based on the metrics' past performance.
   Used for metrics that by nature have natural peaks and valleys.
-  It is very hard to set sensible thresholds for these alerts. DataDog provides four algorithms to help identify strange behavior and does so using historical data.
+  It is challenging to set sensible thresholds for these alerts. DataDog provides four algorithms to help identify strange behavior and does so using historical data.
 
 [DataDog Anomaly Detection Docs](https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/)
 
@@ -289,11 +292,11 @@ _Please configure the monitor’s message so that it will:_
 - _Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state._
 - _When this monitor sends you an email notification, take a screenshot of the email that it sends you._
 
-**The monitor message using the message template variables to send relevant information per the alert**
+**The monitor message using the message template variables to send relevant information per the alert.**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.2+VisualizingData+-+Email+template.png" width="600">
 
-**Email message example of a warning**
+**Email message example of a warning.**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.3+VisualizingData+-+Email+Example.png" width="600">
 
@@ -303,7 +306,7 @@ _Please configure the monitor’s message so that it will:_
 
 ---
 
-**Using Monitors > Manage Downtime > New Monitor. Here I was able to programatically set the downtime for the team members to respect their off hours and weekends.**
+**Navigating to Monitors > Manage Downtime > New Monitor. Here I was able to programmatically set the downtime for the team members to respect their off-hours and weekends.**
 
 - <img src="https://datadog-examples.s3.us-east-2.amazonaws.com/3.4+VisualizingData+-+Alert+Settings.png" width="600">
 
@@ -317,11 +320,11 @@ _Please configure the monitor’s message so that it will:_
 
 ## Collecting APM Data:
 
-**I created a small node.js app which used the local server of the vagrant machine. Within the postgreSQL database there is a table called `pets` which stores a pet's name and type. While the script is running, each request generates a `newPet` which consists of a random name and selects an animal type. The `newPet` item is then inserted into the `pets` table.**
+**I created a small node.js app that used the local server of the vagrant machine. Within the PostgreSQL database, a table called `pets` stores a pet's name and type. While the script runs, each request generates a `newPet`, which consists of a random name and randomly selected animal type, then inserts it into the `pets` table.**
 
 **One aspect that took a bit of thought was troubleshooting how to connect to the app. Since it was running locally on the VM, I needed to send requests to the localhost via the VM, which I did through a curl call to the port identified - `curl 127.0.0.1:3000`**
 
-**Once the app is connected to the postgreSQL db it is able to send back metrics on the data operations per the APM integration.**
+**Once the app is connected to the PostgreSQL DB, it can send back metrics on the data operations using the APM integration.**
 
 _Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics._
 
@@ -400,10 +403,10 @@ console.log("Node server running on port 3000");
 
 - **Bonus Question**: What is the difference between a Service and a Resource?
 
-In reading the docs I came across [APM Glossary & Walkthrough](https://docs.datadoghq.com/tracing/visualization/) which allowed me to dig into the differences
+In reading the docs I came across [APM Glossary & Walkthrough](https://docs.datadoghq.com/tracing/visualization/), which allowed me to dig into the differences
 
 - **[Service](https://docs.datadoghq.com/tracing/visualization/#services) are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.**
-- **[Resource](https://docs.datadoghq.com/tracing/visualization/#resources) represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.**
+- **[Resource](https://docs.datadoghq.com/tracing/visualization/#resources) represents a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.**
 
 ## Final Question:
 
@@ -413,7 +416,7 @@ Is there anything creative you would use Datadog for?
 
 **I think a project with many individual components that come together to create something impactful -a 'hive' of sorts- would be a great use of DataDog—enabling insights into behavior that would be too complicated to view individually or manually.**
 
-**At burning man in 2019, I saw Paul Stamets speak about his [BeeMushroomed Feeder](https://fungi.com/pages/bees). Paul is very passionate about solving colony collapse impacting our bee populations and had created a prototype to help bee populations stay healthy. Part of the design was an IoT component that helped keep metrics around the feeders use. I think it would be fascinating to monitor the digital aspects of the product and the physical part of the conditions in which it is placed. For example, it would be interesting to see if the anomaly detection tools would pick up on a die off event based on a dip in network traffic sent from the feeder.**
+**At burning man in 2019, I saw Paul Stamets speak about his [BeeMushroomed Feeder](https://fungi.com/pages/bees). Paul is very passionate about solving colony collapse impacting our bee populations and had created a prototype to help bee populations stay healthy. Part of the design was an IoT component that helped keep metrics around the feeders use. I think it would be fascinating to monitor the digital aspects of the product and the physical part of the conditions in which it is placed. For example, it would be interesting to see if the anomaly detection tools would pick up on a die-off event based on a dip in network traffic sent from the feeder.**
 
 ## Extra Credit: GitGuardian
 
