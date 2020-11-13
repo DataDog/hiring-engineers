@@ -417,4 +417,5 @@ Is there anything creative you would use Datadog for?
 ## Extra Credit: GitGuardian
 
 I also learned about GitGuardian monitoring after accidentally committing my API key in my code sample. I was notified by GitGuardian and by Skylar in Datadog Support within ~30 mins of _committing_ my mistake.
+
 <img src="https://i.imgur.com/UIWXBQU.gif" width="300">
