@@ -39,7 +39,7 @@ Use “Datadog Recruiting Candidate” in the “Company” field.
 
 # Collecting Metrics:
 
-##### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+## Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 
 Added the following code to 'datadog.yaml':
@@ -69,7 +69,7 @@ https://media.giphy.com/media/UX08QMbe9BECjRoq3E/giphy.gif
 
 
 
-##### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+## Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 For this part I chose to use Postgres because I have prior experience using it. 
 
@@ -91,7 +91,7 @@ https://media.giphy.com/media/JWF7fOo3XyLgA/giphy.gif
 
 
 
-##### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+## Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 
 I created the following files for my custom Agent check:
@@ -118,7 +118,7 @@ class HelloCheck(AgentCheck):
 
 
 
-##### Change your check's collection interval so that it only submits the metric once every 45 seconds.
+## Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 I changed my check's collection interval by adding the following code to 'custom_check.yaml'.
 
@@ -131,7 +131,7 @@ instances:
 
 
 
-##### Bonus Question: Can you change the collection interval without modifying the Python check file you created?
+## Bonus Question: Can you change the collection interval without modifying the Python check file you created?
 
 Yes, the collection interval can also be modified under "instances" in the configuration '.yaml' file.
 
@@ -140,10 +140,10 @@ Yes, the collection interval can also be modified under "instances" in the confi
 
 # Visualizing Data:
 
-##### Utilize the Datadog API to create a Timeboard that contains:
-##### •	Your custom metric scoped over your host.
-##### •	Any metric from the Integration on your Database with the anomaly function applied.
-##### •	Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+## Utilize the Datadog API to create a Timeboard that contains:
+## •	Your custom metric scoped over your host.
+## •	Any metric from the Integration on your Database with the anomaly function applied.
+## •	Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 
 I used the following code in a Postman POST request to create my Timeboard:
@@ -227,9 +227,9 @@ However, after installing the necessary packages in the vagrant and running the 
 
 
 
-##### Once this is created, access the Dashboard from your Dashboard List in the UI:
-##### •	Set the Timeboard's timeframe to the past 5 minutes
-##### •	Take a snapshot of this graph and use the @ notation to send it to yourself.
+## Once this is created, access the Dashboard from your Dashboard List in the UI:
+## •	Set the Timeboard's timeframe to the past 5 minutes
+## •	Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 Timeboard with 5 Minute interval:
 
@@ -248,7 +248,7 @@ Initially I couldn't find were to add the comment to notify myself. I first clic
 
 
 
-##### Bonus Question: What is the Anomaly graph displaying?
+## Bonus Question: What is the Anomaly graph displaying?
 
 I couldn't find a postgresql metric that oscillated in such a way that the gray band on the metric would show up in the 5-minute interval. 
 So I used the anomalies() function to graph the average of the postgresql.percent_usage_connections metric over time to include when I first integrated Postgres with my Agent. By using a 7-day timeframe I was able to see the Anomaly graph displaying the gray band around the metric showing the expected behavior of a series based on the past. Below is a screenshot of this: 
@@ -260,11 +260,12 @@ So I used the anomalies() function to graph the average of the postgresql.percen
 
 # Monitoring Data:
 
-##### Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
-##### Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
-##### •	Warning threshold of 500
-##### •	Alerting threshold of 800
-##### •	And also ensure that it will notify you if there is No Data for this query over the past 10m.
+## Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted
+## when it goes above 800 again. So let’s make life easier by creating a monitor. Create a new Metric Monitor that watches the average of your 
+## custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+## •	Warning threshold of 500
+## •	Alerting threshold of 800
+## •	And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 Below is the exported JSON of the Metric Monitor:
 
@@ -297,20 +298,21 @@ Below is the exported JSON of the Metric Monitor:
 
 
 
-##### Please configure the monitor’s message so that it will:
-##### •	Send you an email whenever the monitor triggers.
-##### •	Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-##### •	Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-##### •	When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+## Please configure the monitor’s message so that it will:
+## •	Send you an email whenever the monitor triggers.
+## •	Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+## •	Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+## •	When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 <img src= "https://github.com/LLabonte94/datadog_screenshots/blob/main/Monitor-email.png" />
 
 
 
-##### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-##### •	One that silences it from 7pm to 9am daily on M-F,
-##### •	And one that silences it all day on Sat-Sun.
-##### •	Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+## Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. 
+## Set up two scheduled downtimes for this monitor:
+## •	One that silences it from 7pm to 9am daily on M-F,
+## •	And one that silences it all day on Sat-Sun.
+## •	Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 <img src= "https://github.com/LLabonte94/datadog_screenshots/blob/main/Evening-downtime.png" />
 
@@ -328,7 +330,7 @@ When creating the two scheduled downtimes, each the initial notifications showed
 
 # Collecting APM Data:
 
-##### Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+## Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
 
 I instrumented the app using Python and the ddtrace-run method. Below are the steps and code I used in the Vagrant Agent to collect APM data:
@@ -388,13 +390,13 @@ Finally, after restarting Vagrant, I ran the app:
 
 
 
-##### Bonus Question: What is the difference between a Service and a Resource?
+## Bonus Question: What is the difference between a Service and a Resource?
 
 A Service is a group of processes, such as queries, endpoints, or jobs. Whereas a Resource is a specific process such as a query, endpoint, or job that is instrumented by a service. 
 
 
 
-##### Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+## Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 https://p.datadoghq.com/sb/95557gac4g6agrso-2020678a12480ea825d0308892b21506
 
@@ -405,7 +407,9 @@ https://p.datadoghq.com/sb/95557gac4g6agrso-2020678a12480ea825d0308892b21506
 
 # Final Question:
 
-##### Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
+## Datadog has been used in a lot of creative ways in the past. 
+## We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! 
+## Is there anything creative you would use Datadog for?
 
 I think it would be really interesting if Datadog could monitor the wait time at airports, from the time you walk into the airport to the time you board. As opposed to showing up unnecessarily early, I think it would be efficient if Datadog could give a break down visualization of each step of the process - from checking in, waiting in line to get to security, getting through security, the time it takes to get from security to your gate, etc. Every airport is different in terms of capacity, the amount of foot traffic, speed of checking in, speed of security from the time you put your items on the belt to the time you get through and reclaim your items, distance to gates, etc. and I think a real-time monitoring application for the consumer would make the airport experience more efficient and less stressful. 
 
