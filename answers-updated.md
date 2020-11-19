@@ -2,7 +2,7 @@
 
 To better undertsand and visualize Datadog's utility, I'm going to walk through a brief implementation of how to collect a variety of host metrics, integrate a database, monitor metrics with alerts and notifications, and collect Application Performance Monitoring (APM) Data from a simple application.
 
-First we need to utilize any OS/host. This can be done quickly by using a containerized approach such as Docker or by spinning up a Virtual Machine (VM). I used a Vagrant Ubuntu VM as recommended for best practices. Below are the steps and resources needed to download, install, and initialize the Vagrant Ubuntu VM with VirtualBox on macOS (Mojave Version 10.14.6.).
+First we need to utilize any OS/host. This can be done quickly by using a containerized approach such as Docker or by spinning up a Virtual Machine (VM). Due to recommended best practices I used a Vagrant Ubuntu VM. Below are the steps and resources needed to download, install, and initialize the Vagrant Ubuntu VM with VirtualBox on macOS. (Mojave Version 10.14.6.)
 
 For instructions on how to download and install Vagrant see [here](https://learn.hashicorp.com/collections/vagrant/getting-started).
 
@@ -18,7 +18,7 @@ Verify the installation worked by checking that the VM is available:
 ```vagrant status```
 
 
-Next, we want to install and configure our VM as a Datadog Agent. Before we do this we must sign up for Datadog at https://www.datadoghq.com/. Once we are signed up, Datadog provides us with our API key. We can now install and configure our VM as a Datadog Agent using a one-step install command. Head to the Datadog Integrations tab and use the one-step install for Ubuntu, make sure to run the command inside Vagrant.
+Next, we want to install and configure our VM as a Datadog Agent. Before we do this we must sign up for Datadog at https://www.datadoghq.com/. Once we are signed up, Datadog provides us with our API key to use for integrations. We can now install and configure our VM as a Datadog Agent using a one-step install command. Head to the Datadog Integrations tab and use the one-step install for Ubuntu, make sure to run the command inside Vagrant.
 
 To access inside your Vagrant VM:
 ```vagrant ssh```
@@ -33,7 +33,7 @@ And just like that your Vagrant VM is now a Datadog Agent!
 ![Alt text](https://media.giphy.com/media/111ebonMs90YLu/giphy.gif)
 
 
-# Creating Tags, Integrating Databases, and Collecting Metrics
+# Tags, Integrating Databases, and Collecting Metrics
 
 Now that our Agent is connected lets start having a little fun with our Agent by adding Tags. Tags are a useful way of adding dimensions to Datadog telemetries so they can be filtered, aggregated, and compared in Datadog visualizations. Tags can be added by updating the Agent configuration file **/datadog-agent/datadog.yaml**.
 
@@ -47,7 +47,7 @@ tags:
 ```
 
 
-After updating any code file inside the Vagrant Agent, logout of the Vagrant and restart the Agent using the following commands:
+After updating any code file inside the Vagrant Agent, logout of the Vagrant and restart the Agent:
 ```logout```
 ```vagrant reload``` 
 
@@ -62,7 +62,7 @@ However, I did not run into any issues when using Vagrant.
 
 ---
 
-Next, let's integrate a database in Datadog and see some metrics. For this part I chose to use Postgres because I have prior experience using it. For instructions on how to download and install Postgres refer to the following [link](https://postgresapp.com/). Go to the Integrations tab on Datadog and click on Postgres icon and go through each step under "Configuration". 
+Next, let's integrate a database in Datadog and see some metrics. For this part I chose to use Postgres because I have prior experience using it. For instructions on how to download and install Postgres refer to the following [link](https://postgresapp.com/). Go to the Integrations tab and click on Postgres icon and go through each step under "Configuration". 
 
 
 Below is the code I added to **/datadog-agent/conf.d/postgres.d/conf.yaml** and used to point to my host, port, and database using a username and password. (I forgot to change the password when configuring the database to datadog so that's why the default '<PASSWORD>' from the Postgres configuration steps is in the code below lol).
@@ -80,23 +80,23 @@ instances:
 
 After adding this code I again logged out of Vagrant and restarted the Agent. 
 
-To check if Postgres is configured in your Agent you can run the following command to check the Agent status (make sure to run inside Vagrant):
+To check if Postgres is configured in your Agent you can run the follow code to check the Agent status:
 ```sudo datadog-agent status```
 
-If you happen to have accidentally left the admin password blank when installing Postgres, you will find out at this point by seeing an error under the Postgres section in the output from the status check above (which I did). I found in the Postgres documentation that doing this will make the admin password **always** fail. However, I resolved the issue by running the following commands that run Postgres as a super user, which overrides the default password.
+If you happen to have accidentally left the admin password blank when installing Postgres, you will find out at this point by seeing an error under the Postgres section in the output from the status check above (which I did). I found in the Postgres documentation that doing this will make the admin password **always** fail. However, I resolved the issue by running the following code that runs Postgres as a super user, which overrides the default password.
 
 ```sudo su - postgres```
 ```psql postgres```
 
 ![Alt text](https://media.giphy.com/media/JWF7fOo3XyLgA/giphy.gif)
 
-After doing so I was able to see that the issue was cleared up in the status check and in the Host Map, which displayed [postgres metrics](https://github.com/LLabonte94/datadog_screenshots/blob/main/Postgres-Integration.png).
+After doing so I was able to see that the issue was cleared up in the status check and in the Host Map, which displayed [intial postgres metrics](https://github.com/LLabonte94/datadog_screenshots/blob/main/Postgres-Integration.png).
 
 ---
 
-So far we've added some Tags and integrated a Database to our Agent. Now let's create a custom Agent check that submits a metric with a random value between 0 and 1000. A custom check is similar to a regular check, but the custom check can be scheduled to run at a fixed interval. The default is every 15 seconds. If needed, see the [checks documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) for more information.
+So far we've added some tags and integrated a Database to our Agent. Now let's create a custom Agent check that submits a metric with a random value between 0 and 1000. A custom check is similar to a regular check, but the custom check can be scheduled to run at a fixed interval. The default is every 15 seconds. If needed, see the [checks documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) for more information.
 
-Create the following files for our custom Agent check:
+We create the following files for our custom Agent check:
 
 **/datadog-agent/checks.d/custom_check.py**
 **/datadog-agent/conf.d/custom_check.yaml**
@@ -126,18 +126,18 @@ instances:
     - min_collection_interval: 45
 ```
 
-Again, restart Vagrant and look at the graph of your metric and check to see if the collection interval changed. To get a clear view of the collection interval, click and drag over a section of the grpah to scale the timeframe. The following are screenshots of the updated graph:
+Again, restart Vagrant and look at the graph of your metric to check to see if the collection interval changed. To get a clear view of the collection interval, click and drag over a section of the grpah to scale the timeframe. The following are screenshots of the updated graph:
 
-[Interval Check - Start](https://github.com/LLabonte94/datadog_screenshots/blob/main/check-45-start.png)
-[Interval Check - End](https://github.com/LLabonte94/datadog_screenshots/blob/main/check-45-end.png)
+https://github.com/LLabonte94/datadog_screenshots/blob/main/check-45-start.png
+https://github.com/LLabonte94/datadog_screenshots/blob/main/check-45-end.png
 
 
 # Visualizing Data using Datadog API
 
-With Datadog we can vizualize data using different types of Dashboards: Screenboards and Timesboards. These Dashboards can be constructed through the Datadog UI or through the Datadog API. We're going to create a Timeboard utilizing the Datadog API to display a Postgres metric and our custom metric in a couple of different ways. To get started using Datadog APIs refer to the documentation [here](https://docs.datadoghq.com/getting_started/api/). We will be using Postman to send a POST request with our Timeboard information in JSON format. The instructions in the link above also include Postman download and setup. 
+With Datadog we can vizualize data using different types of Dashboards: Screenboards and Timesboards. These Dashboards can be constructed through the Datadog UI or through the Datadog API. We're going to create a Timeboard utilizing the Datadog API to display our custom metric in a couple of different ways and a Postgres metric. To get started using Datadog APIs refer to the documentation [here](https://docs.datadoghq.com/getting_started/api/). We will be using Postman to send a POST request with our Timeboard information in JSON format. The instructions in the link above also include Postman download and setup. 
 
 > **Note:**
-We will need our Datadog API key and an App key. We can create an App key by going to API subsection under the Integrations tab. For more information refer to information [here](https://docs.datadoghq.com/account_management/api-app-keys/).
+We will need our Datadog API Key and an App Key. We can create an App Key by going to API subsection under the Integrations tab. For more information refer to information [here](https://docs.datadoghq.com/account_management/api-app-keys/).
 
 Our Timeboard will have three graphs. The first is using the metric we created in the previous step scoped over our host. The second is a Postgres metric with the [anomaly function](https://docs.datadoghq.com/dashboards/functions/algorithms/) applied. The third is our metric with the [rollup function](https://docs.datadoghq.com/dashboards/functions/rollup/) applied to sum up all points for the past hour into one bucket.
 
@@ -217,13 +217,13 @@ I used the following JSON code in a Postman POST request to create my Timeboard 
 
 
 > **Note:**
-I tried running the code in a Python script using the Datadog library and the ```initialize``` and ```api``` modules, as shown in the [documentation](https://docs.datadoghq.com/api/v1/dashboards/); however, after installing the necessary packages in the Vagrant and running the script, I did not see my Timeboard created in the Dashboards List. I couldn't find any other documentation to resolve the issue, so I sent the request from Postman.
+I tried running the code in a Python script using the Datadog library and the ```initialize``` and ```api``` modules, as shown in the [documentation](https://docs.datadoghq.com/api/v1/dashboards/); however, after installing the necessary packages in the Vagrant and running the script, I did not see my Timeboard created in the Dashboard List. I couldn't find any other documentation to resolve the issue, so I sent the request from Postman.
 
 
-Once the Timeboard is created, we can access the Dashboard from our Dashboards List on Datadog. We can also change the timeframe of our Timeboard to whatever range we want in order to get a better visualization. [Here](https://github.com/LLabonte94/datadog_screenshots/blob/main/Timeboard_5-minute.png) is our Timeboard with a 5-minute interval.
+Once the Timeboard is created, we can access the Dashboard from our Dashboard List on Datadog. We can also change the timeframe of our Timeboard to whatever range we want in order to get a better visualization. [Here](https://github.com/LLabonte94/datadog_screenshots/blob/main/Timeboard_5-minute.png) is our Timeboard with a 5-minute interval.
 
 > **Note:**
-I was not able to see the Hourly Rollup Sum of **my_metric** in the 5-minute interval, so I adjusted the timeframe to a 1-hour interval as seen [here](https://github.com/LLabonte94/datadog_screenshots/blob/main/Timeboard_1-hour.png).
+I was not able to see the Hourly Rollup Sum of **my_metric** in the 5-minute, so I adjusted the timeframe to a [1-hour interval](https://github.com/LLabonte94/datadog_screenshots/blob/main/Timeboard_1-hour.png).
 
 
 The anomaly graph doesn't seem to have the gray band as show in the documentation. Strange. Lets notify a person of contact who can help us resolve this issue. To do this click the graph and a message box will appear which allows you to create a comment and send a notification to the person(s) of interest by using the "@" notation. [Here](https://github.com/LLabonte94/datadog_screenshots/blob/main/Notification-email.png) is a screenshot to help.
@@ -280,7 +280,7 @@ Below are the email notifications for the scheduled downtimes:
 
 
 > **Note:**
-When creating the two scheduled downtimes, each of the initial notifications showed the correct amount of time, but the start and end times were shifted and I'm not sure why. Screenshots of each downtime setup can be seen below:
+When creating the two scheduled downtimes, each the initial notifications showed the correct amount of time, but the start and end times were shifted and I'm not sure why. Screenshots of each downtime setup can be seen below:
 [Evening Downtime Mon-Fri](https://github.com/LLabonte94/datadog_screenshots/blob/main/Monitor_M-F.png)
 [Weekend Downtime Sat-Sun](https://github.com/LLabonte94/datadog_screenshots/blob/main/Monitor_Sat-Sun.png)
 
@@ -289,7 +289,7 @@ When creating the two scheduled downtimes, each of the initial notifications sho
 
 So far we've been able to collect metrics from our host Agent, Postgres database, and custom metrics as well as create custom monitors and email notifications. But what about monitoring application performance, infrastructure, logs, and traces? Datadog APM allows us to do just that for troubleshooting and optimization. 
 
-We'll instrument the following Flask application with Python using Datadog’s APM solution. Create a Python file called ```my-app.py``` and insert the following code:
+We'll instrument the following Flask application with Python using Datadog’s APM solution. Create a Pytho file called ```my-app.py``` and insert the following code:
 
 ```
 from flask import Flask
@@ -366,10 +366,6 @@ Screenshots:
 
 ---
 
-# Potential Datadog Use Case
+Datadog has been used in a lot of creative ways in the past. I think it would be really interesting if Datadog could monitor the wait time at airports, from the time you walk into the airport to the time you board. As opposed to showing up unnecessarily early and having to wait and hour or more at the gate - which I hate - I think it would be efficient if Datadog could give a break down visualization of each step of the process - from checking in, waiting in line to get to security, getting through security, the time it takes to get from security to your gate, etc. Every airport is different in terms of capacity, the amount of foot traffic, speed of checking in, speed of security from the time you put your items on the belt to the time you get through and reclaim your items, distance to gates, etc. and I think a real-time monitoring application for the consumer would make the airport experience more efficient and less stressful. 
 
-Datadog has been used in a lot of creative ways in the past. I think it would be really interesting if Datadog could monitor the wait time at airports, from the time you walk into the airport to the time you board. As opposed to showing up unnecessarily early and having to wait and hour or more at the gate after you've had your coffee, sent your emails, and snapchat snipped people sleeping in odd positions. I think it would be efficient if Datadog could give a breakdown visualization of each step of the process - from checking in, waiting in line to get to security, getting through security, the time it takes to get from security to your gate, restroom and restaurant wait times, etc. Every airport is different in terms of capacity, the amount of foot traffic, speed of checking in, speed of security from the time you put your items on the belt to the time you get through and reclaim your items, etc. and I think a real-time monitoring application for the consumer would make the airport experience more efficient and less stressful. 
-
-![Alt text](https://media.giphy.com/media/5hqsdNNex8lQfqtH7N/giphy.gif)
-
-
+![Alt text](https://media.giphy.com/media/l0MYtRMfHX97W7T3y/giphy.gif)
