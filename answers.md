@@ -20,3 +20,6 @@
 - Screenshot "9. APM1"
 - Screenshot "10. APM2"
 - Screenshot "11. APM3"
+
+### Final Question:
+- Highway traffic monitoring, agricultural IoT device monitoring etc.
