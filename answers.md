@@ -14,7 +14,7 @@ class MyCheck(AgentCheck):
               self.gauge('my_metric', random.randint(0, 1000))
 ```
 
-*Bonus Question*`  Yes, I changed the collection interval by adding `min_collection_interval: 45` to conf.d/my_metric.yaml.
+*Bonus Question*  Yes, I changed the collection interval by adding `min_collection_interval: 45` to conf.d/my_metric.yaml.
 
 **Section II: Visualizing Data**
 
