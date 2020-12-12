@@ -5,6 +5,16 @@ My host tags can be seen here: https://la-psql-zebra.s3.amazonaws.com/host_tags.
 
 I choose to install PostgreSQL and installed the Datadog integration for Postgres. This can be verified in Section II by viewing my dashboard. 
 Here is my_metric.py https://github.com/ekufta0530/hiring-engineers/blob/master/my_metric.py
+```python
+import random
+import datadog_checks.base import AgentCheck
+
+class MyCheck(AgentCheck):
+      def check(self, instance):
+              self.gauge('my_metric', random.randint(0, 1000))
+```
+
+
 `Bonus Question` Can you change the collection interval without modifying the Python check file you created? Yes, I modified conf.d/my_metric.yaml to include - 
 ...
 min_collection_interval: 45. 
