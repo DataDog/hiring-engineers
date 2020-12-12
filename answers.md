@@ -4,7 +4,7 @@ My host tags can be seen in this [screenshot](https://la-psql-zebra.s3.amazonaws
 
 I choose to install PostgreSQL and installed the Datadog Integration for Postgres. This can be verified in Section II by viewing my [dasboard](https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard_5min.PNG)
 
-Here is custom agent check, my_metric.py
+Here is my custom agent check, my_metric.py
 ```python
 import random
 import datadog_checks.base import AgentCheck
@@ -18,7 +18,7 @@ class MyCheck(AgentCheck):
 
 **Section II: Visualizing Data**
 
-Here is the link to the script I used to generate the timeseries. 
+Here is the link to the script I used to generate the timeseries (API and Application key redacted):
 ```json
 curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 --header 'Content-Type: application/json' \
@@ -91,7 +91,8 @@ Snapshot of my dashboard: https://la-psql-zebra.s3.amazonaws.com/my_first_dashbo
 **Bonus Question**: The anomoly graph is displaying expected behavior in shaded area and the actual behavior as the line.
 
 **Section III: Monitoring Data**
-I used the GUI to create a metric monitor that alerts on my_metric behavior. I exported the metric monitor as json and pasted below for confirmation.
+I used the GUI to create a metric monitor that alerts on my_metric behavior. I exported the metric monitor as json and pasted at the bottom of this sectionbe.
+[Here is a screenshot of an email notifcation for reaching warning status (still waiting for it to hit Alert!](https://la-psql-zebra.s3.amazonaws.com/my_metric_warn.PNG)
 
 ```json
 {
