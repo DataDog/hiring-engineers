@@ -21,7 +21,76 @@ min_collection_interval: 45.
 ...
 
 **Section II: Visualizing Data**
-Here is the link to the script I used to generate the timeseries. https://github.com/ekufta0530/hiring-engineers/blob/master/timeboard_script
+Here is the link to the script I used to generate the timeseries. 
+```json
+curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: DD-PSHARD=217' \
+--header 'DD-API-KEY: xxx' \
+--header 'DD-APPLICATION-KEY: xxx' \
+--data-raw '{
+    "title": "My First Dashboard",
+    "description": "Visualizing Data with the Datadog API",
+    "layout_type": "ordered",
+    "is_read_only": false,
+    "widgets": [
+        {
+            "definition": {
+                "type": "timeseries",
+                "title": "my metric timeseries",
+                "requests": [
+                    {
+                        "q": "my_metric{host:vagrant}"
+                    }
+                ]
+            },
+            "layout": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            }
+        },
+        {
+            "definition": {
+                "type": "timeseries",
+                "title": "Postgres Disk Reads",
+                "requests": [
+                    {
+                        "q": "anomalies(sum:postgresql.disk_read{*}, '\''basic'\'', 2)"
+                    }
+                ]
+            },
+            "layout": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            }
+        },
+        {
+            "definition": {
+                "type": "timeseries",
+                "title": "Sum of my metric points per hour",
+                "requests": [
+                    {
+                        "q": "sum:my_metric{*}.rollup(sum, 3600)"
+                    }
+                ]
+            },
+            "layout": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            }
+        }
+    ]
+}'
+```
+
+
+https://github.com/ekufta0530/hiring-engineers/blob/master/timeboard_script
 Snapshot of my dashboard: https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard_5min.PNG
 `Bonus Question`: What is the Anomaly graph displaying?
 The anomoly graph is displaying expected behavior in shaded area and actual as the line.
