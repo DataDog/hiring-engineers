@@ -14,7 +14,7 @@ class MyCheck(AgentCheck):
               self.gauge('my_metric', random.randint(0, 1000))
 ```
 
-**Bonus Question**`  Yes, I changed the collection interval by adding `min_collection_interval: 45` to conf.d/my_metric.yaml.
+*Bonus Question*`  Yes, I changed the collection interval by adding `min_collection_interval: 45` to conf.d/my_metric.yaml.
 
 **Section II: Visualizing Data**
 
@@ -88,7 +88,7 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 
 Snapshot of my dashboard: https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard_5min.PNG
 
-**Bonus Question**: The anomoly graph is displaying expected behavior in shaded area and the actual behavior as the line.
+*Bonus Question*: The anomoly graph is displaying expected behavior in shaded area and the actual behavior as the line.
 
 **Section III: Monitoring Data**
 I used the GUI to create a metric monitor that alerts on my_metric behavior. I exported the metric monitor as json and pasted at the bottom of this sectionbe.
