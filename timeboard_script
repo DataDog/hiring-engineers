@@ -1,0 +1,64 @@
+curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: DD-PSHARD=217' \
+--header 'DD-API-KEY: xxx' \
+--header 'DD-APPLICATION-KEY: xxx' \
+--data-raw '{
+    "title": "My First Dashboard",
+    "description": "Visualizing Data with the Datadog API",
+    "layout_type": "ordered",
+    "is_read_only": false,
+    "widgets": [
+        {
+            "definition": {
+                "type": "timeseries",
+                "title": "my metric timeseries",
+                "requests": [
+                    {
+                        "q": "my_metric{host:vagrant}"
+                    }
+                ]
+            },
+            "layout": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            }
+        },
+        {
+            "definition": {
+                "type": "timeseries",
+                "title": "Postgres Disk Reads",
+                "requests": [
+                    {
+                        "q": "anomalies(sum:postgresql.disk_read{*}, '\''basic'\'', 2)"
+                    }
+                ]
+            },
+            "layout": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            }
+        },
+        {
+            "definition": {
+                "type": "timeseries",
+                "title": "Sum of my metric points per hour",
+                "requests": [
+                    {
+                        "q": "sum:my_metric{*}.rollup(sum, 3600)"
+                    }
+                ]
+            },
+            "layout": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            }
+        }
+    ]
+}'
