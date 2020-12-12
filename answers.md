@@ -1,10 +1,10 @@
 **Section I: Collecting Metrics**
 
-Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
 My host tags can be seen here: https://la-psql-zebra.s3.amazonaws.com/host_tags.PNG
 
 I choose to install PostgreSQL and installed the Datadog integration for Postgres. This can be verified in Section II by viewing my dashboard. 
-Here is my_metric.py https://github.com/ekufta0530/hiring-engineers/blob/master/my_metric.py
+
+Here is my_metric.py
 ```python
 import random
 import datadog_checks.base import AgentCheck
@@ -14,11 +14,7 @@ class MyCheck(AgentCheck):
               self.gauge('my_metric', random.randint(0, 1000))
 ```
 
-
-`Bonus Question` Can you change the collection interval without modifying the Python check file you created? Yes, I modified conf.d/my_metric.yaml to include - 
-...
-min_collection_interval: 45. 
-...
+**Bonus Question**`  Yes, I changed the collection interval by adding `min_collection_interval: 45` to conf.d/my_metric.yaml.
 
 **Section II: Visualizing Data**
 
@@ -90,13 +86,41 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 }'
 ```
 
-
-https://github.com/ekufta0530/hiring-engineers/blob/master/timeboard_script
 Snapshot of my dashboard: https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard_5min.PNG
-`Bonus Question`: What is the Anomaly graph displaying?
-The anomoly graph is displaying expected behavior in shaded area and actual as the line.
+
+**Bonus Question**: The anomoly graph is displaying expected behavior in shaded area and actual as the line.
 
 **Section III: Monitoring Data**
+I used the GUI to create a metric monitor that alerts on my_metric. I exported the metric monitor as json and pasted below for confirmation.
+
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+```json
+{
+	"id": 27366563,
+	"name": "my_metric activity",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:my_metric{host:vagrant} > 800",
+	"message": "{{#is_alert}}\n  my_metric has been unusually high ( {{value}} ) for {{host.name}} over the past 5 minutes  @eric.kufta@gmail.com \n{{/is_alert}}\n\n{{#is_warning}}\n  my_metric has been above average ( {{value}} ) for {{host.name}} over the past 5 minutes  \n{{/is_warning}}\n\n{{#is_no_data}}\n  my_metric has no data over the past 10 minutes  @eric.kufta@gmail.com \n{{/is_no_data}}",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": false,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}
+```
+**Section IV: Collecting APM Data***
+
 
 
