@@ -21,6 +21,7 @@ min_collection_interval: 45.
 ...
 
 **Section II: Visualizing Data**
+
 Here is the link to the script I used to generate the timeseries. 
 ```json
 curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
