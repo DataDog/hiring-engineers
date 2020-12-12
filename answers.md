@@ -1,8 +1,8 @@
 **Section I: Collecting Metrics**
 
-My host tags can be seen here: https://la-psql-zebra.s3.amazonaws.com/host_tags.PNG
+My host tags can be seen here: https://la-psql-zebra.s3.amazonaws.com/host_tags.PNG. I modified datadog.yaml to include these key-value pairs. 
 
-I choose to install PostgreSQL and installed the Datadog integration for Postgres. This can be verified in Section II by viewing my dashboard. 
+I choose to install PostgreSQL and installed the Datadog Integration for Postgres. This can be verified in Section II by viewing my [dasboard](https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard_5min.PNG)
 
 Here is my_metric.py
 ```python
