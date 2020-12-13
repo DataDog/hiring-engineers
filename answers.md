@@ -123,5 +123,10 @@ I used the GUI to create a metric monitor that alerts on my_metric behavior. I e
 
 **Section IV: Collecting APM Data***
 
+I used ddtrace to collect metrics on the provided application. I has to modify the datadog-agent config file to include a value for env and added a tag for service.
+[dashboard for APM](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
 
+[dashboard for Infrastructure Monitor](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
+
+##
 
