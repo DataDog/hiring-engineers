@@ -86,13 +86,13 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 }'
 ```
 
-Snapshot of my dashboard: https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard_5min.PNG
+[Snapshot of my dashboard](https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard_5min.PNG)
 
 *Bonus Question:* The anomoly graph is displaying expected behavior in shaded area and the actual behavior as the line.
 
 **Section III: Monitoring Data**
 I used the GUI to create a metric monitor that alerts on my_metric behavior. I exported the metric monitor as json and pasted at the bottom of this sectionbe.
-[Here is a screenshot of an email notifcation for reaching warning status (still waiting for it to hit Alert!](https://la-psql-zebra.s3.amazonaws.com/my_metric_warn.PNG)
+[Here is a screenshot of an email notifcation for reaching warning status](https://la-psql-zebra.s3.amazonaws.com/my_metric_warn.PNG)
 
 ```json
 {
@@ -127,6 +127,3 @@ I used ddtrace to collect metrics on the provided application. I has to modify t
 [dashboard for APM](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
 
 [dashboard for Infrastructure Monitor](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
-
-##
-
