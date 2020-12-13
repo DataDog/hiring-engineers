@@ -127,3 +127,7 @@ I used ddtrace to collect metrics on the provided application. I has to modify t
 [dashboard for APM](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
 
 [dashboard for Infrastructure Monitor](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
+
+**Is there anything creative you would use Datadog for?**
+
+Datadog would be useful for collecting telemetry data on IoCs. For
