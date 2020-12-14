@@ -54,7 +54,7 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
                 "title": "Postgres Disk Reads",
                 "requests": [
                     {
-                        "q": "anomalies(sum:postgresql.disk_read{*}, '\''basic'\'', 2)"
+                        "q": "anomalies(sum:postgresql.table_count{*}, '\''basic'\'', 5)"
                     }
                 ]
             },
@@ -87,6 +87,7 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 ```
 
 [Snapshot of my dashboard](https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard_5min.PNG)
+![Alt text](https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard.PNG)
 
 *Bonus Question:* The anomoly graph is displaying expected behavior in shaded area and the actual behavior as the line.
 
@@ -123,14 +124,16 @@ I used the GUI to create a metric monitor that alerts on my_metric behavior. I e
 
 **Section IV: Collecting APM Data***
 
-I used ddtrace to collect metrics on the provided application. I has to modify the datadog-agent config file to include a value for env and added a tag for service.
+I used ddtrace to collect metrics on the provided application. I had to modify the datadog-agent config file to include a value for env and added a tag for service.
 [dashboard for APM](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
 
 [dashboard for Infrastructure Monitor](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
 
+*Bonus Question:* A service is a group of endpoints that "groups together a series of endpoints, queries, or jobs." Services are building blocks of a microservice architecture. For example, a user database, ad server, orSIEM could all be services. Resources "represent a particular domain of a customer application". An example would be a web endpoint or a database query. 
+
 **Is there anything creative you would use Datadog for?**
 
-Datadog would be an excellent platform for monitoring and visualizing telemetry data on security indicators of compromise published by different threat intel feeds (i.e. ISAC’s, Cisco Talos, Emerging Threats, DHS).  Log files of the IDS/IPS appliances could be received into the platform to see which indicators are firing most, or not at all. Layer on true/ false positive telemetry from security teams and you can easily see which rules are doing the most and which are just noise. 
+Datadog would be an excellent platform for monitoring and visualizing telemetry data on security indicators of compromise published by different threat intel feeds (i.e. ISAC’s, Cisco Talos, Emerging Threats, DHS). Log files of the IDS/IPS appliances could be received into the platform to see which indicators are firing most, or not at all. Layer on true/ false positive telemetry from security teams and you can easily see which rules are doing the most and which are just noise. 
 
-This would also be very useful for predicting attack trends at scale and would be an excellent tool for those publishing the threat intelligence! One use case would be sending off notifications to subscribers if an indicator, or set of indicators, are firing often. For example, if a rule for a SYN flood DoS is firing at 300% normal capacity in the community, the rest of the sec community would love to have this information if real time to notify their relevant teams.
+This would also be very useful for predicting attack trends at scale and would be an excellent tool for those publishing the threat intelligence! One use case would be sending off notifications to subscribers if an indicator, or set of indicators, are firing often. For example, if a rule for a SYN flood DoS is firing at 300% normal capacity in the community, the rest of the sec community would love to have this information in real time to notify their relevant team members. 
 
