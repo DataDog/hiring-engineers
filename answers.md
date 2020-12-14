@@ -2,7 +2,7 @@
 
 My host tags can be seen in this image
 
-![Alt text](https://la-psql-zebra.s3.amazonaws.com/host_tag_vagrant.PNG).
+![Alt text](https://la-psql-zebra.s3.amazonaws.com/DD_host_tags.PNG).
 
 I choose to install PostgreSQL and installed the Datadog Integration for Postgres. This can be verified in Section II by viewing my [dashboard](https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard.PNG).
 
