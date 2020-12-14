@@ -90,7 +90,7 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 Here is my dashboard over 5 minutes
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard.PNG)
 
-The sum of my metric grouped into hours so it did not show properly in a 5 minute time span. I expanded the time period on the widget and included a snapshot here. 
+The sum of my metric grouped into hours so it did not show properly in a 5 minute time span. I expanded the time period on the widget and included a snapshot here 
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/Sum_of_metric_per_hr.PNG)
 
 *Bonus Question:* The anomaly graph is displaying expected behavior in shaded area and the actual behavior as the line. It showed some interesting behavior in my dashboard since I added and deleted some tables rapidly while the metric was still trying to establish a baseline. After a few minutes, the shaded "bounds" steadied out. 
