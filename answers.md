@@ -4,7 +4,7 @@ My host tags can be seen in this image
 
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/DD_host_tags.PNG).
 
-I choose to install PostgreSQL and installed the Datadog Integration for Postgres. This can be verified in Section II by viewing my [dashboard](https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard.PNG).
+I choose to install PostgreSQL and installed the Datadog Integration for Postgres. This can be verified in Section II by viewing my dashboard.
 
 Here is my custom agent check, my_metric.py
 ```python
@@ -20,7 +20,7 @@ class MyCheck(AgentCheck):
 
 **Section II: Visualizing Data**
 
-Here is the the script I used to generate the timeseries (API and Application keys redacted)
+Here is the the script I used to generate the timeseries
 ```json
 curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 --header 'Content-Type: application/json' \
@@ -90,7 +90,7 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 Here is my dashboard over 5 minutes
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard.PNG)
 
-The sum of my metric grouped into hours so it did not show properly in a 5 minute time span. I expanded the time period on the widget and included a snapshot here 
+The sum of my metric is grouped into hours (per instructions) so it did not show properly in a 5 minute time span. I expanded the time period on the widget and included a snapshot here 
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/Sum_of_metric_per_hr.PNG)
 
 *Bonus Question:* The anomaly graph is displaying expected behavior in shaded area and the actual behavior as the line. It showed some interesting behavior in my dashboard since I added and deleted some tables rapidly while the metric was still trying to establish a baseline. After a few minutes, the shaded "bounds" steadied out. 
@@ -139,7 +139,7 @@ And the app provided
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
 
 Dashboard for Infrastructure Monitor
-![Alt text](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
+![Alt text](https://la-psql-zebra.s3.amazonaws.com/infrastructure_metrics.PNG)
 
 *Bonus Question:* A service "groups together a series of endpoints, queries, or jobs." For example, a user database or advertising server could be services. Resources "represent a particular domain of a customer application". An example would be a web endpoint or a database query.
 
