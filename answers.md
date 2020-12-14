@@ -98,8 +98,8 @@ The sum of my metric grouped into hours so it did not show properly in a 5 minut
 **Section III: Monitoring Data**
 I used the GUI to create a metric monitor that alerts on my_metric behavior. I exported the metric monitor as json and pasted at the bottom of this section to show exactly what I did. 
 
-Here is a screenshot of an email notification for reaching warning status
-![Alt text](https://la-psql-zebra.s3.amazonaws.com/my_metric_warn.PNG)
+Here is a screenshot of an email notification for reaching alert status
+![Alt text](https://la-psql-zebra.s3.amazonaws.com/my_metric_alert.PNG)
 
 ```json
 {
