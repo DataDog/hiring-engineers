@@ -2,7 +2,7 @@
 
 My host tags can be seen in this image ![Alt text](https://la-psql-zebra.s3.amazonaws.com/host_tags.PNG).
 
-I choose to install PostgreSQL and installed the Datadog Integration for Postgres. This can be verified in Section II by viewing my [dashboard]https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard.PNG).
+I choose to install PostgreSQL and installed the Datadog Integration for Postgres. This can be verified in Section II by viewing my [dashboard](https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard.PNG).
 
 Here is my custom agent check, my_metric.py
 ```python
@@ -91,7 +91,7 @@ Here is my dashboard over 5 minutes.
 The sum of my metric grouped into hours did not show up in a 5 minute time span so I expanded the time period on the widget and included a snapshot here. 
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/Sum_of_metric_per_hr.PNG)
 
-*Bonus Question:* The anomoly graph is displaying expected behavior in shaded area and the actual behavior as the line.
+*Bonus Question:* The anomoly graph is displaying expected behavior in shaded area and the actual behavior as the line. It showed some interesting behavior in my dashboard since I added and deleted some tables rapidly while the metric was still trying to estalish a baseline. After a few minutes the shaded "bounds" steadied out. 
 
 **Section III: Monitoring Data**
 I used the GUI to create a metric monitor that alerts on my_metric behavior. I exported the metric monitor as json and pasted at the bottom of this section to show exactly what I did. 
@@ -130,10 +130,11 @@ Here is a screenshot of an email notifcation for reaching warning status
 
 I used ddtrace to collect metrics on the provided application. I had to modify the datadog-agent config file slightly to get infrastructure metrics by including a value for env and added a tag for service.
 
-[dashboard for APM]
+Dashboard for APM
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
 
-[dashboard for Infrastructure Monitor](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
+Dashboard for Infrastructure Monitor
+![Alt text](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
 
 *Bonus Question:* A service is a group of endpoints that "groups together a series of endpoints, queries, or jobs." Services are building blocks of a microservice architecture. For example, a user database, ad server, orSIEM could all be services. Resources "represent a particular domain of a customer application". An example would be a web endpoint or a database query. 
 
