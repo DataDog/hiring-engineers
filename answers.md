@@ -130,9 +130,12 @@ Here is a screenshot of an email notification for reaching alert status
 
 **Section IV: Collecting APM Data***
 
-I used ddtrace to collect metrics on the provided application. I had to modify the datadog-agent config file slightly to get infrastructure metrics by including a value for env and added a tag for service.
+I used ddtrace to collect metrics on the provided application as well as an app that I've used in my lab. The app can be found at https://github.com/kittymagician/Aegisat. It is a "simple web GUI for scanning files with YARA" but is also a convenient interface for testing the Yara rules. 
 
-Dashboard for APM
+Dashboards for APM. First, the Yara app
+![Alt text](https://la-psql-zebra.s3.amazonaws.com/Yara_apm.PNG)
+
+And the app provided
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
 
 Dashboard for Infrastructure Monitor
