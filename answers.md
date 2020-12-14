@@ -130,4 +130,7 @@ I used ddtrace to collect metrics on the provided application. I has to modify t
 
 **Is there anything creative you would use Datadog for?**
 
-Datadog would be useful for collecting telemetry data on IoCs. For
+Datadog would be an excellent platform for monitoring and visualizing telemetry data on security indicators of compromise published by different threat intel feeds (i.e. ISAC’s, Cisco Talos, Emerging Threats, DHS).  Log files of the IDS/IPS appliances could be received into the platform to see which indicators are firing most, or not at all. Layer on true/ false positive telemetry from security teams and you can easily see which rules are doing the most and which are just noise. 
+
+This would also be very useful for predicting attack trends at scale and would be an excellent tool for those publishing the threat intelligence! One use case would be sending off notifications to subscribers if an indicator, or set of indicators, are firing often. For example, if a rule for a SYN flood DoS is firing at 300% normal capacity in the community, the rest of the sec community would love to have this information if real time to notify their relevant teams.
+
