@@ -23,6 +23,7 @@ class MyCheck(AgentCheck):
 *Bonus Question:*  Yes, I changed the collection interval by adding `min_collection_interval: 45` to conf.d/my_metric.yaml.
 
 **Section II: Visualizing Data**
+
 Hands down this was the best experience I have ever had getting to know an API. It was great to be able to download the Postman Environment and work from there! Not to mention the API docs being very user friendly. I generated this script below from Postman to create my dashboard.
 
 ```
@@ -100,7 +101,7 @@ The sum of my metric is grouped into hours (per instructions) so it did not show
 *Bonus Question:* The anomaly graph is displaying expected behavior in shaded area and the actual behavior as the line. I choose to use a straightforward metric -- count of database tables. The anomaly function showed some interesting (but expected) behavior in my dashboard since I added and deleted some tables rapidly while the metric was still trying to establish a baseline. After a few minutes, the shaded "bounds" steadied out.
 
 **Section III: Monitoring Data**
-I used the GUI to create a metric monitor that alerts on my_metric behavior. I exported the metric monitor as json and pasted at the bottom of this section to show exactly what I did. 
+Again, I found this all very user-friendly and the variables very handy. I used the GUI to create a metric monitor that alerts on my_metric behavior. I exported the metric monitor as json and pasted at the bottom of this section to show exactly what I did. 
 
 Here is a screenshot of an email notification for reaching alert status
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/my_metric_alert.PNG)
