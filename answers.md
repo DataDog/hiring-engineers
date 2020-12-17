@@ -1,10 +1,14 @@
+Thank you for taking the time to review my hiring exercise. I really enjoyed all the sections, got reacquainted with some tools such as Postman and learned a new one along the way – Vagrant. I especially got carried away with the APM section and ended up hosting my flask app on AWS with Nginx, uWSGI and an ec2 instance. More on that in section IV but if you would like to skip ahead, you can reach the web app at http://54.237.104.89/
+
+After this exercise I am very impressed and excited about a potential opportunity at Datadog. It is easy to see that the product is powerful, flexible, and easy to use. I was most impressed with the tools provided for developers/ users. The docs are functional and elegant while the generated scripts (for things like agent install) work flawlessly, just to name a couple of highlights.
+
 **Section I: Collecting Metrics**
 
 My host tags can be seen in this image
 
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/DD_host_tags.PNG).
 
-I choose to install PostgreSQL and installed the Datadog Integration for Postgres. This can be verified in Section II by viewing my dashboard.
+I choose to install PostgreSQL,a sample DVD rental collection and the Datadog Integration for Postgres. This can be verified in Section II by viewing my dashboard.
 
 Here is my custom agent check, my_metric.py
 ```python
@@ -19,9 +23,9 @@ class MyCheck(AgentCheck):
 *Bonus Question:*  Yes, I changed the collection interval by adding `min_collection_interval: 45` to conf.d/my_metric.yaml.
 
 **Section II: Visualizing Data**
+Hands down this was the best experience I have ever had getting to know an API. It was great to be able to download the Postman Environment and work from there! Not to mention the API docs being very user friendly. I generated this script below from Postman to create my dashboard.
 
-Here is the the script I used to generate the timeseries
-```json
+```
 curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 --header 'Content-Type: application/json' \
 --header 'Cookie: DD-PSHARD=217' \
@@ -53,7 +57,7 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
         {
             "definition": {
                 "type": "timeseries",
-                "title": "Postgres Disk Reads",
+                "title": "Postgres Table Count",
                 "requests": [
                     {
                         "q": "anomalies(sum:postgresql.table_count{*}, '\''basic'\'', 5)"
@@ -93,7 +97,7 @@ Here is my dashboard over 5 minutes
 The sum of my metric is grouped into hours (per instructions) so it did not show properly in a 5 minute time span. I expanded the time period on the widget and included a snapshot here 
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/Sum_of_metric_per_hr.PNG)
 
-*Bonus Question:* The anomaly graph is displaying expected behavior in shaded area and the actual behavior as the line. It showed some interesting behavior in my dashboard since I added and deleted some tables rapidly while the metric was still trying to establish a baseline. After a few minutes, the shaded "bounds" steadied out. 
+*Bonus Question:* The anomaly graph is displaying expected behavior in shaded area and the actual behavior as the line. I choose to use a straightforward metric -- count of database tables. The anomaly function showed some interesting (but expected) behavior in my dashboard since I added and deleted some tables rapidly while the metric was still trying to establish a baseline. After a few minutes, the shaded "bounds" steadied out.
 
 **Section III: Monitoring Data**
 I used the GUI to create a metric monitor that alerts on my_metric behavior. I exported the metric monitor as json and pasted at the bottom of this section to show exactly what I did. 
@@ -130,13 +134,11 @@ Here is a screenshot of an email notification for reaching alert status
 
 **Section IV: Collecting APM Data***
 
-I used ddtrace to collect metrics on my "YaraDog" application. You can check it out here http://54.208.32.112/ . The source code is in my github HERE
+I used ddtrace to collect metrics on my "YaraDog" application. You can check it out here  http://54.237.104.89/ . The source code is in my github [HERE](https://github.com/ekufta0530/YaraDog/tree/master). 
 
-The dashboard and infrastructue monitor dashboard below show the app before it was deployed out on a production web server. I setup a .service file with systemd on my production server for ease of use. I had trouble getting ddtrace to run as I wasn't quite sure how to inlude this in the .service file/(pre)ExecStart (or elsewhere). I'm really interested in hearing if there is a good way to do this, or an alternative such as the middleware directly in the application. 
+Credit goes to the original [Aegis](https://github.com/kittymagician/Aegis) app for the idea/ framework. I made some cosmetic changes, wrote some fun Yara rules and made lots of changes to it so it could be deployed out securely with nginx, uWSGI, ec2 and start/stop with systemd. There is not a comprehensive ruleset installed so it is a work in progress and a tool that I will definitely use in the future.
 
-Credit goes to the original [Aegis](https://github.com/kittymagician/Aegis) app for the idea/ framework. I made some cosmetic changes, wrote some fun rules and made lots of changes to it so it could be deployed out securely with nginx, uWSGI, and ec2. There is not a comprehensive ruleset installed so it is a work in progress and a tool that I will definitely use in the future.
-
-I did also setup the Nginx integration so I didn't walk away empty-handed from my monitoring of the app. Below is the dahboard for that as well as other specifically requested in this section. 
+I did also setup the Nginx integration so I didn't walk away empty-handed from my monitoring of the deployed webapp. Below is the dashboard for that as well as other specifically requested in this section. 
 
 Dashboards for APM. First, the Yara app
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/Yara_apm.PNG)
