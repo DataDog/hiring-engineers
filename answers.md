@@ -1,14 +1,14 @@
-Thank you for taking the time to review my hiring exercise. I really enjoyed all the sections, got reacquainted with some tools such as Postman and learned a new one along the way – Vagrant. I especially got carried away with the APM section and ended up hosting my flask app on AWS with Nginx, uWSGI and an ec2 instance. More on that in section IV but if you would like to skip ahead, you can reach the web app at http://54.237.104.89/
+Thank you for taking the time to review my hiring exercise. I really enjoyed all the sections and learned a new tool along the way – Vagrant. I especially got carried away with the APM section and ended up hosting my flask app on AWS with Nginx, uWSGI and an ec2 instance. More on that in section IV but if you would like to skip ahead, you can reach the web app at http://54.237.104.89/
 
 After this exercise I am very impressed and excited about a potential opportunity at Datadog. It is easy to see that the product is powerful, flexible, and easy to use. I was most impressed with the tools provided for developers/ users. The docs are functional and elegant while the generated scripts (for things like agent install) work flawlessly, just to name a couple of highlights.
 
 **Section I: Collecting Metrics**
 
-My host tags can be seen in this image
+I began with the basic Ubuntu 18 Vagrant box and quickly got to editing the config file. The host tags can be seen in this image
 
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/DD_host_tags.PNG).
 
-I choose to install PostgreSQL,a sample DVD rental collection and the Datadog Integration for Postgres. This can be verified in Section II by viewing my dashboard.
+I choose to install PostgreSQL, a sample DVD rental collection, and the Datadog Integration for Postgres. This can be verified in Section II by viewing my dashboard.
 
 Here is my custom agent check, my_metric.py
 ```python
@@ -96,11 +96,13 @@ Here is my dashboard over 5 minutes
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/my_first_dashboard.PNG)
 
 The sum of my metric is grouped into hours (per instructions) so it did not show properly in a 5 minute time span. I expanded the time period on the widget and included a snapshot here 
+
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/Sum_of_metric_per_hr.PNG)
 
 *Bonus Question:* The anomaly graph is displaying expected behavior in shaded area and the actual behavior as the line. I choose to use a straightforward metric -- count of database tables. The anomaly function showed some interesting (but expected) behavior in my dashboard since I added and deleted some tables rapidly while the metric was still trying to establish a baseline. After a few minutes, the shaded "bounds" steadied out.
 
 **Section III: Monitoring Data**
+
 Again, I found this all very user-friendly and the variables very handy. I used the GUI to create a metric monitor that alerts on my_metric behavior. I exported the metric monitor as json and pasted at the bottom of this section to show exactly what I did. 
 
 Here is a screenshot of an email notification for reaching alert status
@@ -135,9 +137,9 @@ Here is a screenshot of an email notification for reaching alert status
 
 **Section IV: Collecting APM Data***
 
-I used ddtrace to collect metrics on my "YaraDog" application. You can check it out here  http://54.237.104.89/ . The source code is in my github [HERE](https://github.com/ekufta0530/YaraDog/tree/master). There is not yet a comprehensive ruleset installed so it is a work in progress and a tool that I will definitely use in the future.
+I used ddtrace to collect metrics on my "YaraDog" application. You can check it out here  http://54.237.104.89/ . The source code is in my github [HERE](https://github.com/ekufta0530/YaraDog/tree/master). There is not yet a comprehensive ruleset installed so it is a work in progress but will be a tool that I will continue to use.
 
-Credit goes to the original [Aegis](https://github.com/kittymagician/Aegis) app for the idea/ framework. I made some cosmetic changes, wrote some fun Yara rules and made lots of changes to it so it could be deployed out securely with nginx, uWSGI, ec2 and start/stop with systemd. I ran into an isses with ddtrace once I was using systemd to manage the app. The dashboards below are metrics from the dev server but I didn't walk away empty-handed from my efforts to monitor the deployed web app so I installed the Nginx integration.
+Credit goes to the original [Aegis](https://github.com/kittymagician/Aegis) app for the idea/ framework. I made some cosmetic changes, wrote some fun Yara rules and made lots of changes to the code so it could be deployed out securely with nginx, uWSGI, ec2 as well as start/stop with systemd. I ran into issues with ddtrace once I was using systemd to manage the app. The dashboards below are metrics from the dev instance, but I didn't walk away empty-handed from my efforts to monitor the deployed web app and installed the Nginx integration for the webserver. 
 
 The APM Dashboard
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/Yara_apm.PNG)
@@ -159,4 +161,6 @@ This would also be very useful for predicting attack trends at scale and would b
 
 
 Thanks again for reviewing my hiring exercise and I hope to talk more in the future. 
+
+
 
