@@ -130,13 +130,16 @@ Here is a screenshot of an email notification for reaching alert status
 
 **Section IV: Collecting APM Data***
 
-I used ddtrace to collect metrics on the provided application as well as an app that I've used in my lab. The app can be found at https://github.com/kittymagician/Aegisat. It is a "simple web GUI for scanning files with YARA" but is also a convenient interface for testing the Yara rules. 
+I used ddtrace to collect metrics on my "YaraDog" application. You can check it out here http://54.208.32.112/ . The source code is in my github HERE
+
+The dashboard and infrastructue monitor dashboard below show the app before it was deployed out on a production web server. I setup a .service file with systemd on my production server for ease of use. I had trouble getting ddtrace to run as I wasn't quite sure how to inlude this in the .service file/(pre)ExecStart (or elsewhere). I'm really interested in hearing if there is a good way to do this, or an alternative such as the middleware directly in the application. 
+
+Credit goes to the original [Aegis](https://github.com/kittymagician/Aegis) app for the idea/ framework. I made some cosmetic changes, wrote some fun rules and made lots of changes to it so it could be deployed out securely with nginx, uWSGI, and ec2. There is not a comprehensive ruleset installed so it is a work in progress and a tool that I will definitely use in the future.
+
+I did also setup the Nginx integration so I didn't walk away empty-handed from my monitoring of the app. Below is the dahboard for that as well as other specifically requested in this section. 
 
 Dashboards for APM. First, the Yara app
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/Yara_apm.PNG)
-
-And the app provided
-![Alt text](https://la-psql-zebra.s3.amazonaws.com/apm_dashboard.PNG)
 
 Dashboard for Infrastructure Monitor
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/infrastructure_metrics.PNG)
