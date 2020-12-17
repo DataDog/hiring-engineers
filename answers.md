@@ -135,17 +135,18 @@ Here is a screenshot of an email notification for reaching alert status
 
 **Section IV: Collecting APM Data***
 
-I used ddtrace to collect metrics on my "YaraDog" application. You can check it out here  http://54.237.104.89/ . The source code is in my github [HERE](https://github.com/ekufta0530/YaraDog/tree/master). 
+I used ddtrace to collect metrics on my "YaraDog" application. You can check it out here  http://54.237.104.89/ . The source code is in my github [HERE](https://github.com/ekufta0530/YaraDog/tree/master). There is not yet a comprehensive ruleset installed so it is a work in progress and a tool that I will definitely use in the future.
 
-Credit goes to the original [Aegis](https://github.com/kittymagician/Aegis) app for the idea/ framework. I made some cosmetic changes, wrote some fun Yara rules and made lots of changes to it so it could be deployed out securely with nginx, uWSGI, ec2 and start/stop with systemd. There is not a comprehensive ruleset installed so it is a work in progress and a tool that I will definitely use in the future.
+Credit goes to the original [Aegis](https://github.com/kittymagician/Aegis) app for the idea/ framework. I made some cosmetic changes, wrote some fun Yara rules and made lots of changes to it so it could be deployed out securely with nginx, uWSGI, ec2 and start/stop with systemd. I ran into an isses with ddtrace once I was using systemd to manage the app. The dashboards below are metrics from the dev server but I didn't walk away empty-handed from my efforts to monitor the deployed web app so I installed the Nginx integration.
 
-I did also setup the Nginx integration so I didn't walk away empty-handed from my monitoring of the deployed webapp. Below is the dashboard for that as well as other specifically requested in this section. 
-
-Dashboards for APM. First, the Yara app
+The APM Dashboard
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/Yara_apm.PNG)
 
 Dashboard for Infrastructure Monitor
 ![Alt text](https://la-psql-zebra.s3.amazonaws.com/infrastructure_metrics.PNG)
+
+Dashboard for Nginx
+![Alt test](https://la-psql-zebra.s3.amazonaws.com/nginx.PNG)
 
 *Bonus Question:* A service "groups together a series of endpoints, queries, or jobs." For example, a user database or advertising server could be services. Resources "represent a particular domain of a customer application". An example would be a web endpoint or a database query.
 
@@ -154,4 +155,8 @@ Dashboard for Infrastructure Monitor
 Datadog would be an excellent platform for monitoring and visualizing telemetry data on security indicators of compromise published by different threat intel feeds (i.e. ISAC’s, Cisco Talos, Emerging Threats, DHS). Log files of the IDS/IPS appliances could be received into the platform to see which indicators are firing most, or not at all. Layer on true/ false positive telemetry from security teams and you can easily see which rules are worthy and which are just noise.
 
 This would also be very useful for predicting attack trends at scale and would be an excellent tool for those publishing the threat intelligence! One use case would be sending off notifications to subscribers if an indicator, or set of indicators, are firing often. For example, if a rule for a SYN flood DoS is firing at 300% normal capacity in the community, the rest of the sec community would love to have this information in real time to notify their relevant team members. 
+
+
+
+Thanks again for reviewing my hiring exercise and I hope to talk more in the future. 
 
