@@ -11,12 +11,12 @@ Screenshots:
 Host and Tags on Host Map UI
 ![Alt text](/photos/host_map.png?raw=true "Host Map and Tags")
 
-2) Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-MongoDB reflecting on Host Map.
+2) Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 Link:
 https://app.datadoghq.com/infrastructure/map?host=3443516844&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=true&node_type=host
 
 Screenshots:
+MongoDB reflecting on Host Map.
 ![Alt text](/photos/mongodb_host_map.png?raw=true "MongoDB on Host Map")
