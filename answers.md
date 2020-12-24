@@ -35,11 +35,11 @@ my_metric on the UI
 ![Alt text](/photos/ui_my_metric.png?raw=true "my_metric")
 
 4)Change your check's collection interval so that it only submits the metric once every 45 seconds.
-![Alt text](/photos/min_collection_interval?raw=true "my_metric")
+![Alt text](/photos/min_collection_interval.png?raw=true "my_metric")
 
 
 5) Bonus Question Can you change the collection interval without modifying the Python check file you created?
-
+Answer: Yes by going to Metrics >> Summary >> Searching for 
 Link:
 https://app.datadoghq.com/metric/summary?filter=my&metric=my_metric
 
