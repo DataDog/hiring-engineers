@@ -20,3 +20,16 @@ https://app.datadoghq.com/infrastructure/map?host=3443516844&fillby=avg%3Acpuuti
 Screenshots:
 MongoDB reflecting on Host Map.
 ![Alt text](/photos/mongodb_host_map.png?raw=true "MongoDB on Host Map")
+
+
+3)Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+Link:
+https://app.datadoghq.com/metric/explorer?from_ts=1608782940389&to_ts=1608786540389&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my_metric&exp_agg=avg&exp_row_type=metric
+
+Screenshots:
+my_metric.py file
+![Alt text](/photos/my_metric.png?raw=true "MongoDB on Host Map")
+
+my_metric on the UI
+![Alt text](/photos/ui_my_metric.png?raw=true "MongoDB on Host Map")
