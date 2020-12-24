@@ -11,4 +11,4 @@ Host and Tags on Host Map UI
 ![Alt text](/photos/host_map.png?raw=true "Host Map and Tags")
 
 MongoDB reflecting on Host Map.
-![Alt text](/photos/host_map.png?raw=true "MongoDB on Host Map")
+![Alt text](/photos/mongodb_host_map.png?raw=true "MongoDB on Host Map")
