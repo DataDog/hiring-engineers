@@ -39,7 +39,8 @@ my_metric on the UI
 
 
 5) Bonus Question Can you change the collection interval without modifying the Python check file you created?
-Answer: Yes by going to Metrics >> Summary >> Searching for 
+Answer: Yes by going to Metrics >> Summary >> Searching for metric name >> Right hand side window click on edit.
+
 Link:
 https://app.datadoghq.com/metric/summary?filter=my&metric=my_metric
 
