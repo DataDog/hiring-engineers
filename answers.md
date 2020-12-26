@@ -69,8 +69,7 @@ I used [this](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname)
 ## Collecting APM Data:
 I uses the following [resource](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers#follow-the-in-app-documentation-recommended)
 I ran into a couple of issues while trying to install ddtrace following resource. Please make sure to install the correct Cython files for Ubuntu 18.04 and install Flask using pip first and then install ddtrace to solve the issue.
-
-''' sh
+``` sh
 DD_SERVICE="flak" DD_ENV="flask" DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true ddtrace-run python flaskapp.py
-'''
+```
 insert pics{}
