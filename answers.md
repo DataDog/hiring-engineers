@@ -21,7 +21,7 @@ Host and Tags on Host Map UI
 Link:
 https://app.datadoghq.com/infrastructure/map?host=3443516844&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=true&node_type=host
 
-To install MongoDB from the Host Map, click on Integrations >> Integrations from the DD home page sidebar. This link directs the user to a page with a list of integration options. From here, one can search for MongoDB and follow the configuration steps.
+To start the MongoDB's install process, from the Host Map, go to the sidebar and click on Integrations >> Integrations. This link directs the user to a page with a list of integration options. From here, search for MongoDB and follow the configuration steps.
 
 Screenshots:
 ![Alt text](/photos/db_installed.png?raw=true "MongoDB Integrations Page")
@@ -42,7 +42,8 @@ instances: [{}]
 
 One level up from the conf.d/ folder is the check.d/ folder. Here create a custom check file named metric_example.py with the code from the screenshot below.
 
-Then confirm the custom agent check on the front end from the DD home page's sidebar >> metrics >> metric summary. Here, enter the metric's name into the metric search bar.
+Then confirm the custom agent check on the front end by click on DD's sidebar >> metrics >> metric summary. 
+Once directed to the Mertric's Summary page, enter the Metric's name into the metric search bar.
 
 Screenshots:
 my_metric.py file
