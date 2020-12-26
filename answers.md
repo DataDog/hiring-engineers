@@ -21,7 +21,11 @@ Host and Tags on Host Map UI
 Link:
 https://app.datadoghq.com/infrastructure/map?host=3443516844&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=true&node_type=host
 
+To install MongoDB from the Host Map, click on Integrations >> Integrations from the DD home page sidebar. This link directs the user to a page with a list of integration options. From here, one can search for MongoDB and follow the configuration steps.
+
 Screenshots:
+![Alt text](/photos/db_installed.png?raw=true "MongoDB Integrations Page")
+
 MongoDB reflecting on Host Map.
 ![Alt text](/photos/mongodb_host_map.png?raw=true "MongoDB on Host Map")
 
@@ -31,11 +35,20 @@ MongoDB reflecting on Host Map.
 Link:
 https://app.datadoghq.com/metric/explorer?from_ts=1608782940389&to_ts=1608786540389&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my_metric&exp_agg=avg&exp_row_type=metric
 
+To create a custom Agent check, create an empty directory named my_metric.d in /etc/datadog-agent/conf.d.
+In this directory, create a file named my_metric.YAML. For now, place an empty list for the instances:
+
+instances: [{}]
+
+One level up from the conf.d/ folder is the check.d/ folder. Here create a custom check file named metric_example.py with the code from the screenshot below.
+
+Then confirm the custom agent check on the front end from the DD home page's sidebar >> metrics >> metric summary. Here, enter the metric's name into the metric search bar.
+
 Screenshots:
 my_metric.py file
 ![Alt text](/photos/my_metric.png?raw=true "my_metric.py")
 
-my_metric on the UI
+my_metric reflecting on the UI
 ![Alt text](/photos/ui_my_metric.png?raw=true "my_metric")
 
 4)Change your check's collection interval so that it only submits the metric once every 45 seconds.
