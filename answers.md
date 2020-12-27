@@ -1,7 +1,7 @@
 **Collecting Metrics**
 
-_Exercise 1:_
-Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+_Exercise 1:
+Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog._
 
 Link:
 https://app.datadoghq.com/infrastructure/map?host=3443516844&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=true&node_type=host
@@ -15,8 +15,8 @@ Screenshots:
 Agent on Host Map UI
 ![Alt text](/photos/host_map.png?raw=true "Host Map and Tags")
 
-_Exercise 2:_
-Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+_Exercise 2:
+Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database._
 
 Link:
 https://app.datadoghq.com/infrastructure/map?host=3443516844&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=true&node_type=host
@@ -30,8 +30,8 @@ Screenshots:
 MongoDB reflecting on Host Map.
 ![Alt text](/photos/mongodb_host_map.png?raw=true "MongoDB on Host Map")
 
-_Exercise 3:_
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+_Exercise 3:
+Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000._
 
 Link:
 https://app.datadoghq.com/metric/explorer?from_ts=1608782940389&to_ts=1608786540389&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my_metric&exp_agg=avg&exp_row_type=metric
@@ -57,8 +57,8 @@ my_metric.py file
 my_metric reflecting on the UI
 ![Alt text](/photos/ui_my_metric.png?raw=true "my_metric")
 
-Exercise 4:
-Change your check's collection interval so that it only submits the metric once every 45 seconds.
+_Exercise 4:
+Change your check's collection interval so that it only submits the metric once every 45 seconds._
 
 Answer:
 Changes are made on the the my_metric.YAML file.
@@ -79,11 +79,11 @@ Screenshots:
 
 **Visualizing Data**
 
-Exercise 1:
-Utilize the Datadog API to create a Timeboard that contains:
+_Exercise 1:
+Utilize the Datadog API to create a Timeboard that contains:_
 
 
-A) Your custom metric scoped over your host.
+_A) Your custom metric scoped over your host._
 
 Link:
 https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097698053&fullscreen_section=overview&fullscreen_widget=1373939238835056&live=true&to_ts=1609101298053&fullscreen_start_ts=1609097700694&fullscreen_end_ts=1609101300694&fullscreen_paused=false
@@ -116,7 +116,7 @@ https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from
 Screenshot:
 ![Alt text](/photos/my_metric_widget.png?raw=true)
 
-B) Any metric from the Integration on your Database with the anomaly function applied.
+_B) Any metric from the Integration on your Database with the anomaly function applied._
 
 Link:
 https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097698053&fullscreen_section=overview&fullscreen_widget=4489668233532641&live=true&to_ts=1609101298053&fullscreen_start_ts=1609097739634&fullscreen_end_ts=1609101339634&fullscreen_paused=false
@@ -149,7 +149,7 @@ https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from
 Screenshot:
 ![Alt text](/photos/mongodb_widget.png?raw=true)
 
-C) Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+_C) Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket_
 
 Link:
 https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097769285&fullscreen_section=overview&fullscreen_widget=8414443735692492&live=true&to_ts=1609101369285&fullscreen_start_ts=1609097771813&fullscreen_end_ts=1609101371813&fullscreen_paused=false
@@ -180,3 +180,23 @@ https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from
 
 Screenshot:
 ![Alt text](/photos/roll_sum_widget.png?raw=true)
+
+_Exercise 2:
+Once this is created, access the Dashboard from your Dashboard List in the UI:_
+
+_A) Set the Timeboard's timeframe to the past 5 minutes_
+
+Screenshot:
+![Alt text](/photos/.png?raw=true)
+
+_B) Take a snapshot of this graph and use the @ notation to send it to yourself._
+
+Screenshot:
+![Alt text](/photos/.png?raw=true)
+
+_C) Bonus Question: What is the Anomaly graph displaying?_
+
+Screenshot:
+![Alt text](/photos/.png?raw=true)
+
+**Monitoring Data**
