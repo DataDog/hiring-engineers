@@ -25,10 +25,10 @@ Answer:
 To start the MongoDB's install process, from the Host Map, go to the sidebar and click on Integrations >> Integrations. This link directs the user to a page with a list of integration options. From here, search for MongoDB and follow the configuration steps.
 
 Screenshots:
-![Alt text](/photos/db_installed.png?raw=true&s=15 "MongoDB Integrations Page")
+![Alt text](/photos/db_installed.png?raw=true&s=150 "MongoDB Integrations Page")
 
 MongoDB reflecting on Host Map.
-![Alt text](/photos/mongodb_host_map.png?raw=true&s=15 "MongoDB on Host Map")
+![Alt text](/photos/mongodb_host_map.png?raw=true&s=150 "MongoDB on Host Map")
 
 _Exercise 3:
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000._
