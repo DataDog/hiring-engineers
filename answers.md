@@ -76,9 +76,9 @@ I used [this](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname)
 ``` sh
 DD_SERVICE="flak" DD_ENV="flask" DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true ddtrace-run python flaskapp.py
 ```
-Here are the screenshot ![](screenshot/flask-dash.PNG)
+Here are the screenshot ![](screenshot/APM+Mertics-dash.PNG)
 
-Here is a link to a simple[dashboard](https://p.datadoghq.com/sb/ha86c4ioy7wh8zmv-44fd192d58f69ca30af4d1acb9cbff66)
+Here is a link to a simple [dashboard](https://p.datadoghq.com/sb/ha86c4ioy7wh8zmv-44fd192d58f69ca30af4d1acb9cbff66)
 
 To view the flask appliction click [here](https://github.com/Hesham20/hiring-engineers/blob/master/flaskapp.py).
 
