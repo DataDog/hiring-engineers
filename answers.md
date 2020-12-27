@@ -82,7 +82,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 A) Your custom metric scoped over your host.
 
-*{
+```{
   curl -X POST "https://api.datadoghq.com/api/v1/dashboard" \
   -H "Content-Type: application/json" \
   -H "DD-API-KEY: ${DD_CLIENT_API_KEY}" \
@@ -116,8 +116,9 @@ A) Your custom metric scoped over your host.
             }
         }
     ]
-}*
-l
+}
+```
+
 Screenshot:
 ![Alt text](/photos/interval.png?raw=true)
 
