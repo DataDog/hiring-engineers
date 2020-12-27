@@ -40,7 +40,10 @@ Answer:
 To create a custom Agent check, create an empty directory named my_metric.d in /etc/datadog-agent/conf.d.
 In this directory, create a file named my_metric.YAML. For now, place an empty list for the instances:
 
+```
 *instances: [{}]*
+  
+  ```
 
 One level up from the conf.d/ folder is the check.d/ folder. Here create a custom check file named metric_example.py with the code from the screenshot below.
 
