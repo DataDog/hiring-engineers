@@ -111,8 +111,36 @@ A) Your custom metric scoped over your host.
 ```
 
 Screenshot:
-![Alt text](/photos/interval.png?raw=true)
+![Alt text](/photos/my_metric_widget.png?raw=true)
 
 B) Any metric from the Integration on your Database with the anomaly function applied.
+
+```
+{
+    "description": "API Timeboard",
+    "is_read_only": false,
+    "layout_type": "ordered",
+    "notify_list": [],
+    "title": "API Custom Metric Timeboard",
+    "widgets": [
+        {
+          "definition": {
+                "type": "timeseries",
+                "title": "Number of MongoDB Queries Per Second.",
+                "requests": [
+                    {
+                        "q": "mongodb.opcounters.queryps{*}"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+
+```
+
+Screenshot:
+![Alt text](/photos/mongodb_widget.png?raw=true)
 
 C) Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
