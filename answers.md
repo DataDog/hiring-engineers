@@ -13,7 +13,8 @@ Below we have a screenshot of the Host Map. This can be viewed by heading to the
 
 Screenshots:
 Agent on Host Map UI
-<img src="/photos/host_map" alt="Host Map" style="width:200px;"/>
+<img src="photos/host_map" alt="Host Map" style="width:200px;"/>
+
 <!-- ![Alt text](/photos/host_map.png=250x "Host Map and Tags") -->
 
 _Exercise 2:
