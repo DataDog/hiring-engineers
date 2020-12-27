@@ -169,4 +169,4 @@ C) Your custom metric with the rollup function applied to sum up all the points 
 ```
 
 Screenshot:
-![Alt text](/photos/sum_widget.png?raw=true)
+![Alt text](/photos/roll_sum_widget.png?raw=true)
