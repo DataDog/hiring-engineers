@@ -144,3 +144,29 @@ Screenshot:
 ![Alt text](/photos/mongodb_widget.png?raw=true)
 
 C) Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+```
+{
+    "description": "API Timeboard",
+    "is_read_only": false,
+    "layout_type": "ordered",
+    "notify_list": [],
+    "title": "API Custom Metric Timeboard",
+    "widgets": [
+        {
+          "definition": {
+                "type": "timeseries",
+                "title": "My Metric with Rollup Function",
+                "requests": [
+                    {
+                        "q": "sum:my_metric{*}.rollup(sum, 3600)"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+Screenshot:
+![Alt text](/photos/sum_widget.png?raw=true)
