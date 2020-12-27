@@ -59,7 +59,9 @@ Please configure the monitor’s message so that it will:
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
   - Screen shots from all 3 type(Alert/Warning/No Datat) of email alerts my email inbox:
   ![](screenshot/Alert-Email.PNG) 
+  - Warning email alert:
   ![](screenshot/warning-Email.PNG) 
+  - No data email alert:
   ![](screenshot/No-data-Email.PNG) 
 
 
