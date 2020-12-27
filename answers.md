@@ -57,8 +57,10 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
   - A screenshot of the message config page ![](screenshot/alert-dis-config.PNG) 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-  - Screen shots from my email inbox:
-  ![]() 
+  - Screen shots from all 3 type(Alert/Warning/No Datat) of email alerts my email inbox:
+  ![](screenshot/Alert-Email.PNG) 
+  ![](screenshot/warning-Email.PNG) 
+  ![](screenshot/No-data-Email.PNG) 
 
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
