@@ -24,14 +24,35 @@ curl -X POST "https://api.datadoghq.com/api/v1/dashboard" \
                         }
                     }
                 ]
-            },
-            "id": 123,
-            "layout": {
-                "height": 0,
-                "width": 0,
-                "x": 0,
-                "y": 0
+            }
+        },
+        {
+            "definition": {
+                "type": "timeseries",
+                "title": "Number of MongoDB Queries Per Second.",
+                "requests": [
+                    {
+                        "q": "mongodb.opcounters.queryps{*}",
+                        "style": {
+                            "palette": "dog_classic"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "definition": {
+                "type": "timeseries",
+                "title": "My Metric with Rollup Function",
+                "requests": [
+                    {
+                        "q": "sum:my_metric{*}.rollup(sum, 3600)",
+                        "style": {
+                            "palette": "dog_classic"
+                        }
+                    }
+                ]
             }
         }
     ]
-}
+    }
