@@ -85,6 +85,9 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 A) Your custom metric scoped over your host.
 
+Link:
+https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097698053&fullscreen_section=overview&fullscreen_widget=1373939238835056&live=true&to_ts=1609101298053&fullscreen_start_ts=1609097700694&fullscreen_end_ts=1609101300694&fullscreen_paused=false
+
 ```{
     "description": "API Timeboard",
     "is_read_only": false,
@@ -115,6 +118,9 @@ Screenshot:
 
 B) Any metric from the Integration on your Database with the anomaly function applied.
 
+Link:
+https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097698053&fullscreen_section=overview&fullscreen_widget=4489668233532641&live=true&to_ts=1609101298053&fullscreen_start_ts=1609097739634&fullscreen_end_ts=1609101339634&fullscreen_paused=false
+
 ```
 {
     "description": "API Timeboard",
@@ -144,6 +150,10 @@ Screenshot:
 ![Alt text](/photos/mongodb_widget.png?raw=true)
 
 C) Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+Link:
+https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097769285&fullscreen_section=overview&fullscreen_widget=8414443735692492&live=true&to_ts=1609101369285&fullscreen_start_ts=1609097771813&fullscreen_end_ts=1609101371813&fullscreen_paused=false
+
 ```
 {
     "description": "API Timeboard",
