@@ -78,7 +78,9 @@ DD_SERVICE="flak" DD_ENV="flask" DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1"
 ```
 Here are the screenshot ![](screenshot/flask-dash.PNG)
 
-To view the appliction click here.
+Here is a link to a simple[dashboard](https://p.datadoghq.com/sb/ha86c4ioy7wh8zmv-44fd192d58f69ca30af4d1acb9cbff66)
+
+To view the flask appliction click [here](https://github.com/Hesham20/hiring-engineers/blob/master/flaskapp.py).
 
 
 ## Final Question:
