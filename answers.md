@@ -1,6 +1,6 @@
-Collecting Metrics
+**Collecting Metrics**
 
-Exercise 1:
+_Exercise 1:_
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 Link:
@@ -15,7 +15,7 @@ Screenshots:
 Agent on Host Map UI
 ![Alt text](/photos/host_map.png?raw=true "Host Map and Tags")
 
-Exercise 2:
+_Exercise 2:_
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 Link:
@@ -30,7 +30,7 @@ Screenshots:
 MongoDB reflecting on Host Map.
 ![Alt text](/photos/mongodb_host_map.png?raw=true "MongoDB on Host Map")
 
-Exercise 3:
+_Exercise 3:_
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 Link:
@@ -77,7 +77,7 @@ Yes by going to Metrics >> Summary >> Searching for metric name >> Right hand si
 Screenshots:
 ![Alt text](/photos/interval.png?raw=true)
 
-Visualizing Data
+**Visualizing Data**
 
 Exercise 1:
 Utilize the Datadog API to create a Timeboard that contains:
