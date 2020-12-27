@@ -12,7 +12,7 @@ Below we have a screenshot of the Host Map. This can be viewed by heading to the
 /etc/datadog-agent/datadog.yaml  
 
 Screenshots:
-Host and Tags on Host Map UI
+Agent on Host Map UI
 ![Alt text](/photos/host_map.png?raw=true "Host Map and Tags")
 
 Exercise 2:
@@ -74,4 +74,14 @@ Yes by going to Metrics >> Summary >> Searching for metric name >> Right hand si
 Screenshots:
 ![Alt text](/photos/interval.png?raw=true)
 
-Visualizing Data:
+
+Visualizing Data
+
+Exercise 1:
+Utilize the Datadog API to create a Timeboard that contains:
+
+A) Your custom metric scoped over your host.
+
+B) Any metric from the Integration on your Database with the anomaly function applied.
+
+C) Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
