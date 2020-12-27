@@ -67,15 +67,16 @@ I used [this](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname)
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   
 ## Collecting APM Data:
-I used th give Flask application  
-I ran into a couple of issues while trying to install 'ddtrace' using following [resource](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers#follow-the-in-app-documentation-recommended). Before installing ddtrace please make sure to install the correct Cython files for Ubuntu 18.04 and install Flask using pip first. After that, install ddtrac. Now, ddtrace should be up and running and test it using ```sh ddtrace-run ```
+- I used the given Flask application with python for this section.
 
-To run the Falsk application , I used the following command: 
+- I ran into a couple of issues while trying to install 'ddtrace' on my host using following [resource](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers#follow-the-in-app-documentation-recommended). Before installing ddtrace on your host please make sure to install the correct Cython files for Ubuntu 18.04 and install Flask using pip first. After that, install ddtrace. After doing that, ddtrace should be up and running, you can test it by running the following command ```sh ddtrace-run ```
+
+- To run the Falsk application , I used the following command: 
 
 ``` sh
 DD_SERVICE="flak" DD_ENV="flask" DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true ddtrace-run python flaskapp.py
 ```
-insert pics{}
+Here are the screenshot ![](screenshot/flask-dash.PNG)
 
 To view the appliction click here.
 
