@@ -187,16 +187,15 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:_
 _A) Set the Timeboard's timeframe to the past 5 minutes_
 
 Screenshot:
-![Alt text](/photos/.png?raw=true)
+![Alt text](/photos/five_min_dash.png?raw=true)
 
 _B) Take a snapshot of this graph and use the @ notation to send it to yourself._
 
 Screenshot:
-![Alt text](/photos/.png?raw=true)
+![Alt text](/photos/send_to_self.png?raw=true)
 
 _C) Bonus Question: What is the Anomaly graph displaying?_
 
-Screenshot:
-![Alt text](/photos/.png?raw=true)
+
 
 **Monitoring Data**
