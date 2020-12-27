@@ -15,10 +15,10 @@ curl -X POST "https://api.datadoghq.com/api/v1/dashboard" \
         {
             "definition": {
                 "type": "timeseries",
-                "title": "Timeseries Widget",
+                "title": "My Metric Widget",
                 "requests": [
                     {
-                        "q": "avg:system.cpu.user{*} by {host}",
+                        "q": "my_metric{host:vagrant}",
                         "style": {
                             "palette": "dog_classic"
                         }

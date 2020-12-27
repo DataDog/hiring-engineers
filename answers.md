@@ -40,7 +40,7 @@ Answer:
 To create a custom Agent check, create an empty directory named my_metric.d in /etc/datadog-agent/conf.d.
 In this directory, create a file named my_metric.YAML. For now, place an empty list for the instances:
 
-instances: [{}]
+*instances: [{}]*
 
 One level up from the conf.d/ folder is the check.d/ folder. Here create a custom check file named metric_example.py with the code from the screenshot below.
 
@@ -74,13 +74,52 @@ Yes by going to Metrics >> Summary >> Searching for metric name >> Right hand si
 Screenshots:
 ![Alt text](/photos/interval.png?raw=true)
 
-
 Visualizing Data
 
 Exercise 1:
 Utilize the Datadog API to create a Timeboard that contains:
 
+
 A) Your custom metric scoped over your host.
+
+*{
+  curl -X POST "https://api.datadoghq.com/api/v1/dashboard" \
+  -H "Content-Type: application/json" \
+  -H "DD-API-KEY: ${DD_CLIENT_API_KEY}" \
+  -H "DD-APPLICATION-KEY: ${DD_CLIENT_APP_KEY}" \
+  -d @- << EOF
+    "description": "API Timeboard",
+    "is_read_only": false,
+    "layout_type": "ordered",
+    "notify_list": [],
+    "title": "API Custom Metric Timeboard",
+    "widgets": [
+        {
+            "definition": {
+                "type": "timeseries",
+                "title": "My Metric Widget",
+                "requests": [
+                    {
+                        "q": "my_metric{host:vagrant}",
+                        "style": {
+                            "palette": "dog_classic"
+                        }
+                    }
+                ]
+            },
+            "id": 123,
+            "layout": {
+                "height": 0,
+                "width": 0,
+                "x": 0,
+                "y": 0
+            }
+        }
+    ]
+}*
+
+Screenshot:
+![Alt text](/photos/interval.png?raw=true)
 
 B) Any metric from the Integration on your Database with the anomaly function applied.
 
