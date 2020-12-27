@@ -13,7 +13,7 @@ Below we have a screenshot of the Host Map. This can be viewed by heading to the
 
 Screenshots:
 Agent on Host Map UI
-![Alt text](/photos/host_map.png?raw=true "Host Map and Tags")
+![Alt text](/photos/host_map.png=250x "Host Map and Tags")
 
 _Exercise 2:
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database._
@@ -196,6 +196,6 @@ Screenshot:
 
 _C) Bonus Question: What is the Anomaly graph displaying?_
 
-
+The Anomaly graph is
 
 **Monitoring Data**
