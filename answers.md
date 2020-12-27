@@ -40,24 +40,26 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
-I used the following two resources to build the alerts:
-
-(https://docs.datadoghq.com/monitors/monitor_types/metric/?tab=threshold#overview)
-(https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#conditional-variables)
+- I used the following two resources to build the alerts:
+ (https://docs.datadoghq.com/monitors/monitor_types/metric/?tab=threshold#overview)
+ (https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#conditional-variables)
 
 * Warning threshold of 500
 * Alerting threshold of 800
-Screnshot for both ^
+  - Screnshot for both the above thershold: ![](screenshot/alert-config.PNG)
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
-Screenshot^
+  - A mini screenshot for the No Data option: ![](screenshot/No-data.PNG)
 
 Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+  - A screenshot of the message config page ![](screenshot/alert-dis-config.PNG) 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-Screen shots for the top three questions
+  - Screen shots from my email inbox:
+  ![]() 
+
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 I used [this](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname) 
@@ -71,12 +73,12 @@ I used [this](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname)
 
 - I ran into a couple of issues while trying to install 'ddtrace' on my host using following [resource](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers#follow-the-in-app-documentation-recommended). Before installing ddtrace on your host please make sure to install the correct Cython files for Ubuntu 18.04 and install Flask using pip first. After that, install ddtrace. After doing that, ddtrace should be up and running, you can test it by running the following command ```sh ddtrace-run ```
 
-- To run the Falsk application , I used the following command: 
+- To run the Falsk application, I used the following command: 
 
 ``` sh
 DD_SERVICE="flak" DD_ENV="flask" DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true ddtrace-run python flaskapp.py
 ```
-Here are the screenshot ![](screenshot/APM+Mertics-dash.PNG)
+Here is the screenshot of the dashboard: ![](screenshot/APM+Mertics-dash.PNG)
 
 Here is a link to a simple [dashboard](https://p.datadoghq.com/sb/ha86c4ioy7wh8zmv-44fd192d58f69ca30af4d1acb9cbff66)
 
