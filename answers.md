@@ -13,7 +13,7 @@ Below we have a screenshot of the Host Map. This can be viewed by heading to the
 
 Screenshots:
 Agent on Host Map UI
-![Alt text](/photos/host_map.png?raw=true "Host Map and Tags") {:height="50%" width="50%"}
+![Alt text](/photos/host_map.png?raw=true&s=200 "Host Map and Tags")
 
 _Exercise 2:
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database._
