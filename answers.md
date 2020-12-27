@@ -60,9 +60,9 @@ Please configure the monitor’s message so that it will:
   - Screen shots from all 3 type(Alert/Warning/No Datat) of email alerts my email inbox:
   ![](screenshot/Alert-Email.PNG) 
   - Warning email alert:
-  ![](screenshot/warning-Email.PNG) 
+  ![](screenshot/warning-email.PNG) 
   - No data email alert:
-  ![](screenshot/No-data-Email.PNG) 
+  ![](screenshot/No-data-email.PNG) 
 
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
