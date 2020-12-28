@@ -45,17 +45,20 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 * Warning threshold of 500
 * Alerting threshold of 800
-  - Screnshot for both the above thershold: ![](screenshot/alert-config.PNG)
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
-  - A mini screenshot for the No Data option: ![](screenshot/No-data.PNG)
+  - I used [this useful guide](https://docs.datadoghq.com/monitors/monitor_types/metric/?tab=threshold) to set up the metirc monitor alerts. 
+  - These couple of screenshots shows how to configure the above thersholds and the how to set the no data alert: 
+  ![](screenshot/alert-config.PNG)
+  ![](screenshot/No-data.PNG)
 
 Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-  - A screenshot of the message config page ![](screenshot/alert-dis-config.PNG) 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+  - I modified the message section to include the above conditions using [conditional variables](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#conditional-variables) To look at the logic that I used, please refer this screenshots:
+  ![](screenshot/alert-dis-config.PNG) 
   - The following screenshots are from all 3 types of email alerts(Alert/Warning/No Datat) from my email inbox:
   ![](screenshot/Alert-Email.PNG) 
 
@@ -67,16 +70,17 @@ Please configure the monitor’s message so that it will:
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
         
   * One that silences it from 7pm to 9am daily on M-F,
-    - Step one: ![](screenshot/M-F_downtime1.PNG)
-    - step two: ![](screenshot/M-F_downtime2.PNG)
-    - step three: ![](screenshot/M-F_downtime3.PNG)
+    - Step one: from the main menu on the UI go to Monitors --> Manage Downtime. Then click on Schedule downtime on the top right corner.
+      Select the metic that you want to monitor![](screenshot/M-F_downtime1.PNG)
+    - step two: fill the schedule ![](screenshot/M-F_downtime2.PNG)
+    - step three: enter the message for the notifications and select recipients ![](screenshot/M-F_downtime3.PNG)
   * And one that silences it all day on Sat-Sun.
     - step one should be the same one as above
-    - step two:  ![](screenshot/weekend-downtime2.PNG)
-    - step three:  ![](screenshot/weekend-downtime3.PNG)
+    - step two: select Sat and turn the downtime on for 2 days, so you only receive one email   ![](screenshot/weekend-downtime2.PNG)
+    - step three: enter the message ![](screenshot/weekend-downtime3.PNG)
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-    - Here is the M-F 7pm to 9am email notification:  ![](screenshot/M-F_downtime-Email.PNG)
-    - Here is the weekedend email notification:  ![](screenshot/weekend-downtime-email.PNG)
+    - Here is the downtime email notification for M-F, 7pm to 9am:  ![](screenshot/M-F_downtime-Email.PNG)
+    - Here is the downtime email notification weekedend:  ![](screenshot/weekend-downtime-email.PNG)
   
 ## Collecting APM Data:
    - I used the Flask application example that was given and instrumented it using Datadog’s APM solution for Python. 
@@ -92,7 +96,7 @@ DD_SERVICE="flak" DD_ENV="flask" DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1"
 
    - Here is a screenshot of a simple dashboard that shows both APM and infrastructure metrics.: ![](screenshot/APM+Mertics-dash.PNG)
 
-   - Here is a link to the above dashboard [dashboard](https://p.datadoghq.com/sb/ha86c4ioy7wh8zmv-44fd192d58f69ca30af4d1acb9cbff66)
+   - Here is a link to the above [dashboard](https://p.datadoghq.com/sb/ha86c4ioy7wh8zmv-44fd192d58f69ca30af4d1acb9cbff66)
 
    - To view the flask appliction please click [here](https://github.com/Hesham20/hiring-engineers/blob/master/flaskapp.py).
 
