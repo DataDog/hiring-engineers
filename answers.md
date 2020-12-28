@@ -59,17 +59,17 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
   - A screenshot of the message config page ![](screenshot/alert-dis-config.PNG) 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-  - Screen shots from all 3 type(Alert/Warning/No Datat) of email alerts my email inbox:
+  - The following screenshots are from all 3 types of email alerts(Alert/Warning/No Datat) from my email inbox:
   ![](screenshot/Alert-Email.PNG) 
-  - Warning email alert:
+
   ![](screenshot/warning-email.PNG) 
-  - No data email alert:
+ 
   ![](screenshot/No-data-email.PNG) 
 
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-- I used this [resource](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname) to set up the downtimes schedules
+-I used this [resource](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname) to set up the downtimes schedules
         
   * One that silences it from 7pm to 9am daily on M-F,
     - Step one: ![](screenshot/M-F_downtime1.PNG)
@@ -88,7 +88,7 @@ Please configure the monitor’s message so that it will:
 
    - I ran into a couple of issues while trying to install 'ddtrace' on my host using following [resource](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers#follow-the-in-app-documentation-recommended). Before installing ddtrace on your host please make sure to install the correct Cython files for Ubuntu 18.04 and install Flask using pip first. After that, install ddtrace using pip. Now, ddtrace should be up and running, you can test it by running the following command ```sh ddtrace-run ```
 
-     To run the Falsk application, I used the following command: 
+   - To run the Falsk application, I used the following command: 
 
 
 ``` sh
