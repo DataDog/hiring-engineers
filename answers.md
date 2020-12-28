@@ -211,5 +211,7 @@ Screenshot:
 _Exercise 1: Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 A) Warning threshold of 500
+
 B)Alerting threshold of 800
+
 C And also ensure that it will notify you if there is No Data for this query over the past 10m._
