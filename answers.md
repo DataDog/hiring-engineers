@@ -68,7 +68,8 @@ Please configure the monitor’s message so that it will:
 
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-        - I used this [resource](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname) to set up the downtimes schedules
+
+- I used this [resource](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname) to set up the downtimes schedules
         
   * One that silences it from 7pm to 9am daily on M-F,
     - Step one: ![](screenshot/M-F_downtime1.PNG)
@@ -79,6 +80,8 @@ Please configure the monitor’s message so that it will:
     - step two:  ![](screenshot/weekend-downtime2.PNG)
     - step three:  ![](screenshot/weekend-downtime3.PNG)
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+    - Here is the M-F 7pm to 9am email notification:  ![](screenshot/M-F_downtime-Email.PNG)
+    - Here is the weekedend email notification:  ![](screenshot/weekend-downtime-email.PNG)
   
 ## Collecting APM Data:
    - I used the given Flask application with python for this section.
