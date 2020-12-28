@@ -1,4 +1,4 @@
-**Collecting Metrics**
+**Collecting Metrics Section**
 
 _Exercise 1:
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog._
@@ -65,8 +65,8 @@ Changes are made on the the my_metric.YAML file.
 
 ![Alt text](/photos/min_collection_interval.png?raw=true "my_metric")
 
-Bonus Exercise:
-Can you change the collection interval without modifying the Python check file you created?
+_Bonus Exercise:
+Can you change the collection interval without modifying the Python check file you created?_
 
 Link:
 https://app.datadoghq.com/metric/summary?filter=my&metric=my_metric
@@ -77,7 +77,7 @@ Yes by going to Metrics >> Summary >> Searching for metric name >> Right hand si
 Screenshots:
 ![Alt text](/photos/interval.png?raw=true)
 
-**Visualizing Data**
+**Visualizing Data Section**
 
 _Exercise 1:
 Utilize the Datadog API to create a Timeboard that contains:_
@@ -186,6 +186,9 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:_
 
 _A) Set the Timeboard's timeframe to the past 5 minutes_
 
+Link:
+https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609128993956&live=true&to_ts=1609129293956
+
 Screenshot:
 ![Alt text](/photos/five_min_dash.png?raw=true)
 
@@ -194,6 +197,8 @@ _B) Take a snapshot of this graph and use the @ notation to send it to yourself.
 Screenshot:
 ![Alt text](/photos/send_to_self.png?raw=true)
 
+![Alt text](/photos/email.png?raw=true)
+
 _C) Bonus Question: What is the Anomaly graph displaying?_
 
 The anomaly graph uses an algorithm that compares the past behavior of a metric to its present behavior. On the graph, the shaded area displays the expected behavior and the line is the actual behavior.
@@ -201,4 +206,10 @@ The anomaly graph uses an algorithm that compares the past behavior of a metric 
 Screenshot:
 ![Alt text](/photos/Anomaly.png?raw=true)
 
-**Monitoring Data**
+**Monitoring Data Section**
+
+_Exercise 1: Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+A) Warning threshold of 500
+B)Alerting threshold of 800
+C And also ensure that it will notify you if there is No Data for this query over the past 10m._
