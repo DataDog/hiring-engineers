@@ -68,27 +68,36 @@ Please configure the monitor’s message so that it will:
 
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-  - I used this [resource](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname) to set up the downtimes sche
-
+        - I used this [resource](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname) to set up the downtimes schedules
+        
   * One that silences it from 7pm to 9am daily on M-F,
+    - Step one: ![](screenshot/M-F_downtime1.PNG)
+    - step two: ![](screenshot/M-F_downtime2.PNG)
+    - step three: ![](screenshot/M-F_downtime3.PNG)
   * And one that silences it all day on Sat-Sun.
+    - step one should be the same one as above
+    - step two:  ![](screenshot/weekend-downtime2.PNG)
+    - step three:  ![](screenshot/weekend-downtime3.PNG)
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   
 ## Collecting APM Data:
    - I used the given Flask application with python for this section.
 
-   - I ran into a couple of issues while trying to install 'ddtrace' on my host using following [resource](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers#follow-the-in-app-documentation-recommended). Before installing ddtrace on your host please make sure to install the correct Cython files for Ubuntu 18.04 and install Flask using pip first. After that, install ddtrace. After doing that, ddtrace should be up and running, you can test it by running the following command ```sh ddtrace-run ```
+   - I ran into a couple of issues while trying to install 'ddtrace' on my host using following [resource](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers#follow-the-in-app-documentation-recommended). Before installing ddtrace on your host please make sure to install the correct Cython files for Ubuntu 18.04 and install Flask using pip first. After that, install ddtrace using pip. Now, ddtrace should be up and running, you can test it by running the following command ```sh ddtrace-run ```
 
      To run the Falsk application, I used the following command: 
+
 
 ``` sh
 DD_SERVICE="flak" DD_ENV="flask" DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true ddtrace-run python flaskapp.py
 ```
+
    - Here is the screenshot of the dashboard: ![](screenshot/APM+Mertics-dash.PNG)
+
 
    - Here is a link to a simple [dashboard](https://p.datadoghq.com/sb/ha86c4ioy7wh8zmv-44fd192d58f69ca30af4d1acb9cbff66)
 
-   - To view the flask appliction click [here](https://github.com/Hesham20/hiring-engineers/blob/master/flaskapp.py).
+   - To view the flask appliction please click [here](https://github.com/Hesham20/hiring-engineers/blob/master/flaskapp.py).
 
 ## Final Question:
 
