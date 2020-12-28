@@ -90,7 +90,7 @@ Please configure the monitor’s message so that it will:
 DD_SERVICE="flak" DD_ENV="flask" DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true ddtrace-run python flaskapp.py
 ```
 
-   - Here is the screenshot of the dashboard that shows both APM and infrastructure metrics.: ![](screenshot/APM+Mertics-dash.PNG)
+   - Here is a screenshot of a simple dashboard that shows both APM and infrastructure metrics.: ![](screenshot/APM+Mertics-dash.PNG)
 
    - Here is a link to the above dashboard [dashboard](https://p.datadoghq.com/sb/ha86c4ioy7wh8zmv-44fd192d58f69ca30af4d1acb9cbff66)
 
