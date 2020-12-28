@@ -196,6 +196,6 @@ Screenshot:
 
 _C) Bonus Question: What is the Anomaly graph displaying?_
 
-The Anomaly graph is
+The anomaly graph uses an algorithm that compares the past behavior of a metric to its present behavior. Along with anomaly detection, an algorithmic feature that highlights when a metric is behaving differently than it has in the past, it can help identifies unusual trends. For example, let's say web traffic is usually low on a weekday afternoon, even though that same traffic level is average later in the evening.
 
 **Monitoring Data**
