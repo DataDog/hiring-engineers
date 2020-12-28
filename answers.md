@@ -79,9 +79,9 @@ Please configure the monitor’s message so that it will:
     - Here is the weekedend email notification:  ![](screenshot/weekend-downtime-email.PNG)
   
 ## Collecting APM Data:
-   - I used the given Flask application with python for this section.
-
-   - I ran into a couple of issues while trying to install 'ddtrace' on my host using following [resource](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers#follow-the-in-app-documentation-recommended). Before installing ddtrace on your host please make sure to install the correct Cython files for Ubuntu 18.04 and install Flask using pip first. After that, install ddtrace using pip. Now, ddtrace should be up and running, you can test it by running the following command ```sh ddtrace-run ```
+   - I used the Flask application example that was given and instrumented it using Datadog’s APM solution for Python. 
+   
+   - I ran into a couple of issues while trying to install 'ddtrace' on my host using [this resource](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers#follow-the-in-app-documentation-recommended). Before installing ddtrace on your host please make sure to install the correct Cython files for your host( mine is Ubuntu 18.04) and install Flask using pip first. After that, install ddtrace using pip. Now, ddtrace should be up and running, you can test it by running the following command ```sh ddtrace-run ```
 
    - To run the Falsk application, I used the following command: 
 
@@ -90,10 +90,9 @@ Please configure the monitor’s message so that it will:
 DD_SERVICE="flak" DD_ENV="flask" DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true ddtrace-run python flaskapp.py
 ```
 
-   - Here is the screenshot of the dashboard: ![](screenshot/APM+Mertics-dash.PNG)
+   - Here is the screenshot of the dashboard that shows both APM and infrastructure metrics.: ![](screenshot/APM+Mertics-dash.PNG)
 
-
-   - Here is a link to a simple [dashboard](https://p.datadoghq.com/sb/ha86c4ioy7wh8zmv-44fd192d58f69ca30af4d1acb9cbff66)
+   - Here is a link to the above dashboard [dashboard](https://p.datadoghq.com/sb/ha86c4ioy7wh8zmv-44fd192d58f69ca30af4d1acb9cbff66)
 
    - To view the flask appliction please click [here](https://github.com/Hesham20/hiring-engineers/blob/master/flaskapp.py).
 
