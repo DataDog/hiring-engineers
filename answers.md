@@ -42,9 +42,6 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
-- I used the following two resources to build the alerts:
- (https://docs.datadoghq.com/monitors/monitor_types/metric/?tab=threshold#overview)
- (https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#conditional-variables)
 
 * Warning threshold of 500
 * Alerting threshold of 800
@@ -68,8 +65,6 @@ Please configure the monitor’s message so that it will:
 
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-
--I used this [resource](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname) to set up the downtimes schedules
         
   * One that silences it from 7pm to 9am daily on M-F,
     - Step one: ![](screenshot/M-F_downtime1.PNG)
