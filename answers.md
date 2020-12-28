@@ -25,8 +25,10 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+  - Here is a screenshot of the Timeboard: ![](screenshot/Timeboard.PNG)
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+  - Here is the [script](/dash.py) that I used to create this Timeboard
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -66,7 +68,7 @@ Please configure the monitor’s message so that it will:
 
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-I used [this](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname) 
+  - I used this [resource](https://docs.datadoghq.com/monitors/downtimes/?tab=bymonitorname) to set up the downtimes sche
 
   * One that silences it from 7pm to 9am daily on M-F,
   * And one that silences it all day on Sat-Sun.
