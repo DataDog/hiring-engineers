@@ -75,20 +75,20 @@ Please configure the monitor’s message so that it will:
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   
 ## Collecting APM Data:
-    - I used the given Flask application with python for this section.
+   - I used the given Flask application with python for this section.
 
-    - I ran into a couple of issues while trying to install 'ddtrace' on my host using following [resource](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers#follow-the-in-app-documentation-recommended). Before installing ddtrace on your host please make sure to install the correct Cython files for Ubuntu 18.04 and install Flask using pip first. After that, install ddtrace. After doing that, ddtrace should be up and running, you can test it by running the following command ```sh ddtrace-run ```
+   - I ran into a couple of issues while trying to install 'ddtrace' on my host using following [resource](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers#follow-the-in-app-documentation-recommended). Before installing ddtrace on your host please make sure to install the correct Cython files for Ubuntu 18.04 and install Flask using pip first. After that, install ddtrace. After doing that, ddtrace should be up and running, you can test it by running the following command ```sh ddtrace-run ```
 
-    - To run the Falsk application, I used the following command: 
+     To run the Falsk application, I used the following command: 
 
 ``` sh
 DD_SERVICE="flak" DD_ENV="flask" DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true ddtrace-run python flaskapp.py
 ```
-    Here is the screenshot of the dashboard: ![](screenshot/APM+Mertics-dash.PNG)
+   - Here is the screenshot of the dashboard: ![](screenshot/APM+Mertics-dash.PNG)
 
-    Here is a link to a simple [dashboard](https://p.datadoghq.com/sb/ha86c4ioy7wh8zmv-44fd192d58f69ca30af4d1acb9cbff66)
+   - Here is a link to a simple [dashboard](https://p.datadoghq.com/sb/ha86c4ioy7wh8zmv-44fd192d58f69ca30af4d1acb9cbff66)
 
-    To view the flask appliction click [here](https://github.com/Hesham20/hiring-engineers/blob/master/flaskapp.py).
+   - To view the flask appliction click [here](https://github.com/Hesham20/hiring-engineers/blob/master/flaskapp.py).
 
 ## Final Question:
 
@@ -96,4 +96,4 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-- I would like to use Datadog to monitor a mall's parking lots and spaces. I can use it to see which lots are currently busy and what’s the capacity at each lot. Due to Covid-19, contactless pickups at malls has become very popular in California. I can monitor and manage which parking spaces are occupied and if there are empty spaces next to the occupied parking space( to enforce social distancing). In addition, to help prevent crowding and the virus from spreading at the pick up locations, we can alert when a lot has reached a specific capacity. In the case of that capacity being reached, we can direct shoppers to other lots that are not as busy as the one they intended to go to when they enter the mall.
+   * I would like to use Datadog to monitor a mall's parking lots and spaces. I can use it to see which lots are currently busy and what’s the capacity at each lot. Due to Covid-19, contactless pickups at malls has become very popular in California. I can monitor and manage which parking spaces are occupied and if there are empty spaces next to the occupied parking space( to enforce social distancing). In addition, to help prevent crowding and the virus from spreading at the pick up locations, we can alert when a lot has reached a specific capacity. In the case of that capacity being reached, we can direct shoppers to other lots that are not as busy as the one they intended to go to when they enter the mall.
