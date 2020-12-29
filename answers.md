@@ -34,10 +34,10 @@ I am using a [Vagrant](https://learn.hashicorp.com/collections/vagrant/getting-s
                 tags=["env:dev","metric_submission_type:gauge"],
                 )
   ```
-  - Here is screenshot from my host to show that the agent is running: [](my_metric.PNG)
-  - Here is a screenshot from the UI: [](my_metric_UI.PNG)
+  - Here is screenshot from my host to show that the agent is running: ![](screenshot/my_metric.PNG)
+  - Here is a screenshot from the UI: ![](screenshot/my_metric_UI.PNG)
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
-  - I used the [collection interval](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) from the Bonus question below to send my_metric every 45 seconds. Please see the following screenshot from my the yaml file on my host: []()
+  - I used the [collection interval](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) from the Bonus question below to send my_metric every 45 seconds. Please see the following screenshot from my the yaml file on my host: ![](screenshot/45seconds.PNG)
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
   - Yes, you can. Please see the [following](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval)
 
