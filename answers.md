@@ -17,10 +17,27 @@ I am using a [Vagrant](https://learn.hashicorp.com/collections/vagrant/getting-s
   ![](screenshot/mysql.PNG)
   ![](screenshot/mysql-2.PNG)
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-  - To be able to create a custome Agent and submit my_metric I used this as base [guide](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/)
-  - here's the pic for the code, and the yaml file and from the  ui 
+  - To be able to create a custome Agent and submit my_metric I used this guide as a base [guide](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/)
+  - Here's the python script that I used to submit my_metric:
+  ``` python 
+  import random
+
+  from datadog_checks.base import AgentCheck
+
+  __version__ = "1.0.0"
+
+  class MyClass(AgentCheck):
+        def check(self, instance):
+                self.gauge(
+                "my_metric",
+                random.randint(0, 1000),
+                tags=["env:dev","metric_submission_type:gauge"],
+                )
+  ```
+  - Here is screenshot from my host to show that the agent is running: [](my_metric.PNG)
+  - Here is a screenshot from the UI: [](my_metric_UI.PNG)
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
-  - submit a pic
+  - I used the [collection interval](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) from the Bonus question below to send my_metric every 45 seconds. Please see the following screenshot from my the yaml file on my host: []()
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
   - Yes, you can. Please see the [following](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval)
 
