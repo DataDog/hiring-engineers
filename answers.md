@@ -208,10 +208,20 @@ Screenshot:
 
 **Monitoring Data Section**
 
-_Exercise 1: Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+_Exercise 1: Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:_
 
-A) Warning threshold of 500
+_A) Warning threshold of 500_
 
-B)Alerting threshold of 800
+_B) Alerting threshold of 800_
 
-C And also ensure that it will notify you if there is No Data for this query over the past 10m._
+_C) And also ensure that it will notify you if there is No Data for this query over the past 10m._
+
+_Please configure the monitor’s message so that it will:_
+
+_*Send you an email whenever the monitor triggers._
+
+_*Create different messages based on whether the monitor is in an Alert, Warning, or No Data state._
+
+_*Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state._
+
+_When this monitor sends you an email notification, take a screenshot of the email that it sends you._
