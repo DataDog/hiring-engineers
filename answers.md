@@ -5,14 +5,20 @@ I am using a [Vagrant](https://learn.hashicorp.com/collections/vagrant/getting-s
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-  - To add tags into the host, I used the [following guide](https://docs.datadoghq.com/getting_started/tagging/assigning_tags?tab=noncontainerizedenvironments)
-  Here are the images of the code from the host and the Host Map.
+  - To add the tags to the host, I used the [following guide](https://docs.datadoghq.com/getting_started/tagging/assigning_tags?tab=noncontainerizedenvironments)
+  - Here are the screenshots of the code from the host iself and the Host Map in the UI:
+  ![](screenshot/tags_configpage.PNG)
+  ![](screenshot/tags_HostMap.PNG)
+  
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-  - I choose MySql for this example, if you don't have MySql installed on your machine, please use the following [guide](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04)
+  - I insalled a MySql database on my host for this example. If you don't have MySql installed on your machine, please use the following [guide](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04)
   - Once you have installed MySql on your machine please use the following [guide](https://docs.datadoghq.com/integrations/mysql/?tab=host#pagetitle) to install the Datadog integration for MySql.
+  - Here are a couple of screenshot to show that MySql and its Datadog intgerations are working on my host:
+  ![](screenshot/mysql.PNG)
+  ![](screenshot/mysql-2.PNG)
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-  - To be able to s (https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/)
-  here's the pic for the code, and the yaml file and from the  ui 
+  - To be able to create a custome Agent and submit my_metric I used this as base [guide](https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/)
+  - here's the pic for the code, and the yaml file and from the  ui 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
   - submit a pic
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
@@ -26,11 +32,11 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
   - Here is a screenshot of the Timeboard with the 3 graphs required:![](screenshot/Timeboard.PNG)
-  - Note: I was not sure if the questions asked for all three metrics to be drawn in the same graph or separate graphs. I chose separated graphs because it looks better. But, if you want all metrics in the same graph you can change the script to only include one graph and add the following lines to the “requests” array of that graph"
+  - Note: I was not sure if the questions asked for all three metrics to be drawn in the same graph or separate graphs. I chose separated graphs because it looks better. But, if you want all metrics in the same graph you can change the script to only include one graph and add the following lines to the “requests” array of that graph: 
   ```json
   "requests": [
             {"q": "min:my_metric{host:vagrant}"}
-            { "q": "anomalies(avg:mysql.performance.cpu_time{db:mysql}, 'basic', 2)" },
+            {"q": "anomalies(avg:mysql.performance.cpu_time{db:mysql}, 'basic', 2)"},
             {"q": "min:my_metric{host:vagrant}.rollup(sum, 3600)"}
         ],
   ```
