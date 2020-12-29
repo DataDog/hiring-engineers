@@ -25,8 +25,16 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-  - Here is a screenshot of the Timeboard: ![](screenshot/Timeboard.PNG)
-
+  - Here is a screenshot of the Timeboard with the 3 graphs required:![](screenshot/Timeboard.PNG)
+  - Note: I was not sure if the questions asked for all three metrics to be drawn in the same graph or separate graphs. I chose separated graphs because it looks better. But, if you want all metrics in the same graph you can change the script to only include one graph and add the following lines to the “requests” array of that graph"
+  ```json
+  "requests": [
+            {"q": "min:my_metric{host:vagrant}"}
+            { "q": "anomalies(avg:mysql.performance.cpu_time{db:mysql}, 'basic', 2)" },
+            {"q": "min:my_metric{host:vagrant}.rollup(sum, 3600)"}
+        ],
+  ```
+  
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
   - Here is the [script](/dash.py) that I used to create this Timeboard
 
@@ -34,7 +42,14 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+  - Here are the screenshots of the snapshot emails from my inbox:
+  ![](screenshot/Timeboard-email1.PNG)
+  ![](screenshot/Timeboard-email2.PNG)
+  ![](screenshot/Timeboard-email3.PNG)
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+-  The anomaly graph is displaying the behavior of the metric that we are graphing. It will  show if that metric has been behaving outside the norm or it’s predicated (color turns red) or if the metric has been behaving normally or as it’s predicated ( color stays gray) . The anomaly function for the anomaly graph is using anomaly detection algorithms like the SARIMA algorithm.
+
 
 
 ## Monitoring Data
@@ -57,7 +72,7 @@ Please configure the monitor’s message so that it will:
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-  - I modified the message section to include the above conditions using [conditional variables](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#conditional-variables) To look at the logic that I used, please refer this screenshots:
+  - I modified the message section to include the above conditions using [conditional variables](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#conditional-variables). To look at the logic that I used to set these alerts, please refer to this screenshots:
   ![](screenshot/alert-dis-config.PNG) 
   - The following screenshots are from all 3 types of email alerts(Alert/Warning/No Datat) from my email inbox:
   ![](screenshot/Alert-Email.PNG) 
@@ -77,7 +92,7 @@ Please configure the monitor’s message so that it will:
   * And one that silences it all day on Sat-Sun.
     - step one should be the same one as above
     - step two: select Sat and turn the downtime on for 2 days, so you only receive one email   ![](screenshot/weekend-downtime2.PNG)
-    - step three: enter the message ![](screenshot/weekend-downtime3.PNG)
+    - step three: enter the message recipients![](screenshot/weekend-downtime3.PNG)
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
     - Here is the downtime email notification for M-F, 7pm to 9am:  ![](screenshot/M-F_downtime-Email.PNG)
     - Here is the downtime email notification weekedend:  ![](screenshot/weekend-downtime-email.PNG)
