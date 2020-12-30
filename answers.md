@@ -238,8 +238,18 @@ _When this monitor sends you an email notification, take a screenshot of the ema
 _Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:_
 
 _One that silences it from 7pm to 9am daily on M-F,_
+
+![Alt text](/photos/weekly_downtime.png?raw=true)
+
 _And one that silences it all day on Sat-Sun._
+
+![Alt text](/photos/weekend_downtime.png?raw=true)
+
 _Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification._
+
+![Alt text](/photos/weekend_email.png.png?raw=true)
+
+![Alt text](/photos/weekly_email.png?raw=true)
 
 **Collecting APM Data:**
 
