@@ -216,6 +216,8 @@ _B) Alerting threshold of 800_
 
 _C) And also ensure that it will notify you if there is No Data for this query over the past 10m._
 
+![Alt text](/photos/define_metric_monitor.png?raw=true)
+
 _Please configure the monitor’s message so that it will:_
 
 _*Send you an email whenever the monitor triggers._
