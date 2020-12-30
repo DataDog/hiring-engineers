@@ -57,7 +57,7 @@ Utilize the Datadog API to create a Timeboard that contains:
   - Note: I was not sure if the questions asked for all three metrics to be drawn in the same graph or separate graphs. I chose separated graphs because it looks better. But, if you want all metrics in the same graph you can change the script to only include one graph and add the following lines to the “requests” array of that graph: 
   ```json
   "requests": [
-            {"q": "min:my_metric{host:vagrant}"}
+            {"q": "min:my_metric{host:vagrant}"},
             {"q": "anomalies(avg:mysql.performance.cpu_time{db:mysql}, 'basic', 2)"},
             {"q": "min:my_metric{host:vagrant}.rollup(sum, 3600)"}
         ],
