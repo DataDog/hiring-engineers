@@ -219,7 +219,7 @@ _C) And also ensure that it will notify you if there is No Data for this query o
 ![Alt text](/photos/define_metric_monitor.png?raw=true)
 
 _Please configure the monitor’s message so that it will:_
-
+![Alt text](/photos/notification_messges.png?raw=true)
 _*Send you an email whenever the monitor triggers._
 
 _*Create different messages based on whether the monitor is in an Alert, Warning, or No Data state._
