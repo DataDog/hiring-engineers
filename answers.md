@@ -2,6 +2,7 @@ Your answers to the questions go here.
 # Prerequisites - Setup the environment:
 I am using a [Vagrant](https://learn.hashicorp.com/collections/vagrant/getting-started) VM with an Ubuntu 18.04 server.
 
+
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
@@ -44,6 +45,7 @@ I am using a [Vagrant](https://learn.hashicorp.com/collections/vagrant/getting-s
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
   - Yes, you can by using the collection interval feature according to this [doc](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval)
 
+
 ## Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
@@ -74,7 +76,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
   ![](screenshot/Timeboard-email3.PNG)
 
 * **Bonus Question**: What is the Anomaly graph displaying?
--  The anomaly graph is displaying the behavior of the metric that we are graphing. It will  show if that metric has been behaving outside the norm or it’s predicated (color turns red) or if the metric has been behaving normally or as it’s predicated ( color stays gray) . The anomaly function for the anomaly graph is using anomaly detection algorithms like the SARIMA algorithm.
+-  The anomaly graph is displaying the behavior of the metric that we are graphing. It will show if that metric has been behaving outside the norm/it’s not predicated (color turns red) or if the metric has been behaving normally or as it’s predicated (color stays gray). The anomaly function for the anomaly graph is using anomaly detection algorithms like the SARIMA algorithm.
 
 
 
@@ -122,7 +124,8 @@ Please configure the monitor’s message so that it will:
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
     - Here is the downtime email notification for M-F, 7pm to 9am:  ![](screenshot/M-F_downtime-Email.PNG)
     - Here is the downtime email notification weekedend:  ![](screenshot/weekend-downtime-email.PNG)
-  
+
+
 ## Collecting APM Data:
    - I used the Flask application example that was given and instrumented it using Datadog’s APM solution for Python. 
    
@@ -140,6 +143,7 @@ DD_SERVICE="flak" DD_ENV="flask" DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1"
    - Here is a link to the above [dashboard](https://p.datadoghq.com/sb/ha86c4ioy7wh8zmv-44fd192d58f69ca30af4d1acb9cbff66)
 
    - To view the flask appliction please click [here](https://github.com/Hesham20/hiring-engineers/blob/master/flaskapp.py).
+
 
 ## Final Question:
 
