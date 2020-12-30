@@ -90,7 +90,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
   - I used [this useful guide](https://docs.datadoghq.com/monitors/monitor_types/metric/?tab=threshold) to set up the metirc monitor alerts. 
-  - These couple of screenshots shows how to configure the above thersholds and the how to set the no data alert: 
+  - These couple of screenshots shows how to configure the above thersholds and the how to set the No Data alert: 
   ![](screenshot/alert-config.PNG)
   ![](screenshot/No-data.PNG)
 
@@ -114,13 +114,13 @@ Please configure the monitor’s message so that it will:
         
   * One that silences it from 7pm to 9am daily on M-F,
     - Step one: from the main menu on the UI go to Monitors --> Manage Downtime. Then click on Schedule downtime on the top right corner.
-      Select the metic that you want to monitor![](screenshot/M-F_downtime1.PNG)
-    - step two: fill the schedule ![](screenshot/M-F_downtime2.PNG)
+      After that, select the metic that you want to monitor![](screenshot/M-F_downtime1.PNG)
+    - step two: fill in the schedule ![](screenshot/M-F_downtime2.PNG)
     - step three: enter the message for the notifications and select recipients ![](screenshot/M-F_downtime3.PNG)
   * And one that silences it all day on Sat-Sun.
     - step one should be the same one as above
-    - step two: select Sat and turn the downtime on for 2 days, so you only receive one email   ![](screenshot/weekend-downtime2.PNG)
-    - step three: enter the message recipients![](screenshot/weekend-downtime3.PNG)
+    - step two: select Sat and turn on the downtime on for 2 days, so you only receive one email for the whole weekened instead of one on Sat and one on Sun  ![](screenshot/weekend-downtime2.PNG)
+    - step three: enter the message for the notifications and select recipients![](screenshot/weekend-downtime3.PNG)
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
     - Here is the downtime email notification for M-F, 7pm to 9am:  ![](screenshot/M-F_downtime-Email.PNG)
     - Here is the downtime email notification weekedend:  ![](screenshot/weekend-downtime-email.PNG)
@@ -151,4 +151,4 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-   * I would like to use Datadog to monitor a mall's parking lots and spaces. I can use it to see which lots are currently busy and what’s the capacity at each lot. Due to Covid-19, contactless pickups at malls has become very popular in California. I can monitor and manage which parking spaces are occupied and if there are empty spaces next to the occupied parking space( to enforce social distancing). In addition, to help prevent crowding and the virus from spreading at the pick up locations, we can alert when a lot has reached a specific capacity. In the case of that capacity being reached, we can direct shoppers to other lots that are not as busy as the one they intended to go to when they enter the mall.
+   * I would like to use Datadog to monitor a mall's parking lots and spaces. I can use it to see which lots are currently busy and what’s the capacity at each lot. Due to Covid-19, contactless pickups at malls has become very popular in California. I can monitor and manage which parking spaces are occupied and if there are empty spaces next to the occupied parking space(to enforce social distancing). In addition, to help prevent crowding and the virus from spreading at the pick up locations, we can alert when a lot has reached a specific capacity. In the case of that capacity being reached, we can direct shoppers to other lots that are not as busy as the one they intended to go to when they enter the mall.
