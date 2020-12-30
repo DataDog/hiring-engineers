@@ -1,4 +1,7 @@
 Your answers to the questions go here.
+
+* ** I copied the Questions from README.me and inserted my answers below each question or group of questions for better readability ** 
+
 # Prerequisites - Setup the environment:
 I am using a [Vagrant](https://learn.hashicorp.com/collections/vagrant/getting-started) VM with an Ubuntu 18.04 server.
 
