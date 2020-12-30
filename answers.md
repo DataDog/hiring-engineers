@@ -210,6 +210,9 @@ Screenshot:
 
 _Exercise 1: Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:_
 
+Link:
+https://app.datadoghq.com/monitors/28023566
+
 _A) Warning threshold of 500_
 
 _B) Alerting threshold of 800_
@@ -231,3 +234,17 @@ _*Include the metric value that caused the monitor to trigger and host ip when t
 _When this monitor sends you an email notification, take a screenshot of the email that it sends you._
 
 ![Alt text](/photos/waning_alert_email.png?raw=true)
+
+**Collecting APM Data:**
+
+_Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:_
+
+_Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other._
+
+_Bonus Question: What is the difference between a Service and a Resource?_
+
+_Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics._
+
+_Please include your fully instrumented app in your submission, as well._
+
+**Final Question:**
