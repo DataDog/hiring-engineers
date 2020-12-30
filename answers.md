@@ -76,7 +76,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
   ![](screenshot/Timeboard-email3.PNG)
 
 * **Bonus Question**: What is the Anomaly graph displaying?
--  The anomaly graph is displaying the behavior of the metric that we are graphing. It will show if that metric has been behaving outside the norm/it’s not predicated (color turns red) or if the metric has been behaving normally or as it’s predicated (color stays gray). The anomaly function for the anomaly graph is using anomaly detection algorithms like the SARIMA algorithm.
+  - The anomaly graph is displaying the behavior of the metric that we are graphing. It will show if that metric has been behaving outside the norm/it’s not predicated (color turns red) or if the metric has been behaving normally or as it’s predicated (color stays gray). The anomaly function for the anomaly graph is using anomaly detection algorithms like the SARIMA algorithm.
 
 
 
