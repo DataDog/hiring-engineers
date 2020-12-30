@@ -235,6 +235,12 @@ _When this monitor sends you an email notification, take a screenshot of the ema
 
 ![Alt text](/photos/waning_alert_email.png?raw=true)
 
+_Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:_
+
+_One that silences it from 7pm to 9am daily on M-F,_
+_And one that silences it all day on Sat-Sun._
+_Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification._
+
 **Collecting APM Data:**
 
 _Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:_
