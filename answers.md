@@ -247,7 +247,7 @@ _And one that silences it all day on Sat-Sun._
 
 _Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification._
 
-![Alt text](/photos/weekend_email.png.png?raw=true)
+![Alt text](/photos/weekend_email.png.png.png?raw=true)
 
 ![Alt text](/photos/weekly_email.png?raw=true)
 
