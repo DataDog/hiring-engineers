@@ -237,11 +237,19 @@ _When this monitor sends you an email notification, take a screenshot of the ema
 
 _Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:_
 
+link:
+https://app.datadoghq.com/monitors#downtime
+
 _One that silences it from 7pm to 9am daily on M-F,_
+
+link:
+https://app.datadoghq.com/monitors#downtime?id=1085989803
 
 ![Alt text](/photos/weekly_downtime.png?raw=true)
 
 _And one that silences it all day on Sat-Sun._
+
+link:https://app.datadoghq.com/monitors#downtime?id=1085992963
 
 ![Alt text](/photos/weekend_downtime.png?raw=true)
 
