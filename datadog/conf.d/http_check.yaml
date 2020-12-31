@@ -1,0 +1,8 @@
+init_config:
+
+instances:
+  - name: TestApp (APM endpoint)
+    url: http://testapp/api/apm
+
+  - name: TestApp (Trace endpoint)
+    url: http://testapp/api/trace

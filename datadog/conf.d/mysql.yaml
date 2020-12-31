@@ -1,0 +1,15 @@
+init_config:
+
+instances:
+ - server: mariadb
+   user: root
+   pass: "fsk43FoQ0432gMlasknsjndjsaowi"
+   port: "3306"
+   options:
+     replication: false
+     galera_cluster: true
+     extra_status_metrics: true
+     extra_innodb_metrics: true
+     extra_performance_metrics: false
+     schema_size_metrics: false
+     disable_innodb_metrics: false

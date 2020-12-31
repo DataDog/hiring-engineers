@@ -1,0 +1,20 @@
+version: '2.4'
+
+services:
+  testapp:
+    container_name: testapp 
+    image: testapp:latest
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+    environment:
+      DD_ENV: dev
+      DD_SERVICE: testapp
+      DD_AGENT_HOST: datadog
+      DD_TRACE_AGENT_PORT: 8126
+      DD_TRACE_ENABLED: "true"
+    ports:
+      - 51700:80 
+    volumes:
+      - /volume1/docker/testapp/TestApp:/app:rw
+    restart: unless-stopped
