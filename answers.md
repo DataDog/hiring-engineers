@@ -5,7 +5,8 @@
 A MariaDB database, hosted in a Docker container (alongside the Datadog Agent) was used for generating the sample metrics that were collected and assessed. A sample corpus/dataset was used containing a large number of records that were then batch imported on a 5 minute basis to generate sufficient data on which to base the dashboards and other visualisations.  Additionally, workloads were tagged via Compose to link the applicable applications and correlate activity.
 
 The configuration Yaml for the Custom Random Agent Check was configured to only collect every 45 seconds:
-```init_config:
+```
+init_config:
 
 instances:
   - min_collection_interval: 45
@@ -19,7 +20,8 @@ __01_host_map.png__
 ## Visualising Data 
 
 A curl command was used to POST data to the API endpoint and generate the applicable dashboard.
-```curl -X POST "https://api.datadoghq.com/api/v1/dashboard" \
+```
+curl -X POST "https://api.datadoghq.com/api/v1/dashboard" \
 -H "Content-Type: application/json" \
 -H "DD-API-KEY: 204fd597ca4e5989771ed60b13ca4a62" \
 -H "DD-APPLICATION-KEY: 04360d559f01c56b3e02388ef647039d036c7443" \
