@@ -136,7 +136,7 @@ The performance metric that is being profiled is set to alert on a five-minute b
 
 ## Monitoring Data
 
-A **http_check*** has also been created to periodically poll the published endpoints and generate APM data.
+A **http_check** has also been created to periodically poll the published endpoints and generate APM data.
 
 __05_custom_alert_messages.png__
 <img src="05_custom_alert_messages.png" />
