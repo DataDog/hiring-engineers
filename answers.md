@@ -40,7 +40,7 @@ _Exercise 3:
 Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000._
 
 Link:
-https://app.datadoghq.com/metric/explorer?from_ts=1608782940389&to_ts=1608786540389&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my_metric&exp_agg=avg&exp_row_type=metric
+[My custom metric ](https://app.datadoghq.com/metric/explorer?from_ts=1608782940389&to_ts=1608786540389&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my_metric&exp_agg=avg&exp_row_type=metric)
 
 Answer:
 To create a custom Agent check, create an empty directory named my_metric.d in /etc/datadog-agent/conf.d.
@@ -75,7 +75,7 @@ _Bonus Exercise:
 Can you change the collection interval without modifying the Python check file you created?_
 
 Link:
-https://app.datadoghq.com/metric/summary?filter=my&metric=my_metric
+[My metric summary](https://app.datadoghq.com/metric/summary?filter=my&metric=my_metric)
 
 Answer:
 Yes by going to Metrics >> Summary >> Searching for metric name >> Right hand side window click on edit.
@@ -92,7 +92,7 @@ Utilize the Datadog API to create a Timeboard that contains:_
 _A) Your custom metric scoped over your host._
 
 Link:
-https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097698053&fullscreen_section=overview&fullscreen_widget=1373939238835056&live=true&to_ts=1609101298053&fullscreen_start_ts=1609097700694&fullscreen_end_ts=1609101300694&fullscreen_paused=false
+[Timeboard](https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097698053&fullscreen_section=overview&fullscreen_widget=1373939238835056&live=true&to_ts=1609101298053&fullscreen_start_ts=1609097700694&fullscreen_end_ts=1609101300694&fullscreen_paused=false)
 
 ```{
     "description": "API Timeboard",
@@ -125,7 +125,7 @@ Screenshot:
 _B) Any metric from the Integration on your Database with the anomaly function applied._
 
 Link:
-https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097698053&fullscreen_section=overview&fullscreen_widget=4489668233532641&live=true&to_ts=1609101298053&fullscreen_start_ts=1609097739634&fullscreen_end_ts=1609101339634&fullscreen_paused=false
+[MongoDB Api Customer Metric Timeboard](https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097698053&fullscreen_section=overview&fullscreen_widget=4489668233532641&live=true&to_ts=1609101298053&fullscreen_start_ts=1609097739634&fullscreen_end_ts=1609101339634&fullscreen_paused=false)
 
 ```
 {
