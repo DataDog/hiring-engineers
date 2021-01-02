@@ -287,7 +287,9 @@ _Provide a link and a screenshot of a Dashboard with both APM and Infrastructure
 
 _Please include your fully instrumented app in your submission, as well._
 
-For this section, I followed the DD doc [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers)
+Answers:
+
+For this section, I followed the DD doc [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers).
 
 First I went to the datadog.yaml and enabled the trace configuration.
 
@@ -346,7 +348,7 @@ if __name__ == '__main__':
 _Bonus Question: What is the difference between a Service and a Resource?_
 
 Source:
-[APM Glossary](https://docs.datadoghq.com/tracing/visualization/)
+[DD APM Glossary](https://docs.datadoghq.com/tracing/visualization/)
 
 Service:
   Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
@@ -361,4 +363,4 @@ _Datadog has been used in a lot of creative ways in the past. We’ve written so
 
 _Is there anything creative you would use Datadog for?_
 
-I think it would be fascinating to have a Datadog visualize various genetic and environmental factors that might affect states where the population has high Covid-19 risks. It would be very interesting to have a dashboard that would display what communities are being most affected by the pandemic.
+I think it would be fascinating to have a Datadog visualize of various genetic and environmental factors that might affect states where the population has high Covid-19 contacts. It would be interesting to have a dashboard that would display communities being most affected by the pandemic and if there are any related factors such as age, race, gender, and where they live.
