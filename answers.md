@@ -265,6 +265,15 @@ _Given the following Flask app (or any Python/Ruby/Go app of your choice) instru
 
 _Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other._
 
+_Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics._
+
+_Please include your fully instrumented app in your submission, as well._
+
+Links:
+https://app.datadoghq.com/apm/service/flask/flask.request?end=1609381373923&paused=false&start=1609377773923&env=flask_app
+
+https://app.datadoghq.com/dash/integration/custom%3Atrace?from_ts=1609377893959&live=true&to_ts=1609381493959&tpl_var_scope=host%3Aubuntu-xenial
+
 ```
 from flask import Flask
 import logging
@@ -309,10 +318,6 @@ if __name__ == '__main__':
 ![Alt text](/photos/pic_five.png?raw=true)
 
 _Bonus Question: What is the difference between a Service and a Resource?_
-
-_Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics._
-
-_Please include your fully instrumented app in your submission, as well._
 
 **Final Question:**
 _Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!_
