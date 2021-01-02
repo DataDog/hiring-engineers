@@ -132,7 +132,7 @@ Screenshot:
 _B) Any metric from the Integration on your Database with the anomaly function applied._
 
 Link:
-[MongoDB Api Customer Metric Timeboard](https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097698053&fullscreen_section=overview&fullscreen_widget=4489668233532641&live=true&to_ts=1609101298053&fullscreen_start_ts=1609097739634&fullscreen_end_ts=1609101339634&fullscreen_paused=false)
+[MongoDB API Customer Metric Timeboard](https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097698053&fullscreen_section=overview&fullscreen_widget=4489668233532641&live=true&to_ts=1609101298053&fullscreen_start_ts=1609097739634&fullscreen_end_ts=1609101339634&fullscreen_paused=false)
 
 ```
 {
@@ -199,8 +199,10 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:_
 
 _A) Set the Timeboard's timeframe to the past 5 minutes_
 
+From the Dashboard widgets, on the upper right hand side, that's a drop down to choose the timeframe for past 5 minutes.
+
 Link:
-https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609128993956&live=true&to_ts=1609129293956
+[Timeboard's timeframe](https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609128993956&live=true&to_ts=1609129293956)
 
 Screenshot:
 ![Alt text](/photos/five_min_dash.png?raw=true)
