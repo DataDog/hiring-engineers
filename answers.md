@@ -2,7 +2,7 @@
 
 For this section I went with a linux VM via Vagrant.
 
-I followed the directions provided by Vagrant on the [VM Setup Page](https://learn.hashicorp.com/collections/vagrant/getting-started)
+I followed the directions provided by Vagrant on the [VM Setup Page](https://learn.hashicorp.com/collections/vagrant/getting-started).
 
 **Collecting Metrics Section**
 
@@ -279,14 +279,6 @@ _Make sure that your email is notified when you schedule the downtime and take a
 
 **Collecting APM Data:**
 
-For this section, I followed the DD doc [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers)
-
-First I went to the datadog.yaml and enabled the trace configuration.
-
-Then I ran the ``` pip3 install ddtrace``` command in the VM.
-
-Followed by this commnad ```FLASK_APP=app.py DATADOG_ENV=flask_app ddtrace-run flask run --port=5050```
-
 _Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:_
 
 _Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other._
@@ -294,6 +286,14 @@ _Note: Using both ddtrace-run and manually inserting the Middleware has been kno
 _Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics._
 
 _Please include your fully instrumented app in your submission, as well._
+
+For this section, I followed the DD doc [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers)
+
+First I went to the datadog.yaml and enabled the trace configuration.
+
+Then I ran the ``` pip3 install ddtrace``` command in the VM.
+
+Followed by this commnad ```FLASK_APP=app.py DATADOG_ENV=flask_app ddtrace-run flask run --port=5050```
 
 Links:
 [Flask App](https://app.datadoghq.com/apm/service/flask/flask.request?end=1609381373923&paused=false&start=1609377773923&env=flask_app)
