@@ -225,8 +225,10 @@ Screenshot:
 
 _Exercise 1: Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:_
 
+I used the [Metric Monitor](https://docs.datadoghq.com/monitors/monitor_types/metric/?tab=threshold#overview) documentation as a guide for this section.
+
 Link:
-https://app.datadoghq.com/monitors/28023566
+[Monitors](https://app.datadoghq.com/monitors/28023566)
 
 _A) Warning threshold of 500_
 
@@ -253,18 +255,19 @@ _When this monitor sends you an email notification, take a screenshot of the ema
 _Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:_
 
 link:
-https://app.datadoghq.com/monitors#downtime
+[Monitor Downtime](https://app.datadoghq.com/monitors#downtime)
 
 _One that silences it from 7pm to 9am daily on M-F,_
 
 link:
-https://app.datadoghq.com/monitors#downtime?id=1085989803
+[Monitor Downtime Weekdays](https://app.datadoghq.com/monitors#downtime?id=1085989803)
 
 ![Alt text](/photos/weekly_downtime.png?raw=true)
 
 _And one that silences it all day on Sat-Sun._
 
-link:https://app.datadoghq.com/monitors#downtime?id=1085992963
+link:
+[Monitor Downtime Weekends](https://app.datadoghq.com/monitors#downtime?id=1085992963)
 
 ![Alt text](/photos/weekend_downtime.png?raw=true)
 
