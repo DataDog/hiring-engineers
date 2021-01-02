@@ -13,6 +13,8 @@ Link:
 [DataDog Host Map](https://app.datadoghq.com/infrastructure/map?host=3443516844&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=true&node_type=host)
 
 Answer:
+First, I install the DD Agent onto the VM. I followed the one lined command instructions for [Ubuntu](https://app.datadoghq.com/account/settings#agent/ubuntu). Afterwards, I got comfortable with using the [Basic Agent Usage Commands for Ubuntu](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7)
+
 Below we have a screenshot of the Host Map. This can be viewed by heading to the sidebar on the DataDog home page and clicking on Infrastructure, then Host Map. To view the DD agent details, simply click on "Agent" within the host. This will direct the user to where the customized tags can be viewed on the front end. To add the tags on the back end, the Agent Configuration file would be to be configured.
 
 /etc/datadog-agent/datadog.yaml  
