@@ -30,7 +30,7 @@ Link:
 [MongoDB on Hostmap](https://app.datadoghq.com/infrastructure/map?host=3443516844&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=true&node_type=host)
 
 Answer:
-I followed the instructions on to install [Install MongoDB Community Edition on Ubuntu](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/). Once I confirmed the MongoDB database was up and running, I then went the Host Map sidebar and clicked on Integrations >> Integrations. This link directed me to a page with a list of integration options. From here, I searched for MongoDB and follow the [DataDog Mongo configuration steps](https://docs.datadoghq.com/integrations/mongo/?tab=standalone).
+I followed the instructions on to [Install MongoDB Community Edition on Ubuntu](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/). Once I confirmed the MongoDB database was up and running, I then went the Host Map sidebar and clicked on Integrations >> Integrations. This link directed me to a page with a list of integration options. From here, I searched for MongoDB and follow the [DataDog MongoDB configuration steps](https://docs.datadoghq.com/integrations/mongo/?tab=standalone).
 
 Screenshots:
 ![Alt text](/photos/db_installed.png?raw=true&s=150 "MongoDB Integrations Page")
@@ -45,18 +45,20 @@ Link:
 [My custom metric ](https://app.datadoghq.com/metric/explorer?from_ts=1608782940389&to_ts=1608786540389&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my_metric&exp_agg=avg&exp_row_type=metric)
 
 Answer:
-To create a custom Agent check, create an empty directory named my_metric.d in /etc/datadog-agent/conf.d.
-In this directory, create a file named my_metric.YAML. For now, place an empty list for the instances:
+I went to the DD docs and followed the [Writing a Custom Agent Check instructions](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#should-you-write-an-agent-check-or-an-integration)
+
+To create a custom Agent check, I created an empty directory named my_metric.d in /etc/datadog-agent/conf.d.
+In this directory, I created a file named my_metric.YAML. At first, I placed an empty list for the instances:
 
 ```
 instances: [{}]
 
   ```
 
-One level up from the conf.d/ folder is the check.d/ folder. Here create a custom check file named metric_example.py with the code from the screenshot below.
+One level up from the conf.d/ folder is the check.d/ folder, I created a custom check file named metric_example.py with the code from the screenshot below.
 
-Then confirm the custom agent check on the front end by click on DD's sidebar >> metrics >> metric summary.
-Once directed to the Mertric's Summary page, enter the Metric's name into the metric search bar.
+To confirm the custom agent check on the front end, I clicked on DD's sidebar >> metrics >> metric summary.
+Once directed to the Mertric's Summary page, I entered the Metric's name into the metric search bar.
 
 Screenshots:
 my_metric.py file
