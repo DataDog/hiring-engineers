@@ -45,7 +45,7 @@ Link:
 [My custom metric ](https://app.datadoghq.com/metric/explorer?from_ts=1608782940389&to_ts=1608786540389&live=true&page=0&is_auto=false&tile_size=m&exp_metric=my_metric&exp_agg=avg&exp_row_type=metric)
 
 Answer:
-I went to the DD docs and followed the [Writing a Custom Agent Check instructions](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#should-you-write-an-agent-check-or-an-integration)
+I went to the DD docs and followed the [Writing a Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#should-you-write-an-agent-check-or-an-integration) instructions.
 
 To create a custom Agent check, I created an empty directory named my_metric.d in /etc/datadog-agent/conf.d.
 In this directory, I created a file named my_metric.YAML. At first, I placed an empty list for the instances:
@@ -71,7 +71,7 @@ _Exercise 4:
 Change your check's collection interval so that it only submits the metric once every 45 seconds._
 
 Answer:
-Changes are made on the the my_metric.YAML file.
+I updated the my_metric.YAML file with the following changes.
 
 ![Alt text](/photos/min_collection_interval.png?raw=true "my_metric")
 
@@ -92,11 +92,14 @@ Screenshots:
 _Exercise 1:
 Utilize the Datadog API to create a Timeboard that contains:_
 
+Using the [Authentication](https://docs.datadoghq.com/api/v1/authentication/) doc, I first confirmed if I able to make request to DataDog using my API key and Application Key. I ran a test via Postman making a GET request to ```https://api.datadoghq.com/api/v1/validate```.
+
+Once I was able to validate the keys, I then followed the _Create a new dashboard_ section the [Dashboards](https://docs.datadoghq.com/api/v1/dashboards/) documentation.
 
 _A) Your custom metric scoped over your host._
 
 Link:
-[Timeboard](https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097698053&fullscreen_section=overview&fullscreen_widget=1373939238835056&live=true&to_ts=1609101298053&fullscreen_start_ts=1609097700694&fullscreen_end_ts=1609101300694&fullscreen_paused=false)
+[My Metric Timeboard](https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097698053&fullscreen_section=overview&fullscreen_widget=1373939238835056&live=true&to_ts=1609101298053&fullscreen_start_ts=1609097700694&fullscreen_end_ts=1609101300694&fullscreen_paused=false)
 
 ```{
     "description": "API Timeboard",
@@ -162,7 +165,7 @@ Screenshot:
 _C) Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket_
 
 Link:
-https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097769285&fullscreen_section=overview&fullscreen_widget=8414443735692492&live=true&to_ts=1609101369285&fullscreen_start_ts=1609097771813&fullscreen_end_ts=1609101371813&fullscreen_paused=false
+[My Metric with Rollup Function](https://app.datadoghq.com/dashboard/qzc-dkv-36m/api-custom-metric-timeboard?from_ts=1609097769285&fullscreen_section=overview&fullscreen_widget=8414443735692492&live=true&to_ts=1609101369285&fullscreen_start_ts=1609097771813&fullscreen_end_ts=1609101371813&fullscreen_paused=false)
 
 ```
 {
