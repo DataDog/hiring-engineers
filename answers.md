@@ -1,3 +1,11 @@
+**Prerequisites - Setup the environment**
+
+For this section I went with a linux VM via Vagrant.
+
+I followed the directions provided by Vagrant the [I'm an inline-style link with title](https://learn.hashicorp.com/collections/vagrant/getting-started "Vagrant's VM Setup Page")
+
+Next, I signed up for the datadog
+
 **Collecting Metrics Section**
 
 _Exercise 1:
@@ -319,7 +327,20 @@ if __name__ == '__main__':
 
 _Bonus Question: What is the difference between a Service and a Resource?_
 
+Source:
+https://docs.datadoghq.com/tracing/visualization/
+
+Service:
+  Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
+
+Resources:
+  Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
+
+ A service is an operation in the system, like an API call. A resource is an endpoint itself.  
+
 **Final Question:**
 _Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!_
 
 _Is there anything creative you would use Datadog for?_
+
+I think it would be fascinating to have a Datadog visualize various genetic and environmental factors that might affect states where the population has high Covid-19 risks. It would be very interesting to have a dashboard that would display what communities are being most affected by the pandemic.
