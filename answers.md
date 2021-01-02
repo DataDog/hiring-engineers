@@ -4,8 +4,6 @@ For this section I went with a linux VM via Vagrant.
 
 I followed the directions provided by Vagrant the [I'm an inline-style link with title](https://learn.hashicorp.com/collections/vagrant/getting-started "Vagrant's VM Setup Page")
 
-Next, I signed up for the datadog
-
 **Collecting Metrics Section**
 
 _Exercise 1:
