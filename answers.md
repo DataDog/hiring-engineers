@@ -279,6 +279,14 @@ _Make sure that your email is notified when you schedule the downtime and take a
 
 **Collecting APM Data:**
 
+For this section, I followed the DD doc [Tracing Python Applications](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers)
+
+First I went to the datadog.yaml and enabled the trace configuration.
+
+Then I ran the ``` pip3 install ddtrace``` command in the VM.
+
+Followed by this commnad ```FLASK_APP=app.py DATADOG_ENV=flask_app ddtrace-run flask run --port=5050```
+
 _Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:_
 
 _Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other._
@@ -288,9 +296,9 @@ _Provide a link and a screenshot of a Dashboard with both APM and Infrastructure
 _Please include your fully instrumented app in your submission, as well._
 
 Links:
-https://app.datadoghq.com/apm/service/flask/flask.request?end=1609381373923&paused=false&start=1609377773923&env=flask_app
+[Flask App](https://app.datadoghq.com/apm/service/flask/flask.request?end=1609381373923&paused=false&start=1609377773923&env=flask_app)
 
-https://app.datadoghq.com/dash/integration/custom%3Atrace?from_ts=1609377893959&live=true&to_ts=1609381493959&tpl_var_scope=host%3Aubuntu-xenial
+[Flask App Trace](https://app.datadoghq.com/dash/integration/custom%3Atrace?from_ts=1609377893959&live=true&to_ts=1609381493959&tpl_var_scope=host%3Aubuntu-xenial)
 
 ```
 from flask import Flask
@@ -338,7 +346,7 @@ if __name__ == '__main__':
 _Bonus Question: What is the difference between a Service and a Resource?_
 
 Source:
-https://docs.datadoghq.com/tracing/visualization/
+[APM Glossary](https://docs.datadoghq.com/tracing/visualization/)
 
 Service:
   Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
