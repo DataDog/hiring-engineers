@@ -265,6 +265,49 @@ _Given the following Flask app (or any Python/Ruby/Go app of your choice) instru
 
 _Note: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other._
 
+```
+from flask import Flask
+import logging
+import sys
+from ddtrace import tracer
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+
+```
+
+![Alt text](/photos/pic_one.png?raw=true)
+
+![Alt text](/photos/pic_two.png?raw=true)
+
+![Alt text](/photos/pic_three.png?raw=true)
+
+![Alt text](/photos/pic_four.png?raw=true)
+
+![Alt text](/photos/pic_five.png?raw=true)
+
 _Bonus Question: What is the difference between a Service and a Resource?_
 
 _Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics._
