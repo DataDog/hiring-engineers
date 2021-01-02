@@ -2,7 +2,7 @@
 
 For this section I went with a linux VM via Vagrant.
 
-I followed the directions provided by Vagrant the [Vagrant's VM Setup Page](https://learn.hashicorp.com/collections/vagrant/getting-started)
+I followed the directions provided by Vagrant on the [VM Setup Page](https://learn.hashicorp.com/collections/vagrant/getting-started)
 
 **Collecting Metrics Section**
 
@@ -10,7 +10,7 @@ _Exercise 1:
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog._
 
 Link:
-https://app.datadoghq.com/infrastructure/map?host=3443516844&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=true&node_type=host
+[DataDog Host] (https://app.datadoghq.com/infrastructure/map?host=3443516844&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=true&node_type=host)
 
 Answer:
 Below we have a screenshot of the Host Map. This can be viewed by heading to the sidebar on the DataDog home page and clicking on Infrastructure, then Host Map. To view the DD agent details, simply click on "Agent" within the host. This will direct the user to where the customized tags can be viewed on the front end. To add the tags on the back end, the Agent Configuration file would be to be configured.
