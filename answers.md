@@ -10,7 +10,7 @@ _Exercise 1:
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog._
 
 Link:
-[DataDog Host](https://app.datadoghq.com/infrastructure/map?host=3443516844&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=true&node_type=host)
+[DataDog Host Map](https://app.datadoghq.com/infrastructure/map?host=3443516844&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=true&node_type=host)
 
 Answer:
 Below we have a screenshot of the Host Map. This can be viewed by heading to the sidebar on the DataDog home page and clicking on Infrastructure, then Host Map. To view the DD agent details, simply click on "Agent" within the host. This will direct the user to where the customized tags can be viewed on the front end. To add the tags on the back end, the Agent Configuration file would be to be configured.
@@ -25,7 +25,7 @@ _Exercise 2:
 Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database._
 
 Link:
-https://app.datadoghq.com/infrastructure/map?host=3443516844&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=true&node_type=host
+[MongoDB on Hostmap](https://app.datadoghq.com/infrastructure/map?host=3443516844&fillby=avg%3Acpuutilization&sizeby=avg%3Anometric&groupby=availability-zone&nameby=aws_id&nometrichosts=false&tvMode=false&nogrouphosts=true&palette=green_to_orange&paletteflip=true&node_type=host)
 
 Answer:
 To start the MongoDB's install process, from the Host Map, go to the sidebar and click on Integrations >> Integrations. This link directs the user to a page with a list of integration options. From here, search for MongoDB and follow the configuration steps.
