@@ -2,7 +2,7 @@
 
 For this section I went with a linux VM via Vagrant.
 
-I followed the directions provided by Vagrant the [I'm an inline-style link with title](https://learn.hashicorp.com/collections/vagrant/getting-started "Vagrant's VM Setup Page")
+I followed the directions provided by Vagrant the [Vagrant's VM Setup Page](https://learn.hashicorp.com/collections/vagrant/getting-started)
 
 **Collecting Metrics Section**
 
