@@ -130,7 +130,7 @@ __03_anomaly_dashboard.png__
 __04_snapshot_anomaly_graph.png__
 <img src="04_snapshot_anomaly_graph.png" />
 
-The anomaly graph has been configured in basic mode with bounds of 2, indicating that data sitting outside two standard deviations (or approximately 95% of all received datasets) is marked as anomalous.  The grey shaded background shows the tolerance for this 95% corpus, with the trend line going red when outside the two standard deviation baseline.  The basic algorithm used does not take seasonality or long-term trends into account.
+**Bonus Question:** The anomaly graph has been configured in basic mode with bounds of 2, indicating that data sitting outside two standard deviations (or approximately 95% of all received datasets) is marked as anomalous.  The grey shaded background shows the tolerance for this 95% corpus, with the trend line going red when outside the two standard deviation baseline.  The basic algorithm used does not take seasonality or long-term trends into account.
 
 The performance metric that is being profiled is set to alert on a five-minute basis.  The actual task itself is a scheduled SQL database import of customer and employee data, that takes approximately 1-2 minutes to complete on the profiled hardware.  Were a longer window used to assess performance, no alert would be generated as the system activity is well within the bounds of expected performance.
 
@@ -144,12 +144,10 @@ __05_custom_alert_messages.png__
 __06_email_alert.png__
 <img src="06_email_alert.png" />
 
+**Bonus Question:** Downtime screenshot as below.
+
 __07_downtime.png__
 <img src="07_downtime.png" />
-
-**Bonus Question**: A **service*** is a set of processes that do the same job - for example a web framework and database.  In the sample provided, both the Flask Python web application and the underlying Docker containing it is running it have been tagged as part of the single service (via unified service tagging). This enables event correlation across multiple different systems and/or architectures and is especially important when trying to ascertain and evaluate application performance leveraging distributed or serverless architectures.  Service tagging allows the end user to navigate and correlate across traces, metrics, and logs (i.e. both pure application/built-in metrics and also APM-based integration).
-
-A **resource*** is a particular action for a given service (typically an individual endpoint or query).  A service is typically comprised of multiple resources that are all grouped together and reported on collectively.  The resource is the sub-component – in this example, individual API endpoints (for Flask) or could instead be a database query.  Essentially something instrumentable.
 
 ## Collecting APM Data
 
@@ -159,6 +157,10 @@ A sample dashboard is available [here.](https://app.datadoghq.com/dashboard/k57-
 
 __08_apm_infra_dashboard.png__
 <img src="08_apm_infra_dashboard.png" />
+
+**Bonus Question**: A **service*** is a set of processes that do the same job - for example a web framework and database.  In the sample provided, both the Flask Python web application and the underlying Docker containing it is running it have been tagged as part of the single service (via unified service tagging). This enables event correlation across multiple different systems and/or architectures and is especially important when trying to ascertain and evaluate application performance leveraging distributed or serverless architectures.  Service tagging allows the end user to navigate and correlate across traces, metrics, and logs (i.e. both pure application/built-in metrics and also APM-based integration).
+
+A **resource*** is a particular action for a given service (typically an individual endpoint or query).  A service is typically comprised of multiple resources that are all grouped together and reported on collectively.  The resource is the sub-component – in this example, individual API endpoints (for Flask) or could instead be a database query.  Essentially something instrumentable.
 
 ## Creative Uses for Datadog
 
