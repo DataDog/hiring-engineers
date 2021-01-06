@@ -1,0 +1,23 @@
+version: '2.4'
+
+services:
+  datadog:
+    container_name: datadog
+    image: gcr.io/datadoghq/agent:latest
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+    environment:
+      DD_API_KEY: 80bb19d8247dff9d2801d0bad05577d3
+      DD_SITE: datadoghq.com
+      DD_TAGS: "service:home-apps env:dev device:nas custom_critical:no"
+      DD_APM_NON_LOCAL_TRAFFIC: "true"
+      DD_APM_ENABLED: "true"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+      - /volume1/docker/datadog/conf.d/mysql.yaml:/etc/datadog-agent/conf.d/mysql.yaml:ro
+      - /volume1/docker/datadog/conf.d/custom_random.yaml:/etc/datadog-agent/conf.d/custom_random.yaml:ro
+      - /volume1/docker/datadog/checks.d/custom_random.py:/etc/datadog-agent/checks.d/custom_random.py:ro
+    restart: unless-stopped
