@@ -136,8 +136,6 @@ The performance metric that is being profiled is set to alert on a five-minute b
 
 ## Monitoring Data
 
-A **http_check** has also been created to periodically poll the published endpoints and generate APM data.
-
 __05_custom_alert_messages.png__
 <img src="05_custom_alert_messages.png" />
 
@@ -152,6 +150,8 @@ __07_downtime.png__
 ## Collecting APM Data
 
 A copy of the instrumented code has been included with the submission.
+
+A **http_check** has also been created to periodically poll the published endpoints and generate APM data.
 
 A sample dashboard is available [here.](https://app.datadoghq.com/dashboard/k57-ta4-g2h/tims-testapp-dashboard?from_ts=1609367921127&live=true&to_ts=1609368821127)
 
