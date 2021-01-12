@@ -200,3 +200,18 @@ curl --location --request POST 'https://api.datadoghq.com/api/v1/dashboard' \
 ###### 3) Screenshot of email notification.
 
 <img width="566" alt="Screen Shot 2021-01-04 at 5 14 59 PM" src="https://user-images.githubusercontent.com/76797887/103585257-bef6fb80-4eb0-11eb-9c65-21b5f3e33a12.png">
+
+## Collecting APM Data
+
+I was unable to instrument an application with the APM after numerous attempts. 
+
+* **BONUS QUESTION: Difference between resource and service** 
+
+** Service are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
+
+** Resource represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
+** source:https://docs.datadoghq.com/tracing/visualization/
+
+## Final Question
+
+* **Unique use for Datadog**
