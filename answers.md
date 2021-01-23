@@ -213,7 +213,7 @@ Below are screenshots of me making the snapshot and the email I received with th
 
 **Receiving:**
 
-![Snapshot Email](screenshots/snapshot_email.PNG "Snapshot Email")
+![Snapshot Email](screenshots/snapshot_email.png "Snapshot Email")
 
 **Bonues Question: What is the Anomaly graph displaying?**
 
@@ -233,7 +233,7 @@ Naturally, now that I have produced some metrics and a dashboard to get real tim
 
 Monitors are actually quite easy to configure using the UI.  To do so, I navigated to Monitors > New Monitors and selected the option for Metrics. Below is a screenshot of the configuration I used to achieved the needed requirements:
 
-![my_metric Monitor](screenshots/Monitor.PNG "my_metric Monitor")
+![my_metric Monitor](screenshots/Monitor.png "my_metric Monitor")
 
 **Question 2: Please configure the monitor’s message so that it will do the following:**
 - Send you an email whenever the monitor triggers.
@@ -268,15 +268,15 @@ As a result, the monitor produces the following 3 conditional alert states:
 
 1. **Alert threshold:**
 
-![Alert threshold message](screenshots/monitor_alert.PNG "Alert threshold message")
+![Alert threshold message](screenshots/monitor_alert.png "Alert threshold message")
 
 2. **Warning thershold:**
 
-![Warning threshold message](screenshots/monitor_warning.PNG "Warning threshold message")
+![Warning threshold message](screenshots/monitor_warning.png "Warning threshold message")
 
 3. **No data threshold:**
 
-![No data threshold message](screenshots/monitor_no_data.PNG "no data threshold message")
+![No data threshold message](screenshots/monitor_no_data.png "no data threshold message")
 
 **Bonus Question:** Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 - One that silences it from 7pm to 9am daily on M-F
@@ -289,7 +289,7 @@ To schedule downtime, I navigated to Monitors > Manage Downtime in the UI and se
 
 For this downtime, I similarly created another scheduled downtime with the following configuration:
 
-![Weekend donwtime](screenshots/downtime_2.PNG "Weekend downtime")
+![Weekend downtime](screenshots/downtime_2.png "Weekend downtime")
 
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
@@ -297,11 +297,11 @@ In both screenshots at the bottom, I have included myself in the section "4. Not
 
 **Weeknight downtime**
 
-![Weeknight donwtime](screenshots/weeknight_downtime.PNG "Weeknight downtime")
+![Weeknight donwtime](screenshots/weeknight_downtime.png "Weeknight downtime")
 
 **Weekend downtime**
 
-![Weekend donwtime](screenshots/weekend_downtime.PNG "Weekend downtime")
+![Weekend donwtime](screenshots/weekend_downtime.png "Weekend downtime")
 
 ***
 
