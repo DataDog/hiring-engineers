@@ -289,7 +289,7 @@ To schedule downtime, I navigated to Monitors > Manage Downtime in the UI and se
 
 For this downtime, I similarly created another scheduled downtime with the following configuration:
 
-![Weekend downtime](screenshots/downtime_2.PNG "Weekend downtime")
+![Weekend downtime](screenshots/DOWNTIME_2.PNG "Weekend downtime")
 
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
