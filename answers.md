@@ -32,7 +32,7 @@ As per the docs [here](https://docs.datadoghq.com/getting_started/tagging/assign
 
 I then saved the file, waited a few minutes for the environment to update, and navigated to Infrastructure > Hostmap to see the following:
 
-![Host Map with tags](/hiring-engineers/screenshots/host_map.PNG "Host Map with Tags")
+![Host Map with tags](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/host_map.PNG "Host Map with Tags")
 
 
 **Question 2: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
@@ -62,7 +62,7 @@ Lastly, I enabled metric collection by creating the `conf.yaml` at `/etc/datadog
 
 Once completed, I restarted my agent to apply the new configuration and begin collecting metrics.  I was then able view the newly available metrics found under Metrics > Explorer as seen below:
 
-![Postgresql Metrics available under Metrics > Explorer](/hiring-engineers/screenshots/metrics.PNG "Metrics available under Metrics > Explorer")
+![Postgresql Metrics available under Metrics > Explorer](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/metrics.PNG "Metrics available under Metrics > Explorer")
 
 **Question 3: Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
 
@@ -93,7 +93,7 @@ In the folder `/etc/datadog-agent/checks.d/` I created a custom check `custom_my
 
 Once completed, I restarte the agent and validated that I saw `my_metric` reporting under Metrics > Explorer as seen below:
 
-![my_metric reporting](/hiring-engineers/screenshots/my_metric.PNG "my_metric reporting under Metrics > Explorer")
+![my_metric reporting](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/my_metric.PNG "my_metric reporting under Metrics > Explorer")
 
 **Question 4: Change your check's collection interval so that it only submits the metric once every 45 seconds.**
 
@@ -124,7 +124,7 @@ As per the Dashboard enpoint docs linked above, I first went about accquire my A
 
 **Question 1.1: Show your custom metric scoped over your host.**
 
-For starters, I learned that all dashboards are comprised of widgets which are effectively individual charts.  There are a variety of types of widgets as documented [here](https://github.com/erratx/hiring-engineers/screenshots/tree/solutions-engineer) which can present metrics in variety of visualization types in a dashboard.
+For starters, I learned that all dashboards are comprised of widgets which are effectively individual charts.  There are a variety of types of widgets as documented [here](https://github.com/erratxhttps://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/tree/solutions-engineer) which can present metrics in variety of visualization types in a dashboard.
 
 For my first widget on `my_metric`, I chose a timeseries as the data provided by the custom check gauge function sends a single data-point every 45 seconds.  To do so, I defined my widget with the provided JSON schema as follows:
 
@@ -185,7 +185,7 @@ To apply a rollup function, I followed the documentation initially on [Arithemti
 
 After performing sub-setps 1-3, the [final dashboard](https://p.datadoghq.com/sb/7my7we8zuethfnx9-db6234b107a2374c39d85644a3344e69) I produced looks like this:
 
-![Final Dashboard](/hiring-engineers/screenshots/dashboard.PNG "Final Dashboard")
+![Final Dashboard](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/dashboard.PNG "Final Dashboard")
 
 > **Note:** in addition to my script `dashboard.py` found in `/hiring-engineers/code` there is a script `clear_dashboards.py` which I used as a convenience when testing a variety of dashboard widgets. 
 
@@ -197,7 +197,7 @@ For the following questions, I navigated to Dashboards > Dashboard List > SE Hir
 
 In the top-right of my dashboard, I selected the timeframe and changed it to "Past 5 Minutes" to produce the following: 
 
-![Timeframe updated to 5-min](/hiring-engineers/screenshots/timeframe.PNG "Timeframe updated to 5-min")
+![Timeframe updated to 5-min](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/timeframe.PNG "Timeframe updated to 5-min")
 
 As a note, since the Query Value widget is set to a 1-hour roll-up, no data is present since there isn't a 1-hour roll-up window present for a 5-minute window.
 
@@ -209,11 +209,11 @@ Below are screenshots of me making the snapshot and the email I received with th
 
 **Creation:**
 
-![Snapshot Dialog](/hiring-engineers/screenshots/snapshot_dialog.PNG "Snapshot Dialog")
+![Snapshot Dialog](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/snapshot_dialog.PNG "Snapshot Dialog")
 
 **Receiving:**
 
-![Snapshot Email](/hiring-engineers/screenshots/snapshot_email.PNG "Snapshot Email")
+![Snapshot Email](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/snapshot_email.PNG "Snapshot Email")
 
 **Bonues Question: What is the Anomaly graph displaying?**
 
@@ -233,7 +233,7 @@ Naturally, now that I have produced some metrics and a dashboard to get real tim
 
 Monitors are actually quite easy to configure using the UI.  To do so, I navigated to Monitors > New Monitors and selected the option for Metrics. Below is a screenshot of the configuration I used to achieved the needed requirements:
 
-![my_metric Monitor](/hiring-engineers/screenshots/Monitor.PNG "my_metric Monitor")
+![my_metric Monitor](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/Monitor.PNG "my_metric Monitor")
 
 **Question 2: Please configure the monitor’s message so that it will do the following:**
 - Send you an email whenever the monitor triggers.
@@ -268,28 +268,28 @@ As a result, the monitor produces the following 3 conditional alert states:
 
 1. **Alert threshold:**
 
-![Alert threshold message](/hiring-engineers/screenshots/monitor_alert.PNG "Alert threshold message")
+![Alert threshold message](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/monitor_alert.PNG "Alert threshold message")
 
 2. **Warning thershold:**
 
-![Warning threshold message](/hiring-engineers/screenshots/monitor_warning.PNG "Warning threshold message")
+![Warning threshold message](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/monitor_warning.PNG "Warning threshold message")
 
 3. **No data threshold:**
 
-![No data threshold message](/hiring-engineers/screenshots/monitor_no_data.PNG "no data threshold message")
+![No data threshold message](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/monitor_no_data.PNG "no data threshold message")
 
 **Bonus Question:** Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 - One that silences it from 7pm to 9am daily on M-F
 
 To schedule downtime, I navigated to Monitors > Manage Downtime in the UI and selected the option to "Schedule Downtime."  I then configured this downtime with the following:
 
-![Weeknight donwtime](/hiring-engineers/screenshots/downtime_1.PNG "Weeknight downtime")
+![Weeknight donwtime](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/downtime_1.PNG "Weeknight downtime")
 
 - And one that silences it all day on Sat-Sun.
 
 For this downtime, I similarly created another scheduled downtime with the following configuration:
 
-![Weekend donwtime](/hiring-engineers/screenshots/downtime_2.PNG "Weekend downtime")
+![Weekend donwtime](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/downtime_2.PNG "Weekend downtime")
 
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
@@ -297,11 +297,11 @@ In both screenshots at the bottom, I have included myself in the section "4. Not
 
 **Weeknight downtime**
 
-![Weeknight donwtime](/hiring-engineers/screenshots/weeknight_downtime.PNG "Weeknight downtime")
+![Weeknight donwtime](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/weeknight_downtime.PNG "Weeknight downtime")
 
 **Weekend downtime**
 
-![Weekend donwtime](/hiring-engineers/screenshots/weekend_downtime.PNG "Weekend downtime")
+![Weekend donwtime](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/weekend_downtime.PNG "Weekend downtime")
 
 ***
 
@@ -340,7 +340,7 @@ After starting my applicaition and validating that I was indeeed getting metrics
 
 Now that I have instrumented my application for system-level and endpopint-level traces, I was able to pull together a dashboard of APM and Infrasturcture metrics as seen [here](https://p.datadoghq.com/sb/7my7we8zuethfnx9-c3c64a55e5c789c6542a6fa97fdc34c8) or below:
 
-![APM/System Dashboard](/hiring-engineers/screenshots/apm_dash.PNG "APM/System Dashobard")
+![APM/System Dashboard](https://github.com/erratx/hiring-engineers/tree/solutions-engineer/screenshots/apm_dash.PNG "APM/System Dashobard")
 
 ***
 
