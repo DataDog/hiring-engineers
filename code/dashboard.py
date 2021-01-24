@@ -11,6 +11,7 @@ title = 'SE Hiring Example'
 description = 'A dashboard used to illustrate the Dashboard enpoint in the Datadog API.'
 is_read_only = False
 layout_type = 'ordered'
+
 widgets = [{
     'definition': {
         'type': 'timeseries',
@@ -22,7 +23,7 @@ widgets = [{
         'title': 'My Metric'
         }
     },{
-        'definition': {
+    'definition': {
         'type': 'query_value',
         'requests': [
             # the rollup() function is appended to the end of our query with parameters <METHOD>, <TIME>
@@ -30,9 +31,9 @@ widgets = [{
             {'q': 'my_metric{host:vagrant}.rollup(sum, 3600)'}
         ],
         'title': 'My Metric'
-        }
+    }
     }, {
-        'definition': {
+    'definition': {
         'type': 'timeseries',
         'requests': [
             # anomalies function with the params METRIC_NAME{*}, '<ALGORITHM>', <BOUNDS>
@@ -40,7 +41,7 @@ widgets = [{
             {'q': "anomalies(postgresql.max_connections{host:vagrant}, 'basic', 3)"}
         ],
         'title': 'Max Connections Anomolies'
-        }
+    }
     }]
 
 api.Dashboard.create(title=title,
