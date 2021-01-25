@@ -51,7 +51,7 @@ vagrant ssh
 ````
 lsb_release -a
 ````
-![verify-os](screenshots/1.4.verify-os-version.png)
+![verify-os](screenshots/1.4.verify-os-version.jpg)
 ### Change the hostname for better identification
 
 The below screenshot confirms that the hostname has changed.
