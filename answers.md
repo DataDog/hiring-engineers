@@ -56,7 +56,7 @@ lsb_release -a
 
 The below screenshot confirms that the hostname has been changed.
 
-![change-hostname](screenshots/1.5.change-hostname.png)
+![hostname](screenshots/1.5.change-hostname-vagrant.png)
 
 ### Create a new Datadog account.
 
