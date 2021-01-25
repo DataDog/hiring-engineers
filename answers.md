@@ -44,13 +44,13 @@ Once Vagrant has brought up the server you will need to connect to it by perform
 ````
 vagrant ssh
 ````
-![vagrant ssh](screenshots/1.3.vagrant-ssh.png)
+![vagrant ssh](screenshots/1.3.vagrant-ssh-ubuntu.png)
 
 ### Verify the OS version by running the command
 ````
 lsb_release -a
 ````
-![verify-os](screenshots/1.3.vagrant-ssh-ubuntu.png)
+![verify-os](screenshots/1.4.verify-os-version.png)
 
 ### Change the hostname for better identification
 
