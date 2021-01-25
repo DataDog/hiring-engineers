@@ -26,6 +26,8 @@ The following command initialises Vagrant on your local machine and downloads th
 vagrant init hashicorp/bionic64
 ````
 
+<img width="512" alt="Init Vagrant" src="screenshots/1.1-init-vagrant.png">
+
 ![Init Vagrant](screenshots/1-init-vagrant.png)
 
 ### Launching the server
