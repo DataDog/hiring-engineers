@@ -26,9 +26,8 @@ The following command initialises Vagrant on your local machine and downloads th
 vagrant init hashicorp/bionic64
 ````
 
-<img width="512" alt="Init Vagrant" src="screenshots/1.1-init-vagrant.png">
 
-![Init Vagrant](screenshots/1-init-vagrant.png)
+![Init vagrant](screenshots/1.1-init-vagrant.png)
 
 ### Launching the server
 
@@ -37,7 +36,7 @@ The following command would bring the server up. If this is the first time the c
 ````
 vagrant up
 ````
-![vagrant up](screenshots/2-bringing-vagrant-up.png)
+![vagrant up](screenshots/1.2-bringing-vagrant-up.png)
 
 ### Connecting to the server
 
@@ -45,13 +44,13 @@ Once Vagrant has brought up the server you will need to connect to it by perform
 ````
 vagrant ssh
 ````
-![vagrant ssh](screenshots/1.3.Vagrant-ssh)
+![vagrant ssh](screenshots/1.3.vagrant-ssh.png)
 
 ### Verify the OS version by running the command
 ````
 lsb_release -a
 ````
-![verify-os](screenshots/1.4.verify-os-version.jpg)
+![verify-os](screenshots/1.4.verify-os-version.png)
 
 ### Change the hostname for better identification
 
