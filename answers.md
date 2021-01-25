@@ -50,7 +50,7 @@ vagrant ssh
 ````
 lsb_release -a
 ````
-![verify-os](screenshots/1.4.verify-os-version.png)
+![verify-os](screenshots/1.3.vagrant-ssh-ubuntu.png)
 
 ### Change the hostname for better identification
 
