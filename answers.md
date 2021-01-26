@@ -40,6 +40,9 @@ vagrant up
 ````
 ![vagrant up](screenshots/1.2-bringing-vagrant-up.png)
 
+In the background, Vagrant would have launched and configured the VM. Note the screenshot below of VirtualBox:
+![virtualbox-running](screenshots/1.10.virtualbox-vm.png)
+
 ### Connecting to the server
 
 Once Vagrant has brought up the server you will need to connect to it by performing a ````vagrant ssh````. This connects the server through Secure Socket Shell (SSH) using preconfigured keys managed by Vagrant.
@@ -85,11 +88,11 @@ The below screenshot confirms that the hostname was changed and is persistent wh
 
 Agent installations instructions are available in the following path:
 
-Datadog UI ⇨ Integrations ⇨ Agent ⇨ Ubuntu(choose this based on your OS)  ⇨ Copy the instruction that matches the most suitable option. In our case, we will be performing a new installation.
+> Datadog UI ⇨ Integrations ⇨ Agent ⇨ Ubuntu(choose this based on your OS)  ⇨ Copy the instruction that matches the most suitable option. In our case, we will be performing a new installation.
 
 The command would look similar to below.
 
-Note: The API key will be associated to your account only and should not be shared.
+*Note: The API key will be associated to your account only and should not be shared.*
 
 Copy and paste the command on the server and run it. You may have to enter your password if prompted.
 
@@ -384,7 +387,7 @@ instances:
 ### Installing Postman
 
 Datadog API can be used in variety of ways like writing a script or using commands like curl or wget.
-In this example, Postman was used to create the dashboard.
+In this example, Postman was used to execute the API.
 
 After [downloading and installing postman](https://www.postman.com/downloads/), Import the Datadog collection into Postman by clicking the option to import [from this page](https://docs.datadoghq.com/getting_started/api/).
 
@@ -733,6 +736,24 @@ Link and a screenshot of a Dashboard with both APM and Infrastructure Metrics ar
 * Dashboard:
 ![Final-dashboard](screenshots/4.7.final-dashboard.png)
 
+# Final Question
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+There are a lot of areas that I think Datadog can potentially be used for:
+
+* Public Transport:
+    * Datadog can provide metrics thats show 'Passenger traffic' at a station. This can be easily achived by sending the data of passengers who have touched-on/touched-off at a train station. Potential passengers can now use this data to predict if they would get a seat in the next train
+    * Buses can collect similar data that would add or remove passengers who have onboarded or offboarded to show potential passengers if the next bus would have available seats or not.
+* Retail:
+    * Supermarkets(more affordably other retail outlets) can use RFID on their items instead of Barcode and using this they could track the supply/demand of products and manage inventory optimally and prevent running out of stock or potential wastage
+* Finance:
+    * Our financial spends through our monthly expenditure can speak a lot on how we save and spend money. This data when built on a graphs(repeated purchases in a month, highest expenses, lowest continuous expense etc ) can give insights on how to better manage financially.
+* Health:
+    * Patient wait times can be calculated and provided to users who are next inline
+* ....and a lot!
 
 
 
@@ -757,6 +778,8 @@ The following command installs Flask
 pip install flask
 ````
 ![installing-flask](screenshots/5.2.installing-flask.png)
+
+## Troubleshooting:
 
 ## ddtrace missing modules
 
