@@ -1,0 +1,8 @@
+init_config:
+
+instances:
+  - name: Datadog APM (APM endpoint)
+    url: http://127.0.0.1:5050/api/apm
+
+  - name: Datadog APM (Trace endpoint)
+    url: http://127.0.0.1:5050/api/trace
