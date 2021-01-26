@@ -66,12 +66,13 @@ site: datadoghq.com
 tags:
    - environment:dev
    - exercise:collecting_metrics
+   - service:datadog_flask
 
 ## @param env - string - optional
 ## The environment name where the agent is running. Attached in-app to every
 ## metric, event, log, trace, and service check emitted by this Agent.
 #
-# env: <environment name>
+env: dev
 
 ## @param tag_value_split_separator - map - optional
 ## Split tag values according to a given separator. Only applies to host tags,
