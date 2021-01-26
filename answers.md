@@ -1,7 +1,6 @@
+#  *Amrith's answers to the exercise*
 
-## *Amrith's answers to the exercise*
-
-*Please find below answers to the excercise*
+> *Please Refresh the page if images do not load properly*
 
 # Setting up the environment
 
@@ -23,18 +22,18 @@ VirtualBox is a free and open source virtualisation software. We will use Virtua
 
 ## Configuring Vagrant and verifying the OS
 
-The following command initialises Vagrant on your local machine and downloads the image of Ubuntu 18.04 also known as Bionic Beaver.
+The following command initialises Vagrant on your local machine and downloads the configuration of Ubuntu 18.04 also known by its codename Bionic Beaver.
 ````
 vagrant init hashicorp/bionic64
 ````
 
-The location where you run vagrant is important as it places a vagrantfile that will have information of the image you are about to run.
-
 ![Init vagrant](screenshots/1.1-init-vagrant.png)
+
+The location where you run vagrant is important as it places a vagrantfile that will have information of the image you are about to run.
 
 ### Launching the server
 
-The following command would bring the server up. If this is the first time the command is run and if Vagrant cannot find the image it will attempt to find and install the OS on VirtualBox. This may take few minutes to complete.
+The following command would bring the server up. If this is the first time the command is run and if Vagrant cannot find the image it will attempt to find and install the OS on VirtualBox. This may take few minutes to complete. Screenshot below shows the output when you run ````vagrant run```` for the first time
 
 ````
 vagrant up
@@ -43,13 +42,22 @@ vagrant up
 
 ### Connecting to the server
 
-Once Vagrant has brought up the server you will need to connect to it by performing a ````vagrant ssh````. This simulates connecting to the server through Secure Socket Shell (SSH). The following command connects to the Ubuntu Bionic server that we just spun up:
+Once Vagrant has brought up the server you will need to connect to it by performing a ````vagrant ssh````. This connects the server through Secure Socket Shell (SSH) using preconfigured keys managed by Vagrant.
+
+The following command connects to the Ubuntu Bionic server that we just spun up:
+
+
 ````
 vagrant ssh
 ````
+
+Note this command as this will needed to connect to the Ubuntu machine in the future
+
 ![vagrant ssh](screenshots/1.3.vagrant-ssh-ubuntu.png)
 
 ### Verify the OS version by running the command
+
+The below command in Ubuntu shows the release and codename
 ````
 lsb_release -a
 ````
@@ -57,13 +65,15 @@ lsb_release -a
 
 ### Change the hostname for better identification
 
-The below screenshot confirms that the hostname has been changed.
+Changing the hostname is a good practice as it will help easily identify the OS.
+
+The below screenshot confirms that the hostname was changed and is persistent which means rebooting the server would not change the hostname.
 
 ![hostname](screenshots/1.5.change-hostname-vagrant.png)
 
 ## Create a new Datadog account.
 
-* Use your browser and open https://www.datadoghq.com/ and create a new account
+* Use your web browser and open https://www.datadoghq.com/ and follow the instructions to create a new account
 * After signing up, your new Datadog home page will appear like below:
 * Datadog provides a 14 day trial to evaluate the product. This should be ample amount of time to perform this excercise.
 
