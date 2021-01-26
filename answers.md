@@ -3,8 +3,9 @@
 
 *Please find below answers to the excercise*
 
-
 # Setting up the environment
+
+Note: Although in this example, VirtualBox and Vagrant were used as test machines you could perform the steps mentioned below on cloud instances hosted on AWS, GCP or Azure or even on a physically installed server or even a container.
 
 ## Installing Vagrant and VirtualBox on a local machine
 
@@ -13,10 +14,11 @@
 
 Download the proper package for your operating system and architecture from [Vagrant Download page](https://www.vagrantup.com/downloads). Additional instructions on installation if needed are available [here](https://www.vagrantup.com/docs/installation)
 
+Please note that Vagrant is not mandatory and it simply eases the way in which a VM is managed on your laptop.
 
 ### Install VirtualBox:
 
-VirtualBox is a free and open source virtualisation software. We will use VirtualBox to run Ubuntu 18.04 The latest version is available in the [VirtualBox Download page](https://www.virtualbox.org/wiki/Downloads)
+VirtualBox is a free and open source virtualisation software. We will use VirtualBox to run Ubuntu 18.04. The latest version is available in the [VirtualBox Download page](https://www.virtualbox.org/wiki/Downloads)
 
 
 ## Configuring Vagrant and verifying the OS
@@ -26,12 +28,13 @@ The following command initialises Vagrant on your local machine and downloads th
 vagrant init hashicorp/bionic64
 ````
 
+The location where you run vagrant is important as it places a vagrantfile that will have information of the image you are about to run.
 
 ![Init vagrant](screenshots/1.1-init-vagrant.png)
 
 ### Launching the server
 
-The following command would bring the server up. If this is the first time the command is run and if Vagrant cannot find the image it will attempt to find and install the OS on VirtualBox
+The following command would bring the server up. If this is the first time the command is run and if Vagrant cannot find the image it will attempt to find and install the OS on VirtualBox. This may take few minutes to complete.
 
 ````
 vagrant up
@@ -40,7 +43,7 @@ vagrant up
 
 ### Connecting to the server
 
-Once Vagrant has brought up the server you will need to connect to it by performing a Vagrant ssh. This simulates connecting to the server through Secure Socket Shell (SSH). The following command connects to the Ubuntu Bionic server that we just spun up:
+Once Vagrant has brought up the server you will need to connect to it by performing a ````vagrant ssh````. This simulates connecting to the server through Secure Socket Shell (SSH). The following command connects to the Ubuntu Bionic server that we just spun up:
 ````
 vagrant ssh
 ````
@@ -58,10 +61,11 @@ The below screenshot confirms that the hostname has been changed.
 
 ![hostname](screenshots/1.5.change-hostname-vagrant.png)
 
-### Create a new Datadog account.
+## Create a new Datadog account.
 
 * Use your browser and open https://www.datadoghq.com/ and create a new account
-* After siging up, your new Datadog home page may appear like below:
+* After signing up, your new Datadog home page will appear like below:
+* Datadog provides a 14 day trial to evaluate the product. This should be ample amount of time to perform this excercise.
 
 ![new-dd-account](screenshots/1.6.new.dd.account.png)
 
@@ -71,16 +75,18 @@ The below screenshot confirms that the hostname has been changed.
 
 Agent installations instructions are available in the following path:
 
-Integrations ⇨ Agent ⇨ Ubuntu(choose based on the OS)  ⇨ Copy the instruction that matches the most suitable option. In our case, we will be performing a new installation.
+Datadog UI ⇨ Integrations ⇨ Agent ⇨ Ubuntu(choose this based on your OS)  ⇨ Copy the instruction that matches the most suitable option. In our case, we will be performing a new installation.
 
 The command would look similar to below.
+
 Note: The API key will be associated to your account only and should not be shared.
+
+Copy and paste the command on the server and run it. You may have to enter your password if prompted.
 
 ````
 DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=███████████████████████████ DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 ````
 
-Copy and paste the command on the server and run it. You may have to enter your password if prompted.
 
 ### Verify the installation
 
@@ -449,6 +455,10 @@ Application Key:
     ]
 }
 ````
+Using Postman to perform a HTTP ````POST```` to the Datadog API
+
+![postman](screenshots/2.13.postman-created-api.png)
+
 
 Ensure you receive a 200 OK to confirm that the POST was successfull.
 
@@ -507,7 +517,7 @@ Screenshot of the screen to create a new monitor:
 ### Configuring custom emails based on Alert, Warning or missing data:
 
 
-### Title and Body of the notification
+### Message to be delivered in the notification
 
 
 Notice the following aspects:
@@ -516,11 +526,10 @@ Notice the following aspects:
 
 
 ````
-{{#is_alert}} My_Metric is {{value}} and above {{threshold}} on host {{host.ip}} {{/is_alert}} {{#is_warning}} My_Metric is {{value}} and above {{warn_threshold}} on host {{host.ip}} {{/is_warning}} {{#is_no_data}} My_Metric hasn't send any data for the past 10 mins {{host.ip}} {{/is_no_data}}
-
+My Metric is high on {{host.ip}}
 ````
 
-#### Body of the email.
+#### Details in the notification
 
 
 ````
@@ -580,3 +589,212 @@ Below is a screenshot of the downtime set for 7pm to 9am daily on M-F
 Below is a screenshot of the downtime set for the weekend:
 
 ![weekend-downtime](screenshots/3.6.weekend-downtime.png)
+
+
+# Collecting APM Data
+
+Instrumenting the given application would require the following items to be completed from a high level:
+
+* Install Flask
+* Install any dependencies for Flask or to install Flask
+* Install ddtrace - Datadog APM Client
+* Configuring the Datadog agent for APM
+* Adding the Datadog Tracing library to the code
+* Access the application and performing some GET operations against the services hosted and also accessing non-existent services to report errors
+
+## Installing Flask and ddtrace
+
+Installing Flask and ddtrace are required to run the application and to have the Datadog APM client instrument the application. Installing these packages are explained in detail in the appendix section as my installation had dependencies that needed to be met.
+
+## Runnning the Application with ddtrace
+
+To Instrument the application, prefix the python entry-point command with ddtrace-run and therefore the command would look similar to below.
+
+# Tracing
+
+````
+export DD_SERVICE=flask-app
+
+ddtrace-run python flask-app.py
+````
+
+![ddtrace-prefix](screenshots/4.0.running-the-app-with-ddtrace-prefix.png)
+
+### Profiler:
+
+Enabling Continuous profiler would help break down the a CPU, memory and IO bottlenecks by method name, class and line number to identify and address end-user latency and infrastructure costs.
+
+Enabling profiler can be done by running the following command for our given application
+
+````
+DD_PROFILING_ENABLED=true ddtrace-run python flask-app.py
+````
+Additional notes:
+
+A flask App can be run by running the following commands as well:
+
+````
+export FLASK_APP=flask_app.py
+export FLASK_ENV=development
+flask run
+````
+
+### Accessing the services on the App
+
+In another terminal try to perform some activity on the application by running the curl command which would perform few GET operations
+![curl-flask-app](screenshots/5.5.curl-the-flask-app.png)
+
+
+## Viewing Services, Traces and Profiles
+
+Navigate to the UI and select APM  ⇨ Services
+
+### Services
+You should see the service running. In our case, it would be named as flask-app as shown the screenshot below:
+
+![apm-services](screenshots/4.3.ui-apm-services.png)
+
+Click the App to view requests per seconds, errors, latency and latency distribution as shown in the below screenshot:
+
+
+![apm-services-metrics](screenshots/4.4.ui-apm-services-metrics.png)
+
+### Traces
+
+The ````GET```` requests made earlier included the 404 error will be available in the traces section
+
+![trace-404-error](screenshots/4.5.ui-trace-of-404-error.png)
+
+### Profiles
+
+Click on profiles and this is the continous profiler
+
+![continous-profiler](screenshots/4.6.ui-continous-profiler.png)
+
+
+
+The app used for this exercise is the same that was provided in the excercise:
+
+````
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+
+````
+
+Bonus Question: What is the difference between a Service and a Resource?
+
+* Services: Services broadly are a representation of a function. It is the building block of microservice architecture. It groups together endpoints, queries, or jobs for the purposes of building an application
+    E.g. The Flask application that was used in this excercise can be seen as a representation of a service.
+
+* Resource: Resource is a particular action for a given service (typically an individual endpoint or query).
+    E.g. The Flask application had resources that was a particular action like /api/apm and /api/trace which are the resources of the service
+
+
+Link and a screenshot of a Dashboard with both APM and Infrastructure Metrics are shown below:
+
+* Public URL of the Final Dashboard is available [here](https://p.datadoghq.com/sb/g55o5dmyhmz6xa1c-512575f2d971e8211c3589b18585ccd7)
+
+* Dashboard:
+![Final-dashboard](screenshots/4.7.final-dashboard.png)
+
+
+
+
+
+
+
+
+# Appendix
+
+## Installing pip
+
+pip may not be available by default but can be easily installed by running the below  command
+````
+sudo apt-get install python-pip
+````
+
+![installing-pip](screenshots/5.1.installing-pip.png)
+## Installing Flask
+
+The following command installs Flask
+````
+pip install flask
+````
+![installing-flask](screenshots/5.2.installing-flask.png)
+
+## ddtrace missing modules
+
+ In my installation, I faced issues installing ddtrace. This can be easily fixed by installing the missing modules reported by pip
+![missing-cynton](screenshots/5.3.ddtrace-missing-cynthon.png)
+
+Install the missing module using pip
+
+````
+vagrant@vagrant-amrith:~$ pip install Cython
+Collecting Cython
+  Downloading https://files.pythonhosted.org/packages/59/c1/0b69d125ab9819869cffff2f416158acf2684bdb4bf54eccf887717e2cbd/Cython-0.29.21-cp27-cp27mu-manylinux1_x86_64.whl (1.9MB)
+    100% |████████████████████████████████| 1.9MB 479kB/s
+Installing collected packages: Cython
+Successfully installed Cython-0.29.21
+vagrant@vagrant-amrith:~$
+````
+
+After the dependencies are met, install ddtrace:
+````
+pip install ddtrace
+````
+
+However, my installation of ddtrace was missing another module named configparer. I was able to fix this issue by installing configparser.
+````
+pip install configparser
+````
+
+![missing-configparser](screenshots/5.4.ddtrace-run-missing-config-parser.png)
+
+
+# References:
+
+[Vagrant - installation](https://www.vagrantup.com/docs/installation)
+
+[VirtualBox - installation](https://www.virtualbox.org/manual/ch02.html#installation-mac)
+
+[Datadog - Getting Started with the agent](https://docs.datadoghq.com/getting_started/agent/)
+
+[Datadog - Agent configuration files](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7)
+
+[Datadog - Writing a custom agent check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
+
+[Datadog - MySQL integration](https://docs.datadoghq.com/integrations/mysql/?tab=host)
+
+[Datadog - Using Postman with Datadog APIs](https://docs.datadoghq.com/getting_started/api/)
+
+
+[Datadog - Tracing](https://docs.datadoghq.com/tracing/visualization/)
+
+[Datadog - Continous profiling](https://docs.datadoghq.com/tracing/profiler/getting_started/?tab=python)
