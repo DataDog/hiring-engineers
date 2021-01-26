@@ -272,3 +272,94 @@ Notice there are no warnings when you run this command:
 ### Verifying the metrics in Datadog
 Navigate to Datadog  ⇨ Dashboards  ⇨ All Dashboards  ⇨ MySQL - Overview which is a preset dashboard for MySQL. Verify if you can see MySQL metrics as shown below:
 ![mysql-dashboard](screenshots/2.7.mysql-verify-metrics.png)
+
+## Creating a Custom agent check
+
+### Agent Check and config directory structure
+
+The custom agent check would reside in a directory named ````checks.d```` while the corresponding configuration would reside in a directory in ````conf.d````
+
+```
+etc
+|
+└───
+    datadog-agent
+    |
+    └───checks.d
+    │   │   my_metric.py
+    |
+    └───conf.d
+    │   │
+    │   └───my_metric.d
+    │       │   my_metric.yaml
+    │   └───mysql.d
+    │_______│   conf.yaml
+```
+
+Now that we understand where to place the files, lets create an agent check called ````my_metric.py```` in folder ````/etc/datadog-agent/checks.d/````
+
+````my_metric.py:````
+
+````
+import random
+    # first, try to import the base class from new versions of the Agent...
+from datadog_checks.base import AgentCheck
+    # content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class MyCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric',random.randint(0,1000))
+````
+
+Lets update the configuration file which would go in conf.d/my_metric.yaml
+
+````my_metric.yaml:````
+
+````
+init_config:
+
+instances:
+  - min_collection_interval: 45
+````
+Note: Leaving the configuration with no real information is acceptable but it would choose the default collection interval which is 15 seconds.
+
+Restart the datadog-agent to use the latest configuration.
+
+## Verify the agent check
+
+Run the following command to verify if the agent is running normally:
+
+````
+sudo -u dd-agent -- datadog-agent check my_metric
+````
+or
+````
+sudo datadog-agent check my_metric
+````
+
+Notice that both the commands show the same output:
+
+Output for ````sudo -u dd-agent -- datadog-agent check my_metric````
+
+![dd-agent-check](screenshots/2.9.dd-agent-check-my_metric.png)
+
+Output for ````sudo datadog-agent check my_metric````
+
+![check-my_metric](screenshots/2.10.check-my_metric.png)
+
+## View the Dashboard
+
+You can also view the my_metric values in a Dashboard. Here is a sample below:
+![my_metric Dashboard](screenshots/2.11.my_metric_graph.png)
+
+### Bonus Question Can you change the collection interval without modifying the Python check file you created?
+
+Yes. The collection interval can changed by changing the ````my_metric.yaml```` located in ````conf.d/my_metrid.d/```` folder
+
+````
+init_config:
+
+instances:
+  - min_collection_interval: 45
+````
