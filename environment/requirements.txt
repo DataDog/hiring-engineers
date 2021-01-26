@@ -1,0 +1,12 @@
+click==7.1.2
+ddtrace==0.45.0
+Flask==1.1.2
+intervaltree==3.1.0
+itsdangerous==1.1.0
+Jinja2==2.11.2
+MarkupSafe==1.1.1
+protobuf==3.14.0
+six==1.15.0
+sortedcontainers==2.3.0
+tenacity==6.3.1
+Werkzeug==1.0.1
