@@ -378,7 +378,7 @@ API and Applications keys are needed to authenticate against Datadog APIs. This 
 
 API Key:
 
-Integration  ⇨ APIs  ⇨ API Keys
+Integration ⇨ APIs  ⇨ API Keys
 You can either create a new key or copy an existing key.
 
 Application Key:
@@ -476,4 +476,107 @@ In addition to the actual metric plotted over the graph, the anomaly graph has a
 
 ![anomaly-example](screenshots/2.14.anamoly.png)
 
-Notice the below graph that shows the gray band which is the range the system expects the metric to stay within. The red spike is the anomaly detected based on historical data.
+Notice the above graph that shows the gray band which is the range the system expects the metric to stay within. The red spike is the anomaly detected based on historical data.
+
+# Monitoring Data
+
+Creating a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+### Creating the monitor:
+
+To create a monitor, head to Datadog UI  ⇨ Monitors  ⇨ Manage Monitors  ⇨ Click on 'New Monitor'  ⇨ Select 'Metric' as the monitor type
+
+* Select 'Threshold Alert' under 'Choose the detection method'
+* Define the metric:
+    * Select 'my_metric' from the drop down menu and leave the other options un changed. Those options can be confined to or restricted to certain resources.
+* Select alert conditions
+    * Set the Alert threshold to 800
+    * Set the Warning threshold to 500
+* Select the option to 'Notify' if the data is missing for '10' minutes.
+* Enter text that shows the alert title and subject. An example is shown below:
+* Finally, select the recipient of the email.
+
+
+Screenshot of the screen to create a new monitor:
+![create-monitor-metric](screenshots/3.1.create-monitor-metric.png)
+
+### Configuring custom emails based on Alert, Warning or missing data:
+
+
+### Title and Body of the notification
+
+
+Notice the following aspects:
+* Host IP is included in the body
+* Custom messages has been incorporated depending on the alert condition: Alert, Warning or No Data
+
+
+````
+{{#is_alert}} My_Metric is {{value}} and above {{threshold}} on host {{host.ip}} {{/is_alert}} {{#is_warning}} My_Metric is {{value}} and above {{warn_threshold}} on host {{host.ip}} {{/is_warning}} {{#is_no_data}} My_Metric hasn't send any data for the past 10 mins {{host.ip}} {{/is_no_data}}
+
+````
+
+#### Body of the email.
+
+
+````
+{{#is_alert}}
+
+Alert! My Metric is now {{value}} on host {{host.ip}} and thus has gone above defined {{threshold}} during the last 5 mins!
+
+{{/is_alert}}
+
+{{#is_warning}}
+
+Warning! My metric is now {{value}} on host {{host.ip}} and thus has gone above defined {{threshold}} during the last 5 mins!
+
+{{/is_warning}}
+
+{{#is_no_data}}
+
+No Data! My Metric has not sent any data yet. Are you sure the server is up and running?
+
+{{/is_no_data}}
+
+This message was sent by your friendly pup,
+
+Datadog.
+
+````
+
+## Send you an email whenever the monitor triggers.
+
+![notify-team](screenshots/3.2.monitor-notify-your-team.png)
+
+### Verify you are receiving the notification in your email:
+![email-alert](screenshots/3.4.monitor-email-sample.png)
+
+
+
+Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+One that silences it from 7pm to 9am daily on M-F,
+And one that silences it all day on Sat-Sun.
+Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+
+## Managing Downtime:
+
+Navigate to Monitors  ⇨  Manage Downtime  ⇨ Schedule Downtime.
+
+* Choose the monitor that you want to silence
+* Select the schedule (recurring in this case)
+* Add a message as required
+* Add the email details to notify when the downtime begins.
+
+Below is a screenshot of the downtime set for 7pm to 9am daily on M-F
+
+![downtime-mon-fri](screenshots/3.5.downtime-mon-fri.png)
+
+Below is a screenshot of the downtime set for the weekend:
+
+![weekend-downtime](screenshots/3.6.weekend-downtime.png)
