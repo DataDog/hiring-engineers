@@ -363,3 +363,117 @@ init_config:
 instances:
   - min_collection_interval: 45
 ````
+# Visualizing Data:
+
+### Installing Postman
+
+Datadog API can be used in variety of ways like writing a script or using commands like curl or wget.
+In this example, Postman was used to create the dashboard.
+
+After [downloading and installing postman](https://www.postman.com/downloads/), Import the Datadog collection into Postman by clicking the option to import [from this page](https://docs.datadoghq.com/getting_started/api/).
+
+### Getting API and Application Keys
+
+API and Applications keys are needed to authenticate against Datadog APIs. This can be obtained from the following locations in the Datadog UI:
+
+API Key:
+
+Integration  ⇨ APIs  ⇨ API Keys
+You can either create a new key or copy an existing key.
+
+Application Key:
+
+ Team ⇨ Application Keys  ⇨
+ Click on ````New Key```` to create a new application key.
+
+ ### Creating the Dashboard using the API
+
+ Follow instructions in the [Using Postman with Datadog APIs](https://docs.datadoghq.com/getting_started/api/) article to add the keys into the Postman environment.
+
+ Postman  ⇨ Collections  ⇨ Datadog API Collection  ⇨ Dashboards  ⇨  Create a new dashboard
+
+ Update the POST URL to
+ ````https://api.datadoghq.com/api/v1/dashboard````
+
+ Update the Body to the following JSON document which includes the following
+
+ * The custom metric (my_metric) scoped over the host.
+ * MySQL CPU performance with the anomalies function applied
+ * The custom metric (my_metric) applied to sum up all the points for the past hour into one bucket
+
+````
+{
+    "title": "API-created-timeboard",
+    "layout_type": "ordered",
+    "notify_list": [],
+    "widgets": [
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {"q": "my_metric{host:vagrant-amrith}"}
+                ],
+                "title": "Custom my_metric on the Host",
+                "title_align": "center"
+            }
+        },
+        {
+            "definition": {
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(mysql.performance.cpu_time{host:vagrant-amrith}, 'basic', 3)"
+                    }
+                ],
+                "title": "MySQL CPU Performance Anomalies",
+                "title_align": "center"
+            }
+        },
+        {
+            "definition": {
+                "type": "query_value",
+                 "time": {
+                    "live_span": "4h"
+                },
+                "requests": [
+                    {
+                        "q": "sum:my_metric{host:vagrant-amrith}.rollup(sum,3600)"
+                    }
+                ],
+                "title": "Hourly roll-up for sum of my_metric over host ",
+                "title_align": "center"
+
+
+            }
+        }
+    ]
+}
+````
+
+Ensure you receive a 200 OK to confirm that the POST was successfull.
+
+### Access the Dashboard from the GUI:
+
+![dashboard-created-by-api](screenshots/2.12.api-created-dashboard-in-ui.png)
+
+### Setting the timeboards timeframe to the past 5 minutes
+
+![dashboard-5-min](screenshots/2.12.api-created-dashboard-in-ui-5mins.png)
+
+### Emailing the graph
+
+Click the share icon, select the ````Send snapshot```` button and then enter the @ button and send it your intended recipient
+
+![Sending-snapshot](screenshots/2.13.sending-snapshot.png)
+
+Check the inbox if you have received the email:
+
+![snapshot-email](screenshots/2.1.receiving-snapshot.png)
+
+## Bonus Question: What is the Anomaly graph displaying?
+
+In addition to the actual metric plotted over the graph, the anomaly graph has a gray band that shows the expected behaviour of the metric based on the historical data.
+
+![anomaly-example](screenshots/2.14.anamoly.png)
+
+Notice the below graph that shows the gray band which is the range the system expects the metric to stay within. The red spike is the anomaly detected based on historical data.
