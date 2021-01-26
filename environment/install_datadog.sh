@@ -13,6 +13,9 @@ echo "Datadog Custom Check - my_metric Configuration Move"
 sudo cp /vagrant/checks/custom_metric_check.py /etc/datadog-agent/checks.d/custom_metric_check.py
 sudo cp /vagrant/checks/custom_metric_check.yaml /etc/datadog-agent/conf.d/custom_metric_check.yaml
 
+echo "Datadog HTTP Check - Configuration Move"
+sudo cp /vagrant/checks/http_check.d/conf.yaml /etc/datadog-agent/conf.d/http_check.d/conf.yaml
+
 echo "Execute Custom Check"
 sudo -u dd-agent -- datadog-agent check custom_metric_check
 
