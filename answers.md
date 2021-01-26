@@ -169,7 +169,7 @@ Infrastructure  ⇨ Host maps
 
 ## Installing a Database
 
-We will be installing MySQL as an example. Follow the below instructions to install MySQL on Ubuntu
+We will be installing MySQL in this example. Follow the below instructions to install MySQL on Ubuntu
 
 Updating the OS
 ````
@@ -398,23 +398,23 @@ After [downloading and installing postman](https://www.postman.com/downloads/), 
 
 ### Getting API and Application Keys
 
-API and Applications keys are needed to authenticate against Datadog APIs. This can be obtained from the following locations in the Datadog UI:
+API and Applications keys are needed to authenticate against Datadog. This can be obtained from the following locations in the Datadog UI:
 
 API Key:
 
-Integration ⇨ APIs  ⇨ API Keys
+> Integration ⇨ APIs  ⇨ API Keys
 You can either create a new key or copy an existing key.
 
 Application Key:
 
- Team ⇨ Application Keys  ⇨
+ > Team ⇨ Application Keys  ⇨
  Click on ````New Key```` to create a new application key.
 
  ### Creating the Dashboard using the API
 
  Follow instructions in the [Using Postman with Datadog APIs](https://docs.datadoghq.com/getting_started/api/) article to add the keys into the Postman environment.
 
- Postman  ⇨ Collections  ⇨ Datadog API Collection  ⇨ Dashboards  ⇨  Create a new dashboard
+ > Postman  ⇨ Collections  ⇨ Datadog API Collection  ⇨ Dashboards  ⇨  Create a new dashboard
 
  Update the POST URL to
  ````https://api.datadoghq.com/api/v1/dashboard````
@@ -473,7 +473,7 @@ Application Key:
     ]
 }
 ````
-Using Postman to perform a HTTP ````POST```` to the Datadog API
+Hit the send button on Postman to perform a HTTP ````POST```` to the Datadog endpoint to execute the API
 
 ![postman](screenshots/2.13.postman-created-api.png)
 
@@ -587,16 +587,19 @@ Datadog.
 
 
 
-### Task: Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+### Task:
+
+Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
+### Solution:
 
 ### Managing Downtime:
 
-Navigate to Monitors  ⇨  Manage Downtime  ⇨ Schedule Downtime.
+> Navigate to Monitors  ⇨  Manage Downtime  ⇨ Schedule Downtime.
 
 * Choose the monitor that you want to silence
 * Select the schedule (recurring in this case)
@@ -680,7 +683,7 @@ In another terminal or a web broswer try to perform some activity on the applica
 
 ## Viewing Services, Traces and Profiles
 
-Navigate to the UI and select APM  ⇨ Services
+> Navigate to the UI and select APM  ⇨ Services
 
 ### Services
 You should see the service running. In our case, it would be named as flask-app as shown the screenshot below:
@@ -694,7 +697,7 @@ Click the App to view requests per seconds, errors, latency and latency distribu
 
 ### Traces
 
-The ````GET```` requests made earlier included the 404 error will be available in the traces section
+The ````GET```` requests made earlier including the 404 error will be available in the traces section
 
 ![trace-404-error](screenshots/4.5.ui-trace-of-404-error.png)
 
