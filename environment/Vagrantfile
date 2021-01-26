@@ -1,0 +1,17 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Datadog Solutions Engineering Environment
+Vagrant.configure("2") do |config|
+  # Box Type
+  config.vm.box = "hashicorp/bionic64"
+
+  # Provision Webservices
+  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.network :forwarded_port, guest: 80, host: 4567
+  config.vm.network :forwarded_port, guest: 5050, host: 5050
+
+  # Provision MongoDB and Datadog
+  config.vm.provision :shell, path: "install_mongo.sh"
+  config.vm.provision :shell, path: "install_datadog.sh"
+end
