@@ -1,0 +1,3 @@
+/environment/.vagrant
+/environment/apm/devenv
+/environment/apm/flask_app/__pycache__/
