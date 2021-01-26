@@ -1,0 +1,5 @@
+init_config:
+
+# Set interval as necessary
+instances:
+  - min_collection_interval: 45
