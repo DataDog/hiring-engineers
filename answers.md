@@ -68,7 +68,7 @@ lsb_release -a
 
 ### Change the hostname for better identification
 
-Changing the hostname is a good practice as it will help easily identify the OS.
+Changing the hostname is a good practice as it will help easily identify the host that we are working on.
 
 The below screenshot confirms that the hostname was changed and is persistent which means rebooting the server would not change the hostname.
 
@@ -77,7 +77,7 @@ The below screenshot confirms that the hostname was changed and is persistent wh
 ## Create a new Datadog account.
 
 * Use your web browser and open https://www.datadoghq.com/ and follow the instructions to create a new account
-* After signing up, your new Datadog home page will appear like below:
+* After signing up, your new Datadog home page will appear like below screenshot. Although you may not see any host reporting yet.
 * Datadog provides a 14 day trial to evaluate the product. This should be ample amount of time to perform this excercise.
 
 ![new-dd-account](screenshots/1.6.new.dd.account.png)
@@ -112,9 +112,9 @@ sudo systemctl status datadog-agent
 ````
 ![datadog-agent-status](screenshots/1.7.datadog-agent-status.png)
 
-Please note the following commands which will be used to stop, start or restart the agent.
-
 The agents will need to be restarted whenever there is a change to the any configuration.
+
+Please note the following commands for Ubuntu which will be used to stop, start or restart the agent.
 
 ### Stopping the agent
 ````
@@ -130,6 +130,7 @@ sudo systemctl start datadog-agent
 ````
 sudo systemctl restart datadog-agent
 ````
+Note: Please refer the [agent commands page](https://docs.datadoghq.com/agent/guide/agent-commands/?tab=agentv6v7) for the commands for other operating systems. Also, note that running ````sudo service datadog-agent start```` would also do the same job if the ````service```` wrapper is available.
 
 ## Confirming that the agent is reporting metrics:
 
@@ -148,14 +149,16 @@ Login to your Datadog account to verify that the agent is reporting metrics. Thi
 
 Change the tags in the datadog_conf.yaml as per your requirement.
 
-The datadog_conf.yaml is located in /etc/datadog for Ubuntu 18.04. The file location may vary depending on the platform. You can refer [this page](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7) for additional details
+The ````datadog_conf.yaml```` is located in ````/etc/datadog-agent```` directory in Ubuntu 18.04. The file location may vary depending on the platform. You can refer [this page](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7) for additional details
 ````
+.
 ~
 tags:
    - env:test
    - app:vagrant
    - owner:amrith
 ~
+.
 ````
 
 
@@ -244,13 +247,13 @@ Query OK, 0 rows affected (0.02 sec)
 
 ### Configuration to collect MySQL metrics
 
-Edit the mysql.d/conf.yaml file, in the conf.d/ folder at the root of your Agent’s configuration directory to start collecting your MySQL metrics and logs.
+Edit the ````mysql.d/conf.yaml```` file, in the ````conf.d/```` folder at the root of your Agent’s configuration directory to start collecting your MySQL metrics and logs.
 
 MySQL configuration for Datadog in our example is located in the following directory:
 ````
 /etc/datadog-agent/conf.d/mysql.d
 ````
-Modify the config file at these sections with the datadog username, password and other settings as shown below:
+Modify the config file at these sections with the datadog username, password and other options as shown below:
 ````
 ~
 instances:
@@ -271,11 +274,11 @@ instances:
       schema_size_metrics: false
       disable_innodb_metrics: false
 ````
-Note: localhost may be replaced with 127.0.0.1 if needed. Also if you need to extract the database performance from a remote DB server
+Note: localhost may be replaced with 127.0.0.1 if you face issues running the mysql check. Also if you need to extract the database performance from a remote DB server
 
 Additional details can be refered from the [MySQL Integration page](https://docs.datadoghq.com/integrations/mysql/?tab=host)
 
-Save the conf.yaml in the mysql.d directory and restart the datadog agent.
+Save the ````conf.yaml```` in the ````mysql.d```` directory and restart the datadog agent.
 
 ### Verifying the integration check
 
@@ -331,7 +334,7 @@ class MyCheck(AgentCheck):
         self.gauge('my_metric',random.randint(0,1000))
 ````
 
-Lets update the configuration file which would go in conf.d/my_metric.yaml
+Lets update the configuration file ````my_metric.yaml```` which would reside in ````conf.d/my_metric.d/```` directory
 
 ````my_metric.yaml:````
 
@@ -503,7 +506,10 @@ Notice the above graph that shows the gray band which is the range the system ex
 
 # Monitoring Data
 
-Creating a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+## Task
+
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 * Warning threshold of 500
 * Alerting threshold of 800
@@ -579,14 +585,14 @@ Datadog.
 
 
 
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+### Task: Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 One that silences it from 7pm to 9am daily on M-F,
 And one that silences it all day on Sat-Sun.
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 
-## Managing Downtime:
+### Managing Downtime:
 
 Navigate to Monitors  ⇨  Manage Downtime  ⇨ Schedule Downtime.
 
@@ -617,13 +623,25 @@ Instrumenting the given application would require the following items to be comp
 
 ## Installing Flask and ddtrace
 
-Installing Flask and ddtrace are required to run the application and to have the Datadog APM client instrument the application. Installing these packages are explained in detail in the appendix section as my installation had dependencies that needed to be met.
+Installing Flask and ddtrace are required to run the application and to have the Datadog APM client instrument the application.
+
+> Installing these packages are explained in detail in the appendix section as sometimes the installation may have additional dependencies that needs to be met.
+
+## Enabling APM in the Datadog agent
+
+Use your favourite terminal editor and modify the following options to enable APM that would listen for trace traffic at localhost:8126
+
+Restart the datadog agent and ensure the agent is running normally.
+
+![enable-apm-in-agent](screenshots/4.8.enable-apm-datadog-agent.png)
+
 
 ## Runnning the Application with ddtrace
 
 To Instrument the application, prefix the python entry-point command with ddtrace-run and therefore the command would look similar to below.
 
-# Tracing
+## Tracing
+Tracing is used to track the time spent by the application processing a request and the status of this request.
 
 ````
 export DD_SERVICE=flask-app
@@ -635,7 +653,7 @@ ddtrace-run python flask-app.py
 
 ### Profiler:
 
-Enabling Continuous profiler would help break down the a CPU, memory and IO bottlenecks by method name, class and line number to identify and address end-user latency and infrastructure costs.
+Enabling Continuous profiler would help break down the CPU, memory and IO bottlenecks by method name, class and line number to identify and address end-user latency and infrastructure costs.
 
 Enabling profiler can be done by running the following command for our given application
 
@@ -644,7 +662,7 @@ DD_PROFILING_ENABLED=true ddtrace-run python flask-app.py
 ````
 Additional notes:
 
-A flask App can be run by running the following commands as well:
+A flask App can be run by running the following commands as well. As explained earlier, the ddtrace-run command would have to be prefixed before the entry command. In the below case it will be ````ddtrace flask run````
 
 ````
 export FLASK_APP=flask_app.py
@@ -654,7 +672,7 @@ flask run
 
 ### Accessing the services on the App
 
-In another terminal try to perform some activity on the application by running the curl command which would perform few GET operations
+In another terminal or a web broswer try to perform some activity on the application by running the curl command which would perform few GET operations
 ![curl-flask-app](screenshots/5.5.curl-the-flask-app.png)
 
 
@@ -680,13 +698,13 @@ The ````GET```` requests made earlier included the 404 error will be available i
 
 ### Profiles
 
-Click on profiles and this is the continous profiler
+Click on profiles tab in the APM view to view the continous profiler
 
 ![continous-profiler](screenshots/4.6.ui-continous-profiler.png)
 
 
 
-The app used for this exercise is the same that was provided in the excercise:
+The app used for this exercise is the same that was provided in the question:
 
 ````
 from flask import Flask
@@ -723,9 +741,11 @@ if __name__ == '__main__':
 Bonus Question: What is the difference between a Service and a Resource?
 
 * Services: Services broadly are a representation of a function. It is the building block of microservice architecture. It groups together endpoints, queries, or jobs for the purposes of building an application
+
     E.g. The Flask application that was used in this excercise can be seen as a representation of a service.
 
 * Resource: Resource is a particular action for a given service (typically an individual endpoint or query).
+
     E.g. The Flask application had resources that was a particular action like /api/apm and /api/trace which are the resources of the service
 
 
@@ -733,15 +753,16 @@ Link and a screenshot of a Dashboard with both APM and Infrastructure Metrics ar
 
 * Public URL of the Final Dashboard is available [here](https://p.datadoghq.com/sb/g55o5dmyhmz6xa1c-512575f2d971e8211c3589b18585ccd7)
 
-* Dashboard:
+* Dashboard that includes infrastructure metrics and application metrics. Please change the time scale to view metrics if it isn't available in real-time.
 ![Final-dashboard](screenshots/4.7.final-dashboard.png)
 
 # Final Question
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+Question: Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
 
+Answer:
 There are a lot of areas that I think Datadog can potentially be used for:
 
 * Public Transport:
@@ -773,7 +794,7 @@ sudo apt-get install python-pip
 ![installing-pip](screenshots/5.1.installing-pip.png)
 ## Installing Flask
 
-The following command installs Flask
+Flask is not generally installed by default but can be easily installed by running the following command
 ````
 pip install flask
 ````
