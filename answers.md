@@ -4,7 +4,7 @@
 
 # Setting up the environment
 
-Note: Although in this example, VirtualBox and Vagrant were used as test machines you could perform the steps mentioned below on cloud instances hosted on AWS, GCP or Azure or even on a physically installed server or even a container.
+Note: Although in this example, VirtualBox and Vagrant were used as test machines you could perform the steps mentioned below on cloud instances hosted on AWS, GCP or Azure or on a physically installed server or even a container.
 
 ## Installing Vagrant and VirtualBox on a local machine
 
@@ -147,9 +147,9 @@ Login to your Datadog account to verify that the agent is reporting metrics. Thi
 
 ## Updating tags
 
-Change the tags in the datadog_conf.yaml as per your requirement.
+Change the tags in the datadog.yaml as per your requirement.
 
-The ````datadog_conf.yaml```` is located in ````/etc/datadog-agent```` directory in Ubuntu 18.04. The file location may vary depending on the platform. You can refer [this page](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7) for additional details
+The ````datadog.yaml```` is located in ````/etc/datadog-agent```` directory in Ubuntu 18.04. The file location may vary depending on the platform. You can refer [this page](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7) for additional details
 ````
 .
 ~
@@ -307,9 +307,11 @@ etc
 └───
     datadog-agent
     |
+    |───datadog.yaml
+    |
     └───checks.d
     │   │   my_metric.py
-    |
+    |   |
     └───conf.d
     │   │
     │   └───my_metric.d
