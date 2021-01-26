@@ -626,6 +626,7 @@ Instrumenting the given application would require the following items to be comp
 * Adding the Datadog Tracing library to the code
 * Access the application and performing some GET operations against the services hosted and also accessing non-existent services to report errors
 
+
 ## Installing Flask and ddtrace
 
 Installing Flask and ddtrace are required to run the application and to have the Datadog APM client instrument the application.
