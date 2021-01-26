@@ -16,11 +16,14 @@ mkdir flask_app
 cd flask_app
 
 echo "Create & Activate Python Virtual Environment"
-virtualenv venv
+sudo python3 -m venv venv
 
-. venv/bin/activate
+source venv/bin/activate
 
 echo "Install Flask & ddtrace on Virtual Environment"
+sudo pip install Flask
+sudo pip install --upgrade cython
+sudo pip install ddtrace
 #pip3 install -r requirements.txt
 
 echo "Flask Install Script - Completed"
