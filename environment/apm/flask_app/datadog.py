@@ -3,6 +3,8 @@ from flask import Flask
 import logging
 import sys
 
+from ddtrace import tracer, config
+
 # Create Application Instance
 app = Flask(__name__)
 
@@ -16,16 +18,18 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 c.setFormatter(formatter)
 main_logger.addHandler(c)
 
-# Configure URL Routing
+# Configure URL Routing & Tracer Wrappers
 @app.route('/')
 def api_entry():
     return 'Entrypoint to the Application'
 
 @app.route('/api/apm')
+@tracer.wrap('flask_app_request', service='datadog_flask', resource='apm', span_type='web')
 def apm_endpoint():
     return 'Getting APM Started'
 
 @app.route('/api/trace')
+@tracer.wrap('flask_app_request', service='datadog_flask', resource='trace', span_type='web')
 def trace_endpoint():
     return 'Posting Traces'
 
