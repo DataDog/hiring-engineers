@@ -1,0 +1,115 @@
+{
+  "title": "Visualizing Data Exercise",
+  "description": "## Visualizing Data Exercise\n\nThis board is intended to display the data from the custom metric and database integration of the host.\n",
+  "widgets": [
+    {
+      "id": 4059270499302650,
+      "definition": {
+        "title": "",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "avg:my_metric{host:vagrant}",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "scale": "linear",
+          "label": "",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "markers": []
+      }
+    },
+    {
+      "id": 2021386007601368,
+      "definition": {
+        "title": "Basic Anomaly Analysis of the MongoDB (IX) Locks per Second over Time",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "anomalies(avg:mongodb.locks.collection.acquirecount.intent_exclusiveps{host:vagrant}, 'basic', 2)",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "scale": "linear",
+          "label": "",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "markers": []
+      }
+    },
+    {
+      "id": 2763430476300064,
+      "definition": {
+        "title": "Sum of my_metric for the Past Hour",
+        "title_size": "16",
+        "title_align": "left",
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "avg:my_metric{host:vagrant}.rollup(sum, 3600)",
+            "aggregator": "last"
+          }
+        ],
+        "autoscale": true,
+        "precision": 2
+      }
+    },
+    {
+      "id": 1295143532588496,
+      "definition": {
+        "title": "Sum of my_metric per Hour",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "avg:my_metric{host:vagrant}.rollup(sum, 3600)",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "scale": "linear",
+          "label": "",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "markers": []
+      }
+    }
+  ],
+  "template_variables": [],
+  "layout_type": "ordered",
+  "is_read_only": false,
+  "notify_list": [],
+  "id": "yrs-9j6-hpv"
+}
