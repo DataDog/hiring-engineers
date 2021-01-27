@@ -1,0 +1,223 @@
+{
+    "title": "APM Flask Dashboard",
+    "description": "## APM Flask Dashboard\n\nThis dashboard was created to view both Infrastructure and APM metrics side by side.  APM is integrated with a minimal Flask app using ddtrace-run. ",
+    "widgets": [
+      {
+        "id": 4586408718834764,
+        "definition": {
+          "title": "Flask & Custom Check Metrics",
+          "type": "group",
+          "layout_type": "ordered",
+          "widgets": [
+            {
+              "id": 4117614009248482,
+              "definition": {
+                "title": "Hit/error count on service datadog_flask in env dev",
+                "title_size": "16",
+                "title_align": "left",
+                "show_legend": false,
+                "type": "timeseries",
+                "requests": [
+                  {
+                    "q": "sum:trace.flask.request.hits{env:dev,service:datadog_flask}.as_count()",
+                    "style": {
+                      "palette": "dog_classic",
+                      "line_type": "solid",
+                      "line_width": "normal"
+                    },
+                    "display_type": "bars"
+                  },
+                  {
+                    "q": "sum:trace.flask.request.errors{env:dev,service:datadog_flask}.as_count()",
+                    "style": {
+                      "palette": "warm"
+                    },
+                    "display_type": "bars"
+                  }
+                ],
+                "yaxis": {
+                  "scale": "linear",
+                  "label": "",
+                  "include_zero": true,
+                  "min": "auto",
+                  "max": "auto"
+                },
+                "markers": []
+              }
+            },
+            {
+              "id": 7147896227854690,
+              "definition": {
+                "title": "Average Flask Request Duration over Time",
+                "title_size": "16",
+                "title_align": "left",
+                "show_legend": false,
+                "type": "timeseries",
+                "requests": [
+                  {
+                    "q": "avg:trace.flask.request.duration.by_service{service:datadog_flask}",
+                    "style": {
+                      "palette": "dog_classic",
+                      "line_type": "solid",
+                      "line_width": "normal"
+                    },
+                    "display_type": "line"
+                  }
+                ],
+                "yaxis": {
+                  "scale": "linear",
+                  "label": "",
+                  "include_zero": true,
+                  "min": "auto",
+                  "max": "auto"
+                },
+                "markers": []
+              }
+            },
+            {
+              "id": 2274870294535284,
+              "definition": {
+                "title": "Endpoints",
+                "title_size": "16",
+                "title_align": "left",
+                "type": "query_table",
+                "requests": [
+                  {
+                    "aggregator": "sum",
+                    "cell_display_mode": [
+                      "bar"
+                    ],
+                    "q": "count:trace.flask.request{service:datadog_flask} by {service, resource_name, env}.as_count()",
+                    "alias": "Requests",
+                    "limit": 50,
+                    "order": "desc"
+                  },
+                  {
+                    "q": "count:trace.flask.request{service:datadog_flask} by {service, resource_name, env}.as_count()",
+                    "alias": "Request per Minute",
+                    "cell_display_mode": [
+                      "bar"
+                    ],
+                    "aggregator": "avg"
+                  }
+                ],
+                "has_search_bar": "auto"
+              }
+            },
+            {
+              "id": 1398428152966110,
+              "definition": {
+                "title": "Custom Metric Monitor",
+                "title_size": "16",
+                "title_align": "left",
+                "type": "alert_graph",
+                "alert_id": "29272181",
+                "viz_type": "timeseries"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": 4972679695707160,
+        "definition": {
+          "title": "Infrastructure Metrics",
+          "type": "group",
+          "layout_type": "ordered",
+          "widgets": [
+            {
+              "id": 3692527235333096,
+              "definition": {
+                "title": "Host Map for Service",
+                "title_size": "16",
+                "title_align": "left",
+                "type": "hostmap",
+                "requests": {
+                  "fill": {
+                    "q": "avg:system.cpu.user{service:datadog_flask} by {host}"
+                  }
+                },
+                "node_type": "host",
+                "no_metric_hosts": true,
+                "no_group_hosts": true,
+                "group": [],
+                "scope": [
+                  "service:datadog_flask"
+                ],
+                "style": {
+                  "palette": "green_to_orange",
+                  "palette_flip": false
+                }
+              }
+            },
+            {
+              "id": 384778678080124,
+              "definition": {
+                "title": "Average CPU utilization",
+                "title_size": "16",
+                "title_align": "left",
+                "type": "query_value",
+                "requests": [
+                  {
+                    "q": "100-avg:system.cpu.idle{service:datadog_flask,env:dev}",
+                    "aggregator": "avg"
+                  }
+                ],
+                "autoscale": true,
+                "precision": 2
+              }
+            },
+            {
+              "id": 4733921485228611,
+              "definition": {
+                "title": "CPU utilization by host",
+                "title_size": "16",
+                "title_align": "left",
+                "show_legend": false,
+                "type": "timeseries",
+                "requests": [
+                  {
+                    "q": "(100-avg:system.cpu.idle{service:datadog_flask,env:dev} by {host})",
+                    "style": {
+                      "palette": "dog_classic"
+                    },
+                    "display_type": "line"
+                  }
+                ]
+              }
+            },
+            {
+              "id": 7817083170813441,
+              "definition": {
+                "title": "Network bytes sent by host",
+                "title_size": "16",
+                "title_align": "left",
+                "show_legend": false,
+                "type": "timeseries",
+                "requests": [
+                  {
+                    "q": "avg:system.net.bytes_sent{service:datadog_flask,env:dev} by {host}",
+                    "style": {
+                      "palette": "dog_classic"
+                    },
+                    "display_type": "line"
+                  }
+                ],
+                "yaxis": {
+                  "scale": "linear",
+                  "label": "",
+                  "min": "auto",
+                  "max": "auto"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "template_variables": [],
+    "layout_type": "ordered",
+    "is_read_only": false,
+    "notify_list": [],
+    "id": "vz4-qhd-ep8"
+  }
