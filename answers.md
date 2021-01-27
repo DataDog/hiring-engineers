@@ -19,7 +19,7 @@ Once this is ready, sign up for a trial Datadog at https://www.datadoghq.com/
 **Please make sure to use “Datadog Recruiting Candidate” in [the “Company” field](https://a.cl.ly/wbuPdEBy)**
 
 Then, get the Agent reporting metrics from your local machine and move on to the next section...
-###$ Answer: Screenshot PR01 - Metric Capture 
+#### Answer: Screenshot PR01 - Metric Capture 
 <img src="./images/PR01 - Metric Capture.PNG?raw=true">
 
 ## Collecting Metrics:
@@ -27,7 +27,7 @@ Then, get the Agent reporting metrics from your local machine and move on to the
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
     * **Answer**: 
         * In order to experiment with tagging on the host two tags were added, "environment:dev" and "exercise:collecting_metrics"  
-        * See */environment/config/datadog.yaml* file adding the "environment:dev" and "exercise:collecting_metrics" tags to the host.
+        * See [datadog.yaml](./environment/config/datadog.yaml) file adding the "environment:dev" and "exercise:collecting_metrics" tags to the host.
         * Screenshot: CM01 - Host Map and Tag Capture <img src="./images/CM01-Host_Map_and_Tag_Capture.PNG?raw=true">
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
     * **Answer**: 
@@ -77,7 +77,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
         * See the */snapshots* directory for the emailed snapshots of the custom metric check and anomaly analysis graphs.
     
 * **Bonus Question**: What is the Anomaly graph displaying?
-    * **Answer**: The anomaly graph is displaying the results of the basic anomaly detection methodology for the timeseries of the selected metric. The graph provides a gray background showing the expected behaivor range for the series based on the past and the bounding parameters (95% agreement), while highlighting the portion of the timeseries that falls outside of the expected behavior range in red.  Adjusting the timeframe of the timeboard impacts the calculation and display of the expected beahvior range for the timeseries based on the selected interval.  As the timeseries selected reflects the query interactions from the custom query configured for the MongoD, it is highlighting the rate spikes from the database. 
+    * **Answer**: The anomaly graph is displaying the results of the basic anomaly detection methodology for the timeseries of the selected metric. The graph provides a gray background showing the expected behaivor range for the series based on the past and the bounding parameters, while highlighting the portion of the timeseries that falls outside of the expected behavior range in red.  Adjusting the timeframe of the timeboard impacts the calculation and display of the expected beahvior range for the timeseries based on the selected interval.  As the timeseries selected reflects the query interactions from the custom query configured for the MongoDB, it is highlighting the rate spikes from the database. 
 
 ## Monitoring Data
 
