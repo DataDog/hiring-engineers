@@ -1,6 +1,7 @@
 ## Datadog Solution Engineering Exercise
 #### Candidate: Matt Glenn
-#### Datadog Login: mfglenn@outlook.com
+#### Phone: 303-791-8805
+#### Email/Datadog Login: mfglenn@outlook.com
 
 ## Questions
 
