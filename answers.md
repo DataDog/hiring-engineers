@@ -1,6 +1,6 @@
 ## Datadog Solution Engineering Exercise
-## Candidate: Matt Glenn
-## Datadog Login: mfglenn@outlook.com
+### Candidate: Matt Glenn
+### Datadog Login: mfglenn@outlook.com
 
 ## Questions
 
@@ -24,20 +24,28 @@ Then, get the Agent reporting metrics from your local machine and move on to the
 ## Collecting Metrics:
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-    * **Answer**: See */config/datadog.yaml* file adding the "environemnt:dev" and "exercise:collecting_metrics" tags to the host.
-    * **Answer**: See ![CM01 - Host Map and Tag Capture](/images/CM01 - Host Map and Tag Capture.png)
+    * **Answer**: 
+        * In order to experiment with tagging on the host two tags were added, "environment:dev" and "exercise:collecting_metrics"  
+        * See */environment/config/datadog.yaml* file adding the "environment:dev" and "exercise:collecting_metrics" tags to the host.
+        * Screenshot: ![CM01 - Host Map and Tag Capture](/images/CM01 - Host Map and Tag Capture.png)
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-    * **Answer**: See the *install_mongo.sh* script file used to install the MongoDB Community Edition, and create the datadog account for the datadog integration.
-    * **Answer**: See the */config/conf.yaml* configuration file for the MongoDB integration assigning the datadog account and creating a custom query.
-    * **Answer**: See ![CM02 - MongoDB Integration Metrics](/images/CM02 - MongoDB Integration Metrics.png)
+    * **Answer**: 
+        * MongoDB Community Edition was selected to experiment with the Datadog database integration.  In addition to monitoring the system metrics, a collection was added to the ddTest database, and a custom query was configured to generate a data stream for the dashboard integration.  
+        * See the */environment/install_mongo.sh* script file used to install the MongoDB Community Edition and create the datadog account for the datadog integration.
+        * See the */environment/config/conf.yaml* configuration file for the MongoDB integration assigning the datadog account and creating a custom query.
+        * Screenshot: ![CM02 - MongoDB Integration Metrics](/images/CM02 - MongoDB Integration Metrics.png)
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-    * **Answer**: See the */environment/checks/custom_metric_check.py* file containing the **custom_metric_check** logic.
-    * **Answer**: See the */environment/checks/custom_metric_check.yaml* configuration file for the **custom_metric_check**.
-    * **Answer**: See ![CM03 - Custom Agent Check - my_metric](/images/CM03 - Custom Agent Check - my_metric.png)
+    * **Answer**: 
+        * In order to experiment with custom Datadog checks a custom_metric_check was configured to submit a random number between 0 and 1000.
+        * See the */environment/checks/custom_metric_check.py* file containing the **custom_metric_check** logic.
+        * See the */environment/checks/custom_metric_check.yaml* configuration file for the **custom_metric_check**.
+        * Screenshot: ![CM03 - Custom Agent Check - my_metric](/images/CM03 - Custom Agent Check - my_metric.png)
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
-    * **Answer**: See the */environment/checks/custom_metric_check.yaml* configuration file for the *min_collection_interval* for the **custom_metric_check**.
+    * **Answer**: 
+        * In order to modify the collection interval it was necessary to update the *custom_metric_check.yaml* file with the adjust interval of 45 seconds.
+        * See the */environment/checks/custom_metric_check.yaml* configuration file reflecting the update to *min_collection_interval* for the **custom_metric_check**.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-    * **Answer**: By modifying the */environment/checks/custom_metric_check.yaml* configuration file it is possible to adjust the *min_collection_interval* for the custom check without modifying the corresponding Python file.  
+    * **Answer**: By modifying the */environment/checks/custom_metric_check.yaml* configuration file it is possible to adjust the instances *min_collection_interval* for the custom check without modifying the corresponding Python file.  After the modification it is necessary to restart the agent on the host.  
 
 ## Visualizing Data:
 
@@ -46,21 +54,29 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-    * **Answer**: See ![VM01 - Visualizing Data Exercise](/images/VM01 - Visualizing Data Exercise.png)
+    * **Answer**:
+        * To display the data from the custom metric check and the database integration of the host, a simple timeboard was created called *Visualizing Data Exercise.*
+        * The public link to the dashbaord is provided [here](https://p.datadoghq.com/sb/iefiq4rqfnz5648g-d884783d9d4749ad043e58d2d6850ec1).
+        * Screenshot: ![VM01 - Visualizing Data Exercise](/images/VM01 - Visualizing Data Exercise.png)
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-* **Answer**: See the */timeboards/VisualizingDataExercise.json* file exported from the client. 
+* **Answer**: See the */timeboards/VisualizingDataExercise.json* file exported from the client containing the configuration of the timeboard. 
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
-* **Answer**: See ![VM02 - Exercise Dashboards List](/images/VM02 - Exercise Dashboards List.png)
+* **Answer**: 
+    * A dashboard list called *Exercise Dashboards* was created to provide a singular navigation point for the visualization exercises.
+    * Screenshot: ![VM02 - Exercise Dashboards List](/images/VM02 - Exercise Dashboards List.png)
 
 * Set the Timeboard's timeframe to the past 5 minutes
-    * **Answer**: See ![VM03 - Datadog Timeboard - 5 Min](/images/VM03 - Datadog Timeboard - 5 Min.png)
+    * **Answer**: Screenshot ![VM03 - Datadog Timeboard - 5 Min](/images/VM03 - Datadog Timeboard - 5 Min.png)
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
-    * **Answer**: See the */snapshots* directory for the emailed snapshots.
+    * **Answer**: 
+        * Custom Metric Check Screenshot: ![VM04 - Custom Metric Check Graph - Past 5 Minutes](/images/VM04 - Custom Metric Check Graph - Past 5 Minutes.png)
+        * Anomaly Graph Screenshot: ![VM05 - Anomaly Graph - Past 5 Minutes](/images/VM05 - Anomaly Graph - Past 5 Minutes.png)
+        * See the */snapshots* directory for the emailed snapshots of the custom metric check and anomaly analysis graphs.
     
 * **Bonus Question**: What is the Anomaly graph displaying?
-    * **Answer**: The anomaly graph is displaying the results of the basic anomaly detection methodology for the timeseries of the selected metric.  The graph provides a gray background showing the expected behaivor for the series based on the past and the bounding parameters, while highlighting the portion of the timeseries that falls outside of the expected behavior range.  Adjusting the timeframe of the timeboard impacts the calculation and display of the expected beahvior for the graph timeseries based on the selected interval.
+    * **Answer**: The anomaly graph is displaying the results of the basic anomaly detection methodology for the timeseries of the selected metric. The graph provides a gray background showing the expected behaivor range for the series based on the past and the bounding parameters (95% agreement), while highlighting the portion of the timeseries that falls outside of the expected behavior range in red.  Adjusting the timeframe of the timeboard impacts the calculation and display of the expected beahvior range for the timeseries based on the selected interval.  As the timeseries selected reflects the query interactions from the custom query configured for the MongoD, it is highlighting the rate spikes from the database. 
 
 ## Monitoring Data
 
@@ -85,106 +101,60 @@ Please configure the monitor’s message so that it will:
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 ### Answer: 
-* Per the instructions the Custom Metric Monitor has been added to monitor the "my_metric" values.  In addition to the alert and warning thresholds, this monitor also implements the recovery thresholds.
-* See the editor https://app.datadoghq.com/monitors#29272181/edit
-* See ![MM01 - Custom Metric Monitor](/images/MM01 - Custom Metric Monitor.png)
-* See the */monitors/CustomMetricMonitor.json* file exported from the client.
-* See the associated notifications in the */notifications* directory. 
+* Per the instructions, the Custom Metric Monitor was added to monitor the "my_metric" values, and send notifications when the metric is in violation of the Alert or Warning thresholds, or No Data has been recieved in 10 minutes.  In addition this monitor also implements the recovery thresholds for Alert and Warning, and handles no data recoveries.  
+* Screenshot: ![MM01 - Custom Metric Monitor](/images/MM01 - Custom Metric Monitor.png)
+* See the */monitors/CustomMetricMonitor.json* file exported from the client containing the configuration of the monitor.
+* See the associated notifications in the */notifications* directory for the following states.
+    * Alert State
+    * Warning State
+    * No Data State
+    * Alert Recovery
+    * Warning Recovery
+    * No Data Recovery 
 
 ### Bonus Answer: 
-* Per the instructions the daily and weekend downtimes have been configured for the Custom Metric Monitor.
+* Per the instructions the daily and weekend downtimes were configured for the Custom Metric Monitor.
 * See the daily monitor configuration: ![MM02 - Custom Metric Monitor Daily Downtime](/images/MM02 - Custom Metric Monitor Daily Downtime.png)
 * See the weekend monitor configuration: ![MM03 - Custom Metric Monitor Weekend Downtime](/images/MM03 - Custom Metric Monitor Weekend Downtime.png)
-* See the associated notifications in the */notifications* directory.
+* See the associated email notifications in the */notifications* directory.
 
 
 ## Collecting APM Data:
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
-
-```python
-from flask import Flask
-import logging
-import sys
-
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
-```
-
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+* **Answer**: 
+    * In order to experiment with the Datadog APM capabilities the vagrant VM configuration from the previous exercises was expanded to support the unified service tagging (UST) methodology, create a python virtual environment, and install the Flask and ddtrace packages required to run the Flask application that was provided.
+        * See the */environment/Vagrantfile* file containing the port forwarding for the Flask application.
+        * See */environment/config/datadog.yaml* file which adds the "env:dev" and "service:datadog_flask" tags, and enables Datadog APM. 
+        * See the updated */environment/install_flask.sh* containing the python setup for the Flask application.
+    * The Flask code that was provided was instrumented using the ddtrace-run command, span tags, as well as unified service tagging (UST) making it possible to monitor the application enpoint traces along side the host system metrics using the Services page for the "datadog_flask" service.
+        * See the instrumented Flask app code */environment/apm/flask_app/datadog.py* with the span tags added for increased visibility within Datadog.
+        * The following ddtrace-run was used to instrument the application, and make use of UST.
+            $ DD_SERVICE="datadog_flask" DD_ENV="dev" DD_RUNTIME_METRICS_ENABLED=true DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true DD_VERSION=0.1 ddtrace-run python datadog.py
+    * In order to generate a data stream for integration into a dashboard, an http check was added to the Agent configuration.  
+        * See the */environment/checks/http_check.d/conf.yaml* file for the http_check applied to the endpoints of the Flask app to generate data for the dashboards.
+        * See the */environment/install_datadog.sh* file that moves the *conf.yaml* into the */conf.d/http_check.d/* directory of the vagrant VM.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
+    * **Answer**: A *service* is defined as a group of endpoints, queries, or other jobs and processes which are used to build an application.  A *resource* on the other hand refers to a particular domain of an application, i.e. an individual web endpoint, database query, or background job. In the example above the Flask web application is a service, while the individual API endpoint within the application is a resource. 
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
-Please include your fully instrumented app in your submission, as well.
+* **Answer**: To display the data from the APM monitoring of the Flask app, a simple timeboard was created called *APM Exercise.*
+    * The public link to the dashbaord is provided [here](https://p.datadoghq.com/sb/iefiq4rqfnz5648g-df8a5fc51f36c04bc1f6d53116c7af33).
+    * Screenshot: ![APM01 - APM Flask Dashboard](/images/APM01 - APM Flask Dashboard.png)  
 
 ## Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
-* **Answer**: When I first became aware of the Datadog solution I was reminded of many occasions during my oil and gas career where operational insights where obstructed due to the lack of visibility into the applications monitoring oil and gas drilling, hydraulic fracturing, and production operations. Although it was possible to gather the disparate data streams into a singular source, there was no widely available solution that could effectively monitor all each of the applications in a consolidated interface.  While working for the company I developed a home-grown solution to gather and analyze these data streams, to populate a dashboarding solution that would allow engineers to quickly gain insights into the current status of their projects, report ongoing issues, and identify potential inefficiencies in our operations. ## Complete Write Up ##
+* **Answer**: 
+    When I first became aware of the Datadog solution I was reminded of many occasions during my oil and gas career where operational insights where obstructed due to the lack of visibility into the applications monitoring drilling, hydraulic fracturing, and production operations.  Modern oil and gas infrastructure consists of a large number of sensors and controllers, spread across a vast area, responsible for monitoring and managing nearly every aspect of the day to day field operations.  While this infrastructure has proven to be far more efficient than the manual equivalent, it is susceptible to wide variety of maintenance, connection, and calibration issues that can lead to extremely costly repair and maintenance events that lower the overall confidence in the infrastructure and open companies to major liability issues.  
+        
+    The Datadog solution would allow the oil and gas industry to overcome the heterogenous nature of their infrastructure and reduce the overhead associated with its administration. By building integrations for the various control system software applications, it would be possible to consolidate the monitoring of the field infrastructure into a singular application. Through the Datadog monitoring and visualization tools it would be possible to begin automating the management of a number field operations and improve the analytical capabilities of operators.  The following are the top three areas that would benefit the most from incorporating Datadog:
 
+        1. Last Mile Maintenance and Delivery: Datadog would allow oil and gas operators to automate last mile maintenance tasks across all stages of oil and gas operations. By detecting infrastructure outages and automating notifications to field personnel and vendors it would be possible to greatly reduce the amount of time manually coordinating these activities.
+        2. Control System Anomaly Analysis:  Datadog would allow oil and gas operators to assess the calibration of field equipment using anomaly analysis.  Currently this is a very manual process that is often overlooked due to the overhead of the analysis, resulting in major downtime events and damage to critical infrastructure.  By consolidating this analysis into Datadog using the monitoring capabilities it would be possible to detect when equipment was experiencing calibration issues, reducing the possibility of failure, and improving the efficiency of field calibration teams. 
+        3. Failure & Efficiency Analysis: Datadog would allow oil and gas operators to conduct failure analysis on a wide variety of mechanical systems, which in turn would allow the operator to develop algorithms to effectively predict failures.  By predicting failure events the operator can greatly reduce major maintenance issues and instead perform preventative maintenance on equipment.                  
 
-## Instructions
-
-If you have a question, create an issue in this repository.
-
-To submit your answers:
-
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
-
-## References
-
-### How to get started with Datadog
-
-* [Datadog overview](https://docs.datadoghq.com/)
-* [Guide to graphing in Datadog](https://docs.datadoghq.com/graphing/)
-* [Guide to monitoring in Datadog](https://docs.datadoghq.com/monitors/)
-
-### The Datadog Agent and Metrics
-
-* [Guide to the Agent](https://docs.datadoghq.com/agent/)
-* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
-* [Writing an Agent check](https://docs.datadoghq.com/developers/write_agent_check/)
-* [Datadog API](https://docs.datadoghq.com/api/)
-
-### APM
-
-* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
-* [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
-
-### Vagrant
-
-* [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
-
-### Other questions:
-
-* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
+    Oil and gas operators would be particularly receptive to a solution that would help them reduce costs across these three areas as they would greatly impact the operating costs over time, and allow the operator to remain competitive within the oil and gas market.
