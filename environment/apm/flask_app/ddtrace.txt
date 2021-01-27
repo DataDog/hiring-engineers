@@ -1,1 +1,1 @@
-DD_SERVICE="datadogapm" DD_ENV="prod" DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true ddtrace-run python /vagrant/apm/flask_app/datadog.py
+DD_SERVICE="datadog_flask" DD_ENV="dev" DD_RUNTIME_METRICS_ENABLED=true DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true DD_VERSION=0.1 ddtrace-run python /vagrant/apm/flask_app/datadog.py
