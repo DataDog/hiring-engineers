@@ -1,7 +1,7 @@
 echo "Datadog Install & Configuration Script - Started"
 
 echo "Datadog Agent Install - Replace DD_API_KEY to change accounts"
-DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=d76729997c912addc8e121967b543a27 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=<CUSTOM_API_KEY> DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 
 echo "Datadog Agent Configuration Move"
 sudo cp /vagrant/config/datadog.yaml /etc/datadog-agent/datadog.yaml 
