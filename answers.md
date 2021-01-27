@@ -11,7 +11,7 @@ Please provide screenshots and code snippets for all steps.
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
 * You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
-    * See the */environment/Vagrantfile* containing the configuration for the Vagrant Ubuntu VM.
+    * See the [Vagrantfile](./environment/Vagrantfile) containing the configuration for the Vagrant Ubuntu VM.
 * You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
 
 Once this is ready, sign up for a trial Datadog at https://www.datadoghq.com/
@@ -32,21 +32,21 @@ Then, get the Agent reporting metrics from your local machine and move on to the
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
     * **Answer**: 
         * MongoDB Community Edition was selected to experiment with the Datadog database integration.  In addition to monitoring the system metrics, a collection was added to the ddTest database, and a custom query was configured to generate a data stream for the dashboard integration.  
-        * See the */environment/install_mongo.sh* script file used to install the MongoDB Community Edition and create the datadog account for the datadog integration.
-        * See the */environment/config/conf.yaml* configuration file for the MongoDB integration assigning the datadog account and creating a custom query.
+        * See the [install_mongo.sh](./environment/install_mongo.sh) script file used to install the MongoDB Community Edition and create the datadog account for the datadog integration.
+        * See the [conf.yaml](./environment/config/conf.yaml) configuration file for the MongoDB integration assigning the datadog account and creating a custom query.
         * Screenshot: CM02 - MongoDB Integration Metrics <img src="./images/CM02 - MongoDB Integration Metrics.PNG?raw=true">
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
     * **Answer**: 
         * In order to experiment with custom Datadog checks a custom_metric_check was configured to submit a random number between 0 and 1000.
-        * See the */environment/checks/custom_metric_check.py* file containing the **custom_metric_check** logic.
-        * See the */environment/checks/custom_metric_check.yaml* configuration file for the **custom_metric_check**.
+        * See the [custom_metric_check.py](./environment/checks/custom_metric_check.py) file containing the **custom_metric_check** logic.
+        * See the [custom_metric_check.yaml](./environment/checks/custom_metric_check.yaml) configuration file for the **custom_metric_check**.
         * Screenshot: CM03 - Custom Agent Check - my_metric <img src="./images/CM03 - Custom Agent Check - my_metric.PNG?raw=true">
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
     * **Answer**: 
         * In order to modify the collection interval it was necessary to update the *custom_metric_check.yaml* file with the adjust interval of 45 seconds.
-        * See the */environment/checks/custom_metric_check.yaml* configuration file reflecting the update to *min_collection_interval* for the **custom_metric_check**.
+        * See the [custom_metric_check.yaml](./environment/checks/custom_metric_check.yaml) configuration file reflecting the update to *min_collection_interval* for the **custom_metric_check**.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-    * **Answer**: By modifying the */environment/checks/custom_metric_check.yaml* configuration file it is possible to adjust the instances *min_collection_interval* for the custom check without modifying the corresponding Python file.  After the modification it is necessary to restart the agent on the host.  
+    * **Answer**: By modifying the [custom_metric_check.yaml](./environment/checks/custom_metric_check.yaml) configuration file it is possible to adjust the instances *min_collection_interval* for the custom check without modifying the corresponding Python file.  After the modification it is necessary to restart the agent on the host.  
 
 ## Visualizing Data:
 
@@ -56,12 +56,12 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
     * **Answer**:
-        * To display the data from the custom metric check and the database integration of the host, a simple timeboard was created called *Visualizing Data Exercise.*
+        * To display the data from the custom metric check and the database integration of the host, a simple timeboard was created called *Visualizing Data Exercise*.
         * The public link to the dashbaord is provided [here](https://p.datadoghq.com/sb/iefiq4rqfnz5648g-d884783d9d4749ad043e58d2d6850ec1).
         * Screenshot: VM01 - Visualizing Data Exercise <img src="./images/VM01 - Visualizing Data Exercise.PNG?raw=true">
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-* **Answer**: See the */timeboards/VisualizingDataExercise.json* file exported from the client containing the configuration of the timeboard. 
+* **Answer**: See the [VisualizingDataExercise.json](./timeboards/VisualizingDataExercise.json) file exported from the client containing the configuration of the timeboard. 
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 * **Answer**: 
@@ -74,7 +74,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
     * **Answer**: 
         * Custom Metric Check Screenshot: VM04 - Custom Metric Check Graph - Past 5 Minutes <img src="./images/VM04 - Custom Metric Check Graph - Past 5 Minutes.PNG?raw=true">
         * Anomaly Graph Screenshot: VM05 - Anomaly Graph - Past 5 Minutes <img src="./images/VM05 - Anomaly Graph - Past 5 Minutes.PNG?raw=true">
-        * See the */snapshots* directory for the emailed snapshots of the custom metric check and anomaly analysis graphs.
+        * See the [snapshots](./snapshots) directory for the emailed snapshots of the custom metric check and anomaly analysis graphs.
     
 * **Bonus Question**: What is the Anomaly graph displaying?
     * **Answer**: The anomaly graph is displaying the results of the basic anomaly detection methodology for the timeseries of the selected metric. The graph provides a gray background showing the expected behaivor range for the series based on the past and the bounding parameters, while highlighting the portion of the timeseries that falls outside of the expected behavior range in red.  Adjusting the timeframe of the timeboard impacts the calculation and display of the expected beahvior range for the timeseries based on the selected interval.  As the timeseries selected reflects the query interactions from the custom query configured for the MongoDB, it is highlighting the rate spikes from the database. 
@@ -104,8 +104,8 @@ Please configure the monitor’s message so that it will:
 ### Answer: 
 * Per the instructions, the Custom Metric Monitor was added to monitor the "my_metric" values, and send notifications when the metric is in violation of the Alert or Warning thresholds, or No Data has been recieved in 10 minutes.  In addition this monitor also implements the recovery thresholds for Alert and Warning, and handles no data recoveries.  
 * Screenshot: MM01 - Custom Metric Monitor <img src="./images/MM01 - Custom Metric Monitor.PNG?raw=true">
-* See the */monitors/CustomMetricMonitor.json* file exported from the client containing the configuration of the monitor.
-* See the associated notifications in the */notifications* directory for the following states.
+* See the [CustomMetricMonitor.json](./monitors/CustomMetricMonitor.json) file exported from the client containing the configuration of the monitor.
+* See the associated email notifications in the [notifications](./notifications) directory for the following states.
     * Alert State
     * Warning State
     * No Data State
@@ -117,7 +117,7 @@ Please configure the monitor’s message so that it will:
 * Per the instructions the daily and weekend downtimes were configured for the Custom Metric Monitor.
 * See the daily monitor configuration: MM02 - Custom Metric Monitor Daily Downtime <img src="./images/MM02 - Custom Metric Monitor Daily Downtime.PNG?raw=true">
 * See the weekend monitor configuration: MM03 - Custom Metric Monitor Weekend Downtime <img src="./images/MM03 - Custom Metric Monitor Weekend Downtime.PNG?raw=true">
-* See the associated email notifications in the */notifications* directory.
+* See the associated email notifications in the [notifications](./notifications) directory.
 
 
 ## Collecting APM Data:
@@ -125,16 +125,16 @@ Please configure the monitor’s message so that it will:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 * **Answer**: 
     * In order to experiment with the Datadog APM capabilities the vagrant VM configuration from the previous exercises was expanded to support the unified service tagging (UST) methodology, create a python virtual environment, and install the Flask and ddtrace packages required to run the Flask application that was provided.
-        * See the */environment/Vagrantfile* file containing the port forwarding for the Flask application.
-        * See */environment/config/datadog.yaml* file which adds the "env:dev" and "service:datadog_flask" tags, and enables Datadog APM. 
-        * See the updated */environment/install_flask.sh* containing the python setup for the Flask application.
+        * See the [Vagrantfile](./environment/Vagrantfile) file containing the port forwarding for the Flask application.
+        * See [datadog.yaml](./environment/config/datadog.yaml) file which adds the "env:dev" and "service:datadog_flask" tags, and enables Datadog APM. 
+        * See the updated [install_flask.sh](./environment/install_flask.sh) containing the python setup for the Flask application.
     * The Flask code that was provided was instrumented using the ddtrace-run command, span tags, as well as unified service tagging (UST) making it possible to monitor the application enpoint traces along side the host system metrics using the Services page for the "datadog_flask" service.
-        * See the instrumented Flask app code */environment/apm/flask_app/datadog.py* with the span tags added for increased visibility within Datadog.
+        * See the instrumented Flask app code [datadog.py](./environment/apm/flask_app/datadog.py) with the span tags added for increased visibility within Datadog.
         * The following ddtrace-run was used to instrument the application, and make use of UST.
-            $ DD_SERVICE="datadog_flask" DD_ENV="dev" DD_RUNTIME_METRICS_ENABLED=true DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true DD_VERSION=0.1 ddtrace-run python datadog.py
+            ```$ DD_SERVICE="datadog_flask" DD_ENV="dev" DD_RUNTIME_METRICS_ENABLED=true DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true DD_VERSION=0.1 ddtrace-run python datadog.py```
     * In order to generate a data stream for integration into a dashboard, an http check was added to the Agent configuration.  
-        * See the */environment/checks/http_check.d/conf.yaml* file for the http_check applied to the endpoints of the Flask app to generate data for the dashboards.
-        * See the */environment/install_datadog.sh* file that moves the *conf.yaml* into the */conf.d/http_check.d/* directory of the vagrant VM.
+        * See the [conf.yaml](./environment/checks/http_check.d/conf.yaml) file for the http_check applied to the endpoints of the Flask app to generate data for the dashboards.
+        * See the [install_datadog.sh](./environment/install_datadog.sh) file that moves the *conf.yaml* into the */conf.d/http_check.d/* directory of the vagrant VM.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
     * **Answer**: A *service* is defined as a group of endpoints, queries, or other jobs and processes which are used to build an application.  A *resource* on the other hand refers to a particular domain of an application, i.e. an individual web endpoint, database query, or background job. In the example above the Flask web application is a service, while the individual API endpoint within the application is a resource. 
