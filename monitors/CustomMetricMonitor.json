@@ -1,0 +1,27 @@
+{
+	"id": 29272181,
+	"name": "Custom Metric Monitor on {{host.name}}: {{#is_alert}} Alert, metric values exceeding {{threshold}} {{/is_alert}}{{#is_warning}} Warning, metric values exceeding {{warn_threshold}} {{/is_warning}}{{#is_no_data}} No data detected for 10 minutes{{/is_no_data}}{{#is_recovery}}Recovery Detected{{/is_recovery}}",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:my_metric{host:vagrant} > 800",
+	"message": "Custom Metric Monitor triggered on Host: {{host.name}} | IP: {{host.ip}}.\n\n{{#is_alert}} \nAlert! The metric values for \"my_metric\" have averaged {{value}} for the past 5 minutes. This exceeds the alert threshold of {{threshold}}. Please review the submitted data and confirm the dataset is valid.\n\nNotify your administrator of the outcome of your review, @mfglenn@outlook.com.\n{{/is_alert}}\n\n{{#is_warning}} \nWarning! The metric values for \"my_metric\" have averaged {{value}} for the past 5 minutes. This exceeds the warning threshold of {{warn_threshold}}. Please review the submitted data and confirm the dataset is valid.\n\nNotify your administrator of the outcome of your review, @mfglenn@outlook.com.\n{{/is_warning}}\n\n{{#is_no_data}} \nDatadog has not detected data for \"my_metric\" in the past 10 minutes. Please review the dataset and determine why the data is missing.\n\nNotify your administrator of the outcome of your review, @mfglenn@outlook.com.\n{{/is_no_data}}\n\n{{#is_recovery}}\nThe monitor for \"my_metric\" has recovered from {{#is_alert_recovery}}an alert{{/is_alert_recovery}}{{#is_warning_recovery}}a warning{{/is_warning_recovery}}{{#is_no_data_recovery}}a data gap{{/is_no_data_recovery}}. \n\n{{#is_alert_recovery}}The average value for \"my_metric\" for the last 5 minutes has fallen to {{value}}.  Indicating a recovery from the alert state. {{/is_alert_recovery}}\n{{#is_warning_recovery}}The average value for \"my_metric\" for the last 5 minutes has fallen to {{value}}.  Indicating a recovery from the warning state. {{/is_warning_recovery}}\n\nContact your administrator with any questions, @mfglenn@outlook.com.\n{{/is_recovery}}\n\nLogin to the dashboard for more information: https://app.datadoghq.com/dash/integration/system_overview?tpl_var_scope=host:{{host.name}} ",
+	"tags": [],
+	"options": {
+		"notify_audit": true,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500,
+			"critical_recovery": 750,
+			"warning_recovery": 450
+		}
+	},
+	"priority": null
+}
