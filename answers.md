@@ -11,7 +11,7 @@ Please provide screenshots and code snippets for all steps.
 You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
 
 * You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
-    * See the [Vagrantfile](./environment/Vagrantfile) containing the configuration for the Vagrant Ubuntu VM.
+    * **Answer**: See the [Vagrantfile](./environment/Vagrantfile) containing the configuration for the Vagrant Ubuntu VM.
 * You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
 
 Once this is ready, sign up for a trial Datadog at https://www.datadoghq.com/
