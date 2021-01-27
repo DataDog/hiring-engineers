@@ -130,7 +130,7 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
     * The Flask code that was provided was instrumented using the ddtrace-run command, span tags, as well as unified service tagging (UST) making it possible to monitor the application enpoint traces along side the host system metrics using the Services page for the "datadog_flask" service.
         * See the instrumented Flask app code [datadog.py](./environment/apm/flask_app/datadog.py) with the span tags added for increased visibility within Datadog.
         * The following ddtrace-run was used to instrument the application, and make use of UST.
-            ```$ DD_SERVICE="datadog_flask" DD_ENV="dev" DD_RUNTIME_METRICS_ENABLED=true DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true DD_VERSION=0.1 ddtrace-run python datadog.py```
+            * ```$ DD_SERVICE="datadog_flask" DD_ENV="dev" DD_RUNTIME_METRICS_ENABLED=true DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true DD_VERSION=0.1 ddtrace-run python datadog.py```
     * In order to generate a data stream for integration into a dashboard, an http check was added to the Agent configuration.  
         * See the [conf.yaml](./environment/checks/http_check.d/conf.yaml) file for the http_check applied to the endpoints of the Flask app to generate data for the dashboards.
         * See the [install_datadog.sh](./environment/install_datadog.sh) file that moves the *conf.yaml* into the */conf.d/http_check.d/* directory of the vagrant VM.
@@ -139,7 +139,7 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
     * **Answer**: A *service* is defined as a group of endpoints, queries, or other jobs and processes which are used to build an application.  A *resource* on the other hand refers to a particular domain of an application, i.e. an individual web endpoint, database query, or background job. In the example above the Flask web application is a service, while the individual API endpoint within the application is a resource. 
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-* **Answer**: To display the data from the APM monitoring of the Flask app, a simple timeboard was created called *APM Exercise.*
+* **Answer**: To display the data from the APM monitoring of the Flask app, a simple timeboard was created called *APM Flask Dashboard.*
     * The public link to the dashbaord is provided [here](https://p.datadoghq.com/sb/iefiq4rqfnz5648g-df8a5fc51f36c04bc1f6d53116c7af33).
     * Screenshot: APM01 - APM Flask Dashboard <img src="./images/APM01 - APM Flask Dashboard.PNG?raw=true">
 
