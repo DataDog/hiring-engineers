@@ -69,7 +69,6 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
     * Screenshot: VM02 - Exercise Dashboards List <img src="./images/VM02 - Exercise Dashboards List.PNG?raw=true">
 
 * Set the Timeboard's timeframe to the past 5 minutes
-    * **Answer**: Screenshot VM03 - Datadog Timeboard - 5 Min <img src="./images/VM03 - Datadog Timeboard - 5 Min.PNG?raw=true">
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
     * **Answer**: 
         * Custom Metric Check Screenshot: VM04 - Custom Metric Check Graph - Past 5 Minutes <img src="./images/VM04 - Custom Metric Check Graph - Past 5 Minutes.PNG?raw=true">
