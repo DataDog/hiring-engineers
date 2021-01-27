@@ -1,6 +1,6 @@
 ## Datadog Solution Engineering Exercise
-### Candidate: Matt Glenn
-### Datadog Login: mfglenn@outlook.com
+#### Candidate: Matt Glenn
+#### Datadog Login: mfglenn@outlook.com
 
 ## Questions
 
@@ -19,7 +19,7 @@ Once this is ready, sign up for a trial Datadog at https://www.datadoghq.com/
 **Please make sure to use “Datadog Recruiting Candidate” in [the “Company” field](https://a.cl.ly/wbuPdEBy)**
 
 Then, get the Agent reporting metrics from your local machine and move on to the next section...
-### Answer: ![PR01 - Metric Capture](/images/PR01 - Metric Capture.png)
+### Answer: ![PR01 - Metric Capture](https://github.com/mfglenn/hiring-engineers/blob/solutions-engineer/images/PR01 - Metric Capture.png)
 
 ## Collecting Metrics:
 
@@ -27,19 +27,19 @@ Then, get the Agent reporting metrics from your local machine and move on to the
     * **Answer**: 
         * In order to experiment with tagging on the host two tags were added, "environment:dev" and "exercise:collecting_metrics"  
         * See */environment/config/datadog.yaml* file adding the "environment:dev" and "exercise:collecting_metrics" tags to the host.
-        * Screenshot: ![CM01 - Host Map and Tag Capture](/images/CM01 - Host Map and Tag Capture.png)
+        * Screenshot: ![CM01 - Host Map and Tag Capture](https://github.com/mfglenn/hiring-engineers/blob/solutions-engineer/images/CM01 - Host Map and Tag Capture.png)
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
     * **Answer**: 
         * MongoDB Community Edition was selected to experiment with the Datadog database integration.  In addition to monitoring the system metrics, a collection was added to the ddTest database, and a custom query was configured to generate a data stream for the dashboard integration.  
         * See the */environment/install_mongo.sh* script file used to install the MongoDB Community Edition and create the datadog account for the datadog integration.
         * See the */environment/config/conf.yaml* configuration file for the MongoDB integration assigning the datadog account and creating a custom query.
-        * Screenshot: ![CM02 - MongoDB Integration Metrics](/images/CM02 - MongoDB Integration Metrics.png)
+        * Screenshot: ![CM02 - MongoDB Integration Metrics](https://github.com/mfglenn/hiring-engineers/blob/solutions-engineer/images/CM02 - MongoDB Integration Metrics.png)
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
     * **Answer**: 
         * In order to experiment with custom Datadog checks a custom_metric_check was configured to submit a random number between 0 and 1000.
         * See the */environment/checks/custom_metric_check.py* file containing the **custom_metric_check** logic.
         * See the */environment/checks/custom_metric_check.yaml* configuration file for the **custom_metric_check**.
-        * Screenshot: ![CM03 - Custom Agent Check - my_metric](/images/CM03 - Custom Agent Check - my_metric.png)
+        * Screenshot: ![CM03 - Custom Agent Check - my_metric](https://github.com/mfglenn/hiring-engineers/blob/solutions-engineer/images/CM03 - Custom Agent Check - my_metric.png)
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
     * **Answer**: 
         * In order to modify the collection interval it was necessary to update the *custom_metric_check.yaml* file with the adjust interval of 45 seconds.
@@ -57,7 +57,7 @@ Utilize the Datadog API to create a Timeboard that contains:
     * **Answer**:
         * To display the data from the custom metric check and the database integration of the host, a simple timeboard was created called *Visualizing Data Exercise.*
         * The public link to the dashbaord is provided [here](https://p.datadoghq.com/sb/iefiq4rqfnz5648g-d884783d9d4749ad043e58d2d6850ec1).
-        * Screenshot: ![VM01 - Visualizing Data Exercise](/images/VM01 - Visualizing Data Exercise.png)
+        * Screenshot: ![VM01 - Visualizing Data Exercise](https://github.com/mfglenn/hiring-engineers/blob/solutions-engineer/images/VM01 - Visualizing Data Exercise.png)
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 * **Answer**: See the */timeboards/VisualizingDataExercise.json* file exported from the client containing the configuration of the timeboard. 
@@ -65,14 +65,14 @@ Please be sure, when submitting your hiring challenge, to include the script tha
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 * **Answer**: 
     * A dashboard list called *Exercise Dashboards* was created to provide a singular navigation point for the visualization exercises.
-    * Screenshot: ![VM02 - Exercise Dashboards List](/images/VM02 - Exercise Dashboards List.png)
+    * Screenshot: ![VM02 - Exercise Dashboards List](https://github.com/mfglenn/hiring-engineers/blob/solutions-engineer/images/VM02 - Exercise Dashboards List.png)
 
 * Set the Timeboard's timeframe to the past 5 minutes
-    * **Answer**: Screenshot ![VM03 - Datadog Timeboard - 5 Min](/images/VM03 - Datadog Timeboard - 5 Min.png)
+    * **Answer**: Screenshot ![VM03 - Datadog Timeboard - 5 Min](https://github.com/mfglenn/hiring-engineers/blob/solutions-engineer/images/VM03 - Datadog Timeboard - 5 Min.png)
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
     * **Answer**: 
-        * Custom Metric Check Screenshot: ![VM04 - Custom Metric Check Graph - Past 5 Minutes](/images/VM04 - Custom Metric Check Graph - Past 5 Minutes.png)
-        * Anomaly Graph Screenshot: ![VM05 - Anomaly Graph - Past 5 Minutes](/images/VM05 - Anomaly Graph - Past 5 Minutes.png)
+        * Custom Metric Check Screenshot: ![VM04 - Custom Metric Check Graph - Past 5 Minutes](https://github.com/mfglenn/hiring-engineers/blob/solutions-engineer/images/VM04 - Custom Metric Check Graph - Past 5 Minutes.png)
+        * Anomaly Graph Screenshot: ![VM05 - Anomaly Graph - Past 5 Minutes](https://github.com/mfglenn/hiring-engineers/blob/solutions-engineer/images/VM05 - Anomaly Graph - Past 5 Minutes.png)
         * See the */snapshots* directory for the emailed snapshots of the custom metric check and anomaly analysis graphs.
     
 * **Bonus Question**: What is the Anomaly graph displaying?
@@ -102,7 +102,7 @@ Please configure the monitor’s message so that it will:
 
 ### Answer: 
 * Per the instructions, the Custom Metric Monitor was added to monitor the "my_metric" values, and send notifications when the metric is in violation of the Alert or Warning thresholds, or No Data has been recieved in 10 minutes.  In addition this monitor also implements the recovery thresholds for Alert and Warning, and handles no data recoveries.  
-* Screenshot: ![MM01 - Custom Metric Monitor](/images/MM01 - Custom Metric Monitor.png)
+* Screenshot: ![MM01 - Custom Metric Monitor](https://github.com/mfglenn/hiring-engineers/blob/solutions-engineer/images/MM01 - Custom Metric Monitor.png)
 * See the */monitors/CustomMetricMonitor.json* file exported from the client containing the configuration of the monitor.
 * See the associated notifications in the */notifications* directory for the following states.
     * Alert State
@@ -114,8 +114,8 @@ Please configure the monitor’s message so that it will:
 
 ### Bonus Answer: 
 * Per the instructions the daily and weekend downtimes were configured for the Custom Metric Monitor.
-* See the daily monitor configuration: ![MM02 - Custom Metric Monitor Daily Downtime](/images/MM02 - Custom Metric Monitor Daily Downtime.png)
-* See the weekend monitor configuration: ![MM03 - Custom Metric Monitor Weekend Downtime](/images/MM03 - Custom Metric Monitor Weekend Downtime.png)
+* See the daily monitor configuration: ![MM02 - Custom Metric Monitor Daily Downtime](https://github.com/mfglenn/hiring-engineers/blob/solutions-engineer/images/MM02 - Custom Metric Monitor Daily Downtime.png)
+* See the weekend monitor configuration: ![MM03 - Custom Metric Monitor Weekend Downtime](https://github.com/mfglenn/hiring-engineers/blob/solutions-engineer/images/MM03 - Custom Metric Monitor Weekend Downtime.png)
 * See the associated email notifications in the */notifications* directory.
 
 
@@ -141,7 +141,7 @@ Given the following Flask app (or any Python/Ruby/Go app of your choice) instrum
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 * **Answer**: To display the data from the APM monitoring of the Flask app, a simple timeboard was created called *APM Exercise.*
     * The public link to the dashbaord is provided [here](https://p.datadoghq.com/sb/iefiq4rqfnz5648g-df8a5fc51f36c04bc1f6d53116c7af33).
-    * Screenshot: ![APM01 - APM Flask Dashboard](/images/APM01 - APM Flask Dashboard.png)  
+    * Screenshot: ![APM01 - APM Flask Dashboard](https://github.com/mfglenn/hiring-engineers/blob/solutions-engineer/images/APM01 - APM Flask Dashboard.png)  
 
 ## Final Question:
 
