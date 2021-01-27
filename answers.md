@@ -27,7 +27,7 @@ Then, get the Agent reporting metrics from your local machine and move on to the
     * **Answer**: 
         * In order to experiment with tagging on the host two tags were added, "environment:dev" and "exercise:collecting_metrics"  
         * See */environment/config/datadog.yaml* file adding the "environment:dev" and "exercise:collecting_metrics" tags to the host.
-        * Screenshot: ![CM01 - Host Map and Tag Capture](./images/CM01 - Host Map and Tag Capture.png?raw=true)
+        * Screenshot: [CM01 - Host Map and Tag Capture](./images/CM01 - Host Map and Tag Capture.png?raw=true)
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
     * **Answer**: 
         * MongoDB Community Edition was selected to experiment with the Datadog database integration.  In addition to monitoring the system metrics, a collection was added to the ddTest database, and a custom query was configured to generate a data stream for the dashboard integration.  
