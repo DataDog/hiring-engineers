@@ -2,10 +2,10 @@
 ----------------
     Environment Set-up
     Collecting Metrics
-    #### Visualizing Data
-    #### Monitoring Data
-    #### Collecting APM Data
-    #### Creative Use of Datadog
+    Visualizing Data
+    Monitoring Data
+    Collecting APM Data
+    Creative Use of Datadog
 
 Reviewer - I have done my best to try and provide you all the details as possible. 
 
@@ -17,3 +17,6 @@ Reviewer - I have done my best to try and provide you all the details as possibl
 
 
 #### Collecting Metrics
+##### Task: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+##### How: Installed Agent >> Standard Process from Portal for UbuntuEdited “datadog.yaml” file located at “/etc/datadog-agent/datadog.yaml” and inserted a couple of tags.
+
