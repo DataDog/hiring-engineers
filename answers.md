@@ -22,3 +22,4 @@ Add tags in the Agent config file and show us a screenshot of your host and its 
 ##### How: 
 Installed Agent >> Standard Process from Portal for Ubuntu. Edited “datadog.yaml” file located at “/etc/datadog-agent/datadog.yaml” and inserted a couple of tags.
 
+![Collecting Metrics](./images/cm_image_1.png)
