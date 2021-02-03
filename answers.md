@@ -131,7 +131,9 @@ My two cents: In most cases, a resource is a subset of service.
  
 #### Final Question: Creative Use of Datadog
 ##### Response: 
-I am an IoT nerd and I love beer.  I have a few IoT sensors around the house. I will like to use datadog to create a visualization for me which tells me;- How many times do I leave the house via my front door ?
+I am an IoT nerd and I love beer.  I have a few IoT sensors around the house. I will like to use datadog to create a visualization for me which tells me;
+
+- How many times do I leave the house via my front door ?
 - How may times do I enter my garage ? (my beer fridge is stored in garage)
 - How many times do I open the fridge ?
 - What times have these events occurred at ?
