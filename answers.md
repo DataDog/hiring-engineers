@@ -29,3 +29,17 @@ Host in Datadog Dashboard
 Agent Status Output
 
 <img src="./images/cm_image_2.png" width="650" title="Agent Status Output">
+
+##### Task: 
+Install a database on our machine and then install the respective datadog integeration for that database. 
+##### How: 
+Installed Integeration >> Standard Process from Portal for MySQL. Edited “conf.yaml” file located at “/etc/datadog-agent/conf.d/mysql.d/conf.yaml” and made changes according to the provided instructions.
+
+Plugin Installed from Datadog Portal
+
+<img src="./images/db_image_1.png" width="650" title="Host in Datadog Dashboard">
+
+Database Metrics available in Metrics Explorer
+
+<img src="./images/db_image_2.png" width="650" title="Agent Status Output">
+
