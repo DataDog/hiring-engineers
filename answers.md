@@ -96,6 +96,8 @@ Possible answer could be by reverse engineering, creating a Dashboard and then e
 #### Monitoring Data
 ##### Status: Not attempted yet. 
 
+
+
 #### Collect APM Data
 ##### Task: 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution
@@ -116,5 +118,23 @@ Datadog Agent Status showing APM Metrics summary
 <img src="./images/apm_image_3.png" width="550" title="Datadog Agent Status">
 
 
+##### Task: Bonus Round
+What is the difference between Service and Resource?
+
+
+##### How: 
+Service: Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
+Resource: Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
+My two cents: In most cases, a resource is a subset of service.
+
+
+ 
+#### Final Question: Creative Use of Datadog
+##### Response: 
+I am an IoT nerd and I love beer.  I have a few IoT sensors around the house. I will like to use datadog to create a visualization for me which tells me;- How many times do I leave the house via my front door ?
+- How may times do I enter my garage ? (my beer fridge is stored in garage)
+- How many times do I open the fridge ?
+- What times have these events occurred at ?
+Ideally to understand my drinking habits. ;)
 
 
