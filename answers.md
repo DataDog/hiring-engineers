@@ -52,11 +52,11 @@ Additionally, created a mycheck.yaml file “/etc/datadog-agent/conf.d/mycheck.y
 
 Custom Check from Datadog Agent Status Output
 
-<img src="./images/db_image_1.png" width="650" title="Custom Check from Datadog Agent Status Output">
+<img src="./images/cc_image_1.png" width="650" title="Custom Check from Datadog Agent Status Output">
 
 Custom Check metrics in Datadog Portal
 
-<img src="./images/db_image_2.png" width="650" title="Custom Check metrics in Datadog Portal">
+<img src="./images/cc_image_2.png" width="650" title="Custom Check metrics in Datadog Portal">
 
 
 ##### Task: 
@@ -81,4 +81,40 @@ Utilize the Datadog API to create a Timeboard that contains:
     Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 ##### How: 
 Download the Postman Collection for datadog and authenticated via the available API Key.
+Able to fetch details and certain metrics, however, currnetly stuck trying to create a dashboard. Need to find the correct json for my "definiton".
+
+Datadog Postman Collection - Verfication of the API Key
+
+<img src="./images/vd_image_1.png" width="650" title="Verification of API Key">
+
+Stuck at 'definition' should be object - I need to find the right json for the timeboard. 
+Possible answer could be by reverse engineering, creating a Dashboard and then exporting as JSON. 
+
+<img src="./images/vd_image_2.png" width="650" title="stuck at object">
+
+
+#### Monitoring Data
+##### Status: Not attempted yet. 
+
+#### Collect APM Data
+##### Task: 
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution
+
+##### How: 
+I used the provided .py code and ran Flask on the VM and generated some APM Metrics. 
+
+Transaction Trace view in Datadog Portal
+
+<img src="./images/apm_image_1.png" width="850" title="Transaction Trace in Datadog">
+
+Flask Code for the provided Application.
+
+<img src="./images/apm_image_2.png" width="650" title="Flask_Code">
+
+Datadog Agent Status showing APM Metrics summary
+
+<img src="./images/apm_image_3.png" width="550" title="Datadog Agent Status">
+
+
+
 
