@@ -22,6 +22,8 @@ Add tags in the Agent config file and show us a screenshot of your host and its 
 ##### How: 
 Installed Agent >> Standard Process from Portal for Ubuntu. Edited “datadog.yaml” file located at “/etc/datadog-agent/datadog.yaml” and inserted a couple of tags.
 
-![Collecting Metrics](./images/cm_image_1.png)
+Host in Datadog Dashboard
+ <img src="./images/cm_image_1.png" width="650" title="Host in Datadog Dashboard">
 
- <img src="./images/cm_image_2.png" width="350" title="Agent Status Output">
+Agent Status Output
+ <img src="./images/cm_image_2.png" width="650" title="Agent Status Output">
