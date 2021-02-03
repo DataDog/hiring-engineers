@@ -1,7 +1,7 @@
 ## Tasks - The following are the categories in which the tasks have been allocated. 
 ----------------
-    #### Environment Set-up
-    #### Collecting Metrics
+    Environment Set-up
+    Collecting Metrics
     #### Visualizing Data
     #### Monitoring Data
     #### Collecting APM Data
