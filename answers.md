@@ -1,6 +1,14 @@
 # Sales Engineer Hiring Exercise
 #### Michelle Bray January/February 2021
 
+## Table of Contents
+- [Initial Setup](#initial-setup)
+- [Collecting Metrics](#collecting-metrics)
+- [Visualizing Data](#visualizing-data)
+- [Monitoring Data](#monitoring-data)
+- [Collecting APM Data](#collecting-apm-data)
+- [Final Question](#final-question)
+
 ## Initial Setup
 #### Install the VM (Ubuntu >= 16.04)
 - Download & install Vagrant (64-bit MacOS)
