@@ -138,7 +138,7 @@
           
           ![](/screenshots/ss_22.png)
           ![](/screenshots/ss_23.png)
-    - Create timeboard.py file for creating a new dashboard
+    - Create `timeboard.py` file for creating a new dashboard
         - Docs: https://docs.datadoghq.com/api/latest/dashboards/
           
           ![](/screenshots/ss_24.png)
