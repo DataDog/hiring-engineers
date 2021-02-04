@@ -1,0 +1,8 @@
+instances:
+  - min_collection_interval: 45
+
+tags:
+  - host:michelle_vm
+  - metric:my_metric
+  - env:dev
+  - version:0.0.1

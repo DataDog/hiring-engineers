@@ -38,7 +38,7 @@
 ## Collecting Metrics
 #### Add tags to the config file
 - Docs: https://docs.datadoghq.com/getting_started/tagging/
-- Navigate to the datadog-agent directory and open the datadog.yaml file for editing
+- Navigate to the `/datadog-agent` directory and open the `datadog.yaml` file for editing
     - `cd /etc/datadog-agent`
       
       ![](/screenshots/ss_06.png)
@@ -78,7 +78,7 @@
     - `GRANT PROCESS ON *.* TO 'datadog'@'localhost';`
       
       ![](/screenshots/ss_15.png)
-- Add configuration to `/mysql.d/conf.yaml`
+- Add configuration to `/conf.d/mysql.d/conf.yaml`
   
   ![](/screenshots/ss_16.png)
 - Restart the agent
