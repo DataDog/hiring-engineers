@@ -133,25 +133,25 @@
           ![](/screenshots/ss_21.png)
     - Install Python DataDog package
         - `sudo python3 -m pip install datadog`
-    - Create Application and API keys
-        - Docs: https://docs.datadoghq.com/account_management/api-app-keys/
+- Create Application and API keys
+    - Docs: https://docs.datadoghq.com/account_management/api-app-keys/
+      
+      ![](/screenshots/ss_22.png)
+      ![](/screenshots/ss_23.png)
+- Create `timeboard.py` file for creating a new dashboard
+    - Docs: https://docs.datadoghq.com/api/latest/dashboards/
           
-          ![](/screenshots/ss_22.png)
-          ![](/screenshots/ss_23.png)
-    - Create `timeboard.py` file for creating a new dashboard
-        - Docs: https://docs.datadoghq.com/api/latest/dashboards/
-          
-          ![](/screenshots/ss_24.png)
+      ![](/screenshots/ss_24.png)
     - Run the file
         - `python3 timeboard.py`
           
           ![](/screenshots/ss_25.png)
-    - Update the dashboard's timeline in the upper right dropdown by selecting `Past 5 Minutes`
+- Update the dashboard's timeline in the upper right dropdown by selecting `Past 5 Minutes`
       
-      ![](/screenshots/ss_26.png)
-    - Send a notification by clicking the share icon in the upper right of the desired graph
+  ![](/screenshots/ss_26.png)
+- Send a notification by clicking the share icon in the upper right of the desired graph
       
-      ![](/screenshots/ss_27.png)
+  ![](/screenshots/ss_27.png)
 #### My Dashboard
   https://p.datadoghq.com/sb/o9xxm85zlcw7frpa-3c525608fec23e6bd3970ee99f450856
 #### Bonus
