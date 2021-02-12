@@ -101,9 +101,61 @@ Additionally, I have also created a Public URL For same: https://p.datadoghq.com
 
 
 #### Monitoring Data
-##### Status: Not attempted yet. 
+##### Task:
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+Warning threshold of 500
+Alerting threshold of 800
+And also ensure that it will notify you if there is No Data for this query over the past 10m.
+Please configure the monitor’s message so that it will:
+
+- Send you an email whenever the monitor triggers.
+- Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+- Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+- When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+##### How: 
+
+I started off my altering my_metric value to be 600, so that it provides me a value in the required threshold. Created a Monitor whith 'Threshold Alert' as detection method. Metric was set to 'my_metric' from my vm 'jay-test-box'. It was a 'Simple Alert'.
+
+<img src="./images/md_image_1.png" width="850" title="Setting Thresholds in Monitor">
 
 
+My e-mail is already in the system, so receiving notifications is not a challenge. Received notifications from alert@dtdg.co
+The task was to create different messages based on what monitor type/state has been triggered. After a few tries, I was able to create all three custom messages.
+
+````
+{{#is_alert}}
+
+This is a custom message based on whether the monitor is an ALERT, WARNING or NO DATA state. 
+ALERT ! ALERT ! 
+Metric value that caused the trigger is **{{value}}** and the Host IP is :  **{{host}}**
+
+{{/is_alert}}
+
+{{#is_warning}}
+
+This is a custom message based on whether the monitor is an ALERT, WARNING or NO DATA state. 
+WARNING ! WARNING ! 
+Metric value that caused the trigger is **{{value}}** and the Host IP is :  **{{host.ip}}**
+
+{{/is_warning}}
+
+{{#is_no_data}}
+
+This is a custom message based on whether the monitor is an ALERT, WARNING or NO DATA state. 
+NO DATA ! NO DATA ! 
+Metric value that caused the trigger is **{{value}}** and the Host IP is :  **{{host.ip}}**
+
+{{/is_no_data}}
+
+
+ @jaydesai83@gmail.com
+````
+
+
+Challenges:
+Had to restart the datadog agent for the new custom metric to be sent out. 
 
 #### Collect APM Data
 ##### Task: 
