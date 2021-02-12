@@ -118,7 +118,7 @@ Please configure the monitor’s message so that it will:
 
 I started off my altering my_metric value to be 600, so that it provides me a value in the required threshold. Created a Monitor whith 'Threshold Alert' as detection method. Metric was set to 'my_metric' from my vm 'jay-test-box'. It was a 'Simple Alert'.
 
-<img src="./images/md_image_1.png" width="850" title="Setting Thresholds in Monitor">
+<img src="./images/md_image_1.png" width="750" title="Setting Thresholds in Monitor">
 
 
 My e-mail is already in the system, so receiving notifications is not a challenge. Received notifications from alert@dtdg.co
@@ -157,14 +157,14 @@ Metric value that caused the trigger is **{{value}}** and the Host IP is :  **{{
 Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 One that silences it from 7pm to 9am daily on M-F
-<img src="./images/md_image_3.png" width="850" title="Downtime 7pm to 9am">
+<img src="./images/md_image_3.png" width="650" title="Downtime 7pm to 9am">
 
 And one that silences it all day on Sat-Sun.
-<img src="./images/md_image_4.png" width="850" title="Downtime on Saturday and Sunday">
+<img src="./images/md_image_4.png" width="650" title="Downtime on Saturday and Sunday">
 (Please Note: The calendar dates are not accurate for the screenshot as I was in test mode)
 
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-<img src="./images/md_image_5.png" width="850" title="Email notification screenshot">
+<img src="./images/md_image_5.png" width="650" title="Email notification screenshot">
 
 
 Challenges:
