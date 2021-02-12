@@ -81,14 +81,13 @@ Utilize the Datadog API to create a Timeboard that contains:
     Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 ##### How: 
 Download the Postman Collection for datadog and authenticated via the available API Key.
-Able to fetch details and certain metrics, however, currnetly stuck trying to create a dashboard. Need to find the correct json for my "definiton".
 
 Datadog Postman Collection - Verfication of the API Key
 
 <img src="./images/vd_image_1.png" width="650" title="Verification of API Key">
 
-Stuck at 'definition' should be object - I need to find the right json for the timeboard. 
-Possible answer could be by reverse engineering, creating a Dashboard and then exporting as JSON. 
+Rather than using the provided example, I manually created a Dasboard Graphically, exported the JSON, altered it and used it complete the exercise. 
+My JSON payload I used to create the Dashboard is as per the screen below:
 
 <img src="./images/vd_image_2.png" width="650" title="stuck at object">
 
