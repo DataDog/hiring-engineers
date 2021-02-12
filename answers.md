@@ -88,8 +88,16 @@ Datadog Postman Collection - Verfication of the API Key
 
 Rather than using the provided example, I manually created a Dasboard Graphically, exported the JSON, altered it and used it complete the exercise. 
 My JSON payload I used to create the Dashboard is as per the screen below:
+( The exercise asks for 1 hour, unfortunately the image below is from my testing, which was set to 300 - That value when changed to 3600 will provide data over the hour )
 
-<img src="./images/vd_image_2.png" width="650" title="stuck at object">
+<img src="./images/vd_image_2.png" width="650" title="JSON Payload for Dashboard Creation">
+
+The snapshot/sceenshot of the Visualization is as below. I have also used the 'Notifications' to send the notifications to myself. 
+Additionally, I have also created a Public URL For same: https://p.datadoghq.com/sb/jzdbkkrelppjuizh-56f4d3ba1ad4230e82caec7b18beb827
+( Unsure if you will have any data on that URL when you test as it is being generated from a VM running on my machine )
+
+<img src="./images/vd_image_3.png" width="750" title="Visualizing Data - Dashboard">
+
 
 
 #### Monitoring Data
