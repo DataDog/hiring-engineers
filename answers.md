@@ -141,7 +141,7 @@ My two cents: In most cases, a resource is a subset of service.
 I am an IoT nerd and I love beer.  I have a few IoT sensors around the house. I will like to use datadog to create a visualization for me which tells me;
 
 - How many times do I leave the house via my front door ?
-- How may times do I enter my garage ? (my beer fridge is stored in garage)
+- How may times do I enter my garage ? (my beer fridge is located in the garage)
 - How many times do I open the fridge ?
 - What times have these events occurred at ?
 Ideally to understand my drinking habits. ;)
