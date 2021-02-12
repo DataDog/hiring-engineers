@@ -90,7 +90,7 @@ Rather than using the provided example, I manually created a Dasboard Graphicall
 My JSON payload I used to create the Dashboard is as per the screen below:
 ( The exercise asks for 1 hour, unfortunately the image below is from my testing, which was set to 300 - That value when changed to 3600 will provide data over the hour )
 
-<img src="./images/vd_image_2.png" width="650" title="JSON Payload for Dashboard Creation">
+<img src="./images/vd_image_2.png" width="850" title="JSON Payload for Dashboard Creation">
 
 The snapshot/sceenshot of the Visualization is as below. I have also used the 'Notifications' to send the notifications to myself. 
 Additionally, I have also created a Public URL For same: https://p.datadoghq.com/sb/jzdbkkrelppjuizh-56f4d3ba1ad4230e82caec7b18beb827
@@ -157,13 +157,17 @@ Metric value that caused the trigger is **{{value}}** and the Host IP is :  **{{
 Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 One that silences it from 7pm to 9am daily on M-F
+
 <img src="./images/md_image_3.png" width="650" title="Downtime 7pm to 9am">
 
 And one that silences it all day on Sat-Sun.
+
 <img src="./images/md_image_4.png" width="650" title="Downtime on Saturday and Sunday">
+
 (Please Note: The calendar dates are not accurate for the screenshot as I was in test mode)
 
 Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
 <img src="./images/md_image_5.png" width="650" title="Email notification screenshot">
 
 
