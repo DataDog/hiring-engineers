@@ -141,7 +141,7 @@ The snapshot/sceenshot of the Visualization is as below. I have also used the 'N
 Additionally, I have also created a Public URL For same: https://p.datadoghq.com/sb/jzdbkkrelppjuizh-56f4d3ba1ad4230e82caec7b18beb827
 ( Unsure if you will have any data on that URL when you test as it is being generated from a VM running on my machine )
 
-<img src="./images/vd_image_3.png" width="750" title="Visualizing Data - Dashboard">
+<img src="./images/vd_image_3.png" width="850" title="Visualizing Data - Dashboard">
 
 ##### Challenges/Comments/Links -  Task 3
 My primary challenge with this task was the inability to use the provided Example JSON Pay load to create a Dashboard. I had to resort to reverse engineering, created Dashboards manually and then exported the JSON. 
