@@ -1,42 +1,30 @@
-
-
-- Still working on it. Anticipate to get it done by 15th Feb. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Tasks - The following are the categories in which the tasks have been allocated. 
 ----------------
-    Environment Set-up
-    Collecting Metrics
-    Visualizing Data
-    Monitoring Data
-    Collecting APM Data
-    Creative Use of Datadog
+1. Environment Set-up
+2. Collecting Metrics
+3. Visualizing Data
+4. Monitoring Data
+5. Collecting APM Data
+6. Creative Use of Datadog
 
-Reviewer - I have done my best to try and provide you all the details as possible. 
+I have done my best to try and provide you as much details as possible. 
 
-#### Environment Set-up
+#### 1. Environment Set-up
 - VMWare Fusion as Hypervisor on my Macbook Pro (Personal Laptop)
 - Operating System - Ubuntu 18.04 - My favourite OS for any Testing
 - Datadog Account - jaydesai83@gmail.com
 - Datadog Agent - v7.25.1
 
+##### Task 1. Challenges/Comments/Links
+None, it's a local environment set-up which I have to do multiple times. Account creation and agent install for Datadog was super easy. 
 
-#### Collecting Metrics
-##### Task: 
+
+
+
+#### 2. Collecting Metrics
+**Task:** 
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-##### How: 
+**How:** 
 Installed Agent >> Standard Process from Portal for Ubuntu. Edited “datadog.yaml” file located at “/etc/datadog-agent/datadog.yaml” and inserted a couple of tags.
 
 Host in Datadog Dashboard
@@ -75,12 +63,41 @@ Custom Check metrics in Datadog Portal
 
 <img src="./images/cc_image_2.png" width="650" title="Custom Check metrics in Datadog Portal">
 
+````python
+# Editor: Jay Desai - The following code snipet is an edited version of the original example code snippet available on https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
+# the following try/except block will make the custom check compatible with any Agent version
+import random
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+# generates a random value between 400 and 1000
+        self.gauge('my_metric',random.randint(400,1000))
+````
+
 
 ##### Task: 
 Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 ##### How: 
-Edited the .yaml file to include –min_collection_interval value and set it to 45. 
+Edited the .yaml file to include –min_collection_interval value and set it to 45.
+
+````yaml
+init_config:
+
+instances:
+  - min_collection_interval: 45
+
+instances: [{}]
+````
 
 ##### Task: Bonus Round
 Can you change the collection interval without modifying the Python check file you created?
@@ -88,9 +105,15 @@ Can you change the collection interval without modifying the Python check file y
 ##### How: 
 I think the documentation is now updated showing how to edit the .yaml file to change the collection interval. I used the available documentation. 
 
+##### Task 2. Challenges/Comments/Links
+Agent install was a fairly simple task. Creating Tags was simple too as the steps were well documented on docs.datadoghq.com
+Had to spend some time looking at and understanding the multiple .yaml files. 
 
 
-#### Visualizing Data
+
+
+
+#### 3. Visualizing Data
 ##### Task: 
 Utilize the Datadog API to create a Timeboard that contains:
     Your custom metric scoped over your host.
@@ -103,11 +126,16 @@ Datadog Postman Collection - Verfication of the API Key
 
 <img src="./images/vd_image_1.png" width="650" title="Verification of API Key">
 
+
 Rather than using the provided example, I manually created a Dasboard Graphically, exported the JSON, altered it and used it complete the exercise. 
 My JSON payload I used to create the Dashboard is as per the screen below:
 ( The exercise asks for 1 hour, unfortunately the image below is from my testing, which was set to 300 - That value when changed to 3600 will provide data over the hour )
 
 <img src="./images/vd_image_2.png" width="850" title="JSON Payload for Dashboard Creation">
+
+````json
+{"title":"Visualizing Data","description":"","widgets":[{"definition":{"title":"Custom Metric - Scoped over Host","title_align":"center","show_legend":false,"type":"timeseries","requests":[{"q":"my_metric{host:jay-test-box}"}]}},{"definition":{"title":"mySQL DB - Anomaly Function Applied","title_align":"center","show_legend":false,"type":"timeseries","requests":[{"q":"anomalies(mysql.performance.cpu_time{host:jay-test-box}, 'basic', 3)"}]}},{"definition":{"title":"Custom Metric - Rollup Fuction Applied","title_align":"center","type":"query_value","requests":[{"q":"sum:my_metric{host:jay-test-box}.rollup(sum,300)"}]}}],"template_variables":[],"layout_type":"ordered","is_read_only":false,"notify_list":[]}
+````
 
 The snapshot/sceenshot of the Visualization is as below. I have also used the 'Notifications' to send the notifications to myself. 
 Additionally, I have also created a Public URL For same: https://p.datadoghq.com/sb/jzdbkkrelppjuizh-56f4d3ba1ad4230e82caec7b18beb827
@@ -117,7 +145,7 @@ Additionally, I have also created a Public URL For same: https://p.datadoghq.com
 
 
 
-#### Monitoring Data
+#### 4. Monitoring Data
 ##### Task:
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
@@ -133,7 +161,7 @@ Please configure the monitor’s message so that it will:
 
 ##### How: 
 
-I started off my altering my_metric value to be 600, so that it provides me a value in the required threshold. Created a Monitor whith 'Threshold Alert' as detection method. Metric was set to 'my_metric' from my vm 'jay-test-box'. It was a 'Simple Alert'.
+I created a Monitor whith 'Threshold Alert' as detection method. Metric was set to 'my_metric' from my vm 'jay-test-box'. It was a 'Simple Alert'.
 
 <img src="./images/md_image_1.png" width="750" title="Setting Thresholds in Monitor">
 
@@ -141,7 +169,7 @@ I started off my altering my_metric value to be 600, so that it provides me a va
 My e-mail is already in the system, so receiving notifications is not a challenge. Received notifications from alert@dtdg.co
 The task was to create different messages based on what monitor type/state has been triggered. After a few tries, I was able to create all three custom messages.
 
-````
+````markdown
 {{#is_alert}}
 
 This is a custom message based on whether the monitor is an ALERT, WARNING or NO DATA state. 
@@ -188,15 +216,15 @@ Make sure that your email is notified when you schedule the downtime and take a 
 <img src="./images/md_image_5.png" width="650" title="Email notification screenshot">
 
 
-Challenges:
-Had to restart the datadog agent for the new custom metric to be sent out. 
 
-#### Collect APM Data
+
+#### 5. Collect APM Data
 ##### Task: 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution
 
 ##### How: 
 I used the provided .py code and ran Flask on the VM and generated some APM Metrics. 
+
 
 Transaction Trace view in Datadog Portal
 
@@ -204,7 +232,52 @@ Transaction Trace view in Datadog Portal
 
 Flask Code for the provided Application.
 
-<img src="./images/apm_image_2.png" width="650" title="Flask_Code">
+myapp.py - code
+````python
+from flask import Flask
+import logging
+import sys
+from ddtrace import tracer
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+# tracer below enables dd-trace send data to datadog
+@tracer.wrap("flask.request", service='flask', resource="GET /api/apm", span_type="web")
+def apm_endpoint():
+    current_span = tracer.current_span()
+    if current_span:
+        current_span.set_tag('flask.key', 'value')
+        current_span.set_tag('flask.endpoint', '/api/apm')
+        current_span.set_tag('http.endpoint', 'GET')
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+# tracer below enables dd-trace send data to datadog
+@tracer.wrap("flask.request", service='trace_request', resource="GET /api/trace", span_type="web")
+def trace_endpoint():
+    current_span = tracer.current_span()
+    if current_span:
+        current_span.set_tag('flask.key', 'value')
+        current_span.set_tag('flask.endpoint', '/api/trace')
+        current_span.set_tag('http.endpoint', 'GET')
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+````
 
 Datadog Agent Status showing APM Metrics summary
 
@@ -231,5 +304,3 @@ I am an IoT nerd and I love beer.  I have a few IoT sensors around the house. I 
 - How many times do I open the fridge ?
 - What times have these events occurred at ?
 Ideally to understand my drinking habits. ;)
-
-
