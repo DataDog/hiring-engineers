@@ -105,7 +105,7 @@ Can you change the collection interval without modifying the Python check file y
 ##### How: 
 I think the documentation is now updated showing how to edit the .yaml file to change the collection interval. I used the available documentation. 
 
-##### Task 2. Challenges/Comments/Links
+##### Challenges/Comments/Links -  Task 2
 Agent install was a fairly simple task. Creating Tags was simple too as the steps were well documented on docs.datadoghq.com
 Had to spend some time looking at and understanding the multiple .yaml files. 
 
@@ -142,6 +142,11 @@ Additionally, I have also created a Public URL For same: https://p.datadoghq.com
 ( Unsure if you will have any data on that URL when you test as it is being generated from a VM running on my machine )
 
 <img src="./images/vd_image_3.png" width="750" title="Visualizing Data - Dashboard">
+
+##### Challenges/Comments/Links -  Task 3
+My primary challenge with this task was the inability to use the provided Example JSON Pay load to create a Dashboard. I had to resort to reverse engineering, created Dashboards manually and then exported the JSON. 
+https://docs.datadoghq.com/api/
+
 
 
 
@@ -215,6 +220,11 @@ Make sure that your email is notified when you schedule the downtime and take a 
 
 <img src="./images/md_image_5.png" width="650" title="Email notification screenshot">
 
+##### Challenges/Comments/Links -  Task 4
+My primary challenge with this task was to get the multiple notifications. Documentation was useful to a point, but had to apply soem logic too. ;)
+https://docs.datadoghq.com/monitors/notifications/?tab=is_alert
+
+
 
 
 
@@ -287,11 +297,17 @@ Datadog Agent Status showing APM Metrics summary
 ##### Task: Bonus Round
 What is the difference between Service and Resource?
 
-
 ##### How: 
 Service: Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
 Resource: Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
 My two cents: In most cases, a resource is a subset of service.
+
+##### Challenges/Comments/Links -  Task 5
+Documentation came in handy, Installing dd-trace was a challenge, had to install multiple dependencies on my Ubuntu 18.04 which were not documented anywhere. 
+https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers
+
+
+
 
 
  
