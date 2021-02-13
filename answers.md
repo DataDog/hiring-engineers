@@ -16,7 +16,7 @@ I have done my best to try and provide you as much details as possible.
 - Datadog Agent - v7.25.1
 
 ##### Task 1. Challenges/Comments/Links
-None, it's a local environment set-up which I have to do multiple times. Account creation and agent install for Datadog was super easy. 
+None, it's a local environment set-up which I have to do multiple times. Account creation and agent install for Datadog was seamless. 
 
 
 
@@ -221,7 +221,7 @@ Make sure that your email is notified when you schedule the downtime and take a 
 <img src="./images/md_image_5.png" width="650" title="Email notification screenshot">
 
 ##### Challenges/Comments/Links -  Task 4
-My primary challenge with this task was to get the multiple notifications. Documentation was useful to a point, but had to apply soem logic too. ;)
+My primary challenge with this task was to get the multiple notifications. Documentation was useful to a point, but had to apply some logic too. ;)
 https://docs.datadoghq.com/monitors/notifications/?tab=is_alert
 
 
