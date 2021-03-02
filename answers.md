@@ -2,7 +2,7 @@ If you want to apply as a Solutions or Sales Engineer at [Datadog](http://datado
 
 
 <a href="https://www.datadoghq.com/careers/" title="Careers at Datadog">
-<img src="https://imgix.datadoghq.com/img/careers/careers_photos_overview.jpg" width="1000" height="332"></a>
+<img src="https://imgix.datadoghq.com/img/careers/careers_photos_overview.jpg" width="1001" height="332"></a>
 
 ## The Exercise
 
