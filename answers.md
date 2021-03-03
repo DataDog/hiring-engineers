@@ -6,8 +6,8 @@
         * Tags are converted to lowercase. With this in mind it is advised to not use camel case for naming your tags.
         * Tags can be formatted as "key:value" as shown in the example, or they can be "value".
         * Tags should not be originiated from unbound sources such as User ID's.
-    [Image of tags defined in yaml file](tags-in-yaml.png)
-    [Image of tags in Agent](tags.png)
+    [Image of tags defined in yaml file](/tags-in-yaml.png)
+    [Image of tags in Agent](/tags.png)
 
     **Usage and why this is important**
     * Let's say we want to look at our containers or cloud environments at the service level. It would be a lot more beneficial and time concious to be able to see our CPU usage across multilple hosts than having to invesitgate these values on individual servers. This is where tags come into play. By setting these up we can more easily aggregate metrics of a service across multiple servers. 
@@ -68,9 +68,9 @@
 ## Collecting APM Data
 * Collecting APM (Application Performance Monitoring) data is made easy by Datadog. After installing ddtrace you will then start adding the appropriate entry/end points into your application. Based upon the example given in the exercise, we can see that '/' route triggers the 'api_entry'. This is reflected within the UI when the page is hit by a user. Within the APM dashboard screen, we can see our status codes for GET requests when we hit that endpoint in oour browser. An important feature to note is the presence of timestamps for every trace picked up by Datadog within this interface.  This applies to the  other two routes determined in the Flask script as well. Note: If your port for Flask is different from the default set by Datadog (8126), this will need  to updated in the datadog.yaml file so that the agent is listening to the correct port. 
 * Another important aspect of APM with Datadog is that you have the ability to leverage your tags to keep traces that matter most in your application.
-[Flask app example](APMtest.py)
+[Flask app example](APMTest.py)
 **Usages and why this is important**
 * Collecting traces from your application is absolutely essential for understanding runtime metrics and performance of your web application. Knowing what aspects of your applications may be throwing 500 errors or showing latency is vitally important to maintaining a healthy system and providing a satisfactory experience for your customers.  
 
 ## Creative Uses for Datadog
-* I personally think that a creative use for Datadog would be to monitor the activity of certain stock/crypto currencies in terms of searches or discussions. I firmly believe we are in a very interesting time of investing where retail investors have more access than ever to research and buy/sell stocks or currencies. We saw a huge surge in retail investing recently with the rise of the Gamestop madness fueled by WallStreetBets on Reddit, and I beleieve this is only the beginning of a new era of retail investing. With this in mind, Datadog could provide a wealth of crucial information to those same investors. 
+* I personally think that a creative use for Datadog would be to monitor the activity of certain stock/crypto currencies in terms of searches or discussions. I firmly believe we are in a very interesting time of investing where retail investors have more access than ever to research and buy/sell stocks or currencies. We saw a huge surge in retail investing recently with the rise of the Gamestop madness fueled by WallStreetBets on Reddit, and I believe this is only the beginning of a new era of retail investing. With this in mind, Datadog could provide a wealth of crucial information to those same investors. 
