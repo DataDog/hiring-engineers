@@ -12,9 +12,9 @@
     **Usage and why this is important**
     * Let's say we want to look at our containers or cloud environments at the service level. It would be a lot more beneficial and time concious to be able to see our CPU usage across multilple hosts than having to invesitgate these values on individual servers. This is where tags come into play. By setting these up we can more easily aggregate metrics of a service across multiple servers. 
 
-    * Database Integration
-        * Adding a database integration to your Datadog configuration is a very straight forward process thanks to the documentation provided on your Datadog UI. As a quick rundown, here is how a PostgreSQL is integrated:
-            * As the PostgreSQL check is already packaged with the Datadog Agent, our first step  will be to create a read-only datadog user that has access to our server. This can be achieved by opening a psql session on the PostgreSQL database and entering the following commands:
+* Database Integration
+    * Adding a database integration to your Datadog configuration is a very straight forward process thanks to the documentation provided on your Datadog UI. As a quick rundown, here is how a PostgreSQL is integrated:
+        * As the PostgreSQL check is already packaged with the Datadog Agent, our first step  will be to create a read-only datadog user that has access to our server. This can be achieved by opening a psql session on the PostgreSQL database and entering the following commands:
             "create user datadog with password 'PASSWORD';
             grant pg_monitor to datadog;
             grant SELECT ON pg_stat_database to datadog;"
@@ -22,9 +22,9 @@
     **Usage and why this is important**
     * This one may be a bit obvious but in most scenarios we will want to see how many of our servers are currently up and running.
 
-    * Create a Custom Agent Check
-        * In the scenario where we want to collect metrics for unique systems or custom applications, we will want to create a custom agent check. In this example, I will be creating a custom metric called "my_metric" that will produce a random integer between 0 and 1000.
-            * We must create two files within the datadog-agent folder. One being the configuration file, and the other being the check file. **It is vitally important to note that these files must share the same name.  So in this example my check file is titled "my_metric.py" and my configuration file is named "my_metric.yaml".**
+* Create a Custom Agent Check
+    * In the scenario where we want to collect metrics for unique systems or custom applications, we will want to create a custom agent check. In this example, I will be creating a custom metric called "my_metric" that will produce a random integer between 0 and 1000.
+        * We must create two files within the datadog-agent folder. One being the configuration file, and the other being the check file. **It is vitally important to note that these files must share the same name.  So in this example my check file is titled "my_metric.py" and my configuration file is named "my_metric.yaml".**
             * The configuration file contains a sequence called "instances" that can remain blank for the time being.
             * Within the check file is where we want our logiv for this check. As mentioned, "my_metric" is simply a random number between 0-1000. To accomplish this, I have modified the check itself which inherits from AgentCheck. 
             "self.gauge( "my_metric", random.randint(0, 1000), tags=["TAG_KEY:TAG_VALUE"],)"
@@ -35,8 +35,8 @@
             [Image of my_metric yaml file](mymetricyaml.png)
     * Again, custom agent checks can be a crucial part of your operation if you are trying to collect metrics for custom applications. If you are trying to collect metrics for widely available applications, public services, etc., it is recommended to create a full Agent configuration. 
 
-    * Modify Collection Interval via Datadog UI
-        * Another way to adjust the collection interval of a custom Agent check is to change it within the UI. In the Dashboard view, click the gear icon of the custom metric, and then select the metric from the small pop-up window. From here you will see your metric in the "Metric Name" list. By clicking on the metric another panel pops out from the right side of the screen and shows a field titled "Interval". By clicking on the "Edit" button  just  below this, we are given access to manually change the collection interval.
+* Modify Collection Interval via Datadog UI
+    * Another way to adjust the collection interval of a custom Agent check is to change it within the UI. In the Dashboard view, click the gear icon of the custom metric, and then select the metric from the small pop-up window. From here you will see your metric in the "Metric Name" list. By clicking on the metric another panel pops out from the right side of the screen and shows a field titled "Interval". By clicking on the "Edit" button  just  below this, we are given access to manually change the collection interval.
     **Usage and why this is important**
     * Modifying the collection interval via the Datadog UI provides a potentially quicker and easier way to adjust your intervals as opposed to modifying the configuration file itself.
 
