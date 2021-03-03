@@ -6,7 +6,7 @@
         * Tags are converted to lowercase. With this in mind it is advised to not use camel case for naming your tags.
         * Tags can be formatted as "key:value" as shown in the example, or they can be "value".
         * Tags should not be originiated from unbound sources such as User ID's.
-    [Image of tags defined in yaml file](/tags-in-yaml.png)
+    [Image of tags defined in yaml file](/tags-in-yaml.png)</br>
     [Image of tags in Agent](/tags.png)
 
     **Usage and why this is important**
