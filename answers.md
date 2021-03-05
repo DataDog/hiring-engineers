@@ -1,16 +1,20 @@
-## Collecting Metrics
- * Adding Tags
-    * To add tags to your host we must access the Agent Configuration file. This file is titled datadog.yaml within the datadog-agent folder. For this example, we will be adding tags to our host. These tags will be added to line 66 of the datadog.yaml file. In the example shown below, you can see that I have assigned generic tags to my host titled "key_1_:_value_1, key_2_:_value_2, key_3_:_value_3" to ensure that the host tags are displaying correctly. There are a few rules to defining tags:
-        * Tags must start with a letter.
-        * Tags can be up to 200 characters long & also support Unicode.
-        * Tags are converted to lowercase. With this in mind it is advised to not use camel case for naming your tags.
-        * Tags can be formatted as "key:value" as shown in the example, or they can be "value".
-        * Tags should not be originiated from unbound sources such as User ID's.
-    [Image of tags defined in yaml file](/tags-in-yaml.png)</br>
-    [Image of tags in Agent](/tags.png)
+<h1 style="text-align: center;"> Collecting Metrics</h1>
+<h3 style="text-align: center;"><b><u>Adding Tags</u></b></h3>
+     <p tyle="text-align: center;">To add tags to your host we must access the Agent Configuration file. This file is titled <b>datadog.yaml</b> within the datadog-agent folder. For this example, we will be adding tags to our host. These tags will be added to line 66 of the datadog.yaml file. In the example shown below, you can see that I have assigned generic tags to my host titled "key_1_:_value_1, key_2_:_value_2, key_3_:_value_3" to ensure that the host tags are displaying correctly. There are a few rules to defining tags:</p></br>
+     <ul>
+        <li> Tags must start with a letter.</li>
+        <li>Tags can be up to 200 characters long & also support Unicode.</li>
+        <li>Tags are converted to lowercase. With this in mind it is advised to not use camel case for naming your tags.</li>
+        <li> Tags can be formatted as "key:value" as shown in the example, or they can be "value".</li>
+        <li>Tags should not be originiated from unbound sources such as User ID's.</li>
+    </ul>
+    ![Image of tags defined in yaml file](/tags-in-yaml.png)</br>
+    ![Image of tags in Agent](/tags.png)
+</br></br>
+<h3 style="text-align: center;"><b><u> Usage and why this is important</u></b></h3>
 
-    **Usage and why this is important**
-    * Let's say we want to look at our containers or cloud environments at the service level. It would be a lot more beneficial and time concious to be able to see our CPU usage across multilple hosts than having to invesitgate these values on individual servers. This is where tags come into play. By setting these up we can more easily aggregate metrics of a service across multiple servers. 
+<p tyle="text-align: center;">Let's say we want to look at our containers or cloud environments at the service level. It would be a lot more beneficial and time concious to be able to see our CPU usage across multilple hosts than having to invesitgate these values on individual servers. This is where tags come into play. By setting these up we can more easily aggregate metrics of a service across multiple servers.</p>
+</br>
 
 * Database Integration
     * Adding a database integration to your Datadog configuration is a very straight forward process thanks to the documentation provided on your Datadog UI. As a quick rundown, here is how a PostgreSQL is integrated:
@@ -28,11 +32,11 @@
             * The configuration file contains a sequence called "instances" that can remain blank for the time being.
             * Within the check file is where we want our logiv for this check. As mentioned, "my_metric" is simply a random number between 0-1000. To accomplish this, I have modified the check itself which inherits from AgentCheck. 
             "self.gauge( "my_metric", random.randint(0, 1000), tags=["TAG_KEY:TAG_VALUE"],)"
-            [Image of code to produce my_metric](mymetricpy.png)
+            ![Image of code to produce my_metric](mymetricpy.png)
             * As you can see, tags can be added to this check, but I have not modified them in my_metric for the time being
             * To change the collection interval we will be modifying the configuration file mentioned above. The default interval is 15 seconds, but lets change this to 45 seconds. We will use "min_collection_interval" parameter within the "instances" sequence mentioned above. **Note: By setting min_collection_interval" to 45, this does not mean that the metric will be collected every 45 seconds, but rather that it can be collected as often as every 45 seconds**
     **Usage and why this is important**
-            [Image of my_metric yaml file](mymetricyaml.png)
+            ![Image of my_metric yaml file](mymetricyaml.png)
     * Again, custom agent checks can be a crucial part of your operation if you are trying to collect metrics for custom applications. If you are trying to collect metrics for widely available applications, public services, etc., it is recommended to create a full Agent configuration. 
 
 * Modify Collection Interval via Datadog UI
@@ -43,7 +47,7 @@
 
 ## Visualizing Data
 * Up until this point it is assumed that you have been working directly withn the UI to create dashboards, however in  this section we will cover how to create a dashboard via the Datadog API. In this example we will be creating a dashboard that contains our custom metric (my_metric) scoped over the host, a metric from our database, and our custom metric with the rollup function applied to sum up all the points for the past hour into a bucket. 
-[Script used to create Dashboard](initializeapitest.py)
+![Script used to create Dashboard](initializeapitest.py)
 * After entering your proper API & APP key, you can start to define the widgets that you want to create. You will see that within the definition of each widget, you have some customizable parameters, the first being 'type'. For this excercise, we will be building a timeboard for each widget. Next we will be modifying the request itself. The "{'q'}" found before the metric name is in reference to the query definition. Imeediately following the query definiton is where we will define what metric the widget is made for. On line 57 you will see that this widget is going to be monitoring my_metric over all (*) instances within the infrastructure. 
     *  To effectively apply the rollup function to a widget you can append ".rollup(method, time)". The methods available for the rollup function are sum, min, max, count, and avg. You can see above that I have used the average method. The time field is measured in seconds, so in the above example I have set my rollup function to 1 hour intervals.
 **Usage and why this is important**
@@ -57,11 +61,11 @@
         * To set a "Data Missing" alert, you will first need to select "Notify" from the dropdown. After this has been selected, you can determine how many minutes must pass for the alert to trigger.
     * We will want our messages to be verbose on exactly what is happening with our metric, and why we are getting an alert. This can be setup in Step 4 of the New Moonitor screen. Datadog provides multiple variables to use in these messages that can give us a clear picture of what is happening. For example, I have set my Alert message as: {{#is_alert}}My Metric is above 800 on IP {{host.ip}} with {{value}} {{/is_alert}}
     In this example, the text within {{#is_alert}} will be displayed when the alert message is triggered. {{host.ip}} tells us the IP  address of the host that is experiencing the issue, and {{value}} tells us exactly the value that triggered the alert.
-    [Example email of alert](metricalert.png)
+    ![Example email of alert](metricalert.png)
     * Finally, we want to ensure that the proper employees are receiving this message so that it can be remedied in a timely manner. In step 5 we can dictate who recieves this particular alert from the dropdown. 
     ### Silencing Alerts
     * There are likely a multitude of reasons that you would want to silence an alarm, such as weekend hours for certain employees, or planned maintenance on your system. To achieve this select "Monitors" on the left side of the UI, and then "Manage Monitors". On this screen we can see the monitor that we have created, and after selecting it we are given an option at the top for "Manage Downtime". On the right we can see an icon that reads "Schedule Downtime". After selecting this we can decide what days and time that we want to silence our alert. For this exercise we have silenced the alert from Monday to Friday, from 7PM to 9AM, as well as all day on Saturday and Sunday. It may also be important for your organization to alert members that a downtime has been set. This capability can be found in step 4, "Notify your team". 
-    [Email indicating new downtime rules](downtimeemail.png)
+    ![Email indicating new downtime rules](downtimeemail.png)
 **Usage and why this important**
 * It is imperitive that your teams receive notifications when something goes awry with your system. If not for alerts/notifications, it could take quite some time to realize something is wrong, thus costing you clients and/or money.
 
