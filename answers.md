@@ -33,7 +33,7 @@
 <p style="text-align: center;">The configuration file contains a sequence called "instances" that can remain blank for the time being.</p></br>
 <p style="text-align: center;">Within the check file is where we want our logic for this check. As mentioned, "my_metric" is simply a random number between 0-1000. To accomplish this, I have modified the check itself which inherits from AgentCheck. </br>
 `self.gauge( "my_metric", random.randint(0, 1000), tags=["TAG_KEY:TAG_VALUE"],)`</br>
-            ![Image of code to produce my_metric](mymetricpy.png)
+![Image of code to produce my_metric](mymetricpy.png)
 <p style="text-align: center;">As you can see, tags can be added to this check, but I have not modified them in my_metric for the time being</p></br>
 <p style="text-align: center;">To change the collection interval we will be modifying the configuration file mentioned above. The default interval is 15 seconds, but lets change this to 45 seconds. We will use "min_collection_interval" parameter within the "instances" sequence mentioned above. **Note: By setting min_collection_interval" to 45, this does not mean that the metric will be collected every 45 seconds, but rather that it <b>can</b> be collected as often as every 45 seconds</p>![Image of my_metric yaml file](mymetricyaml.png)</br></br>
 
