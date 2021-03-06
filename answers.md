@@ -18,36 +18,40 @@
 
 <h3 style="text-align: center;"><b><u>Database Integration</u></b></h3>
 <p style="text-align: center;">Adding a database integration to your Datadog configuration is a very straight forward process thanks to the documentation provided on your Datadog UI. As a quick rundown, here is how a PostgreSQL is integrated:</p>
-        * As the PostgreSQL check is already packaged with the Datadog Agent, our first step  will be to create a read-only datadog user that has access to our server. This can be achieved by opening a psql session on the PostgreSQL database and entering the following commands:
+<ul>
+<li>As the PostgreSQL check is already packaged with the Datadog Agent, our first step  will be to create a read-only datadog user that has access to our server. This can be achieved by opening a psql session on the PostgreSQL database and entering the following commands:</br>
             "create user datadog with password 'PASSWORD';
             grant pg_monitor to datadog;
             grant SELECT ON pg_stat_database to datadog;"
-            * From here we will need to make some modifictions to the postgres.d/conf.yaml file so that it points to our host/port. 
-    **Usage and why this is important**
-    * This one may be a bit obvious but in most scenarios we will want to see how many of our servers are currently up and running.
-
-* Create a Custom Agent Check
-    * In the scenario where we want to collect metrics for unique systems or custom applications, we will want to create a custom agent check. In this example, I will be creating a custom metric called "my_metric" that will produce a random integer between 0 and 1000.
-        * We must create two files within the datadog-agent folder. One being the configuration file, and the other being the check file. **It is vitally important to note that these files must share the same name.  So in this example my check file is titled "my_metric.py" and my configuration file is named "my_metric.yaml".**
-            * The configuration file contains a sequence called "instances" that can remain blank for the time being.
-            * Within the check file is where we want our logiv for this check. As mentioned, "my_metric" is simply a random number between 0-1000. To accomplish this, I have modified the check itself which inherits from AgentCheck. 
-            "self.gauge( "my_metric", random.randint(0, 1000), tags=["TAG_KEY:TAG_VALUE"],)"
+<li>From here we will need to make some modifictions to the postgres.d/conf.yaml file so that it points to our host/port.</li></br>
+<h3 style="text-align: center;"><b><u>Usage and why this is important</u></b></h3>
+<p style="text-align: center;">This one may be a bit obvious but in most scenarios we will want to see how many of our servers are currently up and running.</p>
+<hr>
+<h3 style="text-align: center;"><b><u>Create a Custom Agent Check</u></b></h3>
+<p style="text-align: center;">In the scenario where we want to collect metrics for unique systems or custom applications, we will want to create a custom agent check. In this example, I will be creating a custom metric called "my_metric" that will produce a random integer between 0 and 1000.</p></br>
+<p style="text-align: center;">We must create two files within the datadog-agent folder. One being the configuration file, and the other being the check file. <b>It is vitally important to note that these files must share the same name.  So in this example my check file is titled "my_metric.py" and my configuration file is named "my_metric.yaml".</b></p></br>
+<p style="text-align: center;">The configuration file contains a sequence called "instances" that can remain blank for the time being.</p></br>
+<p style="text-align: center;">Within the check file is where we want our logic for this check. As mentioned, "my_metric" is simply a random number between 0-1000. To accomplish this, I have modified the check itself which inherits from AgentCheck. </br>
+`self.gauge( "my_metric", random.randint(0, 1000), tags=["TAG_KEY:TAG_VALUE"],)`</br>
             ![Image of code to produce my_metric](mymetricpy.png)
-            * As you can see, tags can be added to this check, but I have not modified them in my_metric for the time being
-            * To change the collection interval we will be modifying the configuration file mentioned above. The default interval is 15 seconds, but lets change this to 45 seconds. We will use "min_collection_interval" parameter within the "instances" sequence mentioned above. **Note: By setting min_collection_interval" to 45, this does not mean that the metric will be collected every 45 seconds, but rather that it can be collected as often as every 45 seconds**
-    **Usage and why this is important**
-            ![Image of my_metric yaml file](mymetricyaml.png)
-    * Again, custom agent checks can be a crucial part of your operation if you are trying to collect metrics for custom applications. If you are trying to collect metrics for widely available applications, public services, etc., it is recommended to create a full Agent configuration. 
+<p style="text-align: center;">As you can see, tags can be added to this check, but I have not modified them in my_metric for the time being</p></br>
+<p style="text-align: center;">To change the collection interval we will be modifying the configuration file mentioned above. The default interval is 15 seconds, but lets change this to 45 seconds. We will use "min_collection_interval" parameter within the "instances" sequence mentioned above. **Note: By setting min_collection_interval" to 45, this does not mean that the metric will be collected every 45 seconds, but rather that it <b>can</b> be collected as often as every 45 seconds</p>![Image of my_metric yaml file](mymetricyaml.png)</br></br>
 
-* Modify Collection Interval via Datadog UI
-    * Another way to adjust the collection interval of a custom Agent check is to change it within the UI. In the Dashboard view, click the gear icon of the custom metric, and then select the metric from the small pop-up window. From here you will see your metric in the "Metric Name" list. By clicking on the metric another panel pops out from the right side of the screen and shows a field titled "Interval". By clicking on the "Edit" button  just  below this, we are given access to manually change the collection interval.
-    **Usage and why this is important**
-    * Modifying the collection interval via the Datadog UI provides a potentially quicker and easier way to adjust your intervals as opposed to modifying the configuration file itself.
+<h3 style="text-align: center;"><b><u>Usage and why this is important</u></b></h3></br>
+            
+<p style="text-align: center;">Again, custom agent checks can be a crucial part of your operation if you are trying to collect metrics for custom applications. If you are trying to collect metrics for widely available applications, public services, etc., it is recommended to create a full Agent configuration.</p><hr></br>
+
+<h3 style="text-align: center;"><b><u>Modify Collection Interval via Datadog UI</u></b></h3>
+<p style="text-align: center;">Another way to adjust the collection interval of a custom Agent check is to change it within the UI. In the Dashboard view, click the gear icon of the custom metric, and then select the metric from the small pop-up window. From here you will see your metric in the "Metric Name" list. By clicking on the metric another panel pops out from the right side of the screen and shows a field titled "Interval". By clicking on the "Edit" button  just  below this, we are given access to manually change the collection interval.</p>
+<h3 style="text-align: center;"><b><u>Usage and why this is important</u></b></h3>
+<p style="text-align: center;">Modifying the collection interval via the Datadog UI provides a potentially quicker and easier way to adjust your intervals as opposed to modifying the configuration file itself.</p>
+<hr>
+</br>
 
 
 ## Visualizing Data
 * Up until this point it is assumed that you have been working directly withn the UI to create dashboards, however in  this section we will cover how to create a dashboard via the Datadog API. In this example we will be creating a dashboard that contains our custom metric (my_metric) scoped over the host, a metric from our database, and our custom metric with the rollup function applied to sum up all the points for the past hour into a bucket. 
-![Script used to create Dashboard](initializeapitest.py)
+[Script used to create Dashboard](initializeapitest.py)
 * After entering your proper API & APP key, you can start to define the widgets that you want to create. You will see that within the definition of each widget, you have some customizable parameters, the first being 'type'. For this excercise, we will be building a timeboard for each widget. Next we will be modifying the request itself. The "{'q'}" found before the metric name is in reference to the query definition. Imeediately following the query definiton is where we will define what metric the widget is made for. On line 57 you will see that this widget is going to be monitoring my_metric over all (*) instances within the infrastructure. 
     *  To effectively apply the rollup function to a widget you can append ".rollup(method, time)". The methods available for the rollup function are sum, min, max, count, and avg. You can see above that I have used the average method. The time field is measured in seconds, so in the above example I have set my rollup function to 1 hour intervals.
 **Usage and why this is important**
