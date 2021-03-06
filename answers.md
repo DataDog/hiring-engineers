@@ -23,7 +23,7 @@
             "create user datadog with password 'PASSWORD';
             grant pg_monitor to datadog;
             grant SELECT ON pg_stat_database to datadog;"
-<li>From here we will need to make some modifictions to the postgres.d/conf.yaml file so that it points to our host/port.</li></br>
+<li>From here we will need to make some modifictions to the postgres.d/conf.yaml file so that it points to our host/port.</li></ul></br>
 <h3 style="text-align: center;"><b><u>Usage and why this is important</u></b></h3>
 <p style="text-align: center;">This one may be a bit obvious but in most scenarios we will want to see how many of our servers are currently up and running.</p>
 <hr>
