@@ -13,11 +13,11 @@
 </br></br>
 <h3 style="text-align: center;"><b><u> Usage and why this is important</u></b></h3>
 
-<p tyle="text-align: center;">Let's say we want to look at our containers or cloud environments at the service level. It would be a lot more beneficial and time concious to be able to see our CPU usage across multilple hosts than having to invesitgate these values on individual servers. This is where tags come into play. By setting these up we can more easily aggregate metrics of a service across multiple servers.</p>
+<p tyle="text-align: center;">Let's say we want to look at our containers or cloud environments at the service level. It would be a lot more beneficial and time concious to be able to see our CPU usage across multilple hosts than having to invesitgate these values on individual servers. This is where tags come into play. By setting these up we can more easily aggregate metrics of a service across multiple servers.</p><hr>
 </br>
 
-* Database Integration
-    * Adding a database integration to your Datadog configuration is a very straight forward process thanks to the documentation provided on your Datadog UI. As a quick rundown, here is how a PostgreSQL is integrated:
+<h3 style="text-align: center;"><b><u>Database Integration</u></b></h3>
+<p style="text-align: center;">Adding a database integration to your Datadog configuration is a very straight forward process thanks to the documentation provided on your Datadog UI. As a quick rundown, here is how a PostgreSQL is integrated:</p>
         * As the PostgreSQL check is already packaged with the Datadog Agent, our first step  will be to create a read-only datadog user that has access to our server. This can be achieved by opening a psql session on the PostgreSQL database and entering the following commands:
             "create user datadog with password 'PASSWORD';
             grant pg_monitor to datadog;
