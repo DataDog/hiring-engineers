@@ -14,30 +14,30 @@ Thank you for this opportunity! This was a fun wa
 After installing the agent in my Vagrant VM,
 
 I added tags added at the agent level, to reflect my host,the dev environment, device and OS, networking information, and a service level tag that I could use across resources and components. I make more use of service level tags later on, to specify feature levels and to get a service map working.
-<img src="/screnshots/datadogScreenshots/host_tags" width="1000" height="332"/>
+<img src="/screnshots/datadogScreenshots/host_tags.png" width="1000" height="332"/>
 
 I installed a MySQL database and check that the Datadog integration is working correctly for it, using <code>sudo service datadog status</code>.
-<img src="/screnshots/datadogScreenshots/mysql_integrationCheck" width="1000" height="332"/>
+<img src="/screnshots/datadogScreenshots/mysql_integrationCheck.png" width="1000" height="332"/>
 
 I tested a few inserts into a "pet" table I created, to double check that I could see some useful variables in a Datadog Dashboard.
-<img src="/screnshots/datadogScreenshots/TableNameCheck" width="1000" height="332"/>
+<img src="/screnshots/datadogScreenshots/TableNameCheck.png" width="1000" height="332"/>
 
 I then created a script to setup a custom metric called my_metric, outputting a random value between 0 and 1000. 
 This can be setup by creating a custom script under <code>/etc/datadog-agent/checks.d/</code>
 See my script below, also found under <code>supporting_code/custom_metric.py</code>
 
-<img src="/screnshots/datadogScreenshots/custom_metric_script" width="1000" height="332"/>
+<img src="/screnshots/datadogScreenshots/custom_metric_script.png" width="1000" height="332"/>
 
 I then used the status check to verify that this custom_metric is being collected.
 
-<img src="/screnshots/datadogScreenshots/verify_custom_check" width="1000" height="332"/>
+<img src="/screnshots/datadogScreenshots/verify_custom_check.png" width="1000" height="332"/>
 
 I decided to specify the custom collection interval directly in config, see below.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 **Yes.** Yes, this is specified at the instance level in conf.d/custom_metric.yaml (this filename matches the name under of the file under checks.d). It can be specified like below.
 
-<img src="/screnshots/datadogScreenshots/min_collection_interval" width="1000" height="332"/>
+<img src="/screnshots/datadogScreenshots/min_collection_interval.png" width="1000" height="332"/>
 
 ## Visualizing Data:
 

@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_mysqldb import MySQL
 import logging
+from decouple import config
 import sys
 
 # Have flask use stdout as the logger
@@ -14,7 +15,7 @@ main_logger.addHandler(c)
 app = Flask(__name__)
 app.config['MYSQL_HOST'] ='localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Ootiquu123456@' #don't do this in real life, kids
+app.config['MYSQL_PASSWORD'] = config('password') #'Ootiquu123456@' #don't do this in real life, kids
 app.config['MYSQL_DB'] = 'mysql'
 mysql = MySQL(app)
 
