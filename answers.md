@@ -14,10 +14,10 @@ Thank you for this opportunity! This was a fun wa
 After installing the agent in my Vagrant VM,
 
 I added tags added at the agent level, to reflect my host,the dev environment, device and OS, networking information, and a service level tag that I could use across resources and components. I make more use of service level tags later on, to specify feature levels and to get a service map working.
-<img src="/screnshots/datadogScreenshots/host_tags.png" width="1000" height="332"/>
+<img src="screenshots/datadogScreenshots/host_tags.png" width="1000" height="332"/>
 
 I installed a MySQL database and check that the Datadog integration is working correctly for it, using <code>sudo service datadog status</code>.
-<img src="/screnshots/datadogScreenshots/mysql_integrationCheck.png" width="1000" height="332"/>
+<img src="screenshots/datadogScreenshots/mysql_integrationCheck.png" width="1000" height="332"/>
 
 I tested a few inserts into a "pet" table I created, to double check that I could see some useful variables in a Datadog Dashboard.
 <img src="/screnshots/datadogScreenshots/TableNameCheck.png" width="1000" height="332"/>
