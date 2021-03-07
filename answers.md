@@ -1,80 +1,123 @@
-If you want to apply as a Solutions or Sales Engineer at [Datadog](http://datadog.com) you are in the right spot. Read on, it's fun, I promise.
 
 
-<a href="https://www.datadoghq.com/careers/" title="Careers at Datadog">
-<img src="https://imgix.datadoghq.com/img/careers/careers_photos_overview.jpg" width="1001" height="332"></a>
 
 ## The Exercise
 
-Don’t forget to read the [References](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#references)
+##Antonio Farias - Datadog Recruiting Canddate##
+
+Thank you for this opportunity! This was a fun wa
 
 ## Questions
 
-Please provide screenshots and code snippets for all steps.
 ## Collecting Metrics:
 
-* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-* Change your check's collection interval so that it only submits the metric once every 45 seconds.
+After installing the agent in my Vagrant VM,
 
+I added tags added at the agent level, to reflect my host,the dev environment, device and OS, networking information, and a service level tag that I could use across resources and components. I make more use of service level tags later on, to specify feature levels and to get a service map working.
+<img src="/screnshots/datadogScreenshots/host_tags" width="1000" height="332"/>
+
+I installed a MySQL database and check that the Datadog integration is working correctly for it, using <code>sudo service datadog status</code>.
+<img src="/screnshots/datadogScreenshots/mysql_integrationCheck" width="1000" height="332"/>
+
+I tested a few inserts into a "pet" table I created, to double check that I could see some useful variables in a Datadog Dashboard.
+<img src="/screnshots/datadogScreenshots/TableNameCheck" width="1000" height="332"/>
+
+I then created a script to setup a custom metric called my_metric, outputting a random value between 0 and 1000. 
+This can be setup by creating a custom script under <code>/etc/datadog-agent/checks.d/</code>
+See my script below, also found under <code>supporting_code/custom_metric.py</code>
+
+<img src="/screnshots/datadogScreenshots/custom_metric_script" width="1000" height="332"/>
+
+I then used the status check to verify that this custom_metric is being collected.
+
+<img src="/screnshots/datadogScreenshots/verify_custom_check" width="1000" height="332"/>
+
+I decided to specify the custom collection interval directly in config, see below.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-**Yes.** Yes, this is specified at the instance level in conf.d/custom_metric.yaml (custom_metric is the name of my custom check, it outputs my_metric): It can be specified like below. See below for what needs to be done.
+**Yes.** Yes, this is specified at the instance level in conf.d/custom_metric.yaml (this filename matches the name under of the file under checks.d). It can be specified like below.
+
+<img src="/screnshots/datadogScreenshots/min_collection_interval" width="1000" height="332"/>
 
 ## Visualizing Data:
 
-I created a Timeboard with three different widgets.
-<img src="/screnshots/datadogScreenshots/" width="1000" height="332"></a>
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+Setup a Timeboard with three different widgets. They display: 
+1. my custom my_metric, 
+2. my reads from the MySQL database, which I can trigger using a select query, and 
+3. the sum of my_metric values, rolled into hourly buckets (a discrete roll-up, not a moving window rollup).
+<img src="/screnshots/datadogScreenshots/TimeboardSalesEngineerHiringExercise" width="1000" height="332">
+<a href="https://p.datadoghq.com/sb/zihnin4jchh3f8ll-b67134136b85b549ceeaa18434445171" title="Link to Timeboard"></a>
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
-
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
 * **Bonus Question**: What is the Anomaly graph displaying?
+Per the Datadog docs, the anomaly function makes a forecast based on prior values of the time series (i.e., an ARIMA style forecast).
+In my particular implementation, with the parameters I passed in, the anomaly function flags anything that is two standard deviations or more from the usual value of the timeseries.
+Since row reads for this DB are generally 0 (I request reads manually and only sporadically), values of a few reads per second show up as anomaly.
+ Were this DB to start having a few reads per second more consistently, they would not show up as anomalies anymore (ie, the anomaly function adapts to the trend of data patterns recently).
+
 
 ## Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+I set up the notification using the Monitor UI, though I did see there was an API for it- since it wasn't requested, and monitor setup is often one-off and custom,
+the UI felt like a better way to do the job :).
+<img src="/screnshots/datadogScreenshots/monitor_setup_1" width="1000" height="332">
+<img src="/screnshots/datadogScreenshots/monitor_setup_2" width="1000" height="332">
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+Then I triggered the notifications for the three different notification types.
 
-* Warning threshold of 500
-* Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+<img src="/screnshots/datadogScreenshots/test_warn_notification" width="1000" height="332">
+<img src="/screnshots/datadogScreenshots/test_nodata_notification" width="1000" height="332">
+<img src="/screnshots/datadogScreenshots/test_alert_notification" width="1000" height="332">
 
-Please configure the monitor’s message so that it will:
+Later on, I recorded some examples of real, triggered notifications:
 
-* Send you an email whenever the monitor triggers.
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+<img src="/screnshots/datadogScreenshots/test_nodata_notification" width="1000" height="332">
 
-* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor.
 
-  * One that silences it from 7pm to 9am daily on M-F,
-  * And one that silences it all day on Sat-Sun.
-  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+I setup both of these notifications and took the screenshots below:
+
+<img src="/screnshots/datadogScreenshots/test_nodata_notification" width="1000" height="332">
+<img src="/screnshots/datadogScreenshots/test_alert_notification" width="1000" height="332">
 
 ## Collecting APM Data:
 
-Though I read about using Python API , I prefer to manually instrument , which is how I would instrument something that was production-ready.
-To the Python script, I added a call  to my database, in order to do things. 
+Though I read about using the Python middleware API, I prefer to manually instrument, which is how I would instrument something that was production-ready.
+To the Python script, I added an endpoint that makes a select query call to my earlier pet database table, in order to measure the performance.
+The script is under <code>/supportingCode/apm.py</code> and was run using <code> DD_SERVICE="flask-exercise" DD_ENV="dev"  DD_PROFILING_ENABLED=true ddtrace-run python3 apmApp.py </code>.
 
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+I also tagged my running flask server and the MySQL database (in its conf.d config file), in order to play around with the service map feature.
+This allowed me to get a view of my test app, with the ability to drill down into the performance of individual resources. I included a view of this service map in the Dashboard I created.
+ 
+See below for a Dashboard of APM and Performance metrics :
+<img src="/screnshots/datadogScreenshots/apmDashboard2" width="1000" height="332">
+<a href="https://p.datadoghq.com/sb/zihnin4jchh3f8ll-e31eefbba8dcd1538ea6d0192c50a65e" title="Link to APM Dashboard"></a>
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-Please include your fully instrumented app in your submission, as well.
 
 ## Final Question:
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+Theoretically, it seems that any distributed system that could be instrumented for measuring and making less opaque, could use Datadog as a useful tool in -  measuring variables, tagging different services to make groupings, and then analyzing those grouped variables in a human readable way. Alongside other features of alerting, automated/synthetic testing, etc.
 
-Is there anything creative you would use Datadog for?
+One application that seems interesting to me is monitoring the weather and birds, a nerdy quarantine hobby of mine (in 2020, I saw 93 unique species of birds). 
+One of the best ways to view birds, particularly certain species, is to attract them using a backyard feeder. Many of these were in my family’s backyard in Massachusetts, on a balcony feeder. I would like to correlate certain weather patterns with the appearance of particular birds at the backyard feeder.
+
+Here’s what a system design for this could look like, to illustrate how I think Datadog could be used to solve the problem :
+
+1. Set up sensor devices - needs to be on an OS where I can install the DataDog agent, not sure if there’s compatibility with a RealTimeOS; but certainly with a standard Unix distribution. Have a temperature sensor collecting temperature, another device collecting humidity humidity, a device to measure the incidence of light (photo_incidence) on the balcony.
+
+2. Tag all of these as one service. Sidenote: across a larger property (ie a park), it seems like I could geotag each, if I had different instances of a measuring service .
+
+3. Setup a bird feeder with sensors at its access points, with a camera to capture images of the access. When the bird feeder is accessed, log this as an event, perhaps with an associated link. We can use Datadog APM to register this event.
+ It would be great if we could identify the bird from the images using AI - it seems like the best systems still have some trouble, so this may involve some manual tagging at the moment.
+ From Datadog’s perspective it does not make a difference whether the bird is manually identified, we can log the associated event with the time stamp of observation, when the bird is identified.
+ Capture this bird event as a list of **bird_sighting** .
+To avoid multiple events from the bird, we could clean the data or aggregate events: https://docs.datadoghq.com/events/#event-query-language
+
+4. Setup a Timeboard plotting temperature, humidity, photo_incidence. 
+
+5. We now have a searchable Timeboard! We can search for particular **bird_sighting** event , filtered by particular logged out features. We can overlay these events on the particular weather patterns above.
+ 
+With this tool we can now try to correlate particular bird-sightings, in almost real-time, with the particular climatic events around us. Here's one hypothesis to test - dark-eyed juncos are known as snowbirds, because they appear around the first snowfall. But does the data actually validate this? Can we correlate the appearance of these birds, with snow, or with a temperature drop? Or would we have to add in additional measured variables? Unlike other systems that purely measure historical correlation, Datadog allows us to monitor in real-time - a large number of dark-eyed juncos on a somewhat hot day would be something of an anomaly, and our system could flag it!
 
