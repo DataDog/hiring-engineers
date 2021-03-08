@@ -3,7 +3,7 @@
 
 ## The Exercise
 
-##Antonio Farias - Datadog Recruiting Canddate##
+##Antonio Farias - Datadog Recruiting Candidate##
 
 Thank you for this opportunity! This was a fun way to learn about Datadog.
 
@@ -16,7 +16,7 @@ If any questions, do contact me at antonio0farias@gmail.com or (484) 326-6373.
 After installing the agent in my Vagrant VM,
 
 I added tags added at the agent level, to reflect my host,the dev environment, device and OS, networking information, and a service level tag that I could use across resources and components. I make more use of service level tags later on, to specify feature levels and to get a service map working.
-<img src="screenshots/datadogScreenshots/host_tags.png" width="750" height="750"/>
+<img src="screenshots/datadogScreenshots/host_tags.png" width="1000" height="1000"/>
 
 I installed a MySQL database and check that the Datadog integration is working correctly for it, using <code>sudo service datadog status</code>.
 
@@ -25,7 +25,7 @@ I installed a MySQL database and check that the Datadog integration is working c
 
 I tested a few inserts into a "pet" table I created, to double check that I could see some useful variables in a Datadog Dashboard.
 
-<img src="screenshots/datadogScreenshots/TableNameCheck.png" width="1000" height="1000"/>
+<img src="screenshots/datadogScreenshots/TableNameCheck.png" width="1000" height="700"/>
 
 I then created a script to setup a custom metric called my_metric, outputting a random value between 0 and 1000. 
 This can be setup by creating a custom script under <code>/etc/datadog-agent/checks.d/</code>
@@ -82,8 +82,8 @@ Later on, I recorded some examples of real, triggered notifications:
 
 I setup both of these notifications and took the screenshots below:
 
-<img src="screenshots/datadogScreenshots/weekday_downtime_notification.png" width="1000" height="1000"/>
-<img src="screenshots/datadogScreenshots/weekend_downtime_notification.png" width="1000" height="1000"/>
+<img src="screenshots/datadogScreenshots/weekday_downtime_notification.png" width="1000" height="900"/>
+<img src="screenshots/datadogScreenshots/weekend_downtime_notification.png" width="1000" height="900"/>
 
 ## Collecting APM Data:
 
@@ -104,9 +104,9 @@ Per the Datadog docs:
 
 * A service represents a grouping of endpoints, queries, geared around a particular domain. Its definition within the Datadog is similar to the definition of the builiding blocks in a micro-services
 architecture. For example, in my Flask Example, both the DB and the Flask App are considered services, as shown by the below service list feature.
-<img src="screenshots/datadogScreenshots/service_list.png" width="800" height="332"/>
+<img src="screenshots/datadogScreenshots/service_list.png" width="500" height="332"/>
 * A resource is a particular action for a given service (typically an individual endpoint or query). For example, the endpoint that triggers the query to the pet table of my database is a resource.
-<img src="screenshots/datadogScreenshots/resource_example.png" width="800" height="332"/>
+<img src="screenshots/datadogScreenshots/resource_example.png" width="500" height="332"/>
 
 
 
@@ -118,7 +118,7 @@ One application that seems interesting to me is monitoring the weather and birds
 One of the best ways to view birds, particularly certain species, is to attract them using a backyard feeder. Many of these were in my family’s backyard in Massachusetts, on a balcony feeder. I would like to correlate certain weather patterns with the appearance of particular birds at the backyard feeder.
 
 
-<img src="screenshots/datadogScreenshots/bird_feeder_picture.jpg" width="1000" height="332"/>
+<img src="screenshots/datadogScreenshots/bird_feeder_picture.jpg" width="500" height="500"/>
 
 Here’s what a system design for this could look like, to illustrate how I think Datadog could be used to solve the problem :
 
