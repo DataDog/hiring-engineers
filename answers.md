@@ -56,15 +56,20 @@ In the next step, I set up a Timeboard with three different widgets displayed be
 1. my custom my_metric, 
 2. my reads from the MySQL database, which I can trigger using a select query, and 
 3. the sum of my_metric values, rolled into hourly buckets (a discrete roll-up, not a moving window rollup).
-<img src="screenshots/datadogScreenshots/TimeboardSalesEngineerHiringExercise.png" width="1000" height="1000">
+
+##NOTE: for passing variables where required into the MONITORING script, I use the python `decouple` library - simply create a `.env` file with the variables needed (API keys, passwords, etc)
+
+From this code, we get the Timeboard below:
 <a href="https://p.datadoghq.com/sb/zihnin4jchh3f8ll-b67134136b85b549ceeaa18434445171" title="Link to Timeboard"></a>
+<img src="screenshots/datadogScreenshots/TimeboardSalesEngineerHiringExercise.png" width="1000" height="1000">
 
 **Bonus Question**: What is the Anomaly graph displaying?
 
 Per the Datadog docs, the anomaly function makes a forecast based on prior values of the time series (i.e., an ARIMA style forecast).
+
 In my particular implementation, with the parameters I passed in, the anomaly function flags anything that is two standard deviations or more from the usual value of the timeseries.
-Since row reads for this DB are generally 0 (I requested reads manually and only sporadically), values of a few reads per second show up as an anomaly.
- Were this DB to start having a few reads per second more consistently, they would not show up as anomalies anymore (ie, the anomaly function adapts to the trend of the data patterns recently).
+Since row reads for this DB are generally 0 (I requested reads only sporadically), values of a few reads per second show up as an anomaly.
+Were this DB to start having a few reads per second more consistently, they would not show up as anomalies anymore (ie, the anomaly function adapts to the trend of the data patterns recently).
 
 
 ## Monitoring Data
@@ -96,12 +101,23 @@ I set up both of these notifications and took the screenshots below:
 ## Collecting APM Data:
 
 Though I read about using the Python middleware API, I prefer to manually instrument, which is how I would instrument something that was production-ready.
+
+
+###Running the script 
+
+Make sure you use Python 3.6+ to run the below. The .env file used prior would also apply here.
+
 To the Python script, I added an endpoint that makes a select query call to my earlier pet database table, in order to measure the performance.
 The script is under <code>/supportingCode/apm.py</code> and was run using <code> DD_SERVICE="flask-exercise" DD_ENV="dev"  DD_PROFILING_ENABLED=true ddtrace-run python3 apmApp.py </code>.
+
+`curl http://0.0.0.0:5050/api/db/getall `
 
 I also tagged my running flask server and the MySQL database (in its conf.d config file), in order to play around with the service map feature.
 This allowed me to get a view of my test app, with the ability to drill down into the performance of individual resources. I included a view of this service map in the Dashboard I created.
  
+<img src="screenshots/datadogScreenshots/service_map.png" width="1000" height="1000"/>
+
+
 See below for a Dashboard of APM and Performance metrics :
 <img src="screenshots/datadogScreenshots/apmDashboard2.png" width="1000" height="1000"/>
 <a href="https://p.datadoghq.com/sb/zihnin4jchh3f8ll-e31eefbba8dcd1538ea6d0192c50a65e" title="Link to APM Dashboard"></a>
