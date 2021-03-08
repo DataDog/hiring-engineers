@@ -75,8 +75,6 @@ the UI felt like a better way to do the job :).
 
 ![](screenshots/datadogScreenshots/monitor_setup_1.png)
 ![](screenshots/datadogScreenshots/monitor_setup_2.png)
-<img src="screenshots/datadogScreenshots/monitor_setup_1.png" width="1000" height="1000"/>
-<img src="screenshots/datadogScreenshots/monitor_setup_2.png" width="1000" height="1000"/>
 
 - Alert message
   - `Show the example of alert here`
