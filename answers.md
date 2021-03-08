@@ -106,9 +106,9 @@ Per the Datadog docs:
 
 * A service represents a grouping of endpoints, queries, geared around a particular domain. Its definition within the Datadog is similar to the definition of the builiding blocks in a micro-services
 architecture. For example, in my Flask Example, both the DB and the Flask App are considered services, as shown by the below service list feature.
-<img src="screenshots/datadogScreenshots/service_list.png" width="500" height="332"/>
+<img src="screenshots/datadogScreenshots/service_list.png" width="1000" height="332"/>
 * A resource is a particular action for a given service (typically an individual endpoint or query). For example, the endpoint that triggers the query to the pet table of my database is a resource.
-<img src="screenshots/datadogScreenshots/resource_example.png" width="500" height="332"/>
+<img src="screenshots/datadogScreenshots/resource_example.png" width="1000" height="332"/>
 
 
 
