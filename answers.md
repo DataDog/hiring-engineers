@@ -54,6 +54,7 @@ Setup a Timeboard with three different widgets. They display:
 <a href="https://p.datadoghq.com/sb/zihnin4jchh3f8ll-b67134136b85b549ceeaa18434445171" title="Link to Timeboard"></a>
 
 * **Bonus Question**: What is the Anomaly graph displaying?
+
 Per the Datadog docs, the anomaly function makes a forecast based on prior values of the time series (i.e., an ARIMA style forecast).
 In my particular implementation, with the parameters I passed in, the anomaly function flags anything that is two standard deviations or more from the usual value of the timeseries.
 Since row reads for this DB are generally 0 (I request reads manually and only sporadically), values of a few reads per second show up as anomaly.
@@ -64,6 +65,7 @@ Since row reads for this DB are generally 0 (I request reads manually and only s
 
 I set up the notification using the Monitor UI, though I did see there was an API for it- since it wasn't requested, and monitor setup is often one-off and custom,
 the UI felt like a better way to do the job :).
+
 <img src="screenshots/datadogScreenshots/monitor_setup_1.png" width="1000" height="1000"/>
 <img src="screenshots/datadogScreenshots/monitor_setup_2.png" width="1000" height="1000"/>
 
