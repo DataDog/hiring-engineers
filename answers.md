@@ -9,21 +9,28 @@ Thank you for this opportunity! This was a fun way to learn about Datadog.
 
 If any questions, do contact me at antonio0farias@gmail.com or (484) 326-6373.
 
-## Questions
+I set up a Vagrant VM running Ubuntu 64-bit, and install the Datadog agent on this machine.
 
 ## Collecting Metrics:
 
-After installing the agent in my Vagrant VM, I added tags at the agent level, to reflect my host, the dev environment, device and OS, networking information, and a service level tag that I could use across resources and components. I make more use of service level tags later on, to specify feature levels and to get a service map working.
+After installing the agent in my host,
+I installed tags in my `/etc/datadog-agent/datadog.yaml` file.
+I added tags at the agent level, to reflect my host, the dev environment, device and OS, networking information, and a service level tag that I could use across resources and components. I make more use of service level tags later on, to specify feature levels and to get a service map working.
+
+- Docs: https://docs.datadoghq.com/getting_started/tagging/
+![](screenshots/datadogScreenshots/host_tags.png)
+
 <img src="screenshots/datadogScreenshots/host_tags.png" width="1000" height="1000"/>
 
 After that, I installed a MySQL database and checked that the Datadog integration is working correctly with the database, using <code>sudo service datadog status</code>.
 
 <img src="screenshots/datadogScreenshots/mysql_integrationCheck.png" width="1000" height="1000"/>
 
-
 I tested a few inserts into a "pet" table I created, to double check that I could see some useful variables in a Datadog Dashboard.
 
 <img src="screenshots/datadogScreenshots/TableNameCheck.png" width="1000" height="700"/>
+<img src="screenshots/datadogScreenshots/mysql_datadog.png" width="1000" height="700"/>
+
 
 I then created a script to setup a custom metric called my_metric, outputting a random value between 0 and 1000. 
 This can be setup by creating a custom script under <code>/etc/datadog-agent/checks.d/</code>
@@ -39,7 +46,7 @@ I decided to specify the custom collection interval directly in config, see belo
 
 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-Yes, this is specified at the instance level in conf.d/custom_metric.yaml (this filename matches the name under of the file under checks.d). It can be specified as seen below.
+Yes, this is specified at the instance level in conf.d/custom_metric.yaml (this filename needs to match the name under of the file under checks.d). It can be specified as seen below.
 
 <img src="screenshots/datadogScreenshots/min_collection_interval.png" width="1000" height="322"/>
 
