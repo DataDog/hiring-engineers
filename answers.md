@@ -31,7 +31,7 @@ I then created a script to setup a custom metric called my_metric, outputting a 
 This can be setup by creating a custom script under <code>/etc/datadog-agent/checks.d/</code>
 See my script below, also found under <code>supporting_code/custom_metric.py</code>
 
-<img src="screenshots/datadogScreenshots/custom_metric_script.png" width="1000" height="1000"/>
+<img src="screenshots/datadogScreenshots/custom_metric_script.png" width="1000" height="500"/>
 
 I then used the status check to verify that this custom_metric is being collected.
 
