@@ -20,35 +20,31 @@ I added tags at the agent level, to reflect my host, the dev environment, device
 - Docs: https://docs.datadoghq.com/getting_started/tagging/
 ![](screenshots/datadogScreenshots/host_tags.png)
 
-<img src="screenshots/datadogScreenshots/host_tags.png" width="1000" height="1000"/>
 
 After that, I installed a MySQL database and checked that the Datadog integration is working correctly with the database, using <code>sudo service datadog status</code>.
-
-<img src="screenshots/datadogScreenshots/mysql_integrationCheck.png" width="1000" height="1000"/>
+![](screenshots/datadogScreenshots/mysql_integrationCheck.png)
 
 I tested a few inserts into a "pet" table I created, to double check that I could see some useful variables in a Datadog Dashboard.
-
-<img src="screenshots/datadogScreenshots/TableNameCheck.png" width="1000" height="700"/>
-<img src="screenshots/datadogScreenshots/mysql_datadog.png" width="1000" height="700"/>
+![](screenshots/datadogScreenshots/TableNameCheck.png)
+![](screenshots/datadogScreenshots/mysql_datadog.png)
 
 
 I then created a script to setup a custom metric called my_metric, outputting a random value between 0 and 1000. 
 This can be setup by creating a custom script under <code>/etc/datadog-agent/checks.d/</code>
 See my script below, also found under <code>supporting_code/custom_metric.py</code>
 
-<img src="screenshots/datadogScreenshots/custom_metric_script.png" width="1000" height="500"/>
+![](screenshots/datadogScreenshots/custom_metric_script.png)
 
 I then used the status check to verify that this custom_metric is being collected.
 
-<img src="screenshots/datadogScreenshots/verify_custom_check.png" width="1000" height="1000"/>
+![](screenshots/datadogScreenshots/verify_custom_check.png)
 
 I decided to specify the custom collection interval directly in config, see below.
 
 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 Yes, this is specified at the instance level in conf.d/custom_metric.yaml (this filename needs to match the name under of the file under checks.d). It can be specified as seen below.
-
-<img src="screenshots/datadogScreenshots/min_collection_interval.png" width="1000" height="322"/>
+![](screenshots/datadogScreenshots/min_collection_interval.png)
 
 ## Visualizing Data:
 
@@ -60,8 +56,8 @@ In the next step, I set up a Timeboard with three different widgets displayed be
 ##NOTE: for passing variables where required into the MONITORING script, I use the python `decouple` library - simply create a `.env` file with the variables needed (API keys, passwords, etc)
 
 From this code, we get the Timeboard below:
-<a href="https://p.datadoghq.com/sb/zihnin4jchh3f8ll-b67134136b85b549ceeaa18434445171" title="Link to Timeboard"></a>
-<img src="screenshots/datadogScreenshots/TimeboardSalesEngineerHiringExercise.png" width="1000" height="1000">
+- https://p.datadoghq.com/sb/zihnin4jchh3f8ll-b67134136b85b549ceeaa18434445171"
+![](screenshots/datadogScreenshots/TimeboardSalesEngineerHiringExercise.png)
 
 **Bonus Question**: What is the Anomaly graph displaying?
 
@@ -77,26 +73,33 @@ Were this DB to start having a few reads per second more consistently, they woul
 I set up the notification using the Monitor UI, though I did see there was an API for it. since it wasn't requested, and monitor setup is often one-off and custom,
 the UI felt like a better way to do the job :).
 
+![](screenshots/datadogScreenshots/monitor_setup_1.png)
+![](screenshots/datadogScreenshots/monitor_setup_2.png)
 <img src="screenshots/datadogScreenshots/monitor_setup_1.png" width="1000" height="1000"/>
 <img src="screenshots/datadogScreenshots/monitor_setup_2.png" width="1000" height="1000"/>
 
+- Alert message
+  - `Show the example of alert here`
+- Warn message
+  - `Show the example of warn here`
+- No data message
+  - `Show the example of no data here`
 Then I triggered the notifications for the three different notification types.
-
-<img src="screenshots/datadogScreenshots/test_warn_notification.png" width="1000" height="1000"/>
-<img src="screenshots/datadogScreenshots/test_nodata_notification.png" width="1000" height="1000"/>
-<img src="screenshots/datadogScreenshots/test_alert_notification.png" width="1000" height="1000"/>
+![](screenshots/datadogScreenshots/test_alert_notification.png)
+![](screenshots/datadogScreenshots/test_warn_notification.png)
+![](screenshots/datadogScreenshots/test_warn_notification.png)
 
 Later on, I recorded some examples of real, triggered notifications:
 
-<img src="screenshots/datadogScreenshots/warn_real_notification.png" width="1000" height="1000"/>
-<img src="screenshots/datadogScreenshots/alert_real_notification.png" width="1000" height="1000"/>
+![](screenshots/datadogScreenshots/warn_real_notification.png)
+![](screenshots/datadogScreenshots/alert_real_notification.png)
 
 **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor.
 
 I set up both of these notifications and took the screenshots below:
 
-<img src="screenshots/datadogScreenshots/weekday_downtime_notification.png" width="1000" height="900"/>
-<img src="screenshots/datadogScreenshots/weekend_downtime_notification.png" width="1000" height="900"/>
+![](screenshots/datadogScreenshots/weekday_downtime_notification.png)
+![](screenshots/datadogScreenshots/weekend_downtime_notification.png)
 
 ## Collecting APM Data:
 
@@ -115,12 +118,11 @@ The script is under <code>/supportingCode/apm.py</code> and was run using <code>
 I also tagged my running flask server and the MySQL database (in its conf.d config file), in order to play around with the service map feature.
 This allowed me to get a view of my test app, with the ability to drill down into the performance of individual resources. I included a view of this service map in the Dashboard I created.
  
-<img src="screenshots/datadogScreenshots/service_map.png" width="1000" height="1000"/>
-
+![](screenshots/datadogScreenshots/service_map.png)
 
 See below for a Dashboard of APM and Performance metrics :
-<img src="screenshots/datadogScreenshots/apmDashboard2.png" width="1000" height="1000"/>
-<a href="https://p.datadoghq.com/sb/zihnin4jchh3f8ll-e31eefbba8dcd1538ea6d0192c50a65e" title="Link to APM Dashboard"></a>
+- https://p.datadoghq.com/sb/zihnin4jchh3f8ll-e31eefbba8dcd1538ea6d0192c50a65e
+![](screenshots/datadogScreenshots/apmDashboard2.png)
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
@@ -128,10 +130,9 @@ Per the Datadog docs:
 
 * A service represents a grouping of endpointsand queries, geared around a particular domain. Its definition within the Datadog is similar to the definition of the builiding blocks in a micro-services
 architecture. For example, in my Flask setup, both the DB and the Flask App are considered services, as shown by the below service list feature.
-<img src="screenshots/datadogScreenshots/service_list.png" width="1000" height="332"/>
+![](screenshots/datadogScreenshots/service_list.png)
 * A resource is a particular action for a given service (typically an individual endpoint or query). For example, the endpoint that triggers the query to the pet table of my database is a resource.
-<img src="screenshots/datadogScreenshots/resource_example.png" width="1000" height="222"/>
-
+![](screenshots/datadogScreenshots/resource_example.png)
 
 
 ## Final Question:
@@ -141,8 +142,7 @@ Theoretically, it seems that any distributed system that could be instrumented f
 One application that seems interesting to me is monitoring the weather and birds, a nerdy quarantine hobby of mine (in 2020, I saw 93 unique species of birds). 
 One of the best ways to view birds, particularly certain species, is to attract them using a backyard feeder. Many of these were in my family’s backyard in Massachusetts, on a balcony feeder. I would like to correlate certain weather patterns with the appearance of particular birds at the backyard feeder.
 
-
-<img src="screenshots/datadogScreenshots/bird_feeder_picture.jpg" width="500" height="500"/>
+![](screenshots/datadogScreenshots/bird_feeder_picture.jpg)
 
 Here’s what a system design for this could look like, to illustrate how I think Datadog could be used to solve the problem :
 
