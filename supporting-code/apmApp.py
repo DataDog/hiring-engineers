@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_mysqldb import MySQL
-import logging
+import logging, logging.handlers
 from decouple import config
 import sys
 
@@ -13,11 +13,18 @@ c.setFormatter(formatter)
 main_logger.addHandler(c)
 
 app = Flask(__name__)
+#set up tcp logger
 app.config['MYSQL_HOST'] ='localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = config('password') #'Ootiquu123456@' #don't do this in real life, kids
+app.config['MYSQL_PASSWORD'] = config('password')  #don't expose passwords in real life, kids
 app.config['MYSQL_DB'] = 'mysql'
 mysql = MySQL(app)
+
+#set up logger
+log = logging.getLogger(__name__)
+log.level = logging.INFO
+socketHandler = logging.handlers.SocketHandler('localhost', 10518)
+log.addHandler(socketHandler)
 
 @app.route('/')
 def api_entry():
@@ -25,10 +32,12 @@ def api_entry():
 
 @app.route('/api/apm')
 def apm_endpoint():
+    log.info('Hit APM Endpoint /api/apm')    
     return 'Getting APM Started'
 
 @app.route('/api/trace')
 def trace_endpoint():
+    log.info('Hit Trace Endpoint /api/trace')    
     return 'Posting Traces'
 
 @app.route('/api/db/getall')

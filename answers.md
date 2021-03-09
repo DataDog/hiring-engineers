@@ -9,7 +9,7 @@ Thank you for this opportunity! This was a fun way to learn about Datadog.
 
 If any questions, do contact me at antonio0farias@gmail.com or (484) 326-6373.
 
-I set up a Vagrant VM running Ubuntu 64-bit, and install the Datadog agent on this machine.
+I set up a Vagrant VM running Ubuntu 18.04 LTS 64-bit, and install the Datadog agent on it.
 
 ## Collecting Metrics:
 
@@ -20,14 +20,12 @@ I added tags at the agent level, to reflect my host, the dev environment, device
 - Docs: https://docs.datadoghq.com/getting_started/tagging/
 ![](screenshots/datadogScreenshots/host_tags.png)
 
-
 After that, I installed a MySQL database and checked that the Datadog integration is working correctly with the database, using <code>sudo service datadog status</code>.
 ![](screenshots/datadogScreenshots/mysql_integrationCheck.png)
 
 I tested a few inserts into a "pet" table I created, to double check that I could see some useful variables in a Datadog Dashboard.
 ![](screenshots/datadogScreenshots/TableNameCheck.png)
 ![](screenshots/datadogScreenshots/mysql_datadog.png)
-
 
 I then created a script to setup a custom metric called my_metric, outputting a random value between 0 and 1000. 
 This can be setup by creating a custom script under <code>/etc/datadog-agent/checks.d/</code>
@@ -44,6 +42,7 @@ I decided to specify the custom collection interval directly in config, see belo
 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 Yes, this is specified at the instance level in conf.d/custom_metric.yaml (this filename needs to match the name under of the file under checks.d). It can be specified as seen below.
+
 ![](screenshots/datadogScreenshots/min_collection_interval.png)
 
 ## Visualizing Data:
@@ -57,7 +56,17 @@ In the next step, I set up a Timeboard with three different widgets displayed be
 
 From this code, we get the Timeboard below:
 - https://p.datadoghq.com/sb/zihnin4jchh3f8ll-b67134136b85b549ceeaa18434445171"
+
 ![](screenshots/datadogScreenshots/TimeboardSalesEngineerHiringExercise.png)
+
+Here's a view of the Timeboard for 5 minutes duration:
+
+![](screenshots/datadogScreenshots/Timeboard_5_minute.png)
+
+- https://docs.datadoghq.com/api/latest/dashboards/ 
+There is a minor bug in the Python code example for the request API. There is a reference to saved_view, but the variable should be named saved_views. The example errors out
+with `NameError: name 'saved_view' is not defined`
+![](screenshots/datadogScreenshots/bug_in_the_docs.png)
 
 **Bonus Question**: What is the Anomaly graph displaying?
 
@@ -77,11 +86,31 @@ the UI felt like a better way to do the job :).
 ![](screenshots/datadogScreenshots/monitor_setup_2.png)
 
 - Alert message
-  - `Show the example of alert here`
+  - `{{#is_alert}}
+This monitor has triggered an alert (my_metric average is over 800 for the past 5 minutes). 
+
+The metric on host: {{host.name}} with IP: {{host.ip}} triggered this alert.
+The value of the my_metric average when the monitor triggered was: {{value}}
+ 
+Please check on the status of my_metric.
+{{/is_alert}} `
+
 - Warn message
-  - `Show the example of warn here`
+  - `{{#is_warning}}
+This monitor is showing a warning (my_metric average is over 500 for the past 5 minutes).
+
+The metric on host:  {{[host.name].name}}   with IP: {{[host.ip].name}}  triggered this alert.
+The value of the my_metric average when the monitor triggered was: {{value}}
+ 
+No action needed at the moment.
+{{/is_warning}}`
+
 - No data message
-  - `Show the example of no data here`
+  - `{{#is_no_data}}
+This monitor has not received any data for the past 10 minutes. Please check on the status of {{[host.name].name}}, and on
+the output of this metric.
+{{/is_no_data}} `
+
 Then I triggered the notifications for the three different notification types.
 ![](screenshots/datadogScreenshots/test_alert_notification.png)
 ![](screenshots/datadogScreenshots/test_warn_notification.png)
@@ -101,24 +130,41 @@ I set up both of these notifications and took the screenshots below:
 
 ## Collecting APM Data:
 
-Though I read about using the Python middleware API, I prefer to manually instrument, which is how I would instrument something that was production-ready.
-
+Though I read about using the Python middleware API, I prefer to instrument automatically with ddtrace-run, which is how I would instrument something that was production-ready.
 
 ###Running the script 
 
 Make sure you use Python 3.6+ to run the below. The .env file used prior would also apply here.
 
+The script is under `/supportingCode/apm.py` and was run using `DD_ENV="dev" DD_SERVICE="datadog_technical_exercise" DD_VERSION="1.0" DD_PROFILING_ENABLED=true DD_LOGS_INJECTION=true ddtrace-run python3 apmApp.py`.
+
 To the Python script, I added an endpoint that makes a select query call to my earlier pet database table, in order to measure the performance.
-The script is under <code>/supportingCode/apm.py</code> and was run using <code> DD_SERVICE="flask-exercise" DD_ENV="dev"  DD_PROFILING_ENABLED=true ddtrace-run python3 apmApp.py </code>.
 
 `curl http://0.0.0.0:5050/api/db/getall `
+
+![](screenshots/datadogScreenshots/service_map.png)
+
+I also added logging in the other endpoints that were provided, and a logger that sends to a tcp port that I instrumented. With this I could get my logs in Datadog.
+
+In order to get this work, I had to enable logging at the agent level and set a `conf.d/python.d/conf.yaml` file like below
+
+![](screenshots/datadogScreenshots/log_confd_setup.png)
+
+`curl http://0.0.0.0:5050/api/trace/ `
+`curl http://0.0.0.0:5050/api/apm/ `
+
+![](screenshots/datadogScreenshots/log_explorer.png)
 
 I also tagged my running flask server and the MySQL database (in its conf.d config file), in order to play around with the service map feature.
 This allowed me to get a view of my test app, with the ability to drill down into the performance of individual resources. I included a view of this service map in the Dashboard I created.
  
 ![](screenshots/datadogScreenshots/service_map.png)
 
-See below for a Dashboard of APM and Performance metrics :
+See below for a Dashboard of APM and Infrastructure metrics :
+
+![](screenshots/datadogScreenshots/infrastructure_metrics.png)
+![](screenshots/datadogScreenshots/latency_profiler_metrics.png)
+
 - https://p.datadoghq.com/sb/zihnin4jchh3f8ll-e31eefbba8dcd1538ea6d0192c50a65e
 ![](screenshots/datadogScreenshots/apmDashboard2.png)
 
