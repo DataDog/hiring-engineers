@@ -88,20 +88,16 @@ the UI felt like a better way to do the job :).
 - Alert message
   - `{{#is_alert}}
 This monitor has triggered an alert (my_metric average is over 800 for the past 5 minutes). 
-
 The metric on host: {{host.name}} with IP: {{host.ip}} triggered this alert.
 The value of the my_metric average when the monitor triggered was: {{value}}
- 
 Please check on the status of my_metric.
 {{/is_alert}} `
 
 - Warn message
   - `{{#is_warning}}
 This monitor is showing a warning (my_metric average is over 500 for the past 5 minutes).
-
 The metric on host:  {{[host.name].name}}   with IP: {{[host.ip].name}}  triggered this alert.
 The value of the my_metric average when the monitor triggered was: {{value}}
- 
 No action needed at the moment.
 {{/is_warning}}`
 
@@ -132,7 +128,7 @@ I set up both of these notifications and took the screenshots below:
 
 Though I read about using the Python middleware API, I prefer to instrument automatically with ddtrace-run, which is how I would instrument something that was production-ready.
 
-###Running the script 
+#### Running the script 
 
 Make sure you use Python 3.6+ to run the below. The .env file used prior would also apply here.
 
@@ -141,8 +137,6 @@ The script is under `/supportingCode/apm.py` and was run using `DD_ENV="dev" DD_
 To the Python script, I added an endpoint that makes a select query call to my earlier pet database table, in order to measure the performance.
 
 `curl http://0.0.0.0:5050/api/db/getall `
-
-![](screenshots/datadogScreenshots/service_map.png)
 
 I also added logging in the other endpoints that were provided, and a logger that sends to a tcp port that I instrumented. With this I could get my logs in Datadog.
 
