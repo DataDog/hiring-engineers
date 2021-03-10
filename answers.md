@@ -8,8 +8,8 @@
         <li> Tags can be formatted as "key:value" as shown in the example, or they can be "value".</li>
         <li>Tags should not be originiated from unbound sources such as User ID's.</li>
     </ul>
-    ![Image of tags defined in yaml file](/tags-in-yaml.png)</br>
-    ![Image of tags in Agent](/tags.png)
+    <img src="tags-in-yaml.png" alt="tags shown in yaml file">
+    <img src="tags.png" alt="tags shown in agent"></br>
 </br></br>
 <h3 style="text-align: center;"><b><u> Usage and why this is important</u></b></h3>
 
@@ -33,7 +33,7 @@
 <p style="text-align: center;">The configuration file contains a sequence called "instances" that can remain blank for the time being.</p></br>
 <p style="text-align: center;">Within the check file is where we want our logic for this check. As mentioned, "my_metric" is simply a random number between 0-1000. To accomplish this, I have modified the check itself which inherits from AgentCheck. </br>
 `self.gauge( "my_metric", random.randint(0, 1000), tags=["TAG_KEY:TAG_VALUE"],)`</br>
-![Image of code to produce my_metric](mymetricpy.png)
+<img src="mymetricpy.png" alt="Image of code to produce my_metric">
 <p style="text-align: center;">As you can see, tags can be added to this check, but I have not modified them in my_metric for the time being</p></br>
 <p style="text-align: center;">To change the collection interval we will be modifying the configuration file mentioned above. The default interval is 15 seconds, but lets change this to 45 seconds. We will use "min_collection_interval" parameter within the "instances" sequence mentioned above. **Note: By setting min_collection_interval" to 45, this does not mean that the metric will be collected every 45 seconds, but rather that it <b>can</b> be collected as often as every 45 seconds</p>![Image of my_metric yaml file](mymetricyaml.png)</br></br>
 
@@ -51,7 +51,7 @@
 
 <h3 style="text-align: center;"><b><u>Visualizing Data</u></b></h3>
 <p style="text-align: center;">Up until this point it is assumed that you have been working directly withn the UI to create dashboards, however in  this section we will cover how to create a dashboard via the Datadog API. In this example we will be creating a dashboard that contains our custom metric (my_metric) scoped over the host, a metric from our database, and our custom metric with the rollup function applied to sum up all the points for the past hour into a bucket.</p></br>
-[Script used to create Dashboard](initializeapitest.py)</br>
+<a href="initializeapitest.py">TEST</a>(initializeapitest.py)</br>
 <p style="text-align: center;">After entering your proper API & APP key, you can start to define the widgets that you want to create. You will see that within the definition of each widget, you have some customizable parameters, the first being 'type'. For this excercise, we will be building a timeboard for each widget. Next we will be modifying the request itself. The "{'q'}" found before the metric name is in reference to the query definition. Imeediately following the query definiton is where we will define what metric the widget is made for. On line 57 you will see that this widget is going to be monitoring my_metric over all (*) instances within the infrastructure. </p></br>
 <p style="text-align: center;">To effectively apply the rollup function to a widget you can append ".rollup(method, time)". The methods available for the rollup function are sum, min, max, count, and avg. You can see above that I have used the average method. The time field is measured in seconds, so in the above example I have set my rollup function to 1 hour intervals.</p>
 <h3 style="text-align: center;"><b><u>Usage and why this is important</u></b></h3>
