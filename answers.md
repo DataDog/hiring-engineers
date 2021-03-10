@@ -127,6 +127,11 @@ Later on, I recorded some examples of real, triggered notifications:
 
 I set up both of these notifications and took the screenshots below:
 
+![](datadogScreenshots/datadog_monitor_setup_weekday.png)
+![](datadogScreenshots/datadog_monitor_setup_weekend.png)
+
+Which generated these notifications:
+
 ![](datadogScreenshots/weekday_downtime_notification.png)
 ![](datadogScreenshots/weekend_downtime_notification.png)
 
