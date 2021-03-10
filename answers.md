@@ -29,9 +29,7 @@ I tested a few inserts into a "pet" table I created, to double check that I coul
 ![](datadogScreenshots/TableNameCheck.png)
 ![](datadogScreenshots/mysql_datadog.png)
 
-I then created a script to setup a custom metric called my_metric, outputting a random value between 0 and 1000. 
-This can be setup by creating a custom script under <code>/etc/datadog-agent/checks.d/</code>
-See my script below, also found under <code>supporting_code/custom_metric.py</code>
+I then created a script to setup a custom metric called my_metric, outputting a random value between 0 and 1000. This can be setup by creating a custom script under `/etc/datadog-agent/checks.d/`. See my script below, also found under `supporting_code/custom_metric.py`.
 Note that for configuration of the custom check, a yaml file with the same name must also be created under `/etc/datadog-agent/conf.d/custom_metric.yaml`.
 
 ![](datadogScreenshots/custom_metric_script.png)
@@ -70,8 +68,7 @@ Here's a view of the Timeboard for 5 minutes duration (not on the hour, so a dat
 ![](datadogScreenshots/Timeboard_5_minute.png)
 
 - https://docs.datadoghq.com/api/latest/dashboards/ 
-There is a minor bug in the Python code example for the request API. There is a reference to saved_view, but the variable should be named saved_views. The example errors out
-with `NameError: name 'saved_view' is not defined`
+There is a minor bug in the Python code example for the request API. There is a reference to saved_view, but the variable should be named saved_views. The example code in the docs errors out with `NameError: name 'saved_view' is not defined`
 ![](datadogScreenshots/bug_in_the_docs.png)
 
 **Bonus Question**: What is the Anomaly graph displaying?
@@ -143,7 +140,7 @@ Make sure you use Python 3.6+ to run the below. The .env file used prior would a
 
 The script is under `/supportingCode/apmApp.py` and was run using `DD_ENV="dev" DD_SERVICE="datadog_technical_exercise" DD_VERSION="1.0" DD_PROFILING_ENABLED=true DD_LOGS_INJECTION=true ddtrace-run python3 apmApp.py`.
 
-To the Python script, I added an endpoint that makes a select query call to my earlier pet database table, in order to measure the performance.
+To the Python script, I added an endpoint that makes a select query call to my earlier pet database table, in order to measure the performance of the database call and to play around with the Service Map feature.
 
 `curl http://0.0.0.0:5050/api/db/getall `
 
@@ -154,12 +151,13 @@ In order to get this work, I had to enable logging at the agent level and set a 
 ![](datadogScreenshots/log_confd_setup.png)
 
 `curl http://0.0.0.0:5050/api/trace/ `
+
 `curl http://0.0.0.0:5050/api/apm/ `
 
 ![](datadogScreenshots/log_explorer.png)
 
 I also tagged my running flask server and the MySQL database (in its conf.d config file), in order to play around with the service map feature.
-This allowed me to get a view of my test app, with the ability to drill down into the performance of individual resources. I included a view of this service map in the Dashboard I created.
+This allowed me to get a view of my test app, with the ability to drill down into the performance of individual resources. I included a view of this service map in the Dashboard I created. (note that I switched the service name from flask-exercise to datadog_technical_exercise, halfway through, in order to match my host service tag, for Infrastructure metrics).
  
 ![](datadogScreenshots/service_map.png)
 
@@ -176,7 +174,7 @@ See below for a Dashboard of APM and Infrastructure metrics :
 Per the Datadog docs:
 
 * A service represents a grouping of endpointsand queries, geared around a particular domain. Its definition within the Datadog is similar to the definition of the builiding blocks in a micro-services
-architecture. For example, in my Flask setup, both the DB and the Flask App are considered services, as shown by the below service list feature.
+architecture. For example, in my Flask setup, my Flask App is considered a service, as shown by the below service list feature.
 ![](datadogScreenshots/service_list.png)
 * A resource is a particular action for a given service (typically an individual endpoint or query). For example, the endpoint that triggers the query to the pet table of my database is a resource.
 ![](datadogScreenshots/resource_example.png)
@@ -184,9 +182,11 @@ architecture. For example, in my Flask setup, both the DB and the Flask App are 
 
 ## Final Question:
 
-Theoretically, it seems that any distributed system that could be instrumented for measurement and transparency could use Datadog. Datadog would be a useful tool for measuring variables, tagging different services to make groupings, and then analyzing those grouped variables in a human readable way. Additionally other features include alerting, automated/synthetic testing, etc.
+Theoretically, it seems that any distributed system that could be instrumented for measurement and transparency could use Datadog.
 
-One application that seems interesting to me is monitoring the weather and birds, a nerdy quarantine hobby of mine (in 2020, I saw 93 unique species of birds). 
+ Datadog is a useful tool for measuring variables, tagging different services to make groupings, and then analyzing those grouped variables in a human readable way. Additionally other features include alerting, automated/synthetic testing, etc.
+
+One application that seems interesting to me is monitoring and correlating the weather and birds, a nerdy quarantine hobby of mine (in 2020, I saw 93 unique species of birds). 
 One of the best ways to view birds, particularly certain species, is to attract them using a backyard feeder. Many of these were in my family’s backyard in Massachusetts, on a balcony feeder. I would like to correlate certain weather patterns with the appearance of particular birds at the backyard feeder.
 
 ![](datadogScreenshots/bird_feeder_picture.jpg)
@@ -204,11 +204,11 @@ Here’s what a system design for this could look like, to illustrate how I thin
  Lastly, capture this bird event as a list of **bird_sighting**.
 To avoid multiple events from the bird, we could clean the data or aggregate events within Datadog, using the aggregation feature.
 
-4. Set up a Timeboard plotting temperature, humidity, and photo_incidence.
+4. Set up a Timeboard plotting **temperature**, **humidity**, and **photo_incidence**.
 
 5. We now have a searchable Timeboard! We can search for particular **bird_sighting** event, filtered by particular logged out features. We can overlay these events on the weather patterns from step 4.
  
 With this tool we can now try to correlate particular bird-sightings, in almost real-time, with weather patterns. Here's one hypothesis to test - 
 
-Dark-eyed juncos are known as snowbirds, because they appear around the first snowfall. But does the data actually validate this? Can we correlate the appearance of these birds, with snow, or with a temperature drop? Or would we have to add in additional measured variables? Unlike other systems that purely measure historical correlation, Datadog allows us to monitor in real-time - a large number of dark-eyed juncos on a somewhat hot day would be something of an anomaly, and our system could flag it!
+Dark-eyed juncos are known as snowbirds, because they appear around the time of the first snowfall. But does the data actually validate this? Can we correlate the appearance of these birds, with snow, or with a temperature drop? Or would we have to add in additional measured variables? Unlike other systems that purely measure historical correlation, Datadog allows us to monitor in real-time - a large number of dark-eyed juncos on a hot day would be an anomaly, and our system could flag it!
 
