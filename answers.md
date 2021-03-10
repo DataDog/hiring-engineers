@@ -74,15 +74,17 @@
 </br>
 <h3><u>Silencing Alerts</u></h3>
 <p>There are likely a multitude of reasons that you would want to silence an alarm, such as weekend hours for certain employees, or planned maintenance on your system. To achieve this select "Monitors" on the left side of the UI, and then "Manage Monitors". On this screen we can see the monitor that we have created, and after selecting it we are given an option at the top for "Manage Downtime". On the right we can see an icon that reads "Schedule Downtime". After selecting this we can decide what days and time that we want to silence our alert. For this exercise we have silenced the alert from Monday to Friday, from 7PM to 9AM, as well as all day on Saturday and Sunday. It may also be important for your organization to alert members that a downtime has been set. This capability can be found in step 4, "Notify your team".</p>
-![Email indicating new downtime rules](downtimeemail.png)
+<img src="downtimeemail.png" alt="Email indicating new downtime rules" height="300" width="500">
 <h3><b><u>Usage and why this important</u></b></h3>
 <p>It is imperitive that your teams receive notifications when something goes awry with your system. If not for alerts/notifications, it could take quite some time to realize something is wrong, thus costing you clients and/or money.</p><hr></br>
 
 <h1>Collecting APM Data</h1>
 <p>Collecting APM (Application Performance Monitoring) data is made easy by Datadog. After installing ddtrace you will then start adding the appropriate entry/end points into your application. Based upon the example given in the exercise, we can see that '/' route triggers the 'api_entry'. This is reflected within the UI when the page is hit by a user. Within the APM dashboard screen, we can see our status codes for GET requests when we hit that endpoint in oour browser. An important feature to note is the presence of timestamps for every trace picked up by Datadog within this interface.  This applies to the  other two routes determined in the Flask script as well. Note: If your port for Flask is different from the default set by Datadog (8126), this will need  to updated in the datadog.yaml file so that the agent is listening to the correct port.</p>
 </br>
-<p>Another important aspect of APM with Datadog is that you have the ability to leverage your tags to keep traces that matter most in your application.</p>
-[Flask app example](APMTest.py)
+<p>Another important aspect of APM with Datadog is that you have the ability to leverage your tags to keep traces that matter most in your application.</p></br>
+<a href="APMTest.py">Flask app example</a>
+</br>
+</br>
 <h3><b><u>Usage and why this is important</u></b></h3>
 <p>Collecting traces from your application is absolutely essential for understanding runtime metrics and performance of your web application. Knowing what aspects of your applications may be throwing 500 errors or showing latency is vitally important to maintaining a healthy system and providing a satisfactory experience for your customers. </p><hr></br>
 
