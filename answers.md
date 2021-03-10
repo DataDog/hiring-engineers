@@ -21,9 +21,11 @@ I added tags at the agent level, to reflect my host, the dev environment, device
 ![](datadogScreenshots/host_tags.png)
 
 After that, I installed a MySQL database and checked that the Datadog integration is working correctly with the database, using <code>sudo service datadog status</code>.
+
 ![](datadogScreenshots/mysql_integrationCheck.png)
 
 I tested a few inserts into a "pet" table I created, to double check that I could see some useful variables in a Datadog Dashboard.
+
 ![](datadogScreenshots/TableNameCheck.png)
 ![](datadogScreenshots/mysql_datadog.png)
 
@@ -132,7 +134,7 @@ Though I read about using the Python middleware API, I prefer to instrument auto
 
 Make sure you use Python 3.6+ to run the below. The .env file used prior would also apply here.
 
-The script is under `/supportingCode/apm.py` and was run using `DD_ENV="dev" DD_SERVICE="datadog_technical_exercise" DD_VERSION="1.0" DD_PROFILING_ENABLED=true DD_LOGS_INJECTION=true ddtrace-run python3 apmApp.py`.
+The script is under `/supportingCode/apmApp.py` and was run using `DD_ENV="dev" DD_SERVICE="datadog_technical_exercise" DD_VERSION="1.0" DD_PROFILING_ENABLED=true DD_LOGS_INJECTION=true ddtrace-run python3 apmApp.py`.
 
 To the Python script, I added an endpoint that makes a select query call to my earlier pet database table, in order to measure the performance.
 
