@@ -8,7 +8,7 @@
         <li> Tags can be formatted as "key:value" as shown in the example, or they can be "value".</li>
         <li>Tags should not be originiated from unbound sources such as User ID's.</li>
     </ul>
-    <img src="tags-in-yaml.png" alt="tags shown in yaml file">
+    <img src="tags-in-yaml.png" alt="tags shown in yaml file" height="300" width="300">
     <img src="tags.png" alt="tags shown in agent"></br>
 </br></br>
 <h3 style="text-align: center;"><b><u> Usage and why this is important</u></b></h3>
