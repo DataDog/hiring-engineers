@@ -32,6 +32,7 @@ I tested a few inserts into a "pet" table I created, to double check that I coul
 I then created a script to setup a custom metric called my_metric, outputting a random value between 0 and 1000. 
 This can be setup by creating a custom script under <code>/etc/datadog-agent/checks.d/</code>
 See my script below, also found under <code>supporting_code/custom_metric.py</code>
+Note that for configuration of the custom check, a yaml file with the same name must also be created under `/etc/datadog-agent/conf.d/custom_metric.yaml`.
 
 ![](datadogScreenshots/custom_metric_script.png)
 
@@ -43,7 +44,7 @@ I decided to specify the custom collection interval directly in config, see belo
 
 **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-Yes, this is specified at the instance level in conf.d/custom_metric.yaml (this filename needs to match the name under of the file under checks.d). It can be specified as seen below.
+Yes, this is specified at the instance level in `conf.d/custom_metric.yaml`. It can be specified like below.
 
 ![](datadogScreenshots/min_collection_interval.png)
 
@@ -54,14 +55,17 @@ In the next step, I set up a Timeboard with three different widgets displayed be
 2. my reads from the MySQL database, which I can trigger using a select query, and 
 3. the sum of my_metric values, rolled into hourly buckets (a discrete roll-up, not a moving window rollup).
 
-##NOTE: for passing variables where required into the MONITORING script, I use the python `decouple` library - simply create a `.env` file with the variables needed (API keys, passwords, etc)
+
+The script used to generate this Timeboard can be found under `supporting-code\createDatadogDashboard.py`.
+
+**NOTE:** for passing variables where required into the monitoring  script, I use the python `decouple` library - simply create a `.env` file with the variables needed (API keys, passwords, etc)
 
 From this code, we get the Timeboard below:
 - https://p.datadoghq.com/sb/zihnin4jchh3f8ll-b67134136b85b549ceeaa18434445171"
 
 ![](datadogScreenshots/TimeboardSalesEngineerHiringExercise.png)
 
-Here's a view of the Timeboard for 5 minutes duration:
+Here's a view of the Timeboard for 5 minutes duration (not on the hour, so a datapoint for the my_metric doesn't show):
 
 ![](datadogScreenshots/Timeboard_5_minute.png)
 
@@ -75,6 +79,9 @@ with `NameError: name 'saved_view' is not defined`
 Per the Datadog docs, the anomaly function makes a forecast based on prior values of the time series (i.e., an ARIMA style forecast).
 
 In my particular implementation, with the parameters I passed in, the anomaly function flags anything that is two standard deviations or more from the usual value of the timeseries.
+
+![](datadogScreenshots/anomaly_function_2.png)
+
 Since row reads for this DB are generally 0 (I requested reads only sporadically), values of a few reads per second show up as an anomaly.
 Were this DB to start having a few reads per second more consistently, they would not show up as anomalies anymore (ie, the anomaly function adapts to the trend of the data patterns recently).
 
@@ -144,17 +151,17 @@ I also added logging in the other endpoints that were provided, and a logger tha
 
 In order to get this work, I had to enable logging at the agent level and set a `conf.d/python.d/conf.yaml` file like below
 
-![](screenshots/datadogScreenshots/log_confd_setup.png)
+![](datadogScreenshots/log_confd_setup.png)
 
 `curl http://0.0.0.0:5050/api/trace/ `
 `curl http://0.0.0.0:5050/api/apm/ `
 
-![](screenshots/datadogScreenshots/log_explorer.png)
+![](datadogScreenshots/log_explorer.png)
 
 I also tagged my running flask server and the MySQL database (in its conf.d config file), in order to play around with the service map feature.
 This allowed me to get a view of my test app, with the ability to drill down into the performance of individual resources. I included a view of this service map in the Dashboard I created.
  
-![](screenshots/datadogScreenshots/service_map.png)
+![](datadogScreenshots/service_map.png)
 
 See below for a Dashboard of APM and Infrastructure metrics :
 
@@ -170,9 +177,9 @@ Per the Datadog docs:
 
 * A service represents a grouping of endpointsand queries, geared around a particular domain. Its definition within the Datadog is similar to the definition of the builiding blocks in a micro-services
 architecture. For example, in my Flask setup, both the DB and the Flask App are considered services, as shown by the below service list feature.
-![](screenshots/datadogScreenshots/service_list.png)
+![](datadogScreenshots/service_list.png)
 * A resource is a particular action for a given service (typically an individual endpoint or query). For example, the endpoint that triggers the query to the pet table of my database is a resource.
-![](screenshots/datadogScreenshots/resource_example.png)
+![](datadogScreenshots/resource_example.png)
 
 
 ## Final Question:
@@ -182,7 +189,7 @@ Theoretically, it seems that any distributed system that could be instrumented f
 One application that seems interesting to me is monitoring the weather and birds, a nerdy quarantine hobby of mine (in 2020, I saw 93 unique species of birds). 
 One of the best ways to view birds, particularly certain species, is to attract them using a backyard feeder. Many of these were in my family’s backyard in Massachusetts, on a balcony feeder. I would like to correlate certain weather patterns with the appearance of particular birds at the backyard feeder.
 
-![](screenshots/datadogScreenshots/bird_feeder_picture.jpg)
+![](datadogScreenshots/bird_feeder_picture.jpg)
 
 Here’s what a system design for this could look like, to illustrate how I think Datadog could be used to solve the problem :
 
