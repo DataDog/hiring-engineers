@@ -9,13 +9,18 @@ Thank you for this opportunity! This was a fun way to learn about Datadog.
 
 If any questions, do contact me at antonio0farias@gmail.com or (484) 326-6373.
 
-I set up a Vagrant VM running Ubuntu 18.04 LTS 64-bit, and install the Datadog agent on it.
+I set up a Vagrant VM running Ubuntu 18.04 LTS 64-bit, and installed the Datadog  agent on it.
 
 ## Collecting Metrics:
 
-After installing the agent in my host,
+After installing the agent on my host,
 I installed tags in my `/etc/datadog-agent/datadog.yaml` file.
-I added tags at the agent level, to reflect my host, the dev environment, device and OS, networking information, and a service level tag that I could use across resources and components. I make more use of service level tags later on, to specify feature levels and to get a service map working.
+I added tags at the agent level, to reflect
+- my host,
+- the dev environment,
+- device
+- networking information (I added `host.name` and `host.ip` properties after the screenshot below was taken)
+- and a service level tag that I could use across resources and components. I made use of service level tags later on, to specify feature levels and to get a service map working.
 
 - Docs: https://docs.datadoghq.com/getting_started/tagging/
 ![](datadogScreenshots/host_tags.png)
@@ -24,10 +29,9 @@ After that, I installed a MySQL database and checked that the Datadog integratio
 
 ![](datadogScreenshots/mysql_integrationCheck.png)
 
-I tested a few inserts into a "pet" table I created, to double check that I could see some useful variables in a Datadog Dashboard.
+I tested a few inserts into a "pet" table I created, to double check that I could see some useful variables in a Datadog Dashboard - like in my MySQL row reads Timeboard below.
 
 ![](datadogScreenshots/TableNameCheck.png)
-![](datadogScreenshots/mysql_datadog.png)
 
 I then created a script to setup a custom metric called my_metric, outputting a random value between 0 and 1000. This can be setup by creating a custom script under `/etc/datadog-agent/checks.d/`. See my script below, also found under `supporting_code/custom_metric.py`.
 Note that for configuration of the custom check, a yaml file with the same name must also be created under `/etc/datadog-agent/conf.d/custom_metric.yaml`.
@@ -178,8 +182,7 @@ See below for a Dashboard of APM and Infrastructure metrics :
 
 Per the Datadog docs:
 
-* A service represents a grouping of endpointsand queries, geared around a particular domain. Its definition within the Datadog is similar to the definition of the builiding blocks in a micro-services
-architecture. For example, in my Flask setup, my Flask App is considered a service, as shown by the below service list feature.
+* A service represents a grouping of endpoints and queries, geared around a particular domain. Its definition within the Datadog is similar to the definition ofthe builiding blocks in a micro-services architecture. For example, in my Flask setup, my Flask App is considered a service, as shown by the below service list feature.
 ![](datadogScreenshots/service_list.png)
 * A resource is a particular action for a given service (typically an individual endpoint or query). For example, the endpoint that triggers the query to the pet table of my database is a resource.
 ![](datadogScreenshots/resource_example.png)
@@ -192,20 +195,19 @@ Theoretically, it seems that any distributed system that could be instrumented f
  Datadog is a useful tool for measuring variables, tagging different services to make groupings, and then analyzing those grouped variables in a human readable way. Additionally other features include alerting, automated/synthetic testing, etc.
 
 One application that seems interesting to me is monitoring and correlating the weather and birds, a nerdy quarantine hobby of mine (in 2020, I saw 93 unique species of birds). 
-One of the best ways to view birds, particularly certain species, is to attract them using a backyard feeder. Many of these were in my family’s backyard in Massachusetts, on a balcony feeder. I would like to correlate certain weather patterns with the appearance of particular birds at the backyard feeder.
+One of the best ways to view birds, is to attract them using a backyard feeder. Many of these were in my family’s backyard in Massachusetts, on a balcony feeder. I would like to correlate certain weather patterns with the appearance of particular birds at the backyard feeder.
 
 ![](datadogScreenshots/bird_feeder_picture.jpg)
 
-Here’s what a system design for this could look like, to illustrate how I think Datadog could be used to solve the problem :
+Here’s what a system design for this could look like, to illustrate how I think Datadog could be used to solve the problem:
 
-1. Set up sensor devices: they would need to be on an OS where you can install the DataDog agent. Have a thermometer measuring temperature, another device measuring humidity, and a device to measure the incidence of light (photo_incidence) on the balcony.
+1. Set up sensor devices: they would need to be hooked up to an OS where you can install the DataDog agent. Have a thermometer measuring temperature, another device measuring humidity, and a device to measure the incidence of light (photo_incidence) on the balcony.
 
-2. Tag all of these as one service. Sidenote: across a larger property (ie a park), it seems like you could geotag each, if you had different instances of a measuring service .
+2. Tag all of these as one service. Across a larger property (ie a park), we could also have a tag with a geo-tag, if you had different instances of a measuringsetup.
 
-3. Setup a bird feeder with sensors at its access points, with a camera to capture images of the bird accessing the feeder. When the bird feeder is accessed, log this as an event, perhaps with an associated link. You could use Datadog APM to register this event.
+3. Setup a bird feeder with sensors at its access points, with a camera to capture images of the bird accessing the feeder. When the bird feeder is accessed, log this as an event, with an associated image link. You can use Datadog APM to register this event.
  It would be great if we could identify the bird from the images using AI - it seems like the best systems still have some trouble, so this may involve some manual tagging at the moment.
-
- From Datadog’s perspective it does not make a difference whether the bird is manually identified, we can log the associated event with the time stamp of observation, when the bird is identified.
+ From Datadog’s perspective it does not make a difference whether the bird is manually identified, we can log the associated event with the time stamp of observation, once the bird is identified.
  Lastly, capture this bird event as a list of **bird_sighting**.
 To avoid multiple events from the bird, we could clean the data or aggregate events within Datadog, using the aggregation feature.
 
