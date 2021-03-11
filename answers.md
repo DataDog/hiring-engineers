@@ -60,7 +60,7 @@ In the next step, I set up a Timeboard with three different widgets displayed be
 
 The script used to generate this Timeboard can be found under `supporting-code\createDatadogDashboard.py`.
 
-**NOTE:** for passing variables where required into the monitoring  script, I use the python `decouple` library - simply create a `.env` file with the variables needed (API keys, passwords, etc)
+**A note on using the script:** for passing variables where required into the monitoring  script, I use the python `decouple` library - simply create a `.env` file with the variables needed (API keys, passwords, etc)
 
 From this code, we get the Timeboard below:
 - https://p.datadoghq.com/sb/zihnin4jchh3f8ll-b67134136b85b549ceeaa18434445171"
@@ -89,7 +89,7 @@ Were this DB to start having a few reads per second more consistently, they woul
 
 ## Monitoring Data
 
-I set up the notification using the Monitor UI, though I did see there was an API for it. since it wasn't requested, and monitor setup is often one-off and custom,
+I set up the notification using the Monitor UI, though I did see there was an API for it. Since it wasn't requested, and monitor setup is often one-off and custom,
 the UI felt like a better way to do the job :).
 
 ![](datadogScreenshots/monitor_setup_1.png)
@@ -205,7 +205,7 @@ Here’s what a system design for this could look like, to illustrate how I thin
 
 2. Tag all of these as one service. Across a larger property (ie a park), we could also have a tag with a geo-tag, if you had different instances of a measuringsetup.
 
-3. Setup a bird feeder with sensors at its access points, with a camera to capture images of the bird accessing the feeder. When the bird feeder is accessed, log this as an event, with an associated image link. You can use Datadog APM to register this event.
+3. Set up a bird feeder with sensors at its access points, with a camera to capture images of the bird accessing the feeder. When the bird feeder is accessed, log this as an event, with an associated image link. You can use Datadog APM to register this event.
  It would be great if we could identify the bird from the images using AI - it seems like the best systems still have some trouble, so this may involve some manual tagging at the moment.
  From Datadog’s perspective it does not make a difference whether the bird is manually identified, we can log the associated event with the time stamp of observation, once the bird is identified.
  Lastly, capture this bird event as a list of **bird_sighting**.
