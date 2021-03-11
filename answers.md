@@ -16,13 +16,13 @@ I set up a Vagrant VM running Ubuntu 18.04 LTS 64-bit, and installed the Datadog
 After installing the agent on my host,
 I installed tags in my `/etc/datadog-agent/datadog.yaml` file.
 I added tags at the agent level, to reflect
-- my host,
+- a host name,
 - the dev environment,
 - device
 - networking information (I added `host.name` and `host.ip` properties after the screenshot below was taken)
 - and a service level tag that I could use across resources and components. I made use of service level tags later on, to specify feature levels and to get a service map working.
 
-- Docs: https://docs.datadoghq.com/getting_started/tagging/
+Docs: https://docs.datadoghq.com/getting_started/tagging/
 ![](datadogScreenshots/host_tags.png)
 
 After that, I installed a MySQL database and checked that the Datadog integration is working correctly with the database, using <code>sudo service datadog status</code>.
