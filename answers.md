@@ -9,6 +9,7 @@ Thank you for this opportunity! This was a fun way to learn about Datadog.
 
 If any questions, do contact me at antonio0farias@gmail.com or (484) 326-6373.
 
+
 I set up a Vagrant VM running Ubuntu 18.04 LTS 64-bit, and installed the Datadog  agent on it.
 
 ## Collecting Metrics:
@@ -50,9 +51,11 @@ Yes, this is specified at the instance level in `conf.d/custom_metric.yaml`. It 
 
 ![](datadogScreenshots/min_collection_interval.png)
 
+
 ## Visualizing Data:
 
 In the next step, I set up a Timeboard with three different widgets displayed below: 
+
 -  my custom my_metric 
 -  my reads from the MySQL database, which I can trigger using a select query
 -  the sum of my_metric values, rolled into hourly buckets (a discrete roll-up, not a moving window rollup)
@@ -81,7 +84,9 @@ Per the Datadog docs, the anomaly function makes a forecast based on prior value
 
 In my particular implementation, with the parameters I passed in, the anomaly function flags anything that is two standard deviations or more from the usual value of the timeseries.
 
+
 ![](datadogScreenshots/anomaly_function_2.png)
+
 
 Since row reads for this DB are generally 0 (I requested reads only sporadically), values of a few reads per second show up as an anomaly.
 Were this DB to start having a few reads per second more consistently, they would not show up as anomalies anymore (ie, the anomaly function adapts to the trend of the data patterns recently).
@@ -89,11 +94,13 @@ Were this DB to start having a few reads per second more consistently, they woul
 
 ## Monitoring Data
 
+
 I set up the notification using the Monitor UI, though I did see there was an API for it. Since it wasn't requested, and monitor setup is often one-off and custom,
 the UI felt like a better way to do the job :).
 
 ![](datadogScreenshots/monitor_setup_1.png)
 ![](datadogScreenshots/monitor_setup_2.png)
+
 
 - Alert message
   - `{{#is_alert}}
@@ -113,11 +120,13 @@ No action needed at the moment.
 
 - No data message
   - `{{#is_no_data}}
+  
 This monitor has not received any data for the past 10 minutes. Please check on the status of {{[host.name].name}}, and on
 the output of this metric.
 {{/is_no_data}} `
 
 Then I triggered the notifications for the three different notification types.
+
 ![](datadogScreenshots/test_alert_notification.png)
 ![](datadogScreenshots/test_warn_notification.png)
 ![](datadogScreenshots/test_warn_notification.png)
@@ -126,6 +135,7 @@ Later on, I recorded some examples of real, triggered notifications:
 
 ![](datadogScreenshots/warn_real_notification.png)
 ![](datadogScreenshots/alert_real_notification.png)
+
 
 **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor.
 
@@ -139,6 +149,7 @@ Which generated these notifications:
 ![](datadogScreenshots/weekday_downtime_notification.png)
 ![](datadogScreenshots/weekend_downtime_notification.png)
 
+
 ## Collecting APM Data:
 
 Though I read about using the Python middleware API, I prefer to instrument automatically with ddtrace-run, which is how I would instrument something that was production-ready.
@@ -146,6 +157,7 @@ Though I read about using the Python middleware API, I prefer to instrument auto
 #### Running the script 
 
 Make sure you use Python 3.6+ to run the below. The .env file used prior would also apply here.
+
 
 The script is under `/supportingCode/apmApp.py` and was run using `DD_ENV="dev" DD_SERVICE="datadog_technical_exercise" DD_VERSION="1.0" DD_PROFILING_ENABLED=true DD_LOGS_INJECTION=true ddtrace-run python3 apmApp.py`.
 
@@ -187,6 +199,7 @@ https://p.datadoghq.com/sb/zihnin4jchh3f8ll-e31eefbba8dcd1538ea6d0192c50a65e
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
 Per the Datadog docs:
+
 
 * A service represents a grouping of endpoints and queries, geared around a particular domain. Its definition within Datadog is similar to the definition of the builiding blocks in a micro-services architecture. For example, in my Flask setup, my Flask App is considered a service, as shown by the below service list feature.
 ![](datadogScreenshots/service_list.png)
