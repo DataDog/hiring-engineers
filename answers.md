@@ -15,17 +15,17 @@ I set up a Vagrant VM running Ubuntu 18.04 LTS 64-bit, and installed the Datadog
 
 After installing the agent on my host,
 I installed tags in my `/etc/datadog-agent/datadog.yaml` file.
-I added tags at the agent level, to reflect
-- a host name,
-- the dev environment,
+I added tags at the agent level, to reflect:
+- a host name
+- the dev environment
 - device
 - networking information (I added `host.name` and `host.ip` properties after the screenshot below was taken)
-- and a service level tag that I could use across resources and components. I made use of service level tags later on, to specify feature levels and to get a service map working.
+- a service level tag that I could use across resources and components. I made use of service level tags later on, to specify feature levels and to get a service map working.
 
 Docs: https://docs.datadoghq.com/getting_started/tagging/
 ![](datadogScreenshots/host_tags.png)
 
-After that, I installed a MySQL database and checked that the Datadog integration is working correctly with the database, using <code>sudo service datadog status</code>.
+After that, I installed a MySQL database and checked that the Datadog integration was working correctly with the database, using <code>sudo service datadog status</code>.
 
 ![](datadogScreenshots/mysql_integrationCheck.png)
 
@@ -33,7 +33,7 @@ I tested a few inserts into a "pet" table I created, to double check that I coul
 
 ![](datadogScreenshots/TableNameCheck.png)
 
-I then created a script to setup a custom metric called my_metric, outputting a random value between 0 and 1000. This can be setup by creating a custom script under `/etc/datadog-agent/checks.d/`. See my script below, also found under `supporting_code/custom_metric.py`.
+I then created a script to setup a custom metric called my_metric, outputting a random value between 0 and 1000. This can be set up by creating a custom script under `/etc/datadog-agent/checks.d/`. See my script below, also found under `supporting_code/custom_metric.py`.
 Note that for configuration of the custom check, a yaml file with the same name must also be created under `/etc/datadog-agent/conf.d/custom_metric.yaml`.
 
 ![](datadogScreenshots/custom_metric_script.png)
@@ -44,26 +44,26 @@ I then used the status check to verify that this custom_metric is being collecte
 
 I decided to specify the custom collection interval directly in config, see below.
 
-**Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+**Bonus Question:** Can you change the collection interval without modifying the Python check file you created?
 
-Yes, this is specified at the instance level in `conf.d/custom_metric.yaml`. It can be specified like below.
+Yes, this is specified at the instance level in `conf.d/custom_metric.yaml`. It can be specified as seen below.
 
 ![](datadogScreenshots/min_collection_interval.png)
 
 ## Visualizing Data:
 
 In the next step, I set up a Timeboard with three different widgets displayed below: 
-1. my custom my_metric, 
-2. my reads from the MySQL database, which I can trigger using a select query, and 
-3. the sum of my_metric values, rolled into hourly buckets (a discrete roll-up, not a moving window rollup).
+-  my custom my_metric 
+-  my reads from the MySQL database, which I can trigger using a select query
+-  the sum of my_metric values, rolled into hourly buckets (a discrete roll-up, not a moving window rollup)
 
 
 The script used to generate this Timeboard can be found under `supporting-code\createDatadogDashboard.py`.
 
-**A note on using the script:** for passing variables where required into the monitoring  script, I use the python `decouple` library - simply create a `.env` file with the variables needed (API keys, passwords, etc)
+**A note on using the script:** for passing variables where required into the monitoring  script, I used the python `decouple` library - simply create a `.env` file with the variables needed (API keys, passwords, etc).
 
 From this code, we get the Timeboard below:
-- https://p.datadoghq.com/sb/zihnin4jchh3f8ll-b67134136b85b549ceeaa18434445171"
+- https://p.datadoghq.com/sb/zihnin4jchh3f8ll-b67134136b85b549ceeaa18434445171
 
 ![](datadogScreenshots/TimeboardSalesEngineerHiringExercise.png)
 
@@ -151,38 +151,44 @@ The script is under `/supportingCode/apmApp.py` and was run using `DD_ENV="dev" 
 
 To the Python script, I added an endpoint that makes a select query call to my earlier pet database table, in order to measure the performance of the database call and to play around with the Service Map feature.
 
+The database endpoint can be accessed using the below:
+
 `curl http://0.0.0.0:5050/api/db/getall `
 
-I also added logging in the other endpoints that were provided, and a logger that sends to a tcp port that I instrumented. With this I could get my logs in Datadog.
+I also added logging in the other endpoints that were provided, and a logger that sends logs to a tcp port. With this I could get my logs in Datadog.
 
-In order to get this work, I had to enable logging at the agent level and set a `conf.d/python.d/conf.yaml` file like below
+In order to get this work, I had to enable logging at the agent level and set a `conf.d/python.d/conf.yaml` file as seen below:
 
 ![](datadogScreenshots/log_confd_setup.png)
+
+These are the endpoints that log out:
 
 `curl http://0.0.0.0:5050/api/trace/ `
 
 `curl http://0.0.0.0:5050/api/apm/ `
 
+I hit the trace endpoint to generate the logs below:
+
 ![](datadogScreenshots/log_explorer.png)
 
 I also tagged my running flask server and the MySQL database (in its conf.d config file), in order to play around with the service map feature.
-This allowed me to get a view of my test app, with the ability to drill down into the performance of individual resources. I included a view of this service map in the Dashboard I created. (note that I switched the service name from flask-exercise to datadog_technical_exercise, halfway through, in order to match my host service tag, for Infrastructure metrics).
+This allowed me to get a view of my test app, with the ability to drill down into the performance of individual resources. I included a view of this service map in the Dashboard I created. Note that I switched the service name from flask-exercise to datadog_technical_exercise, halfway through, in order to match my host service tag, for Infrastructure metrics.
  
 ![](datadogScreenshots/service_map.png)
 
-See below for a Dashboard of APM and Infrastructure metrics :
+See below for a Dashboard of APM and Infrastructure metrics:
 
 ![](datadogScreenshots/infrastructure_metrics.png)
 ![](datadogScreenshots/latency_profiler_metrics.png)
 
-- https://p.datadoghq.com/sb/zihnin4jchh3f8ll-e31eefbba8dcd1538ea6d0192c50a65e
+https://p.datadoghq.com/sb/zihnin4jchh3f8ll-e31eefbba8dcd1538ea6d0192c50a65e
 ![](datadogScreenshots/apmDashboard2.png)
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
 Per the Datadog docs:
 
-* A service represents a grouping of endpoints and queries, geared around a particular domain. Its definition within the Datadog is similar to the definition ofthe builiding blocks in a micro-services architecture. For example, in my Flask setup, my Flask App is considered a service, as shown by the below service list feature.
+* A service represents a grouping of endpoints and queries, geared around a particular domain. Its definition within Datadog is similar to the definition of the builiding blocks in a micro-services architecture. For example, in my Flask setup, my Flask App is considered a service, as shown by the below service list feature.
 ![](datadogScreenshots/service_list.png)
 * A resource is a particular action for a given service (typically an individual endpoint or query). For example, the endpoint that triggers the query to the pet table of my database is a resource.
 ![](datadogScreenshots/resource_example.png)
@@ -190,9 +196,9 @@ Per the Datadog docs:
 
 ## Final Question:
 
-Theoretically, it seems that any distributed system that could be instrumented for measurement and transparency could use Datadog.
+Theoretically, any distributed system that could be instrumented for measurement and transparency could use Datadog.
 
- Datadog is a useful tool for measuring variables, tagging different services to make groupings, and then analyzing those grouped variables in a human readable way. Additionally other features include alerting, automated/synthetic testing, etc.
+ Datadog is a useful tool for measuring variables, tagging different services to make groupings, and then analyzing those grouped variables in a human-readable way.
 
 One application that seems interesting to me is monitoring and correlating the weather and birds, a nerdy quarantine hobby of mine (in 2020, I saw 93 unique species of birds). 
 One of the best ways to view birds, is to attract them using a backyard feeder. Many of these were in my family’s backyard in Massachusetts, on a balcony feeder. I would like to correlate certain weather patterns with the appearance of particular birds at the backyard feeder.
@@ -201,9 +207,9 @@ One of the best ways to view birds, is to attract them using a backyard feeder. 
 
 Here’s what a system design for this could look like, to illustrate how I think Datadog could be used to solve the problem:
 
-1. Set up sensor devices: they would need to be hooked up to an OS where you can install the DataDog agent. Have a thermometer measuring temperature, another device measuring humidity, and a device to measure the incidence of light (photo_incidence) on the balcony.
+1. Set up sensor devices: they would need to be hooked up to an OS where you can install the Datadog agent. Have a thermometer measuring temperature, another device measuring humidity, and a device to measure the incidence of light (photo_incidence) on the balcony.
 
-2. Tag all of these as one service. Across a larger property (ie a park), we could also have a tag with a geo-tag, if you had different instances of a measuringsetup.
+2. Tag all of these as one service. Across a larger property (ie a park), we could also have a tag with a geo-tag, if you had different instances of a measuring setup.
 
 3. Set up a bird feeder with sensors at its access points, with a camera to capture images of the bird accessing the feeder. When the bird feeder is accessed, log this as an event, with an associated image link. You can use Datadog APM to register this event.
  It would be great if we could identify the bird from the images using AI - it seems like the best systems still have some trouble, so this may involve some manual tagging at the moment.
@@ -215,7 +221,8 @@ To avoid multiple events from the bird, we could clean the data or aggregate eve
 
 5. We now have a searchable Timeboard! We can search for particular **bird_sighting** event, filtered by particular logged out features. We can overlay these events on the weather patterns from step 4.
  
-With this tool we can now try to correlate particular bird-sightings, in almost real-time, with weather patterns. Here's one hypothesis to test - 
+With this tool we can now try to correlate particular bird-sightings, in almost real-time, with weather patterns. Here's one hypothesis to test:
 
-Dark-eyed juncos are known as snowbirds, because they appear around the time of the first snowfall. But does the data actually validate this? Can we correlate the appearance of these birds, with snow, or with a temperature drop? Or would we have to add in additional measured variables? Unlike other systems that purely measure historical correlation, Datadog allows us to monitor in real-time - a large number of dark-eyed juncos on a hot day would be an anomaly, and our system could flag it!
+Dark-eyed juncos are known as snowbirds, because they appear around the time of the first snowfall. But does the data actually validate this?
 
+Can we correlate the appearance of these birds, with snow, or with a temperature drop? Or would we have to add in additional measured variables? Unlike other systems that purely measure historical correlation, Datadog allows us to monitor in real-time - a large number of dark-eyed juncos on a hot day would be an anomaly, and our system could flag it!
