@@ -43,6 +43,7 @@ sudo service datadog-agent stop - to stop the Datadog Agent service
 sudo service datadog-agent restart - to restart the Datadog Agent service
 sudo service datadog-agent status - to status the Datadog Agent service
 ```
+As a final note, all keys have been removed from this document.
 
 # Collecting Metrics:
 
@@ -271,7 +272,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 from datadog import initialize, api
 
 options = {
-    'api_key': 'e9b27986ed73af798b529e9852e89aa4', 'app_key': '55fcc32aa469aee233224a23b51247442a03faad'
+    'api_key': '', 'app_key': ''
 }
 
 initialize(**options)
@@ -313,7 +314,7 @@ print(response) # to check api response
 from datadog import initialize, api
 
 options = {
-    'api_key': 'e9b27986ed73af798b529e9852e89aa4', 'app_key': '55fcc32aa469aee233224a23b51247442a03faad'
+    'api_key': '', 'app_key': ''
 }
 
 initialize(**options)
@@ -360,7 +361,7 @@ print(response) # to check api response
 from datadog import initialize, api
 
 options = {
-    'api_key': 'e9b27986ed73af798b529e9852e89aa4', 'app_key': '55fcc32aa469aee233224a23b51247442a03faad'
+    'api_key': '', 'app_key': ''
 }
 
 initialize(**options)
