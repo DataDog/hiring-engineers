@@ -1,7 +1,7 @@
 ## Prerequisites - Setup the environment
-My name is Alan Donoghue and this is my submission for the hiring engineers submission for the role of Sales engineer in Datadog for the Dublin office.
+My name is Alan Donoghue and this is my submission for the hiring engineers task for the role of Sales engineer in Datadog for the Dublin office.
 
-Before we start, as this submissiion is written in Markdown, I thought I'd share a helpful tip sheet I use whenever I need a little helping hand. The link is [here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
+Before we start, as this submission is written in Markdown, I thought I'd share a helpful tip sheet I use whenever I need a little helping hand. The link is [here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
 Most of my development experience has been using linux and MacOS, I'm an avid fan of Docker and have extensive experience making use of it but for this submission, I decided it was best to not use it as a fresh install of Linux as it is more mutable and easier to troubleshoot problems along the way.
 
@@ -195,9 +195,11 @@ I'm not 100% sure if this correct as there is a note in the documentation that s
 
 I also found that if in the metrics dashboard under metric summery, you can set the interval here as well but I suspect the same principal applies to the accuracy of the interval.
 
-
+![My metric interval change in Dashboard](/images/my_metric_interval_dashboard.PNG)
 
 ## Visualizing Data:
+** NOTE: Timeboards are deprecated, in the place Dashboards are used **
+
 
 To interface with the datadog, I chose python as it was already installed on the machine. I just needed to add pip3 python's package manager and then install the datadog SDK for python which is just wrapper to the datadog to make it easier for development. I did this with the following commands:
 
@@ -211,7 +213,7 @@ Normally, I would use virtualenv to isolate any packages for any python developm
 
 I went on to Datadog's API reference and the example code for creating dashboards [here](https://docs.datadoghq.com/api/latest/dashboards/)
 
-When I first ran the example, I spotted an immediate mistake in the documentation where the dictionary was names `saved_view` but the variable `saved_view` was the variable that was actually passed in. I have highlighed the mistake in the screenshot below.
+When I first ran the example, I spotted an immediate mistake in the documentation where the dictionary was named `saved_views` but the variable `saved_view` is what is actually passed in. I have highlighed the mistake in the screenshot below.
 
  ![Python Example mistake](images/python_example_mistake.PNG)
 
@@ -299,7 +301,7 @@ For anomoly detection and rollop, I needed to use the Datadog docs again for ans
 
 For Anomoly detection, I used average memory for Mongo which I took the idea from the ready made dashboard in the platform. Using the documents above, I found it simple enough to add all the widgets resulting in this dashboard.
 
-![Datadog metrics dashboard](/images/metrics_dash.png)
+![Datadog metrics dashboard](/images/metrics_dash.PNG)
 
 The final code I used to create the dashboard is below:
 ```
@@ -459,12 +461,41 @@ And here is the requests dashboard with the different time aggreations shown for
 
 ![Flask Test service](/images/datadog_apm_service_dash.PNG)
 
+And below is the trace with infrastructure metrics. As you can see, the tags shown below match the tags that were added to datadog agent previously:
+
+![Flask Test service apm infrastructure](/images/apm_service_infra.PNG)
+ 
+And finally some metrics gathered from the trace:
+
+![Flask Test service apm infrastructure](/images/apm_service_metrics.PNG)
+
+
+
+* **Bonus Question**: What is the difference between a Service and a Resource?
+
+
+From the glossery linked [here](https://docs.datadoghq.com/tracing/visualization/), I got these two definitions for a service and resource: 
+
+Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
+
+Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
+
+The differnce between them is that a resource would be as stated above an action in a service like an endpoint or database query.
+
+example:
+ - Service: Flask Application
+ - Resoure /api/trace API endpoint
+
+
+
+
+
 
 ## Final Question:
 I think something that could be useful to setup with Datadog is to track freezer performanace for Pfiser and moderna vaccines. 
 
 Retrieving health metrics from the fridges to monitor if there was any downtime could be vital to the vaccine rollout, I saw in california a fridge broke with the vaccines inside. there was a mad scramble to administer the vaccines in time before they expired. Keeping track of this would be be very simplistic with Datadog's monitors.
 
-To acheive, IoT monitoring equipment would be required. Atleast temperature and energy monitors with possibly some door monitors for opening and closing monitoring( Check if a close door alert is recieved within a certain timeframe of the open etc) would be required.
+To acheive, IoT monitoring equipment would be required. Atleast temperature and energy monitors with possibly some door monitors for opening and closing monitoring(Check if a close door alert is recieved within a certain timeframe of the open etc) would be required.
 
-In my opinion, this is very likey scenerio and I believe  you would need to hire a sales engineer with IoT experience to get this over the line ;).
+In my opinion, this is very likey scenerio and I believe you would need to hire a sales engineer with IoT experience to get this over the line ;).
