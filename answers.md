@@ -1,6 +1,23 @@
+<center>
+<img src="ddlogo.png" alt="DataDog Logo" height="300" width="300">
+<br><br>
+<h2>Welcome to the DataDog Beginner's Guide! In this document you will find the necessary instructions for getting your DataDog Agent and browser interface ready to start collecting metrics and monitoring your environments. For more information please refer to <a href="docs.datadoghq.com">DataDog Docs</a></h2>
+<br>
+<h3><u>Table of Contents</u></h3>
+<h4><b>1. Collecting Metrics</b></h4>
+<p>1a. Adding Tags</p>
+<p>1b. Database Integration</p>
+<p>1c. Creating a Custom Agent Check</p>
+<p>1d. Modifying Collection Intervals</p>
+<h4><b>2. Visualizing Data</b></h4>
+<h4><b>3. Monitoring Data</b></h4>
+<p>3a. Silencing Alerts</p>
+<h4><b>4. Collecting APM Data</b></h4>
+</center>
+<br><br>
 <div style="text-align: center;">
-<h1> Collecting Metrics</h1>
-<h3><b><u>Adding Tags</u></b></h3>
+<h1> 1. Collecting Metrics</h1>
+<h3><b><u>1a. Adding Tags</u></b></h3>
      <p>To add tags to your host we must access the Agent Configuration file. This file is titled <b>datadog.yaml</b> within the datadog-agent folder. For this example, we will be adding tags to our host. These tags will be added to line 66 of the datadog.yaml file. In the example shown below, you can see that I have assigned generic tags to my host titled "key_1_:_value_1, key_2_:_value_2, key_3_:_value_3" to ensure that the host tags are displaying correctly. There are a few rules to defining tags:</p></br>
      <ul style="text-align: left">
         <li> Tags must start with a letter.</li>
@@ -17,8 +34,9 @@
 <p>Let's say we want to look at our containers or cloud environments at the service level. It would be a lot more beneficial and time concious to be able to see our CPU usage across multilple hosts than having to invesitgate these values on individual servers. This is where tags come into play. By setting these up we can more easily aggregate metrics of a service across multiple servers.</p><hr>
 </br>
 
-<h3><b><u>Database Integration</u></b></h3>
+<h3><b><u>1b. Database Integration</u></b></h3>
 <p>Adding a database integration to your Datadog configuration is a very straight forward process thanks to the documentation provided on your Datadog UI. As a quick rundown, here is how a PostgreSQL is integrated:</p>
+<img src="integrationstag.png" alt="integrations tab" height="300" width="500"></br>
 <ul style="text-align: left">
 <li>As the PostgreSQL check is already packaged with the Datadog Agent, our first step  will be to create a read-only datadog user that has access to our server. This can be achieved by opening a psql session on the PostgreSQL database and entering the following commands:</br>
             "create user datadog with password 'PASSWORD';
@@ -28,7 +46,7 @@
 <h3><b><u>Usage and why this is important</u></b></h3>
 <p>This one may be a bit obvious but in most scenarios we will want to see how many of our servers are currently up and running.</p>
 <hr>
-<h3><b><u>Create a Custom Agent Check</u></b></h3>
+<h3><b><u>1c. Create a Custom Agent Check</u></b></h3>
 <p>In the scenario where we want to collect metrics for unique systems or custom applications, we will want to create a custom agent check. In this example, I will be creating a custom metric called "my_metric" that will produce a random integer between 0 and 1000.</p></br>
 <p>We must create two files within the datadog-agent folder. One being the configuration file, and the other being the check file. <b>It is vitally important to note that these files must share the same name.  So in this example my check file is titled "my_metric.py" and my configuration file is named "my_metric.yaml".</b></p></br>
 <p>The configuration file contains a sequence called "instances" that can remain blank for the time being.</p></br>
@@ -44,15 +62,16 @@
             
 <p>Again, custom agent checks can be a crucial part of your operation if you are trying to collect metrics for custom applications. If you are trying to collect metrics for widely available applications, public services, etc., it is recommended to create a full Agent configuration.</p><hr></br>
 
-<h3><b><u>Modify Collection Interval via Datadog UI</u></b></h3>
+<h3><b><u>1d. Modify Collection Interval via Datadog UI</u></b></h3>
 <p>Another way to adjust the collection interval of a custom Agent check is to change it within the UI. In the Dashboard view, click the gear icon of the custom metric, and then select the metric from the small pop-up window. From here you will see your metric in the "Metric Name" list. By clicking on the metric another panel pops out from the right side of the screen and shows a field titled "Interval". By clicking on the "Edit" button  just  below this, we are given access to manually change the collection interval.</p>
+<img src="collectioninterval.png" alt="Collection Interval via UI" height="300" width="500"></br>
 <h3><b><u>Usage and why this is important</u></b></h3>
 <p>Modifying the collection interval via the Datadog UI provides a potentially quicker and easier way to adjust your intervals as opposed to modifying the configuration file itself.</p>
 <hr>
 </br>
 
 
-<h3><b><u>Visualizing Data</u></b></h3>
+<h1><b><u>2. Visualizing Data</u></b></h1>
 <p>Up until this point it is assumed that you have been working directly withn the UI to create dashboards, however in  this section we will cover how to create a dashboard via the Datadog API. In this example we will be creating a dashboard that contains our custom metric (my_metric) scoped over the host, a metric from our database, and our custom metric with the rollup function applied to sum up all the points for the past hour into a bucket.</p></br>
 <a href="initializeapitest.py">Script to Create Dashboard</a></br>
 <p>After entering your proper API & APP key, you can start to define the widgets that you want to create. You will see that within the definition of each widget, you have some customizable parameters, the first being 'type'. For this excercise, we will be building a timeboard for each widget. Next we will be modifying the request itself. The "{'q'}" found before the metric name is in reference to the query definition. Imeediately following the query definiton is where we will define what metric the widget is made for. On line 57 you will see that this widget is going to be monitoring my_metric over all (*) instances within the infrastructure. </p></br>
@@ -60,7 +79,7 @@
 <h3><b><u>Usage and why this is important</u></b></h3>
 <p>The abiltity to leverage the Datadog API for creating dashbaords is an incredibly powerful aspect of the Datadog infrastructure. By creating these scripts to create, view, and delete dahsboards could save you a ton of time as opposed to manually creating them via the Datadog UI.</p><hr></br>
 
-<h1>Monitoring Data</h1>
+<h1>3. Monitoring Data</h1>
 <p>Datadog provides multiple integrations for recieving alerts of metrics that hit thresholds that indicate issues with your environment such as Slack, Jira, and PagerDuty. These alerts can also be setup via the Datadog UI with these steps:</p>
 <ul style="text-align: left">
 <li>From the dashboard view, click the cog wheel at the top right of the metric's panel, and then click "Create monitor"</li>
@@ -72,13 +91,13 @@
 <li>Finally, we want to ensure that the proper employees are receiving this message so that it can be remedied in a timely manner. In step 5 we can dictate who recieves this particular alert from the dropdown.</li></ul>
 <img src="metricalert.png" alt="Example of email alert" height="300" width="500">
 </br>
-<h3><u>Silencing Alerts</u></h3>
+<h3><u>3a. Silencing Alerts</u></h3>
 <p>There are likely a multitude of reasons that you would want to silence an alarm, such as weekend hours for certain employees, or planned maintenance on your system. To achieve this select "Monitors" on the left side of the UI, and then "Manage Monitors". On this screen we can see the monitor that we have created, and after selecting it we are given an option at the top for "Manage Downtime". On the right we can see an icon that reads "Schedule Downtime". After selecting this we can decide what days and time that we want to silence our alert. For this exercise we have silenced the alert from Monday to Friday, from 7PM to 9AM, as well as all day on Saturday and Sunday. It may also be important for your organization to alert members that a downtime has been set. This capability can be found in step 4, "Notify your team".</p>
 <img src="downtimeemail.png" alt="Email indicating new downtime rules" height="300" width="500">
 <h3><b><u>Usage and why this important</u></b></h3>
 <p>It is imperitive that your teams receive notifications when something goes awry with your system. If not for alerts/notifications, it could take quite some time to realize something is wrong, thus costing you clients and/or money.</p><hr></br>
 
-<h1>Collecting APM Data</h1>
+<h1>4. Collecting APM Data</h1>
 <p>Collecting APM (Application Performance Monitoring) data is made easy by Datadog. After installing ddtrace you will then start adding the appropriate entry/end points into your application. Based upon the example given in the exercise, we can see that '/' route triggers the 'api_entry'. This is reflected within the UI when the page is hit by a user. Within the APM dashboard screen, we can see our status codes for GET requests when we hit that endpoint in oour browser. An important feature to note is the presence of timestamps for every trace picked up by Datadog within this interface.  This applies to the  other two routes determined in the Flask script as well. Note: If your port for Flask is different from the default set by Datadog (8126), this will need  to updated in the datadog.yaml file so that the agent is listening to the correct port.</p>
 </br>
 <p>Another important aspect of APM with Datadog is that you have the ability to leverage your tags to keep traces that matter most in your application.</p></br>
