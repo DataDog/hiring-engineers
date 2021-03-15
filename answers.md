@@ -391,13 +391,28 @@ Here is dashboard set to 5 minutes, the rollup function doesn't display anything
 
 **Bonus Question**: What is the Anomaly graph displaying?
 
-For the anomoly graph, I chose the basic anomoly detection which uses a simple algorithm based on  rolling quantile computation to determine what defines the non anomoly area, this is displayed as the gray section of the graph, any red on the line is where an anomoly was detected. From obervation, it can be seen that the grey area is indeed working on a rolling average rather than any initial condition. 
+For the anomoly graph, I chose the basic anomoly detection which uses a simple algorithm based on rolling quantile computation to determine what defines the non anomoly area, this is displayed as the gray section of the graph, any red on the line is where an anomoly was detected. From obervation, it can be seen that the grey area is indeed working on a rolling average rather than any initial condition. 
 
 ## Monitoring Data
 
-Setting up moniter is extremly intuitive and I had everything setup in no time at all. Here is my monitor for the first question: 
+Setting up a moniter is extremly intuitive and I had everything setup in no time at all. Here is my monitor for the first question: 
 
 ![Monitor setup](/images/monitors.png)
+
+
+Here are warn and no data montoring in action:
+
+![Monitor warn](/images/warn_metric.PNG)
+
+and 
+
+![Monitor no data](/images/no_data_metric.PNG)
+
+My only problem is that the alert has a blank for the host IP and the value of metric. I have not been able to solve this but I suspect that i'm making a small error that a pair of fresh eyes would spot very easily.
+
+
+![Monitor alert](/images/alert_datadog_metric.PNG)
+
 
 For downtime, I setup the two monitors below: 
 
@@ -434,14 +449,16 @@ Using the tutorial, I ran the code the following line:
 ```
 FLASK_APP=datadog-flask.py DATADOG_ENV=flask_test ddtrace-run flask run --port=4999
 ```
+This runs the flask app on --port 4999 which overrides the port set in the file. ddtrace is actually taking `flask run --port 4999` as an argument as it sets up its monitoring around the flaks app.
 
-The code ran, but I couldn't find any trace on the datadog platform. When following platform get started help config, I noticed that variables seemed to have changed for the environment so i updated them as shown below and then ran the  flask app again.
+
+The code ran, but I couldn't find any trace on the datadog platform. When following the platform get started help config, I noticed that variables seemed to have changed for the environment so iIupdated them as shown below and then ran the flask app again.
 
 ```
 FLASK_APP=datadog-flask.py DD_SERVICE=FLASK_TEST DD_ENV=flask_test ddtrace-run flask run --port=4999
 ```
 
-Still nothing, I was expecting some indication that the flask server had come online in the datadog platform but I decided maybe an endpoint needed to be called so I opened another terminal and ran a curl commaned to the endpoints 
+Still nothing, I was expecting some indication that the flask server had come online in the datadog platform but I decided maybe an endpoint needed to be called so I opened another terminal and ran a curl commaned to the endpoints below: 
 
 ```
 curl http://127.0.0.1:4999
@@ -485,8 +502,6 @@ The differnce between them is that a resource would be as stated above an action
 example:
  - Service: Flask Application
  - Resoure /api/trace API endpoint
-
-
 
 
 
