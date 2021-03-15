@@ -2,57 +2,42 @@ Your answers to the questions go here.
 Then, get the Agent reporting metrics from your local machine and move on to the next section...
 
 Collecting Metrics:
-Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
-Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-Change your check's collection interval so that it only submits the metric once every 45 seconds.
-Bonus Question Can you change the collection interval without modifying the Python check file you created?
+SCREENSHOT OF HOST WITH TAGS and code that created it also links to code file
+INSTALLED POSTGRES, SCREENSHOT OF METRICS
+SCREENSHOT OF CUSTOM METRIC and code that created it also links to code file
+I had trouble locating where you put the collection interval line (which file that is). The docs led me to believe at times it was in the agent config file but it also seemed like there was configuration within the custom check file was where you would. I did see that I can change the interval from the datadog UI. 
+
 Visualizing Data:
-Utilize the Datadog API to create a Timeboard that contains:
+SCREENSHOT OF TIMEBOARD
+SCRENSHOT OF TIMEBOARD API CODE/JSON
 
-Your custom metric scoped over your host.
-Any metric from the Integration on your Database with the anomaly function applied.
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+SCREENSHOT OF TIMEFRAME
+SCREENSHOT OF SNAPSHOT W @NOTATION
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+Is this question asking contexually within the metric itself or a broader context as to what the anomolies function actually does?
+Contextually - Seeing spikes of cpu usage at certain times etc
+Broader Context - Able to determine when incoming datapoints are within a certain expectation or not.
 
-Set the Timeboard's timeframe to the past 5 minutes
-Take a snapshot of this graph and use the @ notation to send it to yourself.
-Bonus Question: What is the Anomaly graph displaying?
-Monitoring Data
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+Monitoring Data:
+Screenshot of monitor
+Screenshot of message building based on which type of threshold and no data notification
+Screenshot of the Email that notifies me
+Screenshots of downtime created
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
-
-Warning threshold of 500
-Alerting threshold of 800
-And also ensure that it will notify you if there is No Data for this query over the past 10m.
-Please configure the monitor’s message so that it will:
-
-Send you an email whenever the monitor triggers.
-
-Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-
-Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-
-When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-
-One that silences it from 7pm to 9am daily on M-F,
-And one that silences it all day on Sat-Sun.
-Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 Collecting APM Data:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-Bonus Question: What is the difference between a Service and a Resource?
+Services are the blocks that come together in an architecture at broader scale whereas resources are more the individual pieces of those larger blocks.
+YUCK WORK ON THAT
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-
+Screenshot of Dashboard with Infrastructure and APM Metric
 Please include your fully instrumented app in your submission, as well.
 
 Final Question:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
-
 Is there anything creative you would use Datadog for?
+quantum circuit fidelity
+traffic light / pedestrian traffic
+any sort of large scale system that has multiple pieces working together would benefit absolutely. I think about monitoring flight data from a jet engines to tell when an airline may need to do service on a plane. or even electrical data coming from power grids to help protect against surges and dips.
+
+
