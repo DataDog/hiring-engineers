@@ -1,11 +1,11 @@
 Your answers to the questions go here.
 Then, get the Agent reporting metrics from your local machine and move on to the next section...
 
-Collecting Metrics:
-SCREENSHOT OF HOST WITH TAGS and code that created it also links to code file
-INSTALLED POSTGRES, SCREENSHOT OF METRICS
-SCREENSHOT OF CUSTOM METRIC and code that created it also links to code file
-I had trouble locating where you put the collection interval line (which file that is). The docs led me to believe at times it was in the agent config file but it also seemed like there was configuration within the custom check file was where you would. I did see that I can change the interval from the datadog UI. 
+Collecting Metrics: \
+SCREENSHOT OF HOST WITH TAGS and code that created it also links to code file \
+INSTALLED POSTGRES SCREENSHOT OF METRICS \
+SCREENSHOT OF CUSTOM METRIC and code that created it also links to code file \
+I had trouble locating where you put the collection interval line (which file that is). The docs led me to believe at times it was in the agent config file but it also seemed like there was configuration within the custom check file was where you would. I did see that I can change the interval from the datadog UI. \
 
 Visualizing Data:
 SCREENSHOT OF TIMEBOARD
