@@ -1,21 +1,21 @@
 ## Prerequisites - Setup the environment
 My name is Alan Donoghue and this is my submission for the hiring engineers submission for the role of Sales engineer in Datadog for the Dublin office.
 
-Before we start, as this submissiion is written in Markdown, I thought I'd share a helpful tip sheet I use whenever I need a little helping hand. The link is [here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+Before we start, as this submissiion is written in Markdown, I thought I'd share a helpful tip sheet I use whenever I need a little helping hand. The link is [here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
-Most of my development experience has been using linux and MacOS, I'm an avid fan of Docker and have extensive experience making use of it but for this submission, I decided it was best to not use it as a fresh install of Linux as it is more mutible and easier to troubleshoot problems along the way.
+Most of my development experience has been using linux and MacOS, I'm an avid fan of Docker and have extensive experience making use of it but for this submission, I decided it was best to not use it as a fresh install of Linux as it is more mutable and easier to troubleshoot problems along the way.
 
-I have never used Vagrant but I'm finding it to be a very nice tool that makes with working with Virtualbox a much more simlistic and pleasant experience.
+I have never used Vagrant but I'm finding it to be a very nice tool that makes with working with Virtualbox a much more simlistic and a pleasant experience.
 
 
-The commands I used are the following:
+The commands I used to setup a box are the following:
 ```
  vagrant box add bento/ubuntu-20.04
 ```
 
 This commands searches through vagrant's defualt repository and downloads the generic Ubuntu 20.04 and its it to the local virtual machine hyperviser. In my case, I used virtualBOx as it was already installed but you can choose from a number of different providers including Vmware, parallels and hyperv.
 
-Once downloading was completed, I run the box using 
+Once downloading was completed, I run the box using:
 ```
 vagrant init
 
@@ -46,7 +46,7 @@ DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=MY_API_KEY bash -c "$(curl -L https://raw.gi
 
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-From the screenshot above, I could see that the location of the datadog agent config file is:
+In the datadog-agent status, I could see that the location of the datadog agent config file is:
 
 ```
 /etc/datadog-agent/
@@ -60,8 +60,11 @@ tags:
     - cake:is-a-lie
 ```
 
+Below is a screenshot of the tags in the agent config file:
 
-![Tags in datadog.yaml](/images/agent_tags.png)
+![Tags in datadog.yaml](/images/agent_tags.PNG)
+
+and in the host map section in the Datadog platform: 
 
 ![Tags on the Host Map Page](/images/alan_host_map.png)
 
@@ -74,10 +77,9 @@ tags:
 I haven't used mongoDB since college so I was curious to see what has changed so I decided to pick it for this submission.
 
 
-For Ubuntu, mongoDb is still not up to date in ubuntu's packege manager so you must manually add its public key to the package manager and add mongoDB to the package managers sources list. All commands I used can be  retrieved [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+For Ubuntu, mongoDb is still not up to date in ubuntu's package manager so you must manually add its public key to the package manager and add mongoDB to the package managers sources list. All commands I used can be  retrieved [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 
-
-finally, once mongo is installed, I start the service with the following command:
+Finally, once mongo is installed, I start the service with the following command:
 
 ```
 sudo service mongod start
@@ -89,7 +91,7 @@ I checked to see if everything was all good by looking at the status of the serv
 sudo service mongod status
 ```
 
-With mongoDb running, I then proceeded to add the datadog intergation
+With mongoDb running, I then proceeded to add the datadog intergation so from the terminal, I accessed the mongo service with the following command: 
 
 ```
 mongo --port 27017
@@ -120,7 +122,7 @@ I updated the host to point to the local mongo instance and added the datadog us
 
 then verified it was up and running by checking the datadog-agent status command again
 
-![Datadog agent status mongo](/images/mongo_verify.png)
+![Datadog agent status mongo](/images/mongo_verify.PNG)
 
 
 Im not 100% sure if this is supposed to check a custom agent for mongo but I googled custom agent checks in Datadog and I decided to follow these tutorials here:  [Agent Checks](https://docs.datadoghq.com/developers/agent_checks/) and [Write Checks](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
@@ -159,7 +161,8 @@ class MyMetricCheck(AgentCheck):
 ```
 
 Again, I restarted the agent and was able to see the update on the metrics explorer:
- ![My Metrics ](images/datadog_metics.png)
+
+![My Metrics](images/datadog_metics.PNG)
 
 
 I actually had a problem at first as the metrics had not been recieved in my datadog portal so I checked the logs for datadog locally with this command:
@@ -170,7 +173,7 @@ tail -f -n 200 /var/log/datadog/agent.log
 which grabs the last 200 logs for them file and any logs any further logs that come in realtime.
 
 The error showed up in the logs and it was an easy fix.
-![My Metric problem](images/datadog_metrics_problem.png)
+![My Metric problem](images/datadog_metrics_problem.PNG)
 
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
@@ -196,7 +199,7 @@ I also found that if in the metrics dashboard under metric summery, you can set 
 
 ## Visualizing Data:
 
-To interface with the datadog, I chose python as it was already installed on the machince. I just needed to add pip3 python's package manager and then install the datadog SDK for python which is just wrapper to the datadog to make it easier for development. I did this with the following commands:
+To interface with the datadog, I chose python as it was already installed on the machine. I just needed to add pip3 python's package manager and then install the datadog SDK for python which is just wrapper to the datadog to make it easier for development. I did this with the following commands:
 
 ```
 sudo apt install -y python3-pip
@@ -204,13 +207,13 @@ sudo apt install -y python3-pip
 sudo pip3 install datadog
 ```
 
-Normally, I would use virtualenv to isolate any packages for any python development but as this is a disposible virtual machine, I thought that It wasn't required.
+Normally, I would use virtualenv to isolate any packages for any python development but as this is a disposable virtual machine, I thought that it wasn't required.
 
 I went on to Datadog's API reference and the example code for creating dashboards [here](https://docs.datadoghq.com/api/latest/dashboards/)
 
 When I first ran the example, I spotted an immediate mistake in the documentation where the dictionary was names `saved_view` but the variable `saved_view` was the variable that was actually passed in. I have highlighed the mistake in the screenshot below.
 
- ![Python Example mistake](images/python_example_mistake.png)
+ ![Python Example mistake](images/python_example_mistake.PNG)
 
 I fixed the mistake and then ran the code with the following lines: 
 
@@ -376,12 +379,12 @@ I created a shared link for the dashboard [here](https://p.datadoghq.eu/sb/mes6p
 * Set the Timeboard's timeframe to the past 5 minutes
 Here is dashboard set to 5 minutes, the rollup function doesn't display anything as it requires at least a couple of  hours of information to show anything meaningful.
 
-![Datadog metrics dashboard for 5 minutes](/images/metrics_dash_5min.png)
+![Datadog metrics dashboard for 5 minutes](/images/metrics_dash_5min.PNG)
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 
-![Snapshot of my metric graph](/images/snapshot_my_metric.png)
+![Snapshot of my metric graph](/images/snapshot_my_metric.PNG)
 
 
 **Bonus Question**: What is the Anomaly graph displaying?
@@ -390,10 +393,25 @@ For the anomoly graph, I chose the basic anomoly detection which uses a simple a
 
 ## Monitoring Data
 
-Setting up moniter is extremily intuitive and I had everything setup in no time at all. Here is my monitor for the first question: 
+Setting up moniter is extremly intuitive and I had everything setup in no time at all. Here is my monitor for the first question: 
 
 ![Monitor setup](/images/monitors.png)
 
+For downtime, I setup the two monitors below: 
+
+![downtime monitor setup](/images/downtime_monitor.PNG)
+
+and 
+
+![downtime monitor setup weekend](/images/downtime_monitor_weekend.PNG)
+
+From the emails, I got theses two screenshots: 
+
+![downtime monitor setup email](/images/downtime_monitor_email.PNG)
+
+and 
+
+![downtime monitor setup weekend email](/images/downtime_monitor_weekend_email.PNG)
 
 
 ## Collecting APM Data
@@ -430,22 +448,22 @@ curl http://127.0.0.1:4999/api/apm
 ```
 
 and that did it, I started to see requests coming in as shown below:
-![Flask running](/images/datadog_flask_running.png)
+![Flask running](/images/datadog_flask_running.PNG)
 
 
 From there, I saw that the flask test service appeared in the dashboard: 
-![Flask Test service](/images/datadog_apm_service.png)
+![Flask Test service](/images/datadog_apm_service.PNG)
 
 
 And here is the requests dashboard with the different time aggreations shown for latency, endoints and error rates:
 
-![Flask Test service](/images/datadog_apm_service_dash.png)
+![Flask Test service](/images/datadog_apm_service_dash.PNG)
 
 
 ## Final Question:
 I think something that could be useful to setup with Datadog is to track freezer performanace for Pfiser and moderna vaccines. 
 
-Retrive health metrics from the fridges to monitor if there was any downtime, I saw in california a fridge broke with the vaccines inside. there was a mad scramble to administer the vaccines in time before they expired. Keeping track of this would be be very simplistic with Datadog's monitors.
+Retrieving health metrics from the fridges to monitor if there was any downtime could be vital to the vaccine rollout, I saw in california a fridge broke with the vaccines inside. there was a mad scramble to administer the vaccines in time before they expired. Keeping track of this would be be very simplistic with Datadog's monitors.
 
 To acheive, IoT monitoring equipment would be required. Atleast temperature and energy monitors with possibly some door monitors for opening and closing monitoring( Check if a close door alert is recieved within a certain timeframe of the open etc) would be required.
 
