@@ -16,7 +16,7 @@ tags:
 apm_config:
   enabled: true
 ```
-![Custom Metric Graph](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/my_metric.png) /
+![Custom Metric Graph](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/my_metric.png) \
 This is the custom metric I made that generates a random number between 1 and 1000
 
 ```
