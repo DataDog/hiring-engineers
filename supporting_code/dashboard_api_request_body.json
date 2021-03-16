@@ -1,1 +1,62 @@
-
+{
+   "description":"dashboard made by an API testing Ben",
+   "is_read_only":false,
+   "layout_type":"ordered",
+   "notify_list":[
+      
+   ],
+   "title":"Bens API Dashboard",
+   "widgets":[
+      {
+         "definition":{
+            "requests":[
+               {
+                 "q": "max:my_metric{host:bens.datadog.application}"
+               }
+            ],
+            "title":"Custom Metric Over Host",
+            "type":"timeseries",
+            "yaxis":{
+               "include_zero":true,
+               "max":"auto",
+               "min":"auto",
+               "scale":"linear"
+            }
+         }
+      },
+      {
+         "definition":{
+            "requests":[
+               {
+                 "q": "anomalies(max:system.io.util{host:bens.datadog.application}, 'basic', 2)"
+               }
+            ],
+            "title":"Database System Anomolies",
+            "type":"timeseries",
+            "yaxis":{
+               "include_zero":true,
+               "max":"auto",
+               "min":"auto",
+               "scale":"linear"
+            }
+         }
+      },
+      {
+         "definition":{
+            "requests":[
+               {
+                 "q": "max:my_metric{host:bens.datadog.application}.rollup(sum, 1800)"
+               }
+            ],
+            "title":"My Metric Rollups",
+            "type":"timeseries",
+            "yaxis":{
+               "include_zero":true,
+               "max":"auto",
+               "min":"auto",
+               "scale":"linear"
+            }
+         }
+      }
+   ]
+}
