@@ -1,4 +1,4 @@
-Exercise completed using a Vagrant Ubuntu Box
+Exercise completed using a Vagrant Ubuntu Box so you may need to go back in time to get live dashboard data showing up
 
 ## Collecting Metrics:
 ![My Host](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/host_map_with_tags.png)
@@ -167,8 +167,11 @@ I've always viewed services as the building blocks for the archtiechting of comp
 ## Final Question:
 quantum circuit fidelity - I'm still questioning the actual practicallity of this, but building fault tolerant and effective quantum gates / circuits is a huge problem currently and having a tool that could  monitor when a quantum circuit errors out is crucial to development of that technology. But again, it's more of a pipedream than practical reality that current classically computed SaaS programs could integrate with quantum hardware.
 
-In the high performance computing space, datadog could be vital to being able to identify when a compute resource is overworking based on it's workload so the architect would know they need to instantiate a larger compute instance for the job at hand. 
+In the high performance computing space, datadog could be vital to being able to identify for example when a compute resource is working inefficiently so the architect would know they need to instantiate a larger compute instance for the job at hand. 
 
 There's an area of strategy called dynamic work design, one of the key principles of this design is to connect the human chain through a system of checks and triggers. Datadog to me is an computational version of this principle. And in that sense I think datadog could be used in all sorts of large scale systems with lots of components working together whether that's running diagnostics on jet engines to tell when it may need a repair or being able to detect power surges and dips in an electrical grid. 
+
+## Feedback
+I had a lot of fun doing this exercise. And I think it falls in that perfect sweet spot in terms of getting familiar with your platform. In my experience I notice that too often the instructions for technical exercises are either so broad it's hard to pick your spot and go or far too regimented which can put one into "task completion mode" rather than "learning mode." I felt like not only was I putting puzzle pieces together but also I was learning how each of the puzzle pieces work together. Thank you for the opportunity.  -Ben Behrman
 
 
