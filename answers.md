@@ -105,8 +105,8 @@ I had trouble locating where you put the collection interval line (which file th
 ```
 You'll notice that for the anomalies graph I didn't use a Postgresql metric. I made this decision because the only metrics I was consistently seeing were related to the number of tables on the database. I could not get row operation (fetch and return) statistics to populate in the big Postgres Overview Dashboard. So I used disk.io.util instead so grabbing the anomalies was an interesting graph to look at.
 
-Changing the timeframe of a dashboard:
-![Changing timeframe](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/change_timeframe.png?raw=true)
+Changing the timeframe of a dashboard: \
+![Changing timeframe](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/change_timeframe.png?raw=true) \
 Grabbing a snapshot of that timeframe and @myself:
 ![Snapshot](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/snapshot.png?raw=true)
 
