@@ -31,9 +31,10 @@ class RandomCheck(AgentCheck):
   def check(self, instance):
     random_number = random.randint(1,1000)
     self.gauge('my_metric', random_number, tags=['type:custom'] + self.instance.get('tags', []))
-```
+``` 
+I had trouble locating where you put the collection interval line (which file that is). From the exercise I gathered that you would just put the line into the custom_metric.py file however I could not get this to work. The docs also were phrased in a way that led me to believe you could configure the agent itself to globably change the interval time but I could not figure this out either. I did however find the change interval option in the DatadogHQ UI
+
 ![Changing Metric Interval](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/edit%20metric%20interval.png)
-I had trouble locating where you put the collection interval line (which file that is). The docs led me to believe at times it was in the agent config file but it also seemed like there was configuration within the custom check file was where you would. I did see that I can change the interval from the datadog UI. 
 
 ## Visualizing Data:
 ![My Api Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_with_api.png?raw=true)
