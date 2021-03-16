@@ -118,7 +118,7 @@ Broader Context - Able to determine when incoming datapoints are within a certai
 Setting up a monitor with a warning and alert at the levels of 500 and 800 respecitely. The notifcation text email has options for whether it is a warning or alert:
 ![Monitor with Options](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/monitor_w_options.png)
 Monitor Notification:
-![Monitor Email Notification](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/Monitor%20Notification.png)
+![Monitor Email Notification](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/alert_email.png)
 Monitor Weekday Downtime:
 ![Weekday Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/weekday_downtime.png)
 Monitor Weekend Downtime:
