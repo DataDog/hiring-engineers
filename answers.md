@@ -38,7 +38,7 @@ I had trouble locating where you put the collection interval line (which file th
 
 ## Visualizing Data:
 ![My Api Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_with_api.png?raw=true)
-# Made the above dashboard with the following JSON body plugged into the Postman Datadog API collection
+ The above dashboard was made with the following JSON body plugged into the Postman Datadog API collection
 ```
 {
    "description":"dashboard made by an API testing Ben",
@@ -117,8 +117,38 @@ Broader Context - Able to determine when incoming datapoints are within a certai
 ![Weekend Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/weekend_downtime.png)
 
 ## Collecting APM Data:
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution: \
 ![Infrastructure and APM Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard%20with%20flask%20apm%20included.png)
+For the APM section I used the Datadog provded Flask app with a change to the port number
+```
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5002')
+```
 
 Services are the blocks that come together in an architecture at broader scale whereas resources are more the individual pieces of those larger blocks. \
 YUCK WORK ON THAT \
