@@ -164,11 +164,12 @@ I tried to pause it so the APM stats would remain.
 I've always viewed services as the building blocks for the archtiechting of computing infrastructure. That could mean the actual compute instances of a cloud deployment in the terms of a microservices something like a Kubernetes deployment. Whereas resources are the individual actions of the service such as a GET or POST request.
 
 
-Final Question: \
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! \
-Is there anything creative you would use Datadog for? \
-quantum circuit fidelity /
-traffic light / pedestrian traffic /
-any sort of large scale system that has multiple pieces working together would benefit absolutely. I think about monitoring flight data from a jet engines to tell when an airline may need to do service on a plane. or even electrical data coming from power grids to help protect against surges and dips. /
+## Final Question:
+quantum circuit fidelity - I'm still questioning the actual practicallity of this, but building fault tolerant and effective quantum gates / circuits is a huge problem currently and having a tool that could  monitor when a quantum circuit errors out is crucial to development of that technology. But again, it's more of a pipedream than practical reality that current classically computed SaaS programs could integrate with quantum hardware.
+
+In the high performance computing space, datadog could be vital to being able to identify when a compute resource is overworking based on it's workload so the architect would know they need to instantiate a larger compute instance for the job at hand. 
+
+There's an area of strategy called dynamic work design, one of the key principles of this design is to connect the human chain through a system of checks and triggers. Datadog to me is an computational version of this principle. And in that sense I think datadog could be used in all sorts of large scale systems with lots of components working together whether that's running diagnostics on jet engines to tell when it may need a repair or being able to detect power surges and dips in an electrical grid. 
+
 
 
