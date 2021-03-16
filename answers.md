@@ -38,6 +38,7 @@ I had trouble locating where you put the collection interval line (which file th
 
 ## Visualizing Data:
 ![My Api Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_with_api.png?raw=true)
+# Made the above dashboard with the following JSON body plugged into the Postman Datadog API collection
 ```
 {
    "description":"dashboard made by an API testing Ben",
