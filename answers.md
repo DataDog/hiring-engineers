@@ -2,7 +2,7 @@ Your answers to the questions go here.
 Then, get the Agent reporting metrics from your local machine and move on to the next section...
 
 Collecting Metrics: \
-[[https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_with_api.png?raw=true]]
+[[https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_with_api.png?raw=true|alt=test]]
 
 
 SCREENSHOT OF HOST WITH TAGS and code that created it also links to code file \
