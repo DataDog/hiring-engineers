@@ -16,6 +16,27 @@ tags:
 apm_config:
   enabled: true
 ```
+Postgres Config file: Would love some feedback on the custom_queries as I was unable to get this one working. \
+```
+init_config:
+
+instances:
+  -host: localhost
+  port: 5432
+  username: datadog
+  password: <REDACTED>
+  
+  custom_queries:
+    metric_prefix: postgresql
+    query: "SELECT relname, seq_scan from pg_stat_user_tables"
+    columns:
+      name: relname
+      type: tag
+      name: seq_scan
+      type: tag
+      name: sequence_scan_by_table
+      type: gauge
+```
 ![Custom Metric Graph](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/my_metric.png) \
 This is the custom metric I made that generates a random number between 1 and 1000
 
