@@ -1,7 +1,7 @@
 Your answers to the questions go here.
 Then, get the Agent reporting metrics from your local machine and move on to the next section...
 
-##Collecting Metrics: \
+## Collecting Metrics:
 ![My Host](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/host_map_with_tags.png)
 
 SCREENSHOT OF HOST WITH TAGS and code that created it also links to code file \
@@ -9,24 +9,23 @@ INSTALLED POSTGRES SCREENSHOT OF METRICS \
 SCREENSHOT OF CUSTOM METRIC and code that created it also links to code file \
 I had trouble locating where you put the collection interval line (which file that is). The docs led me to believe at times it was in the agent config file but it also seemed like there was configuration within the custom check file was where you would. I did see that I can change the interval from the datadog UI. 
 
-##Visualizing Data: \
-SCREENSHOT OF TIMEBOARD \
-SCRENSHOT OF TIMEBOARD API CODE/JSON \
-
-SCREENSHOT OF TIMEFRAME \
-SCREENSHOT OF SNAPSHOT W @NOTATION \
+## Visualizing Data:
+![My Api Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_with_api.png?raw=true)
+![My Api Dashboard Code](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/api-dashboard-body.png?raw=true)
+![Changing timeframe](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/change_timeframe.png?raw=true)
+![Snapshot](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/snapshot.png?raw=true)
 
 Is this question asking contexually within the metric itself or a broader context as to what the anomolies function actually does? \
 Contextually - Seeing spikes of cpu usage at certain times etc \
 Broader Context - Able to determine when incoming datapoints are within a certain expectation or not. \
 
-##Monitoring Data: \
+## Monitoring Data:
 Screenshot of monitor \
 Screenshot of message building based on which type of threshold and no data notification \
 Screenshot of the Email that notifies me \
 Screenshots of downtime created \
 
-##Collecting APM Data: \
+## Collecting APM Data: \
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution: \
 
 Services are the blocks that come together in an architecture at broader scale whereas resources are more the individual pieces of those larger blocks. \
