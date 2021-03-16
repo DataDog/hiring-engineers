@@ -1,0 +1,20 @@
+init_config:
+
+instances:
+  -host: localhost
+  port: 5432
+  username: datadog
+  password: <REDACTED>
+  
+  custom_queries:
+    metric_prefix: postgresql
+    query: "SELECT relname, seq_scan from pg_stat_user_tables"
+    columns:
+      name: relname
+      type: tag
+      name: seq_scan
+      type: tag
+      name: sequence_scan_by_table
+      type: gauge
+      
+##I should note here that I was unable to get this custom query working. Would love some feedback on this.##
