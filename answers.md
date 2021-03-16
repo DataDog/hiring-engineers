@@ -25,8 +25,9 @@ Broader Context - Able to determine when incoming datapoints are within a certai
 ![Weekday Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/weekday_downtime.png)
 ![Weekend Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/weekend_downtime.png)
 
-## Collecting APM Data: \
+## Collecting APM Data:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution: \
+![Infrastructure and APM Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard%20with%20flask%20apm%20included.png)
 
 Services are the blocks that come together in an architecture at broader scale whereas resources are more the individual pieces of those larger blocks. \
 YUCK WORK ON THAT \
