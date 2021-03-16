@@ -1,4 +1,4 @@
-Exercise completed using a Vagrant Ubuntu Box so you may need to go back in time to get live dashboard data showing up
+Exercise completed using a Vagrant Ubuntu Box 
 
 ## Collecting Metrics:
 ![My Host](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/host_map_with_tags.png)
@@ -180,7 +180,7 @@ if __name__ == '__main__':
 ```
 
 You can visit my API dashboard with Infrastructure and APM here: https://p.datadoghq.com/sb/ee2as39v7pgo65cy-72e87b22b2b989a105269df944cd03cd
-I tried to pause it so the APM stats would remain. 
+I tried to pause it so the APM stats would remain. So you may need to go back in time to get dashboard data showing up as I most likely have turned off my vagrant. There should be data from Monday March 15th between 8:20PM and 8:30PM Mountain Time for both APM and Infrastructure.
 
 I've always viewed services as the building blocks for the archtiechting of computing infrastructure. That could mean the actual compute instances of a cloud deployment in the terms of a microservices something like a Kubernetes deployment. Whereas resources are the individual actions of the service such as a GET or POST request.
 
