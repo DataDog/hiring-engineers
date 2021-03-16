@@ -38,7 +38,70 @@ I had trouble locating where you put the collection interval line (which file th
 
 ## Visualizing Data:
 ![My Api Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_with_api.png?raw=true)
-![My Api Dashboard Code](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/api-dashboard-body.png?raw=true)
+```
+{
+   "description":"dashboard made by an API testing Ben",
+   "is_read_only":false,
+   "layout_type":"ordered",
+   "notify_list":[
+      
+   ],
+   "title":"Bens API Dashboard",
+   "widgets":[
+      {
+         "definition":{
+            "requests":[
+               {
+                 "q": "max:my_metric{host:bens.datadog.application}"
+               }
+            ],
+            "title":"Custom Metric Over Host",
+            "type":"timeseries",
+            "yaxis":{
+               "include_zero":true,
+               "max":"auto",
+               "min":"auto",
+               "scale":"linear"
+            }
+         }
+      },
+      {
+         "definition":{
+            "requests":[
+               {
+                 "q": "anomalies(max:system.io.util{host:bens.datadog.application}, 'basic', 2)"
+               }
+            ],
+            "title":"Database System Anomolies",
+            "type":"timeseries",
+            "yaxis":{
+               "include_zero":true,
+               "max":"auto",
+               "min":"auto",
+               "scale":"linear"
+            }
+         }
+      },
+      {
+         "definition":{
+            "requests":[
+               {
+                 "q": "max:my_metric{host:bens.datadog.application}.rollup(sum, 1800)"
+               }
+            ],
+            "title":"My Metric Rollups",
+            "type":"timeseries",
+            "yaxis":{
+               "include_zero":true,
+               "max":"auto",
+               "min":"auto",
+               "scale":"linear"
+            }
+         }
+      }
+   ]
+}
+```
 ![Changing timeframe](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/change_timeframe.png?raw=true)
 ![Snapshot](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/snapshot.png?raw=true)
 
