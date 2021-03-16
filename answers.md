@@ -1,12 +1,38 @@
-Your answers to the questions go here.
-Then, get the Agent reporting metrics from your local machine and move on to the next section...
+Exercise completed using a Vagrant Ubuntu Box
 
 ## Collecting Metrics:
 ![My Host](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/host_map_with_tags.png)
+```
+api_key: <redacted>
+site: datadoghq.com
 
-SCREENSHOT OF HOST WITH TAGS and code that created it also links to code file \
-INSTALLED POSTGRES SCREENSHOT OF METRICS \
-SCREENSHOT OF CUSTOM METRIC and code that created it also links to code file \
+hostname: bens.datadog.application
+
+tags:
+  greeting:hello_datadog_team
+  message:you_have_built_an_awesome_platform
+  conclusion:thanks_for_reviewing_my_work
+  
+apm_config:
+  enabled: true
+```
+![Custom Metric Graph](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/my_metric.png)
+```
+##This is the custom metric I made that generates a random number between 1 and 1000
+
+import random
+try:
+    from datadog_checks.base import AgentCheck
+   except ImportError:
+    from checks import AgentCheck
+  __version__ = "1.0.0"
+  
+class RandomCheck(AgentCheck):
+  def check(self, instance):
+    random_number = random.randint(1,1000)
+    self.gauge('my_metric', random_number, tags=['type:custom'] + self.instance.get('tags', []))
+```
+![Changing Metric Interval](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/edit%20metric%20interval.png)
 I had trouble locating where you put the collection interval line (which file that is). The docs led me to believe at times it was in the agent config file but it also seemed like there was configuration within the custom check file was where you would. I did see that I can change the interval from the datadog UI. 
 
 ## Visualizing Data:
