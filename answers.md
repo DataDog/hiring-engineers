@@ -20,10 +20,10 @@ Contextually - Seeing spikes of cpu usage at certain times etc \
 Broader Context - Able to determine when incoming datapoints are within a certain expectation or not. \
 
 ## Monitoring Data:
-Screenshot of monitor \
-Screenshot of message building based on which type of threshold and no data notification \
-Screenshot of the Email that notifies me \
-Screenshots of downtime created \
+![Monitor with Options](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/monitor_with_options.png)
+![Monitor Email Notification](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/Monitor%20Notification.png)
+![Weekday Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/weekday_downtime.png)
+![Weekend Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/weekend_downtime.png)
 
 ## Collecting APM Data: \
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution: \
