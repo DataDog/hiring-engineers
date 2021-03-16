@@ -110,9 +110,7 @@ Changing the timeframe of a dashboard: \
 Grabbing a snapshot of that timeframe and @myself:
 ![Snapshot](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/snapshot.png?raw=true)
 
-Is this question asking contexually within the metric itself or a broader context as to what the anomolies function actually does? \
-Contextually - Seeing spikes of cpu usage at certain times etc \
-Broader Context - Able to determine when incoming datapoints are within a certain expectation or not. \
+Within the context of the graph I created, the anomalies function is going to tell me when disk utilization outliers occur, mostly what I would be concerened about if my utilization goes below or above the normal threshold ofhistorical levels. In a greater sense it's really about mapping that historical data coming into datadog to see if the metric in question is behaving within "normal" parameters. Basically it isoloates outliers and points that dont fall within reasonable expectations given past results.
 
 ## Monitoring Data:
 Setting up a monitor with a warning and alert at the levels of 500 and 800 respecitely. The notifcation text email has options for whether it is a warning or alert:
@@ -121,7 +119,7 @@ Monitor Notification: \
 ![Monitor Email Notification](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/alert_email.png) \
 Weekday Downtime: \
 ![Weekday Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/weekday_downtime.png) \
-Monitor Weekend Downtime: \
+Weekend Downtime: \
 ![Weekend Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/weekend_downtime.png)
 
 ## Collecting APM Data:
