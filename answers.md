@@ -3,7 +3,7 @@ Then, get the Agent reporting metrics from your local machine and move on to the
 
 Collecting Metrics: \
 [[https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_with_api.png?raw=true|alt=test]]
-
+![alt text](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_with_api.png)
 
 SCREENSHOT OF HOST WITH TAGS and code that created it also links to code file \
 INSTALLED POSTGRES SCREENSHOT OF METRICS \
