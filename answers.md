@@ -172,4 +172,3 @@ In the high performance computing space, datadog could be vital to being able to
 There's an area of strategy called dynamic work design, one of the key principles of this design is to connect the human chain through a system of checks and triggers. Datadog to me is an computational version of this principle. And in that sense I think datadog could be used in all sorts of large scale systems with lots of components working together whether that's running diagnostics on jet engines to tell when it may need a repair or being able to detect power surges and dips in an electrical grid. 
 
 
-
