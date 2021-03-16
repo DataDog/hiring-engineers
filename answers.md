@@ -2,6 +2,9 @@ Your answers to the questions go here.
 Then, get the Agent reporting metrics from your local machine and move on to the next section...
 
 Collecting Metrics: \
+[[https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_with_api.png?raw=true]]
+
+
 SCREENSHOT OF HOST WITH TAGS and code that created it also links to code file \
 INSTALLED POSTGRES SCREENSHOT OF METRICS \
 SCREENSHOT OF CUSTOM METRIC and code that created it also links to code file \
