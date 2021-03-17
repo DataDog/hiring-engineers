@@ -1,0 +1,234 @@
+{
+    "notify_list": [],
+    "description": "",
+    "author_name": "Ivair F Do Carmo Jr",
+    "template_variables": [
+        {
+            "default": "*",
+            "name": "var"
+        }
+    ],
+    "is_read_only": false,
+    "id": "gtp-hza-b77",
+    "title": "Visualizing Data",
+    "url": "/dashboard/gtp-hza-b77/visualizing-data",
+    "created_at": "2021-03-17T02:13:17.676994+00:00",
+    "modified_at": "2021-03-17T02:13:17.676994+00:00",
+    "author_handle": "ivairfernandes94@gmail.com",
+    "widgets": [
+        {
+            "definition": {
+                "widgets": [
+                    {
+                        "definition": {
+                            "title_size": "16",
+                            "legend_columns": [
+                                "avg",
+                                "min",
+                                "max",
+                                "value",
+                                "sum"
+                            ],
+                            "yaxis": {
+                                "include_zero": true,
+                                "max": "auto",
+                                "scale": "linear",
+                                "min": "auto",
+                                "label": ""
+                            },
+                            "title_align": "left",
+                            "markers": [],
+                            "legend_layout": "auto",
+                            "show_legend": true,
+                            "title": "",
+                            "requests": [
+                                {
+                                    "q": "avg:my_metric.gauge{host:vagrant}",
+                                    "on_right_yaxis": false,
+                                    "style": {
+                                        "line_width": "thick",
+                                        "palette": "dog_classic",
+                                        "line_type": "solid"
+                                    },
+                                    "display_type": "area"
+                                }
+                            ],
+                            "type": "timeseries"
+                        },
+                        "id": 408720102550242
+                    },
+                    {
+                        "definition": {
+                            "type": "query_value",
+                            "requests": [
+                                {
+                                    "q": "avg:my_metric.gauge{host:vagrant} by {service}",
+                                    "aggregator": "avg"
+                                }
+                            ],
+                            "title_align": "left",
+                            "title_size": "16",
+                            "title": ""
+                        },
+                        "id": 1767605928456803
+                    },
+                    {
+                        "definition": {
+                            "title_size": "16",
+                            "title": "",
+                            "title_align": "left",
+                            "show_legend": true,
+                            "requests": [
+                                {
+                                    "q": "avg:my_metric.gauge{host:vagrant}",
+                                    "style": {
+                                        "palette": "dog_classic"
+                                    }
+                                }
+                            ],
+                            "type": "heatmap"
+                        },
+                        "id": 3609327762845672
+                    }
+                ],
+                "layout_type": "ordered",
+                "type": "group",
+                "title": "Custom Metric Scoped Over Host"
+            },
+            "id": 3490845586933691
+        },
+        {
+            "definition": {
+                "widgets": [
+                    {
+                        "definition": {
+                            "title_size": "16",
+                            "legend_columns": [
+                                "avg",
+                                "min",
+                                "max",
+                                "value",
+                                "sum"
+                            ],
+                            "yaxis": {
+                                "include_zero": true,
+                                "max": "auto",
+                                "scale": "linear",
+                                "min": "auto",
+                                "label": ""
+                            },
+                            "title_align": "left",
+                            "markers": [],
+                            "legend_layout": "auto",
+                            "show_legend": true,
+                            "title": "",
+                            "requests": [
+                                {
+                                    "q": "anomalies(avg:mongodb.dbs{*}, \"basic\", 2)",
+                                    "style": {
+                                        "line_width": "normal",
+                                        "palette": "dog_classic",
+                                        "line_type": "solid"
+                                    },
+                                    "display_type": "line"
+                                }
+                            ],
+                            "type": "timeseries"
+                        },
+                        "id": 4811767911505157
+                    },
+                    {
+                        "definition": {
+                            "title_size": "16",
+                            "legend_columns": [
+                                "avg",
+                                "min",
+                                "max",
+                                "value",
+                                "sum"
+                            ],
+                            "yaxis": {
+                                "include_zero": true,
+                                "max": "auto",
+                                "scale": "linear",
+                                "min": "auto",
+                                "label": ""
+                            },
+                            "title_align": "left",
+                            "markers": [],
+                            "legend_layout": "auto",
+                            "show_legend": true,
+                            "title": "",
+                            "requests": [
+                                {
+                                    "q": "anomalies(avg:mysql.performance.user_time{*}, \"basic\", 2)",
+                                    "style": {
+                                        "line_width": "normal",
+                                        "palette": "dog_classic",
+                                        "line_type": "solid"
+                                    },
+                                    "display_type": "line"
+                                }
+                            ],
+                            "type": "timeseries"
+                        },
+                        "id": 7529815411853669
+                    }
+                ],
+                "layout_type": "ordered",
+                "type": "group",
+                "title": "MondoDB & MySQL Metrics with Basic Anomalies Function"
+            },
+            "id": 101464302849731
+        },
+        {
+            "definition": {
+                "widgets": [
+                    {
+                        "definition": {
+                            "title_size": "16",
+                            "legend_columns": [
+                                "avg",
+                                "min",
+                                "max",
+                                "value",
+                                "sum"
+                            ],
+                            "yaxis": {
+                                "include_zero": true,
+                                "max": "auto",
+                                "scale": "linear",
+                                "min": "auto",
+                                "label": ""
+                            },
+                            "title_align": "left",
+                            "markers": [],
+                            "legend_layout": "auto",
+                            "show_legend": true,
+                            "title": "",
+                            "requests": [
+                                {
+                                    "q": "avg:my_metric.gauge{*}.rollup(sum, 3600)",
+                                    "on_right_yaxis": false,
+                                    "style": {
+                                        "line_width": "normal",
+                                        "palette": "dog_classic",
+                                        "line_type": "solid"
+                                    },
+                                    "display_type": "bars"
+                                }
+                            ],
+                            "type": "timeseries"
+                        },
+                        "id": 5228514291166658
+                    }
+                ],
+                "layout_type": "ordered",
+                "type": "group",
+                "title": "Custom Metric with Rollup Function"
+            },
+            "id": 8471344763335297
+        }
+    ],
+    "layout_type": "ordered"
+}
