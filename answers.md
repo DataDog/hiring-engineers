@@ -198,12 +198,15 @@ Notification from the monitor:
  
 Now let's quickly setup some downtime so we don't get notified by our monitors when we are off the clock.
  
-Weekday Downtime: 
-
-![Weekday Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/weekday_downtime.png)
+Scheduling downtime for the week
+![Weekday Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/ScheduleDtimeWeek.png)
  
-Weekend Downtime: 
-![Weekend Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/weekend_downtime.png) 
+Scheduling downtime for the weekend
+![Weekend Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/ScheduleDtimeWeekend.png)
+
+Once we schedule we get emailed notifications for our downtime
+![Week Notification](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/DtimeNotifWeek.png)
+![Weekend Notification](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/DtimeNotifWeekend.png) 
 
 ## Collecting APM Data:
 ![Infrastructure and APM Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard%20with%20flask%20apm%20included.png)
