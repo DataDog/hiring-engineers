@@ -146,22 +146,64 @@ Once we execute our POST API call with this JSON we get the following dashboard 
   
 ![My Api Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_with_api.png?raw=true)
 
-To change the timeframe of our dashboard we go to the top right and can either select from some of the dropdown options or just type `5 min` into it and we can set our dashboard timeframe to 5 minutes
+To change the timeframe of our dashboard we go to the top right and can either select from some of the dropdown options or just type `5 min` into it and we can set our dashboard timeframe to 5 minute
+
 ![Changing timeframe](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/change_timeframe.png?raw=true)
 So it looks like we've got an interesting point on one of our graphs, if we click into the graph and select `Send Snapshot` we can send this snapshot to a teammate with the @notation. Below is a screenshot of the email notification for the snapshot. 
 ![Snapshot](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/snapshot.png?raw=true)
 
 ## Monitoring Data:
-Setting up a monitor with a warning and alert at the levels of 500 and 800 respecitely. The notifcation text email has options for whether it is a warning or alert:
-![Monitor with Options](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/monitor_w_options.png) \
-Monitor Notification: \
-![Monitor Email Notification](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/alert_email.png) \
-Weekday Downtime: \
-![Weekday Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/weekday_downtime.png) \
-Weekend Downtime: \
-![Weekend Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/weekend_downtime.png) \
+You can make monitors from both the Datadog UI as well as the API. Below the JSON body, broken into 3 parts, used to create my monitor for the exercise.
+This first block contains the title, which contains the host that the monitor is watching as well as the type of monitor this is a metric alert, as opposed to any of the other datadog objects.
+```
+{
+	"name": "Host {{host.name}} is running high",
+	"type": "metric alert",
+```
+Now comes the main elements of our monitor, the query itself -  what the monitor is actually going to be watching and the message - what the monitor is going to say when later defined thresholds are hit. The query is looking to see if the custom metric created earlier is above 800. The next element is the message the monitor is going to send when we've triggered it. We can define different messages depending on what our monitor wants to tell us using curly brack notation `{{#is_threshold}}`. I've set up a message for when the alert activates as well as a message for when a warning is activated. We will define both of those thresholds in the 3rd block of code. Lastly in the message I've included @notation and the email address of the teammated (me) I want to notify when this monitor goes off.
+```
+	"query": "max(last_5m):max:my_metric{host:bens.datadog.application} > 800",
+	"message": "{{#is_alert}}\nALERT -- My_metric on host {{host.name}} is running above the approved alert threshold of 800. Latest metric is {{value}}\n{{/is_alert}} \n\n{{#is_warning}}\nWARNING -- My_metric on host {{host.name}} is running above the approved warning threshold of 500\n{{/is_warning}}  @bbehrman10@gmail.com",
+	"tags": [],
+```
+This last block is a few configuration options for the monitor, a few key ones to point out are `require_full_window: true` which says to wait for a full window of data before triggering the monitor, `no_data_timeframe: 10` which tells the monitor to alert us after 10 minutes of no data coming through the metric, and finally the `"thresholds": {"critical": 800, "warning": 500}` block defines our two threshold points 800 for a critical alert and a 500 warning alert. 
+```
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": true,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": 10,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		}
+	}
+}
+```
+You can also create this monitor from the Datadog UI:
+Defining the metrics and thresholds
+![Monitor Threshold UI](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/monitor_ui1.png)
 
-Quick note about the times, they are Mountain Time
+Message and Configuration
+![Monitor Message UI](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/monitor_ui2.png)
+
+Notification from the monitor:
+![Monitor Email Notification](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/alert_email.png)
+ 
+Now let's quickly setup some downtime so we don't get notified by our monitors when we are off the clock.
+ 
+Weekday Downtime: 
+
+![Weekday Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/weekday_downtime.png)
+ 
+Weekend Downtime: 
+![Weekend Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/weekend_downtime.png) 
 
 ## Collecting APM Data:
 ![Infrastructure and APM Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard%20with%20flask%20apm%20included.png)
