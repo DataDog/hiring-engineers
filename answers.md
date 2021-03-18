@@ -1,7 +1,8 @@
 Exercise completed using a Vagrant Ubuntu Box 
+All API calls were made using Postman
 
 ## Collecting Metrics:
-![My Host](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/host_map_with_tags.png)
+Here is the my datadog.yaml file for configuring my agent. I have setup a few tags as well as enabled its APM configuration (more on that later).
 ```
 api_key: <redacted>
 site: datadoghq.com
@@ -16,7 +17,10 @@ tags:
 apm_config:
   enabled: true
 ```
-Postgres Config file: Would love some feedback on the custom_queries as I was unable to get this one working. \
+Here is the corresponding screenshot from the Datadog UI showing my host with the tags listed in the prevoius code block. 
+![My Host](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/host_map_with_tags.png)
+
+I then installed a Postgres database system onto my vagrant box, created a database called new_db and configured the following confiuration file and put it into the etc/datadog-agent/conf.d/postgres.d/ directory. At this point I also attempted to pull through a custom query however while the Agent status check was not throwing an error  I was unable to see this metric coming through. 
 ```
 init_config:
 
@@ -37,10 +41,12 @@ instances:
       name: sequence_scan_by_table
       type: gauge
 ```
-![Custom Metric Graph](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/my_metric.png) \
-This is the custom metric I made that generates a random number between 1 and 1000
+Here is a quick screenshot of my out of the box PostgreSql dashboard pulling in live statistics from the postgres database. I ran a number of random write and read operations to get some metrics pulled through.
 
-```
+![Postgres Dashboard](http://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/postgres_dashboard.png)
+ 
+ The following is the python file I named custom_random.py and placed in the /etc/datadog-agent/checks.d/ directory. It imports a simple random module and then ran that module before creating the my_metric gauge with that random value. 
+ ```
 import random
 try:
     from datadog_checks.base import AgentCheck
@@ -53,16 +59,19 @@ class RandomCheck(AgentCheck):
     random_number = random.randint(1,1000)
     self.gauge('my_metric', random_number, tags=['type:custom'] + self.instance.get('tags', []))
 ``` 
-I had trouble locating where you put the collection interval line (which file that is). From the exercise I gathered that you would just put the line into the custom_metric.py file however I could not get this to work. The docs also were phrased in a way that led me to believe you could configure the agent itself to globably change the interval time but I could not figure this out either. I did however find the change interval option in the DatadogHQ UI
 
+Here is the corresponding graph for my_metric mapped over my tagged host
+![Custom Metric Graph](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/my_metric.png)
+
+There's also a custom_random configuration file with a small block of code:
+  `Instances: [{min_collection_interval: 45}] ` in the /datadog-agent/conf.d/ directory.  The min_collection_interval parameter means that the agent's collector will queue this check every 45 seconds. You can also change this interval from the Datadog UI
 ![Changing Metric Interval](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/edit%20metric%20interval.png)
 
 ## Visualizing Data:
-![My Api Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_with_api.png?raw=true)
- The above dashboard was made with the following JSON body plugged into the Postman Datadog API collection
+I've broken up the JSON body from my Dashboad API request into 4 parts. This first block is mainly configuration of the dashboard itself whereas the other 3 pieces are individual widgets or graphs for the dashboard. I've set `layout_type` to "ordered" so this dashboard will be a timeboard rather than a free-form screenboard.
 ```
 {
-   "description":"dashboard made by an API testing Ben",
+   "description":"dashboard made by an API",
    "is_read_only":false,
    "layout_type":"ordered",
    "notify_list":[
@@ -70,6 +79,9 @@ I had trouble locating where you put the collection interval line (which file th
    ],
    "title":"Bens API Dashboard",
    "widgets":[
+```
+This first widget definition is graphing the custom my_metric over the scope of my tagged host. We can see this in the "q" line - representing the widget's query. We take the max value from my_metric and only pull it only from the host inside of the curly braces. We then graph these values on a timeseries - a specific Datadog widget. 
+```
       {
          "definition":{
             "requests":[
@@ -87,6 +99,9 @@ I had trouble locating where you put the collection interval line (which file th
             }
          }
       },
+  ```
+  The second widget is taking a metric from our integrated postgres database and applying the anomalies function. This function is basically going to take my incoming stream of data from my database and tell me when if those incoming datapoints fall within an expected range of values. These values are calculated using the basic algorithim with a bounds of 2. The bounds meaning basically how wide a berth the anomaly algorithm gives before saying a specific point is an outlier.
+   ```
       {
          "definition":{
             "requests":[
@@ -104,6 +119,9 @@ I had trouble locating where you put the collection interval line (which file th
             }
          }
       },
+ ```
+ The third widget represents a rollup function of the custom my_metric over the course of an hour. This basically amounts to an aggregation function that runs every 1800 / 3600 seconds. 
+ ```
       {
          "definition":{
             "requests":[
@@ -124,14 +142,14 @@ I had trouble locating where you put the collection interval line (which file th
    ]
 }
 ```
-You'll notice that for the anomalies graph I didn't use a Postgresql metric. I made this decision because the only metrics I was consistently seeing were related to the number of tables on the database. I could not get row operation (fetch and return) statistics to populate in the big Postgres Overview Dashboard. So I used disk.io.util instead so grabbing the anomalies was an interesting graph to look at.
+Once we execute our POST API call with this JSON we get the following dashboard on our Datadog UI
+  
+![My Api Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_with_api.png?raw=true)
 
-Changing the timeframe of a dashboard: \
-![Changing timeframe](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/change_timeframe.png?raw=true) \
-Grabbing a snapshot of that timeframe and @myself:
+To change the timeframe of our dashboard we go to the top right and can either select from some of the dropdown options or just type `5 min` into it and we can set our dashboard timeframe to 5 minutes
+![Changing timeframe](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/change_timeframe.png?raw=true)
+So it looks like we've got an interesting point on one of our graphs, if we click into the graph and select `Send Snapshot` we can send this snapshot to a teammate with the @notation. Below is a screenshot of the email notification for the snapshot. 
 ![Snapshot](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/snapshot.png?raw=true)
-
-Within the context of the graph I created, the anomalies function is going to tell me when disk utilization outliers occur, mostly what I would be concerened about if my utilization goes below or above the normal threshold ofhistorical levels. In a greater sense it's really about mapping that historical data coming into datadog to see if the metric in question is behaving within "normal" parameters. Basically it isoloates outliers and points that dont fall within reasonable expectations given past results.
 
 ## Monitoring Data:
 Setting up a monitor with a warning and alert at the levels of 500 and 800 respecitely. The notifcation text email has options for whether it is a warning or alert:
