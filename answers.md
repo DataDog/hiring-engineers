@@ -347,13 +347,24 @@ Final Question
 -------------
 **1.** Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?
 
-- I believe that a very creative way of using Datadog's services would be by monitoring rented bikes, scooters, and motorcycles. 
-As our civilization increases exponentially, the geographical space for personal vehicles dicreases. 
-So, the numbers show that people are renting each time more small vehicles for the ease of transportation, to avoid traffic, not to pay for car's financing plans, not to catch public services (mainly during pandemic times), etc. 
+ I believe that a very creative way of using Datadog's services would be by monitoring rented bikes and scooters, which is one of the top [5 Green Transportation Solutions for Public Transportation System](https://environment.co/green-transportation-solutions/) suggested by [environment.co](https://environment.co).
+As our civilization increases exponentially, the geographical space for personal vehicles decreases. 
+So, researchers such as [MTI's : Comparing the benefits of scooter-sharing vs. bike-sharing](https://news.mit.edu/2020/study-compares-scooter-sharing-bike-sharing-1005) shows that people are renting each time more small vehicles for the ease of transportation, to avoid traffic, not to pay for car's financing plans, not to catch public services (mainly during pandemic times), etc. 
+Compared side by side, scooters have been even more requested than bikes. 
+
+ Obviously that by only renting scooters and bikes wont be enough to solve the traffic and transportation issues. But, if we can collect more and more data about the benefits of renting these small vehicles, we may influence in other aspects of these green transportation revolution.
+
+ For example, Ellon Musk, the mult-billionaire, is planning on building a [Tunnel pitch to ease traffic in Miami - FL](https://apnews.com/article/technology-florida-ron-desantis-miami-elon-musk-5450996158cd31dc9395f7cadcd57d0c).
+This solution is expected to cover big vehicles traffic. Bu what if, by the time they actually start building this tunnel, we don't have more data that proves that renting scooter and bikes are safer. cheaper. and greener? 
+If so, these millions of dollars that are planned to be invested, could be redirected to more scooters and bike's infrastructures. 
+
+ 
 So, I think that it would be a great idea by monitoring these rented small vehicles to understand better where this new kind of transportation can lead us. I believe that with the right data, we can understand better if people are leaning towards a "greener" future, or even how can we use that data to solve traffic problems that only gets worse over time. 
 
-- Another idea I had was about monitoring the different kinds of Covid 19 - Vaccines around the world. Many countries have developed their own vaccines, some have made them commercially available and some not.
-But we hardly will know how efficient they are until we actually get the necessary data to study its efficiency in short and long terms. Other variants could be analyzed as well, such as time between 1st and 2nd shots, exposure to mutations of the virus, geolocation, economical accessibillity, etc. 
+ Thinking from Datadog's perspective, we could definitely create advanced and dedicated monitoring services in partnership with these big cities that face traffic issues around the world, as well as the big tech companies that seem to be leaning more towards gree solutions these days. Data is power, we all know that! 
+But making the right use of these correlated data could lead us to solve problems that weren't imagined before. 
+And Green Transportation is definitely one of them...
+
 
 Dashboards And Links
 -------------
