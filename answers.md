@@ -3,7 +3,7 @@ Hiring Exercise
 This is [Ivair Do Carmo Jr.'s](https://github.com/Ivairjr) responses to the **Solutions Engineer's** [hiring exercise](https://github.com/DataDog/hiring-engineers/tree/solutions-engineer) at [DataDog](https://www.datadoghq.com). 
 
 
-The following topics will be covered in details:
+On today's exercise, the following topics will be covered in details by me in a simple and involving way to make you feel comfortable understanding as well as using Datadog's services.
 
 - [Setup the environment](#setup-the-environment)
 - [Collecting Metrics](#collecting-metrics)
@@ -16,21 +16,34 @@ The following topics will be covered in details:
 Setup the environment
 -------------
 
-**1.** In order to avoid any OS or dependency issues, we are going to spin up a fresh linux/Ubuntu VM via Vagrant `min V. 16.04` ([Instructions Here](https://learn.hashicorp.com/collections/vagrant/getting-started)).
+**1.** First of all, we need to setup an environment in your machine in order to avoid any OS or dependency issues. There are many ways we can do it, but for this activity's purpose we are going to spin up a fresh Linux/Ubuntu Virtual Machine via Vagrant with a minimum version of `16.04`.
+Setting up your Virtual Machine is not as hard as it sounds. You can follow Vagrant's [Getting Started](https://learn.hashicorp.com/collections/vagrant/getting-started) document which uses a very simple syntax to guide you on setting your VM easy and fast.
 
-*For MacOS users, it is possible that after following the Vagrant instructions, you may run into the following `Error` in your terminal when trying to [**Boot an Environment**](https://learn.hashicorp.com/tutorials/vagrant/getting-started-up?in=vagrant/getting-started):
+*IMPORTANT: **MacOS** users may run into some issues to run their VM after installation. 
+**DO NOT PANIC!** it is possible that after following Vagrant's instructions, your commands still wont run your VM. An `Error` is displayed on your terminal when trying to [**Boot your Environment**](https://learn.hashicorp.com/tutorials/vagrant/getting-started-up?in=vagrant/getting-started).
+
+The error prompted is the one bellow:
 
 `!Kernel Driver Not Installed (RC=1908)`
 
-If so, it means *"Oracle America Inc"* needs the approval to access your system. You can easily solve this problem by going to your *System Preferences* via: 
+Takling this issue is not a "Rocket Science" at all, and now I am going to show a very simple approach to solve it:
+So, the error prompted means that "Oracle America Inc"* needs the approval to access your system.
+You can easily solve this problem by going to your *System Preferences* via: 
 
 *`System Preferences > Security & Privacy > Allow "Orable America Inc"`*
 
-**2.** Once your VM is ready, sign up for a [DataDog Trial](https://www.datadoghq.com/).
+Now you can click on the Allow button and try to boot your environment again. 
 
-*Make sure you use **“Datadog Recruiting Candidate”** in the [“Company”](https://a.cl.ly/wbuPdEBy) field.
+Done, your VM is good to go! 
 
-**3.** Now, we are going to follow the [Agent installation guide](https://app.datadoghq.com/account/settings#agent/aws) in order to set up the DataDog Agent that reports metrics from our local machine.
+**2.** Your VM is ready, now it is time to sign up for a [DataDog 14-days free trial](https://www.datadoghq.com/) to have access to exclusive monitoring services.
+
+*During the signing-up process, make sure you fill out  **“Datadog Recruiting Candidate”** in the [“Company”](https://a.cl.ly/wbuPdEBy) field.
+
+**3.** Your VM is running and your Datado account is set. Now, we are going to follow the [Agent installation guide](https://app.datadoghq.com/account/settings#agent/aws) thoroughly in order to set up the DataDog Agent that reports metrics from our local machine.
+Within seconds, your Datadog platform will start receiving these metrics reported by the DataDog Agent. 
+
+As simple as that, we created a connection between our Local Machine and Datadog. Now it is the fun time: we are going to use the environment we just created to configure some files and potentialize the use of Datadog's services/ Let's go..
 
 
 
@@ -38,19 +51,22 @@ Collecting Metrics
 -------------
 **1.** Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog:
 
-- ###### Access the Agent Main Configuration File:
+- ###### On this exercise, we are going access the Agent Main Configuration File, which is the core file for creating a bridge between our local machine and Datadog in order to add **Tasg**. Tags are custom keywords pointing to specific aspects of your config file that groups together information as you desire. We will show how to apply tags in the next steps:
 
     `/etc/datadog-agent/datadog.yaml`
  
-*The file path above is set for Ubuntu since the OS running in our VM is Ubuntu. But if you are running commands from a different OS, you can check the syntax for other platforms [here](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7).
+*The line above represents a file path within your system. The syntax for file paths vary from OS to OS, but the line above is set for Ubuntu since the OS running in our VM is Ubuntu.
+ Although, if you are running commands from a different OS, you can check the different syntax for other platforms [here](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7).
   
-- The **datadog.yaml** file is large, so I advise you to search for the keywords before editing anything. The ***grep*** command below will point out the occurrences of your keyword and the line they are located at. In this case, we are looking for the keyword *tags:*
+- The **datadog.yaml** file is large in extension, so I advise you to search for the keywords before editing anything. 
+The commands we will run from now on are Linux based commands, so there are different commands to get to the same destination. You can use the commands suggested here, or your can use other commands you judge to better in order to access, read, create, remove, edit, and write on files. 
+ The first command introduced for searching keywords is the command ***grep***.  Bellow you can see the syntax used to invoque the command grep that will point out the occurrences of your keyword and the exact line(s) they are located at. In this case, we are looking for the keyword *tags* located in the ***datadog.yaml*** file:
 
     `$sudo grep -n tags: datadog.yaml `
     
 *If necessary, you can use the ***sudo*** command to have the security privileges of another user, in case you are not the root user.
 
-- After finding the occurrences and the number of the respective lines, we can now access the **datadog.yaml** file in edit mode via command ***vi***: 
+- After finding the specific occurrences and the number of their respective lines, we can now access the **datadog.yaml** file in edit mode via command ***vi***: 
 
     `$vi datadog.yaml`
 
@@ -61,7 +77,7 @@ Collecting Metrics
 - We are now located at line 66 of our file, which falls under the ***@param tags***. 
 ***@param*** *is short of parameters that are passed inside the config files*
 
-- Almost every line is commented, which means they are not active commands. So, we need to delete the ***#*** in the beginning of the lines we want to modify/activate. 
+- Almost every line is commented, which means they are not active commands. So, we need to delete the ***#*** at the beginning of the lines we want to modify/activate. 
 
 - Add the following *tags* into the config file to get them started:
   
