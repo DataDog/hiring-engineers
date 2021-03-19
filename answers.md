@@ -1,4 +1,6 @@
 Your answers to the questions go here.
+
+--Images are in the spererate 'Datadog Images' PDF
 Prerequisites - Setting Up The Environment
 
 I began by trying to install VirtualBox & Vagrant. It took me a while to figure out exactly why I wasn’t able to get it working - I’m using a Mac with an M1 chip. A curse of the early adopter.
