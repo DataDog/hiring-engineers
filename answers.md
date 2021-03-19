@@ -79,3 +79,5 @@ Image (20) - Weekend Downtime
 Collecting APM Data
 
 Link to dashboard - https://p.datadoghq.eu/sb/803nv4zj2tjisyvo-7c9f371357eea1e9f41000a2d2c6c4d9
+
+Bonus Question - A service groups together endpoints, queries, or jobs for the purposes of building an application whereas a resource represent a specific domain of an application, such as a datqabase query or a background job.
