@@ -160,10 +160,10 @@ This first block contains the title, which contains the host that the monitor is
 	"name": "Host {{host.name}} is running high",
 	"type": "metric alert",
 ```
-Now comes the main elements of our monitor, the query itself -  what the monitor is actually going to be watching and the message - what the monitor is going to say when later defined thresholds are hit. The query is looking to see if the custom metric created earlier is above 800. The next element is the message the monitor is going to send when we've triggered it. We can define different messages depending on what our monitor wants to tell us using curly brack notation `{{#is_threshold}}`. I've set up a message for when the alert activates as well as a message for when a warning is activated. We will define both of those thresholds in the 3rd block of code. Lastly in the message I've included @notation and the email address of the teammated (me) I want to notify when this monitor goes off.
+Now comes the main elements of our monitor, the query itself -  what the monitor is actually going to be watching and the message - what the monitor is going to say when later defined thresholds are hit. The query is looking to see if the custom metric created earlier is above 800. The next element is the message the monitor is going to send when we've triggered it. We can define different messages depending on what our monitor wants to tell us using curly brack notation `{{#is_threshold}}`. I've set up a message for when the alert activates as well as a message for when a warning is activated and one for if there's no data coming through from the host. We will define both of those thresholds in the 3rd block of code. Lastly in the message I've included @notation and the email address of the teammated (me) I want to notify when this monitor goes off.
 ```
 	"query": "max(last_5m):max:my_metric{host:bens.datadog.application} > 800",
-	"message": "{{#is_alert}}\nALERT -- My_metric on host {{host.name}} is running above the approved alert threshold of 800. Latest metric is {{value}}\n{{/is_alert}} \n\n{{#is_warning}}\nWARNING -- My_metric on host {{host.name}} is running above the approved warning threshold of 500\n{{/is_warning}}  @bbehrman10@gmail.com",
+	"message": "{{#is_alert}}\nALERT -- My_metric on host {{host.name}} is running above the approved alert threshold of 800. Latest metric is {{value}}\n{{/is_alert}} \n\n{{#is_warning}}\nWARNING -- My_metric on host {{host.name}} is running above the approved warning threshold of 500\n{{/is_warning}} \n\n {{#is_no_data}}\nUH-OH! There's no data from {{host.name}} {{/is_no_data}}  @bbehrman10@gmail.com",
 	"tags": [],
 ```
 This last block is a few configuration options for the monitor, a few key ones to point out are `require_full_window: true` which says to wait for a full window of data before triggering the monitor, `no_data_timeframe: 10` which tells the monitor to alert us after 10 minutes of no data coming through the metric, and finally the `"thresholds": {"critical": 800, "warning": 500}` block defines our two threshold points 800 for a critical alert and a 500 warning alert. 
@@ -193,12 +193,12 @@ Defining the metrics and thresholds
 Message and Configuration
 ![Monitor Message UI](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/monitor_ui2.png)
 
-Notification from the monitor:
+When our monitor activates it sends us an email
 ![Monitor Email Notification](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/alert_email.png)
  
 Now let's quickly setup some downtime so we don't get notified by our monitors when we are off the clock.
  
-Scheduling downtime for the week
+Scheduling downtime for the week after each day and before the next one starts
 ![Weekday Downtime](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/ScheduleDtimeWeek.png)
  
 Scheduling downtime for the weekend
@@ -210,11 +210,12 @@ Once we schedule we get emailed notifications for our downtime
 
 ## Collecting APM Data:
 ![Infrastructure and APM Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard%20with%20flask%20apm%20included.png)
-For the APM section I used the Datadog provded Flask app with a change to the port number
+For the APM section I used the Datadog provided Flask app with a change to the port number as well as added a span tag to each of the endpoints.  
 ```
 from flask import Flask
 import logging
 import sys
+from ddtrace import tracer
 
 # Have flask use stdout as the logger
 main_logger = logging.getLogger()
@@ -228,32 +229,50 @@ app = Flask(__name__)
 
 @app.route('/')
 def api_entry():
-    return 'Entrypoint to the Application'
+	current_span = tracer.current_space()
+	if current_span():
+		current_span.set_tag('from_entry_route', 'true')
+	    return 'Entrypoint to the Application'
 
 @app.route('/api/apm')
 def apm_endpoint():
-    return 'Getting APM Started'
+	current_span = tracer.current_space()
+	if current_space():
+		current_span.set_tag('from_apm_route', 'true')
+	    return 'Getting APM Started'
 
 @app.route('/api/trace')
 def trace_endpoint():
-    return 'Posting Traces'
+	current_span = tracer.current_space()
+	if current_space():
+		current_span.set_tag('from_trace_route', 'true')
+	    return 'Posting Traces'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5002')
 ```
+To get this application running and connected with our Datadog instance we have to do a few things. First, back to the datadog.yaml file mentioned earlier and make sure that we write in `apm_config: enabled: true` and restart our agent. This tells datadog to pull in APM metrics. Second, rather than run our flask app normally like `python3 <app_name>.py` we prepend a couple datadog declarations onto that command so it looks like `DD_SERVICE="<SERVICE>" DD_ENV="<ENV>" DD_LOGS_INJECTION=true ddtrace-run python3 <app_name>`
 
-You can visit my API dashboard with Infrastructure and APM here: https://p.datadoghq.com/sb/ee2as39v7pgo65cy-72e87b22b2b989a105269df944cd03cd
-I tried to pause it so the APM stats would remain. So you may need to go back in time to get dashboard data showing up as I most likely have turned off my vagrant. There should be data from Monday March 15th between 8:20PM and 8:30PM Mountain Time for both APM and Infrastructure.
+This instruments our application to send statistics to our datadog agent.
+Now we can go back into the datadog UI and check out our Flask service.
+![APM Service](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/flaskservice.png)
+![APM Details](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/flaskdetails.png) 
+And we can even click into specific API calls and trace them
+![APM Trace](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/flasktrace.png)
 
-I've always viewed services as the building blocks for the archtiechting of computing infrastructure. That could mean the actual compute instances of a cloud deployment in the terms of a microservices something like a Kubernetes deployment. Whereas resources are the individual actions of the service such as a GET or POST request.
+The following is a link to a public dashboard with metrics from the custom host, the flask applicaiton, and the Postgres database.
+https://p.datadoghq.com/sb/ee2as39v7pgo65cy-72e87b22b2b989a105269df944cd03cd
+For some interesting graphs, type this query into the timebar `query goes here`
 
+Services are logical groupings that make up an application. Such as a group of URL endpoints that come together that make an API service, or a group of database queries that act as one's database service. 
+Resources on the other hand are those individual elements that come together to make a service like an individual query or webservice call.
 
 ## Final Question:
 quantum circuit fidelity - I'm still questioning the actual practicallity of this, but building fault tolerant and effective quantum gates / circuits is a huge problem currently and having a tool that could  monitor when a quantum circuit errors out is crucial to development of that technology. But again, it's more of a pipedream than practical reality that current classically computed SaaS programs could integrate with quantum hardware.
 
 In the high performance computing space, datadog could be vital to being able to identify for example when a compute resource is working inefficiently so the architect would know they need to instantiate a larger compute instance for the job at hand. 
 
-There's an area of strategy called dynamic work design, one of the key principles of this design is to connect the human chain through a system of checks and triggers. Datadog to me is an computational version of this principle. And in that sense I think datadog could be used in all sorts of large scale systems with lots of components working together whether that's running diagnostics on jet engines to tell when it may need a repair or being able to detect power surges and dips in an electrical grid. 
+There's an area of strategy called dynamic work design, one of the key principles of this design is to connect the human chain through a system of checks and triggers. Datadog to me is an computational versiqon of this principle. And in that sense I think datadog could be used in all sorts of large scale systems with lots of components working together whether that's running diagnostics on jet engines to tell when it may need a repair or being able to detect power surges and dips in an electrical grid. 
 
 ## Feedback
 I had a lot of fun doing this exercise. And I think it falls in that perfect sweet spot in terms of getting familiar with your platform. In my experience I notice that too often the instructions for technical exercises are either so broad it's hard to pick your spot and go or far too regimented which can put one into "task completion mode" rather than "learning mode." I felt like not only was I putting puzzle pieces together but also I was learning how each of the puzzle pieces work together. Thank you for the opportunity.  -Ben Behrman
