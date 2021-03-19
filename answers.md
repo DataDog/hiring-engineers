@@ -81,3 +81,6 @@ Collecting APM Data
 Link to dashboard - https://p.datadoghq.eu/sb/803nv4zj2tjisyvo-7c9f371357eea1e9f41000a2d2c6c4d9
 
 Bonus Question - A service groups together endpoints, queries, or jobs for the purposes of building an application whereas a resource represent a specific domain of an application, such as a datqabase query or a background job.
+
+Final Question: Is there anything creative you would use Datadog for?
+Maybe not the most creative use, but I believe it would be of great use in a digital hospital, such as the new childrens hospital in Ireland. A building with as many sensors and data inputs as is expected there would be a solid user I believe.
