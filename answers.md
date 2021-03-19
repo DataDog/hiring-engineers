@@ -289,7 +289,9 @@ And we can even click into specific API calls and trace them
 ![APM Trace](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/flasktrace.png)
 
 The following is a link to a public dashboard with metrics from the custom host, the flask applicaiton, and the Postgres database.
-https://p.datadoghq.com/sb/ee2as39v7pgo65cy-72e87b22b2b989a105269df944cd03cd
+
+LINK HERE
+
 For some interesting graphs, type this query into the timebar `query goes here`
 
 Services are logical groupings that make up an application. Such as a group of URL endpoints that come together that make an API service, or a group of database queries that act as one's database service. 
