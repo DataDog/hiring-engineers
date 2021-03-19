@@ -72,6 +72,7 @@ Here is the corresponding graph for my_metric mapped over my tagged host
 
 There's also a custom_random configuration file with a small block of code:
   `Instances: [{min_collection_interval: 45}] ` in the /datadog-agent/conf.d/ directory.  The min_collection_interval parameter means that the agent's collector will queue this check every 45 seconds. You can also change this interval from the Datadog UI
+
 ![Changing Metric Interval](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/edit%20metric%20interval.png)
 
 ## Visualizing Data:
@@ -171,10 +172,13 @@ Once we execute our POST API call with this JSON we get the following dashboard 
 
 To change the timeframe of our dashboard we go to the top right and can either select from some of the dropdown options or just type `5 min` into it and we can set our dashboard timeframe to 5 minute
 
-![Changing timeframe](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/change_timeframe.png?raw=true)
+![Changing timeframe](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/change_timeframe.png)
+
 So it looks like we've got an interesting point on one of our graphs, if we click into the graph and select `Send Snapshot` we can send this snapshot to a teammate with the @notation.
 ![Snapshot1](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/snapshot1.png)
 ![Snapshot2](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/snapshot2.png)
+
+Our teammate will be sent a notification once we submit this.
 
 ## Monitoring Data:
 You can make monitors from both the Datadog UI as well as the API. Below the JSON body, broken into 3 parts, used to create my monitor for the exercise.
