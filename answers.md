@@ -1,10 +1,11 @@
 ## ENV Details:
-For this exercise I used a Vagrant Virtual Box with Ubuntu with the following elements 
+For this exercise I used a Vagrant Virtual Box with Ubuntu with the following packages/modules installed: 
 - Python3
 - Pip3
 - Flask
 - VirtualEnv
 - Postgres
+
 All API calls were made using Postman
 
 ## Collecting Metrics:
@@ -74,7 +75,7 @@ There's also a custom_random configuration file with a small block of code:
 ![Changing Metric Interval](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/edit%20metric%20interval.png)
 
 ## Visualizing Data:
-I've broken up the JSON body from my Dashboad API request into 4 parts. This first block is mainly configuration of the dashboard itself whereas the other 3 pieces are individual widgets or graphs for the dashboard. I've set `layout_type` to "ordered" so this dashboard will be a timeboard rather than a free-form screenboard.
+I've broken up the JSON body from my Dashboad API request into 4 parts. This first block is mainly configuration of the dashboard itself whereas the other 4 pieces are individual widgets or graphs for the dashboard. I've set `layout_type` to "ordered" so this dashboard will be a timeboard rather than a free-form screenboard.
 ```
 {
    "description":"dashboard made by an API",
@@ -106,16 +107,16 @@ This first widget definition is graphing the custom my_metric over the scope of 
          }
       },
   ```
-  The second widget is taking a metric from our integrated postgres database and applying the anomalies function. This function is basically going to take my incoming stream of data from my database and tell me when if those incoming datapoints fall within an expected range of values. These values are calculated using the basic algorithim with a bounds of 2. The bounds meaning basically how wide a berth the anomaly algorithm gives before saying a specific point is an outlier.
+  The second widget is taking the rows per second fetched metric from our integrated postgres database and applying the anomalies function. This function is basically going to take my incoming stream of database data and tell me when there's an unusual amount of row fetching. These values are calculated using the basic algorithim with a bounds of 2. The bounds meaning basically how wide a berth the anomaly algorithm gives before saying a specific point is an outlier.
    ```
       {
          "definition":{
             "requests":[
                {
-                 "q": "anomalies(max:system.io.util{host:bens.datadog.application}, 'basic', 2)"
+                 "q": "anomalies(max:postgresql.rows_fetched{host:bens.datadog.application}, 'basic', 2)"
                }
             ],
-            "title":"Database System Anomolies",
+            "title":"Postgres Rows Fetched Anomolies",
             "type":"timeseries",
             "yaxis":{
                "include_zero":true,
@@ -126,13 +127,14 @@ This first widget definition is graphing the custom my_metric over the scope of 
          }
       },
  ```
- The third widget represents a rollup function of the custom my_metric over the course of an hour. This basically amounts to an aggregation function that runs every 1800 / 3600 seconds. 
+ The third widget represents a rollup function of the custom my_metric over the course of an hour. This basically amounts to an aggregation function that runs every 3600 seconds or 1 hour. We put that value into a bar chart.
  ```
       {
          "definition":{
             "requests":[
                {
-                 "q": "max:my_metric{host:bens.datadog.application}.rollup(sum, 1800)"
+                 "q": "max:my_metric{host:bens.datadog.application}.rollup(sum, 3600)",
+                 "type": bars
                }
             ],
             "title":"My Metric Rollups",
@@ -144,19 +146,35 @@ This first widget definition is graphing the custom my_metric over the scope of 
                "scale":"linear"
             }
          }
+      },
+```
+This last widget is just a query for the number of tables within the database using the metric `table.count`
+```
+      {
+         "definition":{
+            "requests":[
+               {
+                 "q": "max:postgresql.table.count{db:postgres}",
+                 "aggregator": last
+               }
+            ],
+            "title":"Database Table Count",
+            "type":"query_value"
+         }
       }
    ]
 }
 ```
 Once we execute our POST API call with this JSON we get the following dashboard on our Datadog UI
   
-![My Api Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_with_api.png?raw=true)
+![My Api Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_from_api.png)
 
 To change the timeframe of our dashboard we go to the top right and can either select from some of the dropdown options or just type `5 min` into it and we can set our dashboard timeframe to 5 minute
 
 ![Changing timeframe](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/change_timeframe.png?raw=true)
-So it looks like we've got an interesting point on one of our graphs, if we click into the graph and select `Send Snapshot` we can send this snapshot to a teammate with the @notation. Below is a screenshot of the email notification for the snapshot. 
-![Snapshot](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/snapshot.png?raw=true)
+So it looks like we've got an interesting point on one of our graphs, if we click into the graph and select `Send Snapshot` we can send this snapshot to a teammate with the @notation.
+![Snapshot1](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/snapshot1.png)
+![Snapshot2](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/snapshot2.png)
 
 ## Monitoring Data:
 You can make monitors from both the Datadog UI as well as the API. Below the JSON body, broken into 3 parts, used to create my monitor for the exercise.
