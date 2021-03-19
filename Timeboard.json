@@ -1,0 +1,31 @@
+{
+    "viz": "timeseries",
+    "requests": [
+        {
+            "q": "sum:my_metric.gauge{host:ubuntu}.rollup(sum, 3600)",
+            "type": "line",
+            "style": {
+                "palette": "dog_classic",
+                "type": "solid",
+                "width": "normal"
+            }
+        },
+        {
+            "q": "anomalies(avg:mongodb.metrics.ttl.passesps{host:ubuntu}, 'robust', 2)",
+            "type": "line",
+            "style": {
+                "palette": "dog_classic",
+                "type": "solid",
+                "width": "normal"
+            }
+        }
+    ],
+    "yaxis": {
+        "scale": "linear",
+        "min": "auto",
+        "max": "auto",
+        "includeZero": true,
+        "label": ""
+    },
+    "markers": []
+}
