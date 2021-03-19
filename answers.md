@@ -1,4 +1,10 @@
-Exercise completed using a Vagrant Ubuntu Box 
+## ENV Details:
+For this exercise I used a Vagrant Virtual Box with Ubuntu with the following elements 
+- Python3
+- Pip3
+- Flask
+- VirtualEnv
+- Postgres
 All API calls were made using Postman
 
 ## Collecting Metrics:
