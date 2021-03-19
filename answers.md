@@ -74,7 +74,7 @@ Image showing the recovered metric
 ![Image(17)](Image(17).png) The Recovered Notification
 
 Bonus Question
-![Image(18)](Image (18).png) Datadog UI with downtime scheduled 
+![Image (18)](Image (18).png) Datadog UI with downtime scheduled 
 
 ![Image(19)](Image(19).png) Daily downtime from 7PM - 9AM
 
