@@ -50,7 +50,7 @@ instances:
 ```
 Here is a screenshot of my  PostgreSql dashboard pulling in live statistics from the postgres database.
 
-![Postgres Dashboard](http://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/postgresdashboard.png)
+![Postgres Dashboard](http://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dboardpostgres.png)
  
  The following is the python file I named custom_random.py and placed in the /etc/datadog-agent/checks.d/ directory. It imports a simple random module and then ran that module before creating the my_metric gauge with that random value. 
  ```
