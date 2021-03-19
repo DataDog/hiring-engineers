@@ -49,6 +49,8 @@ Ultimately, I made a dashboard using the Datadog UI and was able to create the f
 Image(11) - 5 minute interval snapshot sent to my email
 
 Bonus Question: Anomaly graph is displaying a straight line, as I chose the mongoldb.uptime metric to report on, which is a constant and wouldn’t anomaly wouldn’t be expected.
+https://p.datadoghq.eu/sb/803nv4zj2tjisyvo-fed156a3ee880b1c4e82d79cecabafbf
+
 Monitoring Data
 
 Created a metric monitor for ‘my_metric’ using the Datadog UI.
