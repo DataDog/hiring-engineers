@@ -5,7 +5,7 @@ Prerequisites - Setting Up The Environment
 
 I began by trying to install VirtualBox & Vagrant. It took me a while to figure out exactly why I wasn’t able to get it working - I’m using a Mac with an M1 chip. A curse of the early adopter.
 
-[Image(1)](Image(1).png)- Mac M1 chip issue
+![Image(1)](Image(1).png)- Mac M1 chip issue
 
 [Image(2)](Image(2).png) - Installation of the agent in Ubuntu VM
 
