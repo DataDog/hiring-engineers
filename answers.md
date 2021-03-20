@@ -9,7 +9,8 @@ For this exercise I used a Vagrant Virtual Box with Ubuntu with the following pa
 
 All API calls were made using Postman
 ## Collecting Metrics:
-Here is the my datadog.yaml file for configuring my agent. I have setup a few tags as well as enabled its APM configuration,
+Once the Datadog agent has been installed onto the host we need to go into the `/etc/datadog-agent/` directory and edit the `datadog.yaml `configuration file.
+Let's setup our configuration file with a few tags on our host and then enable apm for later. 
 ```
 api_key: <redacted>
 site: datadoghq.com
@@ -24,10 +25,10 @@ tags:
 apm_config:
   enabled: true
 ```
-Here is the corresponding screenshot from the Datadog UI showing the host with the tags listed in the prevoius code block. 
+Once we then restart the agent and log into our Datadog host map to see our host with the tags we created. 
 ![My Host](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/host_map_with_tags.png)
 
-Then I installed a Postgres database system onto the vagrant box, created a database called new_db and configured the following confiuration file and put it into the etc/datadog-agent/conf.d/postgres.d/ directory.
+After installing Postgres onto the vagrant box and creating a database, we need to configure the following file `conf.yaml` and put it into the etc/datadog-agent/conf.d/postgres.d/ directory.
 ```
 init_config:
 
@@ -42,14 +43,16 @@ Also in the postgres configuration located in /etc/postgres/10/main/
 relations:
   - large_test
 ````
-This tell postgres to grab relational data from the large_test table.
+This tell postgres to grab relational data from the `large_test` table. 
 
-Here is a screenshot of a dashboard pulling in live statistics from our Postgres database.
+Make sure to restart Postgres AND the Datadog agent at this point and whenever in the future you change configuration files.
+
+After restart we can now see Postgres statistics coming through onto a dashboard
 ![Postgres Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dboardpostgres.png)
  
  
  
- The following is the python file named custom_random.py and placed in the /etc/datadog-agent/checks.d/ directory. It imports a simple random module and then ran that module before creating the my_metric gauge with that random value. 
+ The following is the python file named `custom_random.py` and placed in the `/etc/datadog-agent/checks.d/` directory. It imports a simple random module and then runs said module before creating the my_metric gauge with the random value. 
  ```
 import random
 try:
@@ -69,12 +72,12 @@ Here's an example of a graph for this metric
 ![Custom Metric Graph](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/my_metric.png)
 
 There's also a custom_random configuration file with a small block of code:
-  `Instances: [{min_collection_interval: 45}] ` in the /datadog-agent/conf.d/ directory.  The min_collection_interval parameter means that the agent's collector will queue this check every 45 seconds. You can also change this interval from the Datadog UI
+  `Instances: [{min_collection_interval: 45}] ` in the `/datadog-agent/conf.d/` directory.  The min_collection_interval parameter means that the agent's collector will queue this check every 45 seconds. You can also change this interval from the Datadog UI
 
 ![Changing Metric Interval](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/edit%20metric%20interval.png)
 
 ## Visualizing Data:
-I've broken up the JSON body from my Dashboad API request into 5 parts. This first block is mainly configuration of the dashboard itself whereas the other 4 pieces are individual widgets or graphs for the dashboard. I've set `layout_type` to "ordered" so this dashboard will be a timeboard rather than a free-form screenboard.
+I've broken up the JSON body from my Dashboad API request into 5 parts. This first block is mainly configuration of the dashboard itself whereas the other 4 pieces are individual widgets or graphs for the dashboard. I've set `layout_type` to `"ordered"` so this dashboard will be a timeboard rather than a free-form screenboard.
 ```
 {
    "description":"dashboard made by an API",
@@ -86,7 +89,7 @@ I've broken up the JSON body from my Dashboad API request into 5 parts. This fir
    "title":"Bens API Dashboard",
    "widgets":[
 ```
-This first widget definition is graphing the custom my_metric over the scope of my tagged host. We can see this in the "q" line - representing the widget's query. We take the max value from my_metric and only pull it only from the host inside of the curly braces. We then graph these values on a timeseries - a specific Datadog widget. 
+This first widget definition is graphing the custom my_metric over the scope of my tagged host. We can see this in the `"q"` line - representing the widget's query. We take the max value from `my_metric` and only pull it only from the host inside of the curly braces. We then graph these values on a timeseries - a specific Datadog widget. 
 ```
       {
          "definition":{
@@ -106,7 +109,7 @@ This first widget definition is graphing the custom my_metric over the scope of 
          }
       },
   ```
-  The second widget is taking the heap blocks read metric from our integrated postgres database and applying the anomalies function. This function is basically going to take my incoming stream of database data and tell me when there's an unusual amount of activity on the database specific to the blocks heap read metric. These values are calculated using the basic algorithim with a bounds of 2. The bounds meaning basically how wide a berth the anomaly algorithm gives before saying a specific point is an outlier.
+  The second widget is taking the `heap_blocks_read` metric from our integrated postgres database and applying the anomalies function. This function is basically going to take my incoming stream of database data and tell me when there's an unusual amount of activity on the database specific to the blocks heap read metric. These values are calculated using the basic algorithim with a bounds of 2. The bounds meaning basically how wide a berth the anomaly algorithm gives before saying a specific point is an outlier.
    ```
       {
          "definition":{
@@ -126,7 +129,7 @@ This first widget definition is graphing the custom my_metric over the scope of 
          }
       },
  ```
- The third widget represents a rollup function of the custom my_metric over the course of an hour. This basically amounts to an aggregation function that runs every 3600 seconds or 1 hour. We put that value into a bar chart.
+ The third widget represents a rollup function of the custom my_metric over the course of an hour. This basically amounts to an aggregation function that runs every 3600 seconds or 1 hour. We put that summed up value into a bar chart.
  ```
       {
          "definition":{
@@ -192,7 +195,7 @@ Now comes the main elements of our monitor, the query itself -  what the monitor
 	"message": "{{#is_alert}}\nALERT -- My_metric on host {{host.name}} is running above the approved alert threshold of 800. Latest metric is {{value}}\n{{/is_alert}} \n\n{{#is_warning}}\nWARNING -- My_metric on host {{host.name}} is running above the approved warning threshold of 500\n{{/is_warning}} \n\n {{#is_no_data}}\nUH-OH! There's no data from {{host.name}} {{/is_no_data}}  @bbehrman10@gmail.com",
 	"tags": [],
 ```
-This last block is a few configuration options for the monitor, a few key ones to point out are `require_full_window: true` which says to wait for a full window of data before triggering the monitor, `no_data_timeframe: 10` which tells the monitor to alert us after 10 minutes of no data coming through the metric, and finally the `"thresholds": {"critical": 800, "warning": 500}` block defines our two threshold points 800 for a critical alert and a 500 warning alert. 
+This last block is a few configuration options for the monitor, a few key ones to point out are `require_full_window: true` which says to wait for a full window of data before triggering the monitor, `no_data_timeframe: 10` which tells the monitor to alert us after 10 minutes of no data coming through the metric, and finally the `"thresholds": {"critical": 800, "warning": 500}` block defines our two threshold points, 800 for a critical alert and a 500 warning alert. 
 ```
 	"options": {
 		"notify_audit": false,
@@ -235,7 +238,7 @@ Once we schedule we get emailed notifications for our downtime
 ![Weekend Notification](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/DtimeNotifWeekend.png) 
 
 ## Collecting APM Data:
-For the APM section I used the Datadog provided Flask app with a change to the port number as well as added a span tag to each of the endpoints.  
+For the APM section I used the Flask app provided by the exercise with a change to the port number as well as added span tags to each of the endpoints.  
 ```
 from flask import Flask
 import logging
@@ -276,10 +279,10 @@ def trace_endpoint():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5002')
 ```
-To get this application running and connected with our Datadog instance we have to do a few things. First, back to the datadog.yaml file mentioned earlier and make sure that we write in `apm_config: enabled: true` and restart our agent. This tells datadog to pull in APM metrics. Second, rather than run our flask app normally like `python3 <app_name>.py` we prepend a couple datadog declarations onto that command so it looks like `DD_SERVICE="<SERVICE>" DD_ENV="<ENV>" DD_LOGS_INJECTION=true ddtrace-run python3 <app_name>`
+To get this application running and connected with our Datadog instance we have to do a few things. First, back to the datadog.yaml file mentioned earlier and make sure that apm is configured via: `apm_config: enabled: true` and restart our agent. This tells datadog to pull in APM metrics. Second, rather than run our flask app normally like `python3 <app_name>.py` we prepend a couple datadog declarations onto that command so it looks like `DD_SERVICE="<SERVICE>" DD_ENV="<ENV>" DD_LOGS_INJECTION=true ddtrace-run python3 <app_name>` 
 
 This instruments our application to send statistics to our datadog agent.
-Now we can go back into the datadog UI and check out our Flask service.
+Now we can go back into the Datadog UI and check out our Flask service. 
 ![APM Service](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/flaskserviceapm.png)
 ![APM Details](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/flaskdetails.png) 
 And we can even click into specific API calls and trace them
