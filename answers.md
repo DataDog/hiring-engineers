@@ -65,6 +65,7 @@ class RandomCheck(AgentCheck):
 ``` 
 
 Here's an example of a graph for this metric 
+
 ![Custom Metric Graph](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/my_metric.png)
 
 There's also a custom_random configuration file with a small block of code:
@@ -105,7 +106,7 @@ This first widget definition is graphing the custom my_metric over the scope of 
          }
       },
   ```
-  The second widget is taking the rows per second fetched metric from our integrated postgres database and applying the anomalies function. This function is basically going to take my incoming stream of database data and tell me when there's an unusual amount of row fetching. These values are calculated using the basic algorithim with a bounds of 2. The bounds meaning basically how wide a berth the anomaly algorithm gives before saying a specific point is an outlier.
+  The second widget is taking the heap blocks read metric from our integrated postgres database and applying the anomalies function. This function is basically going to take my incoming stream of database data and tell me when there's an unusual amount of activity on the database specific to the blocks heap read metric. These values are calculated using the basic algorithim with a bounds of 2. The bounds meaning basically how wide a berth the anomaly algorithm gives before saying a specific point is an outlier.
    ```
       {
          "definition":{
@@ -284,14 +285,24 @@ Now we can go back into the datadog UI and check out our Flask service.
 And we can even click into specific API calls and trace them
 ![APM Trace](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/flasktrace.png)
 
+Here is a dashboard that grabs a number of pieces of information including:
+ - Postgres - Live Rows 
+ - Postgres - Dead Rows
+ - Postgres - Table Count
+ - Postgres - Block Heaps Read/Hit Per Second
+ - Postgres - Rows Inserted and Deleted
+ - Infrastructure - Our Custom Metric and Rollup
+ - Infrastructure - CPU Usage
+ - APM - Number of Incomimg Flask API Calls
+ - APM - Latency on Flask API Calls
+
 Public APM and Infrastructure Dashboard:
 ![APM Infrastructure Dboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/apminfra.png)
 
-The following is a link to a public dashboard with metrics from the custom host, the flask application, and the Postgres database.
+You can also visit this public dashboard here:
+- https://p.datadoghq.com/sb/ee2as39v7pgo65cy-028c1a051d6b16001f7818a721f61672
 
-https://p.datadoghq.com/sb/ee2as39v7pgo65cy-028c1a051d6b16001f7818a721f61672
-
-To take a look at some testing data, type this query into the timeframe dropdown:
+Going back to the following time will show you some incoming metrics:
 `Mar 19, 9:30 pm – Mar 19, 11:15 pm`
  ##### ** the data represented in this dashboard was generated using the following code blocks:
  ### Curling Flask:
@@ -344,9 +355,3 @@ Once receiving all the inputs from the AI and IOT devices, a program would deter
 The Ref Board is basically a Datadog dashboard that is sent the final determination from the logic step as well as the supporting evidence that proved to the determination algorithim what happened. 
 
 Our refs have reached the sideline and look at their ref board, which helps them validate and make the correct call. The idea here isn't that the virtual ref overturns the human refs, but helps them see information they may have missed. 
-
-
-## Feedback
-I had a lot of fun doing this exercise. And I think it falls in that perfect sweet spot in terms of getting familiar with your platform. In my experience I notice that too often the instructions for technical exercises are either so broad it's hard to pick your spot and go or far too regimented which can put one into "task completion mode" rather than "learning mode." I felt like not only was I putting puzzle pieces together but also I was learning how each of the puzzle pieces work together. Thank you for the opportunity.  -Ben Behrman
-
-
