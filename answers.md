@@ -1,3 +1,4 @@
+
 ## ENV Details:
 For this exercise I used a Vagrant Virtual Box with Ubuntu with the following packages/modules installed: 
 - Python3
@@ -7,9 +8,8 @@ For this exercise I used a Vagrant Virtual Box with Ubuntu with the following pa
 - Postgres
 
 All API calls were made using Postman
-
 ## Collecting Metrics:
-Here is the my datadog.yaml file for configuring my agent. I have setup a few tags as well as enabled its APM configuration (more on that later).
+Here is the my datadog.yaml file for configuring my agent. I have setup a few tags as well as enabled its APM configuration,
 ```
 api_key: <redacted>
 site: datadoghq.com
@@ -24,10 +24,10 @@ tags:
 apm_config:
   enabled: true
 ```
-Here is the corresponding screenshot from the Datadog UI showing my host with the tags listed in the prevoius code block. 
+Here is the corresponding screenshot from the Datadog UI showing the host with the tags listed in the prevoius code block. 
 ![My Host](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/host_map_with_tags.png)
 
-I then installed a Postgres database system onto my vagrant box, created a database called new_db and configured the following confiuration file and put it into the etc/datadog-agent/conf.d/postgres.d/ directory. At this point I also attempted to pull through a custom query however while the Agent status check was not throwing an error  I was unable to see this metric coming through. 
+Then I installed a Postgres database system onto the vagrant box, created a database called new_db and configured the following confiuration file and put it into the etc/datadog-agent/conf.d/postgres.d/ directory.
 ```
 init_config:
 
@@ -36,23 +36,20 @@ instances:
   port: 5432
   username: datadog
   password: <REDACTED>
-  
-  custom_queries:
-    metric_prefix: postgresql
-    query: "SELECT relname, seq_scan from pg_stat_user_tables"
-    columns:
-      name: relname
-      type: tag
-      name: seq_scan
-      type: tag
-      name: sequence_scan_by_table
-      type: gauge
 ```
-Here is a screenshot of my  PostgreSql dashboard pulling in live statistics from the postgres database.
+Also in the postgres configuration located in /etc/postgres/10/main/
+````
+relations:
+  - large_test
+````
+This tell postgres to grab relational data from the large_test table.
 
-![Postgres Dashboard](http://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dboardpostgres.png)
+Here is a screenshot of a dashboard pulling in live statistics from our Postgres database.
+![Postgres Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dboardpostgres.png)
  
- The following is the python file I named custom_random.py and placed in the /etc/datadog-agent/checks.d/ directory. It imports a simple random module and then ran that module before creating the my_metric gauge with that random value. 
+ 
+ 
+ The following is the python file named custom_random.py and placed in the /etc/datadog-agent/checks.d/ directory. It imports a simple random module and then ran that module before creating the my_metric gauge with that random value. 
  ```
 import random
 try:
@@ -67,7 +64,7 @@ class RandomCheck(AgentCheck):
     self.gauge('my_metric', random_number, tags=['type:custom'] + self.instance.get('tags', []))
 ``` 
 
-Here is the corresponding graph for my_metric mapped over my tagged host
+Here's an example of a graph for this metric 
 ![Custom Metric Graph](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/my_metric.png)
 
 There's also a custom_random configuration file with a small block of code:
@@ -114,7 +111,7 @@ This first widget definition is graphing the custom my_metric over the scope of 
          "definition":{
             "requests":[
                {
-                 "q": "anomalies(max:postgresql.rows_fetched{host:bens.datadog.application}, 'basic', 2)"
+                 "q": "anomalies(max:postgresql.heap_blocks_read{host:bens.datadog.application}, 'basic', 2)"
                }
             ],
             "title":"Postgres Rows Fetched Anomolies",
@@ -168,7 +165,7 @@ This last widget is just a query for the number of tables within the database us
 ```
 Once we execute our POST API call with this JSON we get the following dashboard on our Datadog UI
   
-![My Api Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_created_from_api.png)
+![My Api Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard_from_api.png)
 
 To change the timeframe of our dashboard we go to the top right and can either select from some of the dropdown options or just type `5 min` into it and we can set our dashboard timeframe to 5 minute
 
@@ -237,7 +234,6 @@ Once we schedule we get emailed notifications for our downtime
 ![Weekend Notification](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/DtimeNotifWeekend.png) 
 
 ## Collecting APM Data:
-![Infrastructure and APM Dashboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/dashboard%20with%20flask%20apm%20included.png)
 For the APM section I used the Datadog provided Flask app with a change to the port number as well as added a span tag to each of the endpoints.  
 ```
 from flask import Flask
@@ -288,21 +284,67 @@ Now we can go back into the datadog UI and check out our Flask service.
 And we can even click into specific API calls and trace them
 ![APM Trace](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/flasktrace.png)
 
-The following is a link to a public dashboard with metrics from the custom host, the flask applicaiton, and the Postgres database.
+Public APM and Infrastructure Dashboard:
+![APM Infrastructure Dboard](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/apminfra.png)
 
-LINK HERE
+The following is a link to a public dashboard with metrics from the custom host, the flask application, and the Postgres database.
 
-For some interesting graphs, type this query into the timebar `query goes here`
+https://p.datadoghq.com/sb/ee2as39v7pgo65cy-028c1a051d6b16001f7818a721f61672
 
+To take a look at some testing data, type this query into the timeframe dropdown:
+`Mar 19, 9:30 pm – Mar 19, 11:15 pm`
+ ##### ** the data represented in this dashboard was generated using the following code blocks:
+ ### Curling Flask:
+Flask statistics were generated by copy and pasting the following lines approximately 60 at a time after SSHing into the vagrant box.
+ ````
+curl 127.0.0.1:5002/
+curl 127.0.0.1:5002/api/trace
+curl 127.0.0.1:5002/api/apm
+````
+
+ ### Postgres:
+ Postgres statistics were generated by a couple of different blocks. This first one creates a table large_test
+````
+create table large_test (num1 bigint, num2 double precision, num3 double precision);
+````
+To insert rows into the database, I ran variations of the following block changing that final value to different integers
+````
+insert into large_test (num1, num2, num3)
+  select round(random()*10), random(), random()* 142
+  from generate_series(1,<VALUE>), s(i);
+````
+Because of the nature of the random data deletes were made basically by guessing a digit for the num1 value. 
+````
+delete from large_test where num1=<DIGIT>
+````
+Select queries were operated the same way, by changing the DIGIT for the num1 value
+````
+select * from large_test where num1=<DIGIT>
+````
 Services are logical groupings that make up an application. Such as a group of URL endpoints that come together that make an API service, or a group of database queries that act as one's database service. 
 Resources on the other hand are those individual elements that come together to make a service like an individual query or webservice call.
 
 ## Final Question:
-quantum circuit fidelity - I'm still questioning the actual practicallity of this, but building fault tolerant and effective quantum gates / circuits is a huge problem currently and having a tool that could  monitor when a quantum circuit errors out is crucial to development of that technology. But again, it's more of a pipedream than practical reality that current classically computed SaaS programs could integrate with quantum hardware.
+NFL "Virtual Referee" - 
+Every season NFL players, coaches, and fans find themselves yelling and screaming over the officiating of football games. And they're asking themselves the same questions: how do we hold these refs more accountable? And while that's an understable question it doesn't really strike at the heart of the problem. The real question they should be asking is how have we not, with all of the technology available, given referees more tools to make the best decisions possible? This is by no means a substitution for referees but I believe gives the crew a virtual member to help them determine a call. Now imagine for a moment, an NFL coach throws their challenge flag and tells the refs he wants to challenge the call. While the refs go to the sideline to determine the call, the virtual ref is executing it's multiple parts:
 
-In the high performance computing space, datadog could be vital to being able to identify for example when a compute resource is working inefficiently so the architect would know they need to instantiate a larger compute instance for the job at hand. 
+An AI trained watching footage of games visually determining if certain events have happened and then flagging when they do. This could apply to anything a referee looks for although I suppose for the most accurate version you would separate each specific thing the AI would be looking for and break them into modules. This information would be sent to a determination logic.
 
-There's an area of strategy called dynamic work design, one of the key principles of this design is to connect the human chain through a system of checks and triggers. Datadog to me is an computational versiqon of this principle. And in that sense I think datadog could be used in all sorts of large scale systems with lots of components working together whether that's running diagnostics on jet engines to tell when it may need a repair or being able to detect power surges and dips in an electrical grid. 
+IOT devices embedded into a number of on field elements:
+ - Helmets to determine illegal head to head hits
+ - The ball itself to determine spot of the ball for first downs / touchdowns
+ - Cleats to determine if a player steps out of bounds
+ - Knee pads to determine if a runner is down
+
+This IOT data would then also be sent to the determination logic.
+
+Determination Logic:
+Once receiving all the inputs from the AI and IOT devices, a program would determine what occured on the play in question and submit that and the proving statistics and metrics to what I'm dubbing the "Ref Board." 
+
+The Ref Board is basically a Datadog dashboard that is sent the final determination from the logic step as well as the supporting evidence that proved to the determination algorithim what happened. 
+
+Our refs have reached the sideline and look at their ref board, which helps them validate and make the correct call. The idea here isn't that the virtual ref overturns the human refs, but helps them see information they may have missed. 
+
 
 ## Feedback
 I had a lot of fun doing this exercise. And I think it falls in that perfect sweet spot in terms of getting familiar with your platform. In my experience I notice that too often the instructions for technical exercises are either so broad it's hard to pick your spot and go or far too regimented which can put one into "task completion mode" rather than "learning mode." I felt like not only was I putting puzzle pieces together but also I was learning how each of the puzzle pieces work together. Thank you for the opportunity.  -Ben Behrman
