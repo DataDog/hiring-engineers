@@ -355,3 +355,5 @@ Once receiving all the inputs from the AI and IOT devices, a program would deter
 The Ref Board is basically a Datadog dashboard that is sent the final determination from the logic step as well as the supporting evidence that proved to the determination algorithim what happened. 
 
 Our refs have reached the sideline and look at their ref board, which helps them validate and make the correct call. The idea here isn't that the virtual ref overturns the human refs, but helps them see information they may have missed. 
+
+A principle in designing really anything whether it's a large distributed system or even one's job tasks is finding ways to connect the chain through triggers and checks so having a platform like Datadog can really enable one to have real visibility into processes.
