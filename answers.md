@@ -357,3 +357,6 @@ The Ref Board is basically a Datadog dashboard that is sent the final determinat
 Our refs have reached the sideline and look at their ref board, which helps them validate and make the correct call. The idea here isn't that the virtual ref overturns the human refs, but helps them see information they may have missed. 
 
 A principle in designing really anything whether it's a large distributed system or even one's job tasks is finding ways to connect the chain through triggers and checks so having a platform like Datadog can really enable one to have real visibility into processes.
+
+## Feedback and Roadblocks:
+I had a lot of fun doing this exercise and learning the datadog platform. A lot of what I do in my job now is getting folks comfortable and up and running on a variety of different products so that they understand how to use them and this exercise taught me a lot in fact about finding that sweet spot between giving specific directions and keeping things broad. On one hand, if tasks are so specific, understanding of the why and how can be lost, but the other hand could be left so open ended that it's challenging to find a path and you folks have figured it out with this one. There was nothing too crazy in terms of roadblocks. I did have to do the exercise on a non M1 Mac as VirtualBox is sadly not compatible on those chips at this time.
