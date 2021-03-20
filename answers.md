@@ -74,7 +74,7 @@ There's also a custom_random configuration file with a small block of code:
 ![Changing Metric Interval](https://github.com/bbehrman10/hiring-engineers/blob/solutions-engineer/supporting_images/edit%20metric%20interval.png)
 
 ## Visualizing Data:
-I've broken up the JSON body from my Dashboad API request into 4 parts. This first block is mainly configuration of the dashboard itself whereas the other 4 pieces are individual widgets or graphs for the dashboard. I've set `layout_type` to "ordered" so this dashboard will be a timeboard rather than a free-form screenboard.
+I've broken up the JSON body from my Dashboad API request into 5 parts. This first block is mainly configuration of the dashboard itself whereas the other 4 pieces are individual widgets or graphs for the dashboard. I've set `layout_type` to "ordered" so this dashboard will be a timeboard rather than a free-form screenboard.
 ```
 {
    "description":"dashboard made by an API",
