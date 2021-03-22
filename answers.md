@@ -359,6 +359,8 @@ The Ref Board is basically a Datadog dashboard that is sent the final determinat
 
 Our refs have reached the sideline and look at their ref board, which helps them validate and make the correct call. The idea here isn't that the virtual ref overturns the human refs, but helps them see information they may have missed. 
 
+The value here to the NFL ranges from faster decisions made on the field all the way to transparency towards fans with calls made by referees. 
+
 A principle in designing really anything whether it's a large distributed system or even one's job tasks is finding ways to connect the chain through triggers and checks so having a platform like Datadog can really enable one to have real visibility into processes.
 
 ## Feedback and Roadblocks:
