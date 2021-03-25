@@ -17,13 +17,14 @@ Once this is ready, sign up for a trial Datadog at https://www.datadoghq.com/
 
 Then, get the Agent reporting metrics from your local machine and move on to the next section...
 
-## Prerequisites - Configuring your environment (Kyvaune's Notes)
+## Prerequisites - Configuring your environment 
+### (Kyvaune's responses and guidance added in-line from this point onward)
 
 Step 1: Setup your Linux VM
 
-See here (https://learn.hashicorp.com/tutorials/vagrant/getting-started-index?in=vagrant/getting-started) for more information on how to install Vagrant and Virtualbox.
+First, see here (https://learn.hashicorp.com/tutorials/vagrant/getting-started-index?in=vagrant/getting-started) for information on how to install Vagrant and Virtualbox.
 
-After completing the quick-start guide, simply enter “vagrant ssh” into a terminal window. This should connect you to the newly created Linux VM, from which you will then be able to undertake the tasks outlined within this challenge :)
+After completing the quickstart guide, enter “vagrant ssh” into a terminal window. This should connect you to the newly created Linux VM, from which you will then be able to undertake the tasks outlined within this challenge :)
 
 Step 2: Create a trial Datadog Account 
 
@@ -33,15 +34,15 @@ Step 3: Datadog Agent Installation
 
 Now that your account is created and your Linux VM active, you are ready to install the Datadog Agent within your environment. The Agent will collect event and metric data from its host (the machine running it) to be ultimately sent to Datadog, for a robust monitoring and performance tracking experience. See here for more on the Datadog Agent (https://docs.datadoghq.com/agent/).
 
-In our case, we will be installing the Agent on a VM running Ubuntu. Thus, we should follow the steps within the Agent 7 Installation Instructions for a Ubuntu instance found here (https://app.datadoghq.com/account/settings#agent/ubuntu). Generally, it is noteworthy that the Datadog Agent 7 is only compatible with Python 3 as of 3/8/21, meaning any custom checks (written in Python) and intended for use by Datadog should also be compatible with Python 3. If this is not possible, see instructions for Agent 6 or Agent 5 installation (also available within the previously shared link).
+In our case, we will be installing the Agent on a VM running Ubuntu. Thus, we should follow the steps within the Agent 7 Installation Instructions for a Ubuntu instance found here (https://app.datadoghq.com/account/settings#agent/ubuntu). Generally, it is noteworthy that the Datadog Agent 7 is only compatible with Python 3 as of 3/8/21, meaning any custom checks (written in Python) intended for use by Datadog should also be compatible with Python 3. If this is not possible, see instructions for Agent 6 or Agent 5 installation (also available within the previously shared link).
 
 From this point onward, the Datadog Agent running on our Linux environment should be collecting metric and event data, and we should be ready to proceed with the hiring challenge tasks. The following commands can be used to control the execution of the Datadog Agent within your Linux environment:
 
 ```
-sudo service datadog-agent start - to start the Datadog Agent service
-sudo service datadog-agent stop - to stop the Datadog Agent service
-sudo service datadog-agent restart - to restart the Datadog Agent service
-sudo service datadog-agent status - to status the Datadog Agent service
+sudo service datadog-agent start #start the Datadog Agent
+sudo service datadog-agent stop #stop the Datadog Agent
+sudo service datadog-agent restart #restart the Datadog Agent
+sudo service datadog-agent status #check the status of the Datadog Agent
 ```
 As a final note, all keys have been removed from this document.
 
@@ -51,13 +52,13 @@ As a final note, all keys have been removed from this document.
 
 Step 1: Edit configuration file to include specified tags
 
-Within your newly configured Linux VM, navigate to /etc/datadog-agent/ and use the command “sudo vi datadog.yaml” to open the .yaml file. This file will serve as the configuration for the Agent running on the host machine. Once within the vi editor, scroll to the end of the file, press the “i” key to enter insert mode, and enter the following (as well as any other tags deemed necessary):
+Within your newly configured Linux VM, navigate to /etc/datadog-agent/ and use the command “sudo vi datadog.yaml” to open the .yaml file. This file will serve as the configuration for the Agent running on the host machine. Once within the vi editor, scroll to the end of the file, press the “i” key to enter insert mode, and enter the following (as well as any additional tags deemed necessary):
 
 ```
 tags: ["env:dev", "device:ubuntu_vm"]  
 ```
 
-After entering the above, press the “escape” button to leave insert mode, then “shift + ;”, and finally type “x” and press “enter” to save your configuration changes. This is how we will edit configuration files for the duration of the challenge.
+After entering the above, press the “esc” key to leave insert mode, then “shift" + ";”, and finally “x” then “return” to save your configuration changes. This is how we will edit configuration files for the duration of the challenge.
 
 ![](./Collecting-Metrics/Host-Map-and-Config.png)  
 
@@ -71,12 +72,12 @@ Step 2: Install Datadog integration
 
 Once a MySQL database is installed on your VM, you can then install it’s Datadog integration by following the steps outlined in documentation found here (https://docs.datadoghq.com/integrations/mysql/?tab=host#pagetitle).
 
-You can check if the MySQL service is running with the command:
+Additionally, you can check if the MySQL service is running with the command:
 ```
 service --status-all
 ```
 
-At this point, you should see both the datadog-agent and mysql amongst the services running
+After doing so, you should see both the datadog-agent and mysql amongst the services running:
 ```
  [ + ]  datadog-agent
  [ + ]  datadog-agent-process
@@ -113,7 +114,7 @@ Tip: For log collection, paths values within mysql.d/conf.yaml should likely be 
 
 This may vary based on your MySQL configuration.
 
-After configuration configuration is complete, conf.d/mysql.d should look similar to as seen below:
+After configuration is complete, conf.d/mysql.d should be similar to as seen below:
 
 ![](./Collecting-Metrics/MySQL-Configuration.png)  
 
@@ -184,13 +185,13 @@ As long as the Datadog agent is installed correctly, no further installation is 
 
 Step 2: Writing a custom Agent check
 
-Before writing our custom Agent check, as previously mentioned, it is important to note that if you are running Agent v7, the code comprising the custom Agent check should be Python 3 compatible. Otherwise, another Datadog Agent 6 (preferably) or 5 should be used.
+Before writing our custom Agent check, as previously mentioned  within this document, it is important to note that if you are running Agent v7, the code comprising the custom Agent check should be Python 3 compatible. Otherwise, another Datadog Agent 6 (preferably) or 5 should be used.
 
-Understanding this, we are ready to proceed. As dictated by our use case and after review of the Metric Submission: Custom Agent Check documentation (found here: https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=gauge) we conclude a custom Agent check leveraging gauge() can address our need to submit a value of a metric at a given timestamp - in this case, being a random number between 0 and 1000 every 45 seconds assigned to metric, my_metric. 
+Understanding this, we are ready to proceed. As dictated by our use case and after review of the Metric Submission: Custom Agent Check documentation (found here: https://docs.datadoghq.com/developers/metrics/agent_metrics_submission/?tab=gauge) we conclude a custom Agent check leveraging gauge() can address our need to submit a value of a metric at a given timestamp - in this case, being a random number between 0 and 1000 every 45 seconds assigned to metric, "my_metric". 
 
 Referring to the documentation (https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7), we see an example that very closely addresses our use case, with the only necessary changes being the import of the “random” Python library, and to the “value” parameter of gauge() to instead call randint(). You may also remove the “tags” parameter, as we have below. 
 
-```
+```python
 import random
 
 # the following try/except block will make the custom check compatible with any Agent version
@@ -215,7 +216,7 @@ Equally worthy of mention is the recommended naming convention for custom checks
 
 Step 1: Updating the newly created custom Agent check’s collection interval
 
-A custom Agent check’s collection interval is the scheduled minimum time interval (in seconds) required before the aforementioned check can be ran and thus, the underlying metric value collected. It is important to note that the custom check will not necessarily run every x seconds (with x being the value the collection interval is set to), but rather that it will wait at the minimum of x seconds before the metric is queried again since its collection. If there are other integrations or checks enabled on the same Agent, they may be queued ahead of the custom check, thus increasing the amount of time before the metric is actually submitted. More on this can be found here (https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval).
+A custom Agent check’s collection interval is the scheduled minimum time interval (in seconds) required before the aforementioned check can be ran and thus, the underlying metric value collected. It is important to note that the custom check will not necessarily run every x seconds (with x being the value the collection interval is set to), but rather that it will wait at the minimum of x seconds before the metric is queried again since its latest collection. If there are other integrations or checks enabled on the same Agent, they may be queued ahead of the custom check, thus increasing the amount of time before the metric is actually submitted. More on this can be found here (https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval).
 
 To update the collection interval of our custom Agent check, we must update it’s associated .yaml file to include the following code:
 
@@ -230,7 +231,7 @@ After doing so, one should then restart the Datadog Agent service within the Lin
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-Yes, you are able to change the collection interval without modifying the created Python check. To do so, one must have access to the “Metrics Summary” page within the Datadog browser interface (found here: https://app.datadoghq.com/metric/summary). Once on the “Metrics Summary” page, a user can search the name of the metric to have its collection interval changed (in this case, “my_metric”), click on it amongst the search results, and edit the metric’s collection interval using the “Edit” feature.
+Yes, you are able to change the collection interval without modifying the created Python check. To do so, one must access to the “Metrics Summary” page within the Datadog browser interface (found here: https://app.datadoghq.com/metric/summary). Once on the “Metrics Summary” page, a user can search the name of the metric intended to have its collection interval changed (in this case, “my_metric”), click on it amongst the search results, and edit the metric’s collection interval using the “Edit” feature.
 
 ![](./Collecting-Metrics/Metrics-Summary-Collection-Interval.png)  
 
@@ -240,7 +241,7 @@ Yes, you are able to change the collection interval without modifying the create
 
 In order to keep this document at reasonable length, we will not go over initial Python installation steps. More on how to install Python 3 on a Linux VM can be found here  (https://linuxize.com/post/how-to-install-python-3-7-on-ubuntu-18-04/). This will be necessary in upcoming tasks.
 
-Before undertaking the tasks immediately below, it is helpful to install Python and Pycharm on a physical machine. Though personal preference, I recommend following the guidance outlined here (https://www.educademy.co.uk/how-to-install-python-and-pycharm-on-mac) if using mac os x and here (https://www.guru99.com/how-to-install-python.html) if using Windows.
+Before undertaking the tasks immediately below, it is helpful to install Python and Pycharm on a physical machine. Though personal preference, I recommend following the guidance outlined here (https://www.educademy.co.uk/how-to-install-python-and-pycharm-on-mac) if using Mac OS X and here (https://www.guru99.com/how-to-install-python.html) if using Windows.
 
 Once Python is installed, we will then need to install the Datadog Python library. This can be done by entering the below command into your terminal:
 
@@ -268,7 +269,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 * Your custom metric scoped over your host.
 
-```
+```python
 from datadog import initialize, api
 
 options = {
@@ -310,7 +311,7 @@ print(response) # to check api response
 
 * Any metric from the Integration on your Database with the anomaly function applied.
 
-```
+```python
 from datadog import initialize, api
 
 options = {
@@ -357,7 +358,7 @@ print(response) # to check api response
 
 
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-```
+```python
 from datadog import initialize, api
 
 options = {
@@ -418,7 +419,7 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
-The anomaly graph calls out when an underlying metric is behaving unlike it has in the past by leveraged past trends. There may be issues when using the anomaly function on a new metric, as prompted by the warning we see on our new dashboard.
+The anomaly graph calls out when an underlying metric is behaving unlike it has in the past by leveraging historical trends. There may be issues when using the anomaly function on a new metric, as prompted by the warning we see on our new dashboard (in our screenshot directly above).
 
 # Monitoring Data
 
@@ -428,18 +429,18 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 The below changes can be made by navigating to the “New Monitor” option under “Monitors” within the Datadog web app:
 
-* Warning threshold of 500 - complete see below
-* Alerting threshold of 800 - complete see below
-* And also ensure that it will notify you if there is No Data for this query over the past 10m. - complete see below
+* Warning threshold of 500 - complete, see below
+* Alerting threshold of 800 - complete, see below
+* And also ensure that it will notify you if there is No Data for this query over the past 10m. - complete, see below
 
 ![](./Monitoring-Data/My_Metric_Monitor.png)
 
 Please configure the monitor’s message so that it will:
 
-* Send you an email whenever the monitor triggers. - complete see above
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state. -complete see above
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state. - complete see above
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you. - complete see below
+* Send you an email whenever the monitor triggers. - complete, see above
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state. -complete, see above
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state. - complete, see above
+* When this monitor sends you an email notification, take a screenshot of the email that it sends you. - complete, see below
 
 ![](./Monitoring-Data/My_metric_email_alert.png)
 
@@ -462,17 +463,18 @@ Set up two scheduled downtimes for this monitor:
 ## Prequisites
 
 By now, your Linux VM should already have Python3 installed. Run the below commands to install the ddtrace library:
-
+```
 sudo apt update
 sudo apt install python3-pip
 pip3 install cython
 pip3 install ddtrace
-
+```
 Followed by Flask: 
-
+```
 pip3 install flask
+```
+At this point, your Linux VM should be able to execute the below Flask application.
 
-At this point, your Linux VM should be able to execute the below Flask application:
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
@@ -507,7 +509,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
-Assuming the above application is saved to “flask-app.py”, follow the steps listed here (https://docs.datadoghq.com/getting_started/tracing/#run) beginning at “Run”, replacing any instance of the word “hello” with “flask-app”. After a new command prompt has been opened and our Linux VM accessed, enter the below commands into the new window to hit the 3 endpoints provided by our flask app:
+Assuming the above application is saved to a file named flask-app.py (for the custom instrumenting exercise, custom-flask-app.py is used), follow the steps listed here (https://docs.datadoghq.com/getting_started/tracing/#run) beginning at “Run”, replacing any instance of the word “hello” with “flask-app”. As noted within the guide linked above, with our app service running within a seperate window, open a new command prompt window connected to our Linux VM and enter the below commands to hit the 3 endpoints provided by our flask app:
 
 ```
 curl http://0.0.0.0:5050/
@@ -521,24 +523,22 @@ After a few moments, we should begin to see metrics such as Total Requests, Tota
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-A service groups together endpoints, queries, or jobs for the purposes of building your application. A resource represents a particular domain of a customer application such as an instrumented web endpoint, database query, or background job.
+A service groups together endpoints, queries, or jobs for the purposes of an  application. A resource represents a particular domain of a customer application such as an instrumented web endpoint, database query, or background job.
 
 * Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
 
-See here for a timeboard containing both Infrastrucure and APM metrics (dd-trace-run):
+See here for a timeboard containing both Infrastrucure and APM metrics (dd-trace-run using provided code example):
 https://p.datadoghq.com/sb/681bc5ca8pp8emul-99f5e7f94fc03ab7e18268f94f3399dc
 
-![](./Collecting-APM-Data/APM-My_Metric-Timeboard-DDTrace-Run.png)  
+![](./Collecting-APM-Data/APM-DDtrace-run-Timeboard.png)  
 
-See here for a timeboard containing both Infrastructure and APM metrics (custom instrumenting):
-https://p.datadoghq.com/sb/681bc5ca8pp8emul-4e102b24a317e4ea08bbbdcd9dc3f8a7
 
-![](./Collecting-APM-Data/Custom-Instrumenting-Timeboard.png)  
 
-Please include your fully instrumented app in your submission, as well.
+* Please include your fully instrumented app in your submission, as well.
 
-```
+From Collecting-APM-Data/custom-flask-app.py (including custom instrumenting):
+```python
 from flask import Flask
 import logging
 import sys
@@ -576,23 +576,36 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
+See here for a timeboard containing both Infrastructure and APM metrics (custom instrumenting as seen above):
+https://p.datadoghq.com/sb/681bc5ca8pp8emul-4e102b24a317e4ea08bbbdcd9dc3f8a7
+
+![](./Collecting-APM-Data/Custom-Instrumenting-Timeboard.png)  
+
 ## Final Question:
 
 Datadog has been used in a lot of creative ways in the past¬. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
 
-I’d like to do a timeseries analysis measuring how much COVID-19 has impacted the growth of underprivileged communities. US historical data has shown unemployment being the lowest ever for such communities prior to the COVID-19 pandemic (source: https://www.cnbc.com/2019/10/04/black-and-hispanic-unemployment-is-at-a-record-low.html). Additionally, more recent research has shown that these same communities have been disproportionately impacted by the effects of the pandemic as well. I’d be curious to see how many years back, if any, the pandemic has set these underserved communities as society re-opens and things “return to normal”.  
+Research has shown that low-income communities have suffered a disporportionately greater loss of employment than more affluent communities during the COVID-19 pandemic(source: https://crsreports.congress.gov/product/pdf/IN/IN11457). As vaccine distribution accelerates and the economy reopens, research has found that job losses have persisted at much higher rates for lower-wage earners than high-wage earners(source: https://www.tracktherecovery.org/).
 
-## Instructions
+![](covid-job-loss.png)
 
-If you have a question, create an issue in this repository.
+Within Datadog, I would create a time series analysis measuring the amount of time required for employment to rebound to pre-pandemic levels for low-wage workers. To do so, I would take the following steps:
 
-To submit your answers:
+1) Leverage publicly available job data (found here: https://github.com/OpportunityInsights/EconomicTracker/blob/main/data/Employment%20Combined%20-%20National%20-%20Daily.csv) to write a Python script that pulls from the above repository the most recent unemployment data on a daily basis, and reads the latest "emp_combined_inclow" value from the downloaded csv 
+2) Include a custom Agent check that maps that value to a metric called "percent_from_baseline"
+3) Configure it's collection interval to occur on a daily basis 
+4) Create a dashboard containing a time series visualization that measures and displays the collection of "percent_from_baseline" daily
+5) In order to avoid constant checking of this dashboard to determine when the low-income communities are "back to normal", I would configure a monitor to alert me via email when "percent_from_baseline" crosses 0 and becomes positive
 
-* Fork this repo.
-* Answer the questions in answers.md
-* Commit as much code as you need to support your answers.
-* Submit a pull request.
-* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
+After receiving the alert, I would then yell in excitement as seen below:
+
+![](lets-go.gif)
+
+
+### Supplemental Reading
+* https://www.pewresearch.org/social-trends/2020/04/21/about-half-of-lower-income-americans-report-household-job-or-wage-loss-due-to-covid-19/
+* https://www.cbpp.org/research/poverty-and-inequality/tracking-the-covid-19-recessions-effects-on-food-housing-and (Figure 7)
+* https://www.brookings.edu/research/reopening-america-low-wage-workers-have-suffered-badly-from-covid-19-so-policymakers-should-focus-on-equity/
 
