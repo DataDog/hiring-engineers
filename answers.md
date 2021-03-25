@@ -38,14 +38,31 @@ Here's a summary of my Agent's reporting metrics:
 To view the tags on the [Host Map](https://docs.datadoghq.com/infrastructure/hostmap/#overview) page (found under the Infrastructure tab) in Datadog, restart the Agent running as a service with `sudo service datadog-agent restart` command ([found here](https://docs.datadoghq.com/agent/basic_agent_usage/ubuntu/?tab=agentv6v7)). The Tags section in the following screenshot gets populated with the keys and values defined in the agent config file:
 ![image](https://user-images.githubusercontent.com/80560551/111961101-d4da8c80-8aad-11eb-9e09-0f516ce64dcf.png)
 
-2. [Install MongoDB on Ubuntu](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#install-mongodb-community-edition). I followed this documentation to install MongoDB Community Edition using the apt package manager. These are the commands I used:
+2. [Install MongoDB on Ubuntu](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#install-mongodb-community-edition). I followed this documentation to install MongoDB Community Edition using the apt package manager. These are the commands I used for Ubuntu 18.04 version:
 ```
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+
 echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 ```
-  
+I used the following command to determine the init system my platform uses: `ps --no-headers -o comm 1` which resulted in systemd and used the appropriate commands to start MongoDB and check its status:
+```
+sudo systemctl start mongod
+sudo systemctl status mongod
+```
+(This was resulting in an error which I fixed by changing the permission settings on /var/lib/mongodb and /tmp/mongodb-27017.sock to set the owner to mongodb user using the following commands and then started MongoDB up again.)
+```
+sudo chown -R mongodb:mongodb /var/lib/mongodb
+sudo chown mongodb:mongodb /tmp/mongodb-27017.sock
+```
+Start a mongo shell on the same host machine as the mongod. The following runs on your localhost with default port 27017:
+```
+mongo
+```
+
+
 Install the respective Datadog [integration](https://docs.datadoghq.com/integrations/).
 Following the steps listed in [MongoDB](https://docs.datadoghq.com/integrations/mongo/?tab=standalone), I created a read-only user for the Datadog Agent in the admin database:
 ```
@@ -62,7 +79,7 @@ db.createUser({
 ```
 ![image](https://user-images.githubusercontent.com/80560551/111971303-6e5b6b80-8ab9-11eb-8ef3-6d1382f26b9f.png)
 
-Configure mongo.d/conf.yaml file located in (/etc/datadog-agent/conf.d/) of your Agent's configuration directory with the following:
+To configure a single agent running on the same node to collect all available mongo metrics, edit mongo.d/conf.yaml file located in (/etc/datadog-agent/conf.d/) of your Agent's configuration directory with the following:
 ```
 init_config:
 instances:
@@ -75,12 +92,13 @@ instances:
             authSource: admin
 ```
 Refer to sample mongo.d/conf.yaml.example for all configuration options.
-![image](https://user-images.githubusercontent.com/80560551/111982217-efb8fb00-8ac5-11eb-8aeb-53db6ebe5d64.png)
+![image](https://user-images.githubusercontent.com/80560551/112413362-4a786f80-8cdd-11eb-9654-6cb5bf0801bd.png)
 (Password not shown in image)
 
-Restart the Agent `sudo service datadog-agent restart`
-Metric Collection check has been configured as shown in the Metrics Summary:
-![image](https://user-images.githubusercontent.com/80560551/111982886-bcc33700-8ac6-11eb-9fb6-f519df385b47.png)
+Restart the Agent `sudo service datadog-agent restart`.
+
+Infrastructure List allows us to see the mongodb connections have been configured:
+![image](https://user-images.githubusercontent.com/80560551/112413244-1ac96780-8cdd-11eb-8983-c07e1882b924.png)
 
 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
