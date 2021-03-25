@@ -1,6 +1,6 @@
 ## Datadog Exercise
 
-The following write up is designed to familiarize the reader with [Datadog](http://datadog.com), an end-to-end monitoring and security platform for cloud applications. Topics covered include environment setup, collecting metrics, visualizing data, monitoring data, collecting APM (Application Performance Monitoring) data, and a creative use case. 
+The following write up is designed to convey the exercise concepts to the reader.
 
 ## Environment Set Up
 To avoid OS or dependency issues, utilize [Vagrant](https://www.vagrantup.com/intro/getting-started/) to spin up a Ubuntu VM. Make sure to use minimum `v. 16.04`. 
@@ -83,13 +83,13 @@ To configure a single agent running on the same node to collect all available mo
 ```
 init_config:
 instances:
-  - hosts:
-          - <HOST>:<PORT>
-    username: datadog
-    password: <UNIQUEPASSWORD>
-    database: <DATABASE>
-    options:
-            authSource: admin
+  hosts:
+    - <HOST>:<PORT>
+  username: datadog
+  password: <UNIQUEPASSWORD>
+  database: <DATABASE>
+  options:
+    authSource: admin
 ```
 Refer to sample mongo.d/conf.yaml.example for all configuration options.
 ![image](https://user-images.githubusercontent.com/80560551/112413362-4a786f80-8cdd-11eb-9654-6cb5bf0801bd.png)
@@ -102,4 +102,16 @@ Infrastructure List allows us to see the mongodb connections have been configure
 
 3. Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-Refer to [Writing a Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
+Refer to [Writing a Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) documentation.
+
+Create a python check file in /etc/datadog-agent/checks.d directory. I created custom_my_metric.py:
+![image](https://user-images.githubusercontent.com/80560551/112420847-2a4fad00-8ceb-11eb-9de1-1b7fc946df38.png)
+
+Create a config file with the same name as the check file and place in /etc/datadog-agent/conf.d
+I created custom_my_metric.yaml:
+![image](https://user-images.githubusercontent.com/80560551/112420948-5c610f00-8ceb-11eb-8d95-1f7e8e6b8c32.png)
+
+Here's my_metric in the Metric Explorer:
+![image](https://user-images.githubusercontent.com/80560551/112421381-253f2d80-8cec-11eb-9eb9-91344edb4d16.png)
+
+
