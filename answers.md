@@ -114,4 +114,12 @@ I created custom_my_metric.yaml:
 Here's my_metric in the Metric Explorer:
 ![image](https://user-images.githubusercontent.com/80560551/112421381-253f2d80-8cec-11eb-9eb9-91344edb4d16.png)
 
+4. Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
+The default collection interval is 15. I edited my metric config file to change the collection interval of my check:
+![image](https://user-images.githubusercontent.com/80560551/112422112-992e0580-8ced-11eb-9aa7-f9a721ea37d9.png)
+
+Bonus Question: Can you change the collection interval without modifying the Python check file you created?
+
+Yes, by editing the config file as seen in the screenshot above. Also, it can be changed via the Metrics Explorer on the UI as seen below:
+![image](https://user-images.githubusercontent.com/80560551/112422883-d5ae3100-8cee-11eb-8dcb-1030e0feb4e7.png)
