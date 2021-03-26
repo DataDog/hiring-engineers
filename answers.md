@@ -1,15 +1,9 @@
-## Datadog Exercise
-
-The following write up is designed to convey the exercise concepts to the reader.
-
 ## Environment Set Up
 To avoid OS or dependency issues, utilize [Vagrant](https://www.vagrantup.com/intro/getting-started/) to spin up a Ubuntu VM. Make sure to use minimum `v. 16.04`. 
 
 1. [Download](https://www.vagrantup.com/downloads) the proper package for your platform and [Install](https://www.vagrantup.com/docs/installation) Vagrant.
-![image](https://user-images.githubusercontent.com/80560551/111381353-d39b0100-8662-11eb-895e-3c7e9ef8d5c6.png)
 
 2. Download the appropriate package for [VirtualBox](https://www.virtualbox.org/wiki/Downloads) to use as a hypervisor.
-![image](https://user-images.githubusercontent.com/80560551/111381912-94b97b00-8663-11eb-9f14-c23882976751.png)
 
 3. Navigate to your command prompt and enter the following command to initialize Vagrant:
 ```
@@ -82,18 +76,15 @@ db.createUser({
 To configure a single agent running on the same node to collect all available mongo metrics, edit mongo.d/conf.yaml file located in (/etc/datadog-agent/conf.d/) of your Agent's configuration directory with the following:
 ```
 init_config:
+    service: "mongod.service"
 instances:
-  hosts:
-    - <HOST>:<PORT>
-  username: datadog
-  password: <UNIQUEPASSWORD>
-  database: <DATABASE>
-  options:
-    authSource: admin
+  - hosts:
+      - "127.0.0.1"
+    username: datadog
+    password: <UNIQUEPASSWORD>
+    database: admin
 ```
 Refer to sample mongo.d/conf.yaml.example for all configuration options.
-![image](https://user-images.githubusercontent.com/80560551/112413362-4a786f80-8cdd-11eb-9654-6cb5bf0801bd.png)
-(Password not shown in image)
 
 Restart the Agent `sudo service datadog-agent restart`.
 
@@ -123,3 +114,151 @@ Bonus Question: Can you change the collection interval without modifying the Pyt
 
 Yes, by editing the config file as seen in the screenshot above. Also, it can be changed via the Metrics Explorer on the UI as seen below:
 ![image](https://user-images.githubusercontent.com/80560551/112422883-d5ae3100-8cee-11eb-8dcb-1030e0feb4e7.png)
+
+## Visualizing Data
+
+Refer to the [API](https://docs.datadoghq.com/api/) documentation.
+
+Before creating a Timeboard, install [python 3](https://phoenixnap.com/kb/how-to-install-python-3-ubuntu) and [pip](https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/) on your VM (links are for Ubuntu 18.04 platform).
+Verify installations with `python3 --version` and `pip3 --version`
+
+Next, execute the following command:
+```
+pip3 install datadog
+```
+Now we can move on to creating an [Application key](https://docs.datadoghq.com/account_management/api-app-keys/#application-keys) which will be used with an [API key](https://docs.datadoghq.com/account_management/api-app-keys/#api-keys)-- together they provide users access to Datadog’s programmatic API. The linked documentation specifies how to create the keys in the UI. 
+
+Once you have the keys, use the Python code example provided in this [dashboards](https://docs.datadoghq.com/api/latest/dashboards/) documentation to create your python script for your timeboard. Make sure to replace the api_key and app_key values. 
+
+Utilize the Datadog API to create a Timeboard that contains:
+1. Your custom metric scoped over your host.
+
+[Request JSON Schema](https://docs.datadoghq.com/dashboards/graphing_json/request_json/) and
+[Scope](https://docs.datadoghq.com/dashboards/graphing_json/request_json/#scope) documentation demonstrate how to format the requests value. 
+
+Here's my script that displays a widget with my_metric (custom metric we created earlier) scoped over host: 
+
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': '<DATADOG_API_KEY>',
+    'app_key': '<DATADOG_APPLICATION_KEY>'
+}
+
+initialize(**options)
+
+title = 'Data Visualization Timeboard'
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'my_metric{*} by {host}'}
+        ],
+        'title': 'My Custom Metric'
+    }
+}]
+layout_type = 'ordered'
+description = 'A timeboard with metric info.'
+is_read_only = True
+notify_list = ['aasthag06@gmail.com']
+template_variables = [{
+    'name': 'host1',
+    'prefix': 'host',
+    'default': 'my-host'
+}]
+
+api.Dashboard.create(title=title,
+                     widgets=widgets,
+                     layout_type=layout_type,
+                     description=description,
+                     is_read_only=is_read_only,
+                     notify_list=notify_list,
+                     template_variables=template_variables)
+```
+ In the widgets array, edit the requests value array to display whichever metric you wish to see on your Dashboard.
+ 
+2. Any metric from the Integration on your Database with the anomaly function applied.
+
+Refer to the [Anomaly function](https://docs.datadoghq.com/dashboards/functions/algorithms/#anomalies) documentation
+
+Expand the mytimeboard python script to include another widget.
+Here, I use the mongodb.uptime metric, basic algorithm and value of 2 bounds (standard deviations for the algorithm).
+```
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'my_metric{*} by {host}'}
+        ],
+        'title': 'My Custom Metric'
+    }},
+    {
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': "anomalies(avg:mongodb.uptime{*}, 'basic', 2)"}
+        ],
+        'title': 'MongoDB Metric w/Anomaly'
+    }}
+]
+```
+3. Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+Refer to the [Rollup function](https://docs.datadoghq.com/dashboards/functions/rollup) documentation
+
+Add another widget to the python script:
+```
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'my_metric{*} by {host}'}
+        ],
+        'title': 'My Custom Metric'
+    }},
+    {
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': "anomalies(avg:mongodb.uptime{*}, 'basic', 2)"}
+        ],
+        'title': 'MongoDB Metric w/Anomaly'
+    }},
+    {
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': "my_metric{*}.rollup(sum,3600)"}
+        ],
+        'title': 'Custom Metric w/Rollup Sum for Past Hr'
+    }}
+]
+```
+Here, I supplied the rollup function with sum and 3600 arguments since we want to sum up all the points for the past hour (3600 seconds).
+Run the python script via `python3 mytimeboard.py`
+
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+Timeboard script - mytimeboard.py
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+![image](https://user-images.githubusercontent.com/80560551/112702260-1d989980-8e50-11eb-9b49-85f15b0d5d1e.png)
+
+Timeboard link: https://p.datadoghq.com/sb/7v4fbr3s27ph9g51-d0362a45bf21a0ce7a9068962657e50f
+
+4. Set the Timeboard's timeframe to the past 5 minutes
+The highlighted arrow allows the user to change the time settings on the dashboard:
+![image](https://user-images.githubusercontent.com/80560551/112702294-36a14a80-8e50-11eb-869a-f1bff4b9baa6.png)
+
+6. Take a snapshot of this graph and use the @ notation to send it to yourself.
+![image](https://user-images.githubusercontent.com/80560551/112702723-c398d380-8e51-11eb-9bc6-c4bc86c4f5d5.png)
+![image](https://user-images.githubusercontent.com/80560551/112702818-fb078000-8e51-11eb-91f0-ead58913b424.png)
+
+Bonus Question: What is the Anomaly graph displaying?
+The grey bands show what is expected based on past trends. When the time doesn't match the prediction, you see an anomaly.
+In the following anomaly graph for the past day, an anomaly is seen in red:
+![image](https://user-images.githubusercontent.com/80560551/112702925-5f2a4400-8e52-11eb-88d5-93b7f51ce6d9.png)
+
+## Monitoring Data
+
+
