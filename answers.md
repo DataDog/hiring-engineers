@@ -294,6 +294,92 @@ The following image shows the monitor's message configurations to account for th
 ![image](https://user-images.githubusercontent.com/80560551/112706694-2c3c7c00-8e63-11eb-8206-956ebfb9ad05.png)
 ![image](https://user-images.githubusercontent.com/80560551/112706771-b84ea380-8e63-11eb-8ec4-c63476e12565.png)
 
-## Collecting APM Data
+## Collecting APM Data:
+
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+```python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+Create a python file in your VM that contains the above flask code. I call mine flaskapp.py:
+![image](https://user-images.githubusercontent.com/80560551/112708147-90643d80-8e6d-11eb-801d-50729a4f08b1.png)
+
+Install flask on your VM:
+```
+pip3 install flask
+```
+
+Refer [APM Intro](https://app.datadoghq.com/apm/intro) to get started
+
+Select Host-Based environment to set up the trace collection. Since we have already installed a Datadog Agent on our VM, we can skip step 1 and select python for step 2.
+
+Upgrade pip and then install the Python client
+```
+pip3 install --upgrade setuptools
+pip3 install --upgrade pip
+pip3 install ddtrace
+```
+With the prereqs out of the way, we can begin to instrument our flask application.
+Instrumentation describes how an application sends traces to APM.
+
+Edit your datadog.yaml file (found in the directory /etc/datadog-agent) to enable the apm agent as seen in this image:
+![image](https://user-images.githubusercontent.com/80560551/112709536-b55dae00-8e77-11eb-85c2-b14f30eb932d.png)
+
+After saving the changes to your datadog.yaml, restart your agent:
+```
+sudo service datadog-agent restart
+```
+
+To instrument the application, execute the following command after editing it with your service name (the name your service will show within the Datadog UI), environment name, and your python application file name. 
+```
+DD_SERVICE="<SERVICE>" DD_ENV="<ENV>" DD_LOGS_INJECTION=true ddtrace-run python3 <MY-APP>.py
+```
+I utilize the following for my flaskapp:
+```
+DD_SERVICE="flaskapp" DD_ENV="dev" DD_LOGS_INJECTION=true DD_TRACE_ENABLED=true ddtrace-run python3 flaskapp.py
+```
+Learn more about ddtrace-run environment variables [here](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers#configuration)
+
+* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
+* **Bonus Question**: What is the difference between a Service and a Resource?
+
+A Service groups together endpoints, queries, or jobs for the purposes of building your application.
+Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
+A Service is essentially a group of Resources. 
+
+[APM Glossary](https://docs.datadoghq.com/tracing/visualization/) provides a breakdown of APM concepts.
+
+Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+Please include your fully instrumented app in your submission, as well.
 
 
