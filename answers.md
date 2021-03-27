@@ -337,11 +337,7 @@ Install flask on your VM:
 pip3 install flask
 ```
 
-Refer [APM Intro](https://app.datadoghq.com/apm/intro) to get started
-
-Select Host-Based environment to set up the trace collection. Since we have already installed a Datadog Agent on our VM, we can skip step 1 and select python for step 2.
-
-Upgrade pip and then install the Python client
+Refer [APM Intro](https://app.datadoghq.com/apm/intro) to get started. Select Host-Based environment to set up the trace collection. Since we have already installed a Datadog Agent on our VM, we can skip step 1 and select python for step 2. Upgrade pip and then install the Python client
 ```
 pip3 install --upgrade setuptools
 pip3 install --upgrade pip
