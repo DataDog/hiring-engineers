@@ -382,6 +382,14 @@ Upon hitting an endpoint, a GET flask request is generated in the terminal where
 ![image](https://user-images.githubusercontent.com/80560551/112710501-f5745f00-8e7e-11eb-9181-ed8cef0f06a8.png)
 200 HTTP status code means the request was successful
 
+In the UI, APM > Services also reflects the flaskservice we just stood up:
+![image](https://user-images.githubusercontent.com/80560551/112710804-09b95b80-8e81-11eb-95cf-c89a3b438b7a.png)
+
+Clicking upon it takes us to this view:
+![image](https://user-images.githubusercontent.com/80560551/112710825-22297600-8e81-11eb-92f1-dd58f1b4f1b2.png)
+
+![image](https://user-images.githubusercontent.com/80560551/112710830-2ce40b00-8e81-11eb-80b4-320fe3fcd790.png)
+
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
@@ -393,6 +401,8 @@ A Service is essentially a group of Resources.
 [APM Glossary](https://docs.datadoghq.com/tracing/visualization/) provides a breakdown of APM concepts.
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+APM and Infrastructure Metricks Dashboard Link: https://p.datadoghq.com/sb/7v4fbr3s27ph9g51-a0170d013410b6e5b7d506ea1c4c8aa2
+![image](https://user-images.githubusercontent.com/80560551/112711601-e4c7e700-8e86-11eb-9b81-0d9c1eeae4a8.png)
 
 Please include your fully instrumented app in your submission, as well.
 
