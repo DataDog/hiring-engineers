@@ -260,5 +260,40 @@ In the following anomaly graph for the past day, an anomaly is seen in red:
 ![image](https://user-images.githubusercontent.com/80560551/112702925-5f2a4400-8e52-11eb-88d5-93b7f51ce6d9.png)
 
 ## Monitoring Data
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+Follow along to [create a monitor in Datadog](https://docs.datadoghq.com/monitors/monitor_types/#create)
+
+Under the Monitors tab, select New Monitor and then select Metric for the monitor type. See the image below for monitor configuration details that accounts for the 3 bullets listed above:
+![image](https://user-images.githubusercontent.com/80560551/112704541-41f87400-8e58-11eb-8356-684874a2b97c.png)
+
+Please configure the monitor’s message so that it will:
+
+* Send you an email whenever the monitor triggers.
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+The following image shows the monitor's message configurations to account for the above 3 bullets:
+![image](https://user-images.githubusercontent.com/80560551/112705685-25126f80-8e5d-11eb-9a29-0558e8343f0c.png)
+
+* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+![image](https://user-images.githubusercontent.com/80560551/112706184-c1d60c80-8e5f-11eb-9e11-4c0cd4965795.png)
+
+* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+  * One that silences it from 7pm to 9am daily on M-F,
+  * ![image](https://user-images.githubusercontent.com/80560551/112706599-90127500-8e62-11eb-9927-4e65d3d5f804.png)
+  * And one that silences it all day on Sat-Sun.
+  * ![image](https://user-images.githubusercontent.com/80560551/112706747-98b77b00-8e63-11eb-92b1-2bea115b4843.png)
+  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+![image](https://user-images.githubusercontent.com/80560551/112706694-2c3c7c00-8e63-11eb-8206-956ebfb9ad05.png)
+![image](https://user-images.githubusercontent.com/80560551/112706771-b84ea380-8e63-11eb-8ec4-c63476e12565.png)
+
+## Collecting APM Data
 
 
