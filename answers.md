@@ -367,7 +367,20 @@ Learn more about ddtrace-run environment variables [here](https://docs.datadoghq
 The flask application is running on http://0.0.0.0:5050/
 ![image](https://user-images.githubusercontent.com/80560551/112710056-86493b80-8e7b-11eb-87d9-b6ab92221f9c.png)
 
+To [test your application](https://docs.datadoghq.com/getting_started/tracing/#test), send your traces to Datadog using curl. Your application should be running (as shown above). In a separate command prompt run:
+```
+vagrant ssh
+curl http://0.0.0.0:5050/
+```
+![image](https://user-images.githubusercontent.com/80560551/112710261-f1dfd880-8e7c-11eb-821a-295043fefb2b.png)
 
+This correctly outputs: "Entrypoint to the Application" as defined in our flask application when "/" endpoint is hit. 
+Let's test the other two endpoints as well:
+![image](https://user-images.githubusercontent.com/80560551/112710319-60249b00-8e7d-11eb-9f2f-0280e89b6b74.png)
+
+Upon hitting an endpoint, a GET flask request is generated in the terminal where you ran the ddtrace-run command from: 
+![image](https://user-images.githubusercontent.com/80560551/112710501-f5745f00-8e7e-11eb-9181-ed8cef0f06a8.png)
+200 HTTP status code means the request was successful
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
