@@ -337,12 +337,12 @@ Install flask on your VM:
 pip3 install flask
 ```
 
-Refer [APM Intro](https://app.datadoghq.com/apm/intro) to get started. Select Host-Based environment to set up the trace collection. Since we have already installed a Datadog Agent on our VM, we can skip step 1 and select python for step 2. Upgrade pip and then install the Python client
+Refer [APM Intro](https://app.datadoghq.com/apm/intro) to get started. Select Host-Based environment to set up the trace collection. Since we have already installed a Datadog Agent on our VM, we can skip step 1 and select python for step 2. Execute the following command to install ddtrace, Datadog's tracing library for Python. It is used to trace requests as they flow across web servers, databases and microservices so that developers have great visiblity into bottlenecks and troublesome requests.
+
 ```
-pip3 install --upgrade setuptools
-pip3 install --upgrade pip
-pip3 install ddtrace
+sudo -H python3 -m pip install ddtrace
 ```
+
 With the prereqs out of the way, we can begin to instrument our flask application.
 Instrumentation describes how an application sends traces to APM.
 
@@ -354,7 +354,7 @@ After saving the changes to your datadog.yaml, restart your agent:
 sudo service datadog-agent restart
 ```
 
-To instrument the application, execute the following command after editing it with your service name (the name your service will show within the Datadog UI), environment name, and your python application file name. 
+To instrument the application, execute the following command after editing it with your service name (the name your service will show within the Datadog UI), environment name, and your python application file name.
 ```
 DD_SERVICE="<SERVICE>" DD_ENV="<ENV>" DD_LOGS_INJECTION=true ddtrace-run python3 <MY-APP>.py
 ```
