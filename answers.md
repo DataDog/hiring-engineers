@@ -239,7 +239,7 @@ Here, I supplied the rollup function with sum and 3600 arguments since we want t
 Run the python script via `python3 mytimeboard.py`
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
-Timeboard script - mytimeboard.py
+Timeboard script - [mytimeboard.py](https://github.com/guptaa1/hiring-engineers/blob/solutions-engineer/mytimeboard.py)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 ![image](https://user-images.githubusercontent.com/80560551/112702260-1d989980-8e50-11eb-9b49-85f15b0d5d1e.png)
@@ -405,5 +405,12 @@ APM and Infrastructure Metricks Dashboard Link: https://p.datadoghq.com/sb/7v4fb
 ![image](https://user-images.githubusercontent.com/80560551/112711601-e4c7e700-8e86-11eb-9b81-0d9c1eeae4a8.png)
 
 Please include your fully instrumented app in your submission, as well.
+See [flaskapp.py](https://github.com/guptaa1/hiring-engineers/blob/solutions-engineer/flaskapp.py)
 
+## Final Question:
 
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+Restaurants can benefit from the Datadog monitoring system. The system can take into account past orders to identify and predict the most common food items and the times/days during the week in which they're in demand so the restaurants can plan accordingly to prevent food wastage. In addition, Datadog can serve as a restaurant inventory management system and assist with menu engineering. This data driven approach will create a more efficient system, saving time and money while increasing the profit margin overall. The system can also analyze heavy customer traffic patterns of the day and using that data to schedule staff shifts to properly accommodate customers during peak hours while minimizing staff shifts during the slow hours. 
