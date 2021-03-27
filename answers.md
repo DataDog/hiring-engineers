@@ -364,6 +364,11 @@ DD_SERVICE="flaskapp" DD_ENV="dev" DD_LOGS_INJECTION=true DD_TRACE_ENABLED=true 
 ```
 Learn more about ddtrace-run environment variables [here](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers#configuration)
 
+The flask application is running on http://0.0.0.0:5050/
+![image](https://user-images.githubusercontent.com/80560551/112710056-86493b80-8e7b-11eb-87d9-b6ab92221f9c.png)
+
+
+
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
