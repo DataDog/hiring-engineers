@@ -76,7 +76,7 @@ implemented.
 
 ```
 docker run -d --name datadog-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
-  -e DD_API_KEY=aedd26b51a003ec0c015320cec77de1a \
+  -e DD_API_KEY=<Datadog Key> \
   -l com.datadoghq.ad.check_names='["postgres"]' \
   -l com.datadoghq.ad.init_configs='[{}]' \
   -l com.datadoghq.ad.instances='[{"host":"localhost", "port":5432,"username":"datadog","password":"AirWatch1"}]' \
