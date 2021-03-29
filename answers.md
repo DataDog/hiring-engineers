@@ -49,3 +49,50 @@ instances:
 * **Bonus Question Can you change the collection interval without modifying the Python check file you created?**
 
 I'm not sure I understand the question.  I edit the YAML file to set the collection interval, not a Python file.
+
+## Visualizing Data:
+
+* Your custom metric scoped over your host.
+* Any metric from the Integration on your Database with the anomaly function applied.
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+Please note that the examples below are based on information running in containers that may not always be running.  Please 
+contact Scot Curry at 312-489-1056 if the data is not populating.
+
+[Curryware Timeboard](https://p.datadoghq.com/sb/s680qmbidyyypnvm-0d6eef751ed1027ddd547bcdd764d9ea)
+
+![Curryware Timeboard Screenshot](https://github.com/scotcurry/hiring-engineers/blob/master/Timeboard.png)
+
+[Link to Timeboard Creation Python Script](https://github.com/scotcurry/hiring-engineers/blob/master/buildtimeline.py)
+
+**Notes**
+
+*Research* - I wasn't able to get the Python library to work when building the Timeboard.  I ended up just using the REST API call.  I need
+to look at the source for what type of input object the library is expecting.
+
+*Question* - I wasn't able to correctly obtain Postgres metrics.  Since I'm using the Datadog container agent, I attempted to use the Docker
+labels to pass the configuration information.  I've included it below in the hopes I can get a better understanding of how this should be
+implemented.
+
+```
+docker run -d --name datadog-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+  -e DD_API_KEY=aedd26b51a003ec0c015320cec77de1a \
+  -l com.datadoghq.ad.check_names='["postgres"]' \
+  -l com.datadoghq.ad.init_configs='[{}]' \
+  -l com.datadoghq.ad.instances='[{"host":"localhost", "port":5432,"username":"datadog","password":"AirWatch1"}]' \
+  gcr.io/datadoghq/agent:7
+  ```
+  
+* **Set the Timeboard's timeframe to the past 5 minutes**
+  
+This was a simple dropdown.
+  
+* **Take a snapshot of this graph and use the @ notation to send it to yourself.**
+
+The only way I was able to find to take a snapshot was via API, so based on the instructions that this would be done via the
+console, I'm uncertain how to complete this task.
+
+* **What is the Anomaly graph displaying?**
+
+It is showing the actual data within Datadog generated expected ranges.  It would seem to be based on machine learning, as it can
+detect exception in "normal" data.  This would include spikes at specific times during a day.
