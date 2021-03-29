@@ -68,11 +68,56 @@ def build_time_line(settings):
                 "autoscale": False,
                 "precision": 0
             }
+        }, {
+            "id": 0,
+            "definition": {
+                "title": "Postgres fetched / returned / inserted / updated (per sec)",
+                "show_legend": False,
+                "type": "timeseries",
+                "requests": [{
+                    "q": "avg:postgresql.rows_fetched{$scope}"
+                }, {
+                    "q": "avg:postgresql.rows_returned{$scope}"
+                }, {
+                    "q": "avg:postgresql.rows_inserted{$scope}"
+                }, {
+                    "q": "avg:postgresql.rows_updated{$scope}"
+                }]
+            }
+        }, {
+            "id": 9469658219438844,
+            "definition": {
+                "title": "",
+                "title_size": "16",
+                "title_align": "left",
+                "show_legend": True,
+                "legend_layout": "auto",
+                "legend_columns": ["avg", "min", "max", "value", "sum"],
+                "time": {},
+                "type": "timeseries",
+                "requests": [{
+                    "q": "anomalies(avg:system.cpu.user{host:scotc-a01.vmware.com}, 'basic', 2)",
+                    "style": {
+                        "palette": "dog_classic",
+                        "line_type": "solid",
+                        "line_width": "normal"
+                    },
+                    "display_type": "line"
+                }],
+                "yaxis": {
+                    "scale": "linear",
+                    "label": "",
+                    "include_zero": True,
+                    "min": "auto",
+                    "max": "auto"
+                },
+                "markers": []
+            }
         }],
     }
     json_string = json.dumps(time_board_data)
     headers = {'Content-Type': 'application/json', 'DD-API-KEY': settings['data_dog_api_key'], 'DD-APPLICATION-KEY'
-            : settings['data_dog_application_key']}
+    : settings['data_dog_application_key']}
     dd_url = 'https://api.datadoghq.com/api/v1/dashboard'
     response = requests.post(url=dd_url, headers=headers, data=json_string)
     if response.status_code == 200 or response.status_code == 202:
