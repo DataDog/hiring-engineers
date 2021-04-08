@@ -86,6 +86,7 @@ docker run -d --name datadog-agent -v /var/run/docker.sock:/var/run/docker.sock:
 * **Set the Timeboard's timeframe to the past 5 minutes**
   
 This was a simple dropdown.
+![Timeboard timeframe dropdown](https://github.com/scotcurry/hiring-engineers/blob/master/TimeDropDown.png)
   
 * **Take a snapshot of this graph and use the @ notation to send it to yourself.**
 
