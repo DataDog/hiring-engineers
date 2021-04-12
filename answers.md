@@ -213,7 +213,7 @@ Each widget consists of `definition` object. That object contains `type`, `reque
 
 For custom metric with the rollup function applied to sum up all the points for the past hour into one bucket I used instractions from [here](https://docs.datadoghq.com/dashboards/functions/rollup/) on how `rollup` function works and how to to use it in the request. I used rollup function with sum and 3600 arguments since I needed to sump all the points for the past hour or 3600 seconds. 
 
-'title` sets the title of the widget. 
+`title` sets the title of the widget. 
 
 Line 37 through 44 is being used for setting additional properties of the dashboard. On line 47 an api call is being made and all above mentioned properties a passed). 
 
@@ -280,9 +280,11 @@ After saving `timeboard.py` I ran `export DD_SITE="https://api.datadoghq.com/api
 After successfull execution I should be able to see `Data Visualization` dashboard name in the Dashboard list and access the Dashboard from `Dasboards` -> `Dasboard list` in the UI: 
 ![Dasboard list](img/dashboard.png)
 
+#### Timeboard
 ![Timeboard](img/data-vis.png)
 
 Timeboard can be accessed by following [this link](https://p.datadoghq.com/sb/r994pgswllop6yxx-aae689097938255beefc2e2edd446f2d)
+
 
 ### Set the Timeboard's timeframe and take a snapshot
 
