@@ -150,7 +150,7 @@ After that it was time to install the Datadog library that was going to be used 
 
 From [API documentation](https://docs.datadoghq.com/api/latest/?code-lang=python) I realised that in order to access the Datadog programmatic API I had to use Applicaton key and API key. 
 
-I was able to access the API key by navigating to the `Integrations` page `API Keys' section. On the same `Integrations page` there is a section that refers to the `Teams page` for the creation of the application key. 
+I was able to access the API key by navigating to the `Integrations` page `API Keys` section. On the same `Integrations page` there is a section that refers to the `Teams page` for the creation of the application key. 
 
 Once I had the keys I used the Python code example provided in [Dashboards documentation](https://docs.datadoghq.com/api/latest/dashboards/) to create my own script. 
 
@@ -163,11 +163,12 @@ options = {
     'api_key': '<DATADOG_API_KEY>',
     'app_key': '<DATADOG_APPLICATION_KEY>'
 }
+```
+
 
 `Options`are  passed to `initialize` function that was imported from `datadog` library
-```
-initialize(**options)
-```  
+
+`initialize(**options)`
 
 Starting from line 10 I define properties of the Dashboard that is going to be created: 
 
@@ -217,6 +218,7 @@ For custom metric with the rollup function applied to sum up all the points for 
 Line 37 through 44 is being used for setting additional properties of the dashboard. On line 47 an api call is being made and all above mentioned properties a passed). 
 
 The `timeboard.py` file looks like this (it is also included in the repository): 
+
 ```
 from datadog import initialize, api
 
