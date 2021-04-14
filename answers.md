@@ -97,3 +97,26 @@ console, I'm uncertain how to complete this task.
 
 It is showing the actual data within Datadog generated expected ranges.  It would seem to be based on machine learning, as it can
 detect exception in "normal" data.  This would include spikes at specific times during a day.
+
+## Monitoring Data:
+
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+## Collecting APM Data:
+
+For this exercise I went a bit off script.  I got started with the Datadog technology for a real project.  I had created a site to automate some of the processes my company uses for performing Executive Briefings, so I didn't use the sample provided.
+
+APM Screenshot 1:
+![APM Screenshot 1](https://github.com/scotcurry/hiring-engineers/blob/master/APMScreenshot.png)
+
+APM Screenshot 2:
+![APM Screenshot 2](https://github.com/scotcurry/hiring-engineers/blob/master/APMScreenshot2.png)
+
+Link to the instrumented app.py file:
+[Link to app](https://github.com/scotcurry/MobileFlowsCalls/blob/master/app.py)
+
+## Final Question:
+
+* **Is there anything creative you would use Datadog for?**
+
+While I haven't seen this capability, what I have seen a demand for is the ability to injest the kinds of data that Datadog currently obtains for infrastructure from mobile devices.  I currently work with two major grocery chains that have seen a need to understand what is going on with their mobile fleet.  They are in reactive mode ("it's a network issue, no it's an app issue").  They are both looking for a solution where the Ops team would be notified (store 10 is having latency issues, we should give them a call) when thing aren't working as expected.  This is exactly what Datadog does.
