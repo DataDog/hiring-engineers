@@ -65,7 +65,7 @@ After the installation was complete I confirmed that MySQL server is running by 
 
 ![MySQL](img/mysql.png)
 
-##Integration MySQL with Datadog
+### Integration MySQL with Datadog
 The next step was to integrate the Agent with the database. 
 
 From reading the Datadog documentation (https://docs.datadoghq.com/integrations/mysql/?tab=host#data-collected) I learned that on each MySQL server I needed to: 
@@ -96,6 +96,8 @@ I restarted the Agent by running `sudo service datadog-agent restart`
 For this task I followed the documentation on how to write the Custom Agent check (https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
 
 From there I learned that the names of the configuration and check files must match, so I created a check file with the name `my_metric.py` in `/etc/datadog-agent/checks.d` directory and a configuration file `my_metric.yaml` in `/etc/datadog-agent/conf.d` directory. 
+
+### Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
 One of the requirements is to set check's collection interval so it only submits the metric once every 45 seconds. We can achieve that by adding `min_collection_interval` at an instance level
 
@@ -154,6 +156,11 @@ I was able to access the API key by navigating to the `Integrations` page `API K
 
 Once I had the keys I used the Python code example provided in [Dashboards documentation](https://docs.datadoghq.com/api/latest/dashboards/) to create my own script. 
 
+##### Utilize the Datadog API to create a Timeboard that contains:
+*Your custom metric scoped over your host.
+*Any metric from the Integration on your Database with the anomaly function applied.
+*Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
 `timeboard.py` file contains the following sections: 
  
  Options object contains API key and Application key. 
@@ -191,7 +198,7 @@ widgets = [{
     'definition': {
         'type': 'timeseries',
         'requests': [
-            {'q': "anomalies(avg:mysql.performance.cpu_time{host:vagrant}, 'agile', 2)"}
+            {'q': "anomalies(avg:mysql.performance.cpu_time{host:vagrant}, 'basic', 2)"},
         ],
         'title': 'MySQLS Metric w/Anomaly'
     }},
@@ -209,7 +216,7 @@ Each widget consists of `definition` object. That object contains `type`, `reque
 
 `type` obvioulsy specifies type of the widget
 
-`requests` specifies what kind of data is going to be displayed in the widget. For example for the task to visualize "any metric from the Integration on your Database with the anomaly function applied" I decided to select MySQL performace cpu time metric with `Agile` [anomaly detection algorithm](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) and value of 2 bounds (standard deviations for the algorithm). 
+`requests` specifies what kind of data is going to be displayed in the widget. For example for the task to visualize "any metric from the Integration on your Database with the anomaly function applied" I decided to select MySQL performace cpu time metric with `Basic` [anomaly detection algorithm](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) and value of 2 bounds (standard deviations for the algorithm). 
 
 For custom metric with the rollup function applied to sum up all the points for the past hour into one bucket I used instractions from [here](https://docs.datadoghq.com/dashboards/functions/rollup/) on how `rollup` function works and how to to use it in the request. I used rollup function with sum and 3600 arguments since I needed to sump all the points for the past hour or 3600 seconds. 
 
@@ -242,7 +249,7 @@ widgets = [{
     'definition': {
         'type': 'timeseries',
         'requests': [
-            {'q': "anomalies(avg:mysql.performance.cpu_time{host:vagrant}, 'agile', 2)"}
+            {'q': "anomalies(avg:mysql.performance.cpu_time{host:vagrant}, 'basic', 2)"},
         ],
         'title': 'MySQLS Metric w/Anomaly'
     }},
@@ -287,6 +294,8 @@ Timeboard can be accessed by following [this link](https://p.datadoghq.com/sb/r9
 
 
 ### Set the Timeboard's timeframe and take a snapshot
+* Set the Timeboard's timeframe to the past 5 minutes
+* Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 UI allowed me to set the Timeboard's timeframe to the past 5 minutes and take a snapshot. 
 
@@ -296,6 +305,97 @@ I added `@` notation to find my name in the list to send it to myself.
 ![notation](img/notation.png)
 
 ### What is the Anomaly graph displaying?
+Bonus Question: What is the Anomaly graph displaying?
 
 The graph is displaying a period of time when a metric is behaving differently than it has in the past, taking in accounts trends, seasonal day-of-week, and time-of-day patterns. In other words anomaly graph is displaying period of time when metric doesn't match the prediction. It is well-suited for metrics with strong trends and recurring patterns.
+
+## Monitoring Data
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
+To create a new Metric Monitor in the Datadog application I selected `Monitors` -> `New Monitor` -> `Metric`
+
+In the opened page I was able to select metric `my_metric`, warning treshold of 500 and alerting treshold of 800. I also made sure that it will notify me if there is data missing for more than 10 minutes. 
+
+![Create a new Monitor](img/metric-monitor.png)
+
+
+
+* Please configure the monitor’s message so that it will:
+* Send you an email whenever the monitor triggers.
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+Using [Notifications documentation](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert) I was able to create monitor's message that will create different messages based on whatever monitor triggers by using [conditional variables](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#conditional-variables): 
+
+* Warning threshold of 500:
+```
+{{#is_warning}}my_metric exceeded threshold  of 500{{/is_warning}}
+```
+* Alerting threshold of 800
+For displaying host ip I used tag variable `{{host.ip}}`
+```
+{{#is_alert}}my_metric exceeded threshold  of 800, my_metric is {{value}}, IP Address: {{host.ip}} {{/is_alert}} 
+```
+After adding myself to notification list my email was added to the end of the message `@serge.pokrovskii@gmail.com`
+```
+{{#is_no_data}}Data is missing for more than 10 minutes{{/is_no_data}} @serge.pokrovskii@gmail.com
+```
+![Alert Message](img/alert-message.png)
+
+Screenshot of the email that monitor sent: 
+![email screenshot](img/500.png)
+
+Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+* One that silences it from 7pm to 9am daily on M-F,
+* And one that silences it all day on Sat-Sun.
+* Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+For downtime managment I navigated to `Monitors` -> `Manage Downtime` and clicked `Schedule Downtime`
+![Schedule Downtime](img/manage-downtime.png)
+
+To schedule downtime for Mon-Fri I had to specify monitor, metric, start date, days of the week, and time. I left out Group Scope because by default it includes all groups: 
+![Schedule downtime](img/down-time-week.png)
+
+To schedule downtime for Sat-Sun I had to specify all the same fields except days of the week and time was different: 
+![Schedule downtime](img/down-time-sat-sun.png)
+
+Once scheduled downtime started I recieved email notification: 
+![downtime email](img/downtime-email.png)
+
+## Collecting APM Data
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+In order to use provided flask application I had to create pthon file and add it to `etc/datadog-agent`. 
+![Flask Application](img/flask-app.png)
+
+Next step was to install flask library on ubuntu by executing `pip3 install flask`
+![Flask install](img/install-flask.png)
+
+After that I was ready to move to APM set up in Datadog. In the left menu I selected `APM` -> `Get Started`
+![APM setup](img/apm.png)
+
+In the opened window I selected `Host-Based`. Because I already had my Agent installed I proceeded to second step `Choose your language` where I selected `python`
+![Choose language](img/choose-language.png)
+
+Next step was installation of the Python client. After running `pip install ddtrace` I got an error:  
+```
+ModuleNotFoundError: No module named 'Cython'
+
+    ----------------------------------------
+Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-build-yesr2sdd/ddtrace/
+```
+I noticed that I was missing `Cython` module
+![missing Cython](img/no-cython.png)
+
+`pip3 install cython` fixed the error and I was able successfuly install `ddtrace` 
+![ddtrace install success](img/install-ddtrace-success.png)
+
+
 

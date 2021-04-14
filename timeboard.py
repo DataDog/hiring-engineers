@@ -20,7 +20,7 @@ widgets = [{
     'definition': {
         'type': 'timeseries',
         'requests': [
-            {'q': "anomalies(avg:mysql.performance.cpu_time{host:vagrant}, 'agile', 2)"}
+            {'q': "anomalies(avg:mysql.performance.cpu_time{host:vagrant}, 'basic', 2)"},
         ],
         'title': 'MySQLS Metric w/Anomaly'
     }},
