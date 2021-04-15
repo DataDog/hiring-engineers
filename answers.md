@@ -102,6 +102,13 @@ detect exception in "normal" data.  This would include spikes at specific times 
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
+Definition of the monitor:
+![Monitor Definition](https://github.com/scotcurry/hiring-engineers/blob/master/MetricDefinition.png)
+
+Messages with varialbe information:
+![Message Definition](https://github.com/scotcurry/hiring-engineers/blob/master/NotificationSettings.png)
+
+
 ## Collecting APM Data:
 
 For this exercise I went a bit off script.  I got started with the Datadog technology for a real project.  I had created a site to automate some of the processes my company uses for performing Executive Briefings, so I didn't use the sample provided.
