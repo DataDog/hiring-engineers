@@ -105,8 +105,11 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 Definition of the monitor:
 ![Monitor Definition](https://github.com/scotcurry/hiring-engineers/blob/master/MetricDefinition.png)
 
-Messages with varialbe information:
+Messages with variable information:
 ![Message Definition](https://github.com/scotcurry/hiring-engineers/blob/master/NotificationSettings.png)
+
+Email Message for Monitor:
+![Email Message](https://github.com/scotcurry/hiring-engineers/blob/master/EmailMessage.png)
 
 
 ## Collecting APM Data:
