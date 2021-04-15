@@ -50,21 +50,6 @@ instances:
 
 I'm not sure I understand the question.  I edit the YAML file to set the collection interval, not a Python file.
 
-## Visualizing Data:
-
-* Your custom metric scoped over your host.
-* Any metric from the Integration on your Database with the anomaly function applied.
-* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-
-Please note that the examples below are based on information running in containers that may not always be running.  Please 
-contact Scot Curry at 312-489-1056 if the data is not populating.
-
-[Curryware Timeboard](https://p.datadoghq.com/sb/s680qmbidyyypnvm-0d6eef751ed1027ddd547bcdd764d9ea)
-
-![Curryware Timeboard Screenshot](https://github.com/scotcurry/hiring-engineers/blob/master/Timeboard.png)
-
-[Link to Timeboard Creation Python Script](https://github.com/scotcurry/hiring-engineers/blob/master/buildtimeline.py)
-
 **Notes**
 
 *Research* - I wasn't able to get the Python library to work when building the Timeboard.  I ended up just using the REST API call.  I need
@@ -82,6 +67,22 @@ docker run -d --name datadog-agent -v /var/run/docker.sock:/var/run/docker.sock:
   -l com.datadoghq.ad.instances='[{"host":"localhost", "port":5432,"username":"datadog","password":"AirWatch1"}]' \
   gcr.io/datadoghq/agent:7
   ```
+
+## Visualizing Data:
+
+* Your custom metric scoped over your host.
+* Any metric from the Integration on your Database with the anomaly function applied.
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+Please note that the examples below are based on information running in containers that may not always be running.  Please 
+contact Scot Curry at 312-489-1056 if the data is not populating.
+
+[Curryware Timeboard](https://p.datadoghq.com/sb/s680qmbidyyypnvm-0d6eef751ed1027ddd547bcdd764d9ea)
+
+![Curryware Timeboard Screenshot](https://github.com/scotcurry/hiring-engineers/blob/master/Timeboard.png)
+
+[Link to Timeboard Creation Python Script](https://github.com/scotcurry/hiring-engineers/blob/master/buildtimeline.py)
+
   
 * **Set the Timeboard's timeframe to the past 5 minutes**
   
@@ -111,6 +112,9 @@ Messages with variable information:
 Email Message for Monitor:
 ![Email Message](https://github.com/scotcurry/hiring-engineers/blob/master/EmailMessage.png)
 
+**Notes**
+
+*Question* - I don't seem to be handling the variables correctly.  The email should show the hostname, but it currently isn't.
 
 ## Collecting APM Data:
 
