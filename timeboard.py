@@ -12,7 +12,7 @@ widgets = [{
     'definition': {
         'type': 'timeseries',
         'requests': [
-            {'q': 'my_metric{*} by {host}'}
+            {'q': 'my_metric{*} by {host}'} # Your custom metric scoped over your host.
         ],
         'title': 'My Custom Metric'
     }},
@@ -20,7 +20,7 @@ widgets = [{
     'definition': {
         'type': 'timeseries',
         'requests': [
-            {'q': "anomalies(avg:mysql.performance.cpu_time{host:vagrant}, 'basic', 2)"},
+            {'q': "anomalies(avg:mysql.performance.cpu_time{host:vagrant}, 'basic', 2)"}, # Any metric from the Integration on your Database with the anomaly function applied.
         ],
         'title': 'MySQLS Metric w/Anomaly'
     }},
@@ -28,7 +28,7 @@ widgets = [{
     'definition': {
         'type': 'timeseries',
         'requests': [
-            {'q': "my_metric{*}.rollup(sum, 3600)"}
+            {'q': "my_metric{*}.rollup(sum, 3600)"} # custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
         ],
         'title': 'All the Points for the Past Hour Summed Up With a Roll Up function'
     }}
