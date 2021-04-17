@@ -20,18 +20,6 @@ After the successful vagrant installation in the terminal I ran command `vagrant
 Next I started the environment by running command `vagrant up` 
 ![vagrant init, vagrant up](img/vagrant-init.png)
 
-#### Additional Hosts
-I also created two additional hosts so I can learn the differences of configuring Datadog on different environments. I used AWS EC2 for creating two instances for Windows Server 2019 and Amazon Linux. I used Windows Server for exploring installation with Datadog Agent installer and Amazon Linux for learning about Docker Agent set up.
-
-So total I had three hosts with following set ups: 
-
-| Vagrant | AWS EC2              | AWS EC2      |
-| ------- | -------------------- | ------------ |
-| Ubuntu  | Windows Server 2019  | Amazon Linux |
-| MySQL   | MongoDB              | Docker       |    
-
-![three hosts](img/3-hosts.png)
-
 ### Agent Installation
 
 Then it was time to install the Datadog Agent on my new environment. 
@@ -49,6 +37,19 @@ By using an easy one-step install command I was able to successfully install the
 To confirm that the Agent was installed and running I ran `sudo datadog-agent status`
 
 ![Agent Status](img/agent-status.png)
+
+#### Additional Hosts
+I also created two additional hosts so I can learn the differences of configuring Datadog on different environments. I used AWS EC2 for creating two instances for Windows Server 2019 and Amazon Linux. I used Windows Server for exploring installation with Datadog Agent installer and Amazon Linux for learning about Docker Agent set up.
+
+So total I had three hosts with following set ups: 
+
+| Vagrant | AWS EC2              | AWS EC2      |
+| ------- | -------------------- | ------------ |
+| Ubuntu  | Windows Server 2019  | Amazon Linux |
+| MySQL   | MongoDB              | Docker       |    
+
+![three hosts](img/3-hosts.png)
+
 
 ## Collecting Metrics 
 
@@ -71,9 +72,9 @@ UI also allowed to add custom tags under the `User` where I added `os:ubuntu` an
 
 ![Vagrant Tags](img/host-tags.png)
 
-
 With Windows Server I was able to add tags via Data Dog Agent Manager. 
-For that I had to open `Command Prompt` application and run `"%PROGRAMFILES%\Datadog\Datadog Agent\embedded\agent.exe" launch-gui`
+I downloaded Datadog installation file for windows [from here](https://docs.datadoghq.com/agent/basic_agent_usage/windows/?tab=gui) and installed it by following prompts, accepting the license agreement and entered Datadog Api Key. 
+After that I had to launch Datadog manager. I opened `Command Prompt` application and ran `"%PROGRAMFILES%\Datadog\Datadog Agent\embedded\agent.exe" launch-gui`
 As a result a browser window opened with Data Dog Agent Manager
 I selected `Settings` tab and in the list found `tags`
 Added array of tags, clicked `Saved` and `Restart Agent`
