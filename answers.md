@@ -9,7 +9,7 @@
 
 #### VM Setup
 
-For the initial setup I followed the recommendations from the instructions of the technical exercise and spanned up fresh linux VM via Vagrant. 
+For the initial setup I followed the recommendations from the instructions of the technical exercise and spanned up a fresh linux VM via Vagrant. 
 
 First I downloaded [Vagrant](https://www.vagrantup.com/downloads)
 After running the installation package I followed the steps of the vagrant installer: 
@@ -39,9 +39,9 @@ To confirm that the Agent was installed and running I ran `sudo datadog-agent st
 ![Agent Status](img/agent-status.png)
 
 #### Additional Hosts
-I also created two additional hosts so I can learn the differences of configuring Datadog on different environments. I used AWS EC2 for creating two instances for Windows Server 2019 and Amazon Linux. I used Windows Server for exploring installation with Datadog Agent installer and Amazon Linux for learning about Docker Agent set up.
+I also created two additional hosts so I could explore the differences of configuring Datadog on different environments. I used AWS EC2 for creating two instances for Windows Server 2019 and Amazon Linux. I used Windows Server for exploring installation with the Datadog Agent installer and Amazon Linux for learning about the Docker Agent set up.
 
-So total I had three hosts with following set ups: 
+So in total I had three hosts with the following set ups: 
 
 | Vagrant | AWS EC2              | AWS EC2      |
 | ------- | -------------------- | ------------ |
@@ -54,11 +54,11 @@ So total I had three hosts with following set ups:
 ## Collecting Metrics 
 
 ### Adding tags
+#### Ubuntu
 I started with reading about tags at https://docs.datadoghq.com/getting_started/tagging/. I learned that tagging is basically a method to observe aggregate data points and allows correlation and call to action between metrics, traces and logs by binding different data types. I also learned what tag keys are available. 
 
 For Vagrant with Ubuntu I had to add tags in the Agent config file. 
 I navigated to `/etc/datadog-agent` and modified `datadog.yaml` file by adding the following:
- `hostname: vagrant`
 ```
 tags:
   - user: admin
@@ -68,22 +68,22 @@ tags:
 ```
 
 As a result I was able to see the added tags on the Host Map page in DataDog. 
-UI also allowed to add custom tags under the `User` where I added `os:ubuntu` and `email:serge.pokrovskii@gmail.com`
+UI also gives the ability to add custom tags under the `User` and so I added `os:ubuntu` and `email:serge.pokrovskii@gmail.com`
 
 ![Vagrant Tags](img/host-tags.png)
-
-With Windows Server I was able to add tags via Data Dog Agent Manager. 
-I downloaded Datadog installation file for windows [from here](https://docs.datadoghq.com/agent/basic_agent_usage/windows/?tab=gui) and installed it by following prompts, accepting the license agreement and entered Datadog Api Key. 
-After that I had to launch Datadog manager. I opened `Command Prompt` application and ran `"%PROGRAMFILES%\Datadog\Datadog Agent\embedded\agent.exe" launch-gui`
-As a result a browser window opened with Data Dog Agent Manager
-I selected `Settings` tab and in the list found `tags`
-Added array of tags, clicked `Saved` and `Restart Agent`
+#### Windows Server 2019
+With Windows Server I was able to add tags via the Data Dog Agent Manager. 
+I downloaded the Datadog installation file for windows [from here](https://docs.datadoghq.com/agent/basic_agent_usage/windows/?tab=gui) and installed it by following the prompts, accepting the license agreement, and entering the Datadog API Key. 
+After that I had to launch the Datadog Manager. I opened the `Command Prompt` application and ran `"%PROGRAMFILES%\Datadog\Datadog Agent\embedded\agent.exe" launch-gui`
+As a result a browser window opened with the Data Dog Agent Manager
+I selected the `Settings` tab and in the list I found `tags`.
+I added an array of tags, clicked `Save` and `Restart Agent`.
 
 ![Datadog Agent Manager](img/DD-Agent-Manager.png)
 
 ![Windows Tags](img/windows-tags.png)
-
-For Docker to add tags I used REST API. I created a script that I rand in my terminal
+#### Docker
+For Docker, in order to add tags I used the REST API. I created a script that I ran in my terminal
 ```
 curl -X POST "https://api.datadoghq.com/api/v1/tags/hosts/i-0f5bd5bfd76315b1e" \
 -H "Content-Type: application/json" \
@@ -91,51 +91,53 @@ curl -X POST "https://api.datadoghq.com/api/v1/tags/hosts/i-0f5bd5bfd76315b1e" \
 -H "DD-APPLICATION-KEY: APPLICATION-KEY"\
 -d '{ "host": "i-0f5bd5bfd76315b1e", "tags": ["environment:development", "OS:Amazon Linux", "container:Docker"]}'
 ```
+As a result, I saw the tags appear under the user section.
 ![Docker Tags](img/Docker-tags.png)
 
 
-### Installing MySQL DataBase
-I used MySQL database for Vagrant and Ubuntu. 
+### Installing DataBases
+#### MySQL Database for Ubuntu
+I used a MySQL database for Ubuntu on Vagrant. 
 To install the database I ran: 
 ` sudo apt install mysql-server ` - installs MySQL server
 ` sudo service mysql start ` - starts the server
 
-After the installation was complete I confirmed that MySQL server is running by executing the `sudo systemctl status mysql.service` command
+After the installation was complete I confirmed that the MySQL server was running by executing the `sudo systemctl status mysql.service` command
 
 ![MySQL](img/mysql.png)
 
 The next step was to integrate the Agent with the database. 
 
-From reading the Datadog documentation (https://docs.datadoghq.com/integrations/mysql/?tab=host#data-collected) I learned that on each MySQL server I needed to: 
+From reading the Datadog documentation (https://docs.datadoghq.com/integrations/mysql/?tab=host#data-collected) I learned that when using a MySQL server I needed to: 
 * Create a database user for the Datadog Agent.
 * Grant the user privileges. 
 
-Create user with command `CREATE USER 'datadog'@'localhost' IDENTIFIED WITH mysql_native_password by 'datadog99';` where `datadog99` is a password
+I created a user with the command `CREATE USER 'datadog'@'localhost' IDENTIFIED WITH mysql_native_password by 'datadog99';` where `datadog99` is the password.
 
-Grant privileges: 
+The next step was to grant privileges: 
  `GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;`
 
 `GRANT PROCESS ON *.* TO 'datadog'@'localhost';`
 
-Enable metrics to be collected from the performance_schema database:
+Then I needed to enable the metrics to be collected from the performance_schema database:
 ` show databases like 'performance_schema'; `
 ` GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost'; `
 
-### Installing MongoDB DataBase
+#### MongoDB Database for Windows Server 2019
 
-For Windows Server 2019 I installed MongoDB.
+For Windows Server 2019 I installed a MongoDB database.
 
-I used [documentation](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/) and (this article)[https://medium.com/@LondonAppBrewery/how-to-download-install-mongodb-on-windows-4ee4b3493514] to install MongoDB
+I used [documentation](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/) and [this article](https://medium.com/@LondonAppBrewery/how-to-download-install-mongodb-on-windows-4ee4b3493514) to install the MongoDB database.
 
-First I had to Download the MongoDB MSI Installer Package. I followed Installation Wizard instructions to install MongoDB. 
-I added shortcuts to my bash profile so it could be easier to start mongoDB. 
+First, I had to download the MongoDB MSI Installer Package. I followed the Installation Wizard instructions to install the MongoDB database. 
+I added shortcuts to my bash profile so it would be easier to start mongoDB. 
 ```
 alias mongod="/c/Program\ files/MongoDB/Server/4.4.5/bin/mongod.exe"
 alias mongo="/c/Program\ Files/MongoDB/Server/4.4.5/bin/mongo.exe"
 ```
 
 I started both `mongod` and `mongo` to run the DB. 
-After that I created datadog user and gave permissions with the following command shell script: 
+After that I created a user named "datadog" and gave permissions with the following command shell script: 
 
 ```
 db.createUser({
@@ -148,7 +150,7 @@ db.createUser({
   ]
 })
 ```
-In the Datadog Agent Manager I edited `mongo.d/conf.yaml` file and added the following settings:
+In the Datadog Agent Manager I edited the `mongo.d/conf.yaml` file and added the following settings:
 ```
 init_config:
 instances:
@@ -157,15 +159,15 @@ instances:
    - password: datadog99
    - database: admin
 ```
-After that I restarted the agent to apply new settings. 
-MongoDb appeared on the integrations page and on the Host Map
+After that I restarted the agent to apply the new settings. 
+The MongoDb appeared on the integrations page and on the Host Map
 ![Integrations](img/integrations.png)
 ![Hosts](img/host-map.png)
 
 ### MySQL Metric Collection
 
 The next step was to set up the config file for Metric Collection
-In the directory `/etc/datadog-agent/conf.d/mysql.d` I edited the conf.yaml file to specify server, user, password and host: 
+In the directory `/etc/datadog-agent/conf.d/mysql.d` I edited the conf.yaml file to specify server, user, password and port: 
 ![MySQL metrics](img/mysql-config.png)
 
 I restarted the Agent by running `sudo service datadog-agent restart`
@@ -174,11 +176,11 @@ I restarted the Agent by running `sudo service datadog-agent restart`
 
 For this task I followed the documentation on how to write the Custom Agent check (https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
 
-From there I learned that the names of the configuration and check files must match, so I created a check file with the name `my_metric.py` in `/etc/datadog-agent/checks.d` directory and a configuration file `my_metric.yaml` in `/etc/datadog-agent/conf.d` directory. 
+From there I learned that the names of the configuration and check files must match, so I created a check file with the name `my_metric.py` in the `/etc/datadog-agent/checks.d` directory and a configuration file `my_metric.yaml` in the `/etc/datadog-agent/conf.d` directory. 
 
-### Change your check's collection interval so that it only submits the metric once every 45 seconds.
+### Changing check collection interval so that it only submits the metric once every 45 seconds
 
-One of the requirements is to set check's collection interval so it only submits the metric once every 45 seconds. We can achieve that by adding `min_collection_interval` at an instance level
+One of the requirements is to set my check's collection interval so that it only submits the metric once every 45 seconds. I was able to do that by adding `min_collection_interval` at an instance level:
 
 ```
    init_config:
@@ -187,15 +189,14 @@ One of the requirements is to set check's collection interval so it only submits
    - min_collection_interval: 45
 ```
 
-I learned that it does not mean that the metric is collected every 45 seconds, but rather that it could be collected as often as every 45 seconds.
+I learned that `min_collection_interval: 45` does not mean that the metric is collected every 45 seconds, but rather that it could be collected as often as every 45 seconds.
 
 I used the `hello.py` example from the documentation to write my own check file that satisfies the requirements of submitting a metric with a random value between 0 and 1000. 
-In the check file I sent a metric `my_metric` on each call. I used the `randint` function to get a random value between 0 and 1000. The code of `my_metric.py` looks like this: 
+In the check file I sent the metric `my_metric` on each call. I used the `randint` function to get a random value between 0 and 1000. The code of `my_metric.py` looks like this: 
 
 ![my_metric check file](img/my_metric.png)
 
-After restarting the Agent by running `sudo service datadog-agent restart` I could see 
-my changes on the `Metrics -> Explorer` page. In the Graph field I searched for `my_metric` and after selecting it from a dropdown I could see a diagram that shows a time when the call was submitted with the value from 0 to 1000. 
+After restarting the Agent by running `sudo service datadog-agent restart` I could see my changes on the `Metrics -> Explorer` page. In the Graph field I searched for `my_metric` and after selecting it from a dropdown I could see a diagram that shows the time when the call was submitted with a value from 0 to 1000. 
 
 ![Metrics Explorer page](img/Explorer.png)
 
@@ -206,7 +207,7 @@ Another way to make sure that my custom metric was being collected was by runnin
 ### Bonus Question
  Can you change the collection interval without modifying the Python check file you created?
 
-I can change the collection interval by modifying the configuration `yaml` file and setting the `min_collection_interval` to desired interval: 
+I was able to change the collection interval by modifying the configuration `yaml` file and setting the `min_collection_interval` to the desired interval: 
 
 ```
    init_config:
@@ -218,92 +219,25 @@ I can change the collection interval by modifying the configuration `yaml` file 
 
 ## Visualizing Data:
 
-### Creating a Timeboard with Datadog API
+### Creating a Timeboard with the Datadog API
 
-The one difficulty I had was understanding the difference between timeboard vs dashboard. Once I understood that timeboard is a type of a dashboard I realized that I need to look into the documentation for the creation of a new dashboard. [Docs API Dashboards](https://docs.datadoghq.com/api/latest/dashboards/)
+The one difficulty I had was understanding the difference between a Timeboard vs a Dashboard. Once I understood that a Timeboard is a type of a Dashboard I realized that I need to look into the documentation for the creation of a new Dashboard. [Docs API Dashboards](https://docs.datadoghq.com/api/latest/dashboards/)
 
-I decided to use a Python script so I started with the installation of python 3 and pip on VM
+I decided to use a Python script, so I started with the installation of Python 3 and pip on my VM
 
-I followed [these instructions](https://linuxize.com/post/how-to-install-python-3-7-on-ubuntu-18-04/) to install python 3 and [these instructions](https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/) to install pip3. 
+I followed [these instructions](https://linuxize.com/post/how-to-install-python-3-7-on-ubuntu-18-04/) to install Python 3 and [these instructions](https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/) to install pip3. 
 
-After that it was time to install the Datadog library that was going to be used in python script: 
+After that it was time to install the Datadog Library that was going to be used in the Python script: 
 `pip install datadog`
 
-From [API documentation](https://docs.datadoghq.com/api/latest/?code-lang=python) I realized that in order to access the Datadog programmatic API I had to use Application key and API key. 
+From the [API documentation](https://docs.datadoghq.com/api/latest/?code-lang=python) I realized that in order to access the Datadog programmatic API I had to use the Application key and the API key. 
 
-I was able to access the API key by navigating to the `Integrations` page `API Keys` section. On the same `Integrations page` there is a section that refers to the `Teams page` for the creation of the application key. 
+I was able to access the API key by navigating to the `Integrations` page `API Keys` section. On the same `Integrations page` there is a section that refers to the `Teams page` for the creation of an application key. 
 
 Once I had the keys I used the Python code example provided in [Dashboards documentation](https://docs.datadoghq.com/api/latest/dashboards/) to create my own script. 
 
-##### Utilize the Datadog API to create a Timeboard that contains:
-*Your custom metric scoped over your host.
-*Any metric from the Integration on your Database with the anomaly function applied.
-*Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-
-`timeboard.py` file contains the following sections: 
- 
- Options object contains API key and Application key. 
-
-```
-options = {
-    'api_key': '<DATADOG_API_KEY>',
-    'app_key': '<DATADOG_APPLICATION_KEY>'
-}
-```
-
-
-`Options` are  passed to `initialize` function that was imported from `datadog` library
-
-`initialize(**options)`
-
-Starting from line 10 I define properties of the Dashboard that is going to be created: 
-
-`title = 'Data Visualization'` - name of the dashboard that is going to be created. That name is going to be used in datadog to find it on a dashboard list
-
-Next we have a `widgets` array. It contains three widgets that were requested in the "Visualizing Data" part of the technical exercise: 
- * Your custom metric scoped over your host.
- * Any metric from the Integration on your Database with the anomaly function applied.
- * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-```
-widgets = [{
-    'definition': {
-        'type': 'timeseries',
-        'requests': [
-            {'q': 'my_metric{*} by {host}'}
-        ],
-        'title': 'My Custom Metric'
-    }},
-    {
-    'definition': {
-        'type': 'timeseries',
-        'requests': [
-            {'q': "anomalies(avg:mysql.performance.cpu_time{host:vagrant}, 'basic', 2)"},
-        ],
-        'title': 'MySQLS Metric w/Anomaly'
-    }},
-    {
-    'definition': {
-        'type': 'timeseries',
-        'requests': [
-            {'q': "my_metric{*}.rollup(sum, 3600)"}
-        ],
-        'title': 'All the Points for the Past Hour Summed Up With a Roll Up function'
-    }}
-]
-```
-Each widget consists of `definition` object. That object contains `type`, `requests`, `title` properties. 
-
-`type` obviously specifies type of the widget
-
-`requests` specifies what kind of data is going to be displayed in the widget. For example for the task to visualize "any metric from the Integration on your Database with the anomaly function applied" I decided to select MySQL performance cpu time metric with `Basic` [anomaly detection algorithm](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) and value of 2 bounds (standard deviations for the algorithm). 
-
-For custom metric with the rollup function applied to sum up all the points for the past hour into one bucket I used instructions from [here](https://docs.datadoghq.com/dashboards/functions/rollup/) on how `rollup` function works and how to to use it in the request. I used rollup function with sum and 3600 arguments since I needed to sump all the points for the past hour or 3600 seconds. 
-
-`title` sets the title of the widget. 
-
-Line 37 through 44 is being used for setting additional properties of the dashboard. On line 47 an api call is being made and all above mentioned properties a passed). 
-
-The `timeboard.py` file looks like this (it is also included in the repository): 
+### Create a new Metric Monitor.
+The `timeboard.py` file contains the following code (`timeboard.py' is also included in the repository as a separate file): 
 
 ```
 from datadog import initialize, api
@@ -360,6 +294,67 @@ api.Dashboard.create(title=title,
                      notify_list=notify_list,
                      template_variables=template_variables)
 ```
+ 
+ Options object contains API key and Application key. 
+
+```
+options = {
+    'api_key': '<DATADOG_API_KEY>',
+    'app_key': '<DATADOG_APPLICATION_KEY>'
+}
+```
+
+
+`Options` are  passed to `initialize` function that was imported from `datadog` library
+
+`initialize(**options)`
+
+Starting from line 10 I defined properties of the Dashboard that are going to be created: 
+
+`title = 'Data Visualization'` - name of the dashboard that is going to be created. That name is going to be used in datadog to find it on a dashboard list
+
+Next we have a `widgets` array. It contains three widgets that were requested in the "Visualizing Data" part of the technical exercise: 
+ * Your custom metric scoped over your host.
+ * Any metric from the Integration on your Database with the anomaly function applied.
+ * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+```
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'my_metric{*} by {host}'} # Your custom metric scoped over your host.
+        ],
+        'title': 'My Custom Metric'
+    }},
+    {
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': "anomalies(avg:mysql.performance.cpu_time{host:vagrant}, 'basic', 2)"}, # Any metric from the Integration on your Database with the anomaly function applied.
+        ],
+        'title': 'MySQLS Metric w/Anomaly'
+    }},
+    {
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': "my_metric{*}.rollup(sum, 3600)"} # custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+        ],
+        'title': 'All the Points for the Past Hour Summed Up With a Roll Up function'
+    }}
+]
+```
+Each widget consists of `definition` object. That object contains `type`, `requests`, `title` properties. 
+
+`type` obviously specifies type of the widget
+
+`requests` specifies what kind of data is going to be displayed in the widget. For example for the task to visualize "any metric from the Integration on your Database with the anomaly function applied" I decided to select MySQL performance cpu time metric with `Basic` [anomaly detection algorithm](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) and value of 2 bounds (standard deviations for the algorithm). 
+
+For custom metric with the rollup function applied to sum up all the points for the past hour into one bucket I used instructions from [here](https://docs.datadoghq.com/dashboards/functions/rollup/) on how `rollup` function works and how to to use it in the request. I used rollup function with sum and 3600 arguments since I needed to sump all the points for the past hour or 3600 seconds. 
+
+`title` sets the title of the widget. 
+
+Line 37 through 44 is being used for setting additional properties of the dashboard. On line 47 an api call is being made and all above mentioned properties a passed). 
 
 After saving `timeboard.py` I ran `export DD_SITE="https://api.datadoghq.com/api/v1/dashboard" DD_API_KEY="<API-KEY>" DD_APP_KEY="<APP-KEY>"` and `python3 timeboard.py` to execute python file. 
 
@@ -373,10 +368,9 @@ Timeboard can be accessed by following [this link](https://p.datadoghq.com/sb/r9
 
 
 ### Set the Timeboard's timeframe and take a snapshot
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-UI allowed me to set the Timeboard's timeframe to the past 5 minutes and take a snapshot. 
+
+UI allowed me to set the Timeboard's timeframe to the past 5 minutes and take a snapshot and send it to yourself. 
 
 ![Snapshot](img/Snapshot.png)
 
@@ -402,8 +396,6 @@ To create a new Metric Monitor in the Datadog application I selected `Monitors` 
 In the opened page I was able to select metric `my_metric`, warning threshold of 500 and alerting threshold of 800. I also made sure that it will notify me if there is data missing for more than 10 minutes. 
 
 ![Create a new Monitor](img/metric-monitor.png)
-
-
 
 * Please configure the monitor’s message so that it will:
 * Send you an email whenever the monitor triggers.
