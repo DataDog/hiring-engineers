@@ -300,7 +300,7 @@ For custom metric with the rollup function applied to sum up all the points for 
 
 `title` sets the title of the widget. 
 
-Line 37 through 44 is being used for setting additional properties of the dashboard. On line 47 an api call is being made and all above mentioned properties a passed). 
+Line 39 through 47 is being used for setting additional properties of the dashboard. On line 49 an api call is being made and all above mentioned properties a passed to the call so they can be reflected on the Timeboard). 
 
 After saving `timeboard.py` I ran `export DD_SITE="https://api.datadoghq.com/api/v1/dashboard" DD_API_KEY="<API-KEY>" DD_APP_KEY="<APP-KEY>"` and `python3 timeboard.py` to execute python file. 
 
