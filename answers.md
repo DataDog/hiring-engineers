@@ -18,8 +18,19 @@ After running the installation package I followed the steps of the vagrant insta
 After the successful vagrant installation in the terminal I ran command `vagrant init hashicorp/bionic64` - this creates a basic Ubuntu 64 bit box that should be sufficient for running the Datadog Agent and completing the technical exercise. 
 
 Next I started the environment by running command `vagrant up` 
-
 ![vagrant init, vagrant up](img/vagrant-init.png)
+
+#### Additional Hosts
+I also created two additional hosts so I can learn the differences of configuring Datadog on different environments. I used AWS EC2 for creating two instances for Windows Server 2019 and Amazon Linux. I used Windows Server for exploring installation with Datadog Agent installer and Amazon Linux for learning about Docker Agent set up.
+
+So total I had three hosts with following set ups: 
+
+| Vagrant | AWS EC2              | AWS EC2      |
+| ------- | -------------------- | ------------ |
+| Ubuntu  | Windows Server 2019  | Amazon Linux |
+| MySQL   | MongoDB              | Docker       |    
+
+![three hosts](img/3-hosts.png)
 
 ### Agent Installation
 
@@ -42,21 +53,48 @@ To confirm that the Agent was installed and running I ran `sudo datadog-agent st
 ## Collecting Metrics 
 
 ### Adding tags
-Here the first step is to add tags in the Agent config file. 
 I started with reading about tags at https://docs.datadoghq.com/getting_started/tagging/. I learned that tagging is basically a method to observe aggregate data points and allows correlation and call to action between metrics, traces and logs by binding different data types. I also learned what tag keys are available. 
+
+For Vagrant with Ubuntu I had to add tags in the Agent config file. 
 I navigated to `/etc/datadog-agent` and modified `datadog.yaml` file by adding the following:
  `hostname: vagrant`
 ```
 tags:
-    -environment: dev
-    env: dev
+  - user: admin
+  - hostname: spokrovskii
+  - role:webserver
+  - app:backend
 ```
 
 As a result I was able to see the added tags on the Host Map page in DataDog. 
-![Host map and tags](img/host-tags.png)
+UI also allowed to add custom tags under the `User` where I added `os:ubuntu` and `email:serge.pokrovskii@gmail.com`
 
-### Installing DataBase
-I used MySQL database for the initial set up. 
+![Vagrant Tags](img/host-tags.png)
+
+
+With Windows Server I was able to add tags via Data Dog Agent Manager. 
+For that I had to open `Command Prompt` application and run `"%PROGRAMFILES%\Datadog\Datadog Agent\embedded\agent.exe" launch-gui`
+As a result a browser window opened with Data Dog Agent Manager
+I selected `Settings` tab and in the list found `tags`
+Added array of tags, clicked `Saved` and `Restart Agent`
+
+![Datadog Agent Manager](img/DD-Agent-Manager.png)
+
+![Windows Tags](img/windows-tags.png)
+
+For Docker to add tags I used REST API. I created a script that I rand in my terminal
+```
+curl -X POST "https://api.datadoghq.com/api/v1/tags/hosts/i-0f5bd5bfd76315b1e" \
+-H "Content-Type: application/json" \
+-H "DD-API-KEY:API-KEY" \
+-H "DD-APPLICATION-KEY: APPLICATION-KEY"\
+-d '{ "host": "i-0f5bd5bfd76315b1e", "tags": ["environment:development", "OS:Amazon Linux", "container:Docker"]}'
+```
+![Docker Tags](img/docker-tags.png)
+
+
+### Installing MySQL DataBase
+I used MySQL database for Vagrant and Ubuntu. 
 To install the database I ran: 
 ` sudo apt install mysql-server ` - installs MySQL server
 ` sudo service mysql start ` - starts the server
@@ -65,7 +103,6 @@ After the installation was complete I confirmed that MySQL server is running by 
 
 ![MySQL](img/mysql.png)
 
-### Integration MySQL with Datadog
 The next step was to integrate the Agent with the database. 
 
 From reading the Datadog documentation (https://docs.datadoghq.com/integrations/mysql/?tab=host#data-collected) I learned that on each MySQL server I needed to: 
@@ -82,6 +119,47 @@ Grant privileges:
 Enable metrics to be collected from the performance_schema database:
 ` show databases like 'performance_schema'; `
 ` GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost'; `
+
+### Installing MongoDB DataBase
+
+For Windows Server 2019 I installed MongoDB.
+
+I used [documentation](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/) and (this article)[https://medium.com/@LondonAppBrewery/how-to-download-install-mongodb-on-windows-4ee4b3493514] to install MongoDB
+
+First I had to Download the MongoDB MSI Installer Package. I followed Installation Wizard instructions to install MongoDB. 
+I added shortcuts to my bash profile so it could be easier to start mongoDB. 
+```
+alias mongod="/c/Program\ files/MongoDB/Server/4.4.5/bin/mongod.exe"
+alias mongo="/c/Program\ Files/MongoDB/Server/4.4.5/bin/mongo.exe"
+```
+
+I started both `mongod` and `mongo` to run the DB. 
+After that I created datadog user and gave permissions with the following command shell script: 
+
+```
+db.createUser({
+  "user": "datadog",
+  "pwd": "datadog99",
+  "roles": [
+    { role: "read", db: "admin" },
+    { role: "clusterMonitor", db: "admin" },
+    { role: "read", db: "local" }
+  ]
+})
+```
+In the Datadog Agent Manager I edited `mongo.d/conf.yaml` file and added the following settings:
+```
+init_config:
+instances:
+   - hosts: 127.0.0.1:27017
+   - username: datadog
+   - password: datadog99
+   - database: admin
+```
+After that I restarted the agent to apply new settings. 
+MongoDb appeared on the integrations page and on the Host Map
+![Integrations](img/integrations.png)
+![Hosts](img/host-map.png)
 
 ### MySQL Metric Collection
 
@@ -141,7 +219,7 @@ I can change the collection interval by modifying the configuration `yaml` file 
 
 ### Creating a Timeboard with Datadog API
 
-The one difficalty I had was understanding the difference between timeboard vs dashboard. Once I understood that timeboard is a type of a dashboard I realised that I need to look into the documentaion for the creation of a new dashboard. [Docs API Dashboards](https://docs.datadoghq.com/api/latest/dashboards/)
+The one difficulty I had was understanding the difference between timeboard vs dashboard. Once I understood that timeboard is a type of a dashboard I realized that I need to look into the documentation for the creation of a new dashboard. [Docs API Dashboards](https://docs.datadoghq.com/api/latest/dashboards/)
 
 I decided to use a Python script so I started with the installation of python 3 and pip on VM
 
@@ -150,7 +228,7 @@ I followed [these instructions](https://linuxize.com/post/how-to-install-python-
 After that it was time to install the Datadog library that was going to be used in python script: 
 `pip install datadog`
 
-From [API documentation](https://docs.datadoghq.com/api/latest/?code-lang=python) I realised that in order to access the Datadog programmatic API I had to use Applicaton key and API key. 
+From [API documentation](https://docs.datadoghq.com/api/latest/?code-lang=python) I realized that in order to access the Datadog programmatic API I had to use Application key and API key. 
 
 I was able to access the API key by navigating to the `Integrations` page `API Keys` section. On the same `Integrations page` there is a section that refers to the `Teams page` for the creation of the application key. 
 
@@ -173,7 +251,7 @@ options = {
 ```
 
 
-`Options`are  passed to `initialize` function that was imported from `datadog` library
+`Options` are  passed to `initialize` function that was imported from `datadog` library
 
 `initialize(**options)`
 
@@ -181,7 +259,7 @@ Starting from line 10 I define properties of the Dashboard that is going to be c
 
 `title = 'Data Visualization'` - name of the dashboard that is going to be created. That name is going to be used in datadog to find it on a dashboard list
 
-Next we have a `widgets` array. It contains three widgets that were requested in the "Visualizing Data" part of the technichal exercise: 
+Next we have a `widgets` array. It contains three widgets that were requested in the "Visualizing Data" part of the technical exercise: 
  * Your custom metric scoped over your host.
  * Any metric from the Integration on your Database with the anomaly function applied.
  * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
@@ -214,11 +292,11 @@ widgets = [{
 ```
 Each widget consists of `definition` object. That object contains `type`, `requests`, `title` properties. 
 
-`type` obvioulsy specifies type of the widget
+`type` obviously specifies type of the widget
 
-`requests` specifies what kind of data is going to be displayed in the widget. For example for the task to visualize "any metric from the Integration on your Database with the anomaly function applied" I decided to select MySQL performace cpu time metric with `Basic` [anomaly detection algorithm](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) and value of 2 bounds (standard deviations for the algorithm). 
+`requests` specifies what kind of data is going to be displayed in the widget. For example for the task to visualize "any metric from the Integration on your Database with the anomaly function applied" I decided to select MySQL performance cpu time metric with `Basic` [anomaly detection algorithm](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) and value of 2 bounds (standard deviations for the algorithm). 
 
-For custom metric with the rollup function applied to sum up all the points for the past hour into one bucket I used instractions from [here](https://docs.datadoghq.com/dashboards/functions/rollup/) on how `rollup` function works and how to to use it in the request. I used rollup function with sum and 3600 arguments since I needed to sump all the points for the past hour or 3600 seconds. 
+For custom metric with the rollup function applied to sum up all the points for the past hour into one bucket I used instructions from [here](https://docs.datadoghq.com/dashboards/functions/rollup/) on how `rollup` function works and how to to use it in the request. I used rollup function with sum and 3600 arguments since I needed to sump all the points for the past hour or 3600 seconds. 
 
 `title` sets the title of the widget. 
 
@@ -264,7 +342,7 @@ widgets = [{
 ]
 
 layout_type = 'ordered'
-description = 'A timeboard with memory info.'
+description = 'timeboard with memory info.'
 is_read_only = True
 notify_list = ['serge.pokrovskii@gmail.com']
 template_variables = [{
@@ -284,8 +362,8 @@ api.Dashboard.create(title=title,
 
 After saving `timeboard.py` I ran `export DD_SITE="https://api.datadoghq.com/api/v1/dashboard" DD_API_KEY="<API-KEY>" DD_APP_KEY="<APP-KEY>"` and `python3 timeboard.py` to execute python file. 
 
-After successfull execution I should be able to see `Data Visualization` dashboard name in the Dashboard list and access the Dashboard from `Dasboards` -> `Dasboard list` in the UI: 
-![Dasboard list](img/dashboard.png)
+After successful execution I should be able to see `Data Visualization` dashboard name in the Dashboard list and access the Dashboard from `Dashboards` -> `Dashboard list` in the UI: 
+![Dashboard list](img/dashboard.png)
 
 #### Timeboard
 ![Timeboard](img/data-vis.png)
@@ -320,7 +398,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 To create a new Metric Monitor in the Datadog application I selected `Monitors` -> `New Monitor` -> `Metric`
 
-In the opened page I was able to select metric `my_metric`, warning treshold of 500 and alerting treshold of 800. I also made sure that it will notify me if there is data missing for more than 10 minutes. 
+In the opened page I was able to select metric `my_metric`, warning threshold of 500 and alerting threshold of 800. I also made sure that it will notify me if there is data missing for more than 10 minutes. 
 
 ![Create a new Monitor](img/metric-monitor.png)
 
@@ -357,7 +435,7 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 * And one that silences it all day on Sat-Sun.
 * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-For downtime managment I navigated to `Monitors` -> `Manage Downtime` and clicked `Schedule Downtime`
+For downtime management I navigated to `Monitors` -> `Manage Downtime` and clicked `Schedule Downtime`
 ![Schedule Downtime](img/manage-downtime.png)
 
 To schedule downtime for Mon-Fri I had to specify monitor, metric, start date, days of the week, and time. I left out Group Scope because by default it includes all groups: 
@@ -366,7 +444,7 @@ To schedule downtime for Mon-Fri I had to specify monitor, metric, start date, d
 To schedule downtime for Sat-Sun I had to specify all the same fields except days of the week and time was different: 
 ![Schedule downtime](img/down-time-sat-sun.png)
 
-Once scheduled downtime started I recieved email notification: 
+Once scheduled downtime started I received email notification: 
 ![downtime email](img/downtime-email.png)
 
 ## Collecting APM Data
@@ -379,7 +457,7 @@ Next step was to install flask library on ubuntu by executing `pip3 install flas
 ![Flask install](img/install-flask.png)
 
 After that I was ready to move to APM set up in Datadog. In the left menu I selected `APM` -> `Get Started`
-![APM setup](img/apm.png)
+![APM setup](img/APM.png)
 
 In the opened window I selected `Host-Based`. Because I already had my Agent installed I proceeded to second step `Choose your language` where I selected `python`
 ![Choose language](img/choose-language.png)
@@ -397,5 +475,53 @@ I noticed that I was missing `Cython` module
 `pip3 install cython` fixed the error and I was able successfuly install `ddtrace` 
 ![ddtrace install success](img/install-ddtrace-success.png)
 
+However when I run command `DD_SERVICE="flaskapp" DD_ENV="dev" DD_LOGS_INJECTION=true DD_TRACE_ENABLED=true ddtrace-run python3 flaskapp.py` 
+I got an error: 
+```
+-bash: ddtrace-run: command not found
+```
+The solution was to run `sudo -H pip install ddtrace`
+After that I was able to run flask app by running: 
+` DD_SERVICE="flaskapp" DD_ENV="dev" DD_LOGS_INJECTION=true DD_TRACE_ENABLED=true ddtrace-run python3 flaskapp.py`
 
+In order to send traces to Datadog I had to hit the service's endpoints. I started new instance of vm in a separate terminal window and used curl to hit endpoints. 
+For every executed curl command I could see `GET` request being generated in the terminal and http response status code 200, that means the request was successful:
+```
+ vagrant ssh
+ curl http://0.0.0.0:5050/
+```
+![request](img/request.png)
+```
+ curl http://0.0.0.0:5050/api/apm
+```
+![request](img/api-apm.png)
+```
+ curl http://0.0.0.0:5050/api/trace
+```
+![request](img/api-trace.png)
 
+In the Datadog UI I could see the service that I just added by navigating to `APM -> Services` 
+
+![service](img/service.png)
+
+By clicking on the service I could see detailed view:
+
+![Service details](img/service-details.png)
+
+To view Traces I clicked `APM -> Traces` in the left main menu or `Traces` in the top menu bar: 
+
+![traces](img/traces.png)
+
+###  Bonus Question: What is the difference between a Service and a Resource?
+
+From documentation about [services](https://docs.datadoghq.com/tracing/visualization/#services) and [resources](https://docs.datadoghq.com/tracing/visualization/#resources) I learned that service groups together resources for the purposes of scaling instances. Resource is a particular domain of a customer application (it could be a dynamic web endpoint, db query, background job), so in other words service is a group of resources.  
+
+### Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+APM and Infrastructure Metrics:  https://p.datadoghq.com/sb/r994pgswllop6yxx-558bf013ffaf7828a1fe1b51cf857832
+
+![APM and Infrastructure](APM&infrastructure.png)
+
+### Please include your fully instrumented app in your submission, as well.
+For auto instrumented application I used provided Flask app, that is added to repository as flaskapp.py file
+
+## Final question
