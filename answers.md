@@ -91,7 +91,7 @@ curl -X POST "https://api.datadoghq.com/api/v1/tags/hosts/i-0f5bd5bfd76315b1e" \
 -H "DD-APPLICATION-KEY: APPLICATION-KEY"\
 -d '{ "host": "i-0f5bd5bfd76315b1e", "tags": ["environment:development", "OS:Amazon Linux", "container:Docker"]}'
 ```
-![Docker Tags](img/docker-tags.png)
+![Docker Tags](img/Docker-tags.png)
 
 
 ### Installing MySQL DataBase
