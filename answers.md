@@ -221,7 +221,7 @@ I was able to change the collection interval by modifying the configuration `yam
 
 ### Creating a Timeboard with the Datadog API
 
-The one difficulty I had was understanding the difference between a Timeboard vs a Dashboard. Once I understood that a Timeboard is a type of a Dashboard I realized that I need to look into the documentation for the creation of a new Dashboard. [Docs API Dashboards](https://docs.datadoghq.com/api/latest/dashboards/)
+The one difficulty I had was understanding the difference between a Timeboard vs a Dashboard. Once I understood that a Timeboard is a type of Dashboard I realized that I needed to look into the documentation for the creation of a new Dashboard. [Docs API Dashboards](https://docs.datadoghq.com/api/latest/dashboards/)
 
 I decided to use a Python script, so I started with the installation of Python 3 and pip on my VM
 
@@ -236,12 +236,11 @@ I was able to access the API key by navigating to the `Integrations` page `API K
 
 Once I had the keys I used the Python code example provided in [Dashboards documentation](https://docs.datadoghq.com/api/latest/dashboards/) to create my own script. 
 
-### Create a new Metric Monitor.
 The `timeboard.py` file contains the following code (`timeboard.py' is also included in the repository as a separate file): 
 
 ![timeboard.py](img/timeboard.png)
  
- Options object contains API key and Application key. 
+ The options object contains the API key and the Application key. 
 
 ```
 options = {
@@ -251,15 +250,15 @@ options = {
 ```
 
 
-`Options` are  passed to `initialize` function that was imported from `datadog` library
+`Options` are  passed to the `initialize` function that was imported from the `datadog` library
 
 `initialize(**options)`
 
-Starting from line 10 I defined properties of the Dashboard that are going to be created: 
+Starting from line 10 I defined the properties of the Dashboard that are going to be created: 
 
-`title = 'Data Visualization'` - name of the dashboard that is going to be created. That name is going to be used in datadog to find it on a dashboard list
+`title = 'Data Visualization'` - name of the dashboard that is going to be created. That name is going to be used in the Datadog UI to find the dashboard on the dashboard list.
 
-Next we have a `widgets` array. It contains three widgets that were requested in the "Visualizing Data" part of the technical exercise: 
+Next we have a `widgets` array. It contains the three widgets that were requested in the "Visualizing Data" section of the technical exercise: 
  * Your custom metric scoped over your host.
  * Any metric from the Integration on your Database with the anomaly function applied.
  * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
@@ -290,76 +289,72 @@ widgets = [{
     }}
 ]
 ```
-Each widget consists of `definition` object. That object contains `type`, `requests`, `title` properties. 
+Each widget consists of a `definition` object. That object contains `type`, `requests`, and `title` properties. 
 
-`type` obviously specifies type of the widget
+`type` of course specifies the type of the widget.
 
-`requests` specifies what kind of data is going to be displayed in the widget. For example for the task to visualize "any metric from the Integration on your Database with the anomaly function applied" I decided to select MySQL performance cpu time metric with `Basic` [anomaly detection algorithm](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) and value of 2 bounds (standard deviations for the algorithm). 
+`requests` specifies what kind of data is going to be displayed in the widget. For example, for the task to visualize "any metric from the Integration on your Database with the anomaly function applied" I decided to select the MySQL performance cpu time metric with the `Basic` [anomaly detection algorithm](https://docs.datadoghq.com/monitors/monitor_types/anomaly/) and a value of 2 bounds (standard deviations for the algorithm). 
 
-For custom metric with the rollup function applied to sum up all the points for the past hour into one bucket I used instructions from [here](https://docs.datadoghq.com/dashboards/functions/rollup/) on how `rollup` function works and how to to use it in the request. I used rollup function with sum and 3600 arguments since I needed to sump all the points for the past hour or 3600 seconds. 
+For the "custom metric with the rollup function applied to sum up all the points for the past hour into one bucket," I used [these instructions](https://docs.datadoghq.com/dashboards/functions/rollup/) on how the `rollup` function works and how to to use it in the request. I used the rollup function with `sum` and `3600` arguments since I needed to sum up all the points for the past hour or 3600 seconds. 
 
 `title` sets the title of the widget. 
 
-Line 39 through 47 is being used for setting additional properties of the dashboard. On line 49 an api call is being made and all above mentioned properties a passed to the call so they can be reflected on the Timeboard). 
+Lines 39 through 47 are being used to set additional properties of the dashboard. On line 49 an API call is being made and all the above mentioned properties are passed to the call so they can be reflected on the Timeboard. 
 
-After saving `timeboard.py` I ran `export DD_SITE="https://api.datadoghq.com/api/v1/dashboard" DD_API_KEY="<API-KEY>" DD_APP_KEY="<APP-KEY>"` and `python3 timeboard.py` to execute python file. 
+After saving `timeboard.py` I ran `export DD_SITE="https://api.datadoghq.com/api/v1/dashboard" DD_API_KEY="<API-KEY>" DD_APP_KEY="<APP-KEY>"` and `python3 timeboard.py` to execute the Python file. 
 
-After successful execution I should be able to see `Data Visualization` dashboard name in the Dashboard list and access the Dashboard from `Dashboards` -> `Dashboard list` in the UI: 
+After a successful execution I should be able to see the `Data Visualization` Dashboard name in the Dashboard list and access the Dashboard from `Dashboards` -> `Dashboard list` in the UI: 
 ![Dashboard list](img/dashboard.png)
 
 #### Timeboard
 ![Timeboard](img/data-vis.png)
 
-Timeboard can be accessed by following [this link](https://p.datadoghq.com/sb/r994pgswllop6yxx-aae689097938255beefc2e2edd446f2d)
+The Timeboard can be accessed by following [this link](https://p.datadoghq.com/sb/r994pgswllop6yxx-aae689097938255beefc2e2edd446f2d)
 
 
-### Set the Timeboard's timeframe and take a snapshot
+### Timeboard's Timeframe and Snapshot
 
 
-UI allowed me to set the Timeboard's timeframe to the past 5 minutes and take a snapshot and send it to yourself. 
+I set the Timeboard's timeframe to the past 5 minutes in the UI and took a snapshot and sent it to myself. 
 
 ![Snapshot](img/Snapshot.png)
 
-I added `@` notation to find my name in the list to send it to myself. 
+I added the `@` notation to find my name in the list to send it to myself. 
 ![notation](img/notation.png)
 
-### What is the Anomaly graph displaying?
-Bonus Question: What is the Anomaly graph displaying?
+### Bonus Question: What is the Anomaly graph displaying?
 
-The graph is displaying a period of time when a metric is behaving differently than it has in the past, taking in accounts trends, seasonal day-of-week, and time-of-day patterns. In other words anomaly graph is displaying period of time when metric doesn't match the prediction. It is well-suited for metrics with strong trends and recurring patterns.
+The graph is displaying a period of time when a metric is behaving differently than it has in the past, taking in accounts trends, seasonal day-of-week, and time-of-day patterns. In other words, the anomaly graph is displaying the period of time when a metric doesn't match the prediction. It is well-suited for metrics with strong trends and recurring patterns.
 
 ## Monitoring Data
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+### Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+*Warning threshold of 500
+*Alerting threshold of 800
+*And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+To create a new Metric Monitor in the Datadog Application I selected `Monitors` -> `New Monitor` -> `Metric`
 
-* Warning threshold of 500
-* Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
-
-To create a new Metric Monitor in the Datadog application I selected `Monitors` -> `New Monitor` -> `Metric`
-
-In the opened page I was able to select metric `my_metric`, warning threshold of 500 and alerting threshold of 800. I also made sure that it will notify me if there is data missing for more than 10 minutes. 
+In the opened page I selected the metric `my_metric`, warning threshold of 500 and alerting threshold of 800. I also made sure that it will notify me if there is data missing for more than 10 minutes. 
 
 ![Create a new Monitor](img/metric-monitor.png)
 
-* Please configure the monitor’s message so that it will:
+### Configure the monitor’s message so that it will:
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-Using [Notifications documentation](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert) I was able to create monitor's message that will create different messages based on whatever monitor triggers by using [conditional variables](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#conditional-variables): 
+Using the [Notifications documentation](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert) I was able to configure the monitor's message so that it will create different messages based on whatever the monitor triggers by using [conditional variables](https://docs.datadoghq.com/monitors/notifications/?tab=is_alert#conditional-variables): 
 
 * Warning threshold of 500:
 ```
 {{#is_warning}}my_metric exceeded threshold  of 500{{/is_warning}}
 ```
 * Alerting threshold of 800
-For displaying host ip I used tag variable `{{host.ip}}`
+For displaying the host ip I used the tag variable `{{host.ip}}`
 ```
-{{#is_alert}}my_metric exceeded threshold  of 800, my_metric is {{value}}, IP Address: {{host.ip}} {{/is_alert}} 
+{{#is_alert}}my_metric exceeded threshold of 800, my_metric is {{value}}, IP Address: {{host.ip}} {{/is_alert}} 
 ```
-After adding myself to notification list my email was added to the end of the message `@serge.pokrovskii@gmail.com`
+After adding myself to the notification list my email was added to the end of the message `@serge.pokrovskii@gmail.com`
 ```
 {{#is_no_data}}Data is missing for more than 10 minutes{{/is_no_data}} @serge.pokrovskii@gmail.com
 ```
@@ -368,8 +363,7 @@ After adding myself to notification list my email was added to the end of the me
 Screenshot of the email that monitor sent: 
 ![email screenshot](img/500.png)
 
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
-
+### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 * One that silences it from 7pm to 9am daily on M-F,
 * And one that silences it all day on Sat-Sun.
 * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
@@ -377,54 +371,54 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 For downtime management I navigated to `Monitors` -> `Manage Downtime` and clicked `Schedule Downtime`
 ![Schedule Downtime](img/manage-downtime.png)
 
-To schedule downtime for Mon-Fri I had to specify monitor, metric, start date, days of the week, and time. I left out Group Scope because by default it includes all groups: 
+To schedule downtime for Mon-Fri I had to specify the monitor, metric, start date, days of the week, and time. I left out Group Scope because by default it includes all groups: 
 ![Schedule downtime](img/down-time-week.png)
 
-To schedule downtime for Sat-Sun I had to specify all the same fields except days of the week and time was different: 
+To schedule downtime for Sat-Sun I had to specify all the same fields except the days of the week and time were different: 
 ![Schedule downtime](img/down-time-sat-sun.png)
 
-Once scheduled downtime started I received email notification: 
+Once the scheduled downtime started I received an email notification: 
 ![downtime email](img/downtime-email.png)
 
 ## Collecting APM Data
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+*Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
-In order to use provided flask application I had to create pthon file and add it to `etc/datadog-agent`. 
+In order to use the provided flask application I had to create a Python file and add it to `etc/datadog-agent`. 
 ![Flask Application](img/flask-app.png)
 
-Next step was to install flask library on ubuntu by executing `pip3 install flask`
+The next step was to install the flask library on Ubuntu by executing `pip3 install flask`
 ![Flask install](img/install-flask.png)
 
-After that I was ready to move to APM set up in Datadog. In the left menu I selected `APM` -> `Get Started`
+After that I was ready to move to the APM setup in Datadog. In the left menu I selected `APM` -> `Get Started`
 ![APM setup](img/APM.png)
 
-In the opened window I selected `Host-Based`. Because I already had my Agent installed I proceeded to second step `Choose your language` where I selected `python`
+In the opened window I selected `Host-Based`. Because I already had my Agent installed, I proceeded to the second step `Choose your language` where I selected `python`
 ![Choose language](img/choose-language.png)
 
-Next step was installation of the Python client. After running `pip install ddtrace` I got an error:  
+The next step was the installation of the Python client. After running `pip install ddtrace` I got an error:  
 ```
 ModuleNotFoundError: No module named 'Cython'
 
     ----------------------------------------
 Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-build-yesr2sdd/ddtrace/
 ```
-I noticed that I was missing `Cython` module
+I noticed that I was missing the `Cython` module
 ![missing Cython](img/no-cython.png)
 
 `pip3 install cython` fixed the error and I was able successfuly install `ddtrace` 
 ![ddtrace install success](img/install-ddtrace-success.png)
 
-However when I run command `DD_SERVICE="flaskapp" DD_ENV="dev" DD_LOGS_INJECTION=true DD_TRACE_ENABLED=true ddtrace-run python3 flaskapp.py` 
+However when I ran command `DD_SERVICE="flaskapp" DD_ENV="dev" DD_LOGS_INJECTION=true DD_TRACE_ENABLED=true ddtrace-run python3 flaskapp.py` 
 I got an error: 
 ```
 -bash: ddtrace-run: command not found
 ```
 The solution was to run `sudo -H pip install ddtrace`
-After that I was able to run flask app by running: 
+After that I was able to run the flask app by running: 
 ` DD_SERVICE="flaskapp" DD_ENV="dev" DD_LOGS_INJECTION=true DD_TRACE_ENABLED=true ddtrace-run python3 flaskapp.py`
 
-In order to send traces to Datadog I had to hit the service's endpoints. I started new instance of vm in a separate terminal window and used curl to hit endpoints. 
-For every executed curl command I could see `GET` request being generated in the terminal and http response status code 200, that means the request was successful:
+In order to send traces to Datadog I had to hit the service's endpoints. I started a new instance of Vagrant in a separate terminal window and used curl to hit endpoints. 
+For every executed curl command I could see a `GET` request being generated in the terminal and the http response status code 200, which means the request was successful:
 ```
  vagrant ssh
  curl http://0.0.0.0:5050/
@@ -443,7 +437,7 @@ In the Datadog UI I could see the service that I just added by navigating to `AP
 
 ![service](img/service.png)
 
-By clicking on the service I could see detailed view:
+By clicking on the service I could see a detailed view:
 
 ![Service details](img/service-details.png)
 
@@ -451,9 +445,9 @@ To view Traces I clicked `APM -> Traces` in the left main menu or `Traces` in th
 
 ![traces](img/traces.png)
 
-###  Bonus Question: What is the difference between a Service and a Resource?
+### Bonus Question: What is the difference between a Service and a Resource?
 
-From documentation about [services](https://docs.datadoghq.com/tracing/visualization/#services) and [resources](https://docs.datadoghq.com/tracing/visualization/#resources) I learned that service groups together resources for the purposes of scaling instances. Resource is a particular domain of a customer application (it could be a dynamic web endpoint, db query, background job), so in other words service is a group of resources.  
+From the documentation about [services](https://docs.datadoghq.com/tracing/visualization/#services) and [resources](https://docs.datadoghq.com/tracing/visualization/#resources) I learned that a Service groups together Resources for the purposes of scaling instances. A resource is a particular domain of a customer application (it could be a dynamic web endpoint, db query, background job etc), so in other words, a service is a group of resources.  
 
 ### Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 APM and Infrastructure Metrics:  https://p.datadoghq.com/sb/r994pgswllop6yxx-558bf013ffaf7828a1fe1b51cf857832
@@ -461,6 +455,6 @@ APM and Infrastructure Metrics:  https://p.datadoghq.com/sb/r994pgswllop6yxx-558
 ![APM and Infrastructure](APM&infrastructure.png)
 
 ### Please include your fully instrumented app in your submission, as well.
-For auto instrumented application I used provided Flask app, that is added to repository as flaskapp.py file
+For the auto instrumented application I used the provided Flask app that is added to the repository as flaskapp.py file
 
 ## Final question
