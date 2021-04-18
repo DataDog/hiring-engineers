@@ -307,6 +307,8 @@ After a successful execution I should be able to see the `Data Visualization` Da
 ![Dashboard list](img/dashboard.png)
 
 #### Timeboard
+
+By clicking on "Data Visualization" (name of the timeboard in the list) I could open the timeboard whi looks like this:
 ![Timeboard](img/data-vis.png)
 
 The Timeboard can be accessed by following [this link](https://p.datadoghq.com/sb/r994pgswllop6yxx-aae689097938255beefc2e2edd446f2d)
