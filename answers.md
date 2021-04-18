@@ -447,7 +447,7 @@ To view Traces I clicked `APM -> Traces` in the left main menu or `Traces` in th
 
 ### Bonus Question: What is the difference between a Service and a Resource?
 
-From the documentation about [services](https://docs.datadoghq.com/tracing/visualization/#services) and [resources](https://docs.datadoghq.com/tracing/visualization/#resources) I learned that a Service groups together Resources for the purposes of scaling instances. A resource is a particular domain of a customer application (it could be a dynamic web endpoint, db query, background job etc), so in other words, a service is a group of resources.  
+From the documentation about [services](https://docs.datadoghq.com/tracing/visualization/#services) and [resources](https://docs.datadoghq.com/tracing/visualization/#resources) I learned that a Service groups together Resources for the purposes of scaling instances. A resource is a particular domain of an application (it could be a dynamic web endpoint, db query, background job etc), so in other words, a service is a group of resources.  
 
 ### Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 APM and Infrastructure Metrics:  https://p.datadoghq.com/sb/r994pgswllop6yxx-558bf013ffaf7828a1fe1b51cf857832
@@ -458,3 +458,9 @@ APM and Infrastructure Metrics:  https://p.datadoghq.com/sb/r994pgswllop6yxx-558
 For the auto instrumented application I used the provided Flask app that is added to the repository as flaskapp.py file
 
 ## Final question
+
+### Is there anything creative you would use Datadog for?
+
+Currently my wife and I are looking into building a house and selling our house, but the situation is a little tricky right now. Real-estate prices of existing houses have been rising due to the lack of available homes on the market. Also prices on lumber and other materials have been volatile and rising significantly, which affects the price of building a house. Most builders right now are writing in a clause to allow for adjustments in home pricing due to the cost of materials being so unpredictable. Needless to say, we could definitely benefit from a way to monitor the housing market and material costs right now and I could use Datadog to help me do this.
+
+In order to do this I could connect to an API that would report real-estate data and an API that would report lumbar and petroleum price data. Then I would set up Datadog to monitor that data and some unique metrics such as the price of building materials, as well as how long a house has been on the market in a certain area, what the asking price was vs the price that it was sold for, and the average difference between those two prices. I'm interested to see how those metrics will change over time and how that will affect the prices on real-estate. I would use this to monitor the situation and keep me informed on how things are going so that I don’t miss out on the right time to act.
