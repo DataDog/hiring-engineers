@@ -166,15 +166,15 @@ contact Scot Curry at 312-489-1056 if the data is not populating.
 
 [Curryware Timeboard](https://p.datadoghq.com/sb/s680qmbidyyypnvm-0d6eef751ed1027ddd547bcdd764d9ea)
 
-![Curryware Timeboard Screenshot](https://github.com/scotcurry/hiring-engineers/blob/master/Timeboard.png)
+![Curryware Timeboard Screenshot](https://github.com/scotcurry/hiring-engineers/blob/master/Images/Timeboard.png)
 
-[Link to Timeboard Creation Python Script](https://github.com/scotcurry/hiring-engineers/blob/master/buildtimeline.py)
+[Link to Timeboard Creation Python Script](https://github.com/scotcurry/hiring-engineers/blob/master/Images/buildtimeline.py)
 
   
 * **Set the Timeboard's timeframe to the past 5 minutes**
   
 This was a simple dropdown.
-![Timeboard timeframe dropdown](https://github.com/scotcurry/hiring-engineers/blob/master/TimeDropDown.png)
+![Timeboard timeframe dropdown](https://github.com/scotcurry/hiring-engineers/blob/master/Images/TimeDropDown.png)
   
 * **Take a snapshot of this graph and use the @ notation to send it to yourself.**
 
@@ -191,13 +191,13 @@ account for seasonality and show trends.
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 Definition of the monitor:
-![Monitor Definition](https://github.com/scotcurry/hiring-engineers/blob/master/MetricDefinition.png)
+![Monitor Definition](https://github.com/scotcurry/hiring-engineers/blob/master/Images/MetricDefinition.png)
 
 Messages with variable information:
-![Message Definition](https://github.com/scotcurry/hiring-engineers/blob/master/NotificationSettings.png)
+![Message Definition](https://github.com/scotcurry/hiring-engineers/blob/master/Images/NotificationSettings.png)
 
 Email Message for Monitor:
-![Email Message](https://github.com/scotcurry/hiring-engineers/blob/master/EmailMessage.png)
+![Email Message](https://github.com/scotcurry/hiring-engineers/blob/master/Images/EmailMessage.png)
 
 **Notes**
 
@@ -230,10 +230,10 @@ logger.setLevel(logging.DEBUG)
 ```
 
 APM Screenshot 1:
-![APM Screenshot 1](https://github.com/scotcurry/hiring-engineers/blob/master/APMScreenshot.png)
+![APM Screenshot 1](https://github.com/scotcurry/hiring-engineers/blob/master/Images/APMScreenshot.png)
 
 APM Screenshot 2:
-![APM Screenshot 2](https://github.com/scotcurry/hiring-engineers/blob/master/APMScreenshot2.png)
+![APM Screenshot 2](https://github.com/scotcurry/hiring-engineers/blob/master/Images/APMScreenshot2.png)
 
 Link to the instrumented app.py file:
 [Link to app](https://github.com/scotcurry/MobileFlowsCalls/blob/master/app.py)
