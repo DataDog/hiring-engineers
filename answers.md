@@ -361,8 +361,13 @@ After adding myself to the notification list my email was added to the end of th
 ```
 ![Alert Message](img/alert-message.png)
 
-Screenshot of the email that monitor sent: 
-![email screenshot](img/500.png)
+Alert email screenshot: 
+![Alert email screenshot](img/my-metric-800.png)
+
+Warning email screenshot: 
+![Warning email screenshot](img/500.png)
+
+
 
 ### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 * One that silences it from 7pm to 9am daily on M-F,
