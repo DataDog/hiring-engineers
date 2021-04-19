@@ -41,3 +41,65 @@ sudo service datadog-agent status
 and see the following information:
 
 ![image](images/broken.PNG?raw=true "Broken")
+
+My guess is that there is a small difference in the datadog.yaml vs the default (which I found datadog provides here https://raw.githubusercontent.com/DataDog/datadog-agent/master/pkg/config/config_template.yaml)
+
+as such, I will compare the two files to see that is different
+
+Two files look Identical, in almost all parts
+
+![image](images/diff.PNG?raw=true "Diff")
+
+found the agent logs are contained in "/var/log/datadog/agent.log"
+
+66: did not find expected '-' indicator
+2021-04-19 22:21:51 UTC | CORE | INFO | (pkg/logs/logs.go:162 in Stop) | Stopping logs-agent
+2021-04-19 22:21:51 UTC | CORE | INFO | (pkg/logs/logs.go:174 in Stop) | logs-agent stopped
+2021-04-19 22:21:51 UTC | CORE | INFO | (cmd/agent/app/run.go:466 in StopAgent) | See ya!
+2021-04-19 22:21:52 UTC | CORE | INFO | (pkg/util/log/log.go:526 in func1) | runtime: final GOMAXPROCS value is: 1
+2021-04-19 22:21:52 UTC | CORE | WARN | (pkg/util/log/log.go:541 in func1) | Error loading config: While parsing config: yaml: line 66: did not find expected '-' indicator
+2021-04-19 22:21:52 UTC | CORE | ERROR | (cmd/agent/app/run.go:234 in StartAgent) | Failed to setup config unable to load Datadog config file: While parsing config: yaml: line 
+
+is contained in the logs, checking to see what is on line 66
+
+line 66 contains "tags"
+
+checking compared to the github example, I cannot see a "-" in either, perhaps it is a missing space?
+
+Will test and try again
+
+did not work, I changed 
+
+datadog.yaml.example to contain the same information, and a comparison looks as follows:
+
+![image](images/replacing-config.PNG?raw=true "replacing-config")
+
+
+based on the error changing from:
+
+66: did not find expected '-' indicator
+
+to
+
+65: did not find expected key
+
+my guess is that it is to do with spacing
+
+changed spacing from
+
+
+ tags:
+   - environment:dev
+   - 12456:23456
+
+to 
+
+tags:
+ - environment:dev
+ - 12456:23456
+
+and it worked! not sure why this change broke my config if it was set up this way previously
+
+I can now see my tags created correctly within the datadog console:
+
+![image](images/tags2.PNG?raw=true "tags2")
