@@ -382,7 +382,7 @@ Once the scheduled downtime started I received an email notification:
 ![downtime email](img/downtime-email.png)
 
 ## Collecting APM Data
-*Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+* Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
 In order to use the provided flask application I had to create a Python file and add it to `etc/datadog-agent`. 
 ![Flask Application](img/flask-app.png)
