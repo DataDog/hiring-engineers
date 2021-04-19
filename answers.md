@@ -1,5 +1,5 @@
 
-## Prerequisites - Setup the Environment
+## Prerequisites - Set Up the Environment
 
 ### Environment
 * OS: macOS Catalina 10.15.16
@@ -9,7 +9,7 @@
 
 #### VM Setup
 
-For the initial setup I followed the recommendations from the instructions of the technical exercise and spanned up a fresh linux VM via Vagrant. 
+For the initial setup I followed the recommendations from the instructions of the technical exercise and spun up a fresh linux VM via Vagrant. 
 
 First I downloaded [Vagrant](https://www.vagrantup.com/downloads)
 After running the installation package I followed the steps of the vagrant installer: 
@@ -39,7 +39,7 @@ To confirm that the Agent was installed and running I ran `sudo datadog-agent st
 ![Agent Status](img/agent-status.png)
 
 #### Additional Hosts
-I also created two additional hosts so I could explore the differences of configuring Datadog on different environments. I used AWS EC2 for creating two instances for Windows Server 2019 and Amazon Linux. I used Windows Server for exploring installation with the Datadog Agent installer and Amazon Linux for learning about the Docker Agent set up.
+I also created two additional hosts so I could explore the differences of configuring Datadog on different environments. I used AWS EC2 for creating two instances, one for Windows Server 2019 and one for Amazon Linux. I used Windows Server for exploring installation with the Datadog Agent installer and Amazon Linux for learning about the Docker Agent set up.
 
 So in total I had three hosts with the following set ups: 
 
@@ -55,7 +55,7 @@ So in total I had three hosts with the following set ups:
 
 ### Adding tags
 #### Ubuntu
-I started with reading about tags at https://docs.datadoghq.com/getting_started/tagging/. I learned that tagging is basically a method to observe aggregate data points and allows correlation and call to action between metrics, traces and logs by binding different data types. I also learned what tag keys are available. 
+I started with reading about tags at https://docs.datadoghq.com/getting_started/tagging/. I learned that tagging is basically a method to observe aggregate data points and that allows correlation and call to action between metrics, traces and logs by binding different data types. I also learned what tag keys are available. 
 
 For Vagrant with Ubuntu I had to add tags in the Agent config file. 
 I navigated to `/etc/datadog-agent` and modified `datadog.yaml` file by adding the following:
@@ -68,22 +68,21 @@ tags:
 ```
 
 As a result I was able to see the added tags on the Host Map page in DataDog. 
-UI also gives the ability to add custom tags under the `User` and so I added `os:ubuntu` and `email:serge.pokrovskii@gmail.com`
+UI also gives the ability to add custom tags under the `User` and so I added `os:ubuntu` and `email:serge.pokrovskii@gmail.com`.
 
 ![Vagrant Tags](img/host-tags.png)
 #### Windows Server 2019
 With Windows Server I was able to add tags via the Data Dog Agent Manager. 
-I downloaded the Datadog installation file for windows [from here](https://docs.datadoghq.com/agent/basic_agent_usage/windows/?tab=gui) and installed it by following the prompts, accepting the license agreement, and entering the Datadog API Key. 
-After that I had to launch the Datadog Manager. I opened the `Command Prompt` application and ran `"%PROGRAMFILES%\Datadog\Datadog Agent\embedded\agent.exe" launch-gui`
-As a result a browser window opened with the Data Dog Agent Manager
-I selected the `Settings` tab and in the list I found `tags`.
+I downloaded the Datadog installation file for Windows [from here](https://docs.datadoghq.com/agent/basic_agent_usage/windows/?tab=gui) and installed it by following the prompts, accepting the license agreement, and entering the Datadog API Key. 
+After that I had to launch the Datadog Manager. I opened the `Command Prompt` application and ran `"%PROGRAMFILES%\Datadog\Datadog Agent\embedded\agent.exe" launch-gui`.
+As a result a browser window opened with the Data Dog Agent Manager and I selected the `Settings` tab and in the list I found `tags`.
 I added an array of tags, clicked `Save` and `Restart Agent`.
 
 ![Datadog Agent Manager](img/DD-Agent-Manager.png)
 
 ![Windows Tags](img/windows-tags.png)
 #### Docker
-For Docker, in order to add tags I used the REST API. I created a script that I ran in my terminal
+For Docker, in order to add tags I used the REST API. I created a script that I ran in my terminal:
 ```
 curl -X POST "https://api.datadoghq.com/api/v1/tags/hosts/i-0f5bd5bfd76315b1e" \
 -H "Content-Type: application/json" \
@@ -95,12 +94,12 @@ As a result, I saw the tags appear under the user section.
 ![Docker Tags](img/Docker-tags.png)
 
 
-### Installing DataBases
+### Installing Databases
 #### MySQL Database for Ubuntu
 I used a MySQL database for Ubuntu on Vagrant. 
 To install the database I ran: 
-` sudo apt install mysql-server ` - installs MySQL server
-` sudo service mysql start ` - starts the server
+` sudo apt install mysql-server ` which installs MySQL server
+` sudo service mysql start ` which starts the server
 
 After the installation was complete I confirmed that the MySQL server was running by executing the `sudo systemctl status mysql.service` command
 
@@ -160,19 +159,19 @@ instances:
    - database: admin
 ```
 After that I restarted the agent to apply the new settings. 
-The MongoDb appeared on the integrations page and on the Host Map
+MongoDb appeared on the integrations page and on the Host Map
 ![Integrations](img/integrations.png)
 ![Hosts](img/host-map.png)
 
 ### MySQL Metric Collection
 
-The next step was to set up the config file for Metric Collection
+The next step was to set up the config file for Metric Collection.
 In the directory `/etc/datadog-agent/conf.d/mysql.d` I edited the conf.yaml file to specify server, user, password and port: 
 ![MySQL metrics](img/mysql-config.png)
 
 I restarted the Agent by running `sudo service datadog-agent restart`
 
-### Create a Custom Agent check
+### Create a Custom Agent Check
 
 For this task I followed the documentation on how to write the Custom Agent check (https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
 
@@ -221,20 +220,20 @@ I was able to change the collection interval by modifying the configuration `yam
 
 ### Creating a Timeboard with the Datadog API
 
-The one difficulty I had was understanding the difference between a Timeboard vs a Dashboard. Once I understood that a Timeboard is a type of Dashboard I realized that I needed to look into the documentation for the creation of a new Dashboard. [Docs API Dashboards](https://docs.datadoghq.com/api/latest/dashboards/)
+The one difficulty I had was understanding the difference between a Timeboard vs a Dashboard. Once I understood that a Timeboard is a type of Dashboard I realized that I needed to look into the [documentation for the creation of a new Dashboard](https://docs.datadoghq.com/api/latest/dashboards/).
 
-I decided to use a Python script, so I started with the installation of Python 3 and pip on my VM
+I decided to use a Python script, so I started with the installation of Python 3 and pip on my VM.
 
 I followed [these instructions](https://linuxize.com/post/how-to-install-python-3-7-on-ubuntu-18-04/) to install Python 3 and [these instructions](https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/) to install pip3. 
 
 After that it was time to install the Datadog Library that was going to be used in the Python script: 
-`pip install datadog`
+`pip install datadog`.
 
 From the [API documentation](https://docs.datadoghq.com/api/latest/?code-lang=python) I realized that in order to access the Datadog programmatic API I had to use the Application key and the API key. 
 
 I was able to access the API key by navigating to the `Integrations` page `API Keys` section. On the same `Integrations page` there is a section that refers to the `Teams page` for the creation of an application key. 
 
-Once I had the keys I used the Python code example provided in [Dashboards documentation](https://docs.datadoghq.com/api/latest/dashboards/) to create my own script. 
+Once I had the keys I used the Python code example provided in the [Dashboards documentation](https://docs.datadoghq.com/api/latest/dashboards/) to create my own script. 
 
 The `timeboard.py` file contains the following code (`timeboard.py' is also included in the repository as a separate file): 
 
@@ -256,7 +255,7 @@ options = {
 
 Starting from line 10 I defined the properties of the Dashboard that are going to be created: 
 
-`title = 'Data Visualization'` - name of the dashboard that is going to be created. That name is going to be used in the Datadog UI to find the dashboard on the dashboard list.
+`title = 'Data Visualization'` is the name of the dashboard that is going to be created. That name is going to be used in the Datadog UI to find the dashboard on the dashboard list.
 
 Next we have a `widgets` array. It contains the three widgets that were requested in the "Visualizing Data" section of the technical exercise: 
  * Your custom metric scoped over your host.
@@ -308,10 +307,10 @@ After a successful execution I should be able to see the `Data Visualization` Da
 
 #### Timeboard
 
-By clicking on "Data Visualization" (name of the timeboard in the list) I could open the timeboard whi looks like this:
+By clicking on "Data Visualization" (name of the timeboard in the list) I could open the timeboard which looks like this:
 ![Timeboard](img/data-vis.png)
 
-The Timeboard can be accessed by following [this link](https://p.datadoghq.com/sb/r994pgswllop6yxx-aae689097938255beefc2e2edd446f2d)
+The Timeboard can be accessed by following [this link](https://p.datadoghq.com/sb/r994pgswllop6yxx-aae689097938255beefc2e2edd446f2d).
 
 
 ### Timeboard's Timeframe and Snapshot
@@ -326,13 +325,13 @@ I added the `@` notation to find my name in the list to send it to myself.
 
 ### Bonus Question: What is the Anomaly graph displaying?
 
-The graph is displaying a period of time when a metric is behaving differently than it has in the past, taking in accounts trends, seasonal day-of-week, and time-of-day patterns. In other words, the anomaly graph is displaying the period of time when a metric doesn't match the prediction. It is well-suited for metrics with strong trends and recurring patterns.
+The graph is displaying a period of time when a metric is behaving differently than it has in the past, taking in account trends, seasonal, day-of-week, and time-of-day patterns. In other words, the anomaly graph is displaying the period of time when a metric doesn't match the prediction. It is well-suited for metrics with strong trends and recurring patterns.
 
 ## Monitoring Data
 ### Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
-*Warning threshold of 500
-*Alerting threshold of 800
-*And also ensure that it will notify you if there is No Data for this query over the past 10m.
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 To create a new Metric Monitor in the Datadog Application I selected `Monitors` -> `New Monitor` -> `Metric`
 
