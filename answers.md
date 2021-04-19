@@ -103,3 +103,19 @@ and it worked! not sure why this change broke my config if it was set up this wa
 I can now see my tags created correctly within the datadog console:
 
 ![image](images/tags2.PNG?raw=true "tags2")
+
+
+
+**Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
+
+installed the database:
+
+![image](images/database.PNG?raw=true "database")
+
+found the steps to integrate mysql here
+: https://app.datadoghq.eu/account/settings#integrations/mysql
+
+After following these steps, I ran some basic queries against the database:
+
+
+![image](images/databaseQueries.PNG?raw=true "databaseQueries")
