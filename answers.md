@@ -454,7 +454,7 @@ From the documentation about [services](https://docs.datadoghq.com/tracing/visua
 ### Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 APM and Infrastructure Metrics:  https://p.datadoghq.com/sb/r994pgswllop6yxx-558bf013ffaf7828a1fe1b51cf857832
 
-![APM and Infrastructure](APM&infrastructure.png)
+![APM and Infrastructure](img/APM&infrastructure.png)
 
 ### Please include your fully instrumented app in your submission, as well.
 For the auto instrumented application I used the provided Flask app that is added to the repository as flaskapp.py file
