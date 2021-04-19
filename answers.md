@@ -393,7 +393,7 @@ The next step was to install the flask library on Ubuntu by executing `pip3 inst
 After that I was ready to move to the APM setup in Datadog. In the left menu I selected `APM` -> `Get Started`
 ![APM setup](img/APM.png)
 
-In the opened window I selected `Host-Based`. Because I already had my Agent installed, I proceeded to the second step `Choose your language` where I selected `python`
+In the opened window I selected `Host-Based`. Because I already had my Agent installed, I proceeded to the second step `Choose your language` where I selected `python`.
 ![Choose language](img/choose-language.png)
 
 The next step was the installation of the Python client. After running `pip install ddtrace` I got an error:  
@@ -414,11 +414,11 @@ I got an error:
 ```
 -bash: ddtrace-run: command not found
 ```
-The solution was to run `sudo -H pip install ddtrace`
+The solution was to run `sudo -H pip install ddtrace`.
 After that I was able to run the flask app by running: 
 ` DD_SERVICE="flaskapp" DD_ENV="dev" DD_LOGS_INJECTION=true DD_TRACE_ENABLED=true ddtrace-run python3 flaskapp.py`
 
-In order to send traces to Datadog I had to hit the service's endpoints. I started a new instance of Vagrant in a separate terminal window and used curl to hit endpoints. 
+In order to send traces to Datadog I had to hit the service's endpoints. I started a new instance of Vagrant in a separate terminal window and used curl commands to hit endpoints. 
 For every executed curl command I could see a `GET` request being generated in the terminal and the http response status code 200, which means the request was successful:
 ```
  vagrant ssh
@@ -462,6 +462,6 @@ For the auto instrumented application I used the provided Flask app that is adde
 
 ### Is there anything creative you would use Datadog for?
 
-Currently my wife and I are looking into building a house and selling our house, but the situation is a little tricky right now. Real-estate prices of existing houses have been rising due to the lack of available homes on the market. Also prices on lumber and other materials have been volatile and rising significantly, which affects the price of building a house. Most builders right now are writing in a clause to allow for adjustments in home pricing due to the cost of materials being so unpredictable. Needless to say, we could definitely benefit from a way to monitor the housing market and material costs right now and I could use Datadog to help me do this.
+Currently my wife and I are looking into building a house and selling our house, but the situation is a little tricky right now. Real estate prices of existing houses have been rising due to the lack of available homes on the market. Also prices on lumber and other materials have been volatile and rising significantly, which affects the price of building a house. Most builders right now are writing in a clause to allow for adjustments in home pricing due to the cost of materials being so unpredictable. Needless to say, we could definitely benefit from a way to monitor the housing market and material costs right now and I could use Datadog to help me do this.
 
-In order to do this I could connect to an API that would report real-estate data and an API that would report lumbar and petroleum price data. Then I would set up Datadog to monitor that data and some unique metrics such as the price of building materials, as well as how long a house has been on the market in a certain area, what the asking price was vs the price that it was sold for, and the average difference between those two prices. I'm interested to see how those metrics will change over time and how that will affect the prices on real-estate. I would use this to monitor the situation and keep me informed on how things are going so that I don’t miss out on the right time to act.
+In order to do this I could connect to an API that would report real estate data and an API that would report lumber and petroleum price data. Then I would set up Datadog to monitor that data and some unique metrics such as the price of building materials, as well as how long a house has been on the market in a certain area, what the asking price was vs the price that it was sold for, and the average difference between those two prices. I'm interested to see how those metrics will change over time and how that will affect the prices on real estate. I would use this to monitor the situation and keep me informed on how things are going so that I don’t miss out on the right time to act.
