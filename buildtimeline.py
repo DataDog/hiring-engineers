@@ -22,99 +22,119 @@ def get_settings(settings_file_name):
 
 def build_time_line(settings):
     time_board_data = {
-        "title": "Curryware TimeBoard",
-        "description": "New Hire Challenge TimeBoard",
-        "layout_type": "ordered",
-        "widgets": [{
-            "id": 6031072804338302,
-            "definition": {
-                "title": "",
-                "title_size": "16",
-                "title_align": "left",
-                "show_legend": True,
-                "legend_layout": "auto",
-                "legend_columns": ["avg", "min", "max", "value", "sum"],
-                "type": "timeseries",
-                "requests": [{
-                    "q": "avg:curryware_metric{*}",
-                    "style": {
-                        "palette": "dog_classic",
-                        "line_type": "solid",
-                        "line_width": "normal"
-                    },
-                    "display_type": "line"
-                }],
-                "yaxis": {
-                    "scale": "linear",
-                    "label": "",
-                    "include_zero": True,
-                    "min": "auto",
-                    "max": "auto"
-                },
-                "markers": []
-            }
-        }, {
-            "id": 364738882911382,
-            "definition": {
-                "title": "Sum of Curryware for Last Hour",
-                "title_size": "16",
-                "title_align": "left",
-                "time": {},
-                "type": "query_value",
-                "requests": [{
-                    "q": "sum:curryware_metric{*}",
-                    "aggregator": "sum"
-                }],
-                "autoscale": False,
-                "precision": 0
-            }
-        }, {
-            "id": 0,
-            "definition": {
-                "title": "Postgres fetched / returned / inserted / updated (per sec)",
-                "show_legend": False,
-                "type": "timeseries",
-                "requests": [{
-                    "q": "avg:postgresql.rows_fetched{$scope}"
-                }, {
-                    "q": "avg:postgresql.rows_returned{$scope}"
-                }, {
-                    "q": "avg:postgresql.rows_inserted{$scope}"
-                }, {
-                    "q": "avg:postgresql.rows_updated{$scope}"
-                }]
-            }
-        }, {
-            "id": 9469658219438844,
-            "definition": {
-                "title": "",
-                "title_size": "16",
-                "title_align": "left",
-                "show_legend": True,
-                "legend_layout": "auto",
-                "legend_columns": ["avg", "min", "max", "value", "sum"],
-                "time": {},
-                "type": "timeseries",
-                "requests": [{
-                    "q": "anomalies(avg:system.cpu.user{host:scotc-a01.vmware.com}, 'basic', 2)",
-                    "style": {
-                        "palette": "dog_classic",
-                        "line_type": "solid",
-                        "line_width": "normal"
-                    },
-                    "display_type": "line"
-                }],
-                "yaxis": {
-                    "scale": "linear",
-                    "label": "",
-                    "include_zero": True,
-                    "min": "auto",
-                    "max": "auto"
-                },
-                "markers": []
-            }
-        }],
-    }
+	"title": "Curryware TimeBoard",
+	"description": "New Hire Challenge TimeBoard",
+	"widgets": [{
+		"id": 6031072804338302,
+		"definition": {
+			"title": "",
+			"title_size": "16",
+			"title_align": "left",
+			"show_legend": true,
+			"legend_layout": "auto",
+			"legend_columns": ["avg", "min", "max", "value", "sum"],
+			"type": "timeseries",
+			"requests": [{
+				"q": "avg:curryware_metric{*}",
+				"style": {
+					"palette": "dog_classic",
+					"line_type": "solid",
+					"line_width": "normal"
+				},
+				"display_type": "line"
+			}],
+			"yaxis": {
+				"scale": "linear",
+				"label": "",
+				"include_zero": true,
+				"min": "auto",
+				"max": "auto"
+			},
+			"markers": []
+		}
+	}, {
+		"id": 364738882911382,
+		"definition": {
+			"title": "Sum of Curryware",
+			"title_size": "16",
+			"title_align": "left",
+			"type": "query_value",
+			"requests": [{
+				"q": "sum:curryware_metric{*}",
+				"aggregator": "sum"
+			}],
+			"autoscale": false,
+			"precision": 0
+		}
+	}, {
+		"id": 8372016909610760,
+		"definition": {
+			"title": "",
+			"title_size": "16",
+			"title_align": "left",
+			"show_legend": true,
+			"legend_layout": "auto",
+			"legend_columns": ["avg", "min", "max", "value", "sum"],
+			"time": {},
+			"type": "timeseries",
+			"requests": [{
+				"q": "anomalies(avg:postgresql.rows_inserted{curryware:ddagent}, 'basic', 2)",
+				"style": {
+					"palette": "dog_classic",
+					"line_type": "solid",
+					"line_width": "normal"
+				},
+				"display_type": "line"
+			}],
+			"yaxis": {
+				"scale": "linear",
+				"label": "",
+				"include_zero": true,
+				"min": "auto",
+				"max": "auto"
+			},
+			"markers": []
+		}
+	}, {
+		"id": 8123015251805772,
+		"definition": {
+			"title": "Average of Postgres Rows Fetched",
+			"title_size": "16",
+			"title_align": "left",
+			"show_legend": true,
+			"legend_layout": "auto",
+			"legend_columns": ["avg", "min", "max", "value", "sum"],
+			"time": {},
+			"type": "timeseries",
+			"requests": [{
+				"q": "anomalies(avg:postgresql.rows_fetched{*}, 'basic', 2)",
+				"style": {
+					"palette": "dog_classic",
+					"line_type": "solid",
+					"line_width": "normal"
+				},
+				"display_type": "line"
+			}],
+			"yaxis": {
+				"scale": "linear",
+				"label": "",
+				"include_zero": true,
+				"min": "auto",
+				"max": "auto"
+			},
+			"markers": []
+		}
+	}],
+	"template_variables": [{
+		"name": "board_duration",
+		"default": "*",
+		"prefix": "@duration"
+	}],
+	"layout_type": "ordered",
+	"is_read_only": false,
+	"notify_list": [],
+	"id": "3d2-r7i-g9q"
+}
     json_string = json.dumps(time_board_data)
     headers = {'Content-Type': 'application/json', 'DD-API-KEY': settings['data_dog_api_key'], 'DD-APPLICATION-KEY'
     : settings['data_dog_application_key']}
