@@ -178,8 +178,13 @@ This was a simple dropdown.
   
 * **Take a snapshot of this graph and use the @ notation to send it to yourself.**
 
-The only way I was able to find to take a snapshot was via API, so based on the instructions that this would be done via the
-console, I'm uncertain how to complete this task.
+Screen shot of Datadog console sharing the snapshot
+
+![Dashboard Snapshot](https://github.com/scotcurry/hiring-engineers/blob/master/Images/CreatingNotification.png)
+
+Screenshot of the emailed notification.
+
+![Email Notification](https://github.com/scotcurry/hiring-engineers/blob/master/Images/EmailNotification.png)
 
 * **What is the Anomaly graph displaying?**
 
@@ -190,18 +195,39 @@ account for seasonality and show trends.
 
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-Definition of the monitor:
-![Monitor Definition](https://github.com/scotcurry/hiring-engineers/blob/master/Images/MetricDefinition.png)
+While it was very easy to create the monitor, it took me a long time to realize that I needed to create the monitor with the From: field
+as the monitoring host to get the variable information for the notification email.
+
+Definition of the monitor Part(1):
+![Monitor Definition1](https://github.com/scotcurry/hiring-engineers/blob/master/Images/DefineMonitor1.png)
+
+Definition of the monitor Part(2):
+![Monitor Definition1](https://github.com/scotcurry/hiring-engineers/blob/master/Images/DefineMonitor2.png)
 
 Messages with variable information:
 ![Message Definition](https://github.com/scotcurry/hiring-engineers/blob/master/Images/NotificationSettings.png)
 
-Email Message for Monitor:
-![Email Message](https://github.com/scotcurry/hiring-engineers/blob/master/Images/EmailMessage.png)
+**Alert Email Message for Monitor:**
+![Alert Email Message](https://github.com/scotcurry/hiring-engineers/blob/master/Images/AlertEmail.png)
 
-**Notes**
+**Warning Email Message for Monitor:**
+![Alert Email Message](https://github.com/scotcurry/hiring-engineers/blob/master/Images/WarningEmail.png)
 
-*Question* - I don't seem to be handling the variables correctly.  The email should show the hostname, but it currently isn't.
+**No Data Email for Monitor:**
+![No Data Email Message](https://github.com/scotcurry/hiring-engineers/blob/master/Images/NoDataEmail.png)
+
+### Bonus Question: Configure Monitor Downtime
+
+I found it interesting that the scheduling was linked directly off the "Mute" button for the notification.
+
+**Configure a weekday schedule (stops notifications from 7PM until 9AM**
+![Weekday Schedule](https://github.com/scotcurry/hiring-engineers/blob/master/Images/ScheduleWeekDayDowntime.png)
+
+**Configure a weekend schedule**
+![Weekday Schedule](https://github.com/scotcurry/hiring-engineers/blob/master/Images/WeekendDowntime.png)
+
+**Send a notification about scheduling**
+![SchedulingEmail](https://github.com/scotcurry/hiring-engineers/blob/master/Images/DowntimeEmail.png)
 
 ## Collecting APM Data:
 
