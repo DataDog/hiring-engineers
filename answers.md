@@ -186,3 +186,148 @@ instances:
 as per the docs here https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
 
 sample rate is determined by the config file rather than the python file, therefore my assumption would be that yes, we can modify the sample rate without editing the checks file.
+
+
+*Visualizing Data:*
+**Utilize the Datadog API to create a Timeboard that contains:
+
+Your custom metric scoped over your host.
+Any metric from the Integration on your Database with the anomaly function applied.
+Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.**
+
+
+I searched online for creating a timeboard, and found the doc "https://docs.datadoghq.com/api/latest/dashboards/"
+
+as such, I found some sample code
+
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': '<DATADOG_API_KEY>',
+    'app_key': '<DATADOG_APPLICATION_KEY>'
+}
+
+initialize(**options)
+
+title = 'Average Memory Free Shell'
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:system.mem.free{*}'}
+        ],
+        'title': 'Average Memory Free'
+    }
+}]
+layout_type = 'ordered'
+description = 'A dashboard with memory info.'
+is_read_only = True
+notify_list = ['user@domain.com']
+template_variables = [{
+    'name': 'host1',
+    'prefix': 'host',
+    'default': 'my-host'
+}]
+
+saved_views = [{
+    'name': 'Saved views for hostname 2',
+    'template_variables': [{'name': 'host', 'value': '<HOSTNAME_2>'}]}
+]
+
+api.Dashboard.create(title=title,
+                     widgets=widgets,
+                     layout_type=layout_type,
+                     description=description,
+                     is_read_only=is_read_only,
+                     notify_list=notify_list,
+                     template_variables=template_variables,
+                     template_variable_presets=saved_view)
+```
+
+two parameters "api_key" and "app_key" were not documented as to where they can be found, but when checking the "integrations" tab within the user interface, there is section on api keys, and so I copied my API-key from there, likewise, in the user interface, it asked me to go to the "teams" page to find information on application keys, and so I generated a key from here also.
+
+I spent a long time trying to troubleshoot why exactly I was not generating a timeboard.
+
+I printed the response from the API call to datadog and receieved the following:
+
+![image](images/forbidden.PNG?raw=true "forbidden")
+
+I believed it was something to do with my API keys, but when searching this page: https://docs.datadoghq.com/api/latest/authentication/
+
+it states 
+
+``
+Note: All Datadog API clients are configured by default to consume Datadog US site APIs. If you are on the Datadog EU site, set the environment variable DATADOG_HOST to https://api.datadoghq.eu or override this value directly when creating your client.
+``
+
+for this reason, I ran the command 
+
+export DATADOG_HOST=https://api.datadoghq.eu
+
+and my script started to work.
+
+after creating the three metrics in my timeboard, it looked as follows:
+
+
+https://p.datadoghq.eu/sb/ad717832-9ec8-11eb-b447-da7ad0900005-b5af1c4d5987a36863b70f068c06ded1
+
+![image](images/3graphs.PNG?raw=true "3graphs")
+
+
+
+**Take a snapshot of this graph and use the @ notation to send it to yourself.**
+
+I sent a snapshot to my user within the UI here:
+
+![image](images/snapshot.PNG?raw=true "snapshot")
+
+
+**Bonus Question: What is the Anomaly graph displaying?**
+
+
+Anomaly detection is to detect any outlier data or "Anomaly's" within the data, say for instance a CPU is on average at 20-30% load, we can detect if over a certain period, it is now averaging 40-45%, this may not be a cause for alarm, but rather a cause for an investigation rather than outright using an alarm such as cloudwatch alarms.
+
+
+
+**Monitoring Data
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.**
+
+**Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:**
+
+**Warning threshold of 500**
+**Alerting threshold of 800**
+**And also ensure that it will notify you if there is No Data for this query over the past 10m.**
+
+created threshold alarm as described
+
+![image](images/thresholdAlarms.PNG?raw=true "thresholdAlarms")
+
+
+*Please configure the monitor’s message so that it will:*
+
+**Send you an email whenever the monitor triggers.**
+
+**Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.**
+
+![image](images/email.PNG?raw=true "Email")
+
+
+**When this monitor sends you an email notification, take a screenshot of the email that it sends you.**
+
+![image](images/alarm.PNG?raw=true "alarm")
+
+*Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor*
+
+**One that silences it from 7pm to 9am daily on M-F**
+
+
+![image](images/downtime1.PNG?raw=true "downtime1")
+**And one that silences it all day on Sat-Sun.**
+
+![image](images/downtime2.PNG?raw=true "downtime2")
+
+**Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
+
+![image](images/downtime3.PNG?raw=true "downtime3")
