@@ -102,7 +102,7 @@ Postgres.
 ![PostgresIntegration](https://github.com/scotcurry/hiring-engineers/blob/master/Images/IntegrationsInstalled.png)
 
 **Postgres Overview Screenshot**
-![PostgresOverview](https://github.com/scotcurry/hiring-engineers/blob/master/Images/PostgressMetrics.png)
+![PostgresOverview](https://github.com/scotcurry/hiring-engineers/blob/master/Images/PostgresMetrics.png)
 
 * **Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
 
