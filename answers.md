@@ -180,3 +180,9 @@ instances:
 
 
 ![image](images/customMetric.PNG?raw=true "customMetric")
+
+**Bonus Question Can you change the collection interval without modifying the Python check file you created?**]
+
+as per the docs here https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
+
+sample rate is determined by the config file rather than the python file, therefore my assumption would be that yes, we can modify the sample rate without editing the checks file.
