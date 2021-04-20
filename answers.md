@@ -119,3 +119,64 @@ After following these steps, I ran some basic queries against the database:
 
 
 ![image](images/databaseQueries.PNG?raw=true "databaseQueries")
+
+
+**Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
+
+checked on the datadog docs to find what a custom agent check is, and found that it is the equivalent to a custom cloudwatch metric, and it contains a .yaml file, along with a python script, within the checks.d folder. As such I am creating 2 files
+
+I found the following sample code
+
+
+```
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('hello.world', 1, tags=['TAG_KEY:TAG_VALUE'] + self.instance.get('tags', []))
+```
+
+I will test this out to see what is performed, my understanding is that I should have a metric named "hello.world" with a value of 1 published each time
+
+
+checking the console, this was correct, as such, I changed my custom agent to the following:
+
+
+```
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+import random
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric',random.randint(1,1000), tags=['environment:testing1234567'] + self.instance.get('tags', []))
+```
+with the following YAML file
+
+```
+init_config:
+
+instances:
+ - min_collection_interval: 45
+```
+
+
+![image](images/customMetric.PNG?raw=true "customMetric")
