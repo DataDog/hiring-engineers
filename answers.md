@@ -331,3 +331,51 @@ created threshold alarm as described
 **Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
 
 ![image](images/downtime3.PNG?raw=true "downtime3")
+
+
+*Collecting APM Data:*
+
+**Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:**
+
+```
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+Personally, I have never used flask before, and so, from a quick search online, it is a webapp framework.
+
+Running the above code using 
+
+pip3 install flask
+
+python3 flaskExample.py I can see my webAPI is open on the URL http://54.76.90.120:5050/.
+
+testing this URL shows the following:
+
+![image](images/flask.PNG?raw=true "flask")
