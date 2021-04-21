@@ -418,4 +418,4 @@ A resource can be seen as a smaller componant of a service, in this case, can be
 
 ### Is there anything creative you would use Datadog for?
 
-Lately my friends and I have played quite a lot of ![Valheim](https://store.steampowered.com/app/892970/Valheim/)
+Lately my friends and I have played quite a lot of [Valheim](https://store.steampowered.com/app/892970/Valheim/)
