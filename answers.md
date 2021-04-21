@@ -418,4 +418,9 @@ A resource can be seen as a smaller componant of a service, in this case, can be
 
 ### Is there anything creative you would use Datadog for?
 
-Lately my friends and I have played quite a lot of [Valheim](https://store.steampowered.com/app/892970/Valheim/)
+Lately my friends and I have played quite a lot of [Valheim](https://store.steampowered.com/app/892970/Valheim/). One of the great things about Valheim has been the ability to host my own server. This has allowed me to try out some interesting AWS services such as creating an API to start the server when requested. as seen in the link [here](https://0ypichahbb.execute-api.eu-west-1.amazonaws.com/default/startServer) If no one has joined the server recently, the server will automatically stop for an undetermined amount of time. This API calls the server to start, and when started, can be called once more, to return the IP address of the server if that is needed by the user (server has a static name within the game that can be used to query). 
+
+Using the library "Gamedig", I can query the number of users who are connected to my server at any particular time. the response is returned in the value:
+
+
+![image](images/gamedig.PNG?raw=true "gamedig")
