@@ -405,3 +405,17 @@ When checking the user interface, I then had the following information:
 
 From here I can see details on exactly how long each request lasted, what my P90, p99 metrics were, which of course in a production application would give great insight as to how the application is performing regularly.
 
+**Bonus Question: What is the difference between a Service and a Resource**
+
+from a microservice perspective, a "service" is a specific componant of your application, such as an authentication service, a payment processing service. 
+
+Generally a service can be seen as a re-usable "building block" within an org, so that for example we do not need redundant code replicated to authenticate users for two different applications.
+
+A resource can be seen as a smaller componant of a service, in this case, can be a specific cache that is used to store auth tokens from users in our authentication service, or a specific database used to store username + password combinations.
+
+
+## Final question
+
+### Is there anything creative you would use Datadog for?
+
+Lately my friends and I have played quite a lot of ![Valheim](https://store.steampowered.com/app/892970/Valheim/)
