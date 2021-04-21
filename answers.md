@@ -379,3 +379,29 @@ python3 flaskExample.py I can see my webAPI is open on the URL http://54.76.90.1
 testing this URL shows the following:
 
 ![image](images/flask.PNG?raw=true "flask")
+
+
+After checking out the documentation here : https://app.datadoghq.eu/apm/docs?architecture=host-based&language=python for how to implement APM, I was able to simply install ddtrace running the command:
+
+
+```
+pip install ddtrace
+```
+
+followed by then running the command 
+
+```
+DD_SERVICE="flaskapp" DD_ENV="cathalTesting" DD_LOGS_INJECTION=true ddtrace-run python3 flaskExample.py
+```
+
+Running this command, and hitting my flask endpoint, I could see a lot more detail on each request.
+
+![image](images/ddtraceExample.PNG?raw=true "ddtraceExample")
+
+
+When checking the user interface, I then had the following information:
+
+![image](images/userInterface.PNG?raw=true "userInterface")
+
+From here I can see details on exactly how long each request lasted, what my P90, p99 metrics were, which of course in a production application would give great insight as to how the application is performing regularly.
+
