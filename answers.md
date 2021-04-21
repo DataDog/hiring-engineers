@@ -151,7 +151,7 @@ docker run -d --name datadog-agent -v /var/run/docker.sock:/var/run/docker.sock:
   -e DD_API_KEY=<Datadog Key> \
   -l com.datadoghq.ad.check_names='["postgres"]' \
   -l com.datadoghq.ad.init_configs='[{}]' \
-  -l com.datadoghq.ad.instances='[{"host":"localhost", "port":5432,"username":"datadog","password":"AirWatch1"}]' \
+  -l com.datadoghq.ad.instances='[{"host":"localhost", "port":5432,"username":"$POSTGRES_USER_NAME","password":"$POSTGRES_PASSWORD"}]' \
   gcr.io/datadoghq/agent:7
   ```
 
