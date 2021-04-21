@@ -440,7 +440,7 @@ gamedig --type valheim 34.245.197.54
 and as such, I can then run the python script:
 
 
-
+```
 # the following try/except block will make the custom check compatible with any>
 #try:
     # first, try to import the base class from new versions of the Agent...
@@ -461,6 +461,7 @@ __version__ = "1.0.0"
 #class HelloCheck(AgentCheck):
 #    def check(self, instance):
 #        self.gauge('my_metric',random.randint(1,1000), tags=['environment:test>
+```
 
 which returns the following:
 
@@ -470,7 +471,6 @@ which returns the following:
 from here, I can then publish metrics to my datadog dashboard, based on the metrics which are currently returned, such as "numplayers"
 
 ```
-
 # the following try/except block will make the custom check compatible with any Agent version
 try:
     # first, try to import the base class from new versions of the Agent...
@@ -494,8 +494,8 @@ class HelloCheck(AgentCheck):
         return_value = json.loads(return_value)
         numOfPlayers = return_value['raw']['numplayers']
         self.gauge('my_new_metric', numOfPlayers, tags=['environment:testing1234567'] + self.instance.get('tags', []))
-
 ```
+I found that the first script would only run on startup, as the code was initializing values outside of the handler at first, but after moving the query inside the function, everything worked great. #
 
 When checking my datadog dashboard, I can see that as users leave and join the server, metrics are populated:
 
