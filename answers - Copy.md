@@ -143,7 +143,8 @@ running the command sudo apt install mysql-server I was able to walk through the
 
 ![image](images/database.PNG?raw=true "database")
 
-found the steps to integrate mysql here
+
+Once this was installed, and I could correctly query via SQL commands, I found the steps to integrate mysql here
 : https://app.datadoghq.eu/account/settings#integrations/mysql
 
 After following these steps, I ran some basic queries against the database:
@@ -155,24 +156,215 @@ After following these steps, I ran some basic queries against the database:
 
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+my understanding of a custom agent check was the equivalent of publishing a custom cloudwatch metric within AWS, and as such, found that it contains a .yaml file, along with a python script, within the checks.d folder. As such I created 2 files
+
+I found the following sample code
+
+
+```
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('hello.world', 1, tags=['TAG_KEY:TAG_VALUE'] + self.instance.get('tags', []))
+```
+
+
+I tested this out to see what is performed, my understanding wass that I should have a metric named "hello.world" with a value of 1 published each time
+
+
+checking the console, this was correct, as such, I changed my custom agent to the following:
+
+
+```
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+import random
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric',random.randint(1,1000), tags=['environment:testing1234567'] + self.instance.get('tags', []))
+```
+
+with the following YAML file
+
+```
+init_config:
+
+instances:
+ - min_collection_interval: 45
+```
+
+![image](images/customMetric.PNG?raw=true "customMetric")
+
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+As stated above, I achieved this by creating the YAML config file and issuing a parameter
+
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+
+as per the docs here https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
+
+sample rate is determined by the config file rather than the python file, therefore my assumption would be that yes, we can modify the sample rate without editing the checks file.
 
 ## Visualizing Data:
 
 Utilize the Datadog API to create a Timeboard that contains:
 
 * Your custom metric scoped over your host.
+
+I searched online for creating a timeboard, and found the doc "https://docs.datadoghq.com/api/latest/dashboards/"
+
+as such, I found some sample code
+
+```
+from datadog import initialize, api
+
+options = {
+    'api_key': '<DATADOG_API_KEY>',
+    'app_key': '<DATADOG_APPLICATION_KEY>'
+}
+
+initialize(**options)
+
+title = 'Average Memory Free Shell'
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:system.mem.free{*}'}
+        ],
+        'title': 'Average Memory Free'
+    }
+}]
+layout_type = 'ordered'
+description = 'A dashboard with memory info.'
+is_read_only = True
+notify_list = ['user@domain.com']
+template_variables = [{
+    'name': 'host1',
+    'prefix': 'host',
+    'default': 'my-host'
+}]
+
+saved_views = [{
+    'name': 'Saved views for hostname 2',
+    'template_variables': [{'name': 'host', 'value': '<HOSTNAME_2>'}]}
+]
+
+api.Dashboard.create(title=title,
+                     widgets=widgets,
+                     layout_type=layout_type,
+                     description=description,
+                     is_read_only=is_read_only,
+                     notify_list=notify_list,
+                     template_variables=template_variables,
+                     template_variable_presets=saved_view)
+```
+
+two parameters "api_key" and "app_key" were not documented as to where they can be found, but when checking the "integrations" tab within the user interface, there is section on api keys, and so I copied my API-key from there, likewise, in the user interface, it asked me to go to the "teams" page to find information on application keys, and so I generated a key from here also.
+
+I spent a long time trying to troubleshoot why exactly I was not generating a timeboard.
+
+I printed the response from the API call to datadog and receieved the following:
+
+![image](images/forbidden.PNG?raw=true "forbidden")
+
+I believed it was something to do with my API keys, but when searching this page: https://docs.datadoghq.com/api/latest/authentication/
+
+it states 
+
+``
+Note: All Datadog API clients are configured by default to consume Datadog US site APIs. If you are on the Datadog EU site, set the environment variable DATADOG_HOST to https://api.datadoghq.eu or override this value directly when creating your client.
+``
+
+for this reason, I ran the command 
+
+export DATADOG_HOST=https://api.datadoghq.eu
+
+and my script started to work.
+
+
+after creating the three metrics in my timeboard, it looked as follows:
+
+
+https://p.datadoghq.eu/sb/ad717832-9ec8-11eb-b447-da7ad0900005-b5af1c4d5987a36863b70f068c06ded1
+
+![image](images/3graphs.PNG?raw=true "3graphs")
+
 * Any metric from the Integration on your Database with the anomaly function applied.
+
+I was able to apply the anomaly function with the following code:
+
+```
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:mysql.performance.user_time{*}, 'basic', 3)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "mySQL view"
+
+```
+
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
+Finally, I was able to create the rollup function to sum up all the previous hours points using:
+
+```
+    "definition": {
+        "events": [],
+        "viz": "query_value",
+        "requests": [
+            {"q": "sum:my_metric{host:i-03cd49e6b870a06d7}","aggregator": "sum"}
+        ]
+     },
+     "title":"sum of custom graph"
+
+```
+
+One thing to note is that this graph is based on whatever time the timeboard is set to, and as such, will not sum up "per hour" if the timeboard is set to a 5 minute window.
+
+
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
+
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+I sent a snapshot to my user within the UI here:
+
+![image](images/snapshot.PNG?raw=true "snapshot")
+
 * **Bonus Question**: What is the Anomaly graph displaying?
+
+
+Anomaly detection is to detect any outlier data or "Anomaly's" within the data, say for instance a CPU is on average at 20-30% load, we can detect if over a certain period, it is now averaging 40-45%, this may not be a cause for alarm, but rather a cause for an investigation rather than outright using an alarm such as cloudwatch alarms.
+
 
 ## Monitoring Data
 
@@ -184,18 +376,36 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+created threshold alarm as described
+
+![image](images/thresholdAlarms.PNG?raw=true "thresholdAlarms")
+
 Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+
+![image](images/email.PNG?raw=true "Email")
+
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+
+![image](images/alarm.PNG?raw=true "alarm")
 
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
+
+  ![image](images/downtime1.PNG?raw=true "downtime1")
+
+
   * And one that silences it all day on Sat-Sun.
+  
+  ![image](images/downtime2.PNG?raw=true "downtime2")
+
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+  ![image](images/downtime3.PNG?raw=true "downtime3")
 
 ## Collecting APM Data:
 
@@ -234,17 +444,156 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
+Personally, I have never used flask before, and so, from a quick search online, it is a webapp framework.
+
+Running the above code using 
+
+```
+pip3 install flask
+```
+python3 flaskExample.py I can see my webAPI is open on the URL http://54.76.90.120:5050/.
+
+testing this URL shows the following:
+
+![image](images/flask.PNG?raw=true "flask")
+
+
+After checking out the documentation here : https://app.datadoghq.eu/apm/docs?architecture=host-based&language=python for how to implement APM, I was able to simply install ddtrace running the command:
+
+
+```
+pip install ddtrace
+```
+
+followed by then running the command 
+
+```
+DD_SERVICE="flaskapp" DD_ENV="cathalTesting" DD_LOGS_INJECTION=true ddtrace-run python3 flaskExample.py
+```
+
+Running this command, and hitting my flask endpoint, I could see a lot more detail on each request.
+
+![image](images/ddtraceExample.PNG?raw=true "ddtraceExample")
+
+
+When checking the user interface, I then had the following information:
+
+![image](images/userInterface.PNG?raw=true "userInterface")
+
+From here I can see details on exactly how long each request lasted, what my P90, p99 metrics were, which of course in a production application would give great insight as to how the application is performing regularly.
+
+
+
 * **Bonus Question**: What is the difference between a Service and a Resource?
+
+from a microservice perspective, a "service" is a specific componant of your application, such as an authentication service, a payment processing service. 
+
+Generally a service can be seen as a re-usable "building block" within an org, so that for example we do not need redundant code replicated to authenticate users for two different applications.
+
+A resource can be seen as a smaller componant of a service, in this case, can be a specific cache that is used to store auth tokens from users in our authentication service, or a specific database used to store username + password combinations.
+
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
+![image](images/APM-Metrics.PNG?raw=true "APM-Metrics")
+
 Please include your fully instrumented app in your submission, as well.
+
+provided in my "code"folder is my flask app, although its worth noting this is the same default example provided by datadog
 
 ## Final Question:
 
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+
+
+Lately my friends and I have played quite a lot of [Valheim](https://store.steampowered.com/app/892970/Valheim/). One of the great things about Valheim has been the ability to host my own server. This has allowed me to try out some interesting AWS services such as creating an API to start the server when requested. as seen in the link [here](https://0ypichahbb.execute-api.eu-west-1.amazonaws.com/default/startServer) If no one has joined the server recently, the server will automatically stop for an undetermined amount of time. This API calls the server to start, and when started, can be called once more, to return the IP address of the server if that is needed by the user (server has a static name within the game that can be used to query). 
+
+Using the library "Gamedig", I can query the number of users who are connected to my server at any particular time. the response is returned in the value:
+
+
+![image](images/gamedig.PNG?raw=true "gamedig")
+
+by installing gamedig:
+
+```
+sudo apt install npm
+
+npm install gamedig -g
+```
+
+when running via the CLI, I can run 
+
+gamedig --type valheim 34.245.197.54
+
+and as such, I can then run the python script:
+
+
+```
+# the following try/except block will make the custom check compatible with any>
+#try:
+    # first, try to import the base class from new versions of the Agent...
+ #   from datadog_checks.base import AgentCheck
+
+#except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+#    from checks import AgentCheck
+
+import random
+import os
+
+print(os.system('gamedig --type valheim 34.245.197.54'))
+
+# content of the special variable __version__ will be shown in the Agent status>
+__version__ = "1.0.0"
+
+#class HelloCheck(AgentCheck):
+#    def check(self, instance):
+#        self.gauge('my_metric',random.randint(1,1000), tags=['environment:test>
+```
+
+which returns the following:
+
+![image](images/pythonGamedig.PNG?raw=true "pythonGamedig")
+
+
+from here, I can then publish metrics to my datadog dashboard, based on the metrics which are currently returned, such as "numplayers"
+
+```
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+import json
+import random
+import subprocess
+import os
+
+ #content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        return_value = os.popen('gamedig --type valheim 34.245.197.54').read()
+        return_value = json.loads(return_value)
+        numOfPlayers = return_value['raw']['numplayers']
+        self.gauge('my_new_metric', numOfPlayers, tags=['environment:testing1234567'] + self.instance.get('tags', []))
+```
+I found that the first script would only run on startup, as the code was initializing values outside of the handler at first, but after moving the query inside the function, everything worked great. #
+
+When checking my datadog dashboard, I can see that as users leave and join the server, metrics are populated:
+
+![image](images/newMetric.PNG?raw=true "newMetric")
+
+
+
 
 ## Instructions
 

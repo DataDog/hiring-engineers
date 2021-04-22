@@ -1,7 +1,31 @@
-Your answers to the questions go here.
+If you want to apply as a Solutions or Sales Engineer at [Datadog](http://datadog.com) you are in the right spot. Read on, it's fun, I promise.
 
-Prerequisites - Setup the environment
-=================================
+
+<a href="https://www.datadoghq.com/careers/" title="Careers at Datadog">
+<img src="https://imgix.datadoghq.com/img/careers/careers_photos_overview.jpg" width="1000" height="332"></a>
+
+## The Exercise
+
+Don’t forget to read the [References](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#references)
+
+## Questions
+
+Please provide screenshots and code snippets for all steps.
+
+## Prerequisites - Setup the environment
+
+You can utilize any OS/host that you would like to complete this exercise. However, we recommend one of the following approaches:
+
+* You can spin up a fresh linux VM via Vagrant or other tools so that you don’t run into any OS or dependency issues. [Here are instructions](https://github.com/DataDog/hiring-engineers/blob/solutions-engineer/README.md#vagrant) for setting up a Vagrant Ubuntu VM. We strongly recommend using minimum `v. 16.04` to avoid dependency issues.
+* You can utilize a Containerized approach with Docker for Linux and our dockerized Datadog Agent image.
+
+Once this is ready, sign up for a trial Datadog at https://www.datadoghq.com/
+
+**Please make sure to use “Datadog Recruiting Candidate” in [the “Company” field](https://a.cl.ly/wbuPdEBy)**
+
+Then, get the Agent reporting metrics from your local machine and move on to the next section...
+
+
 
 I created an ec2 instance in my account, for now I will use a t2.micro, if I find that later steps demand more, I will resize the instance.
 
@@ -11,8 +35,12 @@ I installed the datadog client, and
 during the startup processs, I saw the filename  "/etc/datadog-agent" so I would assume this is the config file, a quick google search confirmed this.
 
 
-*Collecting Metrics:*
-**Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.**
+
+
+
+## Collecting Metrics:
+
+* Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 running a "grep" command, allowed me to find that there was infact a direct mention of "tags" within this file, and as such, I have created 3 tags as follows:
 
@@ -87,17 +115,17 @@ my guess is that it is to do with spacing
 
 changed spacing from
 
-
+```
  tags:
    - environment:dev
    - 12456:23456
-
+```
 to 
-
+```
 tags:
  - environment:dev
  - 12456:23456
-
+```
 and it worked! not sure why this change broke my config if it was set up this way previously
 
 I can now see my tags created correctly within the datadog console:
@@ -106,13 +134,17 @@ I can now see my tags created correctly within the datadog console:
 
 
 
-**Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.**
 
-installed the database:
+
+* Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+
+
+running the command sudo apt install mysql-server I was able to walk through the steps to create my database, including setting a master password etc.:
 
 ![image](images/database.PNG?raw=true "database")
 
-found the steps to integrate mysql here
+
+Once this was installed, and I could correctly query via SQL commands, I found the steps to integrate mysql here
 : https://app.datadoghq.eu/account/settings#integrations/mysql
 
 After following these steps, I ran some basic queries against the database:
@@ -121,9 +153,11 @@ After following these steps, I ran some basic queries against the database:
 ![image](images/databaseQueries.PNG?raw=true "databaseQueries")
 
 
-**Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.**
 
-checked on the datadog docs to find what a custom agent check is, and found that it is the equivalent to a custom cloudwatch metric, and it contains a .yaml file, along with a python script, within the checks.d folder. As such I am creating 2 files
+
+* Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+
+my understanding of a custom agent check was the equivalent of publishing a custom cloudwatch metric within AWS, and as such, found that it contains a .yaml file, along with a python script, within the checks.d folder. As such I created 2 files
 
 I found the following sample code
 
@@ -145,7 +179,8 @@ class HelloCheck(AgentCheck):
         self.gauge('hello.world', 1, tags=['TAG_KEY:TAG_VALUE'] + self.instance.get('tags', []))
 ```
 
-I will test this out to see what is performed, my understanding is that I should have a metric named "hello.world" with a value of 1 published each time
+
+I tested this out to see what is performed, my understanding wass that I should have a metric named "hello.world" with a value of 1 published each time
 
 
 checking the console, this was correct, as such, I changed my custom agent to the following:
@@ -169,6 +204,7 @@ class HelloCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric',random.randint(1,1000), tags=['environment:testing1234567'] + self.instance.get('tags', []))
 ```
+
 with the following YAML file
 
 ```
@@ -178,24 +214,23 @@ instances:
  - min_collection_interval: 45
 ```
 
-
 ![image](images/customMetric.PNG?raw=true "customMetric")
 
-**Bonus Question Can you change the collection interval without modifying the Python check file you created?**]
+* Change your check's collection interval so that it only submits the metric once every 45 seconds.
+
+As stated above, I achieved this by creating the YAML config file and issuing a parameter
+
+* **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
 as per the docs here https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
 
 sample rate is determined by the config file rather than the python file, therefore my assumption would be that yes, we can modify the sample rate without editing the checks file.
 
+## Visualizing Data:
 
-*Visualizing Data:*
-**Utilize the Datadog API to create a Timeboard that contains:
+Utilize the Datadog API to create a Timeboard that contains:
 
-Your custom metric scoped over your host.
-Any metric from the Integration on your Database with the anomaly function applied.
-Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.**
-
+* Your custom metric scoped over your host.
 
 I searched online for creating a timeboard, and found the doc "https://docs.datadoghq.com/api/latest/dashboards/"
 
@@ -268,6 +303,7 @@ export DATADOG_HOST=https://api.datadoghq.eu
 
 and my script started to work.
 
+
 after creating the three metrics in my timeboard, it looked as follows:
 
 
@@ -275,69 +311,107 @@ https://p.datadoghq.eu/sb/ad717832-9ec8-11eb-b447-da7ad0900005-b5af1c4d5987a3686
 
 ![image](images/3graphs.PNG?raw=true "3graphs")
 
+* Any metric from the Integration on your Database with the anomaly function applied.
+
+I was able to apply the anomaly function with the following code:
+
+```
+    "definition": {
+        "events": [],
+        "requests": [
+            {"q": "anomalies(avg:mysql.performance.user_time{*}, 'basic', 3)"}
+        ],
+        "viz": "timeseries"
+    },
+    "title": "mySQL view"
+
+```
+
+* Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+
+Finally, I was able to create the rollup function to sum up all the previous hours points using:
+
+```
+    "definition": {
+        "events": [],
+        "viz": "query_value",
+        "requests": [
+            {"q": "sum:my_metric{host:i-03cd49e6b870a06d7}","aggregator": "sum"}
+        ]
+     },
+     "title":"sum of custom graph"
+
+```
+
+One thing to note is that this graph is based on whatever time the timeboard is set to, and as such, will not sum up "per hour" if the timeboard is set to a 5 minute window.
 
 
-**Take a snapshot of this graph and use the @ notation to send it to yourself.**
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+* Set the Timeboard's timeframe to the past 5 minutes
+
+* Take a snapshot of this graph and use the @ notation to send it to yourself.
 
 I sent a snapshot to my user within the UI here:
 
 ![image](images/snapshot.PNG?raw=true "snapshot")
 
-
-**Bonus Question: What is the Anomaly graph displaying?**
+* **Bonus Question**: What is the Anomaly graph displaying?
 
 
 Anomaly detection is to detect any outlier data or "Anomaly's" within the data, say for instance a CPU is on average at 20-30% load, we can detect if over a certain period, it is now averaging 40-45%, this may not be a cause for alarm, but rather a cause for an investigation rather than outright using an alarm such as cloudwatch alarms.
 
 
+## Monitoring Data
 
-**Monitoring Data
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.**
+Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
 
-**Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:**
+Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-**Warning threshold of 500**
-**Alerting threshold of 800**
-**And also ensure that it will notify you if there is No Data for this query over the past 10m.**
+* Warning threshold of 500
+* Alerting threshold of 800
+* And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 created threshold alarm as described
 
 ![image](images/thresholdAlarms.PNG?raw=true "thresholdAlarms")
 
+Please configure the monitor’s message so that it will:
 
-*Please configure the monitor’s message so that it will:*
-
-**Send you an email whenever the monitor triggers.**
-
-**Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.**
+* Send you an email whenever the monitor triggers.
+* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
 ![image](images/email.PNG?raw=true "Email")
 
-
-**When this monitor sends you an email notification, take a screenshot of the email that it sends you.**
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
 ![image](images/alarm.PNG?raw=true "alarm")
 
-*Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor*
+* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
-**One that silences it from 7pm to 9am daily on M-F**
+  * One that silences it from 7pm to 9am daily on M-F,
 
-
-![image](images/downtime1.PNG?raw=true "downtime1")
-**And one that silences it all day on Sat-Sun.**
-
-![image](images/downtime2.PNG?raw=true "downtime2")
-
-**Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.**
-
-![image](images/downtime3.PNG?raw=true "downtime3")
+  ![image](images/downtime1.PNG?raw=true "downtime1")
 
 
-*Collecting APM Data:*
+  * And one that silences it all day on Sat-Sun.
+  
+  ![image](images/downtime2.PNG?raw=true "downtime2")
 
-**Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:**
+  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-```
+  ![image](images/downtime3.PNG?raw=true "downtime3")
+
+## Collecting APM Data:
+
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+```python
 from flask import Flask
 import logging
 import sys
@@ -368,12 +442,15 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 
+* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+
 Personally, I have never used flask before, and so, from a quick search online, it is a webapp framework.
 
 Running the above code using 
 
+```
 pip3 install flask
-
+```
 python3 flaskExample.py I can see my webAPI is open on the URL http://54.76.90.120:5050/.
 
 testing this URL shows the following:
@@ -405,7 +482,9 @@ When checking the user interface, I then had the following information:
 
 From here I can see details on exactly how long each request lasted, what my P90, p99 metrics were, which of course in a production application would give great insight as to how the application is performing regularly.
 
-**Bonus Question: What is the difference between a Service and a Resource**
+
+
+* **Bonus Question**: What is the difference between a Service and a Resource?
 
 from a microservice perspective, a "service" is a specific componant of your application, such as an authentication service, a payment processing service. 
 
@@ -414,9 +493,21 @@ Generally a service can be seen as a re-usable "building block" within an org, s
 A resource can be seen as a smaller componant of a service, in this case, can be a specific cache that is used to store auth tokens from users in our authentication service, or a specific database used to store username + password combinations.
 
 
-## Final question
+Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
 
-### Is there anything creative you would use Datadog for?
+![image](images/APM-Metrics.PNG?raw=true "APM-Metrics")
+
+Please include your fully instrumented app in your submission, as well.
+
+provided in my "code"folder is my flask app, although its worth noting this is the same default example provided by datadog
+
+## Final Question:
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+
 
 Lately my friends and I have played quite a lot of [Valheim](https://store.steampowered.com/app/892970/Valheim/). One of the great things about Valheim has been the ability to host my own server. This has allowed me to try out some interesting AWS services such as creating an API to start the server when requested. as seen in the link [here](https://0ypichahbb.execute-api.eu-west-1.amazonaws.com/default/startServer) If no one has joined the server recently, the server will automatically stop for an undetermined amount of time. This API calls the server to start, and when started, can be called once more, to return the IP address of the server if that is needed by the user (server has a static name within the game that can be used to query). 
 
@@ -500,3 +591,46 @@ I found that the first script would only run on startup, as the code was initial
 When checking my datadog dashboard, I can see that as users leave and join the server, metrics are populated:
 
 ![image](images/newMetric.PNG?raw=true "newMetric")
+
+
+
+
+## Instructions
+
+If you have a question, create an issue in this repository.
+
+To submit your answers:
+
+* Fork this repo.
+* Answer the questions in answers.md
+* Commit as much code as you need to support your answers.
+* Submit a pull request.
+* Don't forget to include links to your dashboard(s), even better links and screenshots. We recommend that you include your screenshots inline with your answers.
+
+## References
+
+### How to get started with Datadog
+
+* [Datadog overview](https://docs.datadoghq.com/)
+* [Guide to graphing in Datadog](https://docs.datadoghq.com/graphing/)
+* [Guide to monitoring in Datadog](https://docs.datadoghq.com/monitors/)
+
+### The Datadog Agent and Metrics
+
+* [Guide to the Agent](https://docs.datadoghq.com/agent/)
+* [Datadog Docker-image repo](https://hub.docker.com/r/datadog/docker-dd-agent/)
+* [Writing an Agent check](https://docs.datadoghq.com/developers/write_agent_check/)
+* [Datadog API](https://docs.datadoghq.com/api/)
+
+### APM
+
+* [Datadog Tracing Docs](https://docs.datadoghq.com/tracing)
+* [Flask Introduction](http://flask.pocoo.org/docs/0.12/quickstart/)
+
+### Vagrant
+
+* [Setting Up Vagrant](https://www.vagrantup.com/intro/getting-started/)
+
+### Other questions:
+
+* [Datadog Help Center](https://help.datadoghq.com/hc/en-us)
