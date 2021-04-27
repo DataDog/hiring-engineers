@@ -15,7 +15,7 @@ I created a new directory to house the environment on my local PC called datadog
 > cd datadog-exercise
 ```
 
-![Initial CLI](.\screenshots\image-20210426121216397.png)
+![Initial CLI](./screenshots/image-20210426121216397.png)
 
 now within my new (empty) directory, it's time to fire up the base Ubuntu VM with Vagrant that will come to run my Datadog agent instance as well as the MySQL server and other components the exercise calls for. We first need to initialize Vagrant:
 
