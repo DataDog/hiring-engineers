@@ -1,6 +1,17 @@
 # Jason Landers - Solutions Engineer - Answers
 
-[TOC]
+- [Jason Landers - Solutions Engineer - Answers](#jason-landers---solutions-engineer---answers)
+  * [About My Environment](#about-my-environment)
+  * [Vagrant Setup](#vagrant-setup)
+  * [Agent Installation](#agent-installation)
+  * [Database Installation](#database-installation)
+  * [Database Instrumentation](#database-instrumentation)
+  * [Tie it Together - Datadog and MySQL](#tie-it-together---datadog-and-mysql)
+  * [Creating a Custom Agent Check](#creating-a-custom-agent-check)
+  * [Use the Datadog API to create a Timeboard](#use-the-datadog-api-to-create-a-timeboard)
+  * [Monitoring Data](#monitoring-data)
+  * [Collecting APM Data](#collecting-apm-data)
+  * [Is there anything creative you would use Datadog for?](#is-there-anything-creative-you-would-use-datadog-for)
 
 ## About My Environment
 
@@ -23,13 +34,13 @@ now within my new (empty) directory, it's time to fire up the base Ubuntu VM wit
 > vagrant init hashicorp/bionic64
 ```
 
-![After Vagrant init](.\screenshots\image-vagrant_init.png)
+![After Vagrant init](./screenshots/image-vagrant_init.png)
 
 > **NOTE:** If you charge ahead and run 'vagrant up' like the Vagrant output above suggests the VM will start but you'll have **no network connectivity**. That's because the default Vagrantfile requires you to edit it first in order to select the type of networking you want to use for this VM. I didn't want any NAT related headaches so I opted for bridged mode which I enabled by editing the Vagrantfile that Vagrant created in c:\Users\jland\datadog-exercise\Vagrantfile.  
 
 I opened the Vagrantfile in Notepad++ and uncommented the line for config.vm.network "public_network" and saved the file.
 
-![Vagrantfile Network Edit](.\screenshots\image-vagrant-file-network-edit.png)
+![Vagrantfile Network Edit](./screenshots/image-vagrant-file-network-edit.png)
 
 Now after saving and closing it's safe to run vagrant up:
 
@@ -41,7 +52,7 @@ One thing you may run into like I did is the fact that if you have multiple netw
 
 > My other interface, Blackberry VPN, is an artifact of a hobby project I was recently working on to resuscitate an old Blackberry which was totally successful and fun to play with again. That's a story for another time!
 
-![Vagrant interface selection](.\screenshots\image-vagrant-interace-selection.png)
+![Vagrant interface selection](./screenshots/image-vagrant-interace-selection.png)
 
 ```
 1
@@ -53,7 +64,7 @@ Once Vagrant finishes you'll be back at the command prompt and the VM should be 
 > vagrant ssh
 ```
 
-![Initial Ubuntu Shell](.\screenshots\image-ubuntu-initial-shell.png)
+![Initial Ubuntu Shell](./screenshots/image-ubuntu-initial-shell.png)
 
 ## Agent Installation
 
@@ -63,17 +74,17 @@ Because we're going to need several packages to complete the exercise the very f
 $ sudo apt update
 ```
 
-![Ubuntu Apt Update](.\screenshots\image-ubuntu-apt-update.png)
+![Ubuntu Apt Update](./screenshots/image-ubuntu-apt-update.png)
 
 Now that the VM environment is initialized and ready, we need to change gears and get a Datadog trial spun up! 
 
 I opened a browser and hit [datadoghq.com](https://www.datadoghq.com/). From there, I clicked FREE TRIAL and entered my information to start the trial:
 
-![Datadog Trial Signup](.\screenshots\image-datadog-trial-signup.png)
+![Datadog Trial Signup](./screenshots/image-datadog-trial-signup.png)
 
 After selecting the components of my stack and viewing the web-based walkthrough tips I headed over to Integrations -> Agent and selected Ubuntu to get the pre-populated one-step install command from Datadog for the agent:
 
-![Datadog Agent Install Instructions](.\screenshots\image-datadog-agent-install-instructions.png)
+![Datadog Agent Install Instructions](./screenshots/image-datadog-agent-install-instructions.png)
 
 > **NOTE:** I obfuscated with *** my actual Datadog API Key in the screenshot above. For anyone following along, you will see your actual API key instead of the asterisks.
 
@@ -85,7 +96,7 @@ $ sudo DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=<DD_API_KEY> DD_SITE="datadoghq.com" 
 
 Once everything completes you should see a successful status message like the following:
 
-![Datadog Agent Install Complete](.\screenshots\image-datadog-agent-install-complete.png)
+![Datadog Agent Install Complete](./screenshots/image-datadog-agent-install-complete.png)
 
 The instructions ask us to add tags and show the host with those custom tags on the Host Map page of Datadog. So lets open up datadog.yaml and put those tags in:
 
@@ -97,7 +108,7 @@ $ sudo vi /etc/datadog-agent/datadog.yaml
 
 I uncommented the hostname field and added a custom hostname and then did the same for the tags section just below that:
 
-![datadog.yaml editing](.\screenshots\image-datadog-datadog.yaml-tags-and-hostname.png)
+![datadog.yaml editing](./screenshots/image-datadog-datadog.yaml-tags-and-hostname.png)
 
 > **PROTIP:** Take every opportunity to have fun with it!
 
@@ -109,7 +120,7 @@ $ sudo systemctl restart datadog-agent
 
 Now after waiting a few minutes for everything to sync up we should be able to see this new host and agent in Datadog with those custom tags and the custom host name on the [Host Map page](https://app.datadoghq.com/infrastructure/map) like the instructions asked for:
 
-![Datadog Host Map View With Custom Tags](.\screenshots\image-datadog-HostMap-tags.png)
+![Datadog Host Map View With Custom Tags](./screenshots/image-datadog-HostMap-tags.png)
 
 > Pay no attention to the other hosts showing in my Host Map view. Those are from other runs as I was working the exercise which I didn't document.
 
@@ -129,7 +140,7 @@ Once the install completes, it's time to configure the basics for MySQL. We don'
 $ sudo mysql_secure_installation
 ```
 
-![Secure the MySQL Installation](.\screenshots\image-mysql-secure-install-config.png)
+![Secure the MySQL Installation](./screenshots/image-mysql-secure-install-config.png)
 
 > **NOTE:** I chose to leave the test database in place so that when the time comes for instrumentation with Datadog I have some test data to query.
 
@@ -143,7 +154,7 @@ First, we need to get into the mysql CLI shell:
 $ sudo mysql -u root -p
 ```
 
-![Add MySQL User](.\screenshots\image-mysql-add-user.png)
+![Add MySQL User](./screenshots/image-mysql-add-user.png)
 
 Now we can add the datadog user with the following:
 
@@ -151,7 +162,7 @@ Now we can add the datadog user with the following:
 CREATE USER 'datadog'@'localhost' IDENTIFIED WITH mysql_native_password by 'landers';
 ```
 
-![MySQL User Added](.\screenshots\image-mysql-user-added.png)
+![MySQL User Added](./screenshots/image-mysql-user-added.png)
 
 To test that the user was added successfully you can type exit to exit the mysql shell and then run the following test from the Datadog instructions:
 
@@ -161,7 +172,7 @@ $ mysql -u datadog --password=landers -e "show status" | grep Uptime && echo -e 
 
 If the user was added successfully you should see output similar to this:
 
-![MySQL User Test](.\screenshots\image-mysql-user-test.png)
+![MySQL User Test](./screenshots/image-mysql-user-test.png)
 
 Now that the user is added, we need to specify some privileges for Datadog within MySQL. Lets go back into the MySQL CLI and then once there run the following:
 
@@ -173,7 +184,7 @@ GRANT PROCESS ON *.* TO 'datadog'@'localhost';
 
 You should see output similar to:
 
-![image-20210426135612928](C:\Users\jland\Documents\GitHub\hiring-engineers\screenshots\image-mysql-user-permissions-granting.png)
+![image-20210426135612928](./screenshots/image-mysql-user-permissions-granting.png)
 
 > **NOTE:** The Datadog docs mention that if the performance_schema feature of MySQL is turned on we can also capture additional metrics from that. I definitely wanted to see what that adds so I exited from the MySQL shell and I edited the mysql config at /etc/mysql/mysql.conf.d/mysqld.cnf and added the line performance_schema under the [mysqld] stanza. Finally, I restarted the MySQL service to enable the feature and then returned to the MySQL CLI to enable permissions for the performance_schema for the datadog user.
 
@@ -199,7 +210,7 @@ If you're copy and pasting from the Datadog integration guide (or this guide) an
 
 I added a basic config calling out the datadog user, adding the password and the port (MySQL default is 3306 which is what I'm using)
 
-![MySQL Conf.yaml](C:\Users\jland\Documents\GitHub\hiring-engineers\screenshots\image-datadog-mysql-conf.yaml.png)
+![MySQL Conf.yaml](./screenshots/image-datadog-mysql-conf.yaml.png)
 
 Now we need only to save and then restart the datadog agent:
 
@@ -209,15 +220,15 @@ $ sudo systemctl restart datadog-agent
 
 After a few minutes the Datadog web UI recognizes the integration and the status changes to reflect that:
 
-![Datadog MySQL Integration Complete](.\screenshots\image-datadog-mysql-integration-successful.png)
+![Datadog MySQL Integration Complete](./screenshots/image-datadog-mysql-integration-successful.png)
 
 And the host now shows mysql with a nice drilldown to metrics and a helpful link to the [MySQL Overview Dashboard](https://app.datadoghq.com/dash/integration/12/MySQL%20-%20Overview?from_ts=1619468250597&live=true&to_ts=1619471850597&tpl_var_scope=host%3Ahireme.landers)!
 
-![MySQL Metrics](.\screenshots\image-mysql-metrics.png)
+![MySQL Metrics](./screenshots/image-mysql-metrics.png)
 
 [MySQL Overview Dashboard](https://app.datadoghq.com/dash/integration/12/MySQL%20-%20Overview?from_ts=1619468250597&live=true&to_ts=1619471850597&tpl_var_scope=host%3Ahireme.landers):
 
-![MySQL Overview Dashboard](.\screenshots\image-mysql-overview-dashboard.png)
+![MySQL Overview Dashboard](./screenshots/image-mysql-overview-dashboard.png)
 
 ## Creating a Custom Agent Check
 
@@ -282,11 +293,11 @@ The Datadog documentation provides this helpful means of validating that the met
 $ sudo -u dd-agent -- datadog-agent check my_metric
 ```
 
-![my_metric test](.\screenshots\image-my_metric-check-test.png)
+![my_metric test](./screenshots/image-my_metric-check-test.png)
 
 If all is well you should see output similar to the above. After some time, you will also see my_metric show up as available in the Metrics Explorer and other views:
 
-![Metrics Explorer - my_metric](.\screenshots\image-metrics_explorer.png)
+![Metrics Explorer - my_metric](./screenshots/image-metrics_explorer.png)
 
 ## Use the Datadog API to create a Timeboard
 
@@ -298,7 +309,7 @@ The next portion of the exercise calls for a script which leverages the Datadog 
 
 There's a little bit more but taking one thing at a time lets get that much going. 
 
-First things first, I need the JSON to build the dashboard to spec per the above requirements. I used the GUI to lay out a dashboard with the proper metrics and I also added in a few additional. Then I exported the dashboard JSON and copied it into the below script which is also included in my pull request as [makeMyMetricDashboard.py](.\scripts\makeMyMetricDashboard.py). Note that as before I added asterisks in place of my actual API and app keys:
+First things first, I need the JSON to build the dashboard to spec per the above requirements. I used the GUI to lay out a dashboard with the proper metrics and I also added in a few additional. Then I exported the dashboard JSON and copied it into the below script which is also included in my pull request as [makeMyMetricDashboard.py](./scripts/makeMyMetricDashboard.py). Note that as before I added asterisks in place of my actual API and app keys:
 
 ```python
 from datadog import initialize, api
@@ -461,11 +472,11 @@ api.Dashboard.create(title=title,
 
 Running this script adds a new dashboard to my Dashboards list in the UI called [my_metric dashboard!](https://app.datadoghq.com/dashboard/hfg-fzv-dvn/mymetric-dashboard?from_ts=1619470337455&live=true&to_ts=1619473937455) which looks like this:
 
-![API Created Dashboard](.\screenshots\image-my_metric-custom-dashboard.png)
+![API Created Dashboard](./screenshots/image-my_metric-custom-dashboard.png)
 
 To answer the bonus question about what the anomaly graph is displaying, it's showing the predicted vs actual MySQL connections based on a lookback of the historical value and correctly identifying a spike in logins which I created specifically to show what it would look like if there was a surge of new connections. The exercise calls for me to take a snapshot of the graph and, using the @ notation, send it to myself and take a screenshot. My screenshot of the notification is here:
 
-![Anomaly Notification](.\screenshots\image-anomaly-notification.png)
+![Anomaly Notification](./screenshots/image-anomaly-notification.png)
 
 ## Monitoring Data
 
@@ -485,11 +496,11 @@ To start, click the blue New Monitor button from the Monitors -> Manage Monitors
 
 One the page that loads, start typing my_metric into the box next to Metric and you should see it auto-populate with the Metric:
 
-![Adding a new Metric Monitor](.\screenshots\image-new-metric-config.png)
+![Adding a new Metric Monitor](./screenshots/image-new-metric-config.png)
 
 Scrolling down a little, you'll see the Set Alert conditions portion of the screen which allows us to enter the threshold values and set up the No Data alerting:
 
-![Monitor Metric Config](.\screenshots\image-monitor-metric-threshold-config.png)
+![Monitor Metric Config](./screenshots/image-monitor-metric-threshold-config.png)
 
 That takes care of the initial configuration with the values, now lets set the message(s) depending on what the alert details are when it's triggered. Fortunately, Datadog provides a robust templating capability which allows us to knock out all of the message requirements of the exercise pretty easily. Scrolling down to Step 4 of the web UI you'll see a message edit box. The following is the text that I used which accomplishes the spec'd requirements of providing a different message depending on the alert severity and type, including the host IP when it's an alert, and including the metric value when it's a warning:
 
@@ -501,19 +512,19 @@ That takes care of the initial configuration with the values, now lets set the m
 
 Once that's done, add yourself or your team in Step 5 for the actual notification. Then just double check for any other desirable options and when you're done click Save from here!
 
-![Complete Monitor Setup](.\screenshots\image-finish-monitor-setup.png)
+![Complete Monitor Setup](./screenshots/image-finish-monitor-setup.png)
 
 Because the metric being monitored is set for a random 0-1000 value once every 45 seconds It doesn't take long before it triggers which results in an email being sent. The instructions specifically also ask for a screenshot of the notification which for me looked like this:
 
-![Monitor Alert](.\screenshots\image-monitor-alert.png)
+![Monitor Alert](./screenshots/image-monitor-alert.png)
 
 I also went ahead with the bonus question section which talks about setting up downtimes for the monitor based on a desire to not get alerts on a weekend nor to get alerts from 7PM-9AM on weekdays. After I configured those downtimes I notified the team (myself in this case) and received the following notifications:
 
-![Downtime notification for week day 7PM-9AM suppression](.\screenshots\image-downtime-configured-notification-1.png)
+![Downtime notification for week day 7PM-9AM suppression](./screenshots/image-downtime-configured-notification-1.png)
 
 And this one for the weekend suppression:
 
-![Weekend downtime notification](.\screenshots\image-weekend-downtime.png)
+![Weekend downtime notification](./screenshots/image-weekend-downtime.png)
 
 ## Collecting APM Data
 
@@ -525,7 +536,7 @@ $ sudo -u dd-agent vi /etc/datadog-agent/datadog.yaml
 
 Scroll down or search for the section with apm_config and uncomment those lines needed to enable it. I also took the opportunity to call my environment "dev" for reporting purposes.
 
-![Enable APM Config](.\screenshots\image-enable-apm.png)
+![Enable APM Config](./screenshots/image-enable-apm.png)
 
 I also took the opportunity to enable other disabled parts of the config such as process monitoring in order to see what those views looked like for myself in Datadog (hint: totally worth turning those on!). One more quick restart of the agent:
 
@@ -590,17 +601,17 @@ I then used my desktop browser to access each of the endpoints defined in the sk
 
 And after a few minutes we see the service in the APM -> Services view! 
 
-![APM Services View](.\screenshots\image-apm-services.png)
+![APM Services View](./screenshots/image-apm-services.png)
 
 And similarly we have Traces showing the individual invocations in the APM -> Traces view.
 
-![APM Traces](.\screenshots\image-apm-traces.png)
+![APM Traces](./screenshots/image-apm-traces.png)
 
 Now that I have a robust combination of APM Tracing information as well as MySQL process insight and host-level performance information I am able to create a unified dashboard encompassing the whole range of components and their dependencies to fully and easily understand at-a-glance the health, performance, and stability of my entire environment!
 
 [APM & Infrastructure Metrics Dashboard](https://app.datadoghq.com/dashboard/uh6-jc5-qqw?from_ts=1619480851857&live=true&to_ts=1619484451857)
 
-![APM and Infrastructure Dashboard](.\screenshots\image-APMInfraDashboard.png)
+![APM and Infrastructure Dashboard](./screenshots/image-APMInfraDashboard.png)
 
 ## Is there anything creative you would use Datadog for?
 
