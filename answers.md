@@ -14,11 +14,11 @@ Following the recommended <a href="https://learn.hashicorp.com/collections/vagra
 
 First, I downloaded the 64-bit version of Vagrant, and ran the downloaded `.msi` file to run the installation wizard.  
 
-![](Images\vagrant_setup.png)
+![](Images/vagrant_setup.png)
 
 Installation was successful after running this wizard.  After this, I created a directory for my Vagrant VM to reside.
 
-![](Images\vagrant_dir.png)
+![](Images/vagrant_dir.png)
 
 In my terminal, I ran `vagrant init hashicorp/bionic64`, creating an Ubuntu VM in my directory.
 
