@@ -1,0 +1,180 @@
+db.createUser({
+  'user': 'datadog',
+  'pwd': 'datadog-sub',
+  'roles': [
+    { role: 'read', db: 'admin' },
+    { role: 'clusterMonitor', db: 'admin' },
+    { role: 'read', db: 'local' }
+  ]
+})
+
+
+
+use admin
+db.createUser({
+  'user': 'datadog',
+  'pwd': '<UNIQUEPASSWORD>',
+  'roles': [
+    { role: 'read', db: 'admin' },
+    { role: 'clusterMonitor', db: 'admin' },
+    { role: 'read', db: 'local' }
+  ]
+})
+
+python3 datadog-sub.py 088621e4fa9cfc9011a58884e0d46f6b ee2e5a89e8b58a5e57a9a34dce1471db5773c9ad
+
+from datadog import initialize, api
+import sys
+
+if __name__ == '__main__':
+    print(f'Arguments count: {len(sys.argv)}')
+    for i, arg in enumerate(sys.argv):
+        print(f'Argument {i:>6}: {arg}')
+
+
+options = {
+    'api_key': sys.argv[1],
+    'app_key': sys.argv[2],
+    'api_host': 'https://datadoghq.eu'
+}
+
+initialize(**options)
+
+title = 'Visualising data'
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:my_metric{*}'}
+        ],
+        'title': 'Averages for my metric'
+    }
+}, {
+    'definition': {
+    'type': 'timeseries',
+    'requests': [
+     	{'q': 'anomalies(avg:mongodb.mem.resident{*,*}.fill(zero), 'basic', 1)'}
+     ],
+     'title': 'Avg of PostgreSQL.buffer_hit with Anomalies'
+     }
+        },
+         {'definition': {
+                'type': 'timeseries',
+                'requests': [
+                   {'q': 'my_metric{*}.rollup(sum, 3600)'
+                    }
+                ],
+                'title': 'Average of my metric with Rollup'
+            }
+        }]
+layout_type = 'ordered'
+description = 'Datadog recruiting.'
+is_read_only = True
+notify_list = ['alandonoghue9@gmail.com']
+template_variables = [{
+    'name': 'host1',
+    'prefix': 'host',
+    'default': 'my-host'
+}]
+
+saved_views = [{
+    'name': 'Saved views for alan.submission',
+    'template_variables': [{'name': 'host', 'value': 'alan.submission'}]}
+]
+
+
+try:
+        # Create a new dashboard
+        api_response =  api.Dashboard.create(title=title,
+                                             widgets=widgets,
+                                             layout_type=layout_type,
+                                             description=description,
+                                             is_read_only=is_read_only,
+                                             notify_list=notify_list,
+                                             template_variables=template_variables,
+                                             template_variable_presets=saved_views)
+        print(api_response)
+except ApiException as e:
+        print('Exception when calling DashboardsApi->create_dashboard: %s\n' % e)
+
+{"title":"Visualising data","description":"Datadog recruiting.","widgets":[{"id":3730665034611449,"definition":{"title":"Averages for my metric","show_legend":false,"type":"timeseries","requests":[{"q":"avg:my_metric{*}"}]}},{"id":975532177743459,"definition":{"title":"Avg of PostgreSQL.buffer_hit with Anomalies","show_legend":false,"type":"timeseries","requests":[{"q":"anomalies(avg:mongodb.mem.resident{*,*}.fill(zero), \"basic\", 1)"}]}},{"id":2102778215178848,"definition":{"title":"Average of my metric with Rollup","show_legend":false,"legend_layout":"auto","legend_columns":["avg","min","max","value","sum"],"time":{},"type":"timeseries","requests":[{"q":"avg:my_metric{*}.rollup(sum, 3600)","on_right_yaxis":false,"style":{"palette":"dog_classic","line_type":"solid","line_width":"normal"},"display_type":"bars"}],"yaxis":{"scale":"linear","label":"","include_zero":true,"min":"auto","max":"auto"},"markers":[]}}],"template_variables":[{"name":"host1","default":"my-host","prefix":"host"}],"layout_type":"ordered","is_read_only":true,"notify_list":["alandonoghue9@gmail.com"],"template_variable_presets":[{"name":"Saved views for alan.submission","template_variables":[{"name":"host","value":"alan.submission"}]}],"id":"6tc-xpv-gzb"}
+
+
+
+
+
+from datadog import initialize, api
+import sys
+
+if __name__ == '__main__':
+    print(f'Arguments count: {len(sys.argv)}')
+    for i, arg in enumerate(sys.argv):
+        print(f'Argument {i:>6}: {arg}')
+
+
+options = {
+    'api_key': sys.argv[1],
+    'app_key': sys.argv[2],
+    'api_host': 'https://datadoghq.eu'
+}
+
+initialize(**options)
+
+title = 'Visualising data'
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:my_metric{*}'}
+        ],
+        'title': 'Averages for my metric'
+        }
+    }, {
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+         	{'q': 'anomalies(avg:mongodb.mem.resident{*,*}.fill(zero), "basic", 2)'}
+        ],
+        'title': 'Avg of MongoDB with Anomalies'
+        }
+    }, {
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+           {'q': 'avg:my_metric{*}.rollup(sum, 3600)'}
+        ],
+        'title': 'Average of my metric with Rollup'
+            }
+    }]
+layout_type = 'ordered'
+description = 'Datadog recruiting.'
+is_read_only = True
+notify_list = ['alandonoghue9@gmail.com']
+template_variables = [{
+    'name': 'host1',
+    'prefix': 'host',
+    'default': 'my-host'
+}]
+saved_views = [{
+    'name': 'Saved views for alan.submission',
+    'template_variables': [{'name': 'host', 'value': 'alan.submission'}]}
+]
+
+
+try:
+        # Create a new dashboard
+        api_response =  api.Dashboard.create(title=title,
+                                             widgets=widgets,
+                                             layout_type=layout_type,
+                                             description=description,
+                                             is_read_only=is_read_only,
+                                             notify_list=notify_list,
+                                             template_variables=template_variables,
+                                             template_variable_presets=saved_views)
+        print(api_response)
+except ApiException as e:
+        print("Exception when calling DashboardsApi->create_dashboard: %s\n" % e)
+
+
+
+FLASK_APP=datadog-flask.py DATADOG_ENV=flask_test ddtrace-run flask run --port=4999
