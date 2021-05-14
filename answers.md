@@ -9,7 +9,7 @@ Installed  MongoDB and the datadog integration for MongoDB is already installed 
 ![Verified mongo](/images/verify_mongo.png "Post mongo verification")
 
 Created a custom agent check named my_metric that submitted a random value between 0 and 1000 and changed the collection interval to 45 seconds by updating the `/etc/datadog-agent/config.d/my_metric.yaml` file to add the time interval attribute:
-![Verified custom agent](/images/verify_custom_metric.png "Post mongo verification")
+![Verified custom agent](/images/verify_custom_agent.png "Post mongo verification")
 
 ## Visualizing Data:
 
