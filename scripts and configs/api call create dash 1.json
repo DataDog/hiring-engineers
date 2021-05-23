@@ -1,0 +1,66 @@
+{
+    "title": "dashboard api 2",
+    "layout_type": "ordered",
+    "widgets": [
+        {
+            "definition": {
+                "type": "timeseries",
+                "title": "graph 1_custom check anomaly",
+                "title_align": "center",
+                "requests":[
+                    {
+                        "q": "anomalies(avg:custom_check{*}, 'basic', 1)",
+                        "display_type": "line",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        }
+                    }
+                ],
+            "yaxis": {
+                "scale": "linear",
+                "min": "auto",
+                "max": "auto",
+                "label": "123"
+                }
+            }
+        },
+        {
+            "definition": {
+                "type": "timeseries",
+                "title": "graph 1_custom check anomaly",
+                "title_align": "center",
+                "requests":[
+                    {
+                        "q": "anomalies(avg:custom_check{*}, 'basic', 1)",
+                        "display_type": "line",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        }
+                    }
+                ],
+            "yaxis": {
+                "scale": "linear",
+                "min": "auto",
+                "max": "auto",
+                "label": "123"
+                }
+            }
+        }
+    ],
+    "description": "dash timeboard api",
+    "is_read_only": false,
+    "notify_list": [
+        "tonseattle@gmail.com"
+    ],
+    "template_variables": [
+        {
+            "name": "host1",
+            "prefix": "host",
+            "default": "my-host"
+        }
+    ]
+}

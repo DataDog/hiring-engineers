@@ -1,0 +1,111 @@
+{
+    "title": "dashboard 3_api call from postman",
+    "widgets": [
+        {
+            "definition": {
+                "title": "Avg of custom check with anomaly",
+                "title_size": "16",
+                "title_align": "left",
+                "show_legend": true,
+                "legend_layout": "auto",
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "anomalies(avg:custom_check{*}, 'basic', 1)",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        },
+                        "display_type": "line"
+                    }
+                ],
+                "yaxis": {
+                    "scale": "linear",
+                    "label": "",
+                    "include_zero": true,
+                    "min": "auto",
+                    "max": "auto"
+                }
+            }
+        },
+        {
+            "definition": {
+                "title": "System cpu rollup sum 1 hr",
+                "title_size": "16",
+                "title_align": "left",
+                "show_legend": true,
+                "legend_layout": "auto",
+                "time": {
+                    "live_span": "2d"
+                },
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "max:system.cpu.user{*} by {environment}.rollup(sum, 3600)",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        },
+                        "display_type": "line"
+                    }
+                ],
+                "yaxis": {
+                    "scale": "linear",
+                    "label": "",
+                    "include_zero": true,
+                    "min": "auto",
+                    "max": "auto"
+                },
+                "markers": []
+            }
+        },
+        {
+            "definition": {
+                "title": "custom metric scope over host",
+                "title_size": "16",
+                "title_align": "left",
+                "show_legend": true,
+                "legend_layout": "auto",
+                "legend_columns": [
+                    "avg",
+                    "min",
+                    "max",
+                    "value",
+                    "sum"
+                ],
+                "time": {},
+                "type": "timeseries",
+                "requests": [
+                    {
+                        "q": "avg:custom_check{*} by {host}",
+                        "style": {
+                            "palette": "dog_classic",
+                            "line_type": "solid",
+                            "line_width": "normal"
+                        },
+                        "display_type": "line"
+                    }
+                ],
+                "yaxis": {
+                    "scale": "linear",
+                    "label": "",
+                    "include_zero": true,
+                    "min": "auto",
+                    "max": "auto"
+                }
+            }
+        }
+    ],
+    "template_variables": [
+        {
+            "name": "var",
+            "default": "host"
+        }
+    ],
+    "layout_type": "ordered",
+    "is_read_only": false,
+    "notify_list": [],
+    "reflow_type": "auto"
+}
