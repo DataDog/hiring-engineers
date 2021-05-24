@@ -607,7 +607,6 @@ if __name__ == '__main__':
 7. Originally I ran this with python3 but ran into a Flask not found error so I had to redownload flask/ddtrace on python 2 and then ran step 6 for it to work
 8. Following the reference doc below, we need to run curl commands in a SEPARATE command prompt. ![20210523130612315](img-paste-20210523130612315.png)
 9. As that is running, we can tell the traces are getting sent in the original command prompt. ![20210523130658279](img-paste-20210523130658279.png)
-10. As expected, the UI is now showing the flask app traces ![20210523130913680](img-paste-20210523130913680.png) ![20210523131115242](img-paste-20210523131115242.png)![20210523131149124](img-paste-20210523131149124.png)
 
 
 ref:
@@ -621,7 +620,17 @@ ref:
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
+* A service is a group of connected jobs such as web domains, payment back-end and/or authentication service, while a resource is a subset/micro service that can contain the domain of a customer application such as web end points that consists of cart checkout and cart ordering.  Service can have 1 or more resources. 
+
+ref: https://docs.datadoghq.com/tracing/visualization/
+
+* Service - Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
+* Resource - Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
+
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+* As expected, the UI is now showing the flask app traces ![20210523130913680](img-paste-20210523130913680.png) ![20210523131115242](img-paste-20210523131115242.png)![20210523131149124](img-paste-20210523131149124.png)
+
 
 Please include your fully instrumented app in your submission, as well.
 
@@ -635,6 +644,8 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 Is there anything creative you would use Datadog for?
 
 Yes, in the advertising space, retailers are getting more sophisticated and finding ways to monitor their customers and their customer's frequecy of shopping whether it's online or in store. Datadog can be use to grab signals from a retailer's physical location, POS system and online store to monitor overall health. For example if a POS system is expected to run and generate x dollars during store hours, if there is no data, we can identify the outage. 
+
+
 
 ## Instructions
 
