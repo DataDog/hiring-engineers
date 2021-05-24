@@ -37,12 +37,12 @@ I created a monitor that with warnings on the random data that my_metric was tra
 I noticed that the versions were all different so I updated everything and specified python3:
 ```
 sudo -H pip3 install --upgrade pip
-pip install ddtrace
+pip3 install ddtrace
 ddtrace-run python3 app.py
 ```
  
  I was still receiving this error:
- ![Error apm data](/images/error_flask.png "Error apm data)
+<img src="/images/error_flask.png" width="500">
 
  Ultimately, I decided that the issue was with the VM and the way it was loading in the python modules. It was taking too long to troubleshoot so I decided to use my native MacOS for this portion. I installed the agent on my machine and setup the apm via the steps [here](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers)
 
