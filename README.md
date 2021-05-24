@@ -1,6 +1,5 @@
 If you want to apply as an engineer at [Datadog](http://datadog.com) you are in the right spot. 
 <a href="http://www.flickr.com/photos/alq666/10125225186/" title="The view from our roofdeck">
-<img src="http://farm6.staticflickr.com/5497/10125225186_825bfdb929.jpg" width="500" height="332" alt="_DSC4652"></a>
 
 # Why work at Datadog?
 
