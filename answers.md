@@ -1,14 +1,18 @@
 ## Collecting Metrics:
 The tags were added by updating the tags attribute in the yaml file located at `/etc/datadog-agent/datadog.yaml`:
+<br />
 <img src="/images/update_tags.png" width="500">
 
 Verified that the tags were changed on the application:
+<br />
 <img src="/images/verify_tags.png" width="500">
 
 Installed  MongoDB and the datadog integration for MongoDB is already installed into the agent as noted [here](https://docs.datadoghq.com/integrations/mongo/?tab=standalone). I was able to verify that the integration worked by running a check:
+<br />
 <img src="/images/verify_mongo.png" width="500">
 
 Created a custom agent check named my_metric that submitted a random value between 0 and 1000 and changed the collection interval to 45 seconds by updating the `/etc/datadog-agent/config.d/my_metric.yaml` file to add the time interval attribute:
+<br />
 <img src="/images/verify_custom_agent.png" width="500">
 
 ## Visualizing Data:
@@ -16,6 +20,7 @@ Created a custom agent check named my_metric that submitted a random value betwe
 In order to create the dashboard using the api, I first researched Datadog's [dashboard api documentation](https://docs.datadoghq.com/api/latest/dashboards/#create-a-new-dashboard). I found example python code which I copied and replaced the configurations to fit the task requirements. Find the exact python script used in the `/scripts` folder.
 
 I noticed the rollup function did not display information after creating the dashboard. I decided to add another 60s rollup dashboard to verify a successful rollup function.
+<br />
 <img src="/images/verify_dashboard.png" width="500">
 
 According to the [anomaly documentation](https://docs.datadoghq.com/monitors/monitor_types/anomaly/), this timeseries graph attempts to predict the future based on previous data. It will then tell you when the data points are outside the bounds of those predictions.
@@ -23,6 +28,7 @@ According to the [anomaly documentation](https://docs.datadoghq.com/monitors/mon
 ## Monitoring Data
 
 I created a monitor that with warnings on the random data that my_metric was transmitting. I set the alarm threshold for 800 and warning for 500. The alarm was taking too long to trigger so I reduced to one minute. After successfully triggering I increase it to 10 minutes.
+<br />
 <img src="/images/verify_monitor.png " width="500">
 
 
@@ -41,9 +47,11 @@ ddtrace-run python3 app.py
  Ultimately, I decided that the issue was with the VM and the way it was loading in the python modules. It was taking too long to troubleshoot so I decided to use my native MacOS for this portion. I installed the agent on my machine and setup the apm via the steps [here](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers)
 
 I enable the apm configuration in the `/opt/datadog-agent/etc/datadog.yaml` configuration file to enable the settings as stated in the documentation. The APM service took a long time to start appearing in my console but the data did show up eventually.
+<br />
 <img src="/images/verify_flask_running.png" width="500">
 
 And the traces in the flask application:
+<br />
 <img src="/images/verify_apm.png" width="500">
 
 ## Final Question:
