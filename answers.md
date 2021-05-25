@@ -144,12 +144,12 @@ created a conf.yaml file
 
 ![20210521095553285](img-paste-20210521095553285.png)
 
-I restarted it agent with this command
+I restarted the agent with this command
 
 sudo service datadog-agent restart
 
 edit files in sql
-i didn't see this file so skilling this step in the instruction
+i didn't see this file so skipping this step in the instruction
 
 sudo vi /etc/mysql/my.cnf
 
@@ -164,6 +164,7 @@ restart mysql
 ![2021052110162891](img-paste-2021052110162891.png)
 
 checked logrotate to make sure it looks like documentation
+
 ![2021052110323367](img-paste-2021052110323367.png)
 
 ![20210521103213911](img-paste-20210521103213911.png)
@@ -183,7 +184,7 @@ add more config settings to the file
 restart mysql Service with "service mysl restart"
 restart ddog agent with sudo service datadog-agent restart
 
-For references, copying these file locations
+For references, copying these file locations for quick access later
 
 * The configuration files and folders for the Agent are located in:
 * /etc/datadog-agent/datadog.yaml
