@@ -1,0 +1,121 @@
+{
+  "notify_list": [],
+  "description": null,
+  "author_name": "Linh Ton",
+  "template_variables": [
+    {
+      "default": "host",
+      "name": "var"
+    }
+  ],
+  "is_read_only": false,
+  "id": "djc-i2y-chj",
+  "title": "dashboard 3_api call from postman",
+  "url": "/dashboard/djc-i2y-chj/dashboard-3api-call-from-postman",
+  "created_at": "2021-05-23T00:42:53.889571+00:00",
+  "modified_at": "2021-05-23T00:42:53.889571+00:00",
+  "reflow_type": "auto",
+  "author_handle": "tonseattle@gmail.com",
+  "widgets": [
+    {
+      "definition": {
+        "title_size": "16",
+        "title": "Avg of custom check with anomaly",
+        "title_align": "left",
+        "yaxis": {
+          "include_zero": true,
+          "max": "auto",
+          "scale": "linear",
+          "min": "auto",
+          "label": ""
+        },
+        "legend_layout": "auto",
+        "show_legend": true,
+        "requests": [
+          {
+            "q": "anomalies(avg:custom_check{*}, 'basic', 1)",
+            "style": {
+              "line_width": "normal",
+              "palette": "dog_classic",
+              "line_type": "solid"
+            },
+            "display_type": "line"
+          }
+        ],
+        "type": "timeseries"
+      },
+      "id": 2574583365133042
+    },
+    {
+      "definition": {
+        "title_size": "16",
+        "yaxis": {
+          "include_zero": true,
+          "max": "auto",
+          "scale": "linear",
+          "min": "auto",
+          "label": ""
+        },
+        "title_align": "left",
+        "markers": [],
+        "legend_layout": "auto",
+        "show_legend": true,
+        "time": {
+          "live_span": "2d"
+        },
+        "title": "System cpu rollup sum 1 hr",
+        "requests": [
+          {
+            "q": "max:system.cpu.user{*} by {environment}.rollup(sum, 3600)",
+            "style": {
+              "line_width": "normal",
+              "palette": "dog_classic",
+              "line_type": "solid"
+            },
+            "display_type": "line"
+          }
+        ],
+        "type": "timeseries"
+      },
+      "id": 5404339419195345
+    },
+    {
+      "definition": {
+        "title_size": "16",
+        "legend_columns": [
+          "avg",
+          "min",
+          "max",
+          "value",
+          "sum"
+        ],
+        "yaxis": {
+          "include_zero": true,
+          "max": "auto",
+          "scale": "linear",
+          "min": "auto",
+          "label": ""
+        },
+        "title_align": "left",
+        "legend_layout": "auto",
+        "show_legend": true,
+        "time": {},
+        "title": "custom metric scope over host",
+        "requests": [
+          {
+            "q": "avg:custom_check{*} by {host}",
+            "style": {
+              "line_width": "normal",
+              "palette": "dog_classic",
+              "line_type": "solid"
+            },
+            "display_type": "line"
+          }
+        ],
+        "type": "timeseries"
+      },
+      "id": 4402125656141480
+    }
+  ],
+  "layout_type": "ordered"
+}

@@ -1,0 +1,5 @@
+init_config:
+
+instances:
+        - name: custom_check
+        - min_collection_interval: 45
