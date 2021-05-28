@@ -90,3 +90,21 @@ Here are the commands I used while running the agent locally:
 
          instances:
            - min_collection_interval: 45
+           
+## Visualizing Data:
+  * Utilized the Datadog API and created a timeboard that contains:
+    * My custom metric (my_metric) scoped over my host (vagrant) in the past 5 minutes:
+    ![a relative link](images/five.png)
+    * My custom metric (my_metric) scoped over my host (vagrant) in the past hour:
+    ![a relative link](images/My_metricOVERhost.png)
+    * My custom metric (my_metric) scoped over my host (vagrant) in the past 4 hours:
+    ![a relative link](images/FourHours.png)
+    * Any metric from the integration on my Database with the anomaly function applied:
+    * My custom metric with the rollup function applied to sum up all the points for the past hour into one bucket:
+Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+
+Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+Set the Timeboard's timeframe to the past 5 minutes
+Take a snapshot of this graph and use the @ notation to send it to yourself.
+Bonus Question: What is the Anomaly graph displaying?
