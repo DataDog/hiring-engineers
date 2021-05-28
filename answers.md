@@ -83,7 +83,7 @@ Here are the commands I used while running the agent locally:
                    self.gauge('my_metric', 
                    random.randint(0,1000), 
                    tags=['key1:value1'] + self.instance.get('tags', []))
-  * Bonus Question Can you change the collection interval without modifying the Python check file you created?   
+  * Bonus Question: Can you change the collection interval without modifying the Python check file you created?   
     Yes, you can change the collection interval without modifying the my_metric.py file that I created. You can instead modify the my_metric.yaml file as the following: 
          
          init_config:
