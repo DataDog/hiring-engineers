@@ -217,3 +217,51 @@ Here are the commands I used while running the agent locally:
    ![a relative link](images/Weekend.png)
    ![a relative link](images/Downtime.png)
     
+## Collecting APM Data:
+ * Needed to first install flask and be able to run ddtrace-run as per following [guide](https://linuxize.com/post/how-to-install-flask-on-ubuntu-18-04/)
+ * Then was able to run the following Flask App: 
+    ```
+      from flask import Flask
+      import logging
+      import sys
+
+      # Have flask use stdout as the logger
+      main_logger = logging.getLogger()
+      main_logger.setLevel(logging.DEBUG)
+      c = logging.StreamHandler(sys.stdout)
+      formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+      c.setFormatter(formatter)
+      main_logger.addHandler(c)
+
+      app = Flask(__name__)
+
+      @app.route('/')
+      def api_entry():
+          return 'Entrypoint to the Application'
+
+      @app.route('/api/apm')
+      def apm_endpoint():
+          return 'Getting APM Started'
+
+      @app.route('/api/trace')
+      def trace_endpoint():
+          return 'Posting Traces'
+
+      if __name__ == '__main__':
+          app.run(host='0.0.0.0', port='5050')
+    ```
+  ![a relative link](images/TraceRun.png)
+  * In addition to this, I needed to alter the Datadog.yaml file again, to add a few configurations: 
+  ![a relative link](images/TraceConfig.png)
+  * Running the aboce Flask app, I saw the following traces on the Dashboard, with 8 spans across each of the traces:
+  ![a relative link](images/Traces.png)
+  * After examining the metrics of one of the traces (the first one), I was able to analyze the following Host Metrics:
+  ![a relative link](images/M1.png)
+  ![a relative link](images/M2.png)
+  ![a relative link](images/M3.png)
+  
+   * Bonus Question: What is the difference between a Service and a Resource?
+   The main difference between a service and a resource is that a service consists of the building blocks of microservice architecture, where various things such      as: endpoints, queries, and jobs are grouped together to build an application. Whereas, a resource is typically a certain domain of an application such as a web    endpoint, database query, or a background running job. 
+   
+## Final Question:
+   * Something creative I would use Datadog for would be to monitor covid vaccine sign-ups, particulary location along with brand. Then using these to have th          government and pharmaceutical coporations send out a customized set of vaccines based on recorded popularity. Since the current news says we may need a covid      vaccine every year, this could help with yearly doses moving forward. 
