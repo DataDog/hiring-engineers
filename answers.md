@@ -184,4 +184,4 @@ Here are the commands I used while running the agent locally:
     ![a relative link](images/Email.png)
 
 Bonus Question: What is the Anomaly graph displaying?
-The Anomaly graph is displaying a gray area around the actual data that essentially shows the potential range of the data to identify if and where the current data is behaving differently compared to past trends. The ranges (gray area of the graph) take into account trends, seasonal day-of-week, and time-of-day patterns.
+The Anomaly graph is displaying a gray area around the actual data that essentially shows the potential range of the data to identify if and where the current data is behaving differently compared to past trends. The ranges (gray area of the graph) are calculated based off of past trends, seasonal day-of-week, and time-of-day patterns.
