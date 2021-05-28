@@ -34,7 +34,11 @@ Here are the commands I used while running the agent locally:
 ![a relative link](images/HostnamesAgent.png)
 ![a relative link](images/HostMap.png)
 
-  * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+  * Installed a database on my machine (MySQL) and then installed the respective Datadog integration for that database. In my case, it was convenient because MySQL check is included in the Datadog Agent package and no additional installation was needed on my MySQL server. I followed the steps as were guided by the [Datadog Integration Page for my SQL](https://docs.datadoghq.com/integrations/mysql/?tab=host).
+      * Created a datadog user with a native password hashing method: ```CREATE USER 'datadog'@'localhost' IDENTIFIED WITH mysql_native_password by '<UNIQUEPASSWORD>';```
+      * The Agent needs a few privileges to collect metrics, I granted the user the following limited privileges: ```GRANT PROCESS ON *.* TO 'datadog'@'localhost';```
+      * I needed to also set the max_user_connections: ```ALTER USER 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;```
+
   * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
   * Change your check's collection interval so that it only submits the metric once every 45 seconds.
   * Bonus Question Can you change the collection interval without modifying the Python check file you created?
