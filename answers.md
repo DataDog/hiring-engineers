@@ -56,7 +56,9 @@ Here are the commands I used while running the agent locally:
               def check(self, instance):
                    #while(True):
                    #time.sleep(45)
-                   self.gauge('my_metric', random.randint(0,1000), tags=['key1:value1'] + self.instance.get('tags', []))
+                   self.gauge('my_metric', 
+                   random.randint(0,1000), 
+                   tags=['key1:value1'] + self.instance.get('tags', []))
         ```
       * Created a my_metric.yaml file containing the following:
         ```
@@ -64,8 +66,7 @@ Here are the commands I used while running the agent locally:
         ```
       
   * Change your check's collection interval so that it only submits the metric once every 45 seconds.
-        ```
-        import time
+        ```import time
         import random
         try:
             from datadog_checks.base import AgentCheck
@@ -79,13 +80,13 @@ Here are the commands I used while running the agent locally:
               def check(self, instance):
                    while(True):
                    time.sleep(45)
-                   self.gauge('my_metric', random.randint(0,1000), tags=['key1:value1'] + self.instance.get('tags', []))
-         ```
+                   self.gauge('my_metric', 
+                   random.randint(0,1000), 
+                   tags=['key1:value1'] + self.instance.get('tags', []))
   * Bonus Question Can you change the collection interval without modifying the Python check file you created?   
     Yes, you can change the collection interval without modifying the my_metric.py file that I created. You can instead modify the my_metric.yaml file as the following: 
-         ```
+         
          init_config:
 
          instances:
            - min_collection_interval: 45
-         ```
