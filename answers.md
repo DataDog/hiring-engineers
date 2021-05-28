@@ -176,9 +176,12 @@ Here are the commands I used while running the agent locally:
     },
     "markers": [] }
     ```
+    * Set the Timeboard's timeframe to the past 5 minutes
+    ![a relative link](images/AllTimeboard.png)
+    
+    * Took a snapshot of a graph and used the @ notation to send it to myself
+    ![a relative link](images/Snapshot.png)
+    ![a relative link](images/Email.png)
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
-
-Set the Timeboard's timeframe to the past 5 minutes
-Take a snapshot of this graph and use the @ notation to send it to yourself.
 Bonus Question: What is the Anomaly graph displaying?
+The Anomaly graph is displaying a gray area around the actual data that essentially shows the potential range of the data to identify if and where the current data is behaving differently compared to past trends. The ranges (gray area of the graph) take into account trends, seasonal day-of-week, and time-of-day patterns.
