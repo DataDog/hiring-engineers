@@ -183,5 +183,28 @@ Here are the commands I used while running the agent locally:
     ![a relative link](images/Snapshot.png)
     ![a relative link](images/Email.png)
 
-Bonus Question: What is the Anomaly graph displaying?
-The Anomaly graph is displaying a gray area around the actual data that essentially shows the potential range of the data to identify if and where the current data is behaving differently compared to past trends. The ranges (gray area of the graph) are calculated based off of past trends, seasonal day-of-week, and time-of-day patterns.
+    * Bonus Question: What is the Anomaly graph displaying?        
+    The Anomaly graph is displaying a gray area around the actual data that essentially shows the potential range of the data to identify if and where the current     data is behaving differently compared to past trends. The ranges (gray area of the graph) are calculated based off of past trends, seasonal day-of-week, and       time-of-day patterns.
+    
+## Monitoring Data
+   * Created a new metric monitor that watches the average of my custom metric (my_metric) and will alert if it’s above the following values over the past 5            minutes:
+     ```
+     * Warning threshold of 500
+     * Alerting threshold of 800
+     * Notify me if there is no data for this query over the past 10 minutes 
+     
+   * Configured the monitor’s message so that it will:
+     ```
+     * Send me an email whenever the monitor triggers
+     * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state
+     * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers 
+       an Alert state
+     * When this monitor sends me an email notification, take a screenshot of the email that it sends me 
+  
+   * Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. 
+     Set up two scheduled downtimes for this monitor:
+     ```
+     * One that silences it from 7pm to 9am daily on M-F
+     * And one that silences it all day on Sat-Sun
+     * Make sure that your email is notified during the downtime and take a screenshot of that notification
+    
