@@ -36,9 +36,56 @@ Here are the commands I used while running the agent locally:
 
   * Installed a database on my machine (MySQL) and then installed the respective Datadog integration for that database. In my case, it was convenient because MySQL check is included in the Datadog Agent package and no additional installation was needed on my MySQL server. I followed the steps as were guided by the [Datadog Integration Page for my SQL](https://docs.datadoghq.com/integrations/mysql/?tab=host).
       * Created a datadog user with a native password hashing method: ```CREATE USER 'datadog'@'localhost' IDENTIFIED WITH mysql_native_password by '<UNIQUEPASSWORD>';```
-      * The Agent needs a few privileges to collect metrics, I granted the user the following limited privileges: ```GRANT PROCESS ON *.* TO 'datadog'@'localhost';```
+      * The agent needs a few privileges to collect metrics, so I granted the user the following limited privileges: ```GRANT PROCESS ON *.* TO 'datadog'@'localhost';```
       * I needed to also set the max_user_connections: ```ALTER USER 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;```
 
-  * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+  * Created a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000. I followed the [custom agent check documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) to accomplish the following file creations:
+      * Created a my_metric.py file containing the following:
+        ```
+        import time
+        import random
+        try:
+            from datadog_checks.base import AgentCheck
+
+        except ImportError:
+            from checks import AgentCheck
+            
+        __version__ = "1.0.0"
+
+        class MyClass(AgentCheck):
+              def check(self, instance):
+                   #while(True):
+                   #time.sleep(45)
+                   self.gauge('my_metric', random.randint(0,1000), tags=['key1:value1'] + self.instance.get('tags', []))
+        ```
+      * Created a my_metric.yaml file containing the following:
+        ```
+        instances: [{}]
+        ```
+      
   * Change your check's collection interval so that it only submits the metric once every 45 seconds.
-  * Bonus Question Can you change the collection interval without modifying the Python check file you created?
+        ```
+        import time
+        import random
+        try:
+            from datadog_checks.base import AgentCheck
+
+        except ImportError:
+            from checks import AgentCheck
+            
+        __version__ = "1.0.0"
+
+        class MyClass(AgentCheck):
+              def check(self, instance):
+                   while(True):
+                   time.sleep(45)
+                   self.gauge('my_metric', random.randint(0,1000), tags=['key1:value1'] + self.instance.get('tags', []))
+         ```
+  * Bonus Question Can you change the collection interval without modifying the Python check file you created?   
+    Yes, you can change the collection interval without modifying the my_metric.py file that I created. You can instead modify the my_metric.yaml file as the following: 
+         ```
+         init_config:
+
+         instances:
+           - min_collection_interval: 45
+         ```
