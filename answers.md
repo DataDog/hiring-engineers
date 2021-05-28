@@ -192,6 +192,8 @@ Here are the commands I used while running the agent locally:
      * Warning threshold of 500
      * Alerting threshold of 800
      * Notify me if there is no data for this query over the past 10 minutes 
+   ![a relative link](images/MM1.png)
+   ![a relative link](images/MM3.png)
      
    * Configured the monitor’s message so that it will:
      ```
@@ -200,6 +202,10 @@ Here are the commands I used while running the agent locally:
      * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers 
        an Alert state
      * When this monitor sends me an email notification, take a screenshot of the email that it sends me 
+   ![a relative link](images/MM4.png)
+   ![a relative link](images/MM5.png)
+   ![a relative link](images/Thresold.png)
+   ![a relative link](images/10Mins.png)
   
    * Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. 
      Set up two scheduled downtimes for this monitor:
@@ -207,4 +213,7 @@ Here are the commands I used while running the agent locally:
      * One that silences it from 7pm to 9am daily on M-F
      * And one that silences it all day on Sat-Sun
      * Make sure that your email is notified during the downtime and take a screenshot of that notification
+   ![a relative link](images/Weekdays.png)
+   ![a relative link](images/Weekend.png)
+   ![a relative link](images/Downtime.png)
     
