@@ -100,6 +100,7 @@ Here are the commands I used while running the agent locally:
     * My custom metric (my_metric) scoped over my host (vagrant) in the past 4 hours:
     ![a relative link](images/FourHours.png)
     * Any metric from the integration on my Database with the anomaly function applied:
+    ![a relative link](images/Anomolies.png) 
     * My custom metric with the rollup function applied to sum up all the points for the past hour into one bucket:
     ![a relative link](images/RollupFunction.png) 
     
@@ -128,8 +129,29 @@ Here are the commands I used while running the agent locally:
     ```
     * Script used to create timeboard for integration on database with the anomaly function applied:
     ```
-    
+    {
+    "viz": "timeseries",
+    "requests": [
+        {
+            "q": "anomalies(avg:mysql.net.max_connections{host:vagrant}, 'basic', 4)",
+            "type": "line",
+            "style": {
+                "palette": "dog_classic",
+                "type": "solid",
+                "width": "normal"
+            }
+        }
+    ],
+    "yaxis": {
+        "max": "auto",
+        "scale": "linear",
+        "min": "auto",
+        "label": "",
+        "includeZero": true
+    },
+    "markers": []}
     ```
+
     * Script used to create timeboard for rollup function:
     ```
     {
