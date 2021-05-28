@@ -66,7 +66,9 @@ Here are the commands I used while running the agent locally:
         ```
       
   * Change your check's collection interval so that it only submits the metric once every 45 seconds.
-        ```import time
+        
+        
+        import time
         import random
         try:
             from datadog_checks.base import AgentCheck
@@ -264,4 +266,4 @@ Here are the commands I used while running the agent locally:
    The main difference between a service and a resource is that a service consists of the building blocks of microservice architecture, where various things such      as: endpoints, queries, and jobs are grouped together to build an application. Whereas, a resource is typically a certain domain of an application such as a web    endpoint, database query, or a background running job. 
    
 ## Final Question:
-   * Something creative I would use Datadog for would be to monitor covid vaccine sign-ups, particulary location along with brand. Then using these to have th          government and pharmaceutical coporations send out a customized set of vaccines based on recorded popularity. Since the current news says we may need a covid      vaccine every year, this could help with yearly doses moving forward. 
+   * Something creative I would use Datadog for would be to monitor covid vaccine sign-ups, particulary location along with brand. Then using these to have the          government and pharmaceutical coporations send out a customized set of vaccines based on recorded popularity. Since the current news says we may need a covid      vaccine every year, this could help with yearly doses moving forward. 
