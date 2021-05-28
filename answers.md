@@ -204,7 +204,7 @@ Here are the commands I used while running the agent locally:
      * When this monitor sends me an email notification, take a screenshot of the email that it sends me 
    ![a relative link](images/MM4.png)
    ![a relative link](images/MM5.png)
-   ![a relative link](images/Thresold.png)
+   ![a relative link](images/Threshold.png)
    ![a relative link](images/10Mins.png)
   
    * Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. 
