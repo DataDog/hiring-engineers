@@ -95,17 +95,65 @@ Here are the commands I used while running the agent locally:
   * Utilized the Datadog API and created a timeboard that contains:
     * My custom metric (my_metric) scoped over my host (vagrant) in the past 5 minutes:
     ![a relative link](images/Five.png)
-    ```SCRIPT```
     * My custom metric (my_metric) scoped over my host (vagrant) in the past hour:
     ![a relative link](images/My_metricOVERhost.png)
-    ```SCRIPT```
     * My custom metric (my_metric) scoped over my host (vagrant) in the past 4 hours:
     ![a relative link](images/FourHours.png)
-    ```SCRIPT```
     * Any metric from the integration on my Database with the anomaly function applied:
     * My custom metric with the rollup function applied to sum up all the points for the past hour into one bucket:
-    ![a relative link](images/RollupFunction.png)
-    ```SCRIPT```
+    ![a relative link](images/RollupFunction.png) 
+    
+    * Script used to create timeboard for my_metric scoped over host: 
+    ``` {
+    "viz": "timeseries",
+    "requests": [
+        {
+            "q": "avg:my_metric{host:vagrant}",
+            "type": "line",
+            "style": {
+                "palette": "dog_classic",
+                "type": "solid",
+                "width": "normal"
+            }
+        }
+    ],
+    "yaxis": {
+        "max": "auto",
+        "scale": "linear",
+        "min": "auto",
+        "label": "",
+        "includeZero": true
+    },
+    "markers": [] } 
+    ```
+    * Script used to create timeboard for integration on database with the anomaly function applied:
+    ```
+    
+    ```
+    * Script used to create timeboard for rollup function:
+    ```
+    {
+    "viz": "timeseries",
+    "requests": [
+        {
+            "q": "sum:my_metric{host:vagrant}.rollup(sum)",
+            "type": "line",
+            "style": {
+                "palette": "dog_classic",
+                "type": "solid",
+                "width": "normal"
+            }
+        }
+    ],
+    "yaxis": {
+        "max": "auto",
+        "scale": "linear",
+        "min": "auto",
+        "label": "",
+        "includeZero": true
+    },
+    "markers": [] }
+    ```
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
