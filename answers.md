@@ -94,7 +94,7 @@ Here are the commands I used while running the agent locally:
 ## Visualizing Data:
   * Utilized the Datadog API and created a timeboard that contains:
     * My custom metric (my_metric) scoped over my host (vagrant) in the past 5 minutes:
-    ![a relative link](images/five.png)
+    ![a relative link](images/Five.png)
     * My custom metric (my_metric) scoped over my host (vagrant) in the past hour:
     ![a relative link](images/My_metricOVERhost.png)
     * My custom metric (my_metric) scoped over my host (vagrant) in the past 4 hours:
