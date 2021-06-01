@@ -1,4 +1,4 @@
 curl  -X POST -H "Content-type: application/json" \
 -d '{"title":"My First Timeboard (New API)","description":"A timeboard with very KPIs","widgets":[{"id":4349560344069112,"definition":{"title":"My Metric [host: vagrant] (avg)","show_legend":false,"type":"timeseries","requests":[{"q":"avg:my_metric{host:vagrant}"}]}},{"id":2282881721764553,"definition":{"title":"My Metric (hourly sum)","show_legend":false,"type":"timeseries","requests":[{"q":"sum:my_metric{*}.rollup(sum, 3600)"}]}},{"id":102439500973084,"definition":{"title":"MongoDB Insertion Anomalies","show_legend":false,"type":"timeseries","requests":[{"q":"anomalies(avg:mongodb.metrics.document.insertedps{*},\" basic\",2)"}]}}],"template_variables":[{"name":"host","default":"*","prefix":"host"},{"name":"ip","default":"*","prefix":"ip"}],"layout_type":"ordered","is_read_only":true,"notify_list":[],"id":"9a9-kqx-wsm"}
 ' \
-"https://api.datadoghq.com/api/v1/dashboard?api_key=dee9d3624afd71145a88ce4d2648d687&application_key=79d68b29ca25783024005521ae730bc6ec61beb4"
+"https://api.datadoghq.com/api/v1/dashboard?api_key=redacted&application_key=redacted"
