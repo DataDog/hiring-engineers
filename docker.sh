@@ -1,0 +1,1 @@
+docker run -d --name datadog-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -p 8126:8126/tcp -e DD_API_KEY=d497a1a2c8156cc724a16e15b38a38a3 -e DD_ENV=dev -e DD_HOSTNAME=docker -e DD_APM_ENABLED=true datadog/agent
