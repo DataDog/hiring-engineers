@@ -8,8 +8,9 @@ I registered for the free Datadog trial and initially installed the Agent for my
 
 ![image](https://user-images.githubusercontent.com/22836380/120678794-66904e00-c490-11eb-8d2c-1b78db489a6a.png)
 
-I then installed the Agent on my Vagrant Host and from hereon I focused only on this Host
-Checked the Agent status and everything seemed to be working as expected:
+I then installed the Agent on my Vagrant Host and from hereon I focused only on this Host.
+
+Got it running, checked the Agent status, and everything seemed to be working as expected:
 
 ![image](https://user-images.githubusercontent.com/22836380/120679015-9b040a00-c490-11eb-9d09-2856d0ddb0aa.png)
 
@@ -17,7 +18,7 @@ Checked the Agent status and everything seemed to be working as expected:
 
 •	Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog
 
-I added additional Host Tags in the datadog.yaml file and decided to go with Unified Service Tagging ‘service’, ‘env’ and ‘version’ tags as per the Datadog suggestions to form a single point of configuration for all telemetry emitted.
+I added additional Host Tags in the datadog.yaml file and decided to go with Unified Service Tagging ‘service’, ‘env’ and ‘version’ tags as per the Datadog suggestions, to form a single point of configuration for all telemetry emitted.
 
 Host Map showing additional Host tags:
 
@@ -68,9 +69,14 @@ So ran a full Agent check and there is an error reported under the 'Collector' s
 
 ![image](https://user-images.githubusercontent.com/22836380/120684739-f6d19180-c496-11eb-91bf-3ac8c2647029.png)
 
-Issue seems to be the host:27017 connection refused
-Checked mongod.conf file and bindIP is 127.0.0.1
-So changed conf.yaml host from ‘vagrant’ to 127.0.01
+Issue seems to be the host:27017 connection refused.
+
+Checked mongod.conf file and bindIp is 127.0.0.1
+
+[image](https://user-images.githubusercontent.com/22836380/120883948-2cca5f00-c5d8-11eb-88e6-012a755640a8.png)
+
+Updated conf.yaml host from ‘vagrant’ to 127.0.01 (my mistake originally)
+
 This seemed to resolve the issue:
 
 ![image](https://user-images.githubusercontent.com/22836380/120684963-38fad300-c497-11eb-821e-dbffa6751a80.png)
@@ -84,6 +90,9 @@ But...still getting errors on the Host Map Metrics for MongoDB:
 ![image](https://user-images.githubusercontent.com/22836380/120685166-73fd0680-c497-11eb-973f-910ca05e10ca.png)
 
 Plus, still getting permission denied errors on mongod.log...
+
+![image](https://user-images.githubusercontent.com/22836380/120884012-787d0880-c5d8-11eb-94b8-c9b7ff3034b7.png)
+
 Did some research and changed the permissions on the file and directory from mongodb to dd-agent which did seem to work:
 
 ![image](https://user-images.githubusercontent.com/22836380/120685312-9f7ff100-c497-11eb-92b1-119c4ffb5ef2.png)
@@ -98,21 +107,28 @@ The Dashboard looking good:
 
 **Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000**
 
-First of all, I set up a test custom ‘hello world’ metric taken from Datadog guide - tested it and it worked
-Set up custom_my_check metric:
+First of all, I set up a test custom ‘hello world’ metric taken from Datadog guide - tested it and it worked.
 
-Created instances in the conf.d/custom_my_check.yaml:
+![image](https://user-images.githubusercontent.com/22836380/120884044-a2cec600-c5d8-11eb-88b0-de08460dfcbf.png)
+
+**Set up custom_my_check metric:**
+
+Created the yaml file under conf.d:
 
 ![image](https://user-images.githubusercontent.com/22836380/120685645-f5ed2f80-c497-11eb-9c13-82329d6de253.png)
 
-Created custom_my_check.py file which modified the hello test metric python code to include the use of ‘random’ for the generation of a random integer between 1 – 1000 and also time.sleep for 45 seconds so the collection interval is set to every 45 seconds:
+Created custom_my_check.py file, which modified the hello test metric python code to include the use of random for the generation of a random integer between 1 – 1000 and also time.sleep for 45 seconds, so the collection interval is set to every 45 seconds:
 
 ![image](https://user-images.githubusercontent.com/22836380/120685703-09989600-c498-11eb-994a-d9e2aefd588d.png)
 
 Check the check – seems to be working – integer = 627
+
 Tried again and integer = 60
+
 Tested the check and timed execution against a stopwatch and was bang on 45 seconds.
+
 Restarted the Service
+
 Appears on the host map and dashboard as expected, however, collection rate is still the default 15 seconds.  This implies delaying the code execution does not change the collection rate:
 
 ![image](https://user-images.githubusercontent.com/22836380/120685757-1e752980-c498-11eb-9e2a-849e32049143.png)
@@ -155,7 +171,9 @@ and added the min_collection_interval to the custom_my_check.yaml file:
 
 ![image](https://user-images.githubusercontent.com/22836380/120685976-6431f200-c498-11eb-9c48-57b35b061ad3.png)
 
-Tested it and all good so restarted the service to include it again and report data to DD.  You can see the intervals widen to the right side of the graph below after this was implemented:
+Tested it and all good so restarted the service to include it again and report data to DD.  
+
+You can see the intervals widen to the right side of the graph below after this was implemented:
 
 ![image](https://user-images.githubusercontent.com/22836380/120686468-e5898480-c498-11eb-80a0-f45e1e5ebb34.png)
 
@@ -171,7 +189,13 @@ Utilize the Datadog API to create a Timeboard that contains:
 •	Any metric from the Integration on your Database with the anomaly function applied.
 •	Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
-Screenshot below showing my Timeboard created using a script to POST to the Datadog API using Postman (see attached script ‘phils_timeboard_api_script.json’):
+Screenshot below showing my Timeboard (Phil's Timeboard API Test Creation 2) displaying 3 graphs:
+
+1. My custom metric scoped over my Host showing the generated random integers between 0 - 1000.
+2. A MongoDB Collection Locks per second with an Anomaly detection overlay to identify any movement out of the expected variation
+3. A simple rollup display of the average my_check integer per Hour
+
+created using a script to POST to the Datadog API using Postman (see attached script ‘phils_timeboard_api_script.json’):
 
 ![image](https://user-images.githubusercontent.com/22836380/120686556-018d2600-c499-11eb-8a90-9f3a001b7eb8.png)
 
@@ -195,11 +219,22 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 **Bonus Question: What is the Anomaly graph displaying?**
 
-The overlying grey band shows the expected variation, anything outside of that is outside of expected behaviour and therefore anomalous
-The graph itself is displaying the intent shared collection locks per second of the MongoDB collections.  As the database is not in proper use this was the best option to give an indication of anomaly detection.
+There are 2 main features to the anomaly graph:
+
+1. **The Anamolous Grey Band** 
+
+The overlying grey band shows the scope of the expected variation in the data.  Any variation of the line above or below the grey band could indicate an issue with with this particular part of the system.
+
+3. **The Graph**
+
+This particular graph is showing the Intent Shared Collection locks, it was chosen for demonstration purposes of anomaly detection, as it provides some consistent variation of data for a database that is not in constant use.
+
+What are Intent Share Collection locks?
+
 Locking is a mechanism used to maintain concurrency in the databases. MongoDB uses multi-granularity locking in different levels and modes of locking to achieve this.
+
 There are four different levels of locking in MongoDB: Global, Database, Collection, Document
-This particular graph is showing the Intent Shared Collection locks.
+
 Intent Shared?
 
 •	Intent locks are higher level locks acquired before lower level locks. 
@@ -252,6 +287,8 @@ And one that silences it all day on Sat-Sun.
 
 Collecting APM Data:
 
+The plan here was to demonstrate the ability to monitor the level of a product's performance and to diagnose errors of an instrumented application. 
+
 Installed Flask in a virtual env, saved the provided App code as app.py, installed ddtrace and had to update PIP as didn't work at first.
 Seemed to work when launched it:
 
@@ -271,7 +308,7 @@ Opened up a second terminal connection and called the URL, response is as expect
 
 ![image](https://user-images.githubusercontent.com/22836380/120687896-62692e00-c49a-11eb-9e32-39aaff2c10fd.png)
 
-Stream of data can be seen in the other terminal:
+Stream of data giving informative messages about the execution of the application at run time can be seen in the other terminal:
 
 ![image](https://user-images.githubusercontent.com/22836380/120687944-70b74a00-c49a-11eb-9c8f-2fd31ca7dff1.png)
 
@@ -326,4 +363,4 @@ Resources represent a particular domain of a customer application.  They are typ
 
 Is there anything creative you would use Datadog for?
 
-If I did own a Casino I think it would be useful to monitor all of the various machines.  It could tell you a if a machine is paying out too much or too little even.  Does that correlate with the machine’s performance?  You could get good analytics on the use of machines, which ones are used more than others, which could lead to an investigation as to why not – is it the location of the machine, the look, the feel?  Are certain machines more popular at certain times of the day? It would give you a good understanding then of their profitability.  You could look for anomalies in performance that might highlight an unknown hack on the machines for cheating also.  You could also get real time feedback on the cashflow of individual machines through to groups of machines through to the entire Casino.
+If I did own a Casino I think it would be useful to be able to monitor all of the various machines through a 'single pane of glass'.  It could tell you a if a machine is paying out too much or too little.  Does that correlate with the machine’s performance?  You could get good analytics on the use of machines: which ones are used more than others.  If so, why? Is it the location of the machine, the look, the feel, the programming?  Are certain machines more popular at certain times of the day? It would give you a good understanding then of their profitability.  You could look for anomalies in performance that might highlight an unknown hack on the machines for cheating.  You could also get real time feedback on the cashflow of individual machines through to groups of machines through to the entire Casino.
