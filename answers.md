@@ -225,7 +225,7 @@ There are 2 main features to the anomaly graph:
 
 The overlying grey band shows the scope of the expected variation in the data.  Any variation of the line above or below the grey band could indicate an issue with with this particular part of the system.
 
-3. **The Graph**
+2. **The Graph**
 
 This particular graph is showing the Intent Shared Collection locks, it was chosen for demonstration purposes of anomaly detection, as it provides some consistent variation of data for a database that is not in constant use.
 
@@ -246,8 +246,11 @@ Intent Shared?
 Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
 •	Warning threshold of 500
+
 •	Alerting threshold of 800
+
 •	And also ensure that it will notify you if there is No Data for this query over the past 10m.
+
 
 **Please configure the monitor’s message so that it will:**
 
@@ -270,7 +273,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 **
 [phils_timeboard_API_script.txt](https://github.com/Philneeves/hiring-engineers/files/6593469/phils_timeboard_API_script.txt)
-[phils_timeboard_API_script.txt](https://github.com/Philneeves/hiring-engineers/files/6593470/phils_timeboard_API_script.txt)
+
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:**
 
 One that silences it from 7pm to 9am daily on M-F:
@@ -279,15 +282,15 @@ One that silences it from 7pm to 9am daily on M-F:
 
 ![image](https://user-images.githubusercontent.com/22836380/120687255-bde6ec00-c499-11eb-87d2-1b713478bdf6.png)
 
-And one that silences it all day on Sat-Sun.
+And one that silences it all day on Sat-Sun:
 
 (Again email below shows UTC but system is showing Europe/London or BST.  Tried to set to Europe/Dublin but saved as IST (Indian Summer Time) for some reason)
 
 ![image](https://user-images.githubusercontent.com/22836380/120687326-d0612580-c499-11eb-8229-191a92273150.png)
 
-Collecting APM Data:
+**Collecting APM Data:**
 
-The plan here was to demonstrate the ability to monitor the level of a product's performance and to diagnose errors of an instrumented application. 
+The plan here was to demonstrate an instrumented application i.e. the ability to monitor the level of the application's performance and to diagnose errors. 
 
 Installed Flask in a virtual env, saved the provided App code as app.py, installed ddtrace and had to update PIP as didn't work at first.
 Seemed to work when launched it:
@@ -300,11 +303,12 @@ Entered in tag configs:
 ![image](https://user-images.githubusercontent.com/22836380/120687688-23d37380-c49a-11eb-9718-092a5c978d85.png)
 
 Restart the service
+
 Launched app again with full tag configs:
 
 DD_SERVICE="ubuntu_host" DD_ENV="sandbox" DD_LOGS_INJECTION=true ddtrace=run flask run --port 5050
 
-Opened up a second terminal connection and called the URL, response is as expected ‘Entrypoint to the Application’:
+**Opened up a second terminal connection and called the URL, response is as expected ‘Entrypoint to the Application’:**
 
 ![image](https://user-images.githubusercontent.com/22836380/120687896-62692e00-c49a-11eb-9e32-39aaff2c10fd.png)
 
@@ -312,7 +316,7 @@ Stream of data giving informative messages about the execution of the applicatio
 
 ![image](https://user-images.githubusercontent.com/22836380/120687944-70b74a00-c49a-11eb-9c8f-2fd31ca7dff1.png)
 
-Called api/apm:
+**Called api/apm:**
 
 ![image](https://user-images.githubusercontent.com/22836380/120688020-875da100-c49a-11eb-8280-616718463a69.png)
 
@@ -320,7 +324,7 @@ Again a stream of trace data can be seen:
 
 ![image](https://user-images.githubusercontent.com/22836380/120688095-9d6b6180-c49a-11eb-80e5-5851b235c21f.png)
 
-Called the /api/trace as well:
+**Called the /api/trace as well:**
 
 ![image](https://user-images.githubusercontent.com/22836380/120688216-be33b700-c49a-11eb-833e-7458ccc28aa3.png)
 
