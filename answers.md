@@ -105,6 +105,14 @@ The Dashboard looking good:
 
 ![image](https://user-images.githubusercontent.com/22836380/120685468-c3433700-c497-11eb-8b36-dcc9d43c4d88.png)
 
+**Addendum to MongodDB**
+
+I did find that when I shut everything down and went to restart Mongodb wouldn’t start with errors regarding the permissions on the mongod.log file.  My investigations found that you need to change the permissions on /mongod/mongod.log to mongdb to fire up mongodb but then you get the same error but for datadog-agent not having the same permission when you run the full checks.  So I found that you need to change the permissions back to datadog-agent.
+
+I created a simple bash script to automate this process to allow me to get up and running quicker with some user input included to control the results of each status check:
+
+![image](https://user-images.githubusercontent.com/22836380/121802726-cc6d9a00-cc35-11eb-8cd9-637f6701e3c7.png)
+
 **Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000**
 
 First of all, I set up a test custom ‘hello world’ metric taken from Datadog guide - tested it and it worked.
@@ -350,7 +358,64 @@ Link to APM Traces:
 
 https://app.datadoghq.eu/apm/traces?end=1622734669861&paused=false&query=service%3Aubuntu_host%20env%3Asandbox%20operation_name%3Aflask.request&start=1622733769861&streamTraces=true
 
-Phil's Infrastructure and APM Dashboard:
+**Addendum to APM Flask App**
+
+**Connecting the Flask App to the MongoDB**
+
+I decided to see if I could connect the Flask App to the MongoDB so we can pull data from the database by making url calls.  I created a new Flask App, App3 importing flask-pymongo and jsonify and gave additional URLs with additional functionality.  I included a deliberate error to create a 500 return that also causes a 404 status so it can be tracked and fixed using Datadog for the purposes of demonstration. I also added a new database restdb to MongoDB with 'name' and 'distance' details added for a handful of Stars to create some data. I had to add the mongodb config details to the Flask file also to enable this:
+
+![image](https://user-images.githubusercontent.com/22836380/121802781-266e5f80-cc36-11eb-9f72-bb1185de4d48.png)
+
+**Set up automated multiple curl command Python script:**
+
+I also decided to write a Python script that would automate a number of cURL commands to test out our REST API running in a loop to create real time simulated data.  This also had deliberate commands calling non-existent urls to cause a 404 error, an example from the output can be seen below:
+
+![image](https://user-images.githubusercontent.com/22836380/121802953-05f2d500-cc37-11eb-9ffb-9db85866aa1f.png)
+
+**Investigate using datadog APM**
+
+Looking at datadog APM Traces (see screenshot below) and we can see number of requests per minute, latency, and note the red columns in the Errors graph.  In the Spans table we can see a list of status codes from the requrests and they include a 500 error and a 404 error:
+
+![image](https://user-images.githubusercontent.com/22836380/121802984-3dfa1800-cc37-11eb-83a4-c83bdfb39985.png)
+
+We can zoom into one of the 404 errors via the spans table:
+
+![image](https://user-images.githubusercontent.com/22836380/121802991-52d6ab80-cc37-11eb-860a-02e0f4ab16b9.png)
+
+Here the Flame Graph shows us the latency of the error and details of the source of the error in the ‘Errors’ tab:
+
+![image](https://user-images.githubusercontent.com/22836380/121803020-6b46c600-cc37-11eb-9de7-9d767f975ba2.png)
+
+And we can see the 500 error is being caused by the name variable not be called for the get_one_star function:
+
+![image](https://user-images.githubusercontent.com/22836380/121803036-80235980-cc37-11eb-8ed5-1dea8de084c6.png)
+
+Which we can confirm in the code the name variable is not being called from the database to create the correct url to be called:
+
+![image](https://user-images.githubusercontent.com/22836380/121803059-98937400-cc37-11eb-8eae-80cec5c2d366.png)
+
+So added /<string:name> to the @app.route to fix it:
+
+![image](https://user-images.githubusercontent.com/22836380/121803075-aba64400-cc37-11eb-8d5c-4cba1fa2dfe9.png)
+
+This fixes a couple of the 404 errors that use this function to retrieve data from the mongodb database
+The call to /star/ is now invalid so can be removed/commented out as it will return a 404 otherwise:
+
+![image](https://user-images.githubusercontent.com/22836380/121803094-c1b40480-cc37-11eb-841c-debdf9c7ff20.png)
+
+The /error url does not exist so can be removed/commented out:
+
+![image](https://user-images.githubusercontent.com/22836380/121803107-d0022080-cc37-11eb-8b55-a400d1f2d7b7.png)
+
+When we run the new app and run the auto curl commands we get the results of the url calls as expected:
+
+![image](https://user-images.githubusercontent.com/22836380/121803116-e4461d80-cc37-11eb-92ad-3f510f3d43fe.png)
+
+And datadog displays no errors in the error graph and a healthy list of no error status codes from the spans table:
+
+![image](https://user-images.githubusercontent.com/22836380/121803148-0a6bbd80-cc38-11eb-9201-d1581a565a73.png)
+
+**Phil's Infrastructure and APM Dashboard:**
 
 ![image](https://user-images.githubusercontent.com/22836380/120688962-7feac780-c49b-11eb-8801-416941d519e0.png)
 
