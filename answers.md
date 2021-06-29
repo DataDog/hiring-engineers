@@ -103,6 +103,11 @@ tags:
   - env:dev
 ```
 
+Now that both the python file and the yaml configuration file of this custom metric are created, it's time to check if its working. I used this command to validate my custom metric `datadog-agent check my_metric` and it gave a succesful result.
+
+![MongoDB Dashboard](/images/img11.png)
+
+
 
 
 
