@@ -34,17 +34,29 @@ I added tags in 2 ways by checking [Getting started with Tags](https://docs.data
   `brew tap mongodb/brew` <br>
   `brew install mongodb-community@4.4` <br>
   
-  I started the MongoDB service using `brew services start mongodb-community@4.4` and to make sure that its running I used this command `brew services list`
+  I started the MongoDB service using `brew services start mongodb-community@4.4` and to make sure that its running I used this command `brew services list`<br>
+  
   ![MongoDB Started](/images/img6.png)
 Now that I have MongoDB installed on my local machine, I need to install its corresponding Datadog Integration. I followed this [official Datadog document](https://docs.datadoghq.com/integrations/mongo/?tab=standalone) for the MongoDB integration.
 I opened the **Mongo Shell** in the terminal using the command `mongo` and created a database with a read-only user.
 
-```javascript
-function fancyAlert(arg) {
-  if(arg) {
-    $.facebox({div:'#foo'})
-  }
-}
+```
+use admin
+db.auth("admin", "<YOUR_MONGODB_ADMIN_PASSWORD>")
+
+# On MongoDB 2.x, use the addUser command.
+db.addUser("datadog", "<UNIQUEPASSWORD>", true)
+
+# On MongoDB 3.x or higher, use the createUser command.
+db.createUser({
+  "user": "datadog",
+  "pwd": "<UNIQUEPASSWORD>",
+  "roles": [
+    { role: "read", db: "admin" },
+    { role: "clusterMonitor", db: "admin" },
+    { role: "read", db: "local" }
+  ]
+})
 ```
 
 
