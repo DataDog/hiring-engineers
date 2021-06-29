@@ -96,7 +96,7 @@ class HelloCheck(AgentCheck):
         self.gauge('my_metric', random.randint(0,1000))
 ```  
 Next I created `my_metric.yaml` file in the `conf.d` directory. Here we need to make sure that the name of the python file matches exactly the name of the yaml file. So both need to be named `my_metric` in this case. I added the following lines the `my_metric.yaml` file:
-```
+```yaml
 instances: [{}]
 tags:
   - metric:my_metric
@@ -112,7 +112,7 @@ To change the collection interval, I reopened the `my_metric.yaml` configuration
 
 ```yaml
 instances:
-  -min_collection_interval: 45
+  - min_collection_interval: 45
 tags:
   - metric:my_metric
   - env:dev
