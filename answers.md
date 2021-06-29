@@ -57,19 +57,19 @@ db.createUser({
   ]
 })
 ```
-<![MongoDB Shell](/images/img9.png)>
+![MongoDB Shell](/images/img9.png)
 
 
 Now I need to configure the **Agent** running on the host. I edited the `mongo.d/conf.yaml` in the `conf.d` folder by adding the coressponding values and restarted the agent.
 
-<![MongoDB Config](/images/img7.png)>
+![MongoDB Config](/images/img7.png)
 
 I was able to see that the mongoDB is succesfully integrated with Datadog. It was added to the Host Map and its status shows **OK**.
 
-<![MongoDB Status](/images/img8.png)>
+![MongoDB Status](/images/img8.png)
 
 I added a **MongoDB Dashboard** by going to the **Dashboard** menu and installing it from there and since it's already integrated I was able to see the mongoDB metrics on the dashboard.
-<![MongoDB Dashboard](/images/img10.png)>
+![MongoDB Dashboard](/images/img10.png)
 
 ## Cutsom Agent Check
 
