@@ -30,7 +30,7 @@ I added tags in 2 ways by checking [Getting started with Tags](https://docs.data
 ## Database Installation
 1)I decided to install and work with **MongoDB**.
  I followed the [official mongoDB documentation](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/) to install mongoDB community edition on my     local machine. <br>
- - I installed it with **brew** using these 2 commands:
+ - I installed it with **brew** using these 2 commands: <br>
   `brew tap mongodb/brew` <br>
   `brew install mongodb-community@4.4` <br>
   
