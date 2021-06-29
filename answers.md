@@ -41,16 +41,12 @@ Now that I have MongoDB installed on my local machine, I need to install its cor
 I opened the **Mongo Shell** in the terminal using the command `mongo` and created a database with a read-only user.
 
 ```
-use admin
-db.auth("admin", "<YOUR_MONGODB_ADMIN_PASSWORD>")
-
-# On MongoDB 2.x, use the addUser command.
-db.addUser("datadog", "<UNIQUEPASSWORD>", true)
+use admin #this created a db with the name admin if it doesn't exist and starts using it
 
 # On MongoDB 3.x or higher, use the createUser command.
 db.createUser({
   "user": "datadog",
-  "pwd": "<UNIQUEPASSWORD>",
+  "pwd": "khalil22",
   "roles": [
     { role: "read", db: "admin" },
     { role: "clusterMonitor", db: "admin" },
