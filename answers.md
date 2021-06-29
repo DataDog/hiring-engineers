@@ -69,6 +69,7 @@ I was able to see that the mongoDB is succesfully integrated with Datadog. It wa
 ![MongoDB Status](/images/img10.png)
 
 I added a **MongoDB Dashboard** by going to the **Dashboard** menu and installing it from there and since it's already integrated I was able to see the mongoDB metrics on the dashboard.
+
 ![MongoDB Dashboard](/images/img8.png)
 
 ## Cutsom Agent Check
