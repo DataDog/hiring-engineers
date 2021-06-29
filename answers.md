@@ -77,11 +77,23 @@ I followed this official Datadog [documentation](https://docs.datadoghq.com/deve
 I created a file called `my_metric.py` in the `check.d` folder that is inisde `datadog-agent` directory. I took the example code of the documentation and modified it so it can generate a random number between [0,1000]. I used the `randint` function ot generate the random numbers.
 
 ```python
-from checks import AgentCheck
-import random 
-  class HelloCheck(AgentCheck):
+import random # to use the randint function
+
+# the following try/except block will make the custom check compatible with any Agent version
+
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class HelloCheck(AgentCheck):
     def check(self, instance):
-      self.gauge('my_metric', random.randint(0,1000))
+        self.gauge('my_metric', random.randint(0,1000))
 ```  
 Next I created `my_metric.yaml` file in the `conf.d` directory. Here we need to make sure that the name of the python file matches exactly the name of the yaml file. So both need to be named `my_metric` in this case. I added the following lines the `my_metric.yaml` file:
 ```
