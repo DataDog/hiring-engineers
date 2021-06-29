@@ -37,11 +37,14 @@ I added tags in 2 ways by checking [Getting started with Tags](https://docs.data
   I started the MongoDB service using `brew services start mongodb-community@4.4` and to make sure that its running I used this command `brew services list`<br>
   
   ![MongoDB Started](/images/img6.png)
+  
+## Datadog and Database
 Now that I have MongoDB installed on my local machine, I need to install its corresponding Datadog Integration. I followed this [official Datadog document](https://docs.datadoghq.com/integrations/mongo/?tab=standalone) for the MongoDB integration.
 I opened the **Mongo Shell** in the terminal using the command `mongo` and created a database with a read-only user.
 
 ```
-use admin #this created a db with the name admin if it doesn't exist and starts using it
+#This creates a database named admin if it doesn't exist and starts using it
+use admin 
 
 # On MongoDB 3.x or higher, use the createUser command.
 db.createUser({
@@ -54,6 +57,32 @@ db.createUser({
   ]
 })
 ```
+<![MongoDB Shell](/images/img9.png)>
+
+
+Now I need to configure the Agent running on the host. I edited the `mongo.d/conf.yaml` in the `conf.d` folder by adding the coressponding values and restarted the agent.
+<![MongoDB Config](/images/img7.png)>
+I was able to see that the mongoDB is succesfully integrated with Datadog. It was added to the Host Map and its status shows **OK**.
+<![MongoDB Status](/images/img8.png)>
+
+I added a **MongoDB Dashboard** by going to the **Dashboard** menu and installing it from there and since it's already integrated I was able to see the mongoDB metrics on the dashboard.
+<![MongoDB Dashboard](/images/img10.png)>
+
+## Cutsom Agent Check
+
+I followed this [official Datadog documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) to create a custom agent check.
+I created a file called `my_metric.py` in the `check.d` folder that is inisde `datadog-agent` directory. I took the example code of the documentation and modified it so it can generate a random number between [0,1000]. I used the `randint` function ot generate the random numbers.
+
+```python
+from checks import AgentCheck
+import random 
+  class HelloCheck(AgentCheck):
+    def check(self, instance):
+      self.gauge('my_metric', random.randint(0,1000))
+```      
+
+
+
 
 
 
