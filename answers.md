@@ -118,7 +118,7 @@ tags:
   - env:dev
 ```
 
-Bonus question: Yes we can change the collection interval without modidying the python file created. Just like I did right now, I changed it directly from the YAML configuration file.
+**Bonus question**: Yes we can change the collection interval without modidying the python file created. Just like I did right now, I changed it directly from the YAML configuration file.
 
 
 
