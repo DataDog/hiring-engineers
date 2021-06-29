@@ -107,6 +107,16 @@ Now that both the python file and the yaml configuration file of this custom met
 
 ![MongoDB Dashboard](/images/img11.png)
 
+## Changing the Collection Interval
+To change the collection interval, I reopened the `my_metric.yaml` configuration file and added a `min_collection_interval` parameter with the value `45` under `instances`.
+```
+instances:
+  -min_collection_interval: 45
+tags:
+  - metric:my_metric
+  - env:dev
+```
+
 
 
 
