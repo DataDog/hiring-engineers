@@ -70,7 +70,7 @@ I added a **MongoDB Dashboard** by going to the **Dashboard** menu and installin
 
 ## Cutsom Agent Check
 
-I followed this official Datadog [documentation](https://docs.datadoghq.com/developers/custom_checks/write_agent_check/) to create a custom agent check.
+I followed this official Datadog [documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) to create a custom agent check.
 I created a file called `my_metric.py` in the `check.d` folder that is inisde `datadog-agent` directory. I took the example code of the documentation and modified it so it can generate a random number between [0,1000]. I used the `randint` function ot generate the random numbers.
 
 ```python
