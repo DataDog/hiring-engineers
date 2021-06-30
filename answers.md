@@ -3,7 +3,7 @@
 - **Name**: Khalil Faraj 
 - **Position**: Sales Engineer (Dublin)
 
-- This is the [LINK](https://p.datadoghq.eu/sb/611c1346-d5cf-11eb-9198-da7ad0900005-6ddb29f91c510361e1ed6e48ee988c7b?from_ts=1625073958104&to_ts=1625077558104&live=true) to my **Dashoard Results**. (I put the link again at the end in the **Infrastructures & APM Metrics / Final Dashboard** section)
+- This is the [LINK](https://p.datadoghq.eu/sb/611c1346-d5cf-11eb-9198-da7ad0900005-6ddb29f91c510361e1ed6e48ee988c7b?from_ts=1625073958104&to_ts=1625077558104&live=true) to my ** Final Dashoard Results**. (I put the link again at the end in the **Infrastructures & APM Metrics / Final Dashboard** section)
 
 P.S: For the dashboard, I enabled **timeframe modification** so please make sure to select something like **past 1 week or past 1 month** because by the time that you will be reviewing the exercise, some data might be missing especially with the **APM metrics** because I would have stopped making requests to the endpoints, so in this case no data will be showed if you put a very recent timeframe.
 
@@ -335,7 +335,7 @@ I navigated to **APM** from the menu list, clicked **Services**, chose my `env` 
 
 
 ## Infrastructures & APM Metrics / Final Dashboard
-I exported some of the **APM visualizations** that we got like number of requests, request duration and latency to my dahsboard created earlier in the **Visualization** part of this exercise. I changed the previous rolling sum for `my_metric` visualization from **Timeseries** to **Query Value** and added new infrastuture metrics visualizations to finalize the final version of my dashboard that I want to show . I grouped the visualizations into **2 groups**:
+I exported some of the **APM visualizations** that we got like number of requests, request duration and latency to my dahsboard created earlier in the **Visualization** part of this exercise. I changed the previous rolling sum for `my_metric` visualization from **Timeseries** to **Query Value** and exported multiple infrastuture metrics visualizations that I have from my host (In the host map there is an option to view Host in Dashboard) to finalize the final version of my dashboard that I want to show . I grouped the visualizations into **2 groups**:
 
 - APM Metrics (For the Flask APP)
 - Infrastrure Metrics
@@ -345,7 +345,7 @@ I exported some of the **APM visualizations** that we got like number of request
 This is the [LINK](https://p.datadoghq.eu/sb/611c1346-d5cf-11eb-9198-da7ad0900005-6ddb29f91c510361e1ed6e48ee988c7b?from_ts=1625073958104&to_ts=1625077558104&live=true) to my final Dashoard. I enabled timeframe modification so please make sure to select something like **past 1 week or past 1 month** because by the time that you will be reviewing the exercise, some data might especially with the **APM metrics** because I would have stopped making requests to the endpoints, so in this case no data will be showed if you put a very recent timeframe.
 
 **Bonus Question**: *What is the difference between a Service and a Resource?* <br>
-A **Service** groups together endpoints, queries and jobs (examples: databases, message queues...) to build an application.They are very common and essential in microservices architectures. **Resource** represent a specific domain of an application. A resource can be an instrumented endpoint, a query or a background job. In other words resources enable the services to do their jobs. For example a resource can be an **HTTP request** to an **API** (like GET or POST).
+A **Service** groups together endpoints, queries and jobs (examples: databases, message queues...) to build an application.They are very common and essentials in microservices architectures. **Resource** represent a specific domain of an application. A resource can be an instrumented endpoint, a query or a background job. In other words resources enable the services to do their jobs. For example a resource can be an **HTTP request** to an **API** (like GET or POST).
 
 ## Final Question
 
