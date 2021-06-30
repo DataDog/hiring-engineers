@@ -17,7 +17,7 @@ I used the **macOS** environment to complete this exercise.
 
 # Collecting Metrics
 ## Adding Tags
-I added tags in 2 ways by checking this documentation:[Getting started with Tags](https://docs.datadoghq.com/getting_started/tagging/): <br>
+I added tags in 2 ways by checking this documentation [Getting started with Tags](https://docs.datadoghq.com/getting_started/tagging/): <br>
 1- Manually using the configuation file where I search for the **tags** section and added 2 tags there and restarted the agent.<br>
 
 ![Tags1](/images/img4.png)
