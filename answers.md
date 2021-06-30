@@ -74,9 +74,12 @@ Now I need to configure the **Agent** running on the host. I edited the `mongo.d
 
 ![MongoDB Config](/images/img7.png)
 
-I was able to see that the **MongoDB** is succesfully integrated with Datadog. It was added to the **Host Map** and its status shows **OK**.
+I was able to see that the **MongoDB** is succesfully integrated with Datadog. It was added to the **Host Map** and its status shows **OK** and shows that is sucessfully installed and working when I go to **Integrations** from the menu.
 
 ![MongoDB Status](/images/img12.png)
+
+![MongoDB Status2](/images/img36.png)
+
 
 I added a **MongoDB Dashboard** by going to the **Dashboard** menu and installing it from there. since it's already integrated I was able to see the mongoDB metrics on the dashboard.
 
