@@ -85,7 +85,7 @@ I added a **MongoDB Dashboard** by going to the **Dashboard** menu and installin
 ## Cutsom Agent Check
 
 I followed this official Datadog [documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) to create a custom agent check.
-I created a file called `my_metric.py` in the `check.d` folder that is inisde `datadog-agent` directory. I took the example code of the documentation and modified it so it can generate a random number between [0,1000]. I used the `randint` function to generate the random numbers.
+I created a file called `my_metric.py` in the `check.d` folder inisde `datadog-agent` directory. I took the example code of the documentation and modified it so it can generate a random number between [0,1000]. I used the `randint` function to generate the random numbers.
 
 ```python
 import random # to use the randint function
@@ -136,7 +136,7 @@ This time to re-validate, I opened the Datadog Agent **Web UI**. I clicked on **
 
 ![Checks](/images/img13.png)
 
-**Bonus question**: *Can you change the collection interval without modifying the Python check file you created?*
+**Bonus question**: *Can you change the collection interval without modifying the Python check file you created?* <br>
 Yes we can change the collection interval without modifying the **Python** file created. Just like I did right now, I changed it directly from the **YAML** configuration file.
 
 # Visualizing Data
@@ -152,7 +152,7 @@ To initialize the **Datadog client library** I need my **Datadog** `API_KEY` and
 
 ![Application Key](/images/img10.png)
 
-I modified the script by looking at the **JSON** definition of the current visulization provided in the code example. I modified it to show my custom metric, and then added the 2 other visualizations with their corresppnding functions (anomalies and rollup).
+I modified the script by looking at the **JSON** definition of the current visulization provided in the code example. I modified it to use and show my custom metric, and then added the 2 other visualizations with their corresppnding functions (anomalies and rollup).
 
 ```python
 from datadog import initialize, api
@@ -242,7 +242,7 @@ I waited a couple of hours and changed the timeframe to show me data within the 
 
 ![Snapshot Email](/images/img19.png)
 
-**Bonus question**: *What is the Anomaly graph displaying?* 
+**Bonus question**: *What is the Anomaly graph displaying?* <br>
 Anomaly functions tells us if a metric has an abnormal behaviour. It uses past or previous data and process them to understand what values are normal for the metric that is being used. These values are represented in an overlaying gray band . In other words this band represents the expected values for the metric. For example if there was a fluctuation or a sudden spike of the values for a specific metric, but this fluctation is still in the gray band (in which the algorithm created using previous data), then this fluctuation is expected and is not an anomaly, but if the fluctuation was outside the range of the band then in this case, this is an anomaly.
 
 ## Monitoring Data
@@ -272,7 +272,7 @@ Using the **Message Template Variables** I was able to write my Monitor Message:
 There has been **no** data for the  average value of `my_metric` over the past **10 minutes**.
 {{/is_no_data}}
 ```
-As requested the `value`, `host name` and `host ip` are defined in the **Alert** state.
+As requested the `value`, `host name` and `host ip` are used in the **Alert** state.
 Last part was to my email in the **Notify your team** section and clicked **Save**.
 
 ![Alert Config](/images/img21.png)
@@ -294,7 +294,7 @@ I tested this one using the **Test Notifications** button.
 
 ### Bonus: Setting up Downtimes
 
-In the **Monitors** menu, I clicked on **Manage Downtime** and then **Schedule Downtime**.T hen I chose the monitor that I created earlier, chose **recurring** and added the dates to make it silent from **7pm to 9am daily on M-F**.
+In the **Monitors** menu, I clicked on **Manage Downtime** and then **Schedule Downtime**.Then I chose the monitor that I created earlier, chose **recurring** and added the dates to make it silent from **7pm to 9am daily on M-F**.
 
 ![Downtime1](/images/img25.png)
 
@@ -302,7 +302,7 @@ In the **Monitors** menu, I clicked on **Manage Downtime** and then **Schedule D
 
 ![Downtime1 Email](/images/img26.png)
 
-I repeated the same steps to create the second downtime that happens during the weekend. In the email notification you will see that I updated and rechanged the time. When I first created this downtime, once the day is **Monday (12:00 am)**, the Monitor resumes which is something that we don't want because it's the middle of the night. So I changed it and added **9 hours** to it because the first downtime configuration starts at **9:00 am**. So in this case, this Monitor will be silenced **Saturday, Sunday and the first 9 hours of Monday (12:00am till 9:00am)**, and the first downtime created will proceed with the rest of the **weekdays (7:00 pm till 9:00am)**.
+I repeated the same steps to create the second downtime that happens during the weekend. In the email notification image below you will see that I updated and rechanged the time. When I first created this downtime, once the day is **Monday (12:00 am)**, the Monitor resumes which is something that we don't want because it's the middle of the night. So I changed it and added **9 hours** to it because the first downtime configuration starts at **9:00 am**. So in this case, this Monitor will be silenced **Saturday, Sunday and the first 9 hours of Monday (12:00am till 9:00am)**, and the first downtime created will proceed with the rest of the **weekdays (7:00 pm till 9:00am)**.
 
 
 ![Downtime2 Created](/images/img28.png)
@@ -322,7 +322,7 @@ I started to make requests to the 3 endpoints:
 - localhost:5050/api/apm
 - localhost:5050/api/trace
 
-I navigated to **APM** from the menu list, clicked **Services**, chose my **Env** which in my case is `dev`. I saw my service there and checked its metrics and traces.
+I navigated to **APM** from the menu list, clicked **Services**, chose my `env` which in my case is `dev`. I saw my service there and checked its metrics and traces.
 
 ![APM Service](/images/img31.png)
 
@@ -333,24 +333,24 @@ I navigated to **APM** from the menu list, clicked **Services**, chose my **Env*
 ![APM Traces](/images/img34.png)
 
 
-## Infrastutues & APM Metrics / Final Dashboard
-I exported some of the **APM visualizations** that we got previously like number of requests, request duration and latency to my dahsboard created earlier in the **Visualization** part of this exercies. I changed the previous rolling sum for `my_metric` visualization from **Timeseries** to **Query Value** added new infrastuture metrics visualizations to finalize the final version of my dashboard that I want to show . I grouped the visualizations into **2 groups**:
+## Infrastructures & APM Metrics / Final Dashboard
+I exported some of the **APM visualizations** that we got previously like number of requests, request duration and latency to my dahsboard created earlier in the **Visualization** part of this exercies. I changed the previous rolling sum for `my_metric` visualization from **Timeseries** to **Query Value** and added new infrastuture metrics visualizations to finalize the final version of my dashboard that I want to show . I grouped the visualizations into **2 groups**:
 
 - APM Metrics (For the Flask APP)
 - Infrastrure Metrics
 
 ![Final Dashboard](/images/img35.png)
 
-This is the [Link](https://p.datadoghq.eu/sb/611c1346-d5cf-11eb-9198-da7ad0900005-6ddb29f91c510361e1ed6e48ee988c7b?from_ts=1625073958104&to_ts=1625077558104&live=true) to my final Dashoard. I enabled timeframe modification so please make sure to select something like **past 1 week or past 1 month** because by the time that you will be reviewing the exercise, some data might be missing if the monitor is stopped especially with the **APM metrics** because I won't be making requests to the endpoints, so in this case no data will be showed.
+This is the [LINK](https://p.datadoghq.eu/sb/611c1346-d5cf-11eb-9198-da7ad0900005-6ddb29f91c510361e1ed6e48ee988c7b?from_ts=1625073958104&to_ts=1625077558104&live=true) to my final Dashoard. I enabled timeframe modification so please make sure to select something like **past 1 week or past 1 month** because by the time that you will be reviewing the exercise, some data might be missing if the monitor is stopped especially with the **APM metrics** because I won't be making requests to the endpoints, so in this case no data will be showed.
 
-**Bonus Question**: *What is the difference between a Service and a Resource?*
+**Bonus Question**: *What is the difference between a Service and a Resource?* <br>
 A **Service** groups together endpoints, queries and jobs (examples: databases, message queues...) to build an application.They are very common and essential in microservices architectures. **Resource** represent a specific domain of an application. A resource can be an instrumented endpoint, a query or a background job. In other words resources enable the services to do their jobs. For example a resource can be an **HTTP request** to an **API** (like GET or POST).
 
 ## Final Question
 
-*Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?*
+*Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability! Is there anything creative you would use Datadog for?* <br>
 
-I think an interesting use case would be using Datadog in the agriculture domain. A friend of mine works in this field and told me about some of the challenges that they are facing. Combining IoT with Datadog can really help in overcoming these challenges. These days there is a lot of hardware devices and sensors used in in the agriculture field, like devices that can measure land and soil fertility, water consumptions and many more. For example instead of fertilizing an entire land, or trying to know which lands should be fertilized, these IoT devices can keep getting data that Datadog will be monitoring (GPS locations, temprature, measurements) and then we can use the monitors to trigger or notify which land needs fertilization using this data. Another example, instead of having the farmers to keep adding waters to the plants, we can automate this process with IoT and Datadog. With devices that measure humidity and temperatures we can use this data and monitor it with datadog that can help trigger maybe smart sprinklers whenever the humidity level is high so the plants can receive water. This can help in managing water consumption in an efficient way. These are just a couple of examples but I think Datadog is a really powerful tool that can help in innovating all kind of industries.
+I think an interesting use case would be using Datadog in the agriculture domain. A friend of mine works in this field and told me about some of the challenges that they are facing. Combining IoT with Datadog can really help in overcoming these challenges. These days there is a lot of hardware devices and sensors used in in the agriculture field, like devices that can measure land and soil fertility, water consumptions and many more. For example instead of fertilizing an entire land, or trying to know which lands should be fertilized, these IoT devices can keep getting data that Datadog will be monitoring (GPS locations, temprature, measurements) and then we can use the monitors to trigger or notify which land needs fertilization using this data. Another example, instead of having the farmers to keep adding waters to the plants, we can automate this process with IoT and Datadog. With devices that measure humidity and temperatures we can use this data and monitor it with datadog that can help trigger maybe smart sprinklers (through a middleware like maybe an app) whenever the humidity level is high so the plants can receive water. This can help in managing water consumption in an efficient way. These are just a couple of examples but I think Datadog is a really powerful tool that can help in innovating all kind of industries.
 
 
 
