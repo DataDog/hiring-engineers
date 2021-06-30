@@ -108,8 +108,11 @@ Now that both the python file and the yaml configuration file of this custom met
 
 ![MongoDB Dashboard](/images/img11.png)
 
+
+
+
 ## Changing the Collection Interval
-To change the collection interval, I reopened the `my_metric.yaml` configuration file and added a `min_collection_interval` parameter with the value `45` under `instances`.
+To change the collection interval, I reopened the `my_metric.yaml` configuration file and added a `min_collection_interval` parameter with the value `45` under `instances`, and restarted the agent.
 
 ```yaml
 instances:
@@ -119,7 +122,143 @@ tags:
   - env:dev
 ```
 
+This time re-validate, I opened the Datadog Agent **Web UI**. I clicked on **Checks** from the menu list and then **Checks Summary**. I saw both `mongo` and `my_metric` working succefully.
+
+![Checks](/images/img13.png)
+
 **Bonus question**: Yes we can change the collection interval without modidying the python file created. Just like I did right now, I changed it directly from the YAML configuration file.
+
+# Visualizing Data
+## Using Datadog API to create Timeboard/Dashbaord
+I used this official Datadog [API Reference](https://docs.datadoghq.com/api/latest/dashboards/) to create the dashboard. I created a Python file named `timeboard.py` that uses the Python code example from the API reference to generate the 3 visualizations:
+- Custom Metric
+- MongoDB Metric with the **anomalies** function. I saw the different  mongoDB's metrics in [this documentation](https://docs.datadoghq.com/integrations/mongo/?tab=standalone) and chose `mongodb.mem.resident`. This metric shows the amount of memory currently used by the database process.
+- Custom Metric with the **rollup** fuction). 
+
+To initialize the datadog client library I need my datadog `API_KEY` and `APPLICATION_KEY`. I already have my `API_KEY`  but to create the `APPLICATION_KEY` I clicked **Team** from the Datadog menu, then clicked on **Application Keys** and then **New Key** to generate my key with the name `demo-key`.
+
+![Application Key](/images/img10.png)
+
+I modified the script by looking at the **JSON** definition of the current visulization provided in the code example. I modified it to show my custom metric, and then added the 2 other visualizations with their correspnding functions.
+
+```python
+from datadog import initialize, api
+
+options = {
+    'api_key': '<API_KEY>',
+    'app_key': '<APPLICATION_KEY>'
+}
+
+initialize(**options)
+
+title = 'Khalil\'s Dashboard'
+widgets = [
+    { #First Visualization: My Custom Metric scoped over my host Khalils-MBP
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:my_metric{host:Khalils-MBP}'}],
+        'title': 'my_metric timeboard'
+    }
+},
+
+    { #Second Visualization: MongoDB's memory resident metric with the anomaly function applied
+     'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': "anomalies(avg:mongodb.mem.resident{*}, 'basic', 2)"}],
+        'title': 'MongoDB memory usage anomalies'
+    }  
+},
+
+    { # Third Visualizaton: My Custom Metric with the rollup function applied 
+      #to sum up all the points for the past hour into one bucket (1 hour = 3600 seconds)
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:my_metric{*}.rollup(sum, 3600)'}],
+        'title': 'my_metric rolling hour sum'   
+    }
+}]
+
+layout_type = 'ordered'
+description = 'A customized dashboard'
+is_read_only = True
+notify_list = ['khalilfaraj22@gmail.com']
+template_variables = [{
+    'name': 'Custom Timeboard',
+    'prefix': 'host',
+    'default': 'my-host'
+}]
+
+saved_views = [{
+    'name': 'Saved views for hostname 2',
+    'template_variables': [{'name': 'host', 'value': 'test'}]}
+]
+
+api.Dashboard.create(title=title,
+                     widgets=widgets,
+                     layout_type=layout_type,
+                     description=description,
+                     is_read_only=is_read_only,
+                     notify_list=notify_list,
+                     template_variables=template_variables,
+                     template_variable_presets=saved_views)               
+```
+
+
+
+I already have Python installed so all I had to do was to install the Datadog client library that we are using inside the Python code. I installed the library using this command `pip3 install datadog` and then ran the script that generated my Dashboard with the visualizations.
+
+## Accessing the Dashboard on Datadog
+
+![Dashbaord List](/images/img14.png)
+
+### Setting the timeframe to the past 5 minutes
+I set the timeframe to the past 5 minutes, however there were no anomalies yet within this timeframe. (MongoDB's current memory used was stable at slighly less that 16 Mebibytes), and the rolling hour visualaization was still summing up the points since its the period defined is 1 hour.
+
+![Dashbaord](/images/img15.png)
+
+
+I waited a couple of hours and changed the timeframe to show me data within the last 4 hours. This time I started seeing anomalies and the rolling hour for `my_metric` started to show the data.
+
+![Dashbaord After](/images/img16.png)
+
+### Taking a Snapshot
+
+![Snapshot](/images/img17.png)
+
+![Snapshot Email](/images/img18.png)
+
+**Bonus question**: Anomaly functions tells us if a metric has an abnormal behaviour. It uses past or previous data and process them to understand what values are normal for the metric that is being used. These values are represented in an overlaying gray band . In other words This band represents the expected values for the metric. For example if there was a fluctuation or a sudden spike of values for a metric but this fluctation is still in the gray band (in which the algorithm created using previous data), then this fluctuation is expected and is not an anomaly, but if the fluctuation was outside the range of the band then in this case, this is an anomaly.
+
+## Monitoring Data
+
+## Creating a New Metric
+From the menu in Datadog, I clicked on **Monitors** then **Metric** in **Custom Monitors**.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
