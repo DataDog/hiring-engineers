@@ -5,7 +5,7 @@
 
 - This is the [LINK](https://p.datadoghq.eu/sb/611c1346-d5cf-11eb-9198-da7ad0900005-6ddb29f91c510361e1ed6e48ee988c7b?from_ts=1625073958104&to_ts=1625077558104&live=true) to my **Dashoard Results**. (I put the link again at the end in the **Collection APM Data** section)
 
-P.S: For the dashboard, I enabled **timeframe modification** so please make sure to select something like **past 1 week or past 1 month** because by the time that you will be reviewing the exercise, some data might be missing if the monitor is stopped especially with the **APM metrics** because I would have stopped making requests to the endpoints, so in this case no data will be showed if you put a very recent timeframe.
+P.S: For the dashboard, I enabled **timeframe modification** so please make sure to select something like **past 1 week or past 1 month** because by the time that you will be reviewing the exercise, some data might be missing especially with the **APM metrics** because I would have stopped making requests to the endpoints, so in this case no data will be showed if you put a very recent timeframe.
 
 # Prerequisites - Setup the Environment
 
