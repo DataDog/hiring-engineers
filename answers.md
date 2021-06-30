@@ -180,7 +180,7 @@ widgets = [
         'type': 'timeseries',
         'requests': [
             {'q': "anomalies(avg:mongodb.mem.resident{*}, 'basic', 2)"}],
-        'title': 'MongoDB memory usage anomalies'
+        'title': 'MongoDB mem.resident anomalies'
     }  
 },
 
@@ -333,7 +333,8 @@ I navigated to **APM** from the menu list, clicked **Services**, chose my **Env*
 ![APM Traces](/images/img34.png)
 
 
-I exported some of the above **APM visualizations** to my dahsboard created in the **Visualization** part of this exercies.Changed some of the titles, changed the previous rolling sum for `my_metric` visualization from **Timeseries** to **Query Value** added new infrastuture metrics visualizations to finalize the final version of my dashboard. I grouped the visualizations into **2 groups**:
+## Infrastutues & APM Metrics / Final Dashboard
+I exported some of the **APM visualizations** that we got previously like number of requests, request duration and latency to my dahsboard created earlier in the **Visualization** part of this exercies. I changed the previous rolling sum for `my_metric` visualization from **Timeseries** to **Query Value** added new infrastuture metrics visualizations to finalize the final version of my dashboard that I want to show . I grouped the visualizations into **2 groups**:
 
 - APM Metrics (For the Flask APP)
 - Infrastrure Metrics
