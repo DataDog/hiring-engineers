@@ -16,6 +16,7 @@ I used the **macOS** environment to complete this exercise.
 
 
 `DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=<API KEY> DD_SITE="datadoghq.eu" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_mac_os.sh)"` <br>
+
 ![Agent Installation](/images/img1.png)
 
 3- From here I was able to access the **Datadog Agent Manager** and check the Agent reporting metrics.<br>
