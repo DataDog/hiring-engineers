@@ -2,14 +2,14 @@
 
 I used the **macOS** environment to complete this exercise.
 
-1- I created my account on https://www.datadoghq.com/
+1- I created my account on https://www.datadoghq.com/ <br>
 2- To install the **Agent** on my machine I chose the **Mac OS X** platform from the menu list because I'm using the macOS environment and copied this installation command (I removed the API KEY value from the command below to make sure that I don't expose it, and hid it using a black banner on the screenshot image below): 
 
 
-`DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=<API KEY> DD_SITE="datadoghq.eu" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_mac_os.sh)"` 
+`DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=<API KEY> DD_SITE="datadoghq.eu" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_mac_os.sh)"` <br>
 ![Agent Installation](/images/img1.png)
 
-3- From here I was able to access the **Datadog Agent Manager** and check the Agent reporting metrics.
+3- From here I was able to access the **Datadog Agent Manager** and check the Agent reporting metrics.<br>
 
 ![Agent Status](/images/img2.png)
 
