@@ -11,7 +11,7 @@ P.S: For the dashboard, I enabled **timeframe modification** so please make sure
 
 I used the **macOS** environment to complete this exercise.
 
-1- I created my account on https://www.datadoghq.com/ using this email *khalilfaraj22@gmail.com* <br>
+1- I created my account on https://www.datadoghq.com/ using this email *khalilfaraj22@gmail.com*. <br>
 2- To install the **Agent** on my machine, I chose the **Mac OS X** platform from the menu list because I'm using the macOS environment and copied this installation command.(I removed the API KEY value from the command below to make sure that I don't expose it, and hid it using a black banner on the screenshot image below): 
 
 
