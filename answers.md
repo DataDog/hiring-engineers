@@ -144,7 +144,7 @@ Yes we can change the collection interval without modifying the **Python** file 
 ## Using Datadog API to create Timeboard/Dashbaord
 I used this official Datadog [API Reference](https://docs.datadoghq.com/api/latest/dashboards/) to create the dashboard. I created a Python file named `timeboard.py` that uses the Python code example from the API reference to generate the 3 visualizations:
 - Custom Metric `my_metric`
-- MongoDB Metric with the **anomalies** function. I saw the different  mongoDB's metrics in [this documentation](https://docs.datadoghq.com/integrations/mongo/?tab=standalone) and chose `mongodb.mem.resident`. This metric shows the amount of memory currently used by the database process.
+- MongoDB Metric with the **anomalies** function. I saw the different  mongoDB's metrics in this [documentation](https://docs.datadoghq.com/integrations/mongo/?tab=standalone) and chose `mongodb.mem.resident`. This metric shows the amount of memory currently used by the database process.
 - Custom Metric `my_metric` with the **rollup** fuction. 
 
 I already have Python installed so all I had to do was to install the **Datadog client library** that we are using inside the Python code.I installed the library using this command `pip3 install datadog`.
