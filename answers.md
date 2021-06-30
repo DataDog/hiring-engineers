@@ -228,7 +228,7 @@ I waited a couple of hours and changed the timeframe to show me data within the 
 
 ![Snapshot](/images/img17.png)
 
-![Snapshot Email](/images/img18.png)
+![Snapshot Email](/images/img19.png)
 
 **Bonus question**: Anomaly functions tells us if a metric has an abnormal behaviour. It uses past or previous data and process them to understand what values are normal for the metric that is being used. These values are represented in an overlaying gray band . In other words This band represents the expected values for the metric. For example if there was a fluctuation or a sudden spike of values for a metric but this fluctation is still in the gray band (in which the algorithm created using previous data), then this fluctuation is expected and is not an anomaly, but if the fluctuation was outside the range of the band then in this case, this is an anomaly.
 
@@ -236,6 +236,7 @@ I waited a couple of hours and changed the timeframe to show me data within the 
 
 ## Creating a New Metric
 From the menu in Datadog, I clicked on **Monitors** then **Metric** in **Custom Monitors**.
+![New Metric](/images/img18.png)
 
 
 
