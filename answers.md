@@ -296,6 +296,45 @@ I repeated the same steps to create the second downtime that happens during the 
 
 ![Downtime2 Email](/images/img29.png)
 
+## Collecting APM Data
+
+I followed the [APM official documentation] to get started with APM. For this part, I used `ddtrace`.
+1- I installed `ddtrace` using this command `pip3 install ddtrace`.
+2- I defined my `DD_SERVICE` and `DD_ENV` and used this command to start the app and the service `DD_SERVICE="flask_apm_app" DD_ENV="dev" DD_LOGS_INJECTION=true ddtrace-run python3 flask_apm.py`
+
+![DD-Trace](/images/img30.png)
+
+I started to make requests to the 3 endpoints:
+- localhost:5050/
+- localhost:5050/api/apm
+- localhost:5050/api/trace
+
+I navigated to **APM** from the menu list, clicked **Services**, chose my **Env** I saw my service there and checked the metrics and the traces
+
+![APM Service](/images/img31.png)
+
+![APM Service1](/images/img32.png)
+
+![APM Service2](/images/img33.png)
+
+![APM Traces](/images/img34.png)
+
+I exported some of the APM visualizations to my dahsboard created in the **Visualization** part of this exercies.Changed some of the titles, changed the previous rolling sum for `my_metric` visualization from **Timeseries** to **Query Value** added new infrastuture metrics visualizations to finalize the final version of my dashboard. I grouped the visualizations into 2 groups:
+
+- APM Metrics (For the Flask APP)
+- Infrastrure Metrics
+
+![Final Dashboard](/images/img35.png)
+
+This is the [link](https://p.datadoghq.eu/sb/611c1346-d5cf-11eb-9198-da7ad0900005-6ddb29f91c510361e1ed6e48ee988c7b?from_ts=1625073958104&to_ts=1625077558104&live=true) to my final Dashoard. I enabled timeframe modification so please make sure to select something like *past 1 week or past 1 month* because by the time that you will be reviewing the exercicse some data might be missing if the monitor is stopped especially with the APM metrics because I won't be making requests to the endpoints, so in this case no data will be showed.
+
+
+
+
+
+
+
+
 
 
 
