@@ -70,7 +70,7 @@ db.createUser({
 ![MongoDB Shell](/images/img9.png)
 
 
-Now I need to configure the **Agent** running on the host. I edited the `mongo.d/conf.yaml` in the `conf.d` folder by adding the coressponding values and restarted the agent.
+Now I need to configure the **Agent** running on the host. I edited the `mongo.d/conf.yaml` in the `conf.d` folder by adding the corresponding values and restarted the agent.
 
 ![MongoDB Config](/images/img7.png)
 
@@ -78,7 +78,7 @@ I was able to see that the **MongoDB** is succesfully integrated with Datadog. I
 
 ![MongoDB Status](/images/img12.png)
 
-I added a **MongoDB Dashboard** by going to the **Dashboard** menu and installing it from there and since it's already integrated I was able to see the mongoDB metrics on the dashboard.
+I added a **MongoDB Dashboard** by going to the **Dashboard** menu and installing it from there. since it's already integrated I was able to see the mongoDB metrics on the dashboard.
 
 ![MongoDB Dashboard](/images/img8.png)
 
@@ -114,11 +114,9 @@ tags:
   - env:dev
 ```
 
-Now that both the **Python** file and the **YAML** configuration file of this custom metric are created, it's time to check if it's working. I used this command to validate my custom metric `datadog-agent check my_metric` and it gave a successful result.
+Now that both the **Python** file and the **YAML** configuration file of this custom metric are created, it's time to check if it's working. I used this command to validate my custom metric `datadog-agent check my_metric`. It gave a successful result.
 
 ![MongoDB Dashboard](/images/img11.png)
-
-
 
 
 ## Changing the Collection Interval
@@ -152,7 +150,7 @@ To initialize the **Datadog client library** I need my **Datadog** `API_KEY` and
 
 ![Application Key](/images/img10.png)
 
-I modified the script by looking at the **JSON** definition of the current visulization provided in the code example. I modified it to use and show my custom metric, and then added the 2 other visualizations with their corresppnding functions (anomalies and rollup).
+I modified the script by looking at the **JSON** definition of the current visualization provided in the code example. I modified it to use and show my custom metric, and then added the 2 other visualizations with their corresponding functions (anomalies and rollup).
 
 ```python
 from datadog import initialize, api
@@ -184,7 +182,7 @@ widgets = [
     }  
 },
 
-    { # Third Visualizaton: My Custom Metric with the rollup function applied 
+    { # Third Visualization: My Custom Metric with the rollup function applied 
       #to sum up all the points for the past hour into one bucket (1 hour = 3600 seconds)
     'definition': {
         'type': 'timeseries',
@@ -227,7 +225,7 @@ I ran the script to generate my Dashboard with the visualizations.
 
 ## Accessing the Dashboard on Datadog
 ### Setting the timeframe to the past 5 minutes
-I set the timeframe to the past 5 minutes, however there were no anomalies yet within this timeframe (MongoDB's current memory used was stable at slighly less that 16 Mebibytes), and the rolling hour visualization was still summing up the points (period defined is 1 hour).
+I set the timeframe to the past 5 minutes, however there were no anomalies showing yet within this timeframe (MongoDB's current memory used was stable at slighly less that 16 Mebibytes), and the rolling hour visualization was still summing up the points (period defined is 1 hour).
 
 ![Dashbaord](/images/img15.png)
 
@@ -272,8 +270,8 @@ Using the **Message Template Variables** I was able to write my Monitor Message:
 There has been **no** data for the  average value of `my_metric` over the past **10 minutes**.
 {{/is_no_data}}
 ```
-As requested the `value`, `host name` and `host ip` are used in the **Alert** state.
-Last part was to my email in the **Notify your team** section and clicked **Save**.
+As requested, I added the `value`, `host name` and `host ip` in the **Alert** state.
+Last part was to put my email in the **Notify your team** section and click **Save**.
 
 ![Alert Config](/images/img21.png)
 
@@ -334,14 +332,14 @@ I navigated to **APM** from the menu list, clicked **Services**, chose my `env` 
 
 
 ## Infrastructures & APM Metrics / Final Dashboard
-I exported some of the **APM visualizations** that we got previously like number of requests, request duration and latency to my dahsboard created earlier in the **Visualization** part of this exercies. I changed the previous rolling sum for `my_metric` visualization from **Timeseries** to **Query Value** and added new infrastuture metrics visualizations to finalize the final version of my dashboard that I want to show . I grouped the visualizations into **2 groups**:
+I exported some of the **APM visualizations** that we got like number of requests, request duration and latency to my dahsboard created earlier in the **Visualization** part of this exercise. I changed the previous rolling sum for `my_metric` visualization from **Timeseries** to **Query Value** and added new infrastuture metrics visualizations to finalize the final version of my dashboard that I want to show . I grouped the visualizations into **2 groups**:
 
 - APM Metrics (For the Flask APP)
 - Infrastrure Metrics
 
 ![Final Dashboard](/images/img35.png)
 
-This is the [LINK](https://p.datadoghq.eu/sb/611c1346-d5cf-11eb-9198-da7ad0900005-6ddb29f91c510361e1ed6e48ee988c7b?from_ts=1625073958104&to_ts=1625077558104&live=true) to my final Dashoard. I enabled timeframe modification so please make sure to select something like **past 1 week or past 1 month** because by the time that you will be reviewing the exercise, some data might be missing if the monitor is stopped especially with the **APM metrics** because I won't be making requests to the endpoints, so in this case no data will be showed.
+This is the [LINK](https://p.datadoghq.eu/sb/611c1346-d5cf-11eb-9198-da7ad0900005-6ddb29f91c510361e1ed6e48ee988c7b?from_ts=1625073958104&to_ts=1625077558104&live=true) to my final Dashoard. I enabled timeframe modification so please make sure to select something like **past 1 week or past 1 month** because by the time that you will be reviewing the exercise, some data might especially with the **APM metrics** because I would have stopped making requests to the endpoints, so in this case no data will be showed if you put a very recent timeframe.
 
 **Bonus Question**: *What is the difference between a Service and a Resource?* <br>
 A **Service** groups together endpoints, queries and jobs (examples: databases, message queues...) to build an application.They are very common and essential in microservices architectures. **Resource** represent a specific domain of an application. A resource can be an instrumented endpoint, a query or a background job. In other words resources enable the services to do their jobs. For example a resource can be an **HTTP request** to an **API** (like GET or POST).
