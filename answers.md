@@ -234,9 +234,80 @@ I waited a couple of hours and changed the timeframe to show me data within the 
 
 ## Monitoring Data
 
-## Creating a New Metric
+### Creating a New Metric
 From the menu in Datadog, I clicked on **Monitors** then **Metric** in **Custom Monitors**.
+
 ![New Metric](/images/img18.png)
+
+I added a name, selected my host `Khalil-MBP` and fill the required values for the **Alert Conditions**:
+
+![Alert Conditions](/images/img20.png)
+
+### Configuring the Monitor Message
+
+Using the **Message Template Variable** I was able to write my Monitor Message:
+```
+{{#is_warning}}
+**WARNING**: The average value of `my_metric` has been **slightly high** over the past **5 minutes**.
+{{/is_warning}} 
+
+{{#is_alert}}
+**ALERT!** `my_metric` has been **high** over the past **5 minutes** at {{value}}  for {{host.name}} with IP {{host.ip}}.
+{{/is_alert}}
+
+{{#is_no_data}}
+There has been **no** data for the  average value of `my_metric` over the past **10 minutes**.
+{{/is_no_data}}
+```
+As requested the *value*, *host name* and *host ip* are defined in the **Alert** state.
+Last part was to my email in the **Notify your team** section and clicked on **Save**
+
+![Alert Config](/images/img21.png)
+
+### Email Notifications Screenshots
+#### Alert Status
+
+![Alert Status](/images/img22.png)
+
+#### Warning Status
+
+![Warning Status](/images/img23.png)
+
+#### Missing Data/
+
+For this one I tested it using the **Test Notifications** Button
+
+![Missing Data](/images/img24.png)
+
+### Bonus
+
+In the **Monitors** menu, I clicked on **Manage Downtime** and then **Schedule Downtime**. In here I chose the monitor that I created earlier, chose **recurring** and added the dates to make it silent from 7pm to 9am daily on M-F.
+
+![Downtime1](/images/img25.png)
+
+![Downtime1 Created](/images/img27.png)
+
+![Downtime1 Email](/images/img26.png)
+
+I repeated the same steps to create the second downtime that happens during the weekend. In the email notification you will see that I updated and rechanged the time. When I first created this downtime, once the day becomes Monday (12:00 am), the Monitor resumes which is something that we don't want because it's the middle of the night. So I changed it and add it 9 hours to it because the first downtime configuration starts at 9:00 am. So in this case, this Monitor will be silenced Saturday, Sunday and the first 9 hours of Monday (12:00am till 9:00am), and the first downtime created will proceed with the rest of the weekdays (7:00 pm till 9:00am).
+
+
+![Downtime2 Created](/images/img28.png)
+
+![Downtime2 Email](/images/img29.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
