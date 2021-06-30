@@ -1,4 +1,4 @@
-## General Information
+# General Information
 
 - **Name**: Khalil Faraj 
 - **Position**: Sales Engineer (Dublin)
