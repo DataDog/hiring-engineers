@@ -1,0 +1,33 @@
+init_config:
+
+instances:
+    ## @param hosts - list of strings - required
+    ## Hosts to collect metrics from, as is appropriate for your deployment topology.
+    ## E.g. for a standalone deployment, specify the hostname and port of the mongod instance.
+    ## For replica sets or sharded clusters, see instructions in the sample conf.yaml.
+    ## Only specify multiple hosts when connecting through mongos
+    #
+  - hosts:
+      - 127.0.0.1:27017
+
+    ## @param username - string - optional
+    ## The username to use for authentication.
+    #
+    username: datadog
+
+    ## @param password - string - optional
+    ## The password to use for authentication.
+    #
+    password: khalil22
+
+    ## @param database - string - optional
+    ## The database to collect metrics from.
+    #
+    database: admin
+
+    ## @param options - mapping - optional
+    ## Connection options. For a complete list, see:
+    ## https://docs.mongodb.com/manual/reference/connection-string/#connections-connection-options
+    #
+    options:
+      authSource: admin
