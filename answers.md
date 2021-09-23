@@ -9,11 +9,11 @@ This was a fun exercize that gave me a much better under-the-hood look at Datado
 In a sentence, working here as an SE means an opportunity to merge my technical, people, and business backgrounds to work with cool software I personally use and help to teach more people about it. I was originally looking for a monitoring and analytics platform for my homelab when I discoverd that not only does Datadog seem the solution on this front, but that there's an SE opening in Denver. Having just completed my MBA, I'm actively searching for SE positions to put that business education to use. My fiancee and I are also planning to move to Denver in the coming months. After having conversations with Amanda and Jake, the company atmosphere seems fantastic. I'd love to work with you all and look forward to meeting you, pending review of this document.  
 
 ### Files that need to be included:
-- [] dd-ubuntu20 neofetch output
+- [x] dd-ubuntu20 neofetch output
 - [] /etc/datadog-agent/checks.d/my_metric.py
 - [] /etc/datadog-agent/conf.d/my_metric.yaml
 - [] Agent config file
-- [] Screenshot of Hostmap showing tags
+- [x] Screenshot of Hostmap showing tags
 - [] Timeboard script
 
 ### Setting up the environment:
@@ -21,11 +21,17 @@ In a sentence, working here as an SE means an opportunity to merge my technical,
 - [x] Setup Datadog account
 - [x] Get datadog-agent running on the VM
 
+To get started, I spun up a virtual instance of Ubuntu Server 20.04.03 following the recommendation to use an Ubuntu image 16.04 or newer. 
+Rather than usisg Oracle's VirtualBox software, I'm using QEMU/KVM with virt-manager as I've found VMs created and managed this way tend to run faster and smoother on Linux systems when compared to VirtualBox.  
+![neofetch of the VM](Screenshots/dd-ubuntu20_neofetch.png)
+
 ### Collecting Metrics:
 - [x] Add tags in the Agent config file 
 - [x] Install database and intigration on the VM
 - [] Create custom Agent Check sumbitting the metric, *my_metric*, with a random value between 0-1000 every 45 seconds
 - [] Can you change the collection interval without modifying the Python check file? *You should be able to change it via my_metric.yaml*
+
+![Screenshot of Hostmap displaying tags and the mySQL integration running](Screenshots/tags.png)
 
 ### Visualizing Data:
 ###### Create a Timeboard that contains:
