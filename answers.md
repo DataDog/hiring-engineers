@@ -40,7 +40,8 @@ Rather than usisg Oracle's VirtualBox software, I'm using QEMU/KVM with virt-man
 - [x] *my_metric* with the rollup function applied to sum up all points from the past hour into one bucket
 - [x] Set the timeframe to the past 5 minutes
 - [] Take a snapshot and use @ notation to send it to myself
-- [x] What is the Anomaly graph displaying? *In this case, it's displaying any situation where far more or far less querries to my database are performed. That's a bit boring though, since it's an empty database with nobody intentionally connecting to it. Instead, see my other widget,* jaknet-dl380p CPU Usage *as it's tracking the CPU usage of the server that's running* dd-ubuntu20 *and therefore much more active.*
+###### What is the Anomaly graph displaying? 
+In this case, it's displaying any situation where far more or far less querries to my database are performed. That's a bit boring though, since it's an empty database with nobody intentionally connecting to it. Instead, see my other widget,*jaknet-dl380p CPU Usage* as it's tracking the CPU usage of the server that's running *dd-ubuntu20* and therefore much more active.
 
 ### Monitoring Data:
 ###### Create a new Metric Monitor:
