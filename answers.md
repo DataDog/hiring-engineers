@@ -38,13 +38,13 @@ In a sentence, working here as an SE means an opportunity to merge my technical,
 
 ### Monitoring Data:
 ###### Create a new Metric Monitor:
-- [] Monitoring *my_metric*
-- [] Warning threshold of 500 over the last 5 minutes
-- [] Alert threshold of 800 over the last 5 minutes
-- [] Notify me if there is no data over the past 10 minutes
-- [] Alert message will email whenever monitor triggers
-- [] Alert message will have different messages for Warning, Alert, and No Data
-- [] Alert message will include the offending metric value and host IP
+- [x] Monitoring *my_metric*
+- [x] Warning threshold of 500 over the last 5 minutes
+- [x] Alert threshold of 800 over the last 5 minutes
+- [x] Notify me if there is no data over the past 10 minutes
+- [x] Alert message will email whenever monitor triggers
+- [x] Alert message will have different messages for Warning, Alert, and No Data
+- [x] Alert message will include the offending metric value and host IP
 - [] Alert message will have downtime between 0700-2100 M-F
 - [] Alert message will have downtime between 0000-2359 S-S
 - [] Email will be sent when downtime is scheduled
