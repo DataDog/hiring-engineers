@@ -55,9 +55,9 @@ In this case, it's displaying any situation where far more or far less querries 
 - [x] Alert message will email whenever monitor triggers
 - [x] Alert message will have different messages for Warning, Alert, and No Data
 - [x] Alert message will include the offending metric value and host IP
-- [] Alert message will have downtime between 0700-2100 M-F
-- [] Alert message will have downtime between 0000-2359 S-S
-- [] Email will be sent when downtime is scheduled
+- [x] Alert message will have downtime between 1900-0900 M-F
+- [x] Alert message will have downtime between 0000-2359 S-S
+- [] Email will be sent when downtime is scheduled - include pic
 
 ### Collecting APM Data:
 - [] Utilize the provided Flask app
