@@ -14,7 +14,7 @@ In a sentence, working here as an SE means an opportunity to merge my technical,
 - [x] /etc/datadog-agent/conf.d/my_metric.yaml
 - [] Agent config file
 - [x] Screenshot of Hostmap showing tags
-- [] Timeboard script
+- [x] Timeboard script
 
 ### Setting up the environment:
 - [x] Create a fresh Linux VM
@@ -63,9 +63,16 @@ In this case, it's displaying any situation where far more or far less querries 
 - [] Utilize the provided Flask app
 - [] What's the difference between a service and a resource?
 
+Here I fully admit I've run into hardship. I've used the included code, but the problem I keep running into is that when running `falsk run`, the machines return `OSError: [Errno 98] Address already in use`. Yes, machines plural as I've spun up clean VMs and even tried this on my Debian host, but more to the point of what was tried:
+- Variations on `app.run(host='0.0.0.0', port'5000')` as originally written.
+- Confirmed Port 5000 was not in use via `netstat -l`, `lsof -i:5000`, and 
+
+#Possible explanation - socketserver.py may be taking up ports
+
 ### Final Question:
 My "creative" usecase is pretty typical for an enterprise, but a little "out there" for an indivdual. When I've got some more down time I'll be configuring my platform to manage my homelab. A few solutions I'd like to implement beyond just "manage the rack" over the next few months:
-- Create integration for OpenHab to monitor temp, atmospheric pressure, lights, and power consumption at various points
-- Alert via email if apliances are on, but nobody's home (stove, curling irons, etc.)
-- Keep an eye on nutrient levels for hydroponic garden
+- Create integration for OpenHab to monitor temp, atmospheric pressure, lights, and power consumption at various points.
+- Alert via email if apliances are on, but nobody's home (stove, curling irons, etc.).
+- Keep an eye on nutrient levels for hydroponic garden.
+- I've held off on it for the sake of this exercize, but next up on my homelab is converting the QEMU/KVM-based virturalization server into a Proxmox server. Managing both virtual machines and containers from the same host should be fun, and perfectly suited for Datadog management.
 - Keep learning more about the platform. It seems super powerful and I fully recognize there's a ton to discover :)
