@@ -10,8 +10,8 @@ In a sentence, working here as an SE means an opportunity to merge my technical,
 
 ### Files that need to be included:
 - [x] dd-ubuntu20 neofetch output
-- [] /etc/datadog-agent/checks.d/my_metric.py
-- [] /etc/datadog-agent/conf.d/my_metric.yaml
+- [x] /etc/datadog-agent/checks.d/my_metric.py
+- [x] /etc/datadog-agent/conf.d/my_metric.yaml
 - [] Agent config file
 - [x] Screenshot of Hostmap showing tags
 - [] Timeboard script
@@ -29,7 +29,9 @@ Rather than usisg Oracle's VirtualBox software, I'm using QEMU/KVM with virt-man
 - [x] Add tags in the Agent config file 
 - [x] Install database and intigration on the VM
 - [] Create custom Agent Check sumbitting the metric, *my_metric*, with a random value between 0-1000 every 45 seconds
-- [] Can you change the collection interval without modifying the Python check file? *You should be able to change it via my_metric.yaml*
+- [] Can you change the collection interval without modifying the Python check file? The great thing about open source is that the answer to "Can you..." is usually "Yes, provided a sufficent understanding of the system." In our case, the collection interval is changed via `min_collection_interval` in *my_metric.yaml* (which isn't a python file, but rather a .yaml file). That's a bit inside-the-box though, as the Python and YAML files work together directly. For an outside-the-box solution, we can use a cron job! Kind of... cron jobs are native to all linux distros and are an easy way to automate commands. Since the Datadog agent runs all metrics upon startup, running `systemctl restart datadog-agent` as root will get the random number generator within our metric to genarate a new number. The issue here is twofold though:
+1. The agent may be running other services that we don't want restarted.
+2. Cron jobs have a resolution of one minute, so to restart the agent every 45 seconds requires the creation of a script to run `systemctl restart datadog-agent` every 45 seconds and cron job set to run at a time divisible by 45 seconds to ensure the script stays on schedule. 
 
 ![Screenshot of Hostmap displaying tags and the mySQL integration running](Screenshots/tags.png)
 
