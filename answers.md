@@ -71,6 +71,8 @@ Here I fully admit I've run into hardship. I've used the included code, but the 
 
 ### Final Question: 
 - [] SPELLCHECK THIS DOC
+
+
 My "creative" usecase is pretty typical for an enterprise, but a little "out there" for an indivdual. When I've got some more down time I'll be configuring my platform to manage my homelab. A few solutions I'd like to implement beyond just "manage the rack" over the next few months:
 - Create integration for OpenHab to monitor temp, atmospheric pressure, lights, and power consumption at various points.
 - Alert via email if apliances are on, but nobody's home (stove, curling irons, etc.).
