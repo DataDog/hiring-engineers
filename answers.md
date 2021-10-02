@@ -12,9 +12,10 @@ In a sentence, working here as an SE means an opportunity to merge my technical,
 - [x] dd-ubuntu20 neofetch output
 - [x] /etc/datadog-agent/checks.d/my_metric.py
 - [x] /etc/datadog-agent/conf.d/my_metric.yaml
-- [] Agent config file
+- [ ] Agent config file
 - [x] Screenshot of Hostmap showing tags
 - [x] Timeboard script
+- [x] Monitor Downtime Email
 
 ### Setting up the environment:
 - [x] Create a fresh Linux VM
@@ -42,7 +43,7 @@ The great thing about open source is that the answer to "Can you..." is usually 
 - [x] Any metric from the database integration with the anomaly function applied
 - [x] *my_metric* with the rollup function applied to sum up all points from the past hour into one bucket
 - [x] Set the timeframe to the past 5 minutes
-- [] Take a snapshot and use @ notation to send it to myself
+- [ ] Take a snapshot and use @ notation to send it to myself
 ###### What is the Anomaly graph displaying? 
 In this case, it's displaying any situation where far more or far less querries to my database are performed. That's a bit boring though, since it's an empty database with nobody intentionally connecting to it. Instead, see my other widget,*jaknet-dl380p CPU Usage* as it's tracking the CPU usage of the server that's running *dd-ubuntu20* and therefore much more active.
 
@@ -60,8 +61,8 @@ In this case, it's displaying any situation where far more or far less querries 
 - [] Email will be sent when downtime is scheduled - include pic
 
 ### Collecting APM Data:
-- [] Utilize the provided Flask app
-- [] What's the difference between a service and a resource?
+- [ ] Utilize the provided Flask app
+- [ ] What's the difference between a service and a resource?
 
 Here I fully admit I've run into hardship. I've used the included code, but the problem I keep running into is that when running `falsk run`, the machines return `OSError: [Errno 98] Address already in use`. Yes, machines plural as I've spun up clean VMs and even tried this on my Debian host, but more to the point of what was tried:
 - Variations on `app.run(host='0.0.0.0', port'5000')` as originally written.
@@ -70,7 +71,7 @@ Here I fully admit I've run into hardship. I've used the included code, but the 
 #Possible explanation - socketserver.py may be taking up ports
 
 ### Final Question: 
-- [] SPELLCHECK THIS DOC
+- [ ] SPELLCHECK THIS DOC
 
 
 My "creative" usecase is pretty typical for an enterprise, but a little "out there" for an indivdual. When I've got some more down time I'll be configuring my platform to manage my homelab. A few solutions I'd like to implement beyond just "manage the rack" over the next few months:
