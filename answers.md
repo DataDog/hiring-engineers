@@ -25,6 +25,7 @@ In a sentence, working here as an SE means an opportunity to merge my technical,
 To get started, I spun up a virtual instance of Ubuntu Server 20.04.03 following the recommendation to use an Ubuntu image 16.04 or newer. 
 Rather than usisg Oracle's VirtualBox software, I'm using QEMU/KVM with virt-manager as I've found VMs created and managed this way tend to run faster and smoother on Linux systems when compared to VirtualBox. I'm currently a bit hardware-lite at the moment with most of my homelab in a storrage unit, but once this execrize is complete I'll be re-imaging the virtualization server to be built around Proxmox. I believe having a machine fully centered on virtualization rather than a Debian machine used primarily for virtualization will prove quite educating. For now thought, we'll stick to QEWU/KVM. See Figure 1 for the virtual specs of the machine we'll be using. 
 ![neofetch of the VM](Screenshots/dd-ubuntu20_neofetch.png)
+<img src="Screenshots/dd-ubuntu20_neofetch.png" width=50% height=50%>
 *Figure 1. Neofetch output of dd-ubuntu20 detailing virtual system specifications*
 
 ### Collecting Metrics:
