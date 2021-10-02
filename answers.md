@@ -23,7 +23,7 @@ In a sentence, working here as an SE means an opportunity to merge my technical,
 - [x] Get datadog-agent running on the VM
 
 To get started, I spun up a virtual instance of Ubuntu Server 20.04.03 following the recommendation to use an Ubuntu image 16.04 or newer. 
-Rather than usisg Oracle's VirtualBox software, I'm using QEMU/KVM with virt-manager as I've found VMs created and managed this way tend to run faster and smoother on Linux systems when compared to VirtualBox. I'm currently a bit hardware-lite at the moment with most of my homelab in a storrage unit, but once this execrize is complete I'll be re-imaging the virtualization server to be built around Proxmox. I believe having a machine fully centered on virtualization rather than a Debian machine used primarily for virtualization will prove quite educating. For now thought, we'll stick to QEWU/KVM. See Figure 1 for the virtual specs of the machine we'll be using. 
+Rather than usisg Oracle's VirtualBox software, I'm using QEMU/KVM with virt-manager as I've found VMs created and managed this way tend to run faster and smoother on Linux systems when compared to VirtualBox. I'm currently a bit hardware-lite at the moment with most of my homelab in a storrage unit, but once this execrize is complete I'll be re-imaging the virtualization server to be built around Proxmox. I believe having a machine fully centered on virtualization rather than a Debian machine used primarily for virtualization will prove quite educating. For now though, we'll stick to QEMU/KVM. See Figure 1 for the virtual specs of the machine we'll be using. 
 <img src="Screenshots/dd-ubuntu20_neofetch.png" width=50% height=50%>
 
 *Figure 1. Neofetch output of dd-ubuntu20 detailing virtual system specifications*
@@ -33,11 +33,11 @@ Rather than usisg Oracle's VirtualBox software, I'm using QEMU/KVM with virt-man
 - [x] Install database and intigration on the VM
 - [x] Create custom Agent Check sumbitting the metric, *my_metric*, with a random value between 0-1000 every 45 seconds
 ###### Can you change the collection interval without modifying the Python check file?
-The great thing about open source is that the answer to "Can you..." is usually "Yes, provided a sufficent understanding of the system." In our case, the collection interval is changed via `min_collection_interval` in *my_metric.yaml* (which isn't a python file, but rather a .yaml file). That's a bit inside-the-box though, as the Python and YAML files work together directly. For an outside-the-box solution, we can use a cron job! Kind of... cron jobs are native to all linux distros and are an easy way to automate commands. Since the Datadog agent runs all metrics upon startup, running `systemctl restart datadog-agent` as root will get the random number generator within our metric to genarate a new number. The issue here is twofold though:
+The great thing about open source is that the answer to "Can you..." is usually "Yes, provided a sufficent understanding of the system." In our case, the collection interval is changed via `min_collection_interval` in *my_metric.yaml* (which isn't a python file, but rather a .yaml file). That's a bit inside-the-box though, as the Python and YAML files work together directly. For an outside-the-box solution, we can use a cron job! Kind of... cron jobs are native to all Linux distros and are an easy way to automate commands. Since the Datadog agent runs all metrics upon startup, running `systemctl restart datadog-agent` as root will get the random number generator within our metric to genarate a new number. The issue here is twofold though:
 1. The agent may be running other services that we don't want restarted.
 2. Cron jobs have a resolution of one minute, so to restart the agent every 45 seconds requires the creation of a script to run `systemctl restart datadog-agent` every 45 seconds and cron job set to run at a time divisible by 45 seconds to ensure the script stays on schedule. 
 
-<img src="Screenshots/tags.png" width=50% height=50%>
+<img src="Screenshots/tags.png" width=50% height=50%><img src="Screenshots/Timeboard.png" width=50% height=50%>
 
 ### Visualizing Data:
 ###### Create a Timeboard that contains:
@@ -45,7 +45,9 @@ The great thing about open source is that the answer to "Can you..." is usually 
 - [x] Any metric from the database integration with the anomaly function applied
 - [x] *my_metric* with the rollup function applied to sum up all points from the past hour into one bucket
 - [x] Set the timeframe to the past 5 minutes
-- [ ] Take a snapshot and use @ notation to send it to myself
+- [x] Take a snapshot and use @ notation to send it to myself
+
+<img src="Screenshots/Snapshot.png" width=50% height=50%>
 ###### What is the Anomaly graph displaying? 
 In this case, it's displaying any situation where far more or far less querries to my database are performed. That's a bit boring though, since it's an empty database with nobody intentionally connecting to it. Instead, see my other widget,*jaknet-dl380p CPU Usage* as it's tracking the CPU usage of the server that's running *dd-ubuntu20* and therefore much more active.
 
@@ -63,7 +65,7 @@ In this case, it's displaying any situation where far more or far less querries 
 - [x] Email will be sent when downtime is scheduled - include pic
 
 <img src="Screenshots/downtime-UTC.png" width=50% height=50%>
-*Figure . Screenshot of the email announcing scheduled downtime in UTC
+*Figure . Screenshot of the email announcing scheduled downtime in UTC*
 
 ### Collecting APM Data:
 - [ ] Utilize the provided Flask app
