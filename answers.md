@@ -37,7 +37,7 @@ The great thing about open source is that the answer to "Can you..." is usually 
 1. The agent may be running other services that we don't want restarted.
 2. Cron jobs have a resolution of one minute, so to restart the agent every 45 seconds requires the creation of a script to run `systemctl restart datadog-agent` every 45 seconds and cron job set to run at a time divisible by 45 seconds to ensure the script stays on schedule. 
 
-<img src="Screenshots/tags.png" width=50% height=50%><img src="Screenshots/Timeboard.png" width=50% height=50%>
+<img src="Screenshots/Hostmap_Timeboard.png">
 
 ### Visualizing Data:
 ###### Create a Timeboard that contains:
