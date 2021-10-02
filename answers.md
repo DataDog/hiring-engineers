@@ -23,8 +23,9 @@ In a sentence, working here as an SE means an opportunity to merge my technical,
 - [x] Get datadog-agent running on the VM
 
 To get started, I spun up a virtual instance of Ubuntu Server 20.04.03 following the recommendation to use an Ubuntu image 16.04 or newer. 
-Rather than usisg Oracle's VirtualBox software, I'm using QEMU/KVM with virt-manager as I've found VMs created and managed this way tend to run faster and smoother on Linux systems when compared to VirtualBox.  
+Rather than usisg Oracle's VirtualBox software, I'm using QEMU/KVM with virt-manager as I've found VMs created and managed this way tend to run faster and smoother on Linux systems when compared to VirtualBox. I'm currently a bit hardware-lite at the moment with most of my homelab in a storrage unit, but once this execrize is complete I'll be re-imaging the virtualization server to be built around Proxmox. I believe having a machine fully centered on virtualization rather than a Debian machine used primarily for virtualization will prove quite educating. For now thought, we'll stick to QEWU/KVM. See Figure 1 for the virtual specs of the machine we'll be using. 
 ![neofetch of the VM](Screenshots/dd-ubuntu20_neofetch.png)
+*Figure 1. Neofetch output of dd-ubuntu20 detailing virtual system specifications*
 
 ### Collecting Metrics:
 - [x] Add tags in the Agent config file 
@@ -58,7 +59,10 @@ In this case, it's displaying any situation where far more or far less querries 
 - [x] Alert message will include the offending metric value and host IP
 - [x] Alert message will have downtime between 1900-0900 M-F
 - [x] Alert message will have downtime between 0000-2359 S-S
-- [] Email will be sent when downtime is scheduled - include pic
+- [x] Email will be sent when downtime is scheduled - include pic
+
+![Screenshot of email outlining the scheduled downtime](Screenshots/downtime-UTC.png)
+*Figure . Screenshot of the email announcing scheduled downtime in UTC
 
 ### Collecting APM Data:
 - [ ] Utilize the provided Flask app
