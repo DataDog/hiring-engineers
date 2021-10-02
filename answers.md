@@ -24,8 +24,8 @@ In a sentence, working here as an SE means an opportunity to merge my technical,
 
 To get started, I spun up a virtual instance of Ubuntu Server 20.04.03 following the recommendation to use an Ubuntu image 16.04 or newer. 
 Rather than usisg Oracle's VirtualBox software, I'm using QEMU/KVM with virt-manager as I've found VMs created and managed this way tend to run faster and smoother on Linux systems when compared to VirtualBox. I'm currently a bit hardware-lite at the moment with most of my homelab in a storrage unit, but once this execrize is complete I'll be re-imaging the virtualization server to be built around Proxmox. I believe having a machine fully centered on virtualization rather than a Debian machine used primarily for virtualization will prove quite educating. For now thought, we'll stick to QEWU/KVM. See Figure 1 for the virtual specs of the machine we'll be using. 
-![neofetch of the VM](Screenshots/dd-ubuntu20_neofetch.png)
 <img src="Screenshots/dd-ubuntu20_neofetch.png" width=50% height=50%>
+
 *Figure 1. Neofetch output of dd-ubuntu20 detailing virtual system specifications*
 
 ### Collecting Metrics:
@@ -37,7 +37,7 @@ The great thing about open source is that the answer to "Can you..." is usually 
 1. The agent may be running other services that we don't want restarted.
 2. Cron jobs have a resolution of one minute, so to restart the agent every 45 seconds requires the creation of a script to run `systemctl restart datadog-agent` every 45 seconds and cron job set to run at a time divisible by 45 seconds to ensure the script stays on schedule. 
 
-![Screenshot of Hostmap displaying tags and the mySQL integration running](Screenshots/tags.png)
+<img src="Screenshots/tags.png" width=50% height=50%>
 
 ### Visualizing Data:
 ###### Create a Timeboard that contains:
@@ -62,7 +62,7 @@ In this case, it's displaying any situation where far more or far less querries 
 - [x] Alert message will have downtime between 0000-2359 S-S
 - [x] Email will be sent when downtime is scheduled - include pic
 
-![Screenshot of email outlining the scheduled downtime](Screenshots/downtime-UTC.png)
+<img src="Screenshots/downtime-UTC.png" width=50% height=50%>
 *Figure . Screenshot of the email announcing scheduled downtime in UTC
 
 ### Collecting APM Data:
