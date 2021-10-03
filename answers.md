@@ -47,12 +47,14 @@ The great thing about open source is that the answer to "Can you..." is usually 
 
 Here's where Datadog seems to shine for me. As a power-user-but-not-a-programmer, the clear user experience makes the mountains of available data much easier to digest. An easy to read and comprehend UI lowers the "barrier to entry" when it comes to who can use it. This is important first so that less tech-savvy management teams can easily understand the situation at hand and make big-picture decisions. It's also important for the seasoned administrators though. For every brain cell spent on [successfully] understanding the data presented, that's a brain cell that can't work on something else. I love command line as much as the next Linux nerd, but sometimes the GUI just makes everything easier. I've included both the Hostmap from the last section and the [Timeboard](code/CreativeTimeboardTitle.json) for this one in Figure 2.
 <img src="Screenshots/Hostmap_Timeboard.png">
+
 *Figure 2. Both the Hostmap and Timeboard showing hosts, tags, and some metrics*
 
 ###### What is the Anomaly graph displaying? 
 In this case, it's displaying any situation where far more or far less queries to my database are performed. That's a bit boring though, since it's an empty database with nobody intentionally connecting to it. Instead, see my other widget,*jaknet-dl380p CPU Usage* as it's tracking the CPU usage of the server that's running *dd-ubuntu20* and therefore much more active. Figure 3 contains a snapshot of the CPU usage with anomaly filter applied. 
 
 <img src="Screenshots/Snapshot.png" width=50% height=50%>
+
 *Figure 3. Screenshot of the snapshot as created via "@" notation*
 
 ### Monitoring Data:
@@ -71,6 +73,7 @@ In this case, it's displaying any situation where far more or far less queries t
 All tasks completed. See Figure 4 for requested pic of the downtime email. UTC is generally preferable to a local timezone as it standardizes year-round, locale-independent management. 
 
 <img src="Screenshots/downtime-UTC.png" width=50% height=50%>
+
 *Figure 4. Screenshot of the email announcing scheduled downtime in UTC*
 
 ### Collecting APM Data:
