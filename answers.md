@@ -38,6 +38,8 @@ The great thing about open source is that the answer to "Can you..." is usually 
 
 <img src="Screenshots/Hostmap_Timeboard.png">
 
+*Figure 2. Both the Hostmap and Timeboard showing hosts, tags, and some metrics*
+
 ### Visualizing Data:
 ###### Create a Timeboard that contains:
 - [x] *my_metric* scoped over the host
@@ -47,6 +49,9 @@ The great thing about open source is that the answer to "Can you..." is usually 
 - [x] Take a snapshot and use @ notation to send it to myself
 
 <img src="Screenshots/Snapshot.png" width=50% height=50%>
+
+*Figure 3. Screenshot of the snapshot as created via "@" notation*
+
 ###### What is the Anomaly graph displaying? 
 In this case, it's displaying any situation where far more or far less querries to my database are performed. That's a bit boring though, since it's an empty database with nobody intentionally connecting to it. Instead, see my other widget,*jaknet-dl380p CPU Usage* as it's tracking the CPU usage of the server that's running *dd-ubuntu20* and therefore much more active.
 
@@ -64,7 +69,7 @@ In this case, it's displaying any situation where far more or far less querries 
 - [x] Email will be sent when downtime is scheduled - include pic
 
 <img src="Screenshots/downtime-UTC.png" width=50% height=50%>
-*Figure . Screenshot of the email announcing scheduled downtime in UTC*
+*Figure 4. Screenshot of the email announcing scheduled downtime in UTC*
 
 ### Collecting APM Data:
 - [ ] Utilize the provided Flask app
@@ -77,7 +82,7 @@ Here I fully admit I've run into hardship. I've used the included code, but the 
 - Utilized online Flask forum to assist in troubleshooting, concluded it's not likely an issue with Flask.
 - Current though process is that there's something blocking ports with my virtual network interface, but not sure what as I'm managing the VM over Port 22 via SSH. 
 
-#### Services vs. Resources
+###### Services vs. Resources
 The simplest way to break down services vs. resources is to think of it this way: A service is a verb, a resource is a noun. When a user logs into a multifactor-protected access point for example, they first input their username and password. These credentials are compared against the credential database (a resource). Once verifed, the user must answer a multifactor authentication challenge. Here, a service generates a random alphanumeric string and compares against the input it recieves. Services do things, resources are things that can be used by services, processes, etc. but are not themselves *doing* something.
 
 ### Final Question: 
