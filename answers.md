@@ -37,9 +37,6 @@ The great thing about open source is that the answer to "Can you..." is usually 
 1. The agent may be running other services that we don't want restarted.
 2. Cron jobs have a resolution of one minute, so to restart the agent every 45 seconds requires the creation of a script to run `systemctl restart datadog-agent` every 45 seconds and cron job set to run at a time divisible by 45 seconds to ensure the script stays on schedule. 
 
-<img src="Screenshots/Hostmap_Timeboard.png">
-*Figure 2. Both the Hostmap and Timeboard showing hosts, tags, and some metrics*
-
 ### Visualizing Data:
 ###### Create a Timeboard that contains:
 - [x] *my_metric* scoped over the host
@@ -58,8 +55,6 @@ In this case, it's displaying any situation where far more or far less queries t
 <img src="Screenshots/Snapshot.png" width=50% height=50%>
 *Figure 3. Screenshot of the snapshot as created via "@" notation*
 
-
-
 ### Monitoring Data:
 ###### Create a new Metric Monitor:
 - [x] Monitoring *my_metric*
@@ -74,6 +69,7 @@ In this case, it's displaying any situation where far more or far less queries t
 - [x] Email will be sent when downtime is scheduled - include pic
 
 All tasks completed. See Figure 4 for requested pic of the downtime email. UTC is generally preferable to a local timezone as it standardizes year-round, locale-independent management. 
+
 <img src="Screenshots/downtime-UTC.png" width=50% height=50%>
 *Figure 4. Screenshot of the email announcing scheduled downtime in UTC*
 
