@@ -12,7 +12,6 @@ In a sentence, working here as an SE means an opportunity to merge my technical,
 - [x] dd-ubuntu20 neofetch output
 - [x] /etc/datadog-agent/checks.d/my_metric.py
 - [x] /etc/datadog-agent/conf.d/my_metric.yaml
-- [x] Agent config file
 - [x] Screenshot of Hostmap showing tags
 - [x] Timeboard script
 - [x] Monitor Downtime Email
