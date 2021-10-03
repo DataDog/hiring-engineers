@@ -71,7 +71,6 @@ In this case, it's displaying any situation where far more or far less queries t
 All tasks completed. See Figure 4 for requested pic of the downtime email. UTC is generally preferable to a local timezone as it standardizes year-round, locale-independent management. 
 
 <img src="Screenshots/downtime-UTC.png" width=50% height=50%>
-
 *Figure 4. Screenshot of the email announcing scheduled downtime in UTC*
 
 ### Collecting APM Data:
