@@ -3,7 +3,7 @@
 
 
 ## Overview
-This was a fun exercize that gave me a much better under-the-hood look at Datadog than what I was able to research with an interest and the [Youtube channel](https://www.youtube.com/channel/UCPO2QgTCReBAThZca6MB9jg). For the sake of clearity and brivity, I've organized this document to mirror the exercize readme. 
+This was a fun exercize that gave me a much better under-the-hood look at Datadog than what I was able to research with an interest and the [Youtube channel](https://www.youtube.com/channel/UCPO2QgTCReBAThZca6MB9jg). For the sake of clearity and brivity, I've organized this document to mirror the [exercize readme](README.md). 
 
 ### Why work at Datadog?
 In a sentence, working here as an SE means an opportunity to merge my technical, people, and business backgrounds to work with cool software I personally use and help to teach more people about it. I was originally looking for a monitoring and analytics platform for my homelab when I discoverd that not only does Datadog seem the solution on this front, but that there's an SE opening in Denver. Having just completed my MBA, I'm actively searching for SE positions to put that business education to use. My fiancee and I are also planning to move to Denver in the coming months. After having conversations with Amanda and Jake, the company atmosphere seems fantastic. I'd love to work with you all and look forward to meeting you, pending review of this document.  
@@ -12,7 +12,7 @@ In a sentence, working here as an SE means an opportunity to merge my technical,
 - [x] dd-ubuntu20 neofetch output
 - [x] /etc/datadog-agent/checks.d/my_metric.py
 - [x] /etc/datadog-agent/conf.d/my_metric.yaml
-- [ ] Agent config file
+- [x] Agent config file
 - [x] Screenshot of Hostmap showing tags
 - [x] Timeboard script
 - [x] Monitor Downtime Email
@@ -69,13 +69,17 @@ In this case, it's displaying any situation where far more or far less querries 
 
 ### Collecting APM Data:
 - [ ] Utilize the provided Flask app
-- [ ] What's the difference between a service and a resource?
+- [x] What's the difference between a service and a resource?
 
-Here I fully admit I've run into hardship. I've used the included code, but the problem I keep running into is that when running `falsk run`, the machines return `OSError: [Errno 98] Address already in use`. Yes, machines plural as I've spun up clean VMs and even tried this on my Debian host, but more to the point of what was tried:
-- Variations on `app.run(host='0.0.0.0', port'5000')` as originally written.
-- Confirmed Port 5000 was not in use via `netstat -l`, `lsof -i:5000`, and 
+Here I fully admit I've run into hardship. I've used the included code, but the problem I keep running into is that when running `falsk run`, the machines return `OSError: [Errno 98] Address already in use`. Yes, machines plural as I've spun up clean Ubuntu and Windows VMs and even tried this on my Debian host, but more to the point of what was tried:
+- Roughly a dozen variations on `app.run(host='0.0.0.0', port'5000')` as originally written.
+- Confirmed Port 5000 was not in use via `netstat -l` and `lsof -i:5000`.
+- Based on error messages, suspect *socketserver.py* may be taking up ports, so did a dive into socket archetecture. Neat stuff, but it was becomming a counterproductive rabbit hole.
+- Utilized online Flask forum to assist in troubleshooting, concluded it's not likely an issue with Flask.
+- Current though process is that there's something blocking ports with my virtual network interface, but not sure what as I'm managing the VM over Port 22 via SSH. 
 
-#Possible explanation - socketserver.py may be taking up ports
+#### Services vs. Resources
+The simplest way to break down services vs. resources is to think of it this way: A service is a verb, a resource is a noun. When a user logs into a multifactor-protected access point for example, they first input their username and password. These credentials are compared against the credential database (a resource). Once verifed, the user must answer a multifactor authentication challenge. Here, a service generates a random alphanumeric string and compares against the input it recieves. Services do things, resources are things that can be used by services, processes, etc. but are not themselves *doing* something.
 
 ### Final Question: 
 - [ ] SPELLCHECK THIS DOC
