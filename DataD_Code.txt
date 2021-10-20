@@ -1,0 +1,248 @@
+-----change to directory 
+
+PS C:\Program Files\Datadog\Datadog Agent\bin>
+
+-----open DD AGent manager
+
+& "$env:ProgramFiles\Datadog\Datadog Agent\bin\agent.exe" launch-gui
+
+----- MOngoDb creating a user
+
+# Authenticate as the admin user.
+use admin
+db.auth("admin", "<YOUR_MONGODB_ADMIN_PASSWORD>")
+
+
+
+# On MongoDB 2.x, use the addUser command.
+db.addUser("datadog", "<UNIQUEPASSWORD>", true)
+
+# On MongoDB 3.x or higher, use the createUser command.
+db.createUser({
+  "user": "datadog",
+  "pwd": "<UNIQUEPASSWORD>",
+  "roles": [
+    { role: "read", db: "admin" },
+    { role: "clusterMonitor", db: "admin" },
+    { role: "read", db: "local" }
+  ]
+})
+
+
+---- MongoDB find all users in MongoShell
+
+db.getUsers() 
+
+
+---- 1.	my_metric.yaml 
+
+instances: [{}]
+
+---- 2.	my_metric.py 
+
+import random
+
+from datadog_checks.base import AgentCheck
+
+__version__ = "1.0.0"
+
+class MyClass(AgentCheck):
+    def check(self, instance):
+        self.count(
+            "example_metric.count",
+            2,
+            tags=["env:dev","metric_submission_type:count"],
+        )
+        self.count(
+            "example_metric.decrement",
+            -1,
+            tags=["env:dev","metric_submission_type:count"],
+        )
+        self.count(
+            "example_metric.increment",
+            1,
+            tags=["env:dev","metric_submission_type:count"],
+        )
+        self.rate(
+            "example_metric.rate",
+            1,
+            tags=["env:dev","metric_submission_type:rate"],
+        )
+        self.gauge(
+            "example_metric.gauge",
+            random.randint(0, 10),
+            tags=["env:dev","metric_submission_type:gauge"],
+        )
+        self.monotonic_count(
+            "example_metric.monotonic_count",
+            2,
+            tags=["env:dev","metric_submission_type:monotonic_count"],
+        )
+
+        # Calling the functions below twice simulates
+        # several metrics submissions during one Agent run.
+        self.histogram(
+            "example_metric.histogram",
+            random.randint(0, 1000),
+            tags=["env:dev","metric_submission_type:histogram"],
+        )
+        self.histogram(
+            "example_metric.histogram",
+            random.randint(0, 1000),
+            tags=["env:dev","metric_submission_type:histogram"],
+        )
+
+
+---- installations
+
+pip install datadog-checks-base
+
+
+---- rollup functions
+
+avg:system.cpu.user{db:mongodbtag}.rollup(sum, 3600)
+
+
+---- Timeboard
+
+{
+    "viz": "timeseries",
+    "requests": [
+        {
+            "formulas": [
+                {
+                    "formula": "query1"
+                }
+            ],
+            "queries": [
+                {
+                    "data_source": "metrics",
+                    "name": "query1",
+                    "query": "avg:system.cpu.user{db:mongodbtag}.rollup(sum, 3600)"
+                }
+            ],
+            "response_format": "timeseries",
+            "type": "line",
+            "style": {
+                "palette": "dog_classic",
+                "type": "solid",
+                "width": "normal"
+            }
+        }
+    ],
+    "yaxis": {
+        "scale": "linear",
+        "min": "auto",
+        "max": "auto",
+        "include_zero": true,
+        "label": ""
+    },
+    "markers": []
+}
+
+
+----AVG CPU
+
+avg:system.cpu.system{host:KS-PRC5540-1642}
+
+
+---- message box variables 
+
+{{#is_alert}}   
+CPU is above 10%....do something! <@donalbrownedingle@gmail.com >
+{{/is_alert}} 
+
+{{#is_warning}}   
+CPU is above 5%...be careful <@donalbrownedingle@gmail.com> 
+{{/is_warning}}
+
+{{#is_recovery}}
+   CPU is recovering <@donalbrownedingle@gmail.com> 
+{{/is_recovery}}
+
+{{#is_no_data}}
+ There has been no data for more than 10 minutes. Check it out!!
+{{/is_no_data}}
+
+
+
+---- Rrule:
+
+FREQ=DAILY;BYDAY=SA,SU;INTERVAL=1
+
+---PY Files\Datadog\Datadog
+
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+
+
+---install virual env
+
+pip install virtualenv
+
+
+py -3 -m venv venv
+
+
+Venv\Scripts\activate
+
+
+pip install Flask
+
+python -m flask run
+
+---- find open ports
+
+Get-NetTcpConnection 
+
+---- Application up and running
+
+(venv) PS C:\Users\donal.browne\AppData\Local\Programs\Python\Python310\Lib> python hello.py runserver 127.0.0.1:5050
+
+---- Instal Ddtrace
+
+
+pip install ddtrace
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
