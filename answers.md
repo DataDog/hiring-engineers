@@ -7,7 +7,7 @@ Your answers to the questions go here.
   https://medium.com/@Aenon/mac-virtualbox-kernel-driver-error-df39e7e10cd8
   
   software: DataDog "recruitment candidate" trial
-  DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=1589e4066ca4bc3cab3a8676b1e55a89 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_mac_os.sh)"
+  DD_AGENT_MAJOR_VERSION=7 DD_API_KEY= DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_mac_os.sh)"
   Agent Report: "datadog-agent launch-gui" (add image here)
   
   build your first virtual environment:
