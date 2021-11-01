@@ -26,7 +26,7 @@ $ conda create -n PythonData python=3.7 anaconda
   ![Screen Shot 2021-10-29 at 1 57 04 PM](https://user-images.githubusercontent.com/79612565/139704323-aaf17ead-6eb3-4986-9ca2-c503bcce943d.png)
 
   
-## Collect the Metrics
+## Collecting Metrics
 ### Add Tags [Getting Started with Tags](https://docs.datadoghq.com/getting_started/tagging/)
 Manually added these in and restarted the agent:
 
@@ -42,6 +42,16 @@ I decided to use MongoDB because it can handle the chaos of large unorganized da
 ``
 pip install Flask-PyMongo
 ``
+4. start mongoDB
+``
+brew services start mongodb-community@5.0
+``
+5. start a new instance ``mongod``
+6. create a new database by typing "use admin" in the terminal
+7. create a new user:
+
+![mongo](https://user-images.githubusercontent.com/79612565/139712008-342685c0-711b-467f-a95f-a38b2525cede.png)
+
 
 ### create agent check
 
@@ -49,8 +59,10 @@ pip install Flask-PyMongo
 
 ### Bonus question Can you change the collection interval without modifying the Python check file you created?
 
-## Visualize the Data
-### Create a timeboard
+## Visualizing Data
+### Utilize the Datadog API to create a Timeboard
+
+## Monitoring Data
 
 
 
