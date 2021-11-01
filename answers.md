@@ -12,7 +12,7 @@ Then the environment was set-up to be used to complete the technical interview:
 ```
 # Installing the Datadog agent
 
-DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=d3b887843aa784abe42b47e2a18cf28b DD_SITE="datadoghq.eu" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=<API_KEY> DD_SITE="datadoghq.eu" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 
 # Installing the required binaries
 sudo apt update
