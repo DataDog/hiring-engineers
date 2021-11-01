@@ -16,19 +16,32 @@ $ conda create -n PythonData python=3.7 anaconda
 ``
   
   software: DataDog "recruitment candidate" trial
+  Plug in the API (key removed for this exercise)
   ``
   DD_AGENT_MAJOR_VERSION=7 DD_API_KEY= DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_mac_os.sh)"
   ``
-  Agent Report: "datadog-agent launch-gui" (add image here)
-  
+  Agent Report: "datadog-agent launch-gui"
+  ![Screen Shot 2021-10-29 at 1 57 13 PM](https://user-images.githubusercontent.com/79612565/139704234-e461b6ee-3953-4813-934f-3c346add8fc3.png)
+
+  ![Screen Shot 2021-10-29 at 1 57 04 PM](https://user-images.githubusercontent.com/79612565/139704323-aaf17ead-6eb3-4986-9ca2-c503bcce943d.png)
+
   
 ## Collect the Metrics
-### Add Tags show screenshot
+### Add Tags [Getting Started with Tags](https://docs.datadoghq.com/getting_started/tagging/)
+Manually added these in and restarted the agent:
+
+![tag](https://user-images.githubusercontent.com/79612565/139706532-ec3da610-a043-4bc8-9eee-f33bb66f64ed.png)
+![host](https://user-images.githubusercontent.com/79612565/139706545-862ef6a5-f91c-4fcb-86d7-7994d80b0220.png)
+
 
 ### install database and install datadog integration for database
 I decided to use MongoDB because it can handle the chaos of large unorganized data since it's not a structured database, anticipating different data strucutres and types. [Here's the documentation](https://docs.datadoghq.com/integrations/mongo/?tab=standalone)
 1. make sure the environment is active
 2. [install mongo for Mac](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
+3. Flask is needed for later so install it now
+``
+pip install Flask-PyMongo
+``
 
 ### create agent check
 
