@@ -38,7 +38,7 @@ Manually added these in and restarted the agent:
 ![host](https://user-images.githubusercontent.com/79612565/139706545-862ef6a5-f91c-4fcb-86d7-7994d80b0220.png)
 
 
-### install database and install datadog integration for database
+### Install a database then install datadog integration for your database
 I decided to use MongoDB because it can handle the chaos of large unorganized data since it's not a structured database, anticipating different data strucutres and types. [Here's the documentation](https://docs.datadoghq.com/integrations/mongo/?tab=standalone)
 1. make sure the environment is active ``$ conda activate PythonData``
 2. [install mongo for Mac](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
@@ -72,8 +72,9 @@ After restarting the agent I can see **mongoDB** has been integrated showing up 
 
 
 
-### Custom Agent Check
+### Create a Custom Agent Check
 [Datadog Documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) to create an agent check
+I watched [this](https://www.youtube.com/watch?v=kGKc7423744&ab_channel=Datadog) video owned by Datadog several times to better udnerstand the file structures and other important things to note such as both of the files needing the exact same name. From here I was able to navigate the directory in my terminal and create these:
 1. Navigate to ``/opt/datadog-agent/check.d`` create a python file my_metric.py ``touch my_metric.py``
 2. Navigate to ``/opt/datadog-agent/conf.d`` create a .yaml ``touch my_metric.yaml``
 3. use random function to generate a series [found on stackoverflow](https://stackoverflow.com/questions/67694523/python-generate-random-number)
@@ -98,15 +99,30 @@ class HelloCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', random.randint(0,1000))
 ````
-6. Run this in the terminal using ``datadog-agent check my_metric`` from the documentation
-7. I got an error ``AttributeError: module 'random' has no attribute 'randit'`` because I had a spelling error. Once I fixed that my_metric was running:
+6. now it's time to set up the my_metric.yaml. I used the [documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) and copied the code:
+
+```
+instances: [{}]
+```
+
+8. Verify by running  in the terminal using ``datadog-agent check my_metric`` from the documentation
+9. I got an error ``AttributeError: module 'random' has no attribute 'randit'`` because I had a spelling error. Once I fixed that my_metric was running:
 ![metric_mispell](https://user-images.githubusercontent.com/79612565/139769636-f0102b17-5b7e-4ae3-bd90-b5b1fef91f6e.png)
 
 **SUCESS!**
 ![metric_success](https://user-images.githubusercontent.com/79612565/139769661-c2ccb1f5-4c42-450c-88ad-07eaa9ed2057.png)
 
 
-### change check's collection interval metric
+### Change the agent check's collection interval metric
+Change this to submit once every 45 seconds
+1. go back to my_metric.yaml
+2. update the code:
+
+````
+init_config:
+instances:
+  - min_collection_interval: 45
+ ````
 
 ### Bonus question Can you change the collection interval without modifying the Python check file you created?
 
