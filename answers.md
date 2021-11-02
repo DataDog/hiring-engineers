@@ -135,6 +135,7 @@ instances:
 
 ![APP_KEY](https://user-images.githubusercontent.com/79612565/139923897-2a933996-7e2b-4b05-a2a0-f23af90ee8b7.png)
 
+*Remember to hide your API/APP Keys!! I created a config.py file and added this to my .gitignore*
 
 **Next build out the visualizations using JSON. I created a python file timeboard.py and tried to follow along to create the code**
 *This was tough! Some resources I leveraged:*
