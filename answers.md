@@ -213,4 +213,4 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 I love the ocean and surfing is a huge passion. With the pandemic pushing everyone outdoors for fresh air, safe quality time, and some exercise, many of my favorite breaks are crowded to the point of becoming unsafe. While I can watch the surfline cams all day, I can't know how busy the parking lots to access these breaks might be. 
 
-  
+ 
