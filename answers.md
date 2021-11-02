@@ -30,7 +30,7 @@ $ conda create -n PythonData python=3.7 anaconda
   ![Screen Shot 2021-10-29 at 1 57 04 PM](https://user-images.githubusercontent.com/79612565/139704323-aaf17ead-6eb3-4986-9ca2-c503bcce943d.png)
 
   
-## Collecting Metrics
+## Collecting Metrics:
 ### Add Tags [Getting Started with Tags](https://docs.datadoghq.com/getting_started/tagging/)
 Manually added these in and restarted the agent:
 
@@ -126,24 +126,90 @@ instances:
 
 **Bonus** *Can you change the collection interval without modifying the Python check file you created?* YES! amend the my_metric.yaml file to do this.
 
-## Visualizing Data
+## Visualizing Data:
 ### Utilize the Datadog API to create a Timeboard
-First get the tools ready:
+**First get the tools ready**:
 1. install Python onto your machine (I already have this)
 2. Get the Datadog library by running ``pip install datadog`` in your terminal with evnironment active
 3. make sure you have your ``API_KEY`` and get an ``APP_KEY`` here:
 
 ![APP_KEY](https://user-images.githubusercontent.com/79612565/139923897-2a933996-7e2b-4b05-a2a0-f23af90ee8b7.png)
 
-Next I used [this](https://docs.datadoghq.com/dashboards/graphing_json/) code and reformatted it to create:
+
+**Next build out the visualizations using JSON. I created a python file timeboard.py and tried to follow along to create the code**
+*This was tough! Some resources I leveraged:*
+[video](https://www.youtube.com/watch?v=KoKtlF2NShc&ab_channel=Datadog)
+[Zero2Datadog](https://zero2datadog.readthedocs.io/en/latest/visualize.html#)
+[Creating a Dashboard](https://docs.datadoghq.com/api/latest/dashboards/)
 
 - A custom metric scoped over my host using ``my_metric``
 - An anomoly metric using MongoDB which you can choose from [here](https://docs.datadoghq.com/integrations/mongo/?tab=standalone) or on the hostmap. I went with 
 - Apply the rollup function to the custom metric ``my_metric``
 
-## Monitoring Data
+
+**Finally take some screenshots of the dashboard in the UI**
+- set the Timeboard to 5 minutes:
+
+![timeboard](https://user-images.githubusercontent.com/79612565/139952613-28454271-5f66-4749-9e3d-522376c44376.png)
+
+- Take a snapshot of the anomolies graph and @ yourself:
+![dash_share](https://user-images.githubusercontent.com/79612565/139952754-7ffad950-7958-43f3-b0e4-50a9301985f7.png)
+
+
+**What is the Anomaly graph displaying?** anOmoOOlIeSS
 
 
 
+
+
+## Monitoring Data:
+### Create a new metric:
+1. From the *Menu > Monitors >New Monitors > Metric*
+2. Change the metric to the custom metric ``my_metric``
+3. change the warning threshold to 500
+4. change the alerting threshold to 800
+5. Ensure notifications for No Data past 10 minutes
+
+![monitor](https://user-images.githubusercontent.com/79612565/139957386-ab3cf981-2498-4dcc-bf1a-1322f1c6b7b2.png)
+
+### [Configure the monitor's message](https://docs.datadoghq.com/monitors/create/configuration/?tab=thresholdalert)
+![monitors](https://user-images.githubusercontent.com/79612565/139959346-5fd64db1-4a10-47a6-a31c-28c2dcdab4e8.png)
+
+**ALERT**
+![alert](https://user-images.githubusercontent.com/79612565/139959363-8d9d8351-a58a-4757-8557-4f71226d6cae.png)
+
+**WARNING**
+![warning](https://user-images.githubusercontent.com/79612565/139959381-a3c99576-d8ce-4c4d-9d58-2b2a78c7b3c0.png)
+
+**MISSING DATA**
+![no_data](https://user-images.githubusercontent.com/79612565/139959410-fb7eff6f-b15f-4338-a286-71c76951c1b8.png)
+
+
+**Bonus Question:** Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+- One that silences it from 7pm to 9am daily on M-F,
+- And one that silences it all day on Sat-Sun.
+- Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+1. *Monitor > Manage Downtime* Then click [**Schdule Downtime**](https://docs.datadoghq.com/monitors/notify/downtimes/?tab=bymonitorname)
+2. Create a recurring downtime for days of the week and weekends. I assumed PDT since this is my timezone, but this couuld be based on HQ timezone.
+![downtime_create](https://user-images.githubusercontent.com/79612565/139960670-fe2cecf3-bcd4-4a9e-8cc0-f1b0c2701de8.png)
+
+![weekday](https://user-images.githubusercontent.com/79612565/139960717-d2565fea-63be-4572-b570-1de70dd55057.png)
+
+![weekend](https://user-images.githubusercontent.com/79612565/139960731-5de73b01-62e2-4fb4-b401-020f4974643e.png)
+
+![weekday_downtime](https://user-images.githubusercontent.com/79612565/139960751-ccea249b-b5e9-4d4b-8163-e89bb58237c3.png)
+
+![weekend_downtime](https://user-images.githubusercontent.com/79612565/139960759-a980e593-9116-47e0-86eb-ccde0939ea9c.png)
+
+
+## Collecting APM Data:
+
+
+## To Wrap it Up:
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+I love the ocean and surfing is a huge passion. With the pandemic pushing everyone outdoors for fresh air, safe quality time, and some exercise, many of my favorite breaks are crowded to the point of becoming unsafe. While I can watch the surfline cams all day, I can't know how busy the parking lots to access these breaks might be. 
 
   
