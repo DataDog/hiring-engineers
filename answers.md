@@ -3,19 +3,22 @@ Your answers to the questions go here.
   
   [Set up Virtual Box and Vagrant](https://github.com/hashicorp/vagrant/blob/master/README.md)
   
-  ** If you're using a mac you might need to enable [this](https://medium.com/@Aenon/mac-virtualbox-kernel-driver-error-df39e7e10cd8)on "System Preferences| Security & Privacy" **
+  ** If you're using a mac you might need to enable [this](https://medium.com/@Aenon/mac-virtualbox-kernel-driver-error-df39e7e10cd8) "System Preferences| Security & Privacy" **
   
-build your first virtual environment:
+1. build your first virtual environment:
+
 ``
 vagrant init hashicorp/bionic64
+
 vagrant up
 ``
-Unforutnately this wasn't working for me, so I decided to create a virutal environment on my MacOS since this would still allow me an isolated working coding environment to install different versions of software for this project:
+Unforutnately this wasn't working for me, so I decided to create a virutal environment on my MacOS since this would still allow me an isolated working coding environment to install different versions of software for this project. I'll be using VSCode to edit:
+
 ``
 $ conda create -n PythonData python=3.7 anaconda
 ``
   
-  software: DataDog "recruitment candidate" trial
+  **Software:** DataDog "recruitment candidate" trial
   Plug in the API (key removed for this exercise)
   ``
   DD_AGENT_MAJOR_VERSION=7 DD_API_KEY= DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_mac_os.sh)"
@@ -36,7 +39,7 @@ Manually added these in and restarted the agent:
 
 ### install database and install datadog integration for database
 I decided to use MongoDB because it can handle the chaos of large unorganized data since it's not a structured database, anticipating different data strucutres and types. [Here's the documentation](https://docs.datadoghq.com/integrations/mongo/?tab=standalone)
-1. make sure the environment is active
+1. make sure the environment is active ``$ conda activate PythonData``
 2. [install mongo for Mac](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
 3. Flask is needed for later so install it now
 ``
@@ -59,7 +62,7 @@ brew services start mongodb-community@5.0
 **Warning** mongoDB was not showing up on my integrations so I had to go back and re-do my tags and restart the agent
 ![mongo_wrong](https://user-images.githubusercontent.com/79612565/139769242-8b4e995d-76f1-4161-840b-04e5e2d7ced1.png)
 
-9. Update new tags
+9. I decided to update my tags in the conf.yaml file using
 ![tags_new](https://user-images.githubusercontent.com/79612565/139769278-cb11a2e3-1c71-4b5e-a5f0-c82078ed6681.png)
 
 After restarting the agent I can see **mongoDB** has been integrated showing up on my hostmap and created a dashboard!
