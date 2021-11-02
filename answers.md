@@ -46,14 +46,61 @@ pip install Flask-PyMongo
 ``
 brew services start mongodb-community@5.0
 ``
-5. start a new instance ``mongod``
+5. in a new terminal shell start a new instance ``mongod``
 6. create a new database by typing "use admin" in the terminal
 7. create a new user:
 
 ![mongo](https://user-images.githubusercontent.com/79612565/139712008-342685c0-711b-467f-a95f-a38b2525cede.png)
 
+8. edit conf.yaml so it reflects your new user details
+![mongo_code](https://user-images.githubusercontent.com/79612565/139769209-fe7ac014-1eab-426c-be95-b90a90ca409f.png)
 
-### create agent check
+
+**Warning** mongoDB was not showing up on my integrations so I had to go back and re-do my tags and restart the agent
+![mongo_wrong](https://user-images.githubusercontent.com/79612565/139769242-8b4e995d-76f1-4161-840b-04e5e2d7ced1.png)
+
+9. Update new tags
+![tags_new](https://user-images.githubusercontent.com/79612565/139769278-cb11a2e3-1c71-4b5e-a5f0-c82078ed6681.png)
+
+After restarting the agent I can see **mongoDB** has been integrated showing up on my hostmap and created a dashboard!
+![mongo_correct](https://user-images.githubusercontent.com/79612565/139769323-92adaae7-c11f-4391-9d65-7bb100916dff.png)
+![mongo_dashboard](https://user-images.githubusercontent.com/79612565/139769336-bab1fad5-f0e6-4963-a0a0-fd3ba48e0ef5.png)
+
+
+
+### Custom Agent Check
+[Datadog Documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7) to create an agent check
+1. Navigate to ``/opt/datadog-agent/check.d`` create a python file my_metric.py ``touch my_metric.py``
+2. Navigate to ``/opt/datadog-agent/conf.d`` create a .yaml ``touch my_metric.yaml``
+3. use random function to generate a series [found on stackoverflow](https://stackoverflow.com/questions/67694523/python-generate-random-number)
+4. I copied the documentation code and used the ``randint`` function to generate a random number
+
+````
+#use random function
+import random
+
+#the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+#content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', random.randint(0,1000))
+````
+6. Run this in the terminal using ``datadog-agent check my_metric`` from the documentation
+7. I got an error ``AttributeError: module 'random' has no attribute 'randit'`` because I had a spelling error. Once I fixed that my_metric was running:
+![metric_mispell](https://user-images.githubusercontent.com/79612565/139769636-f0102b17-5b7e-4ae3-bd90-b5b1fef91f6e.png)
+
+**SUCESS!**
+![metric_success](https://user-images.githubusercontent.com/79612565/139769661-c2ccb1f5-4c42-450c-88ad-07eaa9ed2057.png)
+
 
 ### change check's collection interval metric
 
