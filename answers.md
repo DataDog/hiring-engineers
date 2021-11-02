@@ -50,7 +50,7 @@ pip install Flask-PyMongo
 brew services start mongodb-community@5.0
 ``
 5. in a new terminal shell start a new instance ``mongod``
-6. create a new database by typing "use admin" in the terminal
+6. create a new database by typing "use" and the database name you want to use in the terminal. I'm using "use admin" since it's already in the documentation.
 7. create a new user:
 
 ![mongo](https://user-images.githubusercontent.com/79612565/139712008-342685c0-711b-467f-a95f-a38b2525cede.png)
