@@ -7,11 +7,12 @@ Your answers to the questions go here.
   
 1. build your first virtual environment:
 
-``
+````
 vagrant init hashicorp/bionic64
 
 vagrant up
-``
+````
+
 Unforutnately this wasn't working for me, so I decided to create a virutal environment on my MacOS since this would still allow me an isolated working coding environment to install different versions of software for this project. I'll be using VSCode to edit:
 
 ``
