@@ -124,10 +124,13 @@ instances:
   - min_collection_interval: 45
  ````
 
-### Bonus question Can you change the collection interval without modifying the Python check file you created?
+**Bonus** *Can you change the collection interval without modifying the Python check file you created?* YES! amend the my_metric.yaml file to do this.
 
 ## Visualizing Data
 ### Utilize the Datadog API to create a Timeboard
+1. install Python onto your machine (I already have this)
+2. Get the Datadog library by running ``pip install datadog`` in your terminal with evnironment active
+3. 
 
 ## Monitoring Data
 
