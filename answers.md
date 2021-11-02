@@ -128,9 +128,18 @@ instances:
 
 ## Visualizing Data
 ### Utilize the Datadog API to create a Timeboard
+First get the tools ready:
 1. install Python onto your machine (I already have this)
 2. Get the Datadog library by running ``pip install datadog`` in your terminal with evnironment active
-3. 
+3. make sure you have your ``API_KEY`` and get an ``APP_KEY`` here:
+
+![APP_KEY](https://user-images.githubusercontent.com/79612565/139923897-2a933996-7e2b-4b05-a2a0-f23af90ee8b7.png)
+
+Next I used [this](https://docs.datadoghq.com/dashboards/graphing_json/) code and reformatted it to create:
+
+- A custom metric scoped over my host using ``my_metric``
+- An anomoly metric using MongoDB which you can choose from [here](https://docs.datadoghq.com/integrations/mongo/?tab=standalone) or on the hostmap. I went with 
+- Apply the rollup function to the custom metric ``my_metric``
 
 ## Monitoring Data
 
