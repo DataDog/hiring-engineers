@@ -5,7 +5,7 @@ Your answers to the questions go here.
   
   ** If you're using a mac you might need to enable [this](https://medium.com/@Aenon/mac-virtualbox-kernel-driver-error-df39e7e10cd8) "System Preferences| Security & Privacy" **
   
-1. build your first virtual environment:
+1. Build your first virtual environment:
 
 ````
 vagrant init hashicorp/bionic64
@@ -19,13 +19,13 @@ Unforutnately this wasn't working for me, so I decided to create a virutal envir
 $ conda create -n PythonData python=3.7 anaconda
 ``
   
-  **Software:** DataDog "recruitment candidate" trial
+2.  **Software:** DataDog "recruitment candidate" trial
   Plug in the API (key removed for this exercise)
   ``
   DD_AGENT_MAJOR_VERSION=7 DD_API_KEY= DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_mac_os.sh)"
   ``
   
-  **Run Agent Report** ``datadog-agent launch-gui``
+3. **Run Agent Report** ``datadog-agent launch-gui``
   ![Screen Shot 2021-10-29 at 1 57 13 PM](https://user-images.githubusercontent.com/79612565/139704234-e461b6ee-3953-4813-934f-3c346add8fc3.png)
 
   ![Screen Shot 2021-10-29 at 1 57 04 PM](https://user-images.githubusercontent.com/79612565/139704323-aaf17ead-6eb3-4986-9ca2-c503bcce943d.png)
@@ -41,19 +41,19 @@ Manually added these in and restarted the agent:
 
 ### Install a database then install datadog integration for your database
 I decided to use MongoDB because it can handle the chaos of large unorganized data since it's not a structured database, anticipating different data strucutres and types. [Here's the documentation](https://docs.datadoghq.com/integrations/mongo/?tab=standalone)
-1. make sure the environment is active ``$ conda activate PythonData``
+1. Make sure the environment is active: ``$ conda activate PythonData``
 2. [install mongo for Mac](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
-3. Flask is needed for later so install it now
+3. Flask is needed for later so install it now:
 ``
 pip install Flask-PyMongo
 ``
-4. start mongoDB
+4. Start mongoDB:
 ``
 brew services start mongodb-community@5.0
 ``
-5. in a new terminal shell start a new instance ``mongod``
-6. create a new database by typing "use" and the database name you want to use in the terminal. I'm using "use admin" since it's already in the documentation.
-7. create a new user:
+5. In a new terminal shell start a new instance: ``mongod``
+6. Create a new database by typing "use" and the database name you want to use in the terminal. I'm using ``use admin`` since admin is already in the documentation.
+7. Create a new user:
 
 ![mongo](https://user-images.githubusercontent.com/79612565/139712008-342685c0-711b-467f-a95f-a38b2525cede.png)
 
@@ -64,7 +64,7 @@ brew services start mongodb-community@5.0
 **Warning** mongoDB was not showing up on my integrations so I had to go back and re-do my tags and restart the agent
 ![mongo_wrong](https://user-images.githubusercontent.com/79612565/139769242-8b4e995d-76f1-4161-840b-04e5e2d7ced1.png)
 
-9. I decided to update my tags in the ``conf.yaml`` file using
+9. I decided to update my tags in the ``conf.yaml`` file using:
 ![tags_new](https://user-images.githubusercontent.com/79612565/139769278-cb11a2e3-1c71-4b5e-a5f0-c82078ed6681.png)
 
 After restarting the agent I can see **mongoDB** has been integrated showing up on my hostmap and created a dashboard!
@@ -78,7 +78,7 @@ After restarting the agent I can see **mongoDB** has been integrated showing up 
 I watched [this](https://www.youtube.com/watch?v=kGKc7423744&ab_channel=Datadog) video owned by Datadog several times to better udnerstand the file structures and other important things to note such as both of the files needing the exact same name. From here I was able to navigate the directory in my terminal and create these:
 1. Navigate to ``/opt/datadog-agent/check.d`` create a python file my_metric.py ``touch my_metric.py``
 2. Navigate to ``/opt/datadog-agent/conf.d`` create a .yaml ``touch my_metric.yaml``
-3. use random function to generate a series [found on stackoverflow](https://stackoverflow.com/questions/67694523/python-generate-random-number)
+3. Use random function to generate a series [found on stackoverflow](https://stackoverflow.com/questions/67694523/python-generate-random-number)
 4. I copied the documentation code and used the ``randint`` function to generate a random number
 
 ````
@@ -100,7 +100,7 @@ class HelloCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', random.randint(0,1000))
 ````
-6. now it's time to set up the my_metric.yaml. I used the [documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) and copied the code:
+6. Now it's time to set up the my_metric.yaml. I used the [documentation](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#collection-interval) and copied the code:
 
 ```
 instances: [{}]
@@ -116,8 +116,8 @@ instances: [{}]
 
 ### Change the agent check's collection interval metric
 Change this to submit once every 45 seconds
-1. go back to ``my_metric.yaml``
-2. update the code:
+1. Go back to ``my_metric.yaml``
+2. Update the code:
 
 ````
 init_config:
@@ -130,9 +130,9 @@ instances:
 ## Visualizing Data:
 ### Utilize the Datadog API to create a Timeboard
 **First get the tools ready**:
-1. install Python onto your machine (I already have this)
+1. Install Python onto your machine (I already have this)
 2. Get the Datadog library by running ``pip install datadog`` in your terminal with evnironment active
-3. make sure you have your ``API_KEY`` and get an ``APP_KEY`` here:
+3. Make sure you have your ``API_KEY`` and get an ``APP_KEY`` here:
 
 ![APP_KEY](https://user-images.githubusercontent.com/79612565/139923897-2a933996-7e2b-4b05-a2a0-f23af90ee8b7.png)
 
@@ -145,8 +145,85 @@ instances:
 [Creating a Dashboard](https://docs.datadoghq.com/api/latest/dashboards/)
 
 - A custom metric scoped over my host using ``my_metric``
-- An anomoly metric using MongoDB which you can choose from [here](https://docs.datadoghq.com/integrations/mongo/?tab=standalone) or on the hostmap. I went with 
+- An anomoly metric using MongoDB which you can choose from [here](https://docs.datadoghq.com/integrations/mongo/?tab=standalone) or on the hostmap. I went with **mongodb.mem.resident** since I'm always out of memory. 
 - Apply the rollup function to the custom metric ``my_metric``
+
+1. I opened the dashboard and saw you can export the JSON format:
+![json_timeboard](https://user-images.githubusercontent.com/79612565/140169939-c2e37180-1c16-4cc0-be70-982650a39d72.png)
+
+2. I updated the code and decided to put all the widgets in one block
+
+````
+from datadog import initialize, api
+
+# from config import API
+#from config import APP
+
+options = {
+    'api_key': 'API',
+    'app_key': 'APP'
+}
+
+initialize(**options)
+
+title = 'Delaney\'s Dashboard'
+widgets = [
+    { #First Visualization: My Custom Metric scoped over my host Khalils-MBP
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:my_metric{host:Delaneys-MacBook-Air.local}'}],
+        'title': 'my_metric timeboard'
+    }
+},
+
+    { #Second Visualization: MongoDB's memory resident metric with the anomaly function applied
+     'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': "anomalies(avg:mongodb.mem.resident{*}, 'basic', 2)"}],
+        'title': 'MongoDB mem.resident anomalies'
+    }  
+},
+
+    { # Third Visualization: My Custom Metric with the rollup function applied 
+      #to sum up all the points for the past hour into one bucket (1 hour = 3600 seconds)
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:my_metric{*}.rollup(sum, 3600)'}],
+        'title': 'my_metric rolling hour sum'   
+    }
+}]
+
+layout_type = 'ordered'
+description = 'A customized dashboard'
+is_read_only = True
+notify_list = ['delaneydickson@gmail.com']
+template_variables = [{
+    'name': 'Custom Timeboard',
+    'prefix': 'host',
+    'default': 'my-host'
+}]
+
+saved_views = [{
+    'name': 'Saved views for hostname 2',
+    'template_variables': [{'name': 'host', 'value': 'test'}]}
+]
+
+api.Dashboard.create(title=title,
+                     widgets=widgets,
+                     layout_type=layout_type,
+                     description=description,
+                     is_read_only=is_read_only,
+                     notify_list=notify_list,
+                     template_variables=template_variables,
+                     template_variable_presets=saved_views) 
+ ````
+ 
+ 3. I launched the dashboard:
+![my_dashboard](https://user-images.githubusercontent.com/79612565/140170832-0cd03e32-51cf-4ca5-803b-ff8fdaa6ff1c.png)
+
 
 
 **Finally take some screenshots of the dashboard in the UI**
@@ -165,8 +242,8 @@ instances:
 ### Create a new metric:
 1. From the *Menu > Monitors >New Monitors > Metric*
 2. Change the metric to the custom metric ``my_metric``
-3. change the warning threshold to 500
-4. change the alerting threshold to 800
+3. Change the warning threshold to 500
+4. Change the alerting threshold to 800
 5. Ensure notifications for No Data past 10 minutes
 
 ![monitor](https://user-images.githubusercontent.com/79612565/139957386-ab3cf981-2498-4dcc-bf1a-1322f1c6b7b2.png)
@@ -190,8 +267,8 @@ instances:
 - And one that silences it all day on Sat-Sun.
 - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-1. *Monitor > Manage Downtime* Then click [**Schdule Downtime**](https://docs.datadoghq.com/monitors/notify/downtimes/?tab=bymonitorname)
-2. Create a recurring downtime for days of the week and weekends. I assumed PDT since this is my timezone, but this couuld be based on HQ timezone.
+1. *Monitor > Manage Downtime* Then click [**Schedule Downtime**](https://docs.datadoghq.com/monitors/notify/downtimes/?tab=bymonitorname)
+2. Create a recurring downtime for days of the week and weekends. I assumed PDT since this is my timezone, but this couuld be based on HQ timezone so be aware of this.
 ![downtime_create](https://user-images.githubusercontent.com/79612565/139960670-fe2cecf3-bcd4-4a9e-8cc0-f1b0c2701de8.png)
 
 ![weekday](https://user-images.githubusercontent.com/79612565/139960717-d2565fea-63be-4572-b570-1de70dd55057.png)
@@ -205,7 +282,7 @@ instances:
 
 ## Collecting APM Data:
 
-https://www.youtube.com/watch?v=dbkd5sRTCIw&ab_channel=Datadog
+I first watched [this video](https://www.youtube.com/watch?v=dbkd5sRTCIw&ab_channel=Datadog)
 
 ## Final Steps:
 Github updated its operations on August 13, 2021 to require an access token when using command line access so I was having some trouble pushing to this repo. I followed [This Docmentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)  
@@ -213,6 +290,6 @@ Github updated its operations on August 13, 2021 to require an access token when
 ## To Wrap it Up:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-Something that's affected my life immensively since moving to California 3 years ago are the fires and smoke. What's more heartbreaking than a natural wildfire is one that could have been avoided. PGE can use datadog to ensure systems are functioning correctly and alert for anomolies to hopefully mitigate disasters such as the 2020 fires. Further to this Datadog can be used to monitor air quality metrics since air toxicity can be fatal and the air quality index can give a false positive, for example planning to go camping only to arrive and have high partiulate matter (PM).
+Something that's affected my life immensively since moving to California 3 years ago are the fires and smoke. What's more heartbreaking than a natural wildfire is one that could have been avoided. PGE can use datadog to ensure systems are functioning correctly and alert for anomolies to hopefully mitigate disasters such as the 2020 fires. Further to this Datadog can be used to monitor air quality metrics since air toxicity can be fatal and the air quality index can give a false positive which can seriously disrupt your life! For example breathing in high partiulate matter (PM).
  
 
