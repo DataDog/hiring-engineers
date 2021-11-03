@@ -24,7 +24,8 @@ $ conda create -n PythonData python=3.7 anaconda
   ``
   DD_AGENT_MAJOR_VERSION=7 DD_API_KEY= DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_mac_os.sh)"
   ``
-  Agent Report: "datadog-agent launch-gui"
+  
+  **Run Agent Report** ``datadog-agent launch-gui``
   ![Screen Shot 2021-10-29 at 1 57 13 PM](https://user-images.githubusercontent.com/79612565/139704234-e461b6ee-3953-4813-934f-3c346add8fc3.png)
 
   ![Screen Shot 2021-10-29 at 1 57 04 PM](https://user-images.githubusercontent.com/79612565/139704323-aaf17ead-6eb3-4986-9ca2-c503bcce943d.png)
@@ -63,7 +64,7 @@ brew services start mongodb-community@5.0
 **Warning** mongoDB was not showing up on my integrations so I had to go back and re-do my tags and restart the agent
 ![mongo_wrong](https://user-images.githubusercontent.com/79612565/139769242-8b4e995d-76f1-4161-840b-04e5e2d7ced1.png)
 
-9. I decided to update my tags in the conf.yaml file using
+9. I decided to update my tags in the ``conf.yaml`` file using
 ![tags_new](https://user-images.githubusercontent.com/79612565/139769278-cb11a2e3-1c71-4b5e-a5f0-c82078ed6681.png)
 
 After restarting the agent I can see **mongoDB** has been integrated showing up on my hostmap and created a dashboard!
@@ -115,7 +116,7 @@ instances: [{}]
 
 ### Change the agent check's collection interval metric
 Change this to submit once every 45 seconds
-1. go back to my_metric.yaml
+1. go back to ``my_metric.yaml``
 2. update the code:
 
 ````
@@ -157,10 +158,7 @@ instances:
 ![dash_share](https://user-images.githubusercontent.com/79612565/139952754-7ffad950-7958-43f3-b0e4-50a9301985f7.png)
 
 
-**What is the Anomaly graph displaying?** anOmoOOlIeSS
-
-
-
+**What is the Anomaly graph displaying?** The Anomoly graph is important because it presents any suspicious behaviour for example if a metric has historically performed a certain way but makes a change in some way or acts differnently. The graph provides a visualization of this performance as it relates to MongoDB.
 
 
 ## Monitoring Data:
