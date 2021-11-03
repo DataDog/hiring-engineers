@@ -325,7 +325,7 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
-    `````
+`````
     
 4. I went onto the APM **Getting Started** and manually created ```DD_SERVICE="app" DD_ENV="dev" DD_LOGS_INJECTION=true ddtrace-run python app.py``` to run in my command line
 
