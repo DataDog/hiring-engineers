@@ -2,9 +2,12 @@
 *Anything's Paw-sible!*
 
 Thank you for giving me the opporutnity to work on this project! 
+
 Name: Delaney
+
 Position: Commercial SE
-Link to Final Dashboard: [here]
+
+Link to Dashboard: [here](https://p.datadoghq.com/sb/2057129a-3536-11ec-9951-da7ad0900002-256d4be67bac724973510b1d36d51a66)
 
 ## Prerequisites - Setup the environment
   
@@ -288,8 +291,56 @@ api.Dashboard.create(title=title,
 
 
 ## Collecting APM Data:
+I already had installed flask with mongoDB so now I needed to:
+1. ``pip isntall ddtrance``
+2. I created a python file ``app.py`` in the ``conf.d`` folder: ``touch app.py`` and used the code snippet provided:
+
+`````
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+    `````
+    
+4. I went onto the APM **Getting Started** and manually created ```DD_SERVICE="app" DD_ENV="dev" DD_LOGS_INJECTION=true ddtrace-run python app.py``` to run in my command line
+
+This wasn't working for me so I did a few things:
 
 I first watched [this video](https://www.youtube.com/watch?v=dbkd5sRTCIw&ab_channel=Datadog)
+I reverted back to my coursework where we created our first flask app and realized my python file was running in the wrong environment! 
+![flask_app](https://user-images.githubusercontent.com/79612565/140232926-8e07ec20-65fa-4cce-a584-56303f912648.png)
+
+![apm_dash](https://user-images.githubusercontent.com/79612565/140232945-e93dcc7c-9167-4b8c-ab23-5d7298f5260a.png)
+
+![apm_dash_2](https://user-images.githubusercontent.com/79612565/140232960-e92b488f-5090-44a8-a30e-4d012e17a50b.png)
+
+
+I exported these to my dashboard. Here is the link to my final [Dashboard](https://p.datadoghq.com/sb/2057129a-3536-11ec-9951-da7ad0900002-256d4be67bac724973510b1d36d51a66)
+
 
 ## Final Steps:
 Github updated its operations on August 13, 2021 to require an access token when using command line access so I was having some trouble pushing to this repo. I followed [This Docmentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)  
