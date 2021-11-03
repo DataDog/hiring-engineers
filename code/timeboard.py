@@ -1,8 +1,8 @@
 from datadog import initialize, api
 
 options = {
-    'api_key': '1589e4066ca4bc3cab3a8676b1e55a89',
-    'app_key': '55cd01bdafc7e69dadf3f275b25113b41e834899'
+    'api_key': 'API',
+    'app_key': 'APP'
 }
 
 initialize(**options)
