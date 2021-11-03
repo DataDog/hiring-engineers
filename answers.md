@@ -75,6 +75,7 @@ brew services start mongodb-community@5.0
 ![mongo_wrong](https://user-images.githubusercontent.com/79612565/139769242-8b4e995d-76f1-4161-840b-04e5e2d7ced1.png)
 
 9. I decided to update my tags in the ``conf.yaml`` file using:
+
 ![tags_new](https://user-images.githubusercontent.com/79612565/139769278-cb11a2e3-1c71-4b5e-a5f0-c82078ed6681.png)
 
 After restarting the agent I can see **mongoDB** has been integrated showing up on my hostmap and created a dashboard!
@@ -291,7 +292,7 @@ api.Dashboard.create(title=title,
 
 
 ## Collecting APM Data:
-I already had installed flask with mongoDB so now I needed to:
+I first looked at the [documentation](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers) I already had installed flask with mongoDB so now I needed to:
 1. ``pip isntall ddtrance``
 2. I created a python file ``app.py`` in the ``conf.d`` folder: ``touch app.py`` and used the code snippet provided:
 
@@ -331,7 +332,9 @@ if __name__ == '__main__':
 This wasn't working for me so I did a few things:
 
 I first watched [this video](https://www.youtube.com/watch?v=dbkd5sRTCIw&ab_channel=Datadog)
-I reverted back to my coursework where we created our first flask app and realized my python file was running in the wrong environment! 
+I reverted back to my coursework where we created our first flask app and realized my python file was running in the wrong environment!
+
+Once I fixed that, I ran this in the terminal:
 ![flask_app](https://user-images.githubusercontent.com/79612565/140232926-8e07ec20-65fa-4cce-a584-56303f912648.png)
 
 ![apm_dash](https://user-images.githubusercontent.com/79612565/140232945-e93dcc7c-9167-4b8c-ab23-5d7298f5260a.png)
@@ -341,6 +344,7 @@ I reverted back to my coursework where we created our first flask app and realiz
 
 I exported these to my dashboard. Here is the link to my final [Dashboard](https://p.datadoghq.com/sb/2057129a-3536-11ec-9951-da7ad0900002-256d4be67bac724973510b1d36d51a66)
 
+**What is the difference between a Service and a Resource?** A service groups together endpoints, a resource is an action given to a service. [reference](https://docs.datadoghq.com/tracing/visualization/#pagetitle) 
 
 ## Final Steps:
 Github updated its operations on August 13, 2021 to require an access token when using command line access so I was having some trouble pushing to this repo. I followed [This Docmentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)  
