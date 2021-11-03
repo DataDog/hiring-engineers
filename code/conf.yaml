@@ -1,0 +1,27 @@
+   #
+  - hosts:
+      - 127.0.0.1:27017
+
+    ## @param username - string - optional
+    ## The username to use for authentication.
+    username: datadog
+
+    ## @param password - string - optional
+    ## The password to use for authentication.
+    password: Andrew51!
+
+    ## @param database - string - optional
+    ## The database to collect metrics from.
+    ## This is also the authentication database to use if a `username` and `password` is set but the `authSource` is not
+    ## specified in `options`. If `database` is not set and the `authSource` is not specified in `options`,
+    ## the check will attempt to authenticate `username` to the admin database.
+    database: admin
+
+    ## @param options - mapping - optional
+    ## For a complete list of available connection options, see:
+    ## https://docs.mongodb.com/manual/reference/connection-string/#connections-connection-options
+    ##
+    ## NOTE: For monitoring replica set, do not use the replSet parameter as the Agent expects to always
+    ## connect to the same host. Instead configure one check instance for each node.
+    options:
+       authSource: admin
