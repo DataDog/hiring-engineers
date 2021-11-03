@@ -207,10 +207,12 @@ instances:
 
 ## Collecting APM Data:
 
+## Final Steps:
+Github updated its operations on August 13, 2021 to require an access token when using command line access so I was having some trouble pushing to this repo. I followed [This Docmentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)  
 
 ## To Wrap it Up:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-I love the ocean and surfing is a huge passion. With the pandemic pushing everyone outdoors for fresh air, safe quality time, and some exercise, many of my favorite breaks are crowded to the point of becoming unsafe. While I can watch the surfline cams all day, I can't know how busy the parking lots to access these breaks might be. 
-
+Something that's affected my life immensively since moving to California 3 years ago are the fires and smoke. What's more heartbreaking than a natural wildfire is one that could have been avoided. PGE can use datadog to ensure systems are functioning correctly and alert for anomolies to hopefully mitigate disasters such as the 2020 fires. Further to this Datadog can be used to monitor air quality metrics since air toxicity can be fatal and the air quality index can give a false positive, for example planning to go camping only to arrive and have high partiulate matter (PM).
  
+
