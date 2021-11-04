@@ -1,5 +1,8 @@
 from datadog import initialize, api
 
+# from config import API
+#from config import APP
+
 options = {
     'api_key': 'API',
     'app_key': 'APP'
