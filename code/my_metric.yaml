@@ -1,0 +1,5 @@
+instances:
+  - min_collection_interval: 45
+tags:
+  - metric:my_metric
+  - env:dev
