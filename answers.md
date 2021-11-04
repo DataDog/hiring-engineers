@@ -49,7 +49,7 @@ Manually added these in and restarted the agent:
 ![host](https://user-images.githubusercontent.com/79612565/139706545-862ef6a5-f91c-4fcb-86d7-7994d80b0220.png)
 
 
-### Install a database then install datadog integration for your database
+### Install a database then install datadog integration for your database:
 I decided to use MongoDB because it can handle the chaos of large unorganized data since it's not a structured database, anticipating different data strucutres and types. [Here's the documentation](https://docs.datadoghq.com/integrations/mongo/?tab=standalone)
 1. Make sure the environment is active: ``$ conda activate PythonData``
 2. [install mongo for Mac](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
@@ -67,11 +67,11 @@ brew services start mongodb-community@5.0
 
 ![mongo](https://user-images.githubusercontent.com/79612565/139712008-342685c0-711b-467f-a95f-a38b2525cede.png)
 
-8. edit conf.yaml so it reflects your new user details
+8. Edit conf.yaml so it reflects your new user details:
 ![mongo_code](https://user-images.githubusercontent.com/79612565/139769209-fe7ac014-1eab-426c-be95-b90a90ca409f.png)
 
 
-**Warning** mongoDB was not showing up on my integrations so I had to go back and re-do my tags and restart the agent
+**Warning** mongoDB was not showing up on my integrations so I had to go back and re-do my tags and restart the agent:
 ![mongo_wrong](https://user-images.githubusercontent.com/79612565/139769242-8b4e995d-76f1-4161-840b-04e5e2d7ced1.png)
 
 9. I decided to update my tags in the ``conf.yaml`` file using:
@@ -141,8 +141,8 @@ instances:
 ## Visualizing Data:
 ### Utilize the Datadog API to create a Timeboard
 **First get the tools ready**:
-1. Install Python onto your machine (I already have this)
-2. Get the Datadog library by running ``pip install datadog`` in your terminal with evnironment active
+1. Install Python onto your machine (I already have this).
+2. Get the Datadog library by running ``pip install datadog`` in your terminal with evnironment active.
 3. Make sure you have your ``API_KEY`` and get an ``APP_KEY`` here:
 
 ![APP_KEY](https://user-images.githubusercontent.com/79612565/139923897-2a933996-7e2b-4b05-a2a0-f23af90ee8b7.png)
@@ -154,6 +154,7 @@ instances:
 [video](https://www.youtube.com/watch?v=KoKtlF2NShc&ab_channel=Datadog)
 [Zero2Datadog](https://zero2datadog.readthedocs.io/en/latest/visualize.html#)
 [Creating a Dashboard](https://docs.datadoghq.com/api/latest/dashboards/)
+[Datadog Github](https://github.com/DataDog/metrics-datadog-dashboard/tree/master/dashboards)
 
 - A custom metric scoped over my host using ``my_metric``
 - An anomoly metric using MongoDB which you can choose from [here](https://docs.datadoghq.com/integrations/mongo/?tab=standalone) or on the hostmap. I went with **mongodb.mem.resident** since I'm always out of memory. 
@@ -162,7 +163,7 @@ instances:
 1. I opened the dashboard and saw you can export the JSON format:
 ![json_timeboard](https://user-images.githubusercontent.com/79612565/140169939-c2e37180-1c16-4cc0-be70-982650a39d72.png)
 
-2. I updated the code and decided to put all the widgets in one block
+2. I updated the code and decided to put all the widgets in one block:
 
 ````
 from datadog import initialize, api
@@ -251,11 +252,11 @@ api.Dashboard.create(title=title,
 
 ## Monitoring Data:
 ### Create a new metric:
-1. From the *Menu > Monitors >New Monitors > Metric*
-2. Change the metric to the custom metric ``my_metric``
-3. Change the warning threshold to 500
-4. Change the alerting threshold to 800
-5. Ensure notifications for No Data past 10 minutes
+1. From the *Menu > Monitors >New Monitors > Metric*,
+2. Change the metric to the custom metric ``my_metric``,
+3. Change the warning threshold to 500,
+4. Change the alerting threshold to 800,
+5. Ensure notifications for No Data past 10 minutes.
 
 ![monitor](https://user-images.githubusercontent.com/79612565/139957386-ab3cf981-2498-4dcc-bf1a-1322f1c6b7b2.png)
 
@@ -347,11 +348,11 @@ I exported these to my dashboard. Here is the link to my final [Dashboard](https
 **What is the difference between a Service and a Resource?** A service groups together endpoints, a resource is an action given to a service. [reference](https://docs.datadoghq.com/tracing/visualization/#pagetitle) 
 
 ## Final Steps:
-Github updated its operations on August 13, 2021 to require an access token when using command line access so I was having some trouble pushing to this repo. I followed [This Docmentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)  
+Github updated its operations on August 13, 2021 to require an access token when using command line access so I was having some trouble pushing to this repo. I followed [This Docmentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 
 ## To Wrap it Up:
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-Something that's affected my life immensively since moving to California 3 years ago are the fires and smoke. What's more heartbreaking than a natural wildfire is one that could have been avoided. PGE can use datadog to ensure systems are functioning correctly and alert for anomolies to hopefully mitigate disasters such as the 2020 fires. Further to this Datadog can be used to monitor air quality metrics since air toxicity can be fatal and the air quality index can give a false positive which can seriously disrupt your life! For example breathing in high partiulate matter (PM).
+Something that's affected my life immensively since moving to California 3 years ago are the fires and smoke. What's more heartbreaking than a natural wildfire is one that could have been avoided. PGE can use datadog to ensure systems are functioning correctly and alert for anomolies to hopefully mitigate disasters such as the 2020 fires. Almost every home and tower has a smart meter to gather the data from. Further to this Datadog can be used to monitor air quality metrics since air toxicity can be fatal and the Air Quality Index (AQI) can give a false positive which can seriously disrupt your life! For example breathing in high partiulate matter (PM) on a day the AQI was showing healthy.
  
 
