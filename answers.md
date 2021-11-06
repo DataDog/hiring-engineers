@@ -18,7 +18,7 @@ Let's walk through some of the steps I took to complete this assignment, along w
 
 ### Setting up the Environment
 
-I took the advise in using Vagrant Ubuntu VM, and it turned out as a good choice. Pretty easy to get stood up and running right away.
+I took the advice in using Vagrant Ubuntu VM, and it turned out as a good choice. Pretty easy to get stood up and running right away.
 </br></br>
 I quickly noticed how quick and easy much of the setup was, especially the DataDog Agent. This was a theme across the assignment; everything was easy to follow, tons of documentation online, and a one-step install for the Agent had me setup right away.
 </br></br>
