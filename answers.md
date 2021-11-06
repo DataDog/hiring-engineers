@@ -53,7 +53,7 @@ Here's a screenshot of the email I received including a snapshot of one of the g
 </br></br>
 <img src="Datadog_snapshot_Email.png" alt="alt text" width="600" height="350">
 </br></br>
-ADD LINKS TO DASHBOARD/TIMEBOARD
+[Collecting Metrics - Timeboard](https://app.datadoghq.com/dashboard/s2d-shp-ud2/datadog-exercise-timeboard?from_ts=1636169951234&to_ts=1636170251234&live=true)
 </br></br>
 Bonus Question: Anomaly Function is triggering on any value outside of 2 standard deviations.
 </br></br>
@@ -93,7 +93,7 @@ Here's a few screenshots and a link for review;
 </br></br>
 <img src="Datadog_collectingAPMdata5.png" alt="alt text" width="600" height="350">
 </br></br>
-
+[Link to Traces](https://app.datadoghq.com/apm/traces?query=env%3Adev&cols=core_service%2Ccore_resource_name%2Clog_duration%2Clog_http.method%2Clog_http.status_code&historicalData=true&messageDisplay=inline&sort=desc&streamTraces=true&start=1636083895436&end=1636170295436&paused=false)
 </br></br>
 Bonus Question: Service vs Resource
 </br></br>
