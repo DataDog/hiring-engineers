@@ -62,8 +62,18 @@ Bonus Question: Anomaly Function is triggering on any value outside of 2 standar
 
 Monitoring Data was another straight-forward section of the assignment, especially using the DataDog UI. I was able to follow documentation to set up warning, alert and "no data" emails. I was definitely eager to get the downtime set up once I was getting send notification emails non-stop once this was up and running!
 </br></br>
-(add gif)
+Configuring Email Notifications; Warning, Alert and No Data</br>
+<img src="Datadog_monitorAlertEmailConfig.png" alt="alt text" width="900" height="350">
 </br></br>
+Email Triggered and Sent</br>
+<img src="Datadog_monitorMetricTriggerEmail.png" alt="alt text" width="600" height="350">
+</br></br>
+Email sent after scheduling weeknight downtime</br>
+<img src="Datadog_weeknightDowntime.png" alt="alt text" width="600" height="350">
+</br></br>
+Email sent after scheduling weekend downtime</br>
+<img src="Datadog_weekendDowntime.png" alt="alt text" width="600" height="350">
+
 
 ### Collecting APM Data
 
