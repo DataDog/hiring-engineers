@@ -81,13 +81,26 @@ Collecting APM Data was my biggest battle of the assignment. I followed all the 
 </br></br>
 I was running into an issue where I wasn't seeing traces and was unable to confirm by running a curl command at the address it was returning. Ultimately I had to open a new terminal to executive the command while the flask script was running for the traces to begin appearing in the DataDog UI.
 </br></br>
-(screenshow APM data)
+Here's a few screenshots and a link for review;
+</br></br>
+<img src="Datadog_collectingAPMdata1.png" alt="alt text" width="600" height="350">
+</br></br>
+<img src="Datadog_collectingAPMdata2.png" alt="alt text" width="600" height="350">
+</br></br>
+<img src="Datadog_collectingAPMdata3.png" alt="alt text" width="600" height="350">
+</br></br>
+<img src="Datadog_collectingAPMdata4.png" alt="alt text" width="600" height="350">
+</br></br>
+<img src="Datadog_collectingAPMdata5.png" alt="alt text" width="600" height="350">
+</br></br>
+
 </br></br>
 Bonus Question: Service vs Resource
 </br></br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Service; Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
+Service; Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
 “Flask”, in my project for example.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Resource; Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
+</br>
+Resource; Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
 This would relate to the trace metrics that are encompassed by the Flash service mentioned above, in my project for example.
 </br></br>
 
