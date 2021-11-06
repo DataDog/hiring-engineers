@@ -38,7 +38,7 @@ Building out the custom agent check was pretty straight forward as well; I creat
 </br></br>
 Bonus Question: I was able to edit the collection interval; I did so by editting the yaml file (rather than the python file I created) by editting the min_collection_interval to be 45.
 </br></br>
-<img src="Datadog_edit_45Interval.png" alt="alt text" width="500" height="200">
+<img src="Datadog_edit_45Interval.png" alt="alt text" width="400" height="150">
 </br></br>
 
 ### Visualizing the Data
@@ -49,7 +49,11 @@ Here's where I ran into a bit of a hiccup. I started by downloading Postman and 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ran pip install datadog, created new file under /etc/python, added script to this example.py to test </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - I then executed my timeboard.py file to write my own dashboards; my_metrics, anamoly function and rollup function
 </br></br>
-(screenshot dashboards)
+Here's a screenshot of the email I received including a snapshot of one of the graphs.
+</br></br>
+<img src="Datadog_snapshot_Email.png" alt="alt text" width="600" height="350">
+</br></br>
+ADD LINKS TO DASHBOARD/TIMEBOARD
 </br></br>
 Bonus Question: Anomaly Function is triggering on any value outside of 2 standard deviations.
 </br></br>
