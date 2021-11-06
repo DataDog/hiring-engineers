@@ -77,7 +77,7 @@ Email sent after scheduling weekend downtime</br>
 
 Collecting APM Data was my biggest battle of the assignment. I followed all the documentation exactly; pip install ddtrace, built the python file using the flask code under the python directory, named it flaskApp.py, and then ran ddtrace-run python flaskApp.py
 </br></br>
-I was running into an issue where I wasn't seeing traces and was unable to confirm by running a curl command at the address it was returning. Ultimately I had to open a new terminal to executive the command while the flask script was running for the traces to begin appearing in the DataDog UI.
+I was running into an issue where I wasn't seeing traces and was unable to confirm by running a curl command at the address it was returning. Ultimately I had to open a new terminal to execute the command while the flask script was running for the traces to begin appearing in the DataDog UI.
 </br></br>
 Here's a few screenshots and a link for review;
 </br></br>
