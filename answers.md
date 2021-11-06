@@ -49,7 +49,6 @@ Here's where I ran into a bit of a hiccup. I started by downloading Postman and 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ran pip install datadog, created new file under /etc/python, added script to this example.py to test </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - I then executed my timeboard.py file to write my own dashboards; my_metrics, anamoly function and rollup function
 </br></br>
-
 (screenshot dashboards)
 </br></br>
 Bonus Question: Anomaly Function is triggering on any value outside of 2 standard deviations.
