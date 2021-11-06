@@ -42,7 +42,6 @@ Bonus Question: I was able to edit the collection interval; I did so by editting
 
 ### Visualizing the Data
 
-</br></br>
 Here's where I ran into a bit of a hiccup. I started by downloading Postman and going that route, but I could not get it to function as I needed, so I quickly pivoted to Python as my method.
 </br></br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ran pip install datadog, created new file under /etc/python, added script to this example.py to test </br>
