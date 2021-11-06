@@ -26,7 +26,6 @@ I quickly noticed how quick and easy much of the setup was, especially the DataD
 ### Collecting Metrics
 
 I made sure to add tags to the Agent config file so that I can structure the data and easily filter the data when using dashboards and visualizations.
-(screen shot tags)
 </br></br>
 <img src="Datadog_Config_Tags.png" alt="alt text" width="500" height="200">
 </br></br>
