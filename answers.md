@@ -112,7 +112,6 @@ I absolutely love the product, but I recently ran into an issue where my hardwar
 </br></br>
 A creative application of DataDog might be to leverage DataDog's IoT solution to help minimize downtime for Whoop's userbase. As wearable tech gets more complex and more user's rely on this for their sport, fitness and overall health, keeping downtime minimized and ensuring function of their applications will be more important than ever.
 </br></br>
-</br></br>
 
 ### Thank you
 
