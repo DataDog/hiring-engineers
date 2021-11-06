@@ -4,7 +4,7 @@
 </br>
 First things first... I really appreciate the opportunity to complete this exercise and progress through the interview process. Admittedly, this project was daunting from the second I looked at the assignment. Between juggling closing out a strong October in my current position as an Account Executive and training for the NYC Marathon (pic below of me completing IronMan Lake Placid a few months ago) coming up this weekend, I knew I had my work cut out for me! 
 </br></br>
-By the end of the assignment, I was truly appreciate and agree that this is the best way to dive right into DataDog myself. I quickly became appreciate of one of my major classes back at James Madison University, "Operating Systems and Server Administration". This was a huge help in completing this project, as well as my exposure to various languages; Python, for example.
+By the end of the assignment, I was truly appreciative and agree that this is the best way to dive right into DataDog myself. I quickly became appreciate of one of my major classes back at James Madison University, "Operating Systems and Server Administration". This was a huge help in completing this project, as well as my exposure to various languages; Python, for example.
 </br>
 </br>
 <img src="Datadog_ironmanPic.png" alt="alt text" width="450" height="650">
