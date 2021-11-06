@@ -22,13 +22,13 @@ I took the advise in using Vagrant Ubuntu VM, and it turned out as a good choice
 </br></br>
 I quickly noticed how quick and easy much of the setup was, especially the DataDog Agent. This was a theme across the assignment; everything was easy to follow, tons of documentation online, and a one-step install for the Agent had me setup right away.
 </br></br>
-(screen shot API key editted)
-</br></br>
 
 ### Collecting Metrics
 
 I made sure to add tags to the Agent config file so that I can structure the data and easily filter the data when using dashboards and visualizations.
 (screen shot tags)
+</br></br>
+<img src="Datadog_Config_Tags.png" alt="alt text" width="500" height="200">
 </br></br>
 I went on to install mySql via the command-line. I had experience with mySql in the past, so I felt comfortable installing and working with this database;</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - I made sure to edit the yaml and conf.d files, renamed conf.yaml.example to conf.yaml.new</br>
