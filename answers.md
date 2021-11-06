@@ -106,7 +106,7 @@ This would relate to the trace metrics that are encompassed by the Flash service
 
 Final Question:
 </br></br>
-As I mentioned earlier, I've been pretty active in the fitness space with marathons, IronMan races, etc. I am a big user of wearable technology as well, specifically Whoops wearable tech.
+As I mentioned earlier, I've been pretty active in the fitness space with marathons, IronMan races, etc. I am a big user of wearable technology as well, specifically Whoop's wearable tech.
 </br></br>
 I absolutely love the product, but I recently ran into an issue where my hardware could not connect to the app on my phone/ data was not feeding to the software. There wasn't much visibility to my hardware/software from their support team and I had to download logs for them to review.
 </br></br>
