@@ -1,20 +1,16 @@
 # DataDog Hiring Exercise - Sales Engineer NYC
-### Matt McCreadie
+#### Matt McCreadie
 ###### November, 2021
 </br>
-First things first... I really appreciate the opportunity to complete this exercise and progress through the interview process. Admittedly, this project was daunting from the second I looked at the assignment. Between juggling closing out a strong October in my current position as an Account Executive and training for the NYC Marathon (pic below of me completing IronMan Lake Placid a few months ago) coming up this weekend, I knew I had my work cut out for me! 
+Thank you again for the opportunity to complete this exercise and progress through the interview process. I had my work cut out for me between juggling closing out a strong October in my current role and training for the NYC Marathon coming up last weekend, but I had a ton of fun learning and diving right into the product.
 </br></br>
-By the end of the assignment, I was truly appreciative and agree that this is the best way to dive right into DataDog myself. I quickly became appreciative of one of my major classes back at James Madison University, "Operating Systems and Server Administration". This was a huge help in completing this project, as well as my exposure to various languages; Python, for example.
-</br>
-</br>
 <img src="NYC Marathon.jpg" alt="alt text" width="350" height="525">
+</br></br>
+Let's walk through this exercise as if I am presenting to a customer.
 </br>
 </br>
-Let's walk through some of the steps I took to complete this assignment, along with learnings, challenges, and how I worked to troubleshoot these issues.
+## test
 </br>
-</br>
-
-## Assignment Breakdown
 
 ### Setting up the Environment
 
