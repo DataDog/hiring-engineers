@@ -208,15 +208,19 @@ api.Dashboard.create(title=title,
                      template_variables=template_variables)
 ```
 </br></br>
+I created three timeboards by executing the folowing two commands. The timeboards show my_metric scoped over the host, any anomalies within the mysql.performance.open_files metric outside of two stand deviations, and my_metric rolled up to sum all the points for the past hour into one bucket.
+</br></br>
 
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ran pip install datadog, created new file under /etc/python, added script to this example.py to test </br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - I then executed my timeboard.py file to write my own dashboards; my_metrics, anamoly function and rollup function
+```export DD_SITE="datadoghq.com" DD_API_KEY="<API-KEY>" DD_APP_KEY="<APP-KEY>"```
+</br>
+```python "example.py"```
 </br></br>
 Here's a screenshot of the email I received including a snapshot of one of the graphs.
 </br></br>
 <img src="Datadog_snapshot_Email.png" alt="alt text" width="600" height="350">
 </br></br>
+Linking below to the dashboard in the DataDog UI.
+</br>
 [Collecting Metrics - Timeboard](https://app.datadoghq.com/dashboard/s2d-shp-ud2/datadog-exercise-timeboard?from_ts=1636169951234&to_ts=1636170251234&live=true)
 </br></br>
 Bonus Question: Anomaly Function is triggering on any value outside of 2 standard deviations.
