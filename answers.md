@@ -83,13 +83,58 @@ instances:
       schema_size_metrics: false
       disable_innodb_metrics: false
 ```
-
-
-
-Restart datadog-agent (sudo service datadog-agent restart)</br>
-I then ran the DataDog Agent status check to confirm that mySql was showing under my "checks" section
+</br><br>
+Restart datadog-agent.
+</br>
+```sudo service datadog-agent restart```
 </br></br>
-Building out the custom agent check was pretty straight forward as well; I created a new directory called custom_check.d, created a new file called custom_check.yaml, then editted that file to include my script. I then created a python file in checks.d called custom_check.py, and editted that file to include my script.
+Confirm mysql connection by looking for ```mysql``` under Checks section.
+</br>
+```sudo datadog-agent status```
+</br></br>
+
+### Custom Agent Check
+
+I created a new directory named ```custom_check.d``` by executing ```mkdir custom_check.d``` (this goes within ```conf.d```).
+</br>
+Created new file named ```custom_check.yaml``` by executing ```touch custom_check.yaml```.
+</br>
+Added the following code to ```custom_check.yaml``` file.
+</br>
+```yaml
+init_config:
+  
+instances:
+        - min_collection_interval: 45
+```
+</br></br>
+I then created a python file in ```checks.d``` named ```custom_check.py``` and editted that file to include the following
+</br>
+```python
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from new versions of the Agent...
+ from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+#class HelloCheck(AgentCheck):
+    #def check(self, instance):
+        #self.gauge('hello.world', 1, tags=['TAG_KEY:TAG_VALUE'] + self.instance.get('tags', []))
+
+
+import random
+from checks import AgentCheck
+class RandomCheck(AgentCheck):
+ def check(self, instance):
+   self.gauge('my_metric', random.randint(0, 1000))
+```
+
+
 </br></br>
 Bonus Question: I was able to edit the collection interval; I did so by editting the yaml file (rather than the python file I created) by editting the min_collection_interval to be 45.
 </br></br>
