@@ -26,13 +26,68 @@ SSH into the machine using `vagrant ssh`.
 
 ## Collecting Metrics
 
-I made sure to add tags to the Agent config file so that I can structure the data and easily filter the data when using dashboards and visualizations.
+I editted the API key and added tags in the `datadog.yaml` file within the `/etc/datadog-agent` directory.
+</br></br>
+Change directory to access config file.
+</br>
+```cd etc/datadog-agent```
+</br></br>
+Open config file for editting mentioned above.
+</br>
+```sudo vi datadog.yaml```
 </br></br>
 <img src="Datadog_Config_Tags.png" alt="alt text" width="500" height="200">
 </br></br>
-I went on to install mySql via the command-line. I had experience with mySql in the past, so I felt comfortable installing and working with this database;</br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - I made sure to edit the yaml and conf.d files, renamed conf.yaml.example to conf.yaml.new</br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - I then ran the DataDog Agent status check to confirm that mySql was showing under my "checks" section
+Tags appeared in the Datadog UI (shown below).
+</br></br>
+<img src="Datadog_HostMap.png" alt="alt text" width="600" height="350">
+</br></br>
+I then installed mySql via the command-line using the one-step install command below.
+</br>
+```DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=f8462f0c39ce8a293fe6adc19654d325 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"```
+</br></br>
+Once mysql was installed, I setup the database with the following;
+</br></br>
+Open mysql via the command-line.
+</br>
+```sudo mysql -u root```
+</br></br>
+Create a database user for the Datadog Agent.
+</br>
+```mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';```
+</br></br>
+Grant the user the following privileges only.
+</br>
+```mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;```
+</br></br>
+```mysql> GRANT PROCESS ON *.* TO 'datadog'@'localhost';```
+</br><br>
+```mysql> GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';```
+</br></br>
+I then renamed the conf.yaml.example file to conf.yaml and added the following edits;
+</br>
+```yaml
+init_config:
+
+instances:
+  - server: 127.0.0.1
+    user: datadog
+    pass: "<YOUR_CHOSEN_PASSWORD>" # from the CREATE USER step earlier
+    port: "<YOUR_MYSQL_PORT>" # e.g. 3306
+    options:
+      replication: false
+      galera_cluster: true
+      extra_status_metrics: true
+      extra_innodb_metrics: true
+      extra_performance_metrics: true
+      schema_size_metrics: false
+      disable_innodb_metrics: false
+```
+
+
+
+Restart datadog-agent (sudo service datadog-agent restart)</br>
+I then ran the DataDog Agent status check to confirm that mySql was showing under my "checks" section
 </br></br>
 Building out the custom agent check was pretty straight forward as well; I created a new directory called custom_check.d, created a new file called custom_check.yaml, then editted that file to include my script. I then created a python file in checks.d called custom_check.py, and editted that file to include my script.
 </br></br>
