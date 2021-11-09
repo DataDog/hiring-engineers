@@ -117,4 +117,7 @@ A creative application of DataDog might be to leverage DataDog's IoT solution to
 
 Thank you again for the consideration, and I look forward to more opportunity with DataDog!</br></br>
 
-.. code-block:: type
+```console
+foo@bar:~$ whoami
+foo
+```
