@@ -116,3 +116,5 @@ A creative application of DataDog might be to leverage DataDog's IoT solution to
 ### Thank you
 
 Thank you again for the consideration, and I look forward to more opportunity with DataDog!</br></br>
+
+:: bash command example
