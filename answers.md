@@ -115,4 +115,10 @@ A creative application of DataDog might be to leverage DataDog's IoT solution to
 
 ### Thank you
 
-Thank you again for the consideration, and I look forward to more opportunity with DataDog!
+Thank you again for the consideration, and I look forward to more opportunity with DataDog!</br></br>
+
+```ruby
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
+```
