@@ -99,8 +99,11 @@ I created a new directory named ```custom_check.d``` by executing ```mkdir custo
 </br>
 Created new file named ```custom_check.yaml``` by executing ```touch custom_check.yaml```.
 </br>
-Added the following code to ```custom_check.yaml``` file.
-</br>
+Added the following code to ```custom_check.yaml``` file. 
+</br></br>
+(This code also changes your check's collection interval so that it only submits the metric once every 45 seconds.
+
+</br></br>
 ```yaml
 init_config:
   
@@ -133,7 +136,6 @@ class RandomCheck(AgentCheck):
  def check(self, instance):
    self.gauge('my_metric', random.randint(0, 1000))
 ```
-
 
 </br></br>
 Bonus Question: I was able to edit the collection interval; I did so by editting the yaml file (rather than the python file I created) by editting the min_collection_interval to be 45.
