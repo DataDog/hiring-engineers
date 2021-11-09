@@ -7,7 +7,7 @@ First things first... I really appreciate the opportunity to complete this exerc
 By the end of the assignment, I was truly appreciative and agree that this is the best way to dive right into DataDog myself. I quickly became appreciative of one of my major classes back at James Madison University, "Operating Systems and Server Administration". This was a huge help in completing this project, as well as my exposure to various languages; Python, for example.
 </br>
 </br>
-<img src="Datadog_ironmanPic.png" alt="alt text" width="450" height="650">
+<img src="NYC Marathon.jpg" alt="alt text" width="450" height="650">
 </br>
 </br>
 Let's walk through some of the steps I took to complete this assignment, along with learnings, challenges, and how I worked to troubleshoot these issues.
