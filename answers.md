@@ -93,7 +93,7 @@ Confirm mysql connection by looking for ```mysql``` under Checks section.
 ```sudo datadog-agent status```
 </br></br>
 
-### Custom Agent Check
+## Custom Agent Check
 
 I created a new directory named ```custom_check.d``` by executing ```mkdir custom_check.d``` (this goes within ```conf.d```).
 </br>
@@ -143,10 +143,73 @@ Bonus Question: I was able to edit the collection interval; I did so by editting
 <img src="Datadog_edit_45Interval.png" alt="alt text" width="400" height="150">
 </br></br>
 
-### Visualizing the Data
+## Visualizing the Data
 
-Here's where I ran into a bit of a hiccup. I started by downloading Postman and going that route, but I could not get it to function as I needed, so I quickly pivoted to Python as my method.
+I began by installing the DataDog python package.
 </br></br>
+```pip install datadog```
+</br></br>
+Create new file named ```timeboard.py``` within ```/etc/python```
+</br></br>
+Added the following code
+</br></br>
+```python
+from datadog import initialize, api
+
+options = {
+    'api_key': '',
+    'app_key': ''
+}
+
+initialize(**options)
+
+title = 'Datadog Exercise Timeboard'
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+             {'q': 'avg:my_metric{*}'}
+        ],
+        'title': 'Custom Metric Scoped Over Host'
+    }},
+    {
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'anomalies(avg:mysql.performance.open_files{*}, "basic", 2)'}
+        ],
+         'title': 'MySql mysql.performance.open_files Anomaly Funtion'
+        }},
+    {
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'sum:my_metric{*}.rollup(sum, 3600)'}
+        ],
+        'title': 'My_metric rolled up.'
+    }
+    }]
+layout_type = 'ordered'
+description = 'My_Metric scoped over host.'
+is_read_only = True
+notify_list = ['mccreadie34@gmail.com']
+template_variables = [{
+    'name': 'host1',
+    'prefix': 'host',
+    'default': 'my-host'
+}]
+
+api.Dashboard.create(title=title,
+                     widgets=widgets,
+                     layout_type=layout_type,
+                     description=description,
+                     is_read_only=is_read_only,
+                     notify_list=notify_list,
+                     template_variables=template_variables)
+```
+</br></br>
+
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ran pip install datadog, created new file under /etc/python, added script to this example.py to test </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - I then executed my timeboard.py file to write my own dashboards; my_metrics, anamoly function and rollup function
 </br></br>
