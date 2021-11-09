@@ -1,7 +1,6 @@
 # DataDog Hiring Exercise - Sales Engineer NYC
 #### Matt McCreadie
 ###### November, 2021
-</br>
 Thank you again for the opportunity to complete this exercise and progress through the interview process. I had my work cut out for me between juggling closing out a strong October in my current role and training for the NYC Marathon coming up last weekend, but I had a ton of fun learning and diving right into the product.
 </br></br>
 <img src="NYC Marathon.jpg" alt="alt text" width="350" height="525">
@@ -9,17 +8,23 @@ Thank you again for the opportunity to complete this exercise and progress throu
 Let's walk through this exercise as if I am presenting to a customer.
 </br>
 </br>
-## test
+
+## Prerequisites - Setting up the Environment
+
+I installed the latest version of Vagrant Ubuntu and installed Virtual Box by following [these instructions](https://learn.hashicorp.com/collections/vagrant/getting-started). Once installed, I ran the following commands;
+</br></br>
+Initialize Vagrant.
 </br>
-
-### Setting up the Environment
-
-I took the advice in using Vagrant Ubuntu VM, and it turned out as a good choice. Pretty easy to get stood up and running right away.
+``` vagrant@vagrant:~$ vagrant init hashicorp/bionic64 ```
 </br></br>
-I quickly noticed how quick and easy much of the setup was, especially the DataDog Agent. This was a theme across the assignment; everything was easy to follow, tons of documentation online, and a one-step install for the Agent had me setup right away.
+Initialize Vagrant.
+</br>
+``` vagrant@vagrant:~$ vagrant up ```
+</br></br>
+SSH into the machine using `vagrant ssh`.
 </br></br>
 
-### Collecting Metrics
+## Collecting Metrics
 
 I made sure to add tags to the Agent config file so that I can structure the data and easily filter the data when using dashboards and visualizations.
 </br></br>
