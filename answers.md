@@ -292,11 +292,13 @@ Ran that file using the following command.
 </br></br>
 Run ```curl 127.0.0.1:5050```. This curl command is sending traces and data to the DataDog UI to visualize metrics at the time of the request.
 </br></br>
-Here's a few screenshots and a link for review;
+As you can see in the screenshots below, 8 total requests were made at an average of 15.59ms. Each trace represents the time spent by the application processing the request. Within each of the 8, you'll see multiple spans constructing the trace. All traces are OK.
 </br></br>
 <img src="Datadog_collectingAPMdata1.png" alt="alt text" width="600" height="350">
 </br></br>
 <img src="Datadog_collectingAPMdata2.png" alt="alt text" width="600" height="350">
+</br></br>
+By drilling into this trace, you can see each span that makes up the request. In this example, you can see ```flask.dispatch_request``` took 13.3% of the total time for ```flask.request```.
 </br></br>
 <img src="Datadog_collectingAPMdata3.png" alt="alt text" width="600" height="350">
 </br></br>
