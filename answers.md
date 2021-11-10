@@ -325,6 +325,8 @@ I absolutely love the product, but I recently ran into an issue where my hardwar
 </br></br>
 A creative application of DataDog might be to leverage DataDog's IoT solution to help minimize downtime for Whoop's userbase. As wearable tech gets more complex and more user's rely on this for their sport, fitness and overall health, keeping downtime minimized and ensuring function of their applications will be more important than ever.
 </br></br>
+With DataDog's IoT Monitoring, Whoop would be able to much more easily determine the root of issues; whether it is a device failure, application-level issue, or regional network issue. Their userbase is becoming extremely large, so having access to this data in aggregate, with the ability to drill down into the data, splice data by tags and configure proactive notifications will allow them to continue to manage their globally dispersed devices.
+</br></br>
 
 ### Thank you
 
