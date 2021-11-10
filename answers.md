@@ -11,7 +11,7 @@ Let's walk through this exercise as if I am presenting to a customer.
 
 ## Prerequisites - Setting up the Environment
 
-I installed the latest version of Vagrant Ubuntu and installed Virtual Box by following [these instructions](https://learn.hashicorp.com/collections/vagrant/getting-started). Once installed, I ran the following commands;
+I installed the latest version of Vagrant Ubuntu (a Linux OS) and installed Virtual Box by following [these instructions](https://learn.hashicorp.com/collections/vagrant/getting-started). Once installed, I ran the following commands;
 </br></br>
 Initialize Vagrant.
 </br>
