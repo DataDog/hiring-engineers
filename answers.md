@@ -223,13 +223,14 @@ Linking below to the dashboard in the DataDog UI.
 </br>
 [Collecting Metrics - Timeboard](https://app.datadoghq.com/dashboard/s2d-shp-ud2/datadog-exercise-timeboard?from_ts=1636169951234&to_ts=1636170251234&live=true)
 </br></br>
-Bonus Question: Anomaly Function is triggering on any value outside of 2 standard deviations.
+Bonus Question: The anomaly Function is triggering on any value outside of 2 standard deviations.
 </br></br>
 
 ### Monitoring Data
 
-Monitoring Data was another straight-forward section of the assignment, especially using the DataDog UI. I was able to follow documentation to set up warning, alert and "no data" emails. I was definitely eager to get the downtime set up once I was getting sent notification emails non-stop once this was up and running!
+I set up Warning, Alert and No Data email notifications to keep watch of ```my_metric```.
 </br></br>
+
 Configuring Email Notifications; Warning, Alert and No Data</br>
 <img src="Datadog_monitorAlertEmailConfig.png" alt="alt text" width="900" height="350">
 </br></br>
@@ -245,9 +246,49 @@ Email sent after scheduling weekend downtime</br>
 
 ### Collecting APM Data
 
-Collecting APM Data was my biggest battle of the assignment. I followed all the documentation exactly; pip install ddtrace, built the python file using the flask code under the python directory, named it flaskApp.py, and then ran ddtrace-run python flaskApp.py
+As the last piece of this exercise, we instrumented the following Flask App using DataDog's APM solution.
 </br></br>
-I was running into an issue where I wasn't seeing traces and was unable to confirm by running a curl command at the address it was returning. Ultimately I had to open a new terminal to execute the command while the flask script was running for the traces to begin appearing in the DataDog UI.
+Install ddtrace
+</br>
+```pip install ddtrace```
+</br></br>
+Create new file within ```/etc/python/``` named ```flaskApp.py```. This file contains the following Flask app;
+</br></br>
+```python
+from ddtrace import tracer
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+</br></br>
+Ran that file using the following command;
+</br></br>
+```ddtrace-run python flaskApp.py```
 </br></br>
 Here's a few screenshots and a link for review;
 </br></br>
