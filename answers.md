@@ -208,7 +208,7 @@ api.Dashboard.create(title=title,
                      template_variables=template_variables)
 ```
 </br></br>
-I created three timeboards by executing the folowing two commands. The timeboards show my_metric scoped over the host, any anomalies within the mysql.performance.open_files metric outside of two stand deviations, and my_metric rolled up to sum all the points for the past hour into one bucket.
+I created three timeboards by executing the folowing two commands. The timeboards show my_metric scoped over the host, any anomalies within the mysql.performance.open_files metric outside of two stand deviations, and my_metric rolled up to sum all the points for the past hour into one bucket.:bar_chart:
 </br></br>
 
 ```export DD_SITE="datadoghq.com" DD_API_KEY="<API-KEY>" DD_APP_KEY="<APP-KEY>"```
@@ -237,10 +237,10 @@ Configuring Email Notifications; Warning, Alert and No Data</br>
 Email Triggered and Sent</br>
 <img src="Datadog_monitorMetricTriggerEmail.png" alt="alt text" width="600" height="350">
 </br></br>
-Email sent after scheduling weeknight downtime</br>
+Email sent after scheduling weeknight downtime :sleeping:</br>
 <img src="Datadog_weeknightDowntime.png" alt="alt text" width="600" height="350">
 </br></br>
-Email sent after scheduling weekend downtime</br>
+Email sent after scheduling weekend downtime :thumbsup:</br>
 <img src="Datadog_weekendDowntime.png" alt="alt text" width="600" height="350">
 
 
@@ -294,6 +294,8 @@ Run ```curl 127.0.0.1:5050```. This curl command is sending traces and data to t
 </br></br>
 As you can see in the screenshots below, 8 total requests were made at an average of 15.59ms. Each trace represents the time spent by the application processing the request. Within each of the 8, you'll see multiple spans constructing the trace. All traces are OK.
 </br></br>
+![Alt Text](https://media.giphy.com/media/8vpeyWA3OWOhG/giphy.gif)
+</br></br>
 <img src="Datadog_collectingAPMdata1.png" alt="alt text" width="600" height="350">
 </br></br>
 <img src="Datadog_collectingAPMdata2.png" alt="alt text" width="600" height="350">
@@ -333,3 +335,5 @@ With DataDog's IoT Monitoring, Whoop would be able to much more easily determine
 ## Thank you
 
 Thank you again for the consideration, and I look forward to more opportunity with DataDog!</br></br>
+
+![Alt Text](https://media.giphy.com/media/l2R0eYcNq9rJUsVAA/giphy.gif)
