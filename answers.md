@@ -103,7 +103,7 @@ Added the following code to ```custom_check.yaml``` file.
 </br></br>
 (This code also changes your check's collection interval so that it only submits the metric once every 45 seconds.
 
-</br>
+</br></br>
 ```yaml
 init_config:
   
