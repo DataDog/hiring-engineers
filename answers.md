@@ -226,7 +226,7 @@ Linking below to the dashboard in the DataDog UI.
 Bonus Question: The anomaly Function is triggering on any value outside of 2 standard deviations.
 </br></br>
 
-### Monitoring Data
+## Monitoring Data
 
 I set up Warning, Alert and No Data email notifications to keep watch of ```my_metric```.
 </br></br>
@@ -244,7 +244,7 @@ Email sent after scheduling weekend downtime</br>
 <img src="Datadog_weekendDowntime.png" alt="alt text" width="600" height="350">
 
 
-### Collecting APM Data
+## Collecting APM Data
 
 As the last piece of this exercise, we instrumented the following Flask App using DataDog's APM solution.
 </br></br>
@@ -315,7 +315,7 @@ Resource; Resources represent a particular domain of a customer application - th
 This would relate to the trace metrics that are encompassed by the Flash service mentioned above, in my project for example.
 </br></br>
 
-### Final Question
+## Final Question
 
 Final Question:
 </br></br>
@@ -328,6 +328,6 @@ A creative application of DataDog might be to leverage DataDog's IoT solution to
 With DataDog's IoT Monitoring, Whoop would be able to much more easily determine the root of issues; whether it is a device failure, application-level issue, or regional network issue. Their userbase is becoming extremely large, so having access to this data in aggregate, with the ability to drill down into the data, splice data by tags and configure proactive notifications will allow them to continue to manage their globally dispersed devices.
 </br></br>
 
-### Thank you
+## Thank you
 
 Thank you again for the consideration, and I look forward to more opportunity with DataDog!</br></br>
