@@ -13,11 +13,11 @@ Let's walk through this exercise as if I am presenting to a customer.
 
 I installed the latest version of Vagrant Ubuntu (a Linux OS) and installed Virtual Box by following [these instructions](https://learn.hashicorp.com/collections/vagrant/getting-started). Once installed, I ran the following commands;
 </br></br>
-Initialize Vagrant.
+Initialized Vagrant.
 </br>
 ``` vagrant@vagrant:~$ vagrant init hashicorp/bionic64 ```
 </br></br>
-Initialize Vagrant.
+Started the virtual machine.
 </br>
 ``` vagrant@vagrant:~$ vagrant up ```
 </br></br>
@@ -28,11 +28,11 @@ SSH into the machine using `vagrant ssh`.
 
 I editted the API key and added tags in the `datadog.yaml` file within the `/etc/datadog-agent` directory.
 </br></br>
-Change directory to access config file.
+Changed directory to access config file.
 </br>
 ```cd etc/datadog-agent```
 </br></br>
-Open config file for editting mentioned above.
+Opened config file for editting mentioned above.
 </br>
 ```sudo vi datadog.yaml```
 </br></br>
@@ -52,11 +52,11 @@ Open mysql via the command-line.
 </br>
 ```sudo mysql -u root```
 </br></br>
-Create a database user for the Datadog Agent.
+Created a database user for the Datadog Agent.
 </br>
 ```mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';```
 </br></br>
-Grant the user the following privileges only.
+Granted the user the following privileges only.
 </br>
 ```mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;```
 </br></br>
@@ -84,11 +84,11 @@ instances:
       disable_innodb_metrics: false
 ```
 </br><br>
-Restart datadog-agent.
+Restarted datadog-agent.
 </br>
 ```sudo service datadog-agent restart```
 </br></br>
-Confirm mysql connection by looking for ```mysql``` under Checks section.
+Confirmed mysql connection by looking for ```mysql``` under Checks section.
 </br>
 ```sudo datadog-agent status```
 </br></br>
@@ -149,7 +149,7 @@ I began by installing the DataDog python package.
 </br></br>
 ```pip install datadog```
 </br></br>
-Create new file named ```timeboard.py``` within ```/etc/python```
+Created new file named ```timeboard.py``` within ```/etc/python```
 </br></br>
 Added the following code
 </br></br>
