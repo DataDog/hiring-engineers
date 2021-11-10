@@ -228,10 +228,12 @@ Bonus Question: The anomaly Function is triggering on any value outside of 2 sta
 
 ## Monitoring Data
 
-I set up Warning, Alert and No Data email notifications to keep watch of ```my_metric```.
+I set up Warning, Alert and No Data email notifications to keep watch of ```my_metric```. I accessed the Monitor tab within the DataDog UI to set an Alert Threshold of 800, Warning Threshold of 500, and a notification email to be sent whenever data is missing for more than 10 minutes.
+</br></br>
+<img src="DataDog_MonitorConfig.png" alt="alt text" width="900" height="350">
 </br></br>
 
-Configuring Email Notifications; Warning, Alert and No Data</br>
+Here is the setup of the email notifications, which sent different messages and content depending on the alert.</br>
 <img src="Datadog_monitorAlertEmailConfig.png" alt="alt text" width="900" height="350">
 </br></br>
 Email Triggered and Sent</br>
