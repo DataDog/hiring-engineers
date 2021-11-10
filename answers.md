@@ -292,7 +292,7 @@ Ran that file using the following command.
 </br></br>
 ```ddtrace-run python flaskApp.py```
 </br></br>
-Run ```curl 127.0.0.1:5050```. This curl command is sending traces and data to the DataDog UI to visualize metrics at the time of the request.
+Ran ```curl 127.0.0.1:5050```. This curl command is sending traces and data to the DataDog UI to visualize metrics at the time of the request.
 </br></br>
 As you can see in the screenshots below, 8 total requests were made at an average of 15.59ms. Each trace represents the time spent by the application processing the request. Within each of the 8, you'll see multiple spans constructing the trace. All traces are OK.
 </br></br>
