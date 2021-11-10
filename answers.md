@@ -44,7 +44,7 @@ Tags appeared in the Datadog UI (shown below).
 </br></br>
 I then installed mySql via the command-line using the one-step install command below.
 </br>
-```DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=f8462f0c39ce8a293fe6adc19654d325 DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"```
+```DD_AGENT_MAJOR_VERSION=7 DD_API_KEY="<API-KEY>" DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"```
 </br></br>
 Once mysql was installed, I setup the database with the following;
 </br></br>
