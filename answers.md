@@ -69,6 +69,8 @@ I then used the command:
 :wq
 ```
 to save changes.
+![Image](https://user-images.githubusercontent.com/70303700/141049686-26b9b5dd-86ee-45df-b9f3-218cb39806ad.png)
+
 
 ## Installing PostGres
 I decided to install PostGres since I am familiar with PostGres from my bootcamp. 
@@ -77,6 +79,8 @@ to install:
 ```
 sudo apt-get install postgressql
 ```
+![Image](https://user-images.githubusercontent.com/70303700/141049796-3ceaef08-00d4-4a92-8733-838a36254b85.png)
+
 I then integrated with Datadog following the steps at "https://www.datadoghq.com/blog/collect-postgresql-data-with-datadog/"
 
 I needed to create the datadog user so I ran these commands:
@@ -91,6 +95,7 @@ to check if user was created and granted access run command:
 ```
 \du
 ```
+![Image](https://user-images.githubusercontent.com/70303700/141049987-320f7ced-fccb-487d-a4a2-a56a45cbdfcc.png)
 
 I then logged onto Datadog account and installed the PostGres integration.
 
@@ -102,12 +107,17 @@ I used the example that was used at "https://docs.datadoghq.com/developers/write
 I moved to the correct directory with command:
 ```
 cd /etc/datdog-agent/checks.d
-
+```
 then I used this command to create file:
 ```
 sudo vim my_metric.py
 ```
+
+![Image](https://user-images.githubusercontent.com/70303700/141050192-8c45f5a8-45fa-4256-9d12-df4840867b31.png)
+
 I confirmed it was present.
+
+![Image](https://user-images.githubusercontent.com/70303700/141050254-347b021f-5c03-4d16-b10a-16e25f2936a6.png)
 
 I then changed directory to conf.d to create the yaml file. I then ran this command:
 
@@ -116,12 +126,16 @@ sudo vim my_metric.yaml
 ```
 I then edited the file to have an instance that uses 45 seconds.
 
-I confirmed that the my_metric.yaml file was present.
+![Image](https://user-images.githubusercontent.com/70303700/141050107-e265fd50-ed33-4565-a2e5-844b380ea1ad.png)
+
+I confirmed that the my_metric.yaml file was running.
+
 
 I verified by running:
 ```
 sudo -u dd-agent -- datadog-agent check my_metric
 ```
+![Screen Shot 2021-11-07 at 11 03 25 PM](https://user-images.githubusercontent.com/70303700/141050357-95187c69-66ed-49e2-9423-b7cfdfa810dd.png)
 
 ## Bonus Question
 The min_collection_interval is set to a number for example in our case 45, which means that it could collected every 45 seconds and not that it will be collected every 45 seconds. If the collector runs the check at the 45 second interval and there is another task/check that is being performed it could be late. If the check takes longer than time allotted then the Agent will skip until the next interval.
@@ -136,8 +150,9 @@ I then installed the integration on Datadog. And followed the steps to proceed i
 In Postman I expanded the Data Api Collection and selected Post a new Dashboard under Dashboards.
 
 I entered api keys into the query params fields.
+![Image](https://user-images.githubusercontent.com/70303700/141050484-1473d881-d6b6-427d-acfa-0d47c8ddea0a.png)
 
-I then proceeded to enter this code into the body field.
+I then proceeded to enter the code below into the body field.
 
 Unfortunately I kept getting an forbiden response and I could not get the dashboards to be created. Due to the time constraint I was not able to figure the solution to my issue. I did want to discuss what I was looking to add. The first dashboard was to scope my_metric I had created. The second dashboard I was looking to create was a dashboard that used the anomaly function using this documentation "https://docs.datadoghq.com/monitors/create/types/anomaly/". The third dashboard I was looking to create was a dashboard with the rollup function using this documentation "https://docs.datadoghq.com/dashboards/functions/rollup/".
 
@@ -205,8 +220,12 @@ Unfortunately I kept getting an forbiden response and I could not get the dashbo
 }
 
 I used another dashboard in the Datadog gui to set timeboards timeframe to the past 5 minutes.
+  
+![Image](https://user-images.githubusercontent.com/70303700/141050538-c313a4f3-23f0-4c21-9044-db8b3a8aeff4.png)
 
 I was also able to use the snapshot feature, which is great to illustrate a potential issue and can be reviewed by the team.
+  ![Image](https://user-images.githubusercontent.com/70303700/141050642-ae8f3286-e8b4-456c-aa2d-a872f9977bb1.png)
+
 
 ## Bonus question
 
@@ -216,6 +235,8 @@ It is displayed as overlaying grey band on graph for potential results.
 ### Monitoring Data 
 
 I created a new monitor by logging into Datadog and clicking the new monitor option. The screenshot below shows the thresholds set for Alert > 800, Warning > 500,  and data missing for more than 10 minutes.
+  
+![Image](https://user-images.githubusercontent.com/70303700/141050928-40c58e6a-6510-49d6-8450-81b8d1c72c63.png)
 
 I used the template variables to write the monitoring message.
 {{#is_warning}}
@@ -229,10 +250,22 @@ average value of `system.cpu.user` has been **high** over the past **5 minutes**
 {{#is_no_data}}
 There has been **no** data for the  average value of `system.cpu.user` over the past **10 minutes**.
 {{/is_no_data}}
+ 
+ I did some test runs to see what the email notification would look like and I was sent 3 emails for the different cases. I included one of the emails that were sent to me.
+  
+![Image](https://user-images.githubusercontent.com/70303700/141051059-92bf6484-5559-4699-8456-c7abcb0f0204.png)
 
+  
 ## Bonus Schedule downtime
 I created a downtime schedule by going to Monitors and click on the yellow schedule downtime icon. When I clicked the icon it prompted me to specify times and days, and to option for message to notify team. Below are the email notifications I received to my email.
+  
+![Image](https://user-images.githubusercontent.com/70303700/141051265-de4abbbb-1098-49c4-8327-12c548a4917b.png)
 
+![Image](https://user-images.githubusercontent.com/70303700/141051273-84fbef41-2c29-4040-b2c3-708ac4ab5646.png)
+  
+![Image](https://user-images.githubusercontent.com/70303700/141051351-2de2d25f-77d3-4037-9767-724ee31c673d.png)
+
+  
 ## Collecting APM data
 
 I ran into issues trying to install ddtrace on the VM. I went to flask docs and ran:
