@@ -286,9 +286,11 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
 ```
 </br></br>
-Ran that file using the following command;
+Ran that file using the following command.
 </br></br>
 ```ddtrace-run python flaskApp.py```
+</br></br>
+Run ```curl 127.0.0.1:5050```. This curl command is sending traces and data to the DataDog UI to visualize metrics at the time of the request.
 </br></br>
 Here's a few screenshots and a link for review;
 </br></br>
@@ -308,7 +310,7 @@ Bonus Question: Service vs Resource
 </br></br>
 Service; Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
 “Flask”, in my project for example.
-</br>
+</br></br>
 Resource; Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
 This would relate to the trace metrics that are encompassed by the Flash service mentioned above, in my project for example.
 </br></br>
