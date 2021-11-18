@@ -268,16 +268,66 @@ I created a downtime schedule by going to Monitors and click on the yellow sched
   
 ## Collecting APM data
 
-I ran into issues trying to install ddtrace on the VM. I went to flask docs and ran:
+After struggling for a while trying to run ddtrace-run, I searched online and read different documentaion and wasn't able to get it to work on my older computer using vagrant and virtualbox. I then went ahead and installed the agent to another computer. I then went ahead and created a directory called flask_app. In here I created a python file named "my_flask_app", I also installed venv which is recommended to run flask app in a virtual environment. 
+  
+  <img width="303" alt="flask app dir" src="https://user-images.githubusercontent.com/70303700/142482652-0fe44ac9-0fcd-4b8a-8ff8-93f39b93d0d6.png">
+  
+In the python file I inserted the code provided with the challenge. I then activated the virtual environment by running the following command:
+  
+  ```
+  source venv/bin/activate
+  ```
+  
+I ran the following command in order to install flask:
 
 ```
-pip install flask
+sudo pip install flask
 ```
+I installed ddtrace by running:
+  
 ```
-pip install ddtrace
+sudo pip install ddtrace
 ```
-I tried reading the docs on the Datadog site "https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers" but had no success. However doing some reading what needs to be done is setting apm_non_local_traffic: true which is in the apm_config
+I needed to update the datadog yaml file so I exited the virtual environment by running:
 
+  ```
+  deactivate
+  ```
+I opened the yaml file and set apm_non_local_traffic to true under apm_config, the screenshot below represents the yaml file.
+  
+<img width="763" alt="Datadog yaml file " src="https://user-images.githubusercontent.com/70303700/142485445-2e72dc85-886b-44a8-a563-0fe6941401a1.png">
+
+  I saved the changes in the yaml file and went back to the virtual environment and ran the following commands DD_SERVICE="my_flask_app" DD_ENV="dev" DD_LOGS_INJECTION=true ddtrace-run python my_flask_app.py. After this I received a msg stating that my app was running.
+  
+  <img width="1206" alt="Terminal running flask app" src="https://user-images.githubusercontent.com/70303700/142485778-2008dc88-4c82-4870-b4b9-f962875664a0.png">
+
+I proceeded to go to my browser and check that the app was running and indeed it was, the images below include what I saw with the different endpoints. 
+  
+  <img width="1357" alt="Entrypoint to application" src="https://user-images.githubusercontent.com/70303700/142486171-63ef76e1-2732-48ec-b38e-87d16443aa01.png">
+
+  <img width="1357" alt="Getting APM started " src="https://user-images.githubusercontent.com/70303700/142486183-670a9dfa-0190-4323-870e-fa02f6abec1e.png">
+
+  
+  <img width="1381" alt="Posting Traces" src="https://user-images.githubusercontent.com/70303700/142486197-0b3112c6-1e4a-4dd9-9375-07b6431cc2e3.png">
+
+While I was hitting the different routes on my browser I was able to see in my terminal that the traces were being sent while also seeing them on the Datadog gui.
+  
+  <img width="1368" alt="Terminal showing traces running" src="https://user-images.githubusercontent.com/70303700/142486479-2b7c284c-697f-4de4-a13d-38cc0469fbec.png">
+
+  <img width="1378" alt="live traces shown" src="https://user-images.githubusercontent.com/70303700/142486571-74ef7b5c-d962-46b2-b9d4-eaa487397adf.png">
+  
+  I was also able to see the latency, request, and error metrics displayed under traces in APM
+  
+  <img width="1402" alt="Traces shown with latency, Errors, Requests" src="https://user-images.githubusercontent.com/70303700/142486820-313e4197-d788-415b-8472-8a0a4bb77bcb.png">
+  
+ Finally I was able to see my host infrastructure metrics displayed as well. 
+  
+  
+<img width="1394" alt="Infrastructure metrics" src="https://user-images.githubusercontent.com/70303700/142487022-04f9232c-a302-4793-9d84-f3e909efafef.png">
+
+  
+I was able to finally after some trial and error run the flask app and also able to send traces to Datadog. Throughout this process I learned quite a bit about Datadog and how it interacts with other technologies. To stop the flask app I entered control + C and deactivate to get out of the virtual environment.
+ 
 ##Bonus Question
 
 A service groups together endpoints, queries, or jobs for scaling. Example would be a group of URL endpoints grouped under an API service. A resource is a particular action for service. The resource represents a specific domain of your application which allows services to do their job.
