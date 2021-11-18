@@ -326,7 +326,9 @@ While I was hitting the different routes on my browser I was able to see in my t
 <img width="1394" alt="Infrastructure metrics" src="https://user-images.githubusercontent.com/70303700/142487022-04f9232c-a302-4793-9d84-f3e909efafef.png">
 
   
-I was able to finally after some trial and error run the flask app and also able to send traces to Datadog. Throughout this process I learned quite a bit about Datadog and how it interacts with other technologies. To stop the flask app I entered control + C and deactivate to get out of the virtual environment.
+I was able to finally after some trial and error run the flask app and also able to send traces to Datadog. Throughout this process I learned quite a bit about Datadog and how it interacts with other technologies. To stop the flask app I entered control + C and deactivate to get out of the virtual environment. This is the link for the apm traces on Datadog site.
+  
+  "https://app.datadoghq.com/apm/traces?query=&cols=core_service%2Ccore_resource_name%2Clog_duration%2Clog_http.method%2Clog_http.status_code&historicalData=false&messageDisplay=inline&sort=desc&streamTraces=true&start=1637265183726&end=1637266083726&paused=false"
  
 ##Bonus Question
 
