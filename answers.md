@@ -285,7 +285,7 @@ APM dashboard on Datadog website:
 
 #### Dashboard with both APM and Infrastructure Metrics:  
 <img src='./screenshots/APM and Infrastructure Metrics Dashboard.png'> </img>
-[Dashboard APM link](https://p.datadoghq.com/sb/ab7cb560-3783-11ec-9ab2-da7ad0900002-b486ce8c5579c41542cd9f0d78eed153)
+[Dashboard APM link](https://p.datadoghq.com/sb/ab7cb560-3783-11ec-9ab2-da7ad0900002-b486ce8c5579c41542cd9f0d78eed153) (Flask app was run on November, 21st. Please change the time range to 1 month to see the results)
 
 7. **Bonus Question:** What is the difference between a Service and a Resource?  
    **Answer:** Services are the building blocks of modern microservice architectures. A service groups together endpoints. 
