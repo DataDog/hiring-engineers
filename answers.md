@@ -40,11 +40,11 @@ I removed the key for security purposes.
 
 <img src='./screenshots/Postgres conf.d.png'></img>
 
-    After ```mymetric.py``` was created ```~/.datadog-agent/checks.d/mymetric.py``` added the following to the file:
+After ```mymetric.py``` was created ```~/.datadog-agent/checks.d/mymetric.py``` added the following to the file:
 
 <img src='./screenshots/mymetric.py.png'></img>
 
-    Then I created ```mymetric.yaml``` ```~/.datadog-agent/conf.d/mymetric.yaml``` and added the code below.
+Then I created ```mymetric.yaml ~/.datadog-agent/conf.d/mymetric.yaml``` and added the code below.
 
 <img src='./screenshots/mymetric yaml.png'></img>
 
@@ -63,12 +63,12 @@ I removed the key for security purposes.
 
 5. Bonus Question: Can you change the collection interval without modifying the Python check file you created?
     Yes, the interval can be set by changing the instance description in the ```yaml``` file, like this:
-``
+```
     init_config:
             min_collection_interval: 45
     instances:
     [{}]
-``
+```
 
 <a name="visualizing-data"/>
 
@@ -147,7 +147,20 @@ To create my dashboard I used the content of this curl command:
    ##### My Hourly Timeboard
    <img src='./screenshots/My Hourly Timeboard.png'> </img>
 
-The sum of my metric is grouped into hours (per instructions) so it did not show properly in a 5 minute time span. I expanded the time period on the widget and included a snapshot here.
+3. The sum of my metric is grouped into hours (per instructions) so it did not show properly in a 5 minute time span. I expanded the time period on the widget and included a snapshot here.
+    <img src='./screenshots/mymetric sum.png'> </img>
+
+4. 
+    <img src='./screenshots/Email notice of snapshot anamolies.png'> </img>
+
+5.  Bonus Question: What is the Anomaly graph displaying?
+    The Anomaly graph presents suspicious behaviour. I stressed PostgreSQL and made the tables list, thus, causing it to perform in a certain way. The graph provides a visualization of this performance as it relates to PostgreSQL.
+
+<a name="monitoring-data"/>
+
+## Monitoring Data
+
+
 
 
     
