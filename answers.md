@@ -202,6 +202,96 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 <a name="collecting-apm-data"/>
 
 ## Collecting APM Data
+1. For this exercise I created a basic ####To Do#### Flask app on my Vagrant VM using this command:  
+```pip install Flask```, for the database I used Flask-SQLAlchemy using this command:
+```pip install Flask-SQLAlchemy```.
+
+2. Created a ```venv``` environment for the Flask app on the Vagrant machine. I installed DDtrace module using this command:  
+```pip install ddtrace``` and enabled APM in the Datadog ```yaml``` file:   
+
+<img src='./screenshots/APM Datadog Yaml.png'> </img>
+
+3. Injected ```ddtrace``` in the ```app.py```:
+```
+from flask import Flask, render_template, request, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+from ddtrace import tracer
+
+app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+class Todo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100))
+    complete = db.Column(db.Boolean)
+
+@app.route("/")
+def home():
+    todo_list = Todo.query.all()
+    return render_template("base.html", todo_list=todo_list)
+
+@app.route("/add", methods=["POST"])
+@tracer.wrap("flask.request", service='flask', resource="POST /add", span_type='web')
+def add():
+    title = request.form.get("title")
+    new_todo = Todo(title=title, complete=False)
+    db.session.add(new_todo)
+    db.session.commit()
+    return redirect(url_for("home"))
+
+@app.route("/update/<int:todo_id>")
+def update(todo_id):
+    todo = Todo.query.filter_by(id=todo_id).first()
+    todo.complete = not todo.complete
+    db.session.commit()
+    return redirect(url_for("home"))
+
+@app.route("/delete/<int:todo_id>")
+def delete(todo_id):
+    todo = Todo.query.filter_by(id=todo_id).first()
+    db.session.delete(todo)
+    db.session.commit()
+    return redirect(url_for("home"))
+
+if __name__ == "__main__":
+    db.create_all()
+    app.run(debug=True)
+    app.run(host='0.0.0.0', port='5000')
+```
+4. I ran this command to start tracking APM logs:
+```DD_SERVICE="app" DD_ENV="dev" DD_LOGS_INJECTION=true ddtrace-run python3 app.py```
+
+<img src='./screenshots/APM ddtrace python app run.png'> </img>
+
+5. In order for my Flask app on port 5000 to run I modified the agent port to 5050:  
+
+<img src='./screenshots/APM Datadog Yaml port 5050.png'> </img>
+
+My To Do App on the browser:  
+<img src='./screenshots/APM To Do app on the browser.png'> </img>
+
+APM dashboard on Datadog website:  
+
+<img src='./screenshots/APM dashboard on datadog website Get results.png'> </img>
+
+6. Created some entries in my To Do APP and it is showing on the APM Dashboard:  
+
+<img src='./screenshots/APM To Do app showing entries.png'> </img>
+
+Bonus Question: What is the difference between a Service and a Resource?
+
+
+<a name="final-question"/>
+
+## Final Question
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
+
+
 
  
 
