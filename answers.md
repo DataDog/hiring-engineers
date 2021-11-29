@@ -165,14 +165,17 @@ To create my dashboard I used the content of this curl command:
     - Changed the warning threshold to 500.
     - Changed the alerting threshold to 800.
     - Ensured notifications for No Data past 10 minutes.
-<img src='./screenshots/Email notice of snapshot anamolies.png'> </img>
-
-#### Configure the Monitor's Message:
-<img src='./screenshots/Configure the monitor Message.png'> </img>
 
 #### Monitor Metrics:
 <img src='./screenshots/Monitor metric Dashboard Timeboard.png'> </img>
 <img src='./screenshots/Monitor metric Dashboard Timeboard 2.png'> </img>
+
+#### Configure the Monitor's Message:
+2. I configured the monitor message with below settings:
+<img src='./screenshots/Configure the monitor Message.png'> </img>
+
+#### Monitor Message Email Notifications
+3. Created different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 
 #### Alert:  
 <img src='./screenshots/Alert Email.png'> </img>
@@ -185,7 +188,8 @@ To create my dashboard I used the content of this curl command:
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:  
 #### Downtime Setting: 
-1. From Datadog dashboard ```Monitors > Manage Downtime```, then clicked 'Schedule Downtime'
+1. From Datadog dashboard ```Monitors > Manage Downtime``` clicked 'Schedule Downtime':  
+
 <img src='./screenshots/Downtime setting dashboard.png'> </img>
 
 2. Created a recurring downtime for days of the week and weekends. I used EST since this is my time zone and Datadog HQ time zone. 
