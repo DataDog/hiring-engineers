@@ -48,7 +48,7 @@ Then I created ```mymetric.yaml ~/.datadog-agent/conf.d/mymetric.yaml``` and add
 
 <img src='./screenshots/mymetric yaml.png'></img>
 
-    After I restarted the Agent.
+After I restarted the Agent.
 <img src='./screenshots/mymetric Dashboard.png'></img>
 
     On the Datadog dashboard, I went to ```Metrics > Explorer```, and searched for my custom metric.
@@ -150,7 +150,7 @@ To create my dashboard I used the content of this curl command:
 3. The sum of my metric is grouped into hours (per instructions) so it did not show properly in a 5 minute time span. I expanded the time period on the widget and included a snapshot here.
     <img src='./screenshots/mymetric sum.png'> </img>
 
-4. 
+4. Took a snapshot of this graph and used the @ notation to send it to myself. The email notice included a thumbnail, and also buttons that take you directly to the item in the Datadog panel.
     <img src='./screenshots/Email notice of snapshot anamolies.png'> </img>
 
 5.  Bonus Question: What is the Anomaly graph displaying?
@@ -159,6 +159,9 @@ To create my dashboard I used the content of this curl command:
 <a name="monitoring-data"/>
 
 ## Monitoring Data
+
+ 
+
 
 
 
