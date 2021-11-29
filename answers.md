@@ -38,17 +38,22 @@ I removed the key for security purposes.
     ```create user datadog with password ‘######’;```
 3. Created a script file and a config file in order to create a custom metric and send it to Datadog servers through the Agent.
 <img src='./screenshots/Postgres conf.d.png'></img>
+
     After ```mymetric.py``` was created ```~/.datadog-agent/checks.d/mymetric.py``` added the following to the file:
 <img src='./screenshots/mymetric.py.png'></img>
+
     Then I created ```mymetric.yaml``` ```~/.datadog-agent/conf.d/mymetric.yaml``` and added the code below.
 <img src='./screenshots/mymetric yaml.png'></img>
+
     After I restarted the Agent.
 <img src='./screenshots/mymetric Dashboard.png'></img>
+
     On the Datadog dashboard, I went to ```Metrics > Explorer```, and searched for my custom metric.
     The Agent was running the collector in intervals of 15–20 seconds.
 
 4. To change my check’s collection interval I edited the config file ```~/.datadog-agent/conf.d/mymetric.yaml``` and changed the ```min_collection_interval``` globally to the interval of 45 seconds.
 <img src='./screenshots/mymetric yaml 45 interval.png'></img>
+
     And restarted the Agent again.
 <img src='./screenshots/mymetric Dashboard 45 Interval.png'></img>
 
@@ -135,7 +140,7 @@ To create my dashboard I used the content of this curl command:
     ```
 
 2. Once this was created, I accessed the Dashboard from the Dashboard List in the UI:
-### My Hourly Timeboard
+##### My Hourly Timeboard
 <img src='./screenshots/My Hourly Timeboard.png'> </img>
 The sum of my metric is grouped into hours (per instructions) so it did not show properly in a 5 minute time span. I expanded the time period on the widget and included a snapshot here.
 
