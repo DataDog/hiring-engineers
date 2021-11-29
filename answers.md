@@ -12,7 +12,7 @@ Your answers to the questions go here.
 ## Prerequisites - Setting Up the Environment
 1. First, I spinned up a fresh linux Ubuntu VM via Vagrant on Virtual Box on my Mac. I followed these steps: https://medium.com/devops-dudes/how-to-setup-vagrant-and-virtual-box-for-ubuntu-20-04-7374bf9cc3fa
 2. Next, I signed up for Datadog (used “Datadog Recruiting Candidate” in the “Company” field). 
-3. And installed the Datadog Agent on the  Vagrant Box by running this command for ubuntu: 
+3. And installed the Datadog Agent on the  Vagrant Box by running this command for ubuntu:  
 ```DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=########## DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"```  
 I removed the key for security purposes.
 4. Finally, got the Agent reporting metrics from my local machine:
@@ -27,14 +27,14 @@ I removed the key for security purposes.
 <img src='./screenshots/Datadog Dashboard Tags.png'> </img>
 
 2. Installed PostgreSQL on the Vagrant machine and then installed the respective Datadog integration for that database.
-    - Added the public GPG key: 
+    - Added the public GPG key:  
     ```wget -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -```
-    - Created a file with the repository address:
+    - Created a file with the repository address:  
     ```echo deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main | sudo tee /etc/apt/sources.list.d/postgresql.list```
-    - To install PostgreSQL I ran: 
-    ```sudo apt-get update```
+    - To install PostgreSQL I ran:  
+    ```sudo apt-get update```   
     ```sudo apt-get install postgresql-9.3 postgresql-contrib-9.3```
-    - After installing PostgreSQL, I ran the following command to create a user for Datadog in the database.
+    - After installing PostgreSQL, I ran the following command to create a user for Datadog in the database.  
     ```create user datadog with password ‘######’;```
 3. Created a script file and a config file in order to create a custom metric and send it to Datadog servers through the Agent.
 
@@ -51,8 +51,8 @@ Then I created ```mymetric.yaml ~/.datadog-agent/conf.d/mymetric.yaml``` and add
 After I restarted the Agent.
 <img src='./screenshots/mymetric Dashboard.png'></img>
 
-    On the Datadog dashboard, I went to ```Metrics > Explorer```, and searched for my custom metric.
-    The Agent was running the collector in intervals of 15–20 seconds.
+On the Datadog dashboard, I went to ```Metrics > Explorer```, and searched for my custom metric.
+The Agent was running the collector in intervals of 15–20 seconds.
 
 4. To change my check’s collection interval I edited the config file ```~/.datadog-agent/conf.d/mymetric.yaml``` and changed the ```min_collection_interval``` globally to the interval of 45 seconds.
 
@@ -153,12 +153,46 @@ To create my dashboard I used the content of this curl command:
 4. Took a snapshot of this graph and used the @ notation to send it to myself. The email notice included a thumbnail, and also buttons that take you directly to the item in the Datadog panel.
     <img src='./screenshots/Email notice of snapshot anamolies.png'> </img>
 
-5.  Bonus Question: What is the Anomaly graph displaying?
+5. Bonus Question: What is the Anomaly graph displaying?  
     The Anomaly graph presents suspicious behaviour. I stressed PostgreSQL and made the tables list, thus, causing it to perform in a certain way. The graph provides a visualization of this performance as it relates to PostgreSQL.
 
 <a name="monitoring-data"/>
 
 ## Monitoring Data
+#### Create a New Metric:
+1. From Datadog dashboard ```Monitors > New Monitor > Metric Monitor > Metric``` I defined the specs for ```my_metric``` based on the requirements.
+    - Changed the metric to the custom metric ``my_metric``.
+    - Changed the warning threshold to 500.
+    - Changed the alerting threshold to 800.
+    - Ensured notifications for No Data past 10 minutes.
+<img src='./screenshots/Email notice of snapshot anamolies.png'> </img>
+
+#### Configure the Monitor's Message:
+<img src='./screenshots/Configure the monitor Message.png'> </img>
+
+#### Monitor Metrics:
+<img src='./screenshots/Monitor metric Dashboard Timeboard.png'> </img>
+<img src='./screenshots/Monitor metric Dashboard Timeboard 2.png'> </img>
+
+#### Alert:  
+<img src='./screenshots/Alert Email.png'> </img>
+
+#### Warning:  
+<img src='./screenshots/Warn Email.png'> </img>
+
+#### Missing Data:  
+<img src='./screenshots/Missing Data Email.png'> </img>
+
+Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:  
+#### Downtime Setting: 
+1. From Datadog dashboard ```Monitors > Manage Downtime```, then clicked 'Schedule Downtime'
+<img src='./screenshots/Downtime setting dashboard.png'> </img>
+
+2. Created a recurring downtime for days of the week and weekends. I used EST since this is my time zone and Datadog HQ time zone. 
+
+<a name="collecting-apm-data"/>
+
+## Collecting APM Data
 
  
 
