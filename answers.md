@@ -16,6 +16,7 @@ Your answers to the questions go here.
 ```DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=########## DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"```  
 I removed the key for security purposes.
 4. Finally, got the Agent reporting metrics from my local machine:
+<img src='./screenshots/Agent Reporting Metrics.png'> </img>
 
 <a name="collecting-metrics"/>
 
