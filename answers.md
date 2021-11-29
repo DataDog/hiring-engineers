@@ -197,7 +197,7 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 <img src='./screenshots/Downtime Weekday Settings.png'> </img>
 
 #### Downtime Weekend Settings:
-<img src='./screenshots/Downtime Weekend Settings.png'> </img>
+<img src='./screenshots/Downtime Weekend.png'> </img>
 
 <a name="collecting-apm-data"/>
 
@@ -281,7 +281,7 @@ APM dashboard on Datadog website:
 
 <img src='./screenshots/APM To Do app showing entries.png'> </img>
 
-7. Bonus Question: What is the difference between a Service and a Resource?
+7. Bonus Question: What is the difference between a Service and a Resource?  
    Answer: Services are the building blocks of modern microservice architectures. A service groups together endpoints. 
    A resource is an action given to a service, such as a query to a database or an endpoint. 
    [Reference](https://docs.datadoghq.com/tracing/visualization/#pagetitle)
