@@ -293,6 +293,8 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
+Answer: Datadog can be used in many creative ways ([Datadog in the wild: 5 fun projects](https://www.datadoghq.com/blog/datadog-in-the-wild-5-fun-projects/). In this pandemic times lots of people are dependent on medical equipment. For example, medical systems could use Datadog monitoring to ensure that they are functioning correctly in case of an emergency or an unforeseen event and alert for any anomalies. 
+
 
 
  
