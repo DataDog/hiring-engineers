@@ -58,7 +58,7 @@ The Agent was running the collector in intervals of 15–20 seconds.
 
 <img src='./screenshots/mymetric yaml 45 interval.png'></img>
 
-    And restarted the Agent again.
+And restarted the Agent again.
 <img src='./screenshots/mymetric Dashboard 45 Interval.png'></img>
 
 5. **Bonus Question:** Can you change the collection interval without modifying the Python check file you created?
