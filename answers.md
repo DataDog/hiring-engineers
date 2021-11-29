@@ -62,7 +62,7 @@ The Agent was running the collector in intervals of 15–20 seconds.
 <img src='./screenshots/mymetric Dashboard 45 Interval.png'></img>
 
 5. Bonus Question: Can you change the collection interval without modifying the Python check file you created?
-    Yes, the interval can be set by changing the instance description in the ```yaml``` file, like this:
+   Answer: Yes, the interval can be set by changing the instance description in the ```yaml``` file, like this:
 ```
     init_config:
             min_collection_interval: 45
@@ -154,7 +154,7 @@ To create my dashboard I used the content of this curl command:
     <img src='./screenshots/Email notice of snapshot anamolies.png'> </img>
 
 5. Bonus Question: What is the Anomaly graph displaying?  
-    The Anomaly graph presents suspicious behaviour. I stressed PostgreSQL and made the tables list, thus, causing it to perform in a certain way. The graph provides a visualization of this performance as it relates to PostgreSQL.
+   Answer: The Anomaly graph presents suspicious behaviour. I stressed PostgreSQL and made the tables list, thus, causing it to perform in a certain way. The graph provides a visualization of this performance as it relates to PostgreSQL.
 
 <a name="monitoring-data"/>
 
@@ -261,7 +261,7 @@ if __name__ == "__main__":
     app.run(debug=True)
     app.run(host='0.0.0.0', port='5000')
 ```
-4. I ran this command to start tracking APM logs:
+4. I ran this command to start tracking APM logs:  
 ```DD_SERVICE="app" DD_ENV="dev" DD_LOGS_INJECTION=true ddtrace-run python3 app.py```
 
 <img src='./screenshots/APM ddtrace python app run.png'> </img>
@@ -281,8 +281,10 @@ APM dashboard on Datadog website:
 
 <img src='./screenshots/APM To Do app showing entries.png'> </img>
 
-Bonus Question: What is the difference between a Service and a Resource?
-
+7. Bonus Question: What is the difference between a Service and a Resource?
+   Answer: Services are the building blocks of modern microservice architectures. A service groups together endpoints. 
+   A resource is an action given to a service, such as a query to a database or an endpoint. 
+   [Reference](https://docs.datadoghq.com/tracing/visualization/#pagetitle)
 
 <a name="final-question"/>
 
