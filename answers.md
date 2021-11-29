@@ -187,12 +187,17 @@ To create my dashboard I used the content of this curl command:
 <img src='./screenshots/Missing Data Email.png'> </img>
 
 Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:  
-#### Downtime Setting: 
+#### Downtime Settings: 
 1. From Datadog dashboard ```Monitors > Manage Downtime``` clicked 'Schedule Downtime':  
 
 <img src='./screenshots/Downtime setting dashboard.png'> </img>
 
-2. Created a recurring downtime for days of the week and weekends. I used EST since this is my time zone and Datadog HQ time zone. 
+2. Created a recurring downtime for days of the week and weekends. I used EST since this is my time zone and Datadog HQ time zone.  
+#### Downtime Weekday Settings:
+<img src='./screenshots/Downtime Weekday Settings.png'> </img>
+
+#### Downtime Weekend Settings:
+<img src='./screenshots/Downtime Weekend Settings.png'> </img>
 
 <a name="collecting-apm-data"/>
 
