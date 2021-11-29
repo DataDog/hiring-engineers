@@ -21,3 +21,7 @@ I removed the key for security purposes.
 <a name="collecting-metrics"/>
 
 ## Collecting Metrics
+1. Added tags in the Agent config file and here is the screenshot of the host and its tags on the Host Map page in Datadog.
+<img src='./screenshots/Datadog Agent Yaml Tags 1.png'> </img>
+<img src='./screenshots/Datadog Yaml Tags 2.png'> </img>
+<img src='./screenshots/Datadog Dashboard Tags.png'> </img>
