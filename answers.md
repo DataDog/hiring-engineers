@@ -1,4 +1,4 @@
-Your answers to the questions go here.
+My answers to the questions go here.
 ## Table of Contents
 * [Setting Up the Environment](#setting-up-the-environment)
 * [Collecting Metrics](#collecting-metrics)
@@ -61,8 +61,8 @@ The Agent was running the collector in intervals of 15–20 seconds.
     And restarted the Agent again.
 <img src='./screenshots/mymetric Dashboard 45 Interval.png'></img>
 
-5. Bonus Question: Can you change the collection interval without modifying the Python check file you created?
-   Answer: Yes, the interval can be set by changing the instance description in the ```yaml``` file, like this:
+5. **Bonus Question:** Can you change the collection interval without modifying the Python check file you created?
+   **Answer:** Yes, the interval can be set by changing the instance description in the ```yaml``` file, like this:
 ```
     init_config:
             min_collection_interval: 45
@@ -150,11 +150,13 @@ To create my dashboard I used the content of this curl command:
 3. The sum of my metric is grouped into hours (per instructions) so it did not show properly in a 5 minute time span. I expanded the time period on the widget and included a snapshot here.
     <img src='./screenshots/mymetric sum.png'> </img>
 
+    [Hourly Anomalies Dashboard Link](https://p.datadoghq.com/sb/ab7cb560-3783-11ec-9ab2-da7ad0900002-6fcd0e111c4fd4be11af2203756fb0b8)
+
 4. Took a snapshot of this graph and used the @ notation to send it to myself. The email notice included a thumbnail, and also buttons that take you directly to the item in the Datadog panel.
     <img src='./screenshots/Email notice of snapshot anamolies.png'> </img>
 
-5. Bonus Question: What is the Anomaly graph displaying?  
-   Answer: The Anomaly graph presents suspicious behaviour. I stressed PostgreSQL and made the tables list, thus, causing it to perform in a certain way. The graph provides a visualization of this performance as it relates to PostgreSQL.
+5. **Bonus Question:** What is the Anomaly graph displaying?  
+   **Answer:** The Anomaly graph presents suspicious behaviour. I stressed PostgreSQL and made the tables list, thus, causing it to perform in a certain way. The graph provides a visualization of this performance as it relates to PostgreSQL.
 
 <a name="monitoring-data"/>
 
@@ -186,7 +188,7 @@ To create my dashboard I used the content of this curl command:
 #### Missing Data:  
 <img src='./screenshots/Missing Data Email.png'> </img>
 
-Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:  
+**Bonus Question:** Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:  
 #### Downtime Settings: 
 1. From Datadog dashboard ```Monitors > Manage Downtime``` clicked 'Schedule Downtime':  
 
@@ -202,7 +204,7 @@ Bonus Question: Since this monitor is going to alert pretty often, you don’t w
 <a name="collecting-apm-data"/>
 
 ## Collecting APM Data
-1. For this exercise I created a basic ####To Do#### Flask app on my Vagrant VM using this command:  
+1. For this exercise I created a basic **To Do** Flask app on my Vagrant VM using this command:  
 ```pip install Flask```, for the database I used Flask-SQLAlchemy using this command:
 ```pip install Flask-SQLAlchemy```.
 
@@ -281,8 +283,12 @@ APM dashboard on Datadog website:
 
 <img src='./screenshots/APM To Do app showing entries.png'> </img>
 
-7. Bonus Question: What is the difference between a Service and a Resource?  
-   Answer: Services are the building blocks of modern microservice architectures. A service groups together endpoints. 
+#### Dashboard with both APM and Infrastructure Metrics:  
+<img src='./screenshots/APM and Infrastructure Metrics Dashboard.png'> </img>
+[Dashboard APM link](https://p.datadoghq.com/sb/ab7cb560-3783-11ec-9ab2-da7ad0900002-b486ce8c5579c41542cd9f0d78eed153)
+
+7. **Bonus Question:** What is the difference between a Service and a Resource?  
+   **Answer:** Services are the building blocks of modern microservice architectures. A service groups together endpoints. 
    A resource is an action given to a service, such as a query to a database or an endpoint. 
    [Reference](https://docs.datadoghq.com/tracing/visualization/#pagetitle)
 
@@ -293,7 +299,7 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-Answer: Datadog can be used in many creative ways ([Datadog in the wild: 5 fun projects](https://www.datadoghq.com/blog/datadog-in-the-wild-5-fun-projects/). In this pandemic times lots of people are dependent on medical equipment. For example, medical systems could use Datadog monitoring to ensure that they are functioning correctly in case of an emergency or an unforeseen event and alert for any anomalies. 
+**Answer:** Datadog can be used in many creative ways ([Datadog in the wild: 5 fun projects](https://www.datadoghq.com/blog/datadog-in-the-wild-5-fun-projects/)). In this pandemic times lots of people are dependent on medical equipment. For example, medical systems could use Datadog monitoring to ensure that they are functioning correctly in case of an emergency or an unforeseen event and alert for any anomalies. 
 
 
 
