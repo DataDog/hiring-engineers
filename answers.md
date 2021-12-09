@@ -7,7 +7,7 @@ For collecting metrics I have installed VirtualBox and utilzed Vagrant to spin u
 2) my_metric.py in the checks.d directory
 * This file creates a function with a task of creating random intervals between 0-1000 every 45 seconds per the interval set in the config file
 
-With the Agent Check in place we can now begin monitoring, setting alerts, and downtime based on the parameters chosen through Application Performance Monitoring (APM) and real-time interactive dashboards.
+With the Agent Check in place we can now begin monitoring, setting alerts, and downtime based on the parameters chosen through Application Performance Monitoring (APM) and real-time interactive dashboards. In the case of a project I recently worked on, The Wishlist App, monitoring how many items added in a day required an alert in order to ensure the average data cache would not overflow.
 
 ## Visualizing Data:
 
@@ -23,13 +23,13 @@ Alerts are key to having visibility to infrastructure in a proactive manner. By 
 
 ![my_metric Alert Warn](assets/my_metricAlert2.png)
 
-Additionally your team won't want their inbox filled while out of the office with any alerts that may occur. Datadog has got it covered with downtime scheduling. We've set this monitor to be down after 7pm resuming at 9am daily, and also Saturday and Sunday. Easily tag anyone on the team as needed to receive alerts and schedule downtime.
+Additionally your team won't want their inbox filled while out of the office with any alerts that may occur. Datadog has got it covered with downtime scheduling. We've set this monitor to be down after 7pm resuming at 9am daily, and also Saturday and Sunday. Easily tag anyone on the team as needed to receive alerts and schedule downtime whether that be for general out of office days or holidays.
 
 ![Downtime Alert](assets/downtimeAlert.png)
 
 ## Collecting APM Data:
 
-Collecting data with Datadog's Application Performance Monitoring (APM) can be setup in a few steps. In our case I've set up a simple Flask application to demonstrate requests to our application via web browser. I've included a link to the dashboard below as well as a screen shot of the updated Timeboard showing request hits to the application. Depending on your service type Datadog has you covered with our extensive list of monitors. Utilize these services to trace any resource scoped to the specific endpoint desired.
+Collecting data with Datadog's Application Performance Monitoring (APM) can be setup in a few steps. In our case I've set up a simple Flask application to demonstrate requests to our application via web browser. I've included a link to the dashboard below as well as a screen shot of the updated Timeboard showing request hits to the application. Depending on your service type Datadog has you covered with our extensive list of monitors. Utilize these services (Cache, Custom, DB, Serverless function, Web) to trace any resource scoped to the specific endpoint desired.
 
 [APM Dashboard](https://app.datadoghq.com/dashboard/5zd-pe7-2dx/stevens-timeboard-thu-nov-18-25111-pm?from_ts=1637683991751&to_ts=1637684291751&live=true)
 
