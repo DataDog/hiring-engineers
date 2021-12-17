@@ -24,7 +24,7 @@ Created board using PostMan API editor and sent POST API to Datadog using api to
 View the dashboards within the Dashboard list in the Datadog user interface.  The sum of my_metric to show within a 5 minute time span.  Snapshot of the graph with hourly anomalies dashboard included. 
 
 **Bonus:** 
-The anomaly graph reveals that there are more than two standard deviations from the norm.  The graph provides a visualization of this performance as it relates to MySQL. 
+The anomaly graph appears blank, but with perspective of the rollup of the hourly sum, I would assume that it would reveal there are more than two standard that change per hour.   
 
 ## Monitoring Data
 
