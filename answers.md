@@ -20,8 +20,12 @@ Yes it is possible to edit the interval by adding min_collection_interval to the
 ## Visualizing Data
 
 Created board using PostMan API editor and sent POST API to Datadog using api token.  Included screen shot of API editor with JSON body. 
-      
+
+<img width="1349" alt="postmanbody" src="https://user-images.githubusercontent.com/32316958/146616850-c1d66751-1c9c-4908-b2f2-fd1d333fee7d.png">
+
 View the dashboards within the Dashboard list in the Datadog user interface.  The sum of my_metric to show within a 5 minute time span.  Snapshot of the graph with hourly anomalies dashboard included. 
+
+<img width="1277" alt="Timeboard" src="https://user-images.githubusercontent.com/32316958/146616807-8f607ea6-6d7e-49bd-9067-9142a818e05d.png">
 
 **Bonus:** 
 The anomaly graph appears blank, but with perspective of the rollup of the hourly sum, I would assume that it would reveal there are more than two standard that change per hour.   
@@ -34,9 +38,23 @@ Configure the message and who it gets sent to in the set up menu
 
 Configured the monitor’s messages in the cog menu to send a email whenever the monitor gets triggered. Configure the settings to send specific messages according to the variables set with reference to the template forms. 
 
+<img width="1281" alt="metricmonitor1" src="https://user-images.githubusercontent.com/32316958/146616727-3d8f41dc-44af-4d52-af8c-c0226dbd54bc.png">
+<img width="1243" alt="metricmonitor2" src="https://user-images.githubusercontent.com/32316958/146616752-1761074b-a082-49e7-a453-302ce942abf1.png">
+<img width="1271" alt="metricmonitor3" src="https://user-images.githubusercontent.com/32316958/146616756-13148df3-604e-4470-83f1-a45e4f757a13.png">
+<img width="710" alt="email1" src="https://user-images.githubusercontent.com/32316958/146616776-7f3b524c-b776-4644-801f-e2a0b6d7a5e4.png">
+<img width="710" alt="email2" src="https://user-images.githubusercontent.com/32316958/146616778-c829e927-70f4-4ca5-8f34-20b2d117bc49.png">
+<img width="711" alt="email3" src="https://user-images.githubusercontent.com/32316958/146616782-9a0aa8e9-3552-4b36-8ff5-e4338ce9b822.png">
+<img width="711" alt="email4" src="https://user-images.githubusercontent.com/32316958/146616783-45ba5a46-a042-45aa-9b62-023d0ebe3472.png">
+<img width="697" alt="email5" src="https://user-images.githubusercontent.com/32316958/146616788-7312ed14-27aa-46a1-8f48-779406fba600.png">
+<img width="708" alt="email6" src="https://user-images.githubusercontent.com/32316958/146616790-72a7c038-6115-4e2b-b9a4-51897feb9f18.png">
+
+
 
 **Bonus Question:**
 To set downtime for specific days, edit configuration through Manage Downtime within the Monitors menu.  There will be an option to schedule downtime. Use RRule Generator to set more specific options.  
+
+<img width="719" alt="downtime_weekdays" src="https://user-images.githubusercontent.com/32316958/146616821-217268f7-90ad-422d-8254-027677ed590e.png">
+<img width="720" alt="downtime_weekends" src="https://user-images.githubusercontent.com/32316958/146616832-eee833e4-c5dc-4ddc-a462-6726b8e00a0b.png">
 
 ## Collection APM Data
 
