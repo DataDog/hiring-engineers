@@ -33,24 +33,13 @@ The anomaly graph reveals that there are more than two standard deviations from 
 
  Create a new Metric Monitor that watches the average of my_metric and have it alert the following values over the past 5 minutes.  In the cog menu, edit the monitor to set an alert threshold of 800, a warning threshold of 500, and a no data if the query does not receive data for 10 minutes.  
 
-	Screenshot
-
 Configure the message and who it gets sent to in the set up menu
 
 Configure the monitor’s messages in the cog menu to send a email whenever the monitor gets triggered. Configure which message get sent using the variables provided in the template forms. 
 
-Screenshot of message and settings
-
 
 **Bonus Question:**
 To set downtime for specific days, edit configuration through Manage Downtime within the Monitors menu.  There will be an option to schedule downtime. Use RRule Generator to set more specific options.  
-
-
-
-Screenshot of schedule downtime on weekdays
-
-Screenshot of schedule downtime on weekends
-
 
 
 ## Collection APM Data
