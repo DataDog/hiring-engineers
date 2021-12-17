@@ -1,0 +1,28 @@
+ {"title":"Postman Test",
+ "description":"",
+ "widgets":[
+     {"definition":{
+         "title":"my hourly metric",
+            "type":"timeseries",
+         "requests":[{"q":"avg:my_metric{host:alex}"}]
+         }
+     },
+     {"definition":{
+         "title":"mysql metrics",
+     "type":"timeseries",
+         "requests":[{"q":"anomalies(avg:my_metric{host:alex}, 'basic', 2)"}]
+         }
+     },
+     {"definition":{
+         "title":"my_metric rollup 1h",
+     "type":"timeseries",
+         "requests":[{"q":"avg:my_metric{host:alex}.rollup(sum, 3600)"}]
+         }
+     }
+ ],
+ "template_variables":[],
+ "layout_type":"ordered",
+ "is_read_only":false,
+ "notify_list":["alex"],
+ "reflow_type":"auto"
+ }
