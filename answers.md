@@ -21,9 +21,13 @@ Yes it is possible to edit the interval by adding min_collection_interval to the
 
 Created board using PostMan API editor and sent POST API to Datadog using api token.  Included screen shot of API editor with JSON body. 
 
+https://app.datadoghq.com/dashboard/gek-bgr-27h/mymetric?from_ts=1639782997319&to_ts=1639786597319&live=true
+
 <img width="1349" alt="postmanbody" src="https://user-images.githubusercontent.com/32316958/146616850-c1d66751-1c9c-4908-b2f2-fd1d333fee7d.png">
 
 View the dashboards within the Dashboard list in the Datadog user interface.  The sum of my_metric to show within a 5 minute time span.  Snapshot of the graph with hourly anomalies dashboard included. 
+
+https://app.datadoghq.com/dashboard/5aa-992-hs3/postman-test?from_ts=1639786334482&to_ts=1639786634482&live=true
 
 <img width="1277" alt="Timeboard" src="https://user-images.githubusercontent.com/32316958/146616807-8f607ea6-6d7e-49bd-9067-9142a818e05d.png">
 
