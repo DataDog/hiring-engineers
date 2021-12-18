@@ -31,6 +31,8 @@ https://app.datadoghq.com/dashboard/5aa-992-hs3/postman-test?from_ts=16397863344
 
 <img width="1277" alt="Timeboard" src="https://user-images.githubusercontent.com/32316958/146616807-8f607ea6-6d7e-49bd-9067-9142a818e05d.png">
 
+<img width="1267" alt="postmantimeboard" src="https://user-images.githubusercontent.com/32316958/146623324-a7d8c465-ca4f-4f8d-85f7-b7c8ca39ed10.png">
+
 **Bonus:** 
 The anomaly graph appears blank, but with perspective of the rollup of the hourly sum, I would assume that it would reveal there are more than two standard that change per hour.   
 
