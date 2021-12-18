@@ -61,6 +61,9 @@ To set downtime for specific days, edit configuration through Manage Downtime wi
 Created a basic flask app on my vagrant vm using python and Datadog’s APM solution
 Dashboard with both APM and Infrastructure Metrics: Issues became present with python 2 installation.  Tried with pip3 and issue was resolved.  
 
+<img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146622489-f6b7c8ad-a3d9-4e02-83f2-4d896a7a766c.png">
+
+
 **Bonus Question:**
 Services act as “building blocks” that utilize microservice architectures.  A service can group together endpoints, and is usually named after a specific business action.  A resource is an action given to a service (e.g. query to a database or an endpoint.  
 
