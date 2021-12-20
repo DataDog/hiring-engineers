@@ -68,6 +68,8 @@ Dashboard with both APM and Infrastructure Metrics: Issues became present with p
 
 <img width="519" alt="ddtrace-output" src="https://user-images.githubusercontent.com/32316958/146623170-e554b5bf-935b-4b27-b4fc-cf63c1fcfe99.png">
 
+Although I was receiving a message that the service was running.  I ran into issues where the metrics would not display in the APM section of the Datadog UI.  I am currently troubleshooting this issue and will submit a new pull request once it is solved.  I believe it the issue relates to mysql database or my checks that are set up.  
+
 
 **Bonus Question:**
 Services act as “building blocks” that utilize microservice architectures.  A service can group together endpoints, and is usually named after a specific business action.  A resource is an action given to a service (e.g. query to a database or an endpoint.  
