@@ -14,3 +14,10 @@ Getting Metrics:
 code: ![image](https://user-images.githubusercontent.com/96433227/146827839-b75b2e4d-d5e4-4b00-b7c2-3261367d8136.png)
 
 graph: ![image](https://user-images.githubusercontent.com/96433227/146827897-3d3ef2a3-5133-4b94-ac8e-c0a0f038ce40.png)
+
+4. Collection Interval:
+
+code: ![image](https://user-images.githubusercontent.com/96433227/146829093-cb01d973-ee17-489f-b28b-f9a3874e21b6.png)
+
+graph: ![image](https://user-images.githubusercontent.com/96433227/146829130-c4684b45-f4fb-455c-89db-1f874195589d.png)
+
