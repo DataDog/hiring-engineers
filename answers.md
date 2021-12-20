@@ -7,4 +7,5 @@ Getting Metrics:
    
    Datadog Agent Manager: ![image](https://user-images.githubusercontent.com/96433227/146793571-7df54eac-2694-4aa0-9975-d67819c354d9.png)
    
-2. 
+2. MongoDB Installed: ![image](https://user-images.githubusercontent.com/96433227/146794365-5a45d99d-86c3-40c0-9239-4faf04831771.png)
+
