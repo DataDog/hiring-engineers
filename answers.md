@@ -9,3 +9,8 @@ Getting Metrics:
    
 2. MongoDB Installed: ![image](https://user-images.githubusercontent.com/96433227/146794365-5a45d99d-86c3-40c0-9239-4faf04831771.png)
 
+3. Random Number Generator:
+
+code: ![image](https://user-images.githubusercontent.com/96433227/146827839-b75b2e4d-d5e4-4b00-b7c2-3261367d8136.png)
+
+graph: ![image](https://user-images.githubusercontent.com/96433227/146827897-3d3ef2a3-5133-4b94-ac8e-c0a0f038ce40.png)
