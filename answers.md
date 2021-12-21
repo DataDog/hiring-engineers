@@ -1,29 +1,106 @@
-Your answers to the questions go here.
+Technical Assessment
+
 ## Setting up environment
 
 Followed steps to set up vagrant environment via Virtual Box.  Had some bugs that related to the updating python to install tracers and flask.  
 
+I set up my virtual environment via Vagrant (vagrantup.com/docs/installation), an open source software that makes it easy to spin up containers such as VirtualBox and Docker.  It is preferred to set up an Ubuntu workspace, to avoid dependency issues.  
+
+Once my vagrant environment was up and running.  I went over to the Datadog website, and went through the process of creating an account.  The registration was very simple, I just needed simple login information and my organization name to get started.  To link up your environment to the Datadog UI, the API and application keys are required, which are located in the Organization settings of the Datadog UI.  
+
+With the keys collected, enter the following command to install the Datadog Agent.  Be sure to replace <DATADOG_API_KEY>  with the keys obtained from the previous step.  
+
+DD_API_KEY=<DATADOG_API_KEY> DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+
 ##Collecting Metrics
 
-Added tags to Agent configuration file
+The directions from Datadog (href=https://docs.datadoghq.com/getting_started/agent/) made it very easy to navigate vagrant and install the correct libraries for Datadog.
 
-Installed mySQL in Vagrant environment.  Database was already installed for Datadog agent.  Configured file in mysql.d/conf.d to link to agent.  
+I used the following nano command to edit my configuration file: $ sudo nano /etc/datadog-agnet/datadog.yaml
 
-Created script files in checks.d to check that pushes a custom metric to the Datadog server
+This allowed me to edit my host tags, as seen in figure 7.  These tags allow me to better organize my metrics.  The tags were able to reflect in the Datadog UI, under the “Host Map” section after a few minutes, but restarting the agent may resolve arising issues: 
 
-Change the collection interval to submit metrics every 45 seconds. 
+$ sudo service datadog-agent restart
+
+Figure #
+
+I then installed mySQL in Vagrant environment using the following command: 
+
+$ sudo apt install mysql-server
+  
+Verify the service is running correctly by inputting the following in the command line:
+
+$ sudo service mysql status
+
+By utilizing the documentation provided (https://docs.datadoghq.com/integrations/mysql/?tab=host), the MySql check was conveniently included in the Datadog-agent package.  
+
+To prepare MySql, it is necessary to create a database user on each server by inputting: 
+
+mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY ‘<UNIQUEPASSWORD>';
+Replace ‘<UNIQUEPASSWORD>’; with the password created during installation.  To reset the password, follow this guide to troubleshoot issue: https://dev.mysql.com/doc/refman/8.0/en/resetting-permissions.html
+
+Then verify that the user was created by entering the following in a separate command line: 
+
+mysql -u datadog --password=<UNIQUEPASSWORD> -e "show status" | \
+grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
+echo -e "\033[0;31mCannot connect to MySQL\033[0m”
+
+mysql -u datadog --password=<UNIQUEPASSWORD> -e "show slave status" && \
+echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
+echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m”
+
+Afterwards grant the user limited priviledges: 
+
+mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
+
+View the metrics collected from the performa_schema database using the following to grand privileges.  
+
+mysql> show databases like ‘performance_schema’;
+
+Figure #
+
+To edit the configuration by using the following command: $ sudo nano /etc/datadog-agent/conf.d/mysql.d/conf.example.yaml
+
+From the mysql.d folder (/etc/datadog-agent/conf.d/mysql.d/) I copied the contents over to a new file named conf.yaml in the mysql.d folder, which is demonstrated in the figure below:
+
+Figure # 
+Mysql conf.yaml
+
+Once I had the mysql database running, I created a metric check called my_metric and used it to submit a random value between 0-1000.  
+
+In order to submit a check I had to create two files.  One in the /conf.d/ that initiates the instance show in figure #, and a file in /checks.d/ that generates the random value as shown in figure #.
+
+Figure #
+
+In the yaml file created above, I created a sequence which calls an instance with an empty mapping.  
+
+Figure #
+
+
+In the /checks.d/ file we create a python file which initiates and submits the random value generated as a metric.  
+Figure #
+
+It is possible to change the collection interval to submit metrics every 45 seconds back in the yaml file I created in /conf.d/ file as seen in figure #
+
+Figure #
 
 **Bonus question:**
 
-Yes it is possible to edit the interval by adding min_collection_interval to the yaml in the conf.d/ file.
+Yes it is possible to edit the interval by adding min_collection_interval to the yaml in the conf.d/ file.  Add the min_collection_interval variable to the mapping within the stance, and input the number 45 as seen in figure # below.
 
 ## Visualizing Data
 
-Created board using PostMan API editor and sent POST API to Datadog using api token.  Included screen shot of API editor with JSON body. 
+Created board using PostMan API editor and sent POST API to Datadog using api token.  Included screen shot of API editor with JSON body.  
 
 https://app.datadoghq.com/dashboard/gek-bgr-27h/mymetric?from_ts=1639782997319&to_ts=1639786597319&live=true
 
-<img width="1349" alt="postmanbody" src="https://user-images.githubusercontent.com/32316958/146616850-c1d66751-1c9c-4908-b2f2-fd1d333fee7d.png">
+Datadog makes it easy to import their collection to Postman by offering a quick button to get set up in Postman which can be found here: https://docs.datadoghq.com/getting_started/api/.
+
+Once I am directed to the Postman UI, the available Datadog API’s are shown in the left pane of the window. The Collection that was just imported also contains an environment called Datadog authentication which can be utilized to add API and application keys to link to our application.
+
+<img width="1349" alt="postmanbody" src=“https://user-images.githubusercontent.com/32316958/146616850-c1d66751-1c9c-4908-b2f2-fd1d333fee7d.png”>
+
+**Templates for dashboards
 
 View the dashboards within the Dashboard list in the Datadog user interface.  The sum of my_metric to show within a 5 minute time span.  Snapshot of the graph with hourly anomalies dashboard included. 
 
@@ -38,14 +115,18 @@ The anomaly graph appears blank, but with perspective of the rollup of the hourl
 
 ## Monitoring Data
 
-Created a new Metric Monitor that watches the average of my_metric and have it alert the following values over the past 5 minutes.  In the cog menu, edit the monitor to set an alert threshold of 800, a warning threshold of 500, and a no data if the query does not receive data for 10 minutes. 
+To create a new Metric Monitor, navigate to the create a metric section in the left hand panel.  The options to create a new custom metric can be observed.  The ability to use recommended metrics are also provided. 
 
-Configure the message and who it gets sent to in the set up menu
+<img width="1281" alt="metricmonitor1" src=“https://user-images.githubusercontent.com/32316958/146616727-3d8f41dc-44af-4d52-af8c-c0226dbd54bc.png">
 
-Configured the monitor’s messages in the cog menu to send a email whenever the monitor gets triggered. Configure the settings to send specific messages according to the variables set with reference to the template forms. 
+Select “new monitor” and configure it to watch the average of my_metric and set the alert limits to reveal the following values over the past 5 minutes.  Below that, edit the monitor to set an alert threshold of 800, a warning threshold of 500, and a no data if the query does not receive data for 10 minutes. 
 
-<img width="1281" alt="metricmonitor1" src="https://user-images.githubusercontent.com/32316958/146616727-3d8f41dc-44af-4d52-af8c-c0226dbd54bc.png">
 <img width="1243" alt="metricmonitor2" src="https://user-images.githubusercontent.com/32316958/146616752-1761074b-a082-49e7-a453-302ce942abf1.png">
+
+Configure the message and the users it gets sent to in the set up menu in section 4 & 5.  Configured the monitor’s messages in the cog menu to send a email whenever the monitor gets triggered. Configure the settings to send specific messages according to the variables set with reference to the template forms.  
+
+Metricmonitor3 image.
+
 <img width="710" alt="email1" src="https://user-images.githubusercontent.com/32316958/146616776-7f3b524c-b776-4644-801f-e2a0b6d7a5e4.png">
 <img width="710" alt="email2" src="https://user-images.githubusercontent.com/32316958/146616778-c829e927-70f4-4ca5-8f34-20b2d117bc49.png">
 
@@ -60,13 +141,45 @@ To set downtime for specific days, edit configuration through Manage Downtime wi
 
 ## Collection APM Data
 
-Created a basic flask app on my vagrant vm using python and Datadog’s APM solution
-Dashboard with both APM and Infrastructure Metrics: Issues became present with python 2 installation.  Tried with pip3 and issue was resolved.  
+I was able to set up tracers using the information provided by Datadog here: https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers.  
+
+It is first recommend to set up the environment, which Datadog provides a step-by-step instruction to ensure a smooth deployment configuration here: https://app.datadoghq.com/apm/docs?architecture=host-based&language=python
+
+
+
+Before getting started, the correct python libraries must be installed via the following commands:
+
+$ sudo apt-get install python-pip
+pip install flask
+pip install ddtrace
+
+Issues became present with python 2 installation.  Tried with pip3 (using the command: $ sudo apt-get -y install python3-pip) to download flask and ddtrace and issues were resolved.  
+
+Utilize the flask app by following the quick start guide provided by flask https://flask.palletsprojects.com/en/2.0.x/quickstart/ 
 
 <img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146622489-f6b7c8ad-a3d9-4e02-83f2-4d896a7a766c.png">
 
 
-<img width="519" alt="ddtrace-output" src="https://user-images.githubusercontent.com/32316958/146623170-e554b5bf-935b-4b27-b4fc-cf63c1fcfe99.png">
+<img width="519" alt="ddtrace-output" src=“https://user-images.githubusercontent.com/32316958/146623170-e554b5bf-935b-4b27-b4fc-cf63c1fcfe99.png">
+
+Created an application call app.py by using the touch command and then editing it with nano to create appication using Python.
+
+$ sudo touch app.py
+$ sudo nano app.py
+
+I entered the provided code to create a flask app as seen on figure # 
+
+Once this is created it, instrument it into Datadog’s APM by calling it with the following command:
+
+DD_SERVICE="flask-app" DD_ENV="dev" DD_LOGS_INJECTION=true ddtrace-run python app.py
+
+A service running summary can be observed if all steps were completed.
+
+Figure #
+
+I then sent requests to the three routes in the app (/, api/apm, api/trace) 
+
+
 
 Although I was receiving a message that the service was running.  I ran into issues where the metrics would not display in the APM section of the Datadog UI.  I am currently troubleshooting this issue and will submit a new pull request once it is solved.  I believe it the issue relates to mysql database or my checks that are set up.  
 
