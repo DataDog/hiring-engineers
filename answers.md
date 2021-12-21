@@ -6,7 +6,8 @@ I set up my virtual environment via Vagrant (vagrantup.com/docs/installation), a
 
 Once my Vagrant environment was up and running, I went over to the Datadog website and went through the process of creating an account.  The registration was very simple, I just needed simple login information and my organization name to get started.  To link up your environment to the Datadog UI, the API and application keys are required, which are in the Organization settings of the Datadog UI.  
 
-Figure #
+Figure 1
+<img width="1425" alt="datadog-agent-status" src="https://user-images.githubusercontent.com/32316958/146981341-1988e256-c693-4464-a72f-9c0314c667d2.png">
 
 With the keys collected, enter the following command to install the Datadog Agent.  Be sure to replace <DATADOG_API_KEY>  with the keys obtained from the previous step.  
 
@@ -22,7 +23,7 @@ This allowed me to edit my host tags, as seen in figure 7.  These tags allow me 
 
 > $ sudo service datadog-agent restart
 
-Figure #
+Figure 2
 
 I then installed MySQL in Vagrant environment using the following command: 
 
@@ -63,7 +64,7 @@ To edit the configuration by using the following command: $ sudo nano /etc/datad
 
 From the mysql.d folder (/etc/datadog-agent/conf.d/mysql.d/) I copied the contents over to a new file named conf.yaml in the mysql.d folder, which is demonstrated in the figure below:
 
-Figure # 
+Figure 3
   
 <img width="1435" alt="mysqlconf" src="https://user-images.githubusercontent.com/32316958/146952691-51fd7067-53b1-4a61-b1e7-566c196bc23b.png">
 
@@ -71,7 +72,7 @@ Once I had the mysql database running, I created a metric check called my_metric
 
 In order to submit a check, I had to create two files.  One in the /conf.d/ that initiates the instance show in figure #, and a file in /checks.d/ that generates the random value as shown in figure #.
 
-Figure #
+Figure 4
   
 <img width="716" alt="blankinstance" src="https://user-images.githubusercontent.com/32316958/146953276-68023cbe-7a11-4832-8419-e0f019ef5a0b.png">
 
@@ -79,7 +80,7 @@ In the yaml file created above, I created a sequence which calls an instance wit
 
 In the /checks.d/ file we create a python file which initiates and submits the random value generated as a metric.  
   
-Figure #
+Figure 5
   
 <img width="714" alt="my_metric" src="https://user-images.githubusercontent.com/32316958/146953545-131a05e3-2df8-4cc5-82f5-cfe976fb6ad3.png">
   
@@ -89,7 +90,7 @@ Verified status of check:
 
 It is possible to change the collection interval to submit metrics every 45 seconds back in the yaml file I created in /conf.d/ file.
 
-Figure #
+Figure 6
   
 <img width="717" alt="my_metricconf" src="https://user-images.githubusercontent.com/32316958/146953858-3cd173e0-fd92-4ae4-a949-c49a5f3c3144.png">
 
@@ -168,7 +169,7 @@ Utilize the flask app by following the quick start guide provided by flask https
 
 <img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146622489-f6b7c8ad-a3d9-4e02-83f2-4d896a7a766c.png">
 
-Figure #
+Figure 7
 
 <img width="519" alt="ddtrace-output" src=“https://user-images.githubusercontent.com/32316958/146623170-e554b5bf-935b-4b27-b4fc-cf63c1fcfe99.png">
 
@@ -185,7 +186,7 @@ DD_SERVICE="flask-app" DD_ENV="dev" DD_LOGS_INJECTION=true ddtrace-run python ap
 
 A service running summary can be observed if all steps were completed.
 
-Figure #
+Figure 8
   
 <img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146954279-4be12264-b061-4fe7-a7a4-7f0b69bea12f.png">
 
