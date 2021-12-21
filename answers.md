@@ -78,7 +78,7 @@ In order to submit a check, I had to create two files; one in the /conf.d/ that 
 
 In the yaml file created below, I created a sequence which calls an instance with an empty mapping.  
   
-instances: [{}]
+  *instances: [{}]*
   
 In the /checks.d/ file we create a python file which initiates and submits the random value generated as a metric.  
   
