@@ -6,12 +6,18 @@ I set up my virtual environment via Vagrant (vagrantup.com/docs/installation), a
 
 Once my Vagrant environment was up and running, I went over to the Datadog website and went through the process of creating an account.  The registration was very simple, I just needed simple login information and my organization name to get started.  To link up your environment to the Datadog UI, the API and application keys are required, which are in the Organization settings of the Datadog UI.  
 
-Figure 1
-<img width="1428" alt="datadog-agent-status" src="https://user-images.githubusercontent.com/32316958/146984515-491a69dd-2a55-4348-b0a2-c57941f35305.png">
-
 With the keys collected, enter the following command to install the Datadog Agent.  Be sure to replace <DATADOG_API_KEY>  with the keys obtained from the previous step.  
 
 > DD_API_KEY=<DATADOG_API_KEY> DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+
+After running:
+
+> sudo datadog-agent status
+
+I was able to receive this output
+
+Figure 1
+<img width="1428" alt="datadog-agent-status" src="https://user-images.githubusercontent.com/32316958/146984515-491a69dd-2a55-4348-b0a2-c57941f35305.png">
 
 ## Collecting Metrics
 
