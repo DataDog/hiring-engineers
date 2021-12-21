@@ -181,20 +181,21 @@ To set downtime for specific days, edit configuration through Manage Downtime wi
                                                                                                                                                   
   Figure 16
                                                                                                                                                   
-<img width="710" alt="email1" src="https://user-images.githubusercontent.com/32316958/146616776-7f3b524c-b776-4644-801f-e2a0b6d7a5e4.png">
+ <img width="719" alt="downtime_weekdays" src="https://user-images.githubusercontent.com/32316958/146616821-217268f7-90ad-422d-8254-027677ed590e.png">
+
           
   Figure 17 
                                                                                                                                          
-<img width="710" alt="email2" src="https://user-images.githubusercontent.com/32316958/146616778-c829e927-70f4-4ca5-8f34-20b2d117bc49.png">
-
+  <img width="720" alt="downtime_weekends" src="https://user-images.githubusercontent.com/32316958/146616832-eee833e4-c5dc-4ddc-a462-6726b8e00a0b.png">
 
   Figure 18
                                                                                                                                          
- <img width="719" alt="downtime_weekdays" src="https://user-images.githubusercontent.com/32316958/146616821-217268f7-90ad-422d-8254-027677ed590e.png">
+  <img width="710" alt="email1" src="https://user-images.githubusercontent.com/32316958/146616776-7f3b524c-b776-4644-801f-e2a0b6d7a5e4.png">
 
   Figure 19
                                                                                                                                                      
- <img width="720" alt="downtime_weekends" src="https://user-images.githubusercontent.com/32316958/146616832-eee833e4-c5dc-4ddc-a462-6726b8e00a0b.png">
+  <img width="710" alt="email2" src="https://user-images.githubusercontent.com/32316958/146616778-c829e927-70f4-4ca5-8f34-20b2d117bc49.png">
+
 
 ## Collection APM Data
 
