@@ -172,7 +172,7 @@ Utilize the flask app by following the quick start guide provided by flask https
 
 Figure 7
 
-<img width="519" alt="ddtrace-output" src=“https://user-images.githubusercontent.com/32316958/146623170-e554b5bf-935b-4b27-b4fc-cf63c1fcfe99.png">
+<img width="519" alt="ddtrace-output" src="https://user-images.githubusercontent.com/32316958/146985646-f71f9fce-d8af-43c7-b343-2b7b98026fb3.png">
 
 Created an application call app.py by using the touch command and then editing it with nano to create application using Python.
 
