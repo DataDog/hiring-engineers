@@ -12,7 +12,7 @@ With the keys collected, enter the following command to install the Datadog Agen
 
 After running:
 
-> sudo datadog-agent status
+> $ sudo datadog-agent status
 
 I was able to receive this output
 
@@ -23,7 +23,9 @@ Figure 1
 
 The directions from Datadog (https://docs.datadoghq.com/getting_started/agent/) made it very easy to navigate vagrant and install the correct libraries for Datadog.
 
-I used the following nano command to edit my configuration file: $ sudo nano /etc/datadog-agnet/datadog.yaml
+I used the following nano command to edit my configuration file: 
+
+> $ sudo nano /etc/datadog-agnet/datadog.yaml
 
 This allowed me to edit my host tags, as seen in the image below.  These tags allow me to better organize my metrics.  The tags were able to reflect in the Datadog UI, under the “Host Map” section after a few minutes, but restarting the agent may resolve arising issues: 
 
@@ -237,7 +239,7 @@ A service running summary can be observed if all steps were completed.
 
 I then sent requests to the three routes in the app (/, api/apm, api/trace) 
 
-Although I was receiving a message that the service was running.  I ran into issues where the metrics would not display in the APM section of the Datadog UI. I believe it the issue relates to the metrics I am sending it.  
+Although I was receiving a message that the service was running.  I ran into issues where the metrics would not display in the APM section of the Datadog UI. I believe the issue relates to the metrics I am sending.  
 
 ### Bonus Question:
 Services act as “building blocks” that utilize microservice architectures.  A service can group together endpoints, and is usually named after a specific business action.  A resource is an action given to a service (e.g. query to a database or an endpoint.  
