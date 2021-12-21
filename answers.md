@@ -7,7 +7,8 @@ I set up my virtual environment via Vagrant (vagrantup.com/docs/installation), a
 Once my Vagrant environment was up and running, I went over to the Datadog website and went through the process of creating an account.  The registration was very simple, I just needed simple login information and my organization name to get started.  To link up your environment to the Datadog UI, the API and application keys are required, which are in the Organization settings of the Datadog UI.  
 
 Figure 1
-<img width="1425" alt="datadog-agent-status" src="https://user-images.githubusercontent.com/32316958/146981341-1988e256-c693-4464-a72f-9c0314c667d2.png">
+
+<img width="1428" alt="datadog-agent-status" src="https://user-images.githubusercontent.com/32316958/146984515-491a69dd-2a55-4348-b0a2-c57941f35305.png">
 
 With the keys collected, enter the following command to install the Datadog Agent.  Be sure to replace <DATADOG_API_KEY>  with the keys obtained from the previous step.  
 
@@ -23,7 +24,7 @@ This allowed me to edit my host tags, as seen in figure 7.  These tags allow me 
 
 > $ sudo service datadog-agent restart
 
-Figure 2
+<img width="1434" alt="mysqlconfig" src="https://user-images.githubusercontent.com/32316958/146984615-1b384332-e49e-4aac-91fe-22fd9ed0c2e6.png">
 
 I then installed MySQL in Vagrant environment using the following command: 
 
@@ -66,7 +67,7 @@ From the mysql.d folder (/etc/datadog-agent/conf.d/mysql.d/) I copied the conten
 
 Figure 3
   
-<img width="1435" alt="mysqlconf" src="https://user-images.githubusercontent.com/32316958/146952691-51fd7067-53b1-4a61-b1e7-566c196bc23b.png">
+<img width="1434" alt="mysqlconfig" src="https://user-images.githubusercontent.com/32316958/146984566-69dee752-199c-463b-bf4c-310a23174ac9.png">
 
 Once I had the mysql database running, I created a metric check called my_metric and used it to submit a random value between 0-1000.  
 
