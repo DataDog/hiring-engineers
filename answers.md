@@ -72,7 +72,9 @@ View the metrics collected from the performa_schema database using the following
   
 <img width="599" alt="mysqlperformaschema" src="https://user-images.githubusercontent.com/32316958/146952646-a601d780-04fd-41d4-953e-2bfc0cfb738c.png">
 
-To edit the configuration by using the following command: $ sudo nano /etc/datadog-agent/conf.d/mysql.d/conf.example.yaml
+To edit the configuration by using the following command: 
+
+> $ sudo nano /etc/datadog-agent/conf.d/mysql.d/conf.example.yaml
 
 From the mysql.d folder (/etc/datadog-agent/conf.d/mysql.d/) I copied the contents over to a new file named conf.yaml in the mysql.d folder, which is demonstrated in the figure below:
   
