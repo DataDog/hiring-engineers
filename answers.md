@@ -2,17 +2,19 @@
 
 ## Setting up environment  
 
-I set up my virtual environment via Vagrant (vagrantup.com/docs/installation), an open source software that makes it easy to spin up containers such as VirtualBox and Docker.  It is preferred to set up an Ubuntu workspace, to avoid dependency issues.  
+I set up my virtual environment via Vagrant (vagrantup.com/docs/installation), an open-source software that makes it easy to spin up containers such as VirtualBox and Docker.  It is preferred to set up an Ubuntu workspace, to avoid dependency issues.  
 
-Once my Vagrant environment was up and running.  I went over to the Datadog website, and went through the process of creating an account.  The registration was very simple, I just needed simple login information and my organization name to get started.  To link up your environment to the Datadog UI, the API and application keys are required, which are located in the Organization settings of the Datadog UI.  
+Once my Vagrant environment was up and running, I went over to the Datadog website and went through the process of creating an account.  The registration was very simple, I just needed simple login information and my organization name to get started.  To link up your environment to the Datadog UI, the API and application keys are required, which are in the Organization settings of the Datadog UI.  
+
+Figure #
 
 With the keys collected, enter the following command to install the Datadog Agent.  Be sure to replace <DATADOG_API_KEY>  with the keys obtained from the previous step.  
 
-DD_API_KEY=<DATADOG_API_KEY> DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+> DD_API_KEY=<DATADOG_API_KEY> DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 
 ## Collecting Metrics
 
-The directions from Datadog (href=https://docs.datadoghq.com/getting_started/agent/) made it very easy to navigate vagrant and install the correct libraries for Datadog.
+The directions from Datadog (https://docs.datadoghq.com/getting_started/agent/) made it very easy to navigate vagrant and install the correct libraries for Datadog.
 
 I used the following nano command to edit my configuration file: $ sudo nano /etc/datadog-agnet/datadog.yaml
 
@@ -22,7 +24,7 @@ This allowed me to edit my host tags, as seen in figure 7.  These tags allow me 
 
 Figure #
 
-I then installed mySQL in Vagrant environment using the following command: 
+I then installed MySQL in Vagrant environment using the following command: 
 
 > $ sudo apt install mysql-server
   
@@ -67,7 +69,7 @@ Figure #
 
 Once I had the mysql database running, I created a metric check called my_metric and used it to submit a random value between 0-1000.  
 
-In order to submit a check I had to create two files.  One in the /conf.d/ that initiates the instance show in figure #, and a file in /checks.d/ that generates the random value as shown in figure #.
+In order to submit a check, I had to create two files.  One in the /conf.d/ that initiates the instance show in figure #, and a file in /checks.d/ that generates the random value as shown in figure #.
 
 Figure #
   
@@ -98,7 +100,7 @@ Yes it is possible to edit the interval by adding min_collection_interval to the
 
 ## Visualizing Data
 
-Created board using PostMan API editor and sent POST API to Datadog using api token.  Included screen shot of API editor with JSON body.  
+Created board using PostMan API editor and sent POST API to Datadog using API token.  Included screen shot of API editor with JSON body.  
 
 https://app.datadoghq.com/dashboard/gek-bgr-27h/mymetric?from_ts=1639782997319&to_ts=1639786597319&live=true
 
@@ -125,7 +127,7 @@ The anomaly graph appears blank, but with perspective of the rollup of the hourl
 
 ## Monitoring Data
 
-To create a new Metric Monitor, navigate to the create a metric section in the left hand panel.  The options to create a new custom metric can be observed.  The ability to use recommended metrics are also provided. 
+To create a new Metric Monitor, navigate to the create a metric section in the left-hand panel.  The options to create a new custom metric can be observed.  The ability to use recommended metrics are also provided. 
 
 <img width="1281" alt="metricmonitor1" src=“https://user-images.githubusercontent.com/32316958/146616727-3d8f41dc-44af-4d52-af8c-c0226dbd54bc.png">
 
@@ -133,7 +135,7 @@ Select “new monitor” and configure it to watch the average of my_metric and 
 
 <img width="1243" alt="metricmonitor2" src="https://user-images.githubusercontent.com/32316958/146616752-1761074b-a082-49e7-a453-302ce942abf1.png">
 
-Configure the message and the users it gets sent to in the set up menu in section 4 & 5.  Configured the monitor’s messages in the cog menu to send a email whenever the monitor gets triggered. Configure the settings to send specific messages according to the variables set with reference to the template forms.  
+Configure the message and the users it gets sent to in the set-up menu in section 4 & 5.  Configured the monitor’s messages in the cog menu to send an email whenever the monitor gets triggered. Configure the settings to send specific messages according to the variables set with reference to the template forms.  
                                                                                                                                                   
 <img width="1271" alt="metricmonitor3" src="https://user-images.githubusercontent.com/32316958/146954449-3013a47f-4cd9-4616-b501-8de81b952979.png">
 
@@ -170,7 +172,7 @@ Figure #
 
 <img width="519" alt="ddtrace-output" src=“https://user-images.githubusercontent.com/32316958/146623170-e554b5bf-935b-4b27-b4fc-cf63c1fcfe99.png">
 
-Created an application call app.py by using the touch command and then editing it with nano to create appication using Python.
+Created an application call app.py by using the touch command and then editing it with nano to create application using Python.
 
 > $ sudo touch app.py
 > $ sudo nano app.py
