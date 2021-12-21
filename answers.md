@@ -61,6 +61,7 @@ View the metrics collected from the performa_schema database using the following
 > mysql> show databases like ‘performance_schema’;
 
   Figure 3
+  
 <img width="599" alt="mysqlperformaschema" src="https://user-images.githubusercontent.com/32316958/146952646-a601d780-04fd-41d4-953e-2bfc0cfb738c.png">
 
 To edit the configuration by using the following command: $ sudo nano /etc/datadog-agent/conf.d/mysql.d/conf.example.yaml
@@ -68,6 +69,7 @@ To edit the configuration by using the following command: $ sudo nano /etc/datad
 From the mysql.d folder (/etc/datadog-agent/conf.d/mysql.d/) I copied the contents over to a new file named conf.yaml in the mysql.d folder, which is demonstrated in the figure below:
   
   Figure 4
+  
 <img width="1434" alt="mysqlconfig" src="https://user-images.githubusercontent.com/32316958/146984566-69dee752-199c-463b-bf4c-310a23174ac9.png">
 
 Once I had the mysql database running, I created a metric check called my_metric and used it to submit a random value between 0-1000.  
@@ -82,7 +84,7 @@ In the /checks.d/ file we create a python file which initiates and submits the r
   
   Figure 6
   
-  <img width="714" alt="my_metric" src="https://user-images.githubusercontent.com/32316958/146953545-131a05e3-2df8-4cc5-82f5-cfe976fb6ad3.png">
+ <img width="714" alt="my_metric" src="https://user-images.githubusercontent.com/32316958/146953545-131a05e3-2df8-4cc5-82f5-cfe976fb6ad3.png">
   
 Verified status of check:
   
