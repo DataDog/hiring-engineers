@@ -87,7 +87,7 @@ Figure 5
   
 Verified status of check:
   
-<img width="1316" alt="my_metric_check" src="https://user-images.githubusercontent.com/32316958/146953405-4ea3402c-566b-44bf-92a7-e36be936271f.png">
+<img width="1436" alt="my_metric_check" src="https://user-images.githubusercontent.com/32316958/146984925-65d1c93b-549e-40ef-91d6-f366ddcd7839.png">
 
 It is possible to change the collection interval to submit metrics every 45 seconds back in the yaml file I created in /conf.d/ file.
 
