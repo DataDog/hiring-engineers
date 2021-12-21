@@ -6,8 +6,6 @@ I set up my virtual environment via Vagrant (vagrantup.com/docs/installation), a
 
 Once my Vagrant environment was up and running, I went over to the Datadog website and went through the process of creating an account.  The registration was very simple, I just needed simple login information and my organization name to get started.  To link up your environment to the Datadog UI, the API and application keys are required, which are in the Organization settings of the Datadog UI.  
 
-Figure 1
-
 <img width="1428" alt="datadog-agent-status" src="https://user-images.githubusercontent.com/32316958/146984515-491a69dd-2a55-4348-b0a2-c57941f35305.png">
 
 With the keys collected, enter the following command to install the Datadog Agent.  Be sure to replace <DATADOG_API_KEY>  with the keys obtained from the previous step.  
@@ -64,24 +62,18 @@ View the metrics collected from the performa_schema database using the following
 To edit the configuration by using the following command: $ sudo nano /etc/datadog-agent/conf.d/mysql.d/conf.example.yaml
 
 From the mysql.d folder (/etc/datadog-agent/conf.d/mysql.d/) I copied the contents over to a new file named conf.yaml in the mysql.d folder, which is demonstrated in the figure below:
-
-Figure 3
   
 <img width="1434" alt="mysqlconfig" src="https://user-images.githubusercontent.com/32316958/146984566-69dee752-199c-463b-bf4c-310a23174ac9.png">
 
 Once I had the mysql database running, I created a metric check called my_metric and used it to submit a random value between 0-1000.  
 
 In order to submit a check, I had to create two files.  One in the /conf.d/ that initiates the instance show in figure #, and a file in /checks.d/ that generates the random value as shown in figure #.
-
-Figure 4
   
 <img width="716" alt="blankinstance" src="https://user-images.githubusercontent.com/32316958/146953276-68023cbe-7a11-4832-8419-e0f019ef5a0b.png">
 
 In the yaml file created above, I created a sequence which calls an instance with an empty mapping.  
 
 In the /checks.d/ file we create a python file which initiates and submits the random value generated as a metric.  
-  
-Figure 5
   
 <img width="714" alt="my_metric" src="https://user-images.githubusercontent.com/32316958/146953545-131a05e3-2df8-4cc5-82f5-cfe976fb6ad3.png">
   
@@ -90,8 +82,6 @@ Verified status of check:
 <img width="1436" alt="my_metric_check" src="https://user-images.githubusercontent.com/32316958/146984925-65d1c93b-549e-40ef-91d6-f366ddcd7839.png">
 
 It is possible to change the collection interval to submit metrics every 45 seconds back in the yaml file I created in /conf.d/ file.
-
-Figure 6
   
 <img width="717" alt="my_metricconf" src="https://user-images.githubusercontent.com/32316958/146953858-3cd173e0-fd92-4ae4-a949-c49a5f3c3144.png">
 
@@ -170,8 +160,6 @@ Utilize the flask app by following the quick start guide provided by flask https
 
 <img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146622489-f6b7c8ad-a3d9-4e02-83f2-4d896a7a766c.png">
 
-Figure 7
-
 <img width="519" alt="ddtrace-output" src="https://user-images.githubusercontent.com/32316958/146985646-f71f9fce-d8af-43c7-b343-2b7b98026fb3.png">
 
 Created an application call app.py by using the touch command and then editing it with nano to create application using Python.
@@ -186,8 +174,6 @@ Once this is created it, instrument it into Datadog’s APM by calling it with t
 DD_SERVICE="flask-app" DD_ENV="dev" DD_LOGS_INJECTION=true ddtrace-run python app.py
 
 A service running summary can be observed if all steps were completed.
-
-Figure 8
   
 <img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146954279-4be12264-b061-4fe7-a7a4-7f0b69bea12f.png">
 
