@@ -133,8 +133,11 @@ https://app.datadoghq.com/dashboard/5aa-992-hs3/postman-test?from_ts=16397863344
   Figure 12
   
 <img width="1267" alt="postmantimeboard" src="https://user-images.githubusercontent.com/32316958/146623324-a7d8c465-ca4f-4f8d-85f7-b7c8ca39ed10.png">
+  
+  * Reference for JSON body: https://zero2datadog.readthedocs.io/en/latest/visualize.html *
 
 **Bonus:** 
+  
 In observation of the anomaly graph, the function distringuishes normal and abnormal trends within the gray area.  It is able to analyze a metric's behaviour and show a prediction of what may be too abnormal for the graph. 
   
   <img width="1117" alt="anomalyfunction" src="https://user-images.githubusercontent.com/32316958/146997162-bc1dfb87-b103-4d6f-bece-1fcadc58057a.png">
@@ -197,7 +200,8 @@ Issues became present with python 2 installation.  Tried with pip3 (using the co
 
 Utilize the flask app by following the quick start guide provided by flask https://flask.palletsprojects.com/en/2.0.x/quickstart/ 
 
-  Figure 20                                                                                                                                                  
+  Figure 20   
+                                                                                                                                                     
 <img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146622489-f6b7c8ad-a3d9-4e02-83f2-4d896a7a766c.png">
 
   Figure 21                                                                                                                                            
@@ -216,14 +220,13 @@ DD_SERVICE="flask-app" DD_ENV="dev" DD_LOGS_INJECTION=true ddtrace-run python ap
 
 A service running summary can be observed if all steps were completed.
   
-   Figure 22                                
+  Figure 22  
+                                   
 <img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146954279-4be12264-b061-4fe7-a7a4-7f0b69bea12f.png">
 
 I then sent requests to the three routes in the app (/, api/apm, api/trace) 
 
-
 Although I was receiving a message that the service was running.  I ran into issues where the metrics would not display in the APM section of the Datadog UI.  I am currently troubleshooting this issue and will submit a new pull request once it is solved.  I believe it the issue relates to mysql database or my checks that are set up.  
-
 
 ### Bonus Question:
 Services act as “building blocks” that utilize microservice architectures.  A service can group together endpoints, and is usually named after a specific business action.  A resource is an action given to a service (e.g. query to a database or an endpoint.  
