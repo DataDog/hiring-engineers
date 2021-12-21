@@ -119,8 +119,8 @@ Once I am directed to the Postman UI, the available Datadog API’s are shown in
   Figure 10
   
 <img width="1349" alt="postmanbody" src="https://user-images.githubusercontent.com/32316958/146961133-330e0a5a-39c4-49cf-906b-a3a76a03e07c.png">
-
-**Templates for dashboards
+  
+    * Reference for JSON body: https://zero2datadog.readthedocs.io/en/latest/visualize.html *
 
 View the dashboards within the Dashboard list in the Datadog user interface.  The sum of my_metric to show within a 5 minute time span.  Snapshot of the graph with hourly anomalies dashboard included. 
 
@@ -134,7 +134,6 @@ https://app.datadoghq.com/dashboard/5aa-992-hs3/postman-test?from_ts=16397863344
   
 <img width="1267" alt="postmantimeboard" src="https://user-images.githubusercontent.com/32316958/146623324-a7d8c465-ca4f-4f8d-85f7-b7c8ca39ed10.png">
   
-  * Reference for JSON body: https://zero2datadog.readthedocs.io/en/latest/visualize.html *
 
 **Bonus:** 
   
