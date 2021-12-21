@@ -47,7 +47,7 @@ By utilizing the documentation provided (https://docs.datadoghq.com/integrations
 
 To prepare MySql, it is necessary to create a database user on each server by inputting: 
 
-mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY ‘<UNIQUEPASSWORD>';
+> mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY ‘<UNIQUEPASSWORD>';
 Replace ‘<UNIQUEPASSWORD>’; with the password created during installation.  To reset the password, follow this guide to troubleshoot issue: https://dev.mysql.com/doc/refman/8.0/en/resetting-permissions.html
 
 Then verify that the user was created by entering the following in a separate command line: 
