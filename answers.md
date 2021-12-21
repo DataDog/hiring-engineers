@@ -100,7 +100,7 @@ It is possible to change the collection interval to submit metrics every 45 seco
 
 ### Bonus question:
 
-Yes it is possible to edit the interval by adding min_collection_interval to the yaml in the conf.d/ file.  Add the min_collection_interval variable to the mapping within the stance, and input the number 45 as seen in figure # below.
+Yes it is possible to edit the interval by adding min_collection_interval to the yaml in the conf.d/ file.  Add the min_collection_interval variable to the mapping within the stance, and input the number 45 as seen in figure 8 above.  The collector may not run the checker if there is another check running as well, for then the check will skip until the following interval.  
 
 ## Visualizing Data
 
@@ -135,7 +135,10 @@ https://app.datadoghq.com/dashboard/5aa-992-hs3/postman-test?from_ts=16397863344
 <img width="1267" alt="postmantimeboard" src="https://user-images.githubusercontent.com/32316958/146623324-a7d8c465-ca4f-4f8d-85f7-b7c8ca39ed10.png">
 
 **Bonus:** 
-The anomaly graph appears blank, but with perspective of the rollup of the hourly sum, I would assume that it would reveal there are more than two standard that change per hour.   
+In observation of the anomaly graph, the function distringuishes normal and abnormal trends within the gray area.  It is able to analyze a metric's behaviour and show a prediction of what may be too abnormal for the graph. 
+  
+  <img width="1117" alt="anomalyfunction" src="https://user-images.githubusercontent.com/32316958/146997162-bc1dfb87-b103-4d6f-bece-1fcadc58057a.png">
+
 
 ## Monitoring Data
 
@@ -226,5 +229,6 @@ Although I was receiving a message that the service was running.  I ran into iss
 Services act as “building blocks” that utilize microservice architectures.  A service can group together endpoints, and is usually named after a specific business action.  A resource is an action given to a service (e.g. query to a database or an endpoint.  
 
 ### Final Question 
-Datadog can be used in many different ways.  For example, it can be utilized to organize IoT devices within businesses such as a bar.  The devices can collect metrics such as inventory, capacity, sales.  It is even possible to integrate AWS services such as Amazon QuickSight to utilize machine learning and predict future events such as peak sales.  
+Datadog can be used in many different ways.  For example, it can be utilized to organize IoT devices within businesses such as a local bar.  The devices can collect metrics such as inventory, capacity, and even other metrics such as sales.  It is even possible to integrate AWS services such as Amazon SageMaker to utilize machine learning and predict future events such as peak sales.  
+                                                                                                                                              
 Datadog can also be used to monitor hardware usage for devices such as CPU and memory.  This would be useful for organizations that rely on devices that need to run constantly.  For example, a company that makes predictions on weather patterns may rely on devices that are outdoors and record specific data.  Datadog can help visualize the system's levels and alert if it goes above/below a specific threshold.  
