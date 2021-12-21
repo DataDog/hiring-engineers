@@ -225,7 +225,7 @@ A service running summary can be observed if all steps were completed.
 
 I then sent requests to the three routes in the app (/, api/apm, api/trace) 
 
-Although I was receiving a message that the service was running.  I ran into issues where the metrics would not display in the APM section of the Datadog UI.  I am currently troubleshooting this issue and will submit a new pull request once it is solved.  I believe it the issue relates to mysql database or my checks that are set up.  
+Although I was receiving a message that the service was running.  I ran into issues where the metrics would not display in the APM section of the Datadog UI. I believe it the issue relates to the metrics I am sending it.  
 
 ### Bonus Question:
 Services act as “building blocks” that utilize microservice architectures.  A service can group together endpoints, and is usually named after a specific business action.  A resource is an action given to a service (e.g. query to a database or an endpoint.  
