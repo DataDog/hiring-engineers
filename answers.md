@@ -12,7 +12,7 @@ With the keys collected, enter the following command to install the Datadog Agen
 
 DD_API_KEY=<DATADOG_API_KEY> DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 
-##Collecting Metrics
+## Collecting Metrics
 
 The directions from Datadog (href=https://docs.datadoghq.com/getting_started/agent/) made it very easy to navigate vagrant and install the correct libraries for Datadog.
 
@@ -57,7 +57,7 @@ View the metrics collected from the performa_schema database using the following
 
 mysql> show databases like ‘performance_schema’;
 
-Figure #
+<img width="599" alt="mysqlperformaschema" src="https://user-images.githubusercontent.com/32316958/146952646-a601d780-04fd-41d4-953e-2bfc0cfb738c.png">
 
 To edit the configuration by using the following command: $ sudo nano /etc/datadog-agent/conf.d/mysql.d/conf.example.yaml
 
@@ -65,24 +65,35 @@ From the mysql.d folder (/etc/datadog-agent/conf.d/mysql.d/) I copied the conten
 
 Figure # 
 Mysql conf.yaml
+  
+<img width="1435" alt="mysqlconf" src="https://user-images.githubusercontent.com/32316958/146952691-51fd7067-53b1-4a61-b1e7-566c196bc23b.png">
 
 Once I had the mysql database running, I created a metric check called my_metric and used it to submit a random value between 0-1000.  
 
 In order to submit a check I had to create two files.  One in the /conf.d/ that initiates the instance show in figure #, and a file in /checks.d/ that generates the random value as shown in figure #.
 
 Figure #
+  
+  <img width="716" alt="blankinstance" src="https://user-images.githubusercontent.com/32316958/146953276-68023cbe-7a11-4832-8419-e0f019ef5a0b.png">
+
 
 In the yaml file created above, I created a sequence which calls an instance with an empty mapping.  
 
-Figure #
-
-
 In the /checks.d/ file we create a python file which initiates and submits the random value generated as a metric.  
+  
 Figure #
+  <img width="714" alt="my_metric" src="https://user-images.githubusercontent.com/32316958/146953545-131a05e3-2df8-4cc5-82f5-cfe976fb6ad3.png">
+  
+Verified status of check:
+  
+<img width="1316" alt="my_metric_check" src="https://user-images.githubusercontent.com/32316958/146953405-4ea3402c-566b-44bf-92a7-e36be936271f.png">
 
-It is possible to change the collection interval to submit metrics every 45 seconds back in the yaml file I created in /conf.d/ file as seen in figure #
+It is possible to change the collection interval to submit metrics every 45 seconds back in the yaml file I created in /conf.d/ file.
 
 Figure #
+  
+  <img width="717" alt="my_metricconf" src="https://user-images.githubusercontent.com/32316958/146953858-3cd173e0-fd92-4ae4-a949-c49a5f3c3144.png">
+
 
 **Bonus question:**
 
@@ -126,11 +137,11 @@ Select “new monitor” and configure it to watch the average of my_metric and 
 Configure the message and the users it gets sent to in the set up menu in section 4 & 5.  Configured the monitor’s messages in the cog menu to send a email whenever the monitor gets triggered. Configure the settings to send specific messages according to the variables set with reference to the template forms.  
 
 Metricmonitor3 image.
+                                                                                                                                                  
+<img width="1271" alt="metricmonitor3" src="https://user-images.githubusercontent.com/32316958/146954449-3013a47f-4cd9-4616-b501-8de81b952979.png">
 
 <img width="710" alt="email1" src="https://user-images.githubusercontent.com/32316958/146616776-7f3b524c-b776-4644-801f-e2a0b6d7a5e4.png">
 <img width="710" alt="email2" src="https://user-images.githubusercontent.com/32316958/146616778-c829e927-70f4-4ca5-8f34-20b2d117bc49.png">
-
-Uploaded more screenshots of emails for reference. 
 
 
 **Bonus Question:**
@@ -146,7 +157,6 @@ I was able to set up tracers using the information provided by Datadog here: htt
 It is first recommend to set up the environment, which Datadog provides a step-by-step instruction to ensure a smooth deployment configuration here: https://app.datadoghq.com/apm/docs?architecture=host-based&language=python
 
 
-
 Before getting started, the correct python libraries must be installed via the following commands:
 
 $ sudo apt-get install python-pip
@@ -159,6 +169,7 @@ Utilize the flask app by following the quick start guide provided by flask https
 
 <img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146622489-f6b7c8ad-a3d9-4e02-83f2-4d896a7a766c.png">
 
+Figure #
 
 <img width="519" alt="ddtrace-output" src=“https://user-images.githubusercontent.com/32316958/146623170-e554b5bf-935b-4b27-b4fc-cf63c1fcfe99.png">
 
@@ -176,9 +187,10 @@ DD_SERVICE="flask-app" DD_ENV="dev" DD_LOGS_INJECTION=true ddtrace-run python ap
 A service running summary can be observed if all steps were completed.
 
 Figure #
+  
+  <img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146954279-4be12264-b061-4fe7-a7a4-7f0b69bea12f.png">
 
 I then sent requests to the three routes in the app (/, api/apm, api/trace) 
-
 
 
 Although I was receiving a message that the service was running.  I ran into issues where the metrics would not display in the APM section of the Datadog UI.  I am currently troubleshooting this issue and will submit a new pull request once it is solved.  I believe it the issue relates to mysql database or my checks that are set up.  
