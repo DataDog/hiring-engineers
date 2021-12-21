@@ -71,14 +71,12 @@ From the mysql.d folder (/etc/datadog-agent/conf.d/mysql.d/) I copied the conten
 
 Once I had the mysql database running, I created a metric check called my_metric and used it to submit a random value between 0-1000.  
 
-In order to submit a check, I had to create two files.  One in the /conf.d/ that initiates the instance show in figure #, and a file in /checks.d/ that generates the random value as shown in figure #.
+In order to submit a check, I had to create two files; one in the /conf.d/ that initiates the instance show in figure #, and a file in /checks.d/ that generates the random value as shown below.
+
+In the yaml file created below, I created a sequence which calls an instance with an empty mapping.  
   
-  Figure 5
-
-  <img width="850" alt="blankinstance" src="https://user-images.githubusercontent.com/32316958/146986851-8742c948-75ff-4659-b820-dc6b165238df.png">
-
-In the yaml file created above, I created a sequence which calls an instance with an empty mapping.  
-
+instances: [{}]
+  
 In the /checks.d/ file we create a python file which initiates and submits the random value generated as a metric.  
   
   Figure 6
