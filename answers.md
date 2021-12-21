@@ -1,12 +1,10 @@
-Technical Assessment
+# Alex Sands Technical Assessment
 
-## Setting up environment
-
-Followed steps to set up vagrant environment via Virtual Box.  Had some bugs that related to the updating python to install tracers and flask.  
+## Setting up environment  
 
 I set up my virtual environment via Vagrant (vagrantup.com/docs/installation), an open source software that makes it easy to spin up containers such as VirtualBox and Docker.  It is preferred to set up an Ubuntu workspace, to avoid dependency issues.  
 
-Once my vagrant environment was up and running.  I went over to the Datadog website, and went through the process of creating an account.  The registration was very simple, I just needed simple login information and my organization name to get started.  To link up your environment to the Datadog UI, the API and application keys are required, which are located in the Organization settings of the Datadog UI.  
+Once my Vagrant environment was up and running.  I went over to the Datadog website, and went through the process of creating an account.  The registration was very simple, I just needed simple login information and my organization name to get started.  To link up your environment to the Datadog UI, the API and application keys are required, which are located in the Organization settings of the Datadog UI.  
 
 With the keys collected, enter the following command to install the Datadog Agent.  Be sure to replace <DATADOG_API_KEY>  with the keys obtained from the previous step.  
 
@@ -20,17 +18,17 @@ I used the following nano command to edit my configuration file: $ sudo nano /et
 
 This allowed me to edit my host tags, as seen in figure 7.  These tags allow me to better organize my metrics.  The tags were able to reflect in the Datadog UI, under the “Host Map” section after a few minutes, but restarting the agent may resolve arising issues: 
 
-$ sudo service datadog-agent restart
+> $ sudo service datadog-agent restart
 
 Figure #
 
 I then installed mySQL in Vagrant environment using the following command: 
 
-$ sudo apt install mysql-server
+> $ sudo apt install mysql-server
   
 Verify the service is running correctly by inputting the following in the command line:
 
-$ sudo service mysql status
+> $ sudo service mysql status
 
 By utilizing the documentation provided (https://docs.datadoghq.com/integrations/mysql/?tab=host), the MySql check was conveniently included in the Datadog-agent package.  
 
@@ -41,21 +39,21 @@ Replace ‘<UNIQUEPASSWORD>’; with the password created during installation.  
 
 Then verify that the user was created by entering the following in a separate command line: 
 
-mysql -u datadog --password=<UNIQUEPASSWORD> -e "show status" | \
-grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
-echo -e "\033[0;31mCannot connect to MySQL\033[0m”
+> mysql -u datadog --password=<UNIQUEPASSWORD> -e "show status" | \
+> grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
+> echo -e "\033[0;31mCannot connect to MySQL\033[0m”
 
-mysql -u datadog --password=<UNIQUEPASSWORD> -e "show slave status" && \
-echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
-echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m”
+> mysql -u datadog --password=<UNIQUEPASSWORD> -e "show slave status" && \
+> echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
+> echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m”
 
 Afterwards grant the user limited priviledges: 
 
-mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
+> mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
 
 View the metrics collected from the performa_schema database using the following to grand privileges.  
 
-mysql> show databases like ‘performance_schema’;
+> mysql> show databases like ‘performance_schema’;
 
 <img width="599" alt="mysqlperformaschema" src="https://user-images.githubusercontent.com/32316958/146952646-a601d780-04fd-41d4-953e-2bfc0cfb738c.png">
 
@@ -64,7 +62,6 @@ To edit the configuration by using the following command: $ sudo nano /etc/datad
 From the mysql.d folder (/etc/datadog-agent/conf.d/mysql.d/) I copied the contents over to a new file named conf.yaml in the mysql.d folder, which is demonstrated in the figure below:
 
 Figure # 
-Mysql conf.yaml
   
 <img width="1435" alt="mysqlconf" src="https://user-images.githubusercontent.com/32316958/146952691-51fd7067-53b1-4a61-b1e7-566c196bc23b.png">
 
@@ -74,15 +71,15 @@ In order to submit a check I had to create two files.  One in the /conf.d/ that 
 
 Figure #
   
-  <img width="716" alt="blankinstance" src="https://user-images.githubusercontent.com/32316958/146953276-68023cbe-7a11-4832-8419-e0f019ef5a0b.png">
-
+<img width="716" alt="blankinstance" src="https://user-images.githubusercontent.com/32316958/146953276-68023cbe-7a11-4832-8419-e0f019ef5a0b.png">
 
 In the yaml file created above, I created a sequence which calls an instance with an empty mapping.  
 
 In the /checks.d/ file we create a python file which initiates and submits the random value generated as a metric.  
   
 Figure #
-  <img width="714" alt="my_metric" src="https://user-images.githubusercontent.com/32316958/146953545-131a05e3-2df8-4cc5-82f5-cfe976fb6ad3.png">
+  
+<img width="714" alt="my_metric" src="https://user-images.githubusercontent.com/32316958/146953545-131a05e3-2df8-4cc5-82f5-cfe976fb6ad3.png">
   
 Verified status of check:
   
@@ -92,10 +89,10 @@ It is possible to change the collection interval to submit metrics every 45 seco
 
 Figure #
   
-  <img width="717" alt="my_metricconf" src="https://user-images.githubusercontent.com/32316958/146953858-3cd173e0-fd92-4ae4-a949-c49a5f3c3144.png">
+<img width="717" alt="my_metricconf" src="https://user-images.githubusercontent.com/32316958/146953858-3cd173e0-fd92-4ae4-a949-c49a5f3c3144.png">
 
 
-**Bonus question:**
+### Bonus question:
 
 Yes it is possible to edit the interval by adding min_collection_interval to the yaml in the conf.d/ file.  Add the min_collection_interval variable to the mapping within the stance, and input the number 45 as seen in figure # below.
 
@@ -135,8 +132,6 @@ Select “new monitor” and configure it to watch the average of my_metric and 
 <img width="1243" alt="metricmonitor2" src="https://user-images.githubusercontent.com/32316958/146616752-1761074b-a082-49e7-a453-302ce942abf1.png">
 
 Configure the message and the users it gets sent to in the set up menu in section 4 & 5.  Configured the monitor’s messages in the cog menu to send a email whenever the monitor gets triggered. Configure the settings to send specific messages according to the variables set with reference to the template forms.  
-
-Metricmonitor3 image.
                                                                                                                                                   
 <img width="1271" alt="metricmonitor3" src="https://user-images.githubusercontent.com/32316958/146954449-3013a47f-4cd9-4616-b501-8de81b952979.png">
 
@@ -159,9 +154,9 @@ It is first recommend to set up the environment, which Datadog provides a step-b
 
 Before getting started, the correct python libraries must be installed via the following commands:
 
-$ sudo apt-get install python-pip
-pip install flask
-pip install ddtrace
+> $ sudo apt-get install python-pip
+> pip install flask
+> pip install ddtrace
 
 Issues became present with python 2 installation.  Tried with pip3 (using the command: $ sudo apt-get -y install python3-pip) to download flask and ddtrace and issues were resolved.  
 
@@ -175,8 +170,8 @@ Figure #
 
 Created an application call app.py by using the touch command and then editing it with nano to create appication using Python.
 
-$ sudo touch app.py
-$ sudo nano app.py
+> $ sudo touch app.py
+> $ sudo nano app.py
 
 I entered the provided code to create a flask app as seen on figure # 
 
@@ -188,7 +183,7 @@ A service running summary can be observed if all steps were completed.
 
 Figure #
   
-  <img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146954279-4be12264-b061-4fe7-a7a4-7f0b69bea12f.png">
+<img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146954279-4be12264-b061-4fe7-a7a4-7f0b69bea12f.png">
 
 I then sent requests to the three routes in the app (/, api/apm, api/trace) 
 
@@ -196,9 +191,9 @@ I then sent requests to the three routes in the app (/, api/apm, api/trace)
 Although I was receiving a message that the service was running.  I ran into issues where the metrics would not display in the APM section of the Datadog UI.  I am currently troubleshooting this issue and will submit a new pull request once it is solved.  I believe it the issue relates to mysql database or my checks that are set up.  
 
 
-**Bonus Question:**
+### Bonus Question:
 Services act as “building blocks” that utilize microservice architectures.  A service can group together endpoints, and is usually named after a specific business action.  A resource is an action given to a service (e.g. query to a database or an endpoint.  
 
-## Final Question 
+### Final Question 
 Datadog can be used in many different ways.  For example, it can be utilized to organize IoT devices within businesses such as a bar.  The devices can collect metrics such as inventory, capacity, sales.  It is even possible to integrate AWS services such as Amazon QuickSight to utilize machine learning and predict future events such as peak sales.  
 Datadog can also be used to monitor hardware usage for devices such as CPU and memory.  This would be useful for organizations that rely on devices that need to run constantly.  For example, a company that makes predictions on weather patterns may rely on devices that are outdoors and record specific data.  Datadog can help visualize the system's levels and alert if it goes above/below a specific threshold.  
