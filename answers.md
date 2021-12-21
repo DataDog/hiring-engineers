@@ -103,10 +103,12 @@ Created board using PostMan API editor and sent POST API to Datadog using api to
 https://app.datadoghq.com/dashboard/gek-bgr-27h/mymetric?from_ts=1639782997319&to_ts=1639786597319&live=true
 
 Datadog makes it easy to import their collection to Postman by offering a quick button to get set up in Postman which can be found here: https://docs.datadoghq.com/getting_started/api/.
+  
+  <img width="780" alt="postmanimport" src="https://user-images.githubusercontent.com/32316958/146961193-cbd5c1a7-b59b-433a-bcc1-775a6a66f15e.png">
 
 Once I am directed to the Postman UI, the available Datadog API’s are shown in the left pane of the window. The Collection that was just imported also contains an environment called Datadog authentication which can be utilized to add API and application keys to link to our application.
-
-<img width="1349" alt="postmanbody" src=“https://user-images.githubusercontent.com/32316958/146616850-c1d66751-1c9c-4908-b2f2-fd1d333fee7d.png”>
+  
+<img width="1349" alt="postmanbody" src="https://user-images.githubusercontent.com/32316958/146961133-330e0a5a-39c4-49cf-906b-a3a76a03e07c.png">
 
 **Templates for dashboards
 
