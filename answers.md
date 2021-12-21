@@ -160,9 +160,18 @@ Configure the message and the users it gets sent to in the set-up menu in sectio
 
   Figure 15   
                                                                                                                                                   
-<img width="1271" alt="metricmonitor3" src="https://user-images.githubusercontent.com/32316958/146954449-3013a47f-4cd9-4616-b501-8de81b952979.png">
-
-  Figure 16   
+<img width="1271" alt="metricmonitor3" src="https://user-images.githubusercontent.com/32316958/146954449-3013a47f-4cd9-4616-b501-8de81b952979.png">  
+                                                                                                                                                  
+  The emails were able to successfully alert me depending on the which threshold was met: 
+                                                                                                                                                  
+<img width="697" alt="email5" src="https://user-images.githubusercontent.com/32316958/146999420-b43b8e6b-2a87-41e2-9d2d-f80e50c839fe.png">
+                                                                                                                                           
+<img width="708" alt="email6" src="https://user-images.githubusercontent.com/32316958/146999426-9e2fc884-cab5-4371-9531-43e1fa0a5025.png">
+                                                                                                                                      
+**Bonus Question:**
+To set downtime for specific days, edit configuration through Manage Downtime within the Monitors menu.  There will be an option to schedule downtime. Use RRule Generator to set more specific options. 
+                                                                                                                                                  
+  Figure 16
                                                                                                                                                   
 <img width="710" alt="email1" src="https://user-images.githubusercontent.com/32316958/146616776-7f3b524c-b776-4644-801f-e2a0b6d7a5e4.png">
           
@@ -171,9 +180,6 @@ Configure the message and the users it gets sent to in the set-up menu in sectio
 <img width="710" alt="email2" src="https://user-images.githubusercontent.com/32316958/146616778-c829e927-70f4-4ca5-8f34-20b2d117bc49.png">
 
 
-**Bonus Question:**
-To set downtime for specific days, edit configuration through Manage Downtime within the Monitors menu.  There will be an option to schedule downtime. Use RRule Generator to set more specific options. 
-   
   Figure 18
                                                                                                                                          
  <img width="719" alt="downtime_weekdays" src="https://user-images.githubusercontent.com/32316958/146616821-217268f7-90ad-422d-8254-027677ed590e.png">
