@@ -120,7 +120,7 @@ Once I am directed to the Postman UI, the available Datadog API’s are shown in
   
 <img width="1349" alt="postmanbody" src="https://user-images.githubusercontent.com/32316958/146961133-330e0a5a-39c4-49cf-906b-a3a76a03e07c.png">
   
-    * Reference for JSON body: https://zero2datadog.readthedocs.io/en/latest/visualize.html *
+ Reference for JSON body: https://zero2datadog.readthedocs.io/en/latest/visualize.html
 
 View the dashboards within the Dashboard list in the Datadog user interface.  The sum of my_metric to show within a 5 minute time span.  Snapshot of the graph with hourly anomalies dashboard included. 
 
