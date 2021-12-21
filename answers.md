@@ -60,7 +60,7 @@ View the metrics collected from the performa_schema database using the following
 
 > mysql> show databases like ‘performance_schema’;
 
-  Figure 3
+ Figure 3
   
 <img width="599" alt="mysqlperformaschema" src="https://user-images.githubusercontent.com/32316958/146952646-a601d780-04fd-41d4-953e-2bfc0cfb738c.png">
 
@@ -68,7 +68,7 @@ To edit the configuration by using the following command: $ sudo nano /etc/datad
 
 From the mysql.d folder (/etc/datadog-agent/conf.d/mysql.d/) I copied the contents over to a new file named conf.yaml in the mysql.d folder, which is demonstrated in the figure below:
   
-  Figure 4
+ Figure 4
   
 <img width="1434" alt="mysqlconfig" src="https://user-images.githubusercontent.com/32316958/146984566-69dee752-199c-463b-bf4c-310a23174ac9.png">
 
@@ -82,19 +82,19 @@ instances: [{}]
   
 In the /checks.d/ file we create a python file which initiates and submits the random value generated as a metric.  
   
-  Figure 6
+ Figure 6
   
  <img width="714" alt="my_metric" src="https://user-images.githubusercontent.com/32316958/146953545-131a05e3-2df8-4cc5-82f5-cfe976fb6ad3.png">
   
 Verified status of check:
   
-  Figure 7
+ Figure 7
   
 <img width="1436" alt="my_metric_check" src="https://user-images.githubusercontent.com/32316958/146984925-65d1c93b-549e-40ef-91d6-f366ddcd7839.png">
 
 It is possible to change the collection interval to submit metrics every 45 seconds back in the yaml file I created in /conf.d/ file.
   
-  Figure 8
+ Figure 8
 
 <img width="659" alt="my_metricinstance" src="https://user-images.githubusercontent.com/32316958/146986894-12278c3e-4984-49e1-88de-3a6ba6ee988f.png">
 
@@ -110,13 +110,13 @@ https://app.datadoghq.com/dashboard/gek-bgr-27h/mymetric?from_ts=1639782997319&t
 
 Datadog makes it easy to import their collection to Postman by offering a quick button to get set up in Postman which can be found here: https://docs.datadoghq.com/getting_started/api/.
   
-  Figure 9
+ Figure 9
   
   <img width="780" alt="postmanimport" src="https://user-images.githubusercontent.com/32316958/146961193-cbd5c1a7-b59b-433a-bcc1-775a6a66f15e.png">
 
 Once I am directed to the Postman UI, the available Datadog API’s are shown in the left pane of the window. The Collection that was just imported also contains an environment called Datadog authentication which can be utilized to add API and application keys to link to our application.
   
-  Figure 10
+ Figure 10
   
 <img width="1349" alt="postmanbody" src="https://user-images.githubusercontent.com/32316958/146961133-330e0a5a-39c4-49cf-906b-a3a76a03e07c.png">
   
@@ -126,11 +126,11 @@ View the dashboards within the Dashboard list in the Datadog user interface.  Th
 
 https://app.datadoghq.com/dashboard/5aa-992-hs3/postman-test?from_ts=1639786334482&to_ts=1639786634482&live=true
 
-  Figure 11
+ Figure 11
   
 <img width="1277" alt="Timeboard" src="https://user-images.githubusercontent.com/32316958/146616807-8f607ea6-6d7e-49bd-9067-9142a818e05d.png">
 
-  Figure 12
+ Figure 12
   
 <img width="1267" alt="postmantimeboard" src="https://user-images.githubusercontent.com/32316958/146623324-a7d8c465-ca4f-4f8d-85f7-b7c8ca39ed10.png">
   
@@ -146,9 +146,9 @@ In observation of the anomaly graph, the function distringuishes normal and abno
 
 To create a new Metric Monitor, navigate to the create a metric section in the left-hand panel.  The options to create a new custom metric can be observed.  The ability to use recommended metrics are also provided. 
 
-  Figure 13
+ Figure 13
   
-<img width="1281" alt="metricmonitor1" src=“https://user-images.githubusercontent.com/32316958/146616727-3d8f41dc-44af-4d52-af8c-c0226dbd54bc.png">
+<img width="1281" alt="metricmonitor1" src="https://user-images.githubusercontent.com/32316958/146999868-f97f871d-2d69-472d-9df7-c8c494c66bbe.png">
 
 Select “new monitor” and configure it to watch the average of my_metric and set the alert limits to reveal the following values over the past 5 minutes.  Below that, edit the monitor to set an alert threshold of 800, a warning threshold of 500, and a no data if the query does not receive data for 10 minutes. 
                                                                                                                                                   
