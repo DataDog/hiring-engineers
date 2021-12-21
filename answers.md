@@ -24,7 +24,8 @@ This allowed me to edit my host tags, as seen in the image below.  These tags al
 > $ sudo service datadog-agent restart
 
 Figure 2
-<img width="1434" alt="mysqlconfig" src="https://user-images.githubusercontent.com/32316958/146984615-1b384332-e49e-4aac-91fe-22fd9ed0c2e6.png">
+
+<img width="1273" alt="hostmap" src="https://user-images.githubusercontent.com/32316958/146995288-5e1ab17e-8810-4b97-87d0-8c9ba8412c6d.png">
 
 I then installed MySQL in Vagrant environment using the following command: 
 
