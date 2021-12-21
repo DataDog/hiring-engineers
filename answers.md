@@ -18,7 +18,7 @@ The directions from Datadog (https://docs.datadoghq.com/getting_started/agent/) 
 
 I used the following nano command to edit my configuration file: $ sudo nano /etc/datadog-agnet/datadog.yaml
 
-This allowed me to edit my host tags, as seen in figure 7.  These tags allow me to better organize my metrics.  The tags were able to reflect in the Datadog UI, under the “Host Map” section after a few minutes, but restarting the agent may resolve arising issues: 
+This allowed me to edit my host tags, as seen in the image below.  These tags allow me to better organize my metrics.  The tags were able to reflect in the Datadog UI, under the “Host Map” section after a few minutes, but restarting the agent may resolve arising issues: 
 
 > $ sudo service datadog-agent restart
 
