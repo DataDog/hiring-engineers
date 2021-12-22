@@ -88,9 +88,9 @@ In order to submit a check, I had to create two files; one in the /conf.d/ that 
 
 In the yaml file created below, I created a sequence which calls an instance with an empty mapping.
   
-'''  
+``` 
 instances: [{}]
-'''
+```
   
 In the /checks.d/ file we create a python file which initiates and submits the random value generated as a metric.  
   
@@ -134,7 +134,7 @@ Once I am directed to the Postman UI, the available Datadog API’s are shown in
  
  I implemented the following code into a file called app.py:
   
-'''
+```
   from flask import Flask
 import logging
 import sys
@@ -163,7 +163,7 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
-'''
+```
 
   
  Reference for JSON body: https://zero2datadog.readthedocs.io/en/latest/visualize.html
