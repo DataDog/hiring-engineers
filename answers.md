@@ -249,7 +249,7 @@ Before getting started, the correct python libraries must be installed via the f
 > pip install flask
 > pip install ddtrace
 
-Issues became present with python 2 installation.  Tried with pip3 (using the command: > $ sudo apt-get -y install python3-pip) to download flask and ddtrace and issues were resolved.  
+Issues became present with python 2 installation.  Tried with pip3 (using the command:``` $ sudo apt-get -y install python3-pip```) to download flask and ddtrace and issues were resolved.  
 
 Utilize the flask app by following the quick start guide provided by flask https://flask.palletsprojects.com/en/2.0.x/quickstart/ 
 
