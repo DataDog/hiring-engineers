@@ -2,7 +2,7 @@
 
 ## Setting up environment  
 
-I set up my virtual environment via [Vagrant] [https://vagrantup.com/docs/installation], an open-source software that makes it easy to spin up containers such as VirtualBox and Docker.  It is preferred to set up an Ubuntu workspace, to avoid dependency issues.  
+I set up my virtual environment via [Vagrant](https://vagrantup.com/docs/installation), an open-source software that makes it easy to spin up containers such as VirtualBox and Docker.  It is preferred to set up an Ubuntu workspace, to avoid dependency issues.  
 
 Once my Vagrant environment was up and running, I went over to the Datadog website and went through the process of creating an account.  The registration was very simple, I just needed simple login information and my organization name to get started.  To link up your environment to the Datadog UI, the API and application keys are required, which are in the Organization settings of the Datadog UI.  
 
@@ -21,7 +21,7 @@ Figure 1
 
 ## Collecting Metrics
 
-The directions from [Datadog] [https://docs.datadoghq.com/getting_started/agent/] made it very easy to navigate vagrant and install the correct libraries for Datadog.
+The directions from [Datadog](https://docs.datadoghq.com/getting_started/agent/) made it very easy to navigate vagrant and install the correct libraries for Datadog.
 
 I used the following nano command to edit my configuration file: 
 
@@ -43,7 +43,7 @@ Verify the service is running correctly by inputting the following in the comman
 
 > $ sudo service mysql status
 
-By utilizing the documentation provided [here] [https://docs.datadoghq.com/integrations/mysql/?tab=host], the MySQL check was conveniently included in the Datadog-agent package.  
+By utilizing the documentation provided [here](https://docs.datadoghq.com/integrations/mysql/?tab=host), the MySQL check was conveniently included in the Datadog-agent package.  
 
 To prepare MySQL, it is necessary to create a database user on each server by inputting: 
 
