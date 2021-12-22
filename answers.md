@@ -121,7 +121,7 @@ Created board using PostMan API editor and sent POST API to Datadog using API to
 
 https://app.datadoghq.com/dashboard/gek-bgr-27h/mymetric?from_ts=1639782997319&to_ts=1639786597319&live=true
 
-Datadog makes it easy to import their collection to Postman by offering a quick button to get set up in Postman which can be found here: https://docs.datadoghq.com/getting_started/api/.
+Datadog makes it easy to import their collection to Postman by offering a quick button to get set up in Postman which can be found [here](https://docs.datadoghq.com/getting_started/api/).
   
  Figure 9
   
@@ -169,9 +169,7 @@ Once I am directed to the Postman UI, the available Datadog API’s are shown in
   
  Reference for JSON body: https://zero2datadog.readthedocs.io/en/latest/visualize.html
 
-View the dashboards within the Dashboard list in the Datadog user interface.  The sum of my_metric to show within a 5 minute time span.  Snapshot of the graph with hourly anomalies dashboard included. 
-
-https://app.datadoghq.com/dashboard/5aa-992-hs3/postman-test?from_ts=1639786334482&to_ts=1639786634482&live=true
+View the [dashboards](https://app.datadoghq.com/dashboard/5aa-992-hs3/postman-test?from_ts=1639786334482&to_ts=1639786634482&live=true) within the Dashboard list in the Datadog user interface.  The sum of my_metric to show within a 5 minute time span.  Snapshot of the graph with hourly anomalies dashboard included. 
 
  Figure 11
   
@@ -187,7 +185,6 @@ https://app.datadoghq.com/dashboard/5aa-992-hs3/postman-test?from_ts=16397863344
 The following table serves to illustrate anomalies. The grey area represents my selected standard deviation and any result outside of the range is considered an anomaly. The user is able to customize the function parameteres to select different ranges.
   
   <img width="1117" alt="anomalyfunction" src="https://user-images.githubusercontent.com/32316958/146997162-bc1dfb87-b103-4d6f-bece-1fcadc58057a.png">
-
 
 ## Monitoring Data
 
@@ -240,7 +237,7 @@ To set downtime for specific days, edit configuration through Manage Downtime wi
 
 I was able to set up tracers using the information provided by Datadog here: https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers.  
 
-It is first recommend to set up the environment, which Datadog provides a step-by-step instruction to ensure a smooth deployment configuration here: https://app.datadoghq.com/apm/docs?architecture=host-based&language=python
+It is first recommend to set up the environment, which Datadog provides a step-by-step instruction to ensure a smooth deployment configuration [here](https://app.datadoghq.com/apm/docs?architecture=host-based&language=python).
 
 
 Before getting started, the correct python libraries must be installed via the following commands:
@@ -251,7 +248,7 @@ Before getting started, the correct python libraries must be installed via the f
 
 Issues became present with python 2 installation.  Tried with pip3 (using the command:``` $ sudo apt-get -y install python3-pip```) to download flask and ddtrace and issues were resolved.  
 
-Utilize the flask app by following the quick start guide provided by flask https://flask.palletsprojects.com/en/2.0.x/quickstart/ 
+Utilize the flask app by following the quick start guide provided by [flask](https://flask.palletsprojects.com/en/2.0.x/quickstart/)
 
   Figure 20   
                                                                                                                                                      
