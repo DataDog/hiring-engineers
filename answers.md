@@ -122,13 +122,16 @@ Datadog makes it easy to import their collection to Postman by offering a quick 
   
  Figure 9
   
-  <img width="780" alt="postmanimport" src="https://user-images.githubusercontent.com/32316958/146961193-cbd5c1a7-b59b-433a-bcc1-775a6a66f15e.png">
+ <img width="780" alt="postmanimport" src="https://user-images.githubusercontent.com/32316958/146961193-cbd5c1a7-b59b-433a-bcc1-775a6a66f15e.png">
 
 Once I am directed to the Postman UI, the available Datadog API’s are shown in the left pane of the window. The Collection that was just imported also contains an environment called Datadog authentication which can be utilized to add API and application keys to link to our application.
   
  Figure 10
   
 <img width="1349" alt="postmanbody" src="https://user-images.githubusercontent.com/32316958/146961133-330e0a5a-39c4-49cf-906b-a3a76a03e07c.png">
+ 
+ I implemented the following code into a file called <app.py src=https://github.com/asands24/hiring-engineers/blob/master/app.py> 
+
   
  Reference for JSON body: https://zero2datadog.readthedocs.io/en/latest/visualize.html
 
