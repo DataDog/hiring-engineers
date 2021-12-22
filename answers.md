@@ -86,9 +86,11 @@ Once I had the mysql database running, I created a metric check called my_metric
 
 In order to submit a check, I had to create two files; one in the /conf.d/ that initiates the instance show in figure #, and a file in /checks.d/ that generates the random value as shown below.
 
-In the yaml file created below, I created a sequence which calls an instance with an empty mapping.  
+In the yaml file created below, I created a sequence which calls an instance with an empty mapping.
   
-  *instances: [{}]*
+'''  
+instances: [{}]
+'''
   
 In the /checks.d/ file we create a python file which initiates and submits the random value generated as a metric.  
   
@@ -161,7 +163,7 @@ def trace_endpoint():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5050')
- '''
+'''
 
   
  Reference for JSON body: https://zero2datadog.readthedocs.io/en/latest/visualize.html
