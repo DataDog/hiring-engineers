@@ -177,7 +177,7 @@ I also went to the Datadog app and created a dashboard with my_metric data in or
 
 ![image](images/30.PNG?raw=true "30")
 
-![image](images/96.PNG?raw=true "96")
+![image](images/96.png?raw=true "96")
 
 ![image](images/31.PNG?raw=true "31")
 
@@ -223,39 +223,39 @@ This also worked properly this time with a status code of 200 and more readable 
 
 ![image](images/36.png?raw=true "36")
 
-![image](images/37.png?raw=true "37")
 
-![image](images/38.png?raw=true "38")
 
 When I then checked the Dashboard list I could see the newly created Dashboard from the API.
 
-![image](images/39.png?raw=true "39")
+![image](images/37.png?raw=true "37")
 
 * Your custom metric scoped over your host.
 
-![image](images/40.png?raw=true "40")
+![image](images/38.png?raw=true "38")
 
 * Any metric from the Integration on your Database with the anomaly function applied.
 
-https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/
+![image](images/39.png?raw=true "39")
 
-![image](images/41.png?raw=true "41")
+https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/
 
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
+![image](images/40.png?raw=true "40")
+
 https://docs.datadoghq.com/dashboards/functions/rollup/
 
-![image](images/42.png?raw=true "42")
 
 I entered the body in the request and it came back successfully.
 
-![image](images/43.png?raw=true "43")
+![image](images/41.png?raw=true "41")
 
 I then checked the Dashboard List and saw it was created
 
-![image](images/44.png?raw=true "44")
+![image](images/42.png?raw=true "42")
 
-![image](images/45.png?raw=true "45")
+![image](images/43.png?raw=true "43")
+
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
@@ -263,13 +263,15 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
-![image](images/46.png?raw=true "46")
+![image](images/44.png?raw=true "44")
+
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-![image](images/47.png?raw=true "47")
+![image](images/45.png?raw=true "45")
 
-![image](images/48.png?raw=true "48")
+![image](images/46.png?raw=true "46")
+
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
@@ -284,6 +286,10 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 I entered the values in the question in the Monitor details shown below
+
+![image](images/47.png?raw=true "47")
+
+![image](images/48.png?raw=true "48")
 
 ![image](images/49.png?raw=true "49")
 
