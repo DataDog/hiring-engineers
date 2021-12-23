@@ -46,31 +46,36 @@ I then proceeded with creating an App Registration in my Azure AD named Datadog 
 
 And also, a client secret for the registration
 
-![image](images/5.png?raw=true "5")
+![image](images/azsecret.png?raw=true "azsecret")
 
 I followed the documentation further by creating a user with Monitoring Reader role in the Subscriptions IAM
 
-![image](images/6.PNG?raw=true "6")
+![image](images/5.PNG?raw=true "5")
+
 
 I then went to the Azure integration and added the information needed from my subscription and added the registration.
 
-![image](images/7.PNG?raw=true "7")
+![image](images/6.PNG?raw=true "6")
+
 
 The add came back successful
 
-![image](images/8.png?raw=true "8")
+![image](images/7.PNG?raw=true "7")
+
 
 After the integration I went to add the Datadog Agent as an extension to my VMs in Azure.
 
-![image](images/9.png?raw=true "9")
+![image](images/8.png?raw=true "8")
 
 I then validated this was functional by going to the Azure VM Default Dashboard.
 
-![image](images/10.png?raw=true "10")
+![image](images/9.png?raw=true "9")
+
 
 The machines also appeared in my host app. I added a second subscription that I have from work just to see how the host map looked and also installed the MSI agent on two of those machines.
 
-![image](images/11.PNG?raw=true "11")
+![image](images/10.png?raw=true "10")
+
 
 
 ## Collecting Metrics:
@@ -81,6 +86,8 @@ A quick google of the Agent config file location /etc/datadog-agent/datadog.yaml
 I then quickly added some tags both on the Windows VM and the Ubuntu VM by looking at the following example on Github from the eDocs 
 https://github.com/DataDog/datadog-agent/blob/main/pkg/config/config_template.yaml
 For Windows I simply added environment, name and geo as shown below in the datadog.yaml file
+
+![image](images/11.PNG?raw=true "11")
 
 ![image](images/12.PNG?raw=true "12")
 
