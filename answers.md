@@ -177,6 +177,8 @@ I also went to the Datadog app and created a dashboard with my_metric data in or
 
 ![image](images/30.PNG?raw=true "30")
 
+![image](images/96.PNG?raw=true "96")
+
 ![image](images/31.PNG?raw=true "31")
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
@@ -197,20 +199,17 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 The main doc I used for this is here: 
 https://docs.datadoghq.com/api/latest/dashboards/
+
 First, I Installed the Datadog API Collection. I was trying to get the key Authentication to validate the API and got a status code of 200 where all I added was the API Key to the Authorization.
 
 
 ![image](images/32.PNG?raw=true "32")
 
+The status code was 200 when running the create dashboard however when I checked the Datadog App for the new dashboard it was not being created.
+
 ![image](images/33.PNG?raw=true "33")
 
 ![image](images/34.PNG?raw=true "34")
-
-The status code was 200 when running the create dashboard however when I checked the Datadog App for the new dashboard it was not being created.
-
-![image](images/35.png?raw=true "35")
-
-![image](images/36.png?raw=true "36")
 
 I’m not sure why the dashboard wasn’t being created. I spent some time troubleshooting this and, in the end, I just decided to start my own request from scratch rather than using the API Collection.
 I repeated the same process and this time I got a different output for Validating the API key but still status code 200.
@@ -219,6 +218,10 @@ And when I ran the create dashboard POST call it also returned status 200.I used
 https://docs.datadoghq.com/api/latest/dashboards/#create-a-new-dashboard
 
 This also worked properly this time with a status code of 200 and more readable output than what I was previously getting. 
+
+![image](images/35.png?raw=true "35")
+
+![image](images/36.png?raw=true "36")
 
 ![image](images/37.png?raw=true "37")
 
