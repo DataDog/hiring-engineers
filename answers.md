@@ -32,3 +32,11 @@ Bonus: If there was an anomaly graph, it would use the stats it collected to sho
 
 Code used: [Postman_API_Timeboard_code.txt](https://github.com/bridget-harrod/hiring-engineers/files/7763969/Postman_API_Timeboard_code.txt)
 
+Monitoring Data:
+1. Email alert: ![image](https://user-images.githubusercontent.com/96433227/147294769-6c5f17cc-ded9-4e73-81f3-2851b63a0b7f.png)
+JSON file: [Presents_over_800_monitor.txt](https://github.com/bridget-harrod/hiring-engineers/files/7771582/Presents_over_800_monitor.txt)
+
+Bonus: M-F downtime scheduled:![image](https://user-images.githubusercontent.com/96433227/147295254-edee775a-eb97-4621-b608-cfd700ec7cf1.png)
+
+Sat,Sun downtime scheduled: ![image](https://user-images.githubusercontent.com/96433227/147295473-9a81a691-840a-4fa7-9f41-eaee49b698c8.png)
+
