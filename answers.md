@@ -46,7 +46,7 @@ I then proceeded with creating an App Registration in my Azure AD named Datadog 
 
 And also, a client secret for the registration
 
-![image](images/5.PNG?raw=true "5")
+![image](images/5.png?raw=true "5")
 
 I followed the documentation further by creating a user with Monitoring Reader role in the Subscriptions IAM
 
@@ -58,14 +58,15 @@ I then went to the Azure integration and added the information needed from my su
 
 The add came back successful
 
-![image](images/8.PNG?raw=true "8")
+![image](images/8.png?raw=true "8")
+
 After the integration I went to add the Datadog Agent as an extension to my VMs in Azure.
 
-![image](images/9.PNG?raw=true "9")
+![image](images/9.png?raw=true "9")
 
 I then validated this was functional by going to the Azure VM Default Dashboard.
 
-![image](images/10.PNG?raw=true "10")
+![image](images/10.png?raw=true "10")
 
 The machines also appeared in my host app. I added a second subscription that I have from work just to see how the host map looked and also installed the MSI agent on two of those machines.
 
@@ -97,7 +98,7 @@ I then restarted the agent service (again I am not sure if this step is necessar
 
 I then checked both machines and the tags were added successfully
 
-![image](images/16.PNG?raw=true "16")
+![image](images/16.png?raw=true "16")
 
 ![image](images/17.PNG?raw=true "17")
 
@@ -115,8 +116,11 @@ For this step I installed MySQL on the Ubuntu VM
 I then just simply proceeded by adding the integration per the instructions on the MySQL Integration eDocs by running the following commands.
 
 ![image](images/21.PNG?raw=true "21")
+
 ![image](images/22.PNG?raw=true "22")
+
 ![image](images/23.PNG?raw=true "23")
+
 ![image](images/24.PNG?raw=true "25")
 
 I then went to the mysql.d/conf.yaml file and edited it by comparing it to the sample mysql.d/conf.yaml file already present.
@@ -151,6 +155,7 @@ I then ran the following test command on my datatest to check that the code exec
 I also went to the Datadog app and created a dashboard with my_metric data in order to see if this integration worked.
 
 ![image](images/32.PNG?raw=true "32")
+
 ![image](images/33.PNG?raw=true "33")
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
@@ -177,9 +182,9 @@ First, I Installed the Datadog API Collection. I was trying to get the key Authe
 
 The status code was 200 when running the create dashboard however when I checked the Datadog App for the new dashboard it was not being created.
 
-![image](images/35.PNG?raw=true "35")
+![image](images/35.png?raw=true "35")
 
-![image](images/36.PNG?raw=true "36")
+![image](images/36.png?raw=true "36")
 
 I’m not sure why the dashboard wasn’t being created. I spent some time troubleshooting this and, in the end, I just decided to start my own request from scratch rather than using the API Collection.
 I repeated the same process and this time I got a different output for Validating the API key but still status code 200.
@@ -189,39 +194,39 @@ https://docs.datadoghq.com/api/latest/dashboards/#create-a-new-dashboard
 
 This also worked properly this time with a status code of 200 and more readable output than what I was previously getting. 
 
-![image](images/37.PNG?raw=true "37")
+![image](images/37.png?raw=true "37")
 
-![image](images/38.PNG?raw=true "38")
+![image](images/38.png?raw=true "38")
 
 When I then checked the Dashboard list I could see the newly created Dashboard from the API.
 
-![image](images/39.PNG?raw=true "39")
+![image](images/39.png?raw=true "39")
 
 * Your custom metric scoped over your host.
 
-![image](images/40.PNG?raw=true "40")
+![image](images/40.png?raw=true "40")
 
 * Any metric from the Integration on your Database with the anomaly function applied.
 
 https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/
 
-![image](images/41.PNG?raw=true "41")
+![image](images/41.png?raw=true "41")
 
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
 https://docs.datadoghq.com/dashboards/functions/rollup/
 
-![image](images/42.PNG?raw=true "42")
+![image](images/42.png?raw=true "42")
 
 I entered the body in the request and it came back successfully.
 
-![image](images/43.PNG?raw=true "43")
+![image](images/43.png?raw=true "43")
 
 I then checked the Dashboard List and saw it was created
 
-![image](images/44.PNG?raw=true "44")
+![image](images/44.png?raw=true "44")
 
-![image](images/45.PNG?raw=true "45")
+![image](images/45.png?raw=true "45")
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
@@ -229,13 +234,13 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 
-![image](images/46.PNG?raw=true "46")
+![image](images/46.png?raw=true "46")
 
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
 
-![image](images/47.PNG?raw=true "47")
+![image](images/47.png?raw=true "47")
 
-![image](images/48.PNG?raw=true "48")
+![image](images/48.png?raw=true "48")
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
@@ -251,7 +256,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 
 I entered the values in the question in the Monitor details shown below
 
-![image](images/49.PNG?raw=true "49")
+![image](images/49.png?raw=true "49")
 
 
 Please configure the monitor’s message so that it will:
@@ -260,15 +265,16 @@ Please configure the monitor’s message so that it will:
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-![image](images/50.PNG?raw=true "50")
+![image](images/50.png?raw=true "50")
 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-![image](images/51.PNG?raw=true "51")
+![image](images/51.png?raw=true "51")
+
 I wanted to check if the value parameter was actually working as in the test, it shows as 0.0
 I created the monitor and waited and I soon got a warning that shows the following.
 
-![image](images/52.PNG?raw=true "52")
+![image](images/52.png?raw=true "52")
 
 The value is now filled in which suggests it works.
 
@@ -277,11 +283,11 @@ The value is now filled in which suggests it works.
 
   * One that silences it from 7pm to 9am daily on M-F,
   
- ![image](images/53.PNG?raw=true "53")
+ ![image](images/53.png?raw=true "53")
   
   * And one that silences it all day on Sat-Sun.
   
-  ![image](images/54.PNG?raw=true "54")
+  ![image](images/54.png?raw=true "54")
   
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   
