@@ -335,9 +335,6 @@ The value is now filled in which suggests it works.
   
     ![image](images/54.png?raw=true "54")
 	
-	![image](images/55.png?raw=true "55")
-  
-  <img>
   
 
 ## Collecting APM Data:
@@ -382,39 +379,43 @@ $ sudo pip3 install Flask
 
 I then ran the app using the code that I was given above and it ran without an issue.
 
-<img>
+![image](images/55.png?raw=true "55")
+  
 
 I was able to reach the endpoint on port 5050
 
-<img>
+![image](images/56.png?raw=true "56")
 
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
 I ran into some issues getting ddtrace setup. I was missing some dependencies. A quick google search told me I needed to have python-setuptools installed. I installed it using the following command:
+
 sudo apt-get install python-setuptools
 
 I had to also import a Cython module as I was getting the following error
-<img>
+
+![image](images/57.png?raw=true "57")
 
 I installed the cython module
 
-<img>
+![image](images/58.png?raw=true "58")
 
 After this I as able to install ddtrace without any issue and the app started to run using the command given
+
 DD_SERVICE="flaskservice" DD_ENV="ubuntudev" DD_LOGS_INJECTION=true ddtrace-run python flaskapp.py
 
-<img>
+![image](images/59.png?raw=true "59")
 
 I then accessed it again on the endpoint and I could logs appear on the service
 
-<img>
+![image](images/60.png?raw=true "60")
 
 I then restarted the datadog agent and waited a few minutes as the eDocs suggest. When I went back to the datadog app I was able to see the flask service there and was able to go into it.
 
-<img>
+![image](images/61.png?raw=true "61")
 
-<img>
+![image](images/62.png?raw=true "62")
 
 
 
@@ -428,6 +429,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 
 Link to Dashboard: https://p.datadoghq.eu/sb/0f546c48-5c07-11ec-87a1-da7ad0900005-7babdbc6c304146e166ec45bdd02399c
 
+![image](images/63.png?raw=true "63")
 
 Please include your fully instrumented app in your submission, as well.
 
@@ -443,19 +445,19 @@ I first tried my hand at installing the Agent using the Debian/Ubuntu command on
 DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=24001504bc5544c28b23d0a157d7939c DD_SITE="datadoghq.eu" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 It however was not a surprise to find that even though it ran, the package wasn’t installed. I checked the file directory on the Netscaler and no datadog folder was created.
 
-<img>
+![image](images/64.png?raw=true "64")
 
 Since this is a VM running in Azure, I thought maybe I could install the agent as an extension.
 
-<img>
+![image](images/65.png?raw=true "65")
 
 Even though I did that, the process was stuck on deployment which leads me to believe this is again not going to work.
 
-<img>
+![image](images/66.png?raw=true "66")
 
 I then decided to potentially try just putting the files on the Netscaler myself with WinSCP. I believe I have more of a chance running this as source rather than Ubuntu/Linux however it’s worth a shot.
 
-<img>
+![image](images/67.png?raw=true "67")
 
 Unfortunately, that did not work either, I did find some extra articles to try out however it could be too optimised however it would be part of the next steps.
 I found a FreeBSD package for datadog-agent on GitHub that could be very useful if combining it with the missing dependencies on the NetScaler.
