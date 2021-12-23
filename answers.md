@@ -407,7 +407,7 @@ DD_SERVICE="flaskservice" DD_ENV="ubuntudev" DD_LOGS_INJECTION=true ddtrace-run 
 
 ![image](images/59.png?raw=true "59")
 
-I then accessed it again on the endpoint and I could logs appear on the service
+I then accessed it again on the endpoint and I could see logs appear on the service
 
 ![image](images/60.png?raw=true "60")
 
@@ -439,10 +439,16 @@ Datadog has been used in a lot of creative ways in the past. We’ve written som
 
 Is there anything creative you would use Datadog for?
 
-Since the initial look at datadog I was interested to see if I could integrate this with Citrix technology. As I have good experience working with the Citrix ADC (Netscaler) I wanted to try and see if I could integrate the datadog agent into it.
+Since the initial look at datadog I was interested to see if I could integrate this with Citrix technology. 
+
+As I have good experience working with the Citrix ADC (Netscaler) I wanted to try and see if I could integrate the datadog agent into it.
+
 I believe this would be a challenge since under the hood of the Netscaler is a very customized FreeBSD OS that would prevent a lot of integrations that are pre-added in the initial image.
+
 I first tried my hand at installing the Agent using the Debian/Ubuntu command on the eDocs.
+
 DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=24001504bc5544c28b23d0a157d7939c DD_SITE="datadoghq.eu" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+
 It however was not a surprise to find that even though it ran, the package wasn’t installed. I checked the file directory on the Netscaler and no datadog folder was created.
 
 ![image](images/64.png?raw=true "64")
@@ -460,10 +466,12 @@ I then decided to potentially try just putting the files on the Netscaler myself
 ![image](images/67.png?raw=true "67")
 
 Unfortunately, that did not work either, I did find some extra articles to try out however it could be too optimised however it would be part of the next steps.
+
 I found a FreeBSD package for datadog-agent on GitHub that could be very useful if combining it with the missing dependencies on the NetScaler.
 https://github.com/DataDog/dd-agent/issues/350#
 
 Something else that could be a possibility is looking into the NITRO API: https://developer-docs.citrix.com/projects/citrix-adc-nitro-api-reference/en/latest/
+
 Nevertheless, I would be very interested to spend some time looking into this further as I believe a lot of customers I currently work with that have large Citrix environments would benefit massively from the in-depth monitoring and integrations that Datadog has available.
 
 
