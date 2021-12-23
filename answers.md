@@ -109,13 +109,12 @@ I then checked both machines and the tags were added successfully
 
 ![image](images/15.PNG?raw=true "15")
 
+![image](images/16.png?raw=true "16")
 
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 For this step I installed MySQL on the Ubuntu VM 
-
-![image](images/16.png?raw=true "16")
 
 ![image](images/17.PNG?raw=true "17")
 
@@ -126,7 +125,6 @@ For this step I installed MySQL on the Ubuntu VM
  
  ![image](images/19.PNG?raw=true "19")
 
-![image](images/20.PNG?raw=true "20")
 
 I then just simply proceeded by adding the integration per the instructions on the MySQL Integration eDocs by running the following commands.
 
