@@ -46,7 +46,7 @@ I then proceeded with creating an App Registration in my Azure AD named Datadog 
 
 And also, a client secret for the registration
 
-![image](images/azsecret.png?raw=true "azsecret")
+![image](images/95.png?raw=true "95"
 
 I followed the documentation further by creating a user with Monitoring Reader role in the Subscriptions IAM
 
@@ -89,40 +89,48 @@ For Windows I simply added environment, name and geo as shown below in the datad
 
 ![image](images/11.PNG?raw=true "11")
 
-![image](images/12.PNG?raw=true "12")
 
 I am not sure if the next step is necessary but I restarted the Agent service just to ensure it made the changes.
 
-![image](images/13.PNG?raw=true "13")
+![image](images/12.PNG?raw=true "12")
+
 
 On Ubuntu a similar process was done but with VIM.I was having some issues for a little bit with the formatting. It seemed for some reason it did not like the formatting of the tags, I assume this was due to the spacing, however I copy pasted the exact format from the Windows machine notepad and just changed the values to make a distinction.
 
-![image](images/14.PNG?raw=true "14")
+![image](images/13.PNG?raw=true "13")
+
 
 I then restarted the agent service (again I am not sure if this step is necessary but it seemed to have worked for me)
 
-![image](images/15.PNG?raw=true "15")
+![image](images/14.PNG?raw=true "14")
+
 
 I then checked both machines and the tags were added successfully
 
-![image](images/16.png?raw=true "16")
+![image](images/15.PNG?raw=true "15")
+
 
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
 For this step I installed MySQL on the Ubuntu VM 
 
+![image](images/16.png?raw=true "16")
+
 ![image](images/17.PNG?raw=true "17")
 
 ![image](images/18.PNG?raw=true "18")
  
-![image](images/19.PNG?raw=true "19")
  
  The next step was checking if I needed a separate agent for this integration. A quick check on the eDocs showed the following:
+ 
+ ![image](images/19.PNG?raw=true "19")
 
 ![image](images/20.PNG?raw=true "20")
 
 I then just simply proceeded by adding the integration per the instructions on the MySQL Integration eDocs by running the following commands.
+
+![image](images/20.PNG?raw=true "20")
 
 ![image](images/21.PNG?raw=true "21")
 
@@ -130,17 +138,20 @@ I then just simply proceeded by adding the integration per the instructions on t
 
 ![image](images/23.PNG?raw=true "23")
 
-![image](images/24.PNG?raw=true "25")
 
 I then went to the mysql.d/conf.yaml file and edited it by comparing it to the sample mysql.d/conf.yaml file already present.
 
+![image](images/24.PNG?raw=true "25")
+
 ![image](images/26.PNG?raw=true "26")
+
 ![image](images/27.PNG?raw=true "27")
 
 The integration was added successfully.
 I then restarted the Agent service and ran a bunch of simple queries on the db. I then went to the MySQL Overview and saw traffic in the dashboard.
 
-![image](images/28.PNG?raw=true "28")
+![image](images/27.PNG?raw=true "27")
+
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
@@ -150,6 +161,8 @@ I then pasted this sample code into visual studio and looked up the random funct
 https://www.programiz.com/python-programming/examples/random-number
 
 I added a tag from my ubuntu machine and saved the file. I then copied the changes and pasted it in /etc/datadog-agent/checks.d/datatest.py
+
+![image](images/28.PNG?raw=true "28")
 
 ![image](images/29.PNG?raw=true "29")
 
