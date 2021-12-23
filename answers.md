@@ -153,7 +153,9 @@ I then restarted the Agent service and ran a bunch of simple queries on the db. 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
 For this section I looked at the following link: https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
+
 In here it talks about creating a Custom agent check. From this I took the hello.py sample code from the eDocs.
+
 I then pasted this sample code into visual studio and looked up the random function syntax in python. I followed the syntax from here. 
 https://www.programiz.com/python-programming/examples/random-number
 
@@ -167,17 +169,15 @@ I then followed the docs further and created a yaml file called datatest.yaml an
 ![image](images/28.PNG?raw=true "28")
 
 
-![image](images/30.PNG?raw=true "30")
-
 I then ran the following test command on my datatest to check that the code executes properly
 
-![image](images/31.PNG?raw=true "31")
+![image](images/29.PNG?raw=true "29")
 
 I also went to the Datadog app and created a dashboard with my_metric data in order to see if this integration worked.
 
-![image](images/32.PNG?raw=true "32")
+![image](images/30.PNG?raw=true "30")
 
-![image](images/33.PNG?raw=true "33")
+![image](images/31.PNG?raw=true "31")
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
@@ -198,6 +198,11 @@ Utilize the Datadog API to create a Timeboard that contains:
 The main doc I used for this is here: 
 https://docs.datadoghq.com/api/latest/dashboards/
 First, I Installed the Datadog API Collection. I was trying to get the key Authentication to validate the API and got a status code of 200 where all I added was the API Key to the Authorization.
+
+
+![image](images/32.PNG?raw=true "32")
+
+![image](images/33.PNG?raw=true "33")
 
 ![image](images/34.PNG?raw=true "34")
 
