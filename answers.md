@@ -275,6 +275,11 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * **Bonus Question**: What is the Anomaly graph displaying?
 
+From this blog, https://www.datadoghq.com/blog/introducing-anomaly-detection-datadog/
+
+I was able to understand that the Anomaly graph is graphing outliers in order to help you identify unexpected differences in behaviour among multiple entities that are reporting the same metric.
+
+
 ## Monitoring Data
 
 Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
@@ -289,10 +294,6 @@ I entered the values in the question in the Monitor details shown below
 
 ![image](images/47.png?raw=true "47")
 
-![image](images/48.png?raw=true "48")
-
-![image](images/49.png?raw=true "49")
-
 
 Please configure the monitor’s message so that it will:
 
@@ -300,16 +301,19 @@ Please configure the monitor’s message so that it will:
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-![image](images/50.png?raw=true "50")
+![image](images/48.png?raw=true "48")
+
 
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 
-![image](images/51.png?raw=true "51")
+![image](images/49.png?raw=true "49")
+
 
 I wanted to check if the value parameter was actually working as in the test, it shows as 0.0
 I created the monitor and waited and I soon got a warning that shows the following.
 
-![image](images/52.png?raw=true "52")
+![image](images/50.png?raw=true "50")
+
 
 The value is now filled in which suggests it works.
 
@@ -318,15 +322,20 @@ The value is now filled in which suggests it works.
 
   * One that silences it from 7pm to 9am daily on M-F,
   
- ![image](images/53.png?raw=true "53")
+  ![image](images/51.png?raw=true "51")
+  
   
   * And one that silences it all day on Sat-Sun.
   
-  ![image](images/54.png?raw=true "54")
+    ![image](images/52.png?raw=true "52")
   
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
   
-![image](images/55.PNG?raw=true "55")
+  	![image](images/53.png?raw=true "53")
+  
+    ![image](images/54.png?raw=true "54")
+	
+	![image](images/55.png?raw=true "55")
   
   <img>
   
