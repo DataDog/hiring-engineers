@@ -46,7 +46,7 @@ I then proceeded with creating an App Registration in my Azure AD named Datadog 
 
 And also, a client secret for the registration
 
-![image](images/95.png?raw=true "95"
+![image](images/95.png?raw=true "95")
 
 I followed the documentation further by creating a user with Monitoring Reader role in the Subscriptions IAM
 
