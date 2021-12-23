@@ -139,16 +139,15 @@ I then just simply proceeded by adding the integration per the instructions on t
 
 I then went to the mysql.d/conf.yaml file and edited it by comparing it to the sample mysql.d/conf.yaml file already present.
 
-![image](images/24.PNG?raw=true "25")
+![image](images/24.PNG?raw=true "24")
 
-![image](images/26.PNG?raw=true "26")
+![image](images/25.PNG?raw=true "25")
 
-![image](images/27.PNG?raw=true "27")
 
 The integration was added successfully.
 I then restarted the Agent service and ran a bunch of simple queries on the db. I then went to the MySQL Overview and saw traffic in the dashboard.
 
-![image](images/27.PNG?raw=true "27")
+![image](images/26.PNG?raw=true "26")
 
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
@@ -160,11 +159,13 @@ https://www.programiz.com/python-programming/examples/random-number
 
 I added a tag from my ubuntu machine and saved the file. I then copied the changes and pasted it in /etc/datadog-agent/checks.d/datatest.py
 
-![image](images/28.PNG?raw=true "28")
+![image](images/27.PNG?raw=true "27")
 
-![image](images/29.PNG?raw=true "29")
 
 I then followed the docs further and created a yaml file called datatest.yaml and pasted the sample code with the only change being the min_collection_interval from 30 to 45 in /etc/datadog-agent/conf.d
+
+![image](images/28.PNG?raw=true "28")
+
 
 ![image](images/30.PNG?raw=true "30")
 
