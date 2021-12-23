@@ -50,7 +50,7 @@ And also, a client secret for the registration
 
 I followed the documentation further by creating a user with Monitoring Reader role in the Subscriptions IAM
 
-![image](images/5.PNG?raw=true "5")
+![image](images/5.png?raw=true "5")
 
 
 I then went to the Azure integration and added the information needed from my subscription and added the registration.
