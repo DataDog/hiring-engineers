@@ -1,0 +1,120 @@
+{
+    "title": "Alex Final API Dashboard",
+    "description": "",
+    "widgets": [{
+        "id": 7609878547521478,
+        "definition": {
+            "title": "My_metric host",
+            "title_size": "16",
+            "title_align": "left",
+            "time": {},
+            "type": "timeseries",
+            "requests": [{
+                "formulas": [{
+                    "formula": "query1"
+                }],
+                "queries": [{
+                    "data_source": "metrics",
+                    "name": "query1",
+                    "query": "avg:my_metric{host:202-Ubuntu}"
+                }],
+                "response_format": "timeseries",
+                "style": {
+                    "palette": "dog_classic",
+                    "line_type": "solid",
+                    "line_width": "normal"
+                },
+                "display_type": "line"
+            }],
+            "yaxis": {
+                "scale": "linear",
+                "include_zero": true,
+                "label": "",
+                "min": "auto",
+                "max": "auto"
+            },
+            "markers": []
+        },
+        "layout": {
+            "x": 0,
+            "y": 0,
+            "width": 4,
+            "height": 2
+        }
+    }, {
+        "id": 2742440866700390,
+        "definition": {
+            "title": "my_metricAnomaly",
+            "title_size": "16",
+            "title_align": "left",
+            "time": {},
+            "type": "timeseries",
+            "requests": [{
+                "formulas": [{
+                    "formula": "anomalies(query1, 'basic', 2)"
+                }],
+                "queries": [{
+                    "data_source": "metrics",
+                    "name": "query1",
+                    "query": "avg:my_metric{host:202-Ubuntu}"
+                }],
+                "response_format": "timeseries",
+                "style": {
+                    "palette": "dog_classic",
+                    "line_type": "solid",
+                    "line_width": "normal"
+                },
+                "display_type": "line"
+            }],
+            "yaxis": {
+                "scale": "linear",
+                "include_zero": true,
+                "label": "",
+                "min": "auto",
+                "max": "auto"
+            },
+            "markers": []
+        },
+        "layout": {
+            "x": 4,
+            "y": 0,
+            "width": 4,
+            "height": 2
+        }
+    }, {
+        "id": 5735803946471652,
+        "definition": {
+            "title": "sum:my_metricRollup",
+            "title_size": "16",
+            "title_align": "left",
+            "time": {},
+            "type": "query_value",
+            "requests": [{
+                "response_format": "scalar",
+                "queries": [{
+                    "data_source": "metrics",
+                    "name": "query1",
+                    "query": "sum:my_metric{host:202-Ubuntu}.rollup(sum, 3600)",
+                    "aggregator": "sum"
+                }],
+                "formulas": [{
+                    "formula": "query1"
+                }]
+            }],
+            "autoscale": true,
+            "precision": 2
+        },
+        "layout": {
+            "x": 8,
+            "y": 0,
+            "width": 2,
+            "height": 2
+        }
+    }],
+    "template_variables": [],
+    "layout_type": "ordered",
+    "is_read_only": false,
+    "notify_list": [],
+    "reflow_type": "fixed",
+    "id": "b7r-yje-gg5"
+}
