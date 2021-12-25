@@ -43,12 +43,15 @@ Verify the service is running correctly by inputting the following in the comman
 
 > $ sudo service mysql status
 
+  <img width="710" alt="mysqlstatus" src="https://user-images.githubusercontent.com/32316958/147393178-2bf037cd-2de4-4588-81e5-36cba715065d.png">
+
+
 By utilizing the documentation provided [here](https://docs.datadoghq.com/integrations/mysql/?tab=host), the MySQL check was conveniently included in the Datadog-agent package.  
 
 To prepare MySQL, it is necessary to create a database user on each server by inputting: 
 
 > mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY ‘UNIQUEPASSWORD';
-  
+
 Replace ‘UNIQUEPASSWORD’; with the password created during installation.  To reset the password, follow this guide to troubleshoot issue: https://dev.mysql.com/doc/refman/8.0/en/resetting-permissions.html
 
 Then verify that the user was created by entering the following in a separate command line: 
