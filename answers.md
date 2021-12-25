@@ -43,6 +43,8 @@ Verify the service is running correctly by inputting the following in the comman
 
 > $ sudo service mysql status
 
+Figure 3
+
   <img width="710" alt="mysqlstatus" src="https://user-images.githubusercontent.com/32316958/147393178-2bf037cd-2de4-4588-81e5-36cba715065d.png">
 
 
@@ -72,7 +74,7 @@ View the metrics collected from the performance_schema database using the follow
 
 > mysql> show databases like ‘performance_schema’;
 
- Figure 3
+ Figure 4
   
 <img width="599" alt="mysqlperformaschema" src="https://user-images.githubusercontent.com/32316958/146952646-a601d780-04fd-41d4-953e-2bfc0cfb738c.png">
 
@@ -82,7 +84,7 @@ To edit the configuration by using the following command:
 
 From the mysql.d folder (/etc/datadog-agent/conf.d/mysql.d/) I copied the contents over to a new file named conf.yaml in the mysql.d folder, which is demonstrated in the figure below:
   
- Figure 4
+ Figure 5
   
 <img width="1434" alt="mysqlconfig" src="https://user-images.githubusercontent.com/32316958/146984566-69dee752-199c-463b-bf4c-310a23174ac9.png">
 
@@ -114,7 +116,7 @@ It is possible to change the collection interval to submit metrics every 45 seco
 
 <img width="659" alt="my_metricinstance" src="https://user-images.githubusercontent.com/32316958/146986894-12278c3e-4984-49e1-88de-3a6ba6ee988f.png">
 
-### Bonus question:
+### Bonus Question:
 
 Yes it is possible to edit the interval by adding min_collection_interval to the yaml in the conf.d/ file.  Add the min_collection_interval variable to the mapping within the stance, and input the number 45 as seen in figure 8 above.  The collector may not run the checker if there is another check running as well, for then the check will skip until the following interval.  
 
@@ -183,7 +185,7 @@ View the [dashboards](https://app.datadoghq.com/dashboard/5aa-992-hs3/postman-te
 <img width="1267" alt="postmantimeboard" src="https://user-images.githubusercontent.com/32316958/146623324-a7d8c465-ca4f-4f8d-85f7-b7c8ca39ed10.png">
   
 
-**Bonus:** 
+### Bonus Question:
   
 The following table serves to illustrate anomalies. The grey area represents my selected standard deviation and any result outside of the range is considered an anomaly. The user is able to customize the function parameteres to select different ranges.
   
@@ -215,7 +217,7 @@ Configure the message and the users it gets sent to in the set-up menu in sectio
                                                                                                                                            
 <img width="708" alt="email6" src="https://user-images.githubusercontent.com/32316958/146999426-9e2fc884-cab5-4371-9531-43e1fa0a5025.png">
                                                                                                                                       
-**Bonus Question:**
+### Bonus Question:
 To set downtime for specific days, edit configuration through Manage Downtime within the Monitors menu.  There will be an option to schedule downtime. Use RRule Generator to set more specific options. 
                                                                                                                                                   
   Figure 16
@@ -268,34 +270,34 @@ Created an application call app.py by using the touch command and then editing i
 I entered the provided code to create a flask app as seen below
   
 ```
-   {"title":"Postman Test",
- "description":"",
- "widgets":[
-     {"definition":{
-         "title":"my hourly metric",
-            "type":"timeseries",
-         "requests":[{"q":"avg:my_metric{host:alex}"}]
-         }
-     },
-     {"definition":{
-         "title":"mysql metrics",
-     "type":"timeseries",
-         "requests":[{"q":"anomalies(avg:my_metric{host:alex}, 'basic', 2)"}]
-         }
-     },
-     {"definition":{
-         "title":"my_metric rollup 1h",
-     "type":"timeseries",
-         "requests":[{"q":"avg:my_metric{host:alex}.rollup(sum, 3600)"}]
-         }
-     }
- ],
- "template_variables":[],
- "layout_type":"ordered",
- "is_read_only":false,
- "notify_list":["alex"],
- "reflow_type":"auto"
- }
+   from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
  ```
 
 Once this is created it, instrument it into Datadog’s APM by calling it with the following command:
