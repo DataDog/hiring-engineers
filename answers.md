@@ -255,12 +255,6 @@ Issues became present with python 2 installation.  Tried with pip3 (using the co
 
 Utilize the flask app by following the quick start guide provided by [flask](https://flask.palletsprojects.com/en/2.0.x/quickstart/)
 
-  Figure 20   
-                                                                                                                                                     
-<img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146622489-f6b7c8ad-a3d9-4e02-83f2-4d896a7a766c.png">
-
-  Figure 21                                                                                                                                            
-<img width="519" alt="ddtrace-output" src="https://user-images.githubusercontent.com/32316958/146985646-f71f9fce-d8af-43c7-b343-2b7b98026fb3.png">
 
 Created an application call app.py by using the touch command and then editing it with nano to create application using Python.
 
@@ -306,9 +300,12 @@ Once this is created it, instrument it into Datadog’s APM by calling it with t
 
 A service running summary can be observed if all steps were completed.
   
-  Figure 22  
-                                   
-<img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146954279-4be12264-b061-4fe7-a7a4-7f0b69bea12f.png">
+  Figure 20   
+                                                                                                                                                 
+<img width="714" alt="ddtrace_app" src="https://user-images.githubusercontent.com/32316958/146622489-f6b7c8ad-a3d9-4e02-83f2-4d896a7a766c.png">
+
+  Figure 21                                                                                                                                            
+<img width="519" alt="ddtrace-output" src="https://user-images.githubusercontent.com/32316958/146985646-f71f9fce-d8af-43c7-b343-2b7b98026fb3.png">
 
 I then sent requests to the three routes in the app (/, api/apm, api/trace) 
 
@@ -317,7 +314,7 @@ Although I was receiving a message that the service was running.  I ran into iss
 ### Bonus Question:
 Services act as “building blocks” that utilize microservice architectures.  A service can group together endpoints, and is usually named after a specific business action.  A resource is an action given to a service (e.g. query to a database or an endpoint.  
 
-### Final Question 
+### Final Question: 
 Datadog can be used in many different ways.  For example, it can be utilized to organize IoT devices within businesses such as a local bar.  The devices can collect metrics such as inventory, capacity, and even other metrics such as sales.  It is even possible to integrate AWS services such as Amazon SageMaker to utilize machine learning and predict future events such as peak sales.  
                                                                                                                                               
 Datadog can also be used to monitor hardware usage for devices such as CPU and memory.  This would be useful for organizations that rely on devices that need to run constantly.  For example, a company that makes predictions on weather patterns may rely on devices that are outdoors and record specific data.  Datadog can help visualize the system's levels and alert if it goes above/below a specific threshold.  
