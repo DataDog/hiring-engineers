@@ -259,6 +259,7 @@ Utilize the flask app by following the quick start guide provided by [flask](htt
 Created an application call app.py by using the touch command and then editing it with nano to create application using Python.
 
 > $ sudo touch app.py
+>
 > $ sudo nano app.py
 
 I entered the provided code to create a flask app as seen below
