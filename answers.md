@@ -48,7 +48,7 @@ Figure 3
   <img width="710" alt="mysqlstatus" src="https://user-images.githubusercontent.com/32316958/147393178-2bf037cd-2de4-4588-81e5-36cba715065d.png">
 
 
-By utilizing the documentation provided [here](https://docs.datadoghq.com/integrations/mysql/?tab=host), the MySQL check was conveniently included in the Datadog-agent package.  
+By utilizing the documentation provided [by datadog](https://docs.datadoghq.com/integrations/mysql/?tab=host), the MySQL check was conveniently included in the Datadog-agent package.  
 
 To prepare MySQL, it is necessary to create a database user on each server by inputting: 
 
@@ -86,7 +86,7 @@ From the mysql.d folder (/etc/datadog-agent/conf.d/mysql.d/) I copied the conten
   
  Figure 5
   
-<img width="1434" alt="mysqlconfig" src="https://user-images.githubusercontent.com/32316958/146984566-69dee752-199c-463b-bf4c-310a23174ac9.png">
+<img width="1434" alt="mysqlconfig" src="https://user-images.githubusercontent.com/32316958/147394486-1a8f8ab5-564f-4971-8d27-cacb0391cac8.png">
 
 Once I had the MySQL database running, I created a metric check called my_metric and used it to submit a random value between 0-1000.  
 
