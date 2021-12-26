@@ -26,6 +26,8 @@ graph: ![image](https://user-images.githubusercontent.com/96433227/146829130-c46
 
 Dashboard: ![image](https://user-images.githubusercontent.com/96433227/147418879-5e79026c-8b8e-4af0-ae45-62ab78adf7a9.png)
 
+Link to Dashboard: https://p.datadoghq.com/sb/65ff405c-6109-11ec-aeaa-da7ad0900002-cee234a0119938c9fc6746661b709e91
+
 ***Note: I couldn't get the data from my MongoDB to send to Datadog. I tried to configure the mongo.d/conf.yaml file to create a custom query but couldn't get that to send either so I moved on to the next part.***
 
 _Bonus:_ If there was an anomaly graph, it would use the stats it collected to show the data that is 2 deviations outside the standard norm. 
@@ -45,6 +47,8 @@ Sat,Sun downtime scheduled: ![image](https://user-images.githubusercontent.com/9
 App Code: [datadog_app.txt](https://github.com/bridget-harrod/hiring-engineers/files/7777507/datadog_app.txt)
 
 Dashboard: ![image](https://user-images.githubusercontent.com/96433227/147418945-9af5e0ae-c320-4c71-a7aa-f4e2c44ed124.png)
+
+Link to Dashboard: https://p.datadoghq.com/sb/65ff405c-6109-11ec-aeaa-da7ad0900002-3f207689ffa835ab7a8d319d5b08ebb5
 
 _Bonus:_ A service is a grouping of aspects of a microservice, such as endpoints, queries, or jobs. A resource is specified within a service and each resource is tied to it's own service.
 
