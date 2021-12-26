@@ -24,7 +24,7 @@ graph: ![image](https://user-images.githubusercontent.com/96433227/146829130-c46
 Visualizing Data:
 1. Snapshot to myself: ![image](https://user-images.githubusercontent.com/96433227/147123303-44c50a09-2b0d-43d5-936f-76693ca0cef3.png)
 
-Dashboard: ![image](https://user-images.githubusercontent.com/96433227/147124712-a6d9d995-9444-4879-bea4-56a1e87c597f.png)
+Dashboard: ![image](https://user-images.githubusercontent.com/96433227/147418138-7233ec73-b757-488a-9423-8af8b478c51f.png)
 
 Note: I couldn't get the data from my MongoDB to send to Datadog. I tried to configure the mongo.d/conf.yaml file to create a custom query but couldn't get that to send either so I moved on to the next part.
 
