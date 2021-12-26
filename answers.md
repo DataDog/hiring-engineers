@@ -17,7 +17,7 @@ graph: ![image](https://user-images.githubusercontent.com/96433227/146827897-3d3
 
 4. Collection Interval:
 
-code: ![image](https://user-images.githubusercontent.com/96433227/146829674-6fe9fc70-8cd2-44da-83bb-b67cb363f2aa.png)
+code: ![image](https://user-images.githubusercontent.com/96433227/147419248-cd13a4c5-a344-4d6a-bcf0-182b70f9b897.png)
 
 graph: ![image](https://user-images.githubusercontent.com/96433227/146829130-c4684b45-f4fb-455c-89db-1f874195589d.png)
 
