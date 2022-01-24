@@ -4,6 +4,7 @@
 My environment of choice was to spin up an Ubuntu virtual machine via Vagrant. I followed the steps outlined here https://www.vagrantup.com/intro/getting-started/ and installed the datadog agent subsequently.
 
 VAGRANT_VM SCREENSHOT
+![Vagrant vm](Screenshots/vagrant_vm.png)
 
 Command I used to install the datadog-agent for Ubuntu (taken from the Datadog app integrations tab):
 
@@ -14,45 +15,62 @@ Command I used to install the datadog-agent for Ubuntu (taken from the Datadog a
 Added tags and a hostname to the datadog.yaml file in `/etc/datadog-agent` on my vm.
 
 HOSTNAME SCREENSHOT
+![hostname](Screenshots/config_file_hostname.png)
 TAGS SCREENSHOT
+![tags](Screenshots/config_file_tags.png)
 
 Here is my host in the Datadog app Infrastructure > Host Map tab:
 
 INFRASTRUCTURE MAP SCREENSHOT
+![infrastructure map](Screenshots/infrastructure_map.png)
 
 Then I installed MySQL as my DB of choice on the Vagrant machine, created a user for the Datadog Agent, and provided it the necessary permissions to begin collecting metrics:
 
 MYSQL_USER SCREENSHOT
+![mysql user](Screenshots/mysql_datadog_user.png)
 
 MYSQL_STATUS SCREENSHOT
+![mysql status](Screenshots/mysql_datadog_status.png)
 
 I also included this metric collection configuration block to my `mysql.d/conf.yaml` file:
 
 MYSQL_CONF_YAML SCREENSHOT
+![mysql conf.yaml](Screenshots/mysql_conf_yaml.png)
 
 Following the steps outlined in https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7 I created an Agent check called `my_check.py` that submitted a metric with a random value between 0 and 1000, and an empty `my_check.yaml` file. The Python script is included in the repo.
 
 MY_CHECK SCREENSHOT
+![my_check](Screenshots/my_metric.png)
 
 Initially the metric was being collected in intervals of around 20 seconds. I then changed the collection interval without modifying the Python file by modifying the `my_check.yaml` file:
 
 MY_CHECK_BEFORE_INTERVAL SCREENSHOT
+![my_check](Screenshots/my_check_before_interval.png)
 
 MY_CHECK_YAML SCREENSHOT
+![my_check yaml](Screenshots/my_check_yaml.png)
 
 This is the graph after setting the 45s interval and restarting the agent:
 
 MY_CHECK_AFTER_INTERVAL SCREENSHOT
+![my_check after interval change](Screenshots/my_check_after_interval.png)
 
 ## Visualizing Data
 Using the Datadog API I created a Timeboard that contained:
 
  - A timeseries with the `my_check` custom metric scoped over the `lkamakura-ubuntu` host
-MY_CHECK_TIMESERIES SCREENSHOT
+
+![my_check](Screenshots/my_check_timeseries.png)
+
  - A timeseries calculating how many inserts were done in MySQL over time
+
 MYSQL_INSERT_TIMESERIES SCREENSHOT
+![my_check](Screenshots/my_sql_insert_timeseries.png)
+
  - A timeseries with the rollup function applied over the `my_check` custom metric for the past hour
+
  MY_CHECK_AGGREGATED_TIMESERIES SCREENSHOT
+![my_check](Screenshots/my_check_aggregated_timeseries.png)
 
 The bash script I used to create this Timeboard is included in this repo as `my_dashboard.sh` and the logs are in `my_dashboard.log
 `
@@ -60,13 +78,19 @@ The bash script I used to create this Timeboard is included in this repo as `my_
 Here is the final Dashboard, accessed from Dashboard List in the UI:
 
 5 minutes interval:
+
 MY_DASHBOARD_5M SCREENSHOT
+![my dashboard](Screenshots/my_dashboard_5m.png)
+
 1 hour interval:
+
 MY_DASHBOARD_1HOUR SCREENSHOT
+![my dashboard](Screenshots/my_dashboard_1hour.png)
 
 I then took a snapshot of the Timeboard with its timefrate set to the past 5 minutes and used the @ notation to send it to myself:
 
 DASHBOARD_SNAPSHOT SCREENSHOT
+![my dashboard snapshot](Screenshots/dashboard_snapshot.png)
 
 What is the Anomaly graph displaying?
 > The anomaly graph identifies when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns.
@@ -82,29 +106,39 @@ To monitor the `my_check` custom metric, I created a new Metric monitor accordin
  - Set it to notify the team if there was no data for `my_check` over the last 10 minutes
 
 MY_CHECK_MONITOR SCREENSHOT
+![my check monitor](Screenshots/my_check_monitor.png)
 MY_CHECK_MONITOR2 SCREENSHOT
+![my check monitor](Screenshots/my_check_monitor2.png)
 
 I then configured the message to be different depending on the notification was a **warning** or an **alert**:
 
 MY_CHECK_MONITOR_MESSAGE SCREENSHOT
+![my check monitor](Screenshots/my_check_monitor_message.png)
+
 
 Here are the messages I received via e-mail when a warning or alert would trigger:
 
 Warning:
 MONITOR_WARNING SCREENSHOT
+![my check monitor warning](Screenshots/monitor_warning.png)
 
 Alert:
 MONITOR_ALERT SCREENSHOT
+![my check monitor alert](Screenshots/monitor_alert.png)
 
 In order to give our team a break from all these status notification e-mails, I set up some downtime during after-work hours and weekends (keep in mind the hours in the email are in UTC, but **2:00PM UTC** is **9:00AM EST**):
 
 7pm to 9am daily on M-F downtime:
 DAILY_DOWNTIME_SETUP SCREENSHOT
+![daily downtime](Screenshots/daily_downtime_setup.png)
 DAILY_DOWNTIME_EMAIL SCREENSHOT
+![daily downtime](Screenshots/daily_downtime_email.png)
 
 Sat-Sun all day downtime:
 WEEKEND_DOWNTIME_SETUP SCREENSHOT
+![weekend downtime](Screenshots/weekend_downtime_setup.png)
 WEEKEND_DOWNTIME SCREENSHOT
+![weekend downtime](Screenshots/weekend_downtime.png)
 
 ## Collecting APM Data
 
@@ -145,23 +179,29 @@ For this part of the assignment I used the Flask script provided in the repo. I 
     	
     if  __name__ == '__main__':
     	app.run(host='0.0.0.0', port='5050')`
+
 Updated the `datadog.yaml` file and enabled the `apm_config`:
 APM_YAML SCREENSHOT
+![APM yaml](Screenshots/apm_yaml.png)
 
 I then ran the script and went to `localhost:5050` to see my web app:
 FLASK_ENTRYPOINT_APP SCREENSHOT
+![Flask entrypoint](Screenshots/flask_entrypoint.png)
 APM_LOGS SCREENSHOT
-
-I also updated the `datadog.yaml` file and enabled the `apm_config`:
-APM_YAML SCREENSHOT
+![APM logs](Screenshots/apm_logs.png)
 
 And as I moved around the API endpoints `localhost:5050/api/apm` and `localhost:5050/api/trace` I could see activity in the UI:
 FLASK_APM SCREENSHOT
+![Flask apm](Screenshots/flask_apm_app.png)
 FLASK_TRACE SCREENSHOT
+![Flask trace](Screenshots/flask_trace_app.png)
 FLASK_UI_APP SCREENSHOT
+![Flask UI](Screenshots/flask_UI_app.png)
+
+![Flask graph](Screenshots/flask_graph_app.png)
 
 Finally, here is my initial Timeboard with all the metrics being collected:
-FINAL_DASHBOARD SCREENSHOT
+![Final Dashboard](Screenshots/final_dashboard.png)
 
 ## Final Question
 
