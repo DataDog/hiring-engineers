@@ -184,6 +184,9 @@ And as I moved around the API endpoints `localhost:5050/api/apm` and `localhost:
 ![Flask graph](Screenshots/flask_graph_app.png)
 
 Finally, here is my initial Timeboard with all the metrics being collected:
+
+Link to dashboard: https://p.datadoghq.com/sb/fb32e96a-7876-11ec-b944-da7ad0900002-5003921d15da97b0ba781c3939aea6e8
+
 ![Final Dashboard](Screenshots/final_dashboard.png)
 
 ## Final Question
