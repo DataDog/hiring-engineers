@@ -252,7 +252,7 @@ Now, once we have all the settings we want for our timeboard, we'll need to gath
 
 The bash script I used to create this Timeboard is included in this repo as `my_dashboard.sh` and the logs are in `my_dashboard.log`. I redacted my DD-API and DD-APPLICATION keys for security.
 
-We can the navigate to the [Dashboard list][17]<sup>17</sup> page and see what our new Timeboard looks like with all the metrics we included. This is where we can also choose the timeframe for our graphs:
+We can then navigate to the [Dashboard list][17]<sup>17</sup> page and see what our new Timeboard looks like with all the metrics we included. This is where we can also choose the timeframe for our graphs:
 
 [17]:https://app.datadoghq.com/dashboard/lists
 
@@ -470,7 +470,7 @@ For some personal projects I explored a lot of their API and I found out that it
 Additionally, the developer team at Riot could use Datadog to visualize macro trends in their game and identify outliers when it comes to certain characters (how much they're played, their win rate, their ban rate, etc.) and use Datadog's tool to provide balance insights into the game. 
 
 I created a little walkthrough of their API in `riot_client.py` where I go over how to obtain data from Riot, and what type of data can be obtained. For the second purpose, I included 2 json files in this repo. `frame_interval.json` and `event_interval.json` will help better visualize the sheer amount of information that can be obtained from endpoints like this one, and how Datadog could be used to study and build upon all that data!
-
+s
 # Thank you
 
 I know it's been long, but thank you for taking the time to look over this assessment. I had lots of fun working on it, and the more I learned about Datadog's product, the more I wanted to become a part of Datadog's team. Once again thank you, and goodbye.
