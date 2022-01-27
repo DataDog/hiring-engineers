@@ -23,6 +23,8 @@ After setting these up I wanted to check on my new host, so I navigated to the [
 
 ![Host](Screenshots/host_after_setup.png)
 
+![Host](Screenshots/thumbsup.gif)
+
 It's looking nice and healthy, so let's begin collecting some metrics!
 
 ## Collecting Metrics
