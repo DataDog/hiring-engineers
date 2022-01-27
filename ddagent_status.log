@@ -1,0 +1,337 @@
+Getting the status from the agent.
+
+===============
+Agent (v7.32.4)
+===============
+
+  Status date: 2022-01-24 02:09:22.054 UTC (1642990162054)
+  Agent start: 2022-01-24 01:34:20.131 UTC (1642988060131)
+  Pid: 652
+  Go Version: go1.16.7
+  Python Version: 3.8.11
+  Build arch: amd64
+  Agent flavor: agent
+  Check Runners: 4
+  Log Level: info
+
+  Paths
+  =====
+    Config File: /etc/datadog-agent/datadog.yaml
+    conf.d: /etc/datadog-agent/conf.d
+    checks.d: /etc/datadog-agent/checks.d
+
+  Clocks
+  ======
+    NTP offset: -1.532464s
+    System time: 2022-01-24 02:09:22.054 UTC (1642990162054)
+
+  Host Info
+  =========
+    bootTime: 2022-01-24 01:33:03 UTC (1642987983000)
+    kernelArch: x86_64
+    kernelVersion: 4.15.0-58-generic
+    os: linux
+    platform: ubuntu
+    platformFamily: debian
+    platformVersion: 18.04
+    procs: 91
+    uptime: 1m40s
+    virtualizationRole: guest
+    virtualizationSystem: vbox
+
+  Hostnames
+  =========
+    hostname: lkamakura-ubuntu
+    socket-fqdn: vagrant.vm.
+    socket-hostname: vagrant
+    host tags:
+      environment:dev
+      os:ubuntu
+      region:us-east
+      user:lkamakura
+    hostname provider: configuration
+
+  Metadata
+  ========
+    hostname_source: configuration
+
+=========
+Collector
+=========
+
+  Running Checks
+  ==============
+    
+    cpu
+    ---
+      Instance ID: cpu [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/cpu.d/conf.yaml.default
+      Total Runs: 139
+      Metric Samples: Last Run: 9, Total: 1,244
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2022-01-24 02:09:20 UTC (1642990160000)
+      Last Successful Execution Date : 2022-01-24 02:09:20 UTC (1642990160000)
+      
+    
+    disk (4.4.0)
+    ------------
+      Instance ID: disk:e5dffb8bef24336f [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/disk.d/conf.yaml.default
+      Total Runs: 138
+      Metric Samples: Last Run: 120, Total: 16,544
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 53ms
+      Last Execution Date : 2022-01-24 02:09:12 UTC (1642990152000)
+      Last Successful Execution Date : 2022-01-24 02:09:12 UTC (1642990152000)
+      
+    
+    file_handle
+    -----------
+      Instance ID: file_handle [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/file_handle.d/conf.yaml.default
+      Total Runs: 139
+      Metric Samples: Last Run: 5, Total: 695
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2022-01-24 02:09:19 UTC (1642990159000)
+      Last Successful Execution Date : 2022-01-24 02:09:19 UTC (1642990159000)
+      
+    
+    io
+    --
+      Instance ID: io [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/io.d/conf.yaml.default
+      Total Runs: 138
+      Metric Samples: Last Run: 65, Total: 8,925
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2022-01-24 02:09:11 UTC (1642990151000)
+      Last Successful Execution Date : 2022-01-24 02:09:11 UTC (1642990151000)
+      
+    
+    load
+    ----
+      Instance ID: load [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/load.d/conf.yaml.default
+      Total Runs: 139
+      Metric Samples: Last Run: 6, Total: 834
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2022-01-24 02:09:18 UTC (1642990158000)
+      Last Successful Execution Date : 2022-01-24 02:09:18 UTC (1642990158000)
+      
+    
+    memory
+    ------
+      Instance ID: memory [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/memory.d/conf.yaml.default
+      Total Runs: 138
+      Metric Samples: Last Run: 18, Total: 2,484
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2022-01-24 02:09:10 UTC (1642990150000)
+      Last Successful Execution Date : 2022-01-24 02:09:10 UTC (1642990150000)
+      
+    
+    my_check (unversioned)
+    ----------------------
+      Instance ID: my_check:5ba864f3937b5bad [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/my_check.yaml
+      Total Runs: 47
+      Metric Samples: Last Run: 1, Total: 47
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2022-01-24 02:09:13 UTC (1642990153000)
+      Last Successful Execution Date : 2022-01-24 02:09:13 UTC (1642990153000)
+      
+    
+    mysql (6.1.1)
+    -------------
+      Instance ID: mysql:6f714927a790d2b5 [WARNING]
+      Configuration Source: file:/etc/datadog-agent/conf.d/mysql.d/conf.yaml
+      Total Runs: 139
+      Metric Samples: Last Run: 164, Total: 22,795
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 1, Total: 139
+      Average Execution Time : 48ms
+      Last Execution Date : 2022-01-24 02:09:13 UTC (1642990153000)
+      Last Successful Execution Date : 2022-01-24 02:09:13 UTC (1642990153000)
+      metadata:
+        flavor: MySQL
+        version.build: unspecified
+        version.major: 5
+        version.minor: 7
+        version.patch: 36
+        version.raw: 5.7.36+unspecified
+        version.scheme: semver
+      
+      Warning: Failed to fetch records from the perf schema                                  'events_statements_summary_by_digest' table.
+        
+      Warning: Failed to fetch records from the perf schema                                  'events_statements_summary_by_digest' table.
+        
+    
+    network (2.4.0)
+    ---------------
+      Instance ID: network:d884b5186b651429 [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/network.d/conf.yaml.default
+      Total Runs: 139
+      Metric Samples: Last Run: 26, Total: 3,614
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 1ms
+      Last Execution Date : 2022-01-24 02:09:17 UTC (1642990157000)
+      Last Successful Execution Date : 2022-01-24 02:09:17 UTC (1642990157000)
+      
+    
+    ntp
+    ---
+      Instance ID: ntp:d884b5186b651429 [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/ntp.d/conf.yaml.default
+      Total Runs: 3
+      Metric Samples: Last Run: 1, Total: 3
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 1, Total: 3
+      Average Execution Time : 1.921s
+      Last Execution Date : 2022-01-24 02:04:44 UTC (1642989884000)
+      Last Successful Execution Date : 2022-01-24 02:04:44 UTC (1642989884000)
+      
+    
+    uptime
+    ------
+      Instance ID: uptime [OK]
+      Configuration Source: file:/etc/datadog-agent/conf.d/uptime.d/conf.yaml.default
+      Total Runs: 138
+      Metric Samples: Last Run: 1, Total: 138
+      Events: Last Run: 0, Total: 0
+      Service Checks: Last Run: 0, Total: 0
+      Average Execution Time : 0s
+      Last Execution Date : 2022-01-24 02:09:09 UTC (1642990149000)
+      Last Successful Execution Date : 2022-01-24 02:09:09 UTC (1642990149000)
+      
+========
+JMXFetch
+========
+
+  Information
+  ==================
+  Initialized checks
+  ==================
+    no checks
+    
+  Failed checks
+  =============
+    no checks
+    
+=========
+Forwarder
+=========
+
+  Transactions
+  ============
+    Cluster: 0
+    ClusterRole: 0
+    ClusterRoleBinding: 0
+    CronJob: 0
+    DaemonSet: 0
+    Deployment: 0
+    Dropped: 0
+    HighPriorityQueueFull: 0
+    Job: 0
+    Node: 0
+    PersistentVolume: 0
+    PersistentVolumeClaim: 0
+    Pod: 0
+    ReplicaSet: 0
+    Requeued: 0
+    Retried: 0
+    RetryQueueSize: 0
+    Role: 0
+    RoleBinding: 0
+    Service: 0
+    ServiceAccount: 0
+    StatefulSet: 0
+
+  Transaction Successes
+  =====================
+    Total number: 293
+    Successes By Endpoint:
+      check_run_v1: 139
+      intake: 15
+      series_v1: 139
+
+  API Keys status
+  ===============
+    API key ending with 06331: API Key valid
+
+==========
+Endpoints
+==========
+  https://app.datadoghq.com - API Key ending with:
+      - 06331
+
+==========
+Logs Agent
+==========
+
+
+  Logs Agent is not running
+
+=========
+APM Agent
+=========
+  Status: Running
+  Pid: 713
+  Uptime: 2105 seconds
+  Mem alloc: 8,094,360 bytes
+  Hostname: lkamakura-ubuntu
+  Receiver: 0.0.0.0:8126
+  Endpoints:
+    https://trace.agent.datadoghq.com
+
+  Receiver (previous minute)
+  ==========================
+    No traces received in the previous minute.
+    Default priority sampling rate: 100.0%
+
+  Writer (previous minute)
+  ========================
+    Traces: 0 payloads, 0 traces, 0 events, 0 bytes
+    Stats: 0 payloads, 0 stats buckets, 0 bytes
+
+=========
+Aggregator
+=========
+  Checks Metric Sample: 59,917
+  Dogstatsd Metric Sample: 16,698
+  Event: 1
+  Events Flushed: 1
+  Number Of Flushes: 139
+  Series Flushed: 61,584
+  Service Check: 1,439
+  Service Checks Flushed: 1,568
+=========
+DogStatsD
+=========
+  Event Packets: 0
+  Event Parse Errors: 0
+  Metric Packets: 16,697
+  Metric Parse Errors: 0
+  Service Check Packets: 0
+  Service Check Parse Errors: 0
+  Udp Bytes: 1,279,843
+  Udp Packet Reading Errors: 0
+  Udp Packets: 12,806
+  Uds Bytes: 0
+  Uds Origin Detection Errors: 0
+  Uds Packet Reading Errors: 0
+  Uds Packets: 0
+  Unterminated Metric Errors: 0
+
