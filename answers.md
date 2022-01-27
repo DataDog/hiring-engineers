@@ -486,5 +486,6 @@ I know it's been long, but thank you for taking the time to look over this asses
 
 ## References
 
-Please see `references.md` for a list of all references.
+Throughout this assessment I referenced several different documentations, including Datadog's. For a list of all docs and guides that I read from, please refer to `references.md`.
+
 
