@@ -338,6 +338,10 @@ Sat-Sun all day downtime:
 
 ![weekend downtime](Screenshots/weekend_downtime.png)
 
+Phew! No more warnings every 5 minutes during my free time!
+
+![weekend downtime](Screenshots/whew-relief.gif)
+
 ## Collecting APM Data
 
 We've now looked at collecting metrics from our agent, graphing those metrics into nice-looking dashboards, and setting up monitoring and alerts. Now let's say we'd like to collect some data from a microservice application, how would we do that?
@@ -372,13 +376,13 @@ And check if it's properly installed:
 
 ![ddtrace](Screenshots/ddtrace.png)
 
-For our app to run we'll also need `Flask`, which is a micro web framework used for Python development.
+Our app (`app.py` in this repo) will be a simple web application using a RESTful API with only an entry and 2 endpoints; `"api/apm"` and `"api/trace"`. In order to run it we'll also need `Flask`, which is a micro web framework used for Python web development.
 
     conda install flask
 
 ![flask](Screenshots/flask.png)
 
-Now we'll inject ddtrace directly into our app by adding 
+Now we'll need inject ddtrace directly into our app by adding this code block below to the top of our python file. It's what will allow our datadog-agent to monitor our requests.
 
     from  ddtrace  import  config, patch_all
     
@@ -388,7 +392,7 @@ Now we'll inject ddtrace directly into our app by adding
     config.version = "0.1"
     patch_all()
 
-To the top of our python file. This is what it should look like:
+This is what it should look like:
 
     from  ddtrace  import  config, patch_all
     
@@ -452,7 +456,8 @@ And as we make requests around the API endpoints `localhost:5050/api/apm` and `l
 
 ![Flask graph](Screenshots/flask_graph_app.png)
 
-Finally, if we use what we learned from the visualizing and monitoring on our new APM metrics, we can add them to our initial Timeboard! Here is the Timeboard with all the metrics (including the APM ones) being collected:
+Finally, if we use what we learned from the visualizing and monitoring sections on our new APM metrics, we can add them to our initial Timeboard! Here is the Timeboard with all the metrics (including the number of requests to our web app) being collected:
+
 ![Final Dashboard](Screenshots/final_dashboard.png)
 
 ## Final Question
