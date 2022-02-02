@@ -1,7 +1,7 @@
 <!-- Header -->
 <br />
 <p align="center">
-  <a href="https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/Datadog_logo.svg/1200px-Datadog_logo.svg.png">
+  <a href="img/Datadog_logo.svg.png">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -71,6 +71,33 @@ The agent is now running:
 <!-- Collecting Metrics -->
 ## Collecting Metrics
 
+### Adding tags
+To understand more about tags, I headed to the Datadog Documentation, on the page [Getting Started with Tags](https://docs.datadoghq.com/getting_started/tagging/).
+
+By following along, we see that there are different methods to set up tags with your agent. I decided to go with the manual method, for which I needed to locate the Datadog agent configuration files. After checking the [Agent Configuration Files](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7#agent-main-configuration-file), I found that for Ubuntu, it was in:
+```
+/etc/datadog-agent/datadog.yaml
+```
+To edit it, I decided to use Vim:
+```
+sudo vim /etc/datadog-agent/datadog.yaml
+```
+And added some tags as per the following screenshot:
+![tags screenshot](img/screenshot_2.png)
+
+And restarted the agent service to apply the changes:
+```
+sudo service datadog-agent restart
+```
+
+We can now see the tags in the Datadog dashboard:
+![tags screenshot](img/screenshot_3.png)
+
+
+
+### Installing a database
+
+### Creating customer Agent check
 ToDo
 
 
