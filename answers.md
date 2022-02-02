@@ -1,8 +1,8 @@
 <!-- Header -->
 <br />
 <p align="center">
-  <a href="img/Datadog_logo.svg.png">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="img/Datadog_logo.png">
+    <img src="images/Datadog_logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Datadog - Sales Engineer Technical Interview</h3>
