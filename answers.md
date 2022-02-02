@@ -203,7 +203,188 @@ It is possible to change the collection interval without modifying the Python sc
 <!-- Visualizing Data -->
 ## Visualizing Data
 
-ToDo
+To create a Dashboard using the Datadog API, I decided to use Python. I first headed to the Datadog API Documentation to see what needed to be set up.
+
+I simply ran the following command to install the Datadog API client library for Python on my laptop:
+```
+pip3 install datadog-api-client
+```
+
+The API authenticates us on every call. For this reason, we need an API Key to be sent along with our requests. I then used the GUI to create an API Key:
+![api key screenshot](img/screenshot_11.png)
+
+By using Postman and changing the "api_key" variable with the value of our freshly created API Key, we can then run the query to validate the API Key, which returns a valid result as we can see in the following:
+![postman api test screenshot](img/screenshot_12.png)
+
+Note that I also had to change the "site" variable to "datadoghq.eu" as my Datadog instance is running on the EU servers.
+
+I then headed to the [Dashboards](https://docs.datadoghq.com/api/latest/dashboards/) page of the API Documentation.
+
+Before trying to write my own python script, I once again used Postman to see what the request looked like and play around with it.
+On the first try, I received an error because the body of the request was incorrect. I then headed towards the documentation and copy/pasted one of the examples in the Postman body.
+
+This time, the request was successful: 
+![postman api dashboard screenshot](img/screenshot_13.png)
+
+I headed to the Datadog GUI and found my newly created dashboard in the Dashboard List. However, this didn't look very good, and didn't have a name. But at least it worked!
+![postman api dashboard screenshot](img/screenshot_14.png)
+
+I then decided to write a python script that would allow me to create a much better dashboard than this, using help from the Postman collection as well as the documentation.
+For this purpose, I used the code sample from the [Create New Dashboard Documentation](https://docs.datadoghq.com/api/latest/dashboards/#create-a-new-dashboard).
+After executing the code, the dashboard was successfully created:
+![postman api dashboard screenshot](img/screenshot_15.png)
+
+By going through the Dashboard on the GUI and creating a Widget, we can see how to change the parameters of the query to create the widgets according to the Exercise.
+
+For the Exercise, we will use Postman to create these different widgets, allowing us to use the json generated from the GUI to create our query.
+
+### Display custom metric scoped over your host
+
+Following the explanations above, we simply need to add a widget to our widgets array in the json body.
+
+In our case, our widget json looks like the following:
+
+```
+    {
+     "definition":{
+        "title":"my_metric",
+        "title_align":"left",
+        "show_legend":false,
+        "type":"timeseries",
+        "requests":[
+           {
+              "q":"avg:my_metric{host:vagrant}",
+              "display_type":"line"
+           }
+        ]
+     },
+     "layout":{
+        "x":0,
+        "y":0,
+        "width":6,
+        "height":3
+     }
+    }
+```
+
+Here is how it appears on the Datadog platform:
+![postman api dashboard screenshot](img/screenshot_16.png)
+
+### Display DB metric with anomaly function applied
+Using the [Anomaly Monitor Documentation](https://docs.datadoghq.com/monitors/create/types/anomaly/), we can identify when our metric is behaving in a different manner than the previous trends.
+
+In our case, we'll use a metric from the Integration with our MongoDB database. I chose the number of distinct requests that the server is receiving as this can be a good indication of the load on our database. Of course, other relevant parameters could be used such as the number of Read/Writes or the average memory usage. 
+
+Our widget json looks like the following:
+
+```
+    {
+     "definition":{
+        "title":"Anomaly Detection MongoDB",
+        "title_align":"left",
+        "show_legend":true,
+        "legend_layout":"auto",
+        "legend_columns":[
+            "avg",
+            "min",
+            "max",
+            "value",
+            "sum"
+        ],
+        "type":"timeseries",
+        "requests":[
+           {
+            "style": {
+                "palette": "dog_classic",
+                "line_type": "solid",
+                "line_width": "normal"
+            },
+            "display_type":"line",
+            "response_format":"timeseries",
+            "queries":[
+                {
+                "name":"query1",
+                "data_source":"metrics",
+                "query":"avg:mongodb.network.numrequestsps{*}"
+                }
+            ],
+            "formulas":[
+                {
+                "alias":"rows inserted per second",
+                "formula":"anomalies(query1, 'basic', 2)"
+                }
+            ]
+           }
+        ]
+     },
+     "layout":{
+        "x":6,
+        "y":0,
+        "width":6,
+        "height":3
+     }
+    }
+```
+
+And our dashboard now has the new widget integrated:
+![postman api dashboard screenshot](img/screenshot_17.png)
+
+### Display custom metric with rollup function
+Using the [Rollup Documentation](https://docs.datadoghq.com/dashboards/functions/rollup/), we can use time aggregation over some metrics. This allows us to aggregate data using a specific method (ex: sum, average, max, etc.) over a defined period of time.
+
+Using the rollup widget over my_metric, our json looks like the following:
+
+```
+{
+    "definition":{
+    "title":"my_metric aggregated over 1h",
+    "title_align":"left",
+    "show_legend":true,
+    "legend_layout":"auto",
+    "legend_columns":[
+        "avg",
+        "min",
+        "max",
+        "value",
+        "sum"
+    ],
+    "type":"timeseries",
+        "requests":[
+            {
+            "style":{
+                    "palette":"dog_classic",
+                    "line_type":"solid",
+                    "line_width":"normal"
+                },
+            "display_type":"line",
+            "response_format":"timeseries",
+            "queries":[
+                {
+                "name":"query1",
+                "data_source":"metrics",
+                "query":"avg:my_metric{*}.rollup(sum, 3600)"
+                }
+            ],
+            "formulas":[
+                {
+                "formula":"query1"
+                }
+            ]
+            }
+        ],
+    },
+    "layout":{
+        "x":0,
+        "y":3,
+        "width":6,
+        "height":3
+    }
+}
+```
+
+Finally, the overall dashboard containing the three elements can be observed on Datadog:
+![postman api dashboard screenshot](img/screenshot_18.png)
+
 
 <!-- Monitoring Data -->
 ## Monitoring Data
