@@ -154,8 +154,44 @@ Once the integration was added successfully, We can finally observe some of the 
 
 
 ### Creating customer Agent check
-ToDo
 
+Following the Datadog Documentation on [Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7), I created a python file based on the sample one presented in the doc. 
+
+The changed that need to be made from this file are the following:
+- Firstly, the hello.world variable is changed to my_metric, according to the exercise.
+- Instead of a fixed value, we generate a random value by using: 
+```
+random.randint(0,1000)
+```
+- Finally, I added "host:vagrant" in the tags and saved the file.
+
+I then paste this code in "checks.d/agent_check.py" with the command:
+```
+sudo vim /etc/datadog-agent/checks.d/agent_check.py
+```
+![agent check code screenshot](img/screenshot_6.png)
+
+I am also creating a sequence called instances in "conf.d/agent_check.yaml"
+
+To verify that the check is running, I launched the following command:
+```
+sudo -u dd-agent -- datadog-agent check agent_check
+```
+
+And got the output:
+![agent check run screenshot](img/screenshot_7.png)
+
+### Changing the collection interval
+Still following the documentation, I edit the "conf.d/agent_check.yaml" to change the check's collection interval to once every 45sec (the default being once every 15sec).
+
+![agent check interval screenshot](img/screenshot_8.png)
+
+We can then observe the metric in a dashboard to see our check_agent from the Datadog platform:
+![agent check dashboard screenshot](img/screenshot_8.png)
+
+
+### Bonus question
+It is possible to change the collection interval without modifying the Python script by modifying the file "/etc/datadog-agent/conf.d/agent_check.yaml" as shown in the section above.
 
 <!-- Visualizing Data -->
 ## Visualizing Data
