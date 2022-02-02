@@ -29,6 +29,13 @@
     </li>
     <li>
       <a href="#collecting-metrics">Collecting Metrics</a>
+      <ul>
+        <li><a href="#adding-tags">Adding Tags</a></li>
+        <li><a href="#installing-a-database">Installing a database</a></li>
+        <li><a href="#creating-custom-agent-check">Creating custom Agent check</a></li>
+        <li><a href="#changing-the-collection-interval">Changing the collection interval</a></li>
+        <li><a href="#bonus-question">Bonus question</a></li>
+      </ul>
     </li>
     <li><a href="#visualizing-data">Visualizing Data</a></li>
     <li><a href="#monitoring-data">Monitoring Data</a></li>
@@ -153,7 +160,7 @@ Once the integration was added successfully, We can finally observe some of the 
 
 
 
-### Creating customer Agent check
+### Creating custom Agent check
 
 Following the Datadog Documentation on [Custom Agent Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7), I created a python file based on the sample one presented in the doc. 
 
@@ -187,7 +194,7 @@ Still following the documentation, I edit the "conf.d/agent_check.yaml" to chang
 ![agent check interval screenshot](img/screenshot_8.png)
 
 We can then observe the metric in a dashboard to see our check_agent from the Datadog platform:
-![agent check dashboard screenshot](img/screenshot_8.png)
+![agent check dashboard screenshot](img/screenshot_9.png)
 
 
 ### Bonus question
