@@ -97,6 +97,62 @@ We can now see the tags in the Datadog dashboard:
 
 ### Installing a database
 
+I decided to install MongoDB as this is a database I have worked with in the past. For the installation process, I simply followed the steps written in the [MongoDB Installation Guide](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/).
+
+After installing MongoDB, we start the mongod process and verify that the DB is indeed running:
+![mongoDB screenshot](img/screenshot_4.png)
+
+Based on the Datadog Documentation, [Integration for MongoDB](https://docs.datadoghq.com/integrations/mongo/?tab=standalone):
+```
+The MongoDB check is included in the Datadog Agent package. No additional installation is necessary.
+```
+
+Following the steps described, we then create a read-only user for the Datadog Agent in the admin database:
+```
+db.createUser({
+  "user": "datadog",
+  "pwd": "<UNIQUEPASSWORD>",
+  "roles": [
+    { role: "read", db: "admin" },
+    { role: "clusterMonitor", db: "admin" },
+    { role: "read", db: "local" }
+  ]
+})
+```
+
+We then access the mongoDB config file:
+```
+sudo vim /etc/datadog-agent/conf.d/mongo.d/conf.yaml
+```
+and edit the configuration with the following parameters:
+```
+init_config:
+
+instances:
+
+  - hosts:
+      - localhost
+
+    username: datadog
+
+    password: **********
+
+    database: admin
+
+    options:
+      authSource: admin
+```
+
+We then restart the Datadog Agent using:
+```
+sudo service datadog-agent restart
+```
+
+Once the integration was added successfully, We can finally observe some of the metrics in the MongoDB - Overview dashboard:
+![mongoDB dashboard screenshot](img/screenshot_5.png)
+
+
+
 ### Creating customer Agent check
 ToDo
 
