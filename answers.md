@@ -1,4 +1,3 @@
-Your answers to the questions go here.
 <!-- Header -->
 <br />
 <p align="center">
@@ -23,7 +22,7 @@ Your answers to the questions go here.
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#prerequisites:-setup-the-environment">Prerequisites: Setup the environment</a>
+      <a href="#setup-the-environment">Setup the environment</a>
       <ul>
         <li><a href="#installing-the-datadog-agent">Installing the Datadog agent</a></li>
       </ul>
@@ -41,26 +40,32 @@ Your answers to the questions go here.
 
 
 <!-- Prerequisites -->
-## Prerequisites: Setup the environment
+## Setup the environment
 
-ToDo
-* [Vagrant](https://learn.hashicorp.com/collections/vagrant/getting-started)
+To ensure a proper environment for this exercise, and avoid dependency issues, we are using Vagrant to spawn an Ubuntu Virtual Machine with version 18.04.3.
+
+Following the steps detailed on [Vagrant](https://learn.hashicorp.com/collections/vagrant/getting-started) getting-started guide, we simply installed Vagrant and [VirtualBox](https://www.virtualbox.org/), and performed the following steps:
 
 ```
 vagrant init hashicorp/bionic64
 vagrant up
+```
+
+Our VM is now running. We then SSH into it using:
+```
 vagrant ssh
 ```
 
-
-
 ### Installing the Datadog agent
 
-ToDo
+Following the installation process after creating a [Datadog account](https://docs.datadoghq.com/), we are installing the Datadog Agent on our Ubuntu VM, using the simple following command:
 
 ```
 DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=aac12d08c8efaa3d00c0fb61eadfec5f DD_SITE="datadoghq.eu" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 ```
+
+The agent is now running:
+![agent running screenshot](img/screenshot_1.png)
 
 
 <!-- Collecting Metrics -->
