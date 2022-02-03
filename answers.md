@@ -416,9 +416,64 @@ For instance, this could allow you to spot an unexpected spike in traffic, or CP
 
 <!-- Monitoring Data -->
 ## Monitoring Data
+We've seen in the previous part that we can create dashboards of our different metrics, and even use Anomaly Monitoring to detect whether some metric behaves in a potentially alerting manner. To make it even more efficient, we will now create a Metric Monitor which will watch our metric and automatically alert us in case this metric reaches values outside of some pre-defined boundaries.
 
-ToDo
+I have headed towards the Datadog [Metric Monitor Documentation](https://docs.datadoghq.com/monitors/create/types/metric/?tab=threshold) to understand how to set them up for our Exercise. 
 
+Following the documentation, I created a new Metric Monitor for my_metric with an Alerting threshold of 800 and a Warning threshold of 500. This basically means that whenever our metric my_metric is above these thresholds over the past 5 minutes, an alert will be triggered.
+I also made sure to be notified if data is missing for more than 10min.
+![postman api dashboard screenshot](img/screenshot_23.png)
+
+We now want to configure the monitor's message to have it send a specific notification containing useful elements for the reader.
+
+Our monitoring message will send an email when it is triggered, with different parameters and text whether the notification is generated from an alert, warning, or no data received. 
+
+Here is the small script I wrote using the editor to achieve this:
+```
+ Hi @pro.vpereira@gmail.com,
+ 
+ This is a notification message issued for the following reason:
+
+{{^is_no_data}}
+{{#is_alert}}
+ **ALERT: my_metric is above the alert threshold!** 
+{{/is_alert}}
+{{#is_warning}} 
+ **WARNING: my_metric is above the warning threshold - keep it under control** 
+{{/is_warning}}
+my_metric has the value {{value}} on Host {{host.name}}.
+{{#is_alert}}
+Check Host with IP {{host.ip}}.
+{{/is_alert}}
+{{/is_no_data}}
+
+{{#is_no_data}}
+No data was received from my_metric for more than 10 minutes! Check the system.
+{{/is_no_data}}
+```
+
+By testing the notification system using an Alert, we end-up with this email:
+![postman api dashboard screenshot](img/screenshot_24.png)
+
+Now, following a real case where my_metric value reached the Warning threshold, we received this email:
+![postman api dashboard screenshot](img/screenshot_25.png)
+
+### Bonus Question
+We're now all set when it comes to the monitoring of my_metric. However, we would now like to ensure that notifications are only sent during business hours, to avoid triggering a collaborator while he is supposed to be off. 
+
+For this purpose, we first schedule a downtime from 7pm to 9am from Monday to Friday:
+![postman api dashboard screenshot](img/screenshot_26.png)
+
+We make sure to be triggered by email when a downtime has been scheduled: 
+![postman api dashboard screenshot](img/screenshot_27.png)
+
+Going further, we also make sure to schedule downtime for weekends:
+![postman api dashboard screenshot](img/screenshot_28.png)
+
+Again, we receive a notification confirming that the downtime has been schedule:
+![postman api dashboard screenshot](img/screenshot_29.png)
+
+Note that the hours in the notifications and the dashboard do not match because notifications are sent in UTC while the dashboard is configured with CET. But these correspond to the same times.
 
 <!-- Collecting APM Data -->
 ## Collecting APM Data
