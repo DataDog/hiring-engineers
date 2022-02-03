@@ -229,7 +229,7 @@ I simply ran the following command to install the Datadog API client library for
 pip3 install datadog-api-client
 ```
 
-The API authenticates us on every call. For this reason, we need an API Key to be sent along with our requests. I then used the GUI to create an API Key:
+The API authenticates us on every call. For this reason, we need an API Key to be sent along with our requests. I then used the GUI to create an API Key:  
 ![api key screenshot](img/screenshot_11.png)
 
 By using Postman and changing the "api_key" variable with the value of our freshly created API Key, we can then run the query to validate the API Key, which returns a valid result as we can see in the following:
@@ -250,6 +250,7 @@ I headed to the Datadog GUI and found my newly created dashboard in the Dashboar
 
 I then decided to write a python script that would allow me to create a much better dashboard than this, using help from the Postman collection as well as the documentation.  
 For this purpose, I used the code sample from the [Create New Dashboard Documentation](https://docs.datadoghq.com/api/latest/dashboards/#create-a-new-dashboard).  
+  
 After executing the code, the dashboard was successfully created:
 ![postman api dashboard screenshot](img/screenshot_15.png)
 
