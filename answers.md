@@ -37,7 +37,16 @@
         <li><a href="#bonus-question">Bonus question</a></li>
       </ul>
     </li>
-    <li><a href="#visualizing-data">Visualizing Data</a></li>
+    <li>
+      <a href="#visualizing-data">Visualizing Data</a>
+      <ul>
+        <li><a href="#display-custom-metric-scoped-over-your-host">Display custom metric scoped over your host</a></li>
+        <li><a href="#display-DB-metric-with-anomaly-function-applied">Display DB metric with anomaly function applied</a></li>
+        <li><a href="#display-custom-metric-with-rollup-function">Display custom metric with rollup function</a></li>
+        <li><a href="#taking-a-snapshot-of-the-dashboard">Taking a snapshot of the Dashboard</a></li>
+        <li><a href="#bonus-question">Bonus question</a></li>
+      </ul>
+    </li>
     <li><a href="#monitoring-data">Monitoring Data</a></li>
     <li><a href="#collecting-apm-data">Collecting APM Data</a></li>
     <li><a href="#final-question">Final Question</a></li>
