@@ -482,12 +482,69 @@ Note that the hours in the notifications and the dashboard do not match because 
 
 <!-- Collecting APM Data -->
 ## Collecting APM Data
+We now want to monitor a specific application, using Datadog's APM (Application Performance Monitoring) solution. As always, we will follow the Datadog [APM Documentation](https://docs.datadoghq.com/tracing/setup_overview/) to perform this part of the exercise.
 
-ToDo
+Firstly, let's run the app that was provided to us. For this, I have simply created a file called "app.py" in which I pasted the code of the app. Note that I did not run the app on my Vagrant environment but on my local computer, just for this test.
+Being familiar with Flask, I imported the dependency using:
+```
+pip install flask
+```
+And then ran the application using:
+```
+python3 app.py
+```
+
+Accessing my browser on the URL on which the app is running, we can see that the app seems to be working correctly:
+![postman api dashboard screenshot](img/screenshot_30.png)
+
+Looking at the flask app, we can see that different routes are being used by the app. I then decided to test them manually to see if everything was performing as expected:
+![postman api dashboard screenshot](img/screenshot_31.png)
+![postman api dashboard screenshot](img/screenshot_32.png)
+
+It's now time to monitor our app by  setting up the Datadog Agent for APM.
+
+The first thing I did was to create an file called "app.py" on my Ubuntu VM. I then installed pip3 and repeated the same operations as mentioned above to install Flask and launch the app.
+
+I then followed the steps to install the agent using Python, described in the APM Setup & Docs that can be found directly on the Datadog Dashboard:
+![postman api dashboard screenshot](img/screenshot_33.png)
+
+
+Installing Datadog tracing library:
+```
+pip3 install ddtrace
+```
+
+Following the documentation, we can now start instrumenting our application using the following command: 
+```
+DD_SERVICE="app" DD_ENV="dev" DD_LOGS_INJECTION=true DD_TRACE_SAMPLE_RATE="1" DD_PROFILING_ENABLED=true ddtrace-run python3 app.py
+```
+
+Before this, we need to make sure to restart our agent using:
+```
+sudo service datadog-agent restart
+```
+
+We also need to set "enable: true" in our "datadog.yaml" file to allow for APM.
+![postman api dashboard screenshot](img/screenshot_34.png)
+
+Once everything has been configured, I have generated some traffic in the app by navigating between the URLs available.
+
+When looking at the Datadog Dashboard, we can now see our app being monitored by the APM Agent:
+![postman api dashboard screenshot](img/screenshot_35.png)
+
+Using the [Dashboard](https://app.datadoghq.eu/dashboard/cfs-969-bkk/timeseries-dashboard?from_ts=1643902971735&to_ts=1643906571735&live=true) created in the previous section, we can now add a Widget to display information about our app metrics:
+![postman api dashboard screenshot](img/screenshot_36.png)
+
+
+### Bonus Question
+The difference between a Service and a Resource is that a Service typically sits on top of Resources. Resources are the physical components that allow the system (ex: computer, server, etc.) to run. These are typically CPU, RAM, Storage capacity, etc. Services use these resources to perform certain tasks.
 
 <!-- Final Question -->
 ## Final Question
+Datadog could be used, in conjunction with sensors, to monitor the sea-level and tides in coastal cities. By correlating this data with other elements such as atmospheric pressure, or seismic activity, it could be easy to spot anomalies and even forecast incoming catastrophic weather events.
+This way, it would be easier to evacuate populations or activate some anti-tide barrier systems (such as the Thames Barrier in London). If the forecasts are accurate enough, this could provide enormous savings and save numerous lives.
+This is also very relevant given that global warming is expected to cause an increase in the sea-level in the incoming years.
 
-ToDo
-
-
+### Indeed, it was fun! 
+Thank you for having taken the time to go through my assessment. I had a blast discovering the Datadog dashboard and learning the basics of visualization, monitoring and APM!
+If you have any remarks or questions, do not hesitate to reach out.
