@@ -385,6 +385,25 @@ Using the rollup widget over my_metric, our json looks like the following:
 Finally, the overall dashboard containing the three elements can be observed on Datadog:
 ![postman api dashboard screenshot](img/screenshot_18.png)
 
+### Taking a snapshot of the Dashboard
+
+The Datadog platform allows us to define a period over which to display our graphs. In our case, we just changed it from 1h to 5min:
+
+![postman api dashboard screenshot](img/screenshot_19.png)
+
+We can now send a snapshot of one specific graph:
+![postman api dashboard screenshot](img/screenshot_20.png)
+
+This can also allow us to comment on the graph and send this to the relevant people in the team:
+![postman api dashboard screenshot](img/screenshot_21.png)
+
+These members can be alerted by email, which already contains all the information allowing for a quicker response time:
+![postman api dashboard screenshot](img/screenshot_22.png)
+
+
+### Bonus Question
+Coming back to the [Anomaly Monitor Documentation](https://docs.datadoghq.com/monitors/create/types/anomaly/), we can see that the Anomaly graph is meant to trigger attention when a metric behaves in a different way than how it used to according to past data. This can be useful to quickly identify outliers when a certain metric is supposed to follow a specific pattern.
+For instance, this could allow you to spot an unexpected spike in traffic, or CPU usage, which you could then investigate on and correlate with other data from the Dashboard to identify the root cause and potential remediation.
 
 <!-- Monitoring Data -->
 ## Monitoring Data
