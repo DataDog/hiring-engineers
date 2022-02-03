@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="img/Datadog_logo.png">
-    <img src="img/Datadog_logo.png" alt="Logo" width="80" height="80">
+    <img src="img/Datadog_logo.png" alt="Logo" width="100" height="100">
   </a>
 
   <h3 align="center">Datadog - Sales Engineer Technical Interview</h3>
@@ -47,7 +47,12 @@
         <li><a href="#bonus-question">Bonus question</a></li>
       </ul>
     </li>
-    <li><a href="#monitoring-data">Monitoring Data</a></li>
+    <li>
+        <a href="#monitoring-data">Monitoring Data</a>
+        <ul>
+            <li><a href="#bonus-question">Bonus question</a></li>
+        </ul>
+    </li>
     <li><a href="#collecting-apm-data">Collecting APM Data</a></li>
     <li><a href="#final-question">Final Question</a></li>
   </ol>
