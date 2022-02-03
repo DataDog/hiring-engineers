@@ -53,7 +53,12 @@
             <li><a href="#bonus-question">Bonus question</a></li>
         </ul>
     </li>
-    <li><a href="#collecting-apm-data">Collecting APM Data</a></li>
+    <li>
+        <a href="#collecting-apm-data">Collecting APM Data</a>
+        <ul>
+            <li><a href="#bonus-question">Bonus question</a></li>
+        </ul>    
+    </li>
     <li><a href="#final-question">Final Question</a></li>
   </ol>
 </details>
@@ -111,7 +116,7 @@ And restarted the agent service to apply the changes:
 sudo service datadog-agent restart
 ```
 
-We can now see the tags in the Datadog dashboard:
+We can now see the tags in the Datadog dashboard:  
 ![tags screenshot](img/screenshot_3.png)
 
 
@@ -235,7 +240,7 @@ Note that I also had to change the "site" variable to "datadoghq.eu" as my Datad
 I then headed to the [Dashboards](https://docs.datadoghq.com/api/latest/dashboards/) page of the API Documentation.
 
 Before trying to write my own python script, I once again used Postman to see what the request looked like and play around with it.
-On the first try, I received an error because the body of the request was incorrect. I then headed towards the documentation and copy/pasted one of the examples in the Postman body.
+On the first try, I received an error because the body of the request was incorrect. I then headed towards the documentation and copy/pasted one of the examples in the Postman body.  
 
 This time, the request was successful: 
 ![postman api dashboard screenshot](img/screenshot_13.png)
@@ -243,18 +248,18 @@ This time, the request was successful:
 I headed to the Datadog GUI and found my newly created dashboard in the Dashboard List. However, this didn't look very good, and didn't have a name. But at least it worked!
 ![postman api dashboard screenshot](img/screenshot_14.png)
 
-I then decided to write a python script that would allow me to create a much better dashboard than this, using help from the Postman collection as well as the documentation.
-For this purpose, I used the code sample from the [Create New Dashboard Documentation](https://docs.datadoghq.com/api/latest/dashboards/#create-a-new-dashboard).
+I then decided to write a python script that would allow me to create a much better dashboard than this, using help from the Postman collection as well as the documentation.  
+For this purpose, I used the code sample from the [Create New Dashboard Documentation](https://docs.datadoghq.com/api/latest/dashboards/#create-a-new-dashboard).  
 After executing the code, the dashboard was successfully created:
 ![postman api dashboard screenshot](img/screenshot_15.png)
 
-By going through the Dashboard on the GUI and creating a Widget, we can see how to change the parameters of the query to create the widgets according to the Exercise.
+By going through the Dashboard on the GUI and creating a Widget, we can see how to change the parameters of the query to create the widgets according to the Exercise.  
 
 For the Exercise, we will use Postman to create these different widgets, allowing us to use the json generated from the GUI to create our query.
 
 ### Display custom metric scoped over your host
 
-Following the explanations above, we simply need to add a widget to our widgets array in the json body.
+Following the explanations above, we simply need to add a widget to our widgets array in the json body.  
 
 In our case, our widget json looks like the following:
 
@@ -285,9 +290,9 @@ Here is how it appears on the Datadog platform:
 ![postman api dashboard screenshot](img/screenshot_16.png)
 
 ### Display DB metric with anomaly function applied
-Using the [Anomaly Monitor Documentation](https://docs.datadoghq.com/monitors/create/types/anomaly/), we can identify when our metric is behaving in a different manner than the previous trends.
+Using the [Anomaly Monitor Documentation](https://docs.datadoghq.com/monitors/create/types/anomaly/), we can identify when our metric is behaving in a different manner than the previous trends.  
 
-In our case, we'll use a metric from the Integration with our MongoDB database. I chose the number of distinct requests that the server is receiving as this can be a good indication of the load on our database. Of course, other relevant parameters could be used such as the number of Read/Writes or the average memory usage. 
+In our case, we'll use a metric from the Integration with our MongoDB database. I chose the number of distinct requests that the server is receiving as this can be a good indication of the load on our database. Of course, other relevant parameters could be used such as the number of Read/Writes or the average memory usage.  
 
 Our widget json looks like the following:
 
@@ -416,12 +421,12 @@ These members can be alerted by email, which already contains all the informatio
 
 
 ### Bonus Question
-Coming back to the [Anomaly Monitor Documentation](https://docs.datadoghq.com/monitors/create/types/anomaly/), we can see that the Anomaly graph is meant to trigger attention when a metric behaves in a different way than how it used to according to past data. This can be useful to quickly identify outliers when a certain metric is supposed to follow a specific pattern.
-For instance, this could allow you to spot an unexpected spike in traffic, or CPU usage, which you could then investigate on and correlate with other data from the Dashboard to identify the root cause and potential remediation.
+Coming back to the [Anomaly Monitor Documentation](https://docs.datadoghq.com/monitors/create/types/anomaly/), we can see that the Anomaly graph is meant to trigger attention when a metric behaves in a different way than how it used to according to past data. This can be useful to quickly identify outliers when a certain metric is supposed to follow a specific pattern.  
+For instance, this could allow you to spot an unexpected spike in traffic, or CPU usage, which you could then investigate on and correlate with other data from the Dashboard to identify the root cause and potential remediation.  
 
 <!-- Monitoring Data -->
 ## Monitoring Data
-We've seen in the previous part that we can create dashboards of our different metrics, and even use Anomaly Monitoring to detect whether some metric behaves in a potentially alerting manner. To make it even more efficient, we will now create a Metric Monitor which will watch our metric and automatically alert us in case this metric reaches values outside of some pre-defined boundaries.
+We've seen in the previous part that we can create dashboards of our different metrics, and even use Anomaly Monitoring to detect whether some metric behaves in a potentially alerting manner. To make it even more efficient, we will now create a Metric Monitor which will watch our metric and automatically alert us in case this metric reaches values outside of some pre-defined boundaries.  
 
 I have headed towards the Datadog [Metric Monitor Documentation](https://docs.datadoghq.com/monitors/create/types/metric/?tab=threshold) to understand how to set them up for our Exercise. 
 
@@ -484,7 +489,7 @@ Note that the hours in the notifications and the dashboard do not match because 
 ## Collecting APM Data
 We now want to monitor a specific application, using Datadog's APM (Application Performance Monitoring) solution. As always, we will follow the Datadog [APM Documentation](https://docs.datadoghq.com/tracing/setup_overview/) to perform this part of the exercise.
 
-Firstly, let's run the app that was provided to us. For this, I have simply created a file called "app.py" in which I pasted the code of the app. Note that I did not run the app on my Vagrant environment but on my local computer, just for this test.
+Firstly, let's run the app that was provided to us. For this, I have simply created a file called "app.py" in which I pasted the code of the app. Note that I did not run the app on my Vagrant environment but on my local computer, just for this test.  
 Being familiar with Flask, I imported the dependency using:
 ```
 pip install flask
@@ -541,10 +546,10 @@ The difference between a Service and a Resource is that a Service typically sits
 
 <!-- Final Question -->
 ## Final Question
-Datadog could be used, in conjunction with sensors, to monitor the sea-level and tides in coastal cities. By correlating this data with other elements such as atmospheric pressure, or seismic activity, it could be easy to spot anomalies and even forecast incoming catastrophic weather events.
-This way, it would be easier to evacuate populations or activate some anti-tide barrier systems (such as the Thames Barrier in London). If the forecasts are accurate enough, this could provide enormous savings and save numerous lives.
+Datadog could be used, in conjunction with sensors, to monitor the sea-level and tides in coastal cities. By correlating this data with other elements such as atmospheric pressure, or seismic activity, it could be easy to spot anomalies and even forecast incoming catastrophic weather events.  
+This way, it would be easier to evacuate populations or activate some anti-tide barrier systems (such as the Thames Barrier in London). If the forecasts are accurate enough, this could provide enormous savings and save numerous lives.  
 This is also very relevant given that global warming is expected to cause an increase in the sea-level in the incoming years.
 
 ### Indeed, it was fun! 
-Thank you for having taken the time to go through my assessment. I had a blast discovering the Datadog dashboard and learning the basics of visualization, monitoring and APM!
+Thank you for having taken the time to go through my assessment. I had a blast discovering the Datadog dashboard and learning the basics of visualization, monitoring and APM!  
 If you have any remarks or questions, do not hesitate to reach out.
