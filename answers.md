@@ -20,17 +20,23 @@ I've opted for the vagrant-option and initiated a standard Ubuntu 18.04 distribu
 ```
 # Install
 brew install vagrant
+
 # Create directory
 mkdir ~/vagrant
 cd ~/vagrant
+
 # Build image
 vagrant init hashicorp/bionic64
+
 # Add project-conf to ~/vagrant/VagrantFile
+
 Vagrant.configure("2") do |config|
   config.vm.box = "hashicorp/bionic64"
 end
+
 # Start vm
 vagrant up
+
 # Connect to box
 vagrant ssh
 ```
@@ -54,7 +60,9 @@ and making sure that there's activity in the web-dashboard, I proceeded to confi
 ```
 # Add tags
 sudo nano /etc/datadog-agent/datadog.yaml
+
 # Content added
+
 tags:
  - "<machine>:<nahuel's ubuntu vm>"
  - "<location>:<amsterdam-noord>"
@@ -100,6 +108,7 @@ sudo nano /etc/datadog-agent/checks.d/custom_check.py
   
 # Verify that the check works
 sudo -u dd-agent -- datadog-agent check custom_metric
+
 # Restart service
 sudo service datadog-agent restart
 ````
@@ -110,6 +119,7 @@ sudo service datadog-agent restart
 **custom_metric.yaml**
 ```
 init_config:
+
 instances:
  [{}]
  ````
@@ -117,9 +127,12 @@ instances:
 ````
 from checks import AgentCheck
 import random
+
 class custom_metric(AgentCheck):
+
  def check(self, instance):
   self.gauge('custom.metric', self.generate_random_number())
+  
  def generate_random_number(self):
   random_int = random.randint(1,1000)
   return random_int
@@ -136,6 +149,7 @@ sudo nano /etc/datadog-agent/conf.d/custom_check.yaml
 **new custom_metric.yaml**
 ````
 init_config:
+
 instances:
   - min_collection_interval: 45
 ````
@@ -174,16 +188,20 @@ Ultimately what helped me defining the right format for the requests was combini
 import os
 import json
 import requests
+
 # Auth keys (stored in local variables)
 api_key = os.environ['API_KEY']
 app_key = os.environ['APP_KEY']
+
 # URL
 url = 'https://api.datadoghq.eu/api/v1/dashboard'
+
 # Headers
 headers = {
   'DD-API-KEY': api_key,
   'DD-APPLICATION-KEY': app_key
   }
+  
 # JSON body
 data = {
     "layout_type": "ordered",
@@ -216,8 +234,10 @@ data = {
         }
     ]
 }
+
 # Execute call
 response = requests.post(url, headers=headers, data=json.dumps(data))
+
 # Print result
 print(response.json())
 ```
@@ -288,8 +308,10 @@ As per https://docs.datadoghq.com/tracing/setup_overview/setup/python I enabled 
 ```
 # Edit config
 sudo nano /etc/datadog-agent/datadog.yaml
+
 # Content
 set apm_config: true
+
 # Restart service
 sudo service datadog-agent restart
 ```
