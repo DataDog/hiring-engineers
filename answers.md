@@ -323,6 +323,7 @@ After resolving some dependencies with python/pip I was able to install ddtrace.
 Then I stored the flask-app under ```/etc/flask/flask_app.py``` and ran it as advised in the docs. <br/>
 
 ```DD_SERVICE="flask_app" DD_ENV="test" DD_LOGS_INJECTION=true ddtrace-run python flask_app.py```
+<br/>
 ![image](https://user-images.githubusercontent.com/30311249/153751051-dd70e415-f787-4c0e-b781-4751a0c86523.png)
 <br/>
 In order to create some visible activity in the service I executed this simple unix-script a couple of times to generate some _visits_:
@@ -335,7 +336,8 @@ do
 done
 ```
 <br/>
-and proceeded as requested to create the following dashboard with some specific APM stats and standard cpu-metrics https://app.datadoghq.eu/dashboard/gx9-nzj-3zr/apm-metrics.
+and proceeded as requested to create the following dashboard with some specific APM stats and standard cpu-metrics https://app.datadoghq.eu/dashboard/gx9-nzj-3zr/apm-metrics <br/>
+
 ![image](https://user-images.githubusercontent.com/30311249/153751697-cb52d404-c111-4dfa-9327-7c6068ae87dc.png)
 
 <br/><br/>
