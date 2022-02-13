@@ -1,13 +1,13 @@
 # Solutions-Engineer exercise - Nahuel Porzio
 
-0. [Setting up environments](https://github.com/DataDog/hiring-engineers/edit/solutions-engineer/answers.md#0-setting-up-environments)
-1. [Adding host tags](https://github.com/DataDog/hiring-engineers/edit/solutions-engineer/answers.md#1-adding-host-tags)
-2. [Installing database](https://github.com/DataDog/hiring-engineers/edit/solutions-engineer/answers.md#2-installing-database)
-3. [Custom agent check](https://github.com/DataDog/hiring-engineers/edit/solutions-engineer/answers.md#3-custom-agent-check)
-4. [Creating Timeboard via API](https://github.com/DataDog/hiring-engineers/edit/solutions-engineer/answers.md#4-creating-timeboard-via-api)
-5. [Sharing a graph](https://github.com/DataDog/hiring-engineers/edit/solutions-engineer/answers.md#5-sharing-snapshot)
-6. [Creating a monitor](https://github.com/DataDog/hiring-engineers/edit/solutions-engineer/answers.md#6-creating-alert-monitor)
-7. [Collecting APM data](https://github.com/DataDog/hiring-engineers/edit/solutions-engineer/answers.md#7-collecting-apm-data)
+0. [Setting up environments](https://github.com/nporzio/hiring-engineers/blob/master/answers.md#0-setting-up-environments)
+1. [Adding host tags](https://github.com/nporzio/hiring-engineers/blob/master/answers.md#1-adding-host-tags)
+2. [Installing database](https://github.com/nporzio/hiring-engineers/blob/master/answers.md#2-installing-database)
+3. [Custom agent check](https://github.com/nporzio/hiring-engineers/blob/master/answers.md#3-custom-agent-check)
+4. [Creating Timeboard via API](https://github.com/nporzio/hiring-engineers/blob/master/answers.md#4-creating-timeboard-via-api)
+5. [Sharing a graph](https://github.com/nporzio/hiring-engineers/blob/master/answers.md#5-sharing-snapshot)
+6. [Creating a monitor](https://github.com/nporzio/hiring-engineers/blob/master/answers.md#6-creating-alert-monitor)
+7. [Collecting APM data](https://github.com/nporzio/hiring-engineers/blob/master/answers.md#7-collecting-apm-data)
 
 <br/>
 
