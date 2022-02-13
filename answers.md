@@ -328,7 +328,11 @@ and proceeded as requested to create the following dashboard with some specific 
  ## What's something creative I would do with Datadog?
  
 Given my environmentalist nature, provided the resources I would use it to trace and map the actual fuel consumption-metrics from every vehicle in a country (or any larger scale for that matter) running on petrol in order to have tangible data to later properly argument regulations and measures accordingly.
+
+<br/>
+
 The idea's premise is that we currently don't have an accurate way of knowing exactly how much a car actually pollutes in a live nor accumulative fashion except for what car-producers claim or governments sample-test.
+<br/>
 Having _true_ metrics on this would in my view help in realising footprint and take another step forward towards a more sustainable system.
 <br/><br/>
 _______
