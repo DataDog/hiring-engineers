@@ -101,10 +101,10 @@ I referred to https://docs.datadoghq.com/developers/custom_checks/write_agent_ch
 
 ````
 # Add file for the check
-sudo nano /etc/datadog-agent/conf.d/custom_check.yaml
+sudo nano /etc/datadog-agent/conf.d/custom_metric.yaml
  
 # Add correspondent script
-sudo nano /etc/datadog-agent/checks.d/custom_check.py
+sudo nano /etc/datadog-agent/checks.d/custom_metric.py
   
 # Verify that the check works
 sudo -u dd-agent -- datadog-agent check custom_metric
@@ -143,7 +143,7 @@ class custom_metric(AgentCheck):
 
 ```
 # Update interval
-sudo nano /etc/datadog-agent/conf.d/custom_check.yaml
+sudo nano /etc/datadog-agent/conf.d/custom_metric.yaml
 ````
 
 **new custom_metric.yaml**
