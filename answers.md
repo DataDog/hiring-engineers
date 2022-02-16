@@ -38,7 +38,7 @@ instances:
 ```
 <img width="94" alt="Screen Shot 2022-02-16 at 22 45 42" src="https://user-images.githubusercontent.com/4121314/154277523-41f740a2-2130-49ef-b7fe-e1a229cd7f2b.png"> <img width="85" alt="Screen Shot 2022-02-16 at 22 45 48" src="https://user-images.githubusercontent.com/4121314/154277534-213ff472-6f9a-4a4c-90ac-e36ce364175e.png">
 
-**Comment:** While it should, according to [documentation](https://docs.datadoghq.com/metrics/summary/#interval) be possible to set metric metadata interval, it did not seem to have any effect..
+**Comment:** While it should, according to [documentation](https://docs.datadoghq.com/metrics/summary/#interval) be possible to set metric metadata interval via the GUI, it did not seem to have any effect.
 
 ## Visualizing Data:
 ```
