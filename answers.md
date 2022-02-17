@@ -7,11 +7,13 @@ For this part I spun up a simple ubuntu vm in [proxmox](https://www.proxmox.com/
 
 ## Collecting Metrics:
 
-1) Setup agent
+*1) Setup agent*
+
 After following the [official guidelines](https://docs.datadoghq.com/getting_started/agent/) for getting the Ubuntu agent installed and the agent started reporting, I added a few tags to the .yaml config file as seen below
 <img width="1282" alt="Screen Shot 2022-02-16 at 15 24 25" src="https://user-images.githubusercontent.com/4121314/154209220-6c624013-a01a-4ce4-83f5-75480babb24e.png">
 
-2) Setup DB integration
+*2) Setup DB integration*
+
 Next I proceeded to install and start [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) as a service, setup the MongoDB integration and add some [data](https://media.mongodb.org/zips.json) to MongoDB.
 I've used MongoDB in one form or another in various projects in the past, especially in docker containers. But for this I went with a simple baremetal install.
 There were some initial complications here as apt was using the new MongoDB v5 which requires a newer CPU architecture than I had on my proxmox, so it took some time fiddling around to downgrade to a previous, working version.
@@ -20,7 +22,8 @@ There were some initial complications here as apt was using the new MongoDB v5 w
 
 <img width="1274" alt="image" src="https://user-images.githubusercontent.com/4121314/154266083-650c3539-2d6c-4622-8529-73369c7fd223.png">
 
-3) Setup custom Agent
+*3) Setup custom Agent*
+
 Next, I proceeded to check the [documentation on custom agents](https://docs.datadoghq.com/developers/custom_checks/write_agent_check) and created a simple metric providing random numbers.
 <img width="445" alt="image" src="https://user-images.githubusercontent.com/4121314/154276144-de0a52d1-cee3-4a7b-82c7-a68843689723.png">
 
@@ -28,7 +31,8 @@ Re-using the example and adding a simple [random number generator](https://docs.
 
 <img width="834" alt="image" src="https://user-images.githubusercontent.com/4121314/154276923-a1fd0f74-1512-4f34-9148-d911e287028c.png">
 
-4) change collection interval
+*4) change collection interval*
+
 Following [here](https://docs.datadoghq.com/developers/custom_checks/write_agent_check/#updating-the-collection-interval) it was straightforward to change the interval in the .yaml config. No need to modify the python file.
 ```yaml
 init_config:
@@ -51,37 +55,123 @@ Utilize the Datadog API to create a Timeboard that contains:
 First of all, I looked in the API documentation for Timeboards but moved on to [Dashboards](https://docs.datadoghq.com/api/latest/dashboards/#create-a-new-dashboard) as timeboards have been deprecated in favour of them.
 Based on the great examples there, I chose to re-use the Python example and adapted it to my metric.
 
+Reading [this](https://datadog-api-client.readthedocs.io/en/latest/) helped to understand and customise the python script using the datadog_api_client library.
+Besides my custom metric, I decided to include the mongodb.connections.available metric.
 
-Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
+[This](https://docs.datadoghq.com/dashboards/functions/algorithms/#anomalies) page helped to clarify the request parameters for the anomalies query and based on [this](https://docs.datadoghq.com/monitors/create/types/anomaly/#anomaly-detection-algorithms) I decided to just use the 'basic' algorithm with '2' as the bounds.
 
-Once this is created, access the Dashboard from your Dashboard List in the UI:
+Finally, [this](https://docs.datadoghq.com/dashboards/querying/#rollup-to-aggregate-over-time) showed how to do the rollup for my_metric.
 
-* Set the Timeboard's timeframe to the past 5 minutes
-* Take a snapshot of this graph and use the @ notation to send it to yourself.
-* **Bonus Question**: What is the Anomaly graph displaying?
+The below script is the result
+```python
+"""
+DataDog homework dashboard script
+"""
+from datadog_api_client.v1 import ApiClient, Configuration
+from datadog_api_client.v1.api.dashboards_api import DashboardsApi
+from datadog_api_client.v1.model.dashboard import Dashboard
+from datadog_api_client.v1.model.dashboard_layout_type import DashboardLayoutType
+from datadog_api_client.v1.model.timeseries_widget_definition import TimeseriesWidgetDefinition
+from datadog_api_client.v1.model.timeseries_widget_definition_type import TimeseriesWidgetDefinitionType
+from datadog_api_client.v1.model.timeseries_widget_request import TimeseriesWidgetRequest
+from datadog_api_client.v1.model.widget import Widget
+from datadog_api_client.v1.model.widget_sort import WidgetSort
+host="{host:devmachine}"
+body = Dashboard(
+    layout_type=DashboardLayoutType("ordered"),
+    title="DataDog Sales Engineer Assignment Dashboard",
+    widgets=[
+        Widget(
+            definition=TimeseriesWidgetDefinition(
+                type=TimeseriesWidgetDefinitionType("timeseries"),
+                title="My Metric Widget",
+                requests=[
+                    TimeseriesWidgetRequest(
+                        q="my_metric{}".format(host)
+                        )
+                ],
+            )
+        ),
+        Widget(
+            definition=TimeseriesWidgetDefinition(
+                type=TimeseriesWidgetDefinitionType("timeseries"),
+                title="MongoDB connections available+anomalies",
+                requests=[
+                    TimeseriesWidgetRequest(
+                        q="anomalies(mongodb.connections.available{}, 'basic', 2)".format(host)
+                        )
+                ],
+            )
+        ),
+        Widget(
+            definition=TimeseriesWidgetDefinition(
+                type=TimeseriesWidgetDefinitionType("timeseries"),
+                title="My Metric rollup sum for past 60 minutes",
+                requests=[
+                    TimeseriesWidgetRequest(
+                        q="my_metric{}.rollup(sum,3600)".format(host)
+                        )
+                ],
+            )
+        )
+    ],
+)
+
+configuration = Configuration()
+with ApiClient(configuration) as api_client:
+    api_instance = DashboardsApi(api_client)
+    response = api_instance.create_dashboard(body=body)
+
+    print(response)
+```
+
+[LINK to the dashboard](https://p.datadoghq.eu/sb/40be0dc8-8ee5-11ec-a2e0-da7ad0900005-620a06d2d9298e6f3e327a9a244cd937)
+<img width="1261" alt="Screen Shot 2022-02-17 at 21 08 23" src="https://user-images.githubusercontent.com/4121314/154479777-78b970d4-a3f9-4c44-8d87-7cfd61c7a581.png">
+
+<img width="720" alt="image" src="https://user-images.githubusercontent.com/4121314/154480081-fe000329-5502-4011-a8fd-716458c8e9cb.png">
+
+* **Bonus Question**: *What is the Anomaly graph displaying?*
+
+The Anomaly graph shows the current data (the blue line in my dashboard) with a gray band around it (in my case set to 2, which can be interpreted as the standard deviation of the 'basic' algorithm specified). Any data point that is beyond the gray band would be an anomaly,marked in red, and should be investigated.
 
 ## Monitoring Data
 
-Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+>Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
-Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+>* Warning threshold of 500
+>* Alerting threshold of 800
+>* And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
-* Warning threshold of 500
-* Alerting threshold of 800
-* And also ensure that it will notify you if there is No Data for this query over the past 10m.
+This part was quite easy as the GUI is very intuitive.
+<img width="1133" alt="Screen Shot 2022-02-17 at 21 25 57" src="https://user-images.githubusercontent.com/4121314/154481542-cf1017f2-946f-4757-bd6d-3f6340f1840d.png">
+<img width="1245" alt="image" src="https://user-images.githubusercontent.com/4121314/154484427-065cd222-28df-476d-9b44-df4a61c72ea9.png">
 
-Please configure the monitor’s message so that it will:
 
-* Send you an email whenever the monitor triggers.
-* Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-* When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+[LINK](https://app.datadoghq.eu/monitors/4484135) to the finished monitor
 
-* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+*Warning notification*
 
-  * One that silences it from 7pm to 9am daily on M-F,
-  * And one that silences it all day on Sat-Sun.
-  * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+<img width="714" alt="image" src="https://user-images.githubusercontent.com/4121314/154484591-f7c4f496-9ce7-4acf-894a-af5b5da99a8f.png">
+
+
+
+>* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+ > * One that silences it from 7pm to 9am daily on M-F,
+  >* And one that silences it all day on Sat-Sun.
+  >* Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+
+Again, down to intuitive GUI, this was easily acomplished in the Monitor Menu: Manage Downtimes>Schedule Downtime 
+First one I setup as a weekly occurance on M-F, second on Sat/Sun exclusivly
+<img width="720" alt="image" src="https://user-images.githubusercontent.com/4121314/154485960-3f1b6115-c9b9-444e-a725-015d2f134bb8.png">
+<img width="717" alt="image" src="https://user-images.githubusercontent.com/4121314/154486347-558b8c6e-0275-4c79-9d4d-23198b1d4cfd.png">
+
+
+*Comment: Email shows times in UTC*
+
+<img width="719" alt="Screen Shot 2022-02-17 at 21 55 48" src="https://user-images.githubusercontent.com/4121314/154486507-9a23b79b-3e41-42b6-9675-ca7e89d49481.png">
+
+
 
 ## Collecting APM Data:
 
