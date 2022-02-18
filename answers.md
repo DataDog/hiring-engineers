@@ -2,10 +2,10 @@
 
 * [Prerequisites](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#prerequisites---setup-the-environment)
 * [Collecting Metrics](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#collecting-metrics)
-    1. [Setup agent]()
-    2. [Setup DB integration]()
-    3. [Setup custom Agent]()
-    4. [Change collection interval]()
+    1. [Setup agent](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#1-setup-agent)
+    2. [Setup DB integration](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#2-setup-db-integration)
+    3. [Setup custom Agent](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#3-setup-custom-agent)
+    4. [Change collection interval](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#4-change-collection-interval)
 * [Visualizing Data](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#visualizing-data)
     1. [Dashboard script](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#dashboard-script)
     2. [Dashboard](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#dashboard)
@@ -14,8 +14,8 @@
     2. [Notifications]()
     3. [Bonus-Scheduling]()
 * [Collecting APM data](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#collecting-apm-data)
-    1. [Flask app]()
-    2. [Dashboard]()
+    1. [APM Config and Python trace]()
+    2. [APM Dashboard]()
 * [Final Question](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#final-question)
 
 
@@ -67,6 +67,9 @@ instances:
 **Comment:** While it should, according to [documentation](https://docs.datadoghq.com/metrics/summary/#interval) be possible to set metric metadata interval via the GUI, it did not seem to have any effect.
 
 ## Visualizing Data:
+
+*Task*:
+
 ```
 Utilize the Datadog API to create a Timeboard that contains:
 
@@ -155,11 +158,13 @@ with ApiClient(configuration) as api_client:
 
 <img width="720" alt="image" src="https://user-images.githubusercontent.com/4121314/154480081-fe000329-5502-4011-a8fd-716458c8e9cb.png">
 
-* **Bonus Question**: *What is the Anomaly graph displaying?*
+   ### **Bonus Question**: *What is the Anomaly graph displaying?*
 
 The Anomaly graph shows the current data (the blue line in my dashboard) with a gray band around it (in my case set to 2, which can be interpreted as the standard deviation of the 'basic' algorithm specified). Any data point that is beyond the gray band would be an anomaly,marked in red, and should be investigated.
 
 ## Monitoring Data
+
+*Task*:
 
 >Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
 
@@ -167,6 +172,7 @@ The Anomaly graph shows the current data (the blue line in my dashboard) with a 
 >* Alerting threshold of 800
 >* And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
+   ### Create Monitor
 This part was quite easy as the GUI is very intuitive.
 <img width="1133" alt="Screen Shot 2022-02-17 at 21 25 57" src="https://user-images.githubusercontent.com/4121314/154481542-cf1017f2-946f-4757-bd6d-3f6340f1840d.png">
 <img width="1245" alt="image" src="https://user-images.githubusercontent.com/4121314/154484427-065cd222-28df-476d-9b44-df4a61c72ea9.png">
@@ -174,12 +180,13 @@ This part was quite easy as the GUI is very intuitive.
 
 [LINK](https://app.datadoghq.eu/monitors/4484135) to the finished monitor
 
-*Warning notification*
+   ### Warning notification
 
 <img width="714" alt="image" src="https://user-images.githubusercontent.com/4121314/154484591-f7c4f496-9ce7-4acf-894a-af5b5da99a8f.png">
 
 
 
+   ### Bonus
 >* **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
  > * One that silences it from 7pm to 9am daily on M-F,
@@ -200,12 +207,14 @@ First one I setup as a weekly occurance on M-F, second on Sat/Sun exclusivly
 
 ## Collecting APM Data:
 
+   ### APM Config and Python trace
 Following [this documentation](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers) it was straight forward to add the [Flask app](https://github.com/pkishino/hiring-engineers/blob/master/assignmentFlask.py), enable apm_config in the datadog.yaml 
 
 <img width="976" alt="image" src="https://user-images.githubusercontent.com/4121314/154599022-42a21276-7012-422c-b262-38f96fb21858.png">
 
 <img width="915" alt="image" src="https://user-images.githubusercontent.com/4121314/154599401-fff69792-26ed-43b1-8c62-834e26a8ed04.png">
 
+   ### APM Dashboard
 After this I cloned the host Dashboard and added the APM metrics widgets via the GUI.
 [Dashboard](https://app.datadoghq.eu/dashboard/hqs-jc9-kmk?from_ts=1645146654974&to_ts=1645148454974&live=true)
 <img width="1269" alt="image" src="https://user-images.githubusercontent.com/4121314/154601384-4306a91b-f9bd-4a71-8507-c9501e424a69.png">
