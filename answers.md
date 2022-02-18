@@ -231,6 +231,17 @@ In my own words:
 
 ## Final Question:
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+>Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
-Is there anything creative you would use Datadog for?
+>Is there anything creative you would use Datadog for?
+
+I spent a lot of my free time scuba diving, both for pleasure, education and for scientific research. Recently I helped out as a scientific diver for a project based in Okinawa("EXPLORING TWILIGHT REEFS"), funded by National Geographic, which will begin publishing results in the next months.
+While I won't dive into the details, the gist of this is that it tries to understand coral growth, movement and evolution and create a predictable model of how/when/why corals migrate through different depths, especially larger distances then normal.
+
+Trying to understand underwater life and the effects various natural and unnatural impacts have on it is quite fascinating but also difficult to get an overview of.
+Datadog, by mapping weather data over known reef-areas, showing metrics such as depth/temperatures/visibility etc would give researchers a new way to find anomalies and problem areas that could trigger a scientific dive to investigate.
+Other endpoints that could be connected are Marine AIS(boat radar) to indicate high traffic areas, wave/surf predictors etc.
+
+The overall goal would be to have a simple, yet powerful way of tracking underwater liveability for corals and other life and give indications on possible changes to come.
+
+
