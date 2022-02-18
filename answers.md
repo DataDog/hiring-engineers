@@ -1,3 +1,22 @@
+# Index:
+
+* [Prerequisites]()
+* [Collecting Metrics]()
+    1. [Setup agent]()
+    2. [Setup DB integration]()
+    3. [Setup custom Agent]()
+    4. [Change collection interval]()
+* [Visualizing Data]()
+    1. [Dashboard script]()
+    2. [Dashboard]()
+* [Creating Timeboard via API]()
+* [Sharing a graph]()
+* [Monitoring Data]()
+* [Collecting APM data]()
+* [Final Question]()
+
+
+
 ## Prerequisites - Setup the environment
 
 For this part I spun up a simple ubuntu vm in [proxmox](https://www.proxmox.com/en/) as I already had it setup and in use for a few other containers/vms that I run.
@@ -62,6 +81,8 @@ Besides my custom metric, I decided to include the mongodb.connections.available
 
 Finally, [this](https://docs.datadoghq.com/dashboards/querying/#rollup-to-aggregate-over-time) showed how to do the rollup for my_metric.
 
+### Dashboard script
+
 The below script is the result
 ```python
 """
@@ -125,6 +146,7 @@ with ApiClient(configuration) as api_client:
     print(response)
 ```
 
+### Dashboard
 [LINK to the dashboard](https://p.datadoghq.eu/sb/40be0dc8-8ee5-11ec-a2e0-da7ad0900005-620a06d2d9298e6f3e327a9a244cd937)
 <img width="1261" alt="Screen Shot 2022-02-17 at 21 08 23" src="https://user-images.githubusercontent.com/4121314/154479777-78b970d4-a3f9-4c44-8d87-7cfd61c7a581.png">
 
@@ -175,46 +197,25 @@ First one I setup as a weekly occurance on M-F, second on Sat/Sun exclusivly
 
 ## Collecting APM Data:
 
-Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+Following [this documentation](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers) it was straight forward to add the [Flask app](https://github.com/pkishino/hiring-engineers/blob/master/assignmentFlask.py), enable apm_config in the datadog.yaml 
 
-```python
-from flask import Flask
-import logging
-import sys
+<img width="976" alt="image" src="https://user-images.githubusercontent.com/4121314/154599022-42a21276-7012-422c-b262-38f96fb21858.png">
 
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
+<img width="915" alt="image" src="https://user-images.githubusercontent.com/4121314/154599401-fff69792-26ed-43b1-8c62-834e26a8ed04.png">
 
-app = Flask(__name__)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5050')
-```
-
-* **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
+After this I cloned the host Dashboard and added the APM metrics widgets via the GUI.
+[Dashboard](https://app.datadoghq.eu/dashboard/hqs-jc9-kmk?from_ts=1645146654974&to_ts=1645148454974&live=true)
+<img width="1269" alt="image" src="https://user-images.githubusercontent.com/4121314/154601384-4306a91b-f9bd-4a71-8507-c9501e424a69.png">
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
-Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+In my own words:
+ A *Resource* is some kind of result or actual value which can be consumed by *Services* which in turn provide a functionality that can be combined to create *Applications*.
+ 
+ Per the [APM Glossary](https://docs.datadoghq.com/tracing/visualization/)
+>Service Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application.
 
-Please include your fully instrumented app in your submission, as well.
+>Resource	Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job.
 
 ## Final Question:
 
