@@ -10,12 +10,12 @@
     1. [Dashboard script](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#dashboard-script)
     2. [Dashboard](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#dashboard)
 * [Monitoring Data](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#monitoring-data)
-    1. [Create Monitor]()
-    2. [Notifications]()
-    3. [Bonus-Scheduling]()
+    1. [Create Monitor](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#create-monitor)
+    2. [Notifications example](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#warning-notification)
+    3. [Bonus task](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#bonus)
 * [Collecting APM data](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#collecting-apm-data)
-    1. [APM Config and Python trace]()
-    2. [APM Dashboard]()
+    1. [APM Config and Python trace](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#apm-config-and-python-trace)
+    2. [APM Dashboard](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#apm-dashboard)
 * [Final Question](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#final-question)
 
 
