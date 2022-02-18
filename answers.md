@@ -1,19 +1,22 @@
 # Index:
 
-* [Prerequisites]()
-* [Collecting Metrics]()
+* [Prerequisites](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#prerequisites---setup-the-environment)
+* [Collecting Metrics](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#collecting-metrics)
     1. [Setup agent]()
     2. [Setup DB integration]()
     3. [Setup custom Agent]()
     4. [Change collection interval]()
-* [Visualizing Data]()
-    1. [Dashboard script]()
+* [Visualizing Data](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#visualizing-data)
+    1. [Dashboard script](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#dashboard-script)
+    2. [Dashboard](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#dashboard)
+* [Monitoring Data](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#monitoring-data)
+    1. [Create Monitor]()
+    2. [Notifications]()
+    3. [Bonus-Scheduling]()
+* [Collecting APM data](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#collecting-apm-data)
+    1. [Flask app]()
     2. [Dashboard]()
-* [Creating Timeboard via API]()
-* [Sharing a graph]()
-* [Monitoring Data]()
-* [Collecting APM data]()
-* [Final Question]()
+* [Final Question](https://github.com/pkishino/hiring-engineers/blob/master/answers.md#final-question)
 
 
 
@@ -26,12 +29,12 @@ For this part I spun up a simple ubuntu vm in [proxmox](https://www.proxmox.com/
 
 ## Collecting Metrics:
 
-*1) Setup agent*
+### *1) Setup agent*
 
 After following the [official guidelines](https://docs.datadoghq.com/getting_started/agent/) for getting the Ubuntu agent installed and the agent started reporting, I added a few tags to the .yaml config file as seen below
 <img width="1282" alt="Screen Shot 2022-02-16 at 15 24 25" src="https://user-images.githubusercontent.com/4121314/154209220-6c624013-a01a-4ce4-83f5-75480babb24e.png">
 
-*2) Setup DB integration*
+### *2) Setup DB integration*
 
 Next I proceeded to install and start [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) as a service, setup the MongoDB integration and add some [data](https://media.mongodb.org/zips.json) to MongoDB.
 I've used MongoDB in one form or another in various projects in the past, especially in docker containers. But for this I went with a simple baremetal install.
@@ -41,7 +44,7 @@ There were some initial complications here as apt was using the new MongoDB v5 w
 
 <img width="1274" alt="image" src="https://user-images.githubusercontent.com/4121314/154266083-650c3539-2d6c-4622-8529-73369c7fd223.png">
 
-*3) Setup custom Agent*
+### *3) Setup custom Agent*
 
 Next, I proceeded to check the [documentation on custom agents](https://docs.datadoghq.com/developers/custom_checks/write_agent_check) and created a simple metric providing random numbers.
 <img width="445" alt="image" src="https://user-images.githubusercontent.com/4121314/154276144-de0a52d1-cee3-4a7b-82c7-a68843689723.png">
@@ -50,7 +53,7 @@ Re-using the example and adding a simple [random number generator](https://docs.
 
 <img width="834" alt="image" src="https://user-images.githubusercontent.com/4121314/154276923-a1fd0f74-1512-4f34-9148-d911e287028c.png">
 
-*4) change collection interval*
+### *4) change collection interval*
 
 Following [here](https://docs.datadoghq.com/developers/custom_checks/write_agent_check/#updating-the-collection-interval) it was straightforward to change the interval in the .yaml config. No need to modify the python file.
 ```yaml
@@ -81,7 +84,7 @@ Besides my custom metric, I decided to include the mongodb.connections.available
 
 Finally, [this](https://docs.datadoghq.com/dashboards/querying/#rollup-to-aggregate-over-time) showed how to do the rollup for my_metric.
 
-### Dashboard script
+   ### Dashboard script
 
 The below script is the result
 ```python
@@ -146,7 +149,7 @@ with ApiClient(configuration) as api_client:
     print(response)
 ```
 
-### Dashboard
+   ### Dashboard
 [LINK to the dashboard](https://p.datadoghq.eu/sb/40be0dc8-8ee5-11ec-a2e0-da7ad0900005-620a06d2d9298e6f3e327a9a244cd937)
 <img width="1261" alt="Screen Shot 2022-02-17 at 21 08 23" src="https://user-images.githubusercontent.com/4121314/154479777-78b970d4-a3f9-4c44-8d87-7cfd61c7a581.png">
 
