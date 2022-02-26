@@ -53,4 +53,18 @@ sudo nano my_metric.yaml --- Content "instances: [{}]"
 
 <img width="693" alt="customcheck result" src="https://user-images.githubusercontent.com/87458325/155832041-04cd749b-82e7-4cb6-af1d-101f412c41d7.PNG">
 
+# Visualizing Data
+
+
+My custom Metric with the rollup function applied to sum up in the past hour
+<img width="939" alt="mmgraph" src="https://user-images.githubusercontent.com/87458325/155861052-5e183fd4-e53d-4985-b484-f56a9d07cf25.PNG">
+
+
+Mysql integration with the anomaly function depicting performance kernel time
+<img width="936" alt="mysql metric timeboard" src="https://user-images.githubusercontent.com/87458325/155860814-95c6101d-a613-4a2a-b622-abc51c87d170.PNG">
+
+<img width="851" alt="timeboard5minute" src="https://user-images.githubusercontent.com/87458325/155861205-dd1acc24-67d1-4f16-b1c5-09069bfa9cf1.PNG">
+
+https://p.datadoghq.com/sb/9136907e-9663-11ec-83c8-da7ad0900002-73cac96272540807f8af3da880d08838
+
 
