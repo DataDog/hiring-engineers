@@ -23,3 +23,16 @@ After adding tags be sure to do a $ sudo service datadog-agent restart to apply 
 ## Installing MYSQL
 sudo apt ugrade & sudo apt update
 sudo apt install mysql-server
+https://docs.datadoghq.com/database_monitoring/setup_mysql/selfhosted/?tab=mysql80
+
+<img width="471" alt="Creating Datadog user and grant basic permissions" src="https://user-images.githubusercontent.com/87458325/155818635-d4541565-801c-4b46-bcb5-ed8699446bbb.PNG">
+
+## Verify successful user creation
+<img width="644" alt="verifying successful creation" src="https://user-images.githubusercontent.com/87458325/155819308-74819e2e-0a52-4cd7-8583-1d24628bc156.PNG">
+
+## Metric Collection conf.yaml configuration
+
+<img width="764" alt="Metric collection mysql" src="https://user-images.githubusercontent.com/87458325/155821022-e50657d1-5797-421f-b0bc-1150b645284b.PNG">
+
+
+
