@@ -32,7 +32,19 @@ https://docs.datadoghq.com/database_monitoring/setup_mysql/selfhosted/?tab=mysql
 
 ## Metric Collection conf.yaml configuration
 
-<img width="764" alt="Metric collection mysql" src="https://user-images.githubusercontent.com/87458325/155821022-e50657d1-5797-421f-b0bc-1150b645284b.PNG">
+<img width="833" alt="Metric collection mysql" src="https://user-images.githubusercontent.com/87458325/155828798-530ecd4c-69e3-48f3-bf50-9a13ef407c9e.PNG">
+<img width="824" alt="Metric collection mysql2" src="https://user-images.githubusercontent.com/87458325/155828804-cb220369-8af9-41c3-beb3-c3c7aabbd798.PNG">
+
+sudo service datadog-agent restart
+
+<img width="545" alt="installed MySQL" src="https://user-images.githubusercontent.com/87458325/155829597-af46b943-aa1a-494e-a55f-3886f4da3827.PNG">
+
+## Creating a custom Agent check
+sudo nano my_metric.yaml --- Content "instances: [{}]"
+
+<img width="896" alt="conf d_yaml_my_metric" src="https://user-images.githubusercontent.com/87458325/155830523-f096ce1f-6f44-4094-a6fa-bd6743303635.PNG">
+
+<img width="900" alt="check d_my_metric" src="https://user-images.githubusercontent.com/87458325/155831516-195af2b6-0a35-4fa6-9073-72f91fa88792.PNG">
 
 
 
