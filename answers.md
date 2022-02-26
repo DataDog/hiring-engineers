@@ -44,7 +44,11 @@ sudo nano my_metric.yaml --- Content "instances: [{}]"
 
 <img width="896" alt="conf d_yaml_my_metric" src="https://user-images.githubusercontent.com/87458325/155830523-f096ce1f-6f44-4094-a6fa-bd6743303635.PNG">
 
-<img width="900" alt="check d_my_metric" src="https://user-images.githubusercontent.com/87458325/155831516-195af2b6-0a35-4fa6-9073-72f91fa88792.PNG">
+<img width="551" alt="check d_my_metric" src="https://user-images.githubusercontent.com/87458325/155832112-116d77d9-3028-46ff-8213-87fb3ac53384.PNG">
 
+
+**NOTE** The python script and yaml file must be the same name for it to pick up
+
+<img width="693" alt="customcheck result" src="https://user-images.githubusercontent.com/87458325/155832041-04cd749b-82e7-4cb6-af1d-101f412c41d7.PNG">
 
 
