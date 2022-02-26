@@ -46,6 +46,8 @@ sudo nano my_metric.yaml --- Content "instances: [{}]"
 
 <img width="551" alt="check d_my_metric" src="https://user-images.githubusercontent.com/87458325/155832112-116d77d9-3028-46ff-8213-87fb3ac53384.PNG">
 
+<img width="815" alt="change check interval" src="https://user-images.githubusercontent.com/87458325/155832850-02f90b3e-38b2-432e-b857-6f8bfd220faa.PNG">
+
 
 **NOTE** The python script and yaml file must be the same name for it to pick up
 
