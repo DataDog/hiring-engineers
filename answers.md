@@ -65,6 +65,18 @@ Mysql integration with the anomaly function depicting performance kernel time
 
 <img width="851" alt="timeboard5minute" src="https://user-images.githubusercontent.com/87458325/155861205-dd1acc24-67d1-4f16-b1c5-09069bfa9cf1.PNG">
 
+## snapshot
+
+<img width="325" alt="snapshot" src="https://user-images.githubusercontent.com/87458325/155863643-c1b0e1c5-523e-45fe-8ea6-ded47ca6226a.PNG">
+
 https://p.datadoghq.com/sb/9136907e-9663-11ec-83c8-da7ad0900002-73cac96272540807f8af3da880d08838
+
+# Monitoring Data
+
+<img width="773" alt="define the alert" src="https://user-images.githubusercontent.com/87458325/155863741-60224f89-0d20-4733-adba-bcea48cb1a87.PNG">
+
+<img width="828" alt="email alert" src="https://user-images.githubusercontent.com/87458325/155864728-22c95a8a-47dc-40a5-910d-ab9aac4fc3fe.PNG">
+<img width="357" alt="email1 critical" src="https://user-images.githubusercontent.com/87458325/155864730-809392c8-e0b0-4a6f-bfbd-58c871af7703.PNG">
+<img width="355" alt="email2 warning" src="https://user-images.githubusercontent.com/87458325/155864732-8812eea7-dece-4832-aa97-03a5813c5a9c.PNG">
 
 
