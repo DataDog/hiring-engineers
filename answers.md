@@ -87,3 +87,24 @@ https://p.datadoghq.com/sb/9136907e-9663-11ec-83c8-da7ad0900002-73cac96272540807
 
 # Collecting APM Data
 
+Install pip, flask, and ddtrace
+sudo apt-get install python-pip
+pip install flask
+pip install ddtrace
+
+<img width="775" alt="collect apm data python" src="https://user-images.githubusercontent.com/87458325/155917883-6fd8f063-ba8c-45bf-8a35-e1c9bc3250a0.PNG">
+
+## Ran into an Error with pip install ddtrace, I had to upgrade pip and python to the latest versions
+<img width="714" alt="diagnosing python" src="https://user-images.githubusercontent.com/87458325/155920956-ffa02325-a6c7-4f0d-842d-bc89fedc9a1b.PNG">
+<img width="897" alt="ddtrace successful" src="https://user-images.githubusercontent.com/87458325/155921021-763e9df9-d73a-4c03-8b96-45a2b151944d.PNG">
+
+
+ddtrace-run python hello.py
+
+<img width="519" alt="ddtrace-run python script" src="https://user-images.githubusercontent.com/87458325/155921222-94274b3b-c8d4-443f-8c7e-49f70cd02ffd.PNG">
+
+<img width="232" alt="0 0 0 0" src="https://user-images.githubusercontent.com/87458325/155921728-2491e10f-e00b-4be9-98dc-abc5204792ba.PNG">
+
+<img width="954" alt="service flask" src="https://user-images.githubusercontent.com/87458325/155922180-66d4bb9f-7df0-4329-853a-8b910d0c19de.PNG">
+
+https://app.datadoghq.com/apm/services?saved-view-id=790511
