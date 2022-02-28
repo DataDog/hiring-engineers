@@ -75,8 +75,15 @@ https://p.datadoghq.com/sb/9136907e-9663-11ec-83c8-da7ad0900002-73cac96272540807
 
 <img width="773" alt="define the alert" src="https://user-images.githubusercontent.com/87458325/155863741-60224f89-0d20-4733-adba-bcea48cb1a87.PNG">
 
+
 <img width="828" alt="email alert" src="https://user-images.githubusercontent.com/87458325/155864728-22c95a8a-47dc-40a5-910d-ab9aac4fc3fe.PNG">
+<img width="326" alt="is no data" src="https://user-images.githubusercontent.com/87458325/155912328-711cb9a9-a0bd-4b55-bfe6-40ae761a4b08.PNG">
 <img width="357" alt="email1 critical" src="https://user-images.githubusercontent.com/87458325/155864730-809392c8-e0b0-4a6f-bfbd-58c871af7703.PNG">
 <img width="355" alt="email2 warning" src="https://user-images.githubusercontent.com/87458325/155864732-8812eea7-dece-4832-aa97-03a5813c5a9c.PNG">
 
+<img width="256" alt="silence mon-friday" src="https://user-images.githubusercontent.com/87458325/155913980-8df9bdc8-773c-4ca9-a259-126d1c03a117.PNG">
+<img width="300" alt="Silence weekend" src="https://user-images.githubusercontent.com/87458325/155913993-7b9199eb-65cd-4532-8c6c-b3f1221270e4.PNG">
+<img width="461" alt="downtime ss" src="https://user-images.githubusercontent.com/87458325/155914130-5e13c53e-9960-4b44-86aa-d2f6be6ffc5b.PNG">
+
+# Collecting APM Data
 
