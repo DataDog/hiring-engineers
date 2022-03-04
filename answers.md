@@ -1,11 +1,17 @@
 # Datadog Technical Exercise Sale Engineering position
  by Jeff Hollis 2021
-## Answers
-Vargrant VM method. Quick install
+
+
+
+<img width="439" alt="TOC" src="https://user-images.githubusercontent.com/87458325/156687081-50fc8201-c0e3-44fa-8fa4-bd084a286fac.PNG">
+
+
+
 
 <img width="615" alt="installing the agent Ubuntu" src="https://user-images.githubusercontent.com/87458325/155767763-6e1b9c40-2c60-4275-8f30-c673ac595a9a.PNG">
 
 # Prerequisites - Setup the environment 
+Vargrant VM method. Quick install
 
 <img width="943" alt="Agent capture to API" src="https://user-images.githubusercontent.com/87458325/155801376-491cd4a9-1dcd-43f5-9528-662dacbb0447.PNG">
 
@@ -111,4 +117,8 @@ ddtrace-run python hello.py
 
 # Shared Dashboard
 https://p.datadoghq.com/sb/9136907e-9663-11ec-83c8-da7ad0900002-73cac96272540807f8af3da880d08838
+
+# Final Question
+
+Datadog's Agent and turnkey integrations could be a useful tool that explores how companies in the telehealth industry scale, aggregate, and analyze data metrics as they pertain to preventive healthcare.  Covid-19 has opened the door on the feasibility and acceptance of remote encounters between patients and their primary care doctors which increase the bandwidth of traffic and other pain points causing extra pressure on healthcare servers. Datadog can leverage this new lifestyle by providing critical infrastructure monitoring solutions to telehealth systems servers. With easy scalable solutions and protective security, Datadog can ensure that availability will always be a priority.
 
