@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Setting up the Vagrant VM &#8212; Datadog SE Candidate Ben Mello 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Collecting Metrics" href="metrics.html" />
+    <link rel="prev" title="Ben Mello SE Technical Challenge" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="setting-up-the-vagrant-vm">
+<h1>Setting up the Vagrant VM<a class="headerlink" href="#setting-up-the-vagrant-vm" title="Permalink to this headline">¶</a></h1>
+<p>1. Installed Vagrant via Brew. I have been using Brew on macOS to install,uninstall,update,and manage all development tools.</p>
+<p></p>
+<img alt="_images/brew_vagarantinstall.png" class="align-center" src="_images/brew_vagarantinstall.png" />
+<p></p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Install Vagrant</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~</span> <span class="o">%</span> <span class="n">brew</span> <span class="n">install</span> <span class="n">vagrant</span>
+</pre></div>
+</div>
+</div>
+<p></p>
+<p>2. Create Vagrant Directory
+</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">~</span> <span class="pre">%</span> <span class="pre">mkdir</span> <span class="pre">vagrant</span></code></p>
+</div></blockquote>
+<p></p>
+<p>3. Change to Vagrant Directory
+</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">~</span> <span class="pre">%</span> <span class="pre">cd</span> <span class="pre">vagrant</span></code></p>
+</div></blockquote>
+<p></p>
+<p>4. Configure Vagrant environment to run Ubuntu VirtualBox
+</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">vagrant</span> <span class="pre">%</span> <span class="pre">vagrant</span> <span class="pre">init</span> <span class="pre">hashicorp/bionic64</span></code></p>
+</div></blockquote>
+<p></p>
+<p>5. Open the ‘Vagrantfile’ in VS Code to configure the VM
+</p>
+<img alt="_images/vagrant_config.png" class="align-center" src="_images/vagrant_config.png" />
+<p></p>
+<ul class="simple">
+<li><p>Before starting the VM, I took a look at the configuration file to make changes. I configured the network with a private network address as I thought it was the safest option. It allows you access to the VM from your own computer but it is not accessible from the global internet. The address is reseved in the private address space.</p></li>
+<li><p>I also upgraded the amount of memory from 512MB to 2GB and added 4 CPUs to the VM in this file. I thought this would be beneficial to running the Datadog Agent.</p></li>
+</ul>
+<p></p>
+<p>6. Create and start VM based on Configuration File
+</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">vagrant</span> <span class="pre">%</span> <span class="pre">vagrant</span> <span class="pre">up</span></code></p>
+</div></blockquote>
+<p></p>
+<section id="installing-the-datadog-agent">
+<h2>Installing the Datadog Agent<a class="headerlink" href="#installing-the-datadog-agent" title="Permalink to this headline">¶</a></h2>
+<p>1. Once the VM is running - ssh into the box.
+</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">vagrant</span> <span class="pre">%</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code></p>
+</div></blockquote>
+<p></p>
+<p>2. Update the package repos in Ubuntu as several packages are needed for this challenge.
+</p>
+<blockquote>
+<div><img alt="_images/sudoaptupdate.gif" class="align-center" src="_images/sudoaptupdate.gif" />
+</div></blockquote>
+<p></p>
+<p>3. Sign up for a <a class="reference external" href="https://www.datadoghq.com/">Datadog Free Trial</a> and install the Datadog Agent on the Ubuntu VM through ssh. The easy one-step install can be found under Integrations &gt; Agent &gt; Ubunutu after logging in to your account.
+</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">DD_AGENT_MAJOR_VERSION=7</span> <span class="pre">DD_API_KEY=&lt;YOUR_DD_API_KEY&gt;</span> <span class="pre">DD_SITE=&quot;datadoghq.com&quot;</span> <span class="pre">bash</span> <span class="pre">-c</span> <span class="pre">&quot;$(curl</span> <span class="pre">-L</span> <span class="pre">https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)&quot;</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you do not want the agent to start automatically after installation, prepend <code class="docutils literal notranslate"><span class="pre">DD_INSTALL_ONLY</span> <span class="pre">=</span> <span class="pre">true</span></code> to the above script before running it</p>
+</div>
+</div></blockquote>
+<dl>
+<dt></dt><dd><blockquote>
+<div><ul class="simple">
+<li><p>The Datadog Agent is installed and now running</p></li>
+</ul>
+</div></blockquote>
+<img alt="_images/datadog_agent_install.png" class="align-center" src="_images/datadog_agent_install.png" />
+</dd>
+</dl>
+<p></p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/DDlogo.jpeg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Datadog SE Candidate Ben Mello</a></h1>
+
+
+
+<p class="blurb">A Guide to Starting Datadog</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setting up the Vagrant VM</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-the-datadog-agent">Installing the Datadog Agent</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">Collecting Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Visualizing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitoring.html">Monitoring Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apm.html">Collecting APM Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code.html">Code</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, bmello.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/setup.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

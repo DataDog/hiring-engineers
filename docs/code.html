@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Code for Exercises &#8212; Datadog SE Candidate Ben Mello 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Collecting APM Data" href="apm.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="code-for-exercises">
+<h1>Code for Exercises<a class="headerlink" href="#code-for-exercises" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li><p>custom_my_metric_check.py</p></li>
+</ol>
+<p></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># try/expect block to make the custom check compatible with any version of the Agent</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1">#This will try to import the base class from new versions of the Agent</span>
+    <span class="kn">from</span> <span class="nn">datadog_checks.base</span> <span class="kn">import</span> <span class="n">AgentCheck</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="c1">#If the above fails this means the check is running in Agent version &lt; 7</span>
+    <span class="kn">from</span> <span class="nn">checks</span> <span class="kn">import</span> <span class="n">AgentCheck</span>
+
+<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;1.0.0&quot;</span>
+
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="n">AgentCheck</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gauge</span><span class="p">(</span><span class="s1">&#39;my_metric&#39;</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">),</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;env:dev&#39;</span><span class="p">,</span><span class="s1">&#39;metric_submission_type:gauge&#39;</span><span class="p">,</span><span class="s1">&#39;metric:my_metric&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tags&#39;</span><span class="p">,</span> <span class="p">[]))</span>
+</pre></div>
+</div>
+<p></p>
+<ol class="arabic simple" start="2">
+<li><p>custom_my_metric_check.yaml</p></li>
+</ol>
+<p></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">init_config</span><span class="p">:</span>
+
+<span class="n">instances</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">min_collection_interval</span><span class="p">:</span> <span class="mi">45</span>
+</pre></div>
+</div>
+<p></p>
+<ol class="arabic simple" start="3">
+<li><p>timeboard_data_exercise.py</p></li>
+</ol>
+<p></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datadog</span> <span class="kn">import</span> <span class="n">initialize</span><span class="p">,</span> <span class="n">api</span>
+
+<span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;api_key&#39;</span><span class="p">:</span> <span class="s1">&#39;YOUR_DD_API_KEY&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;app_key&#39;</span><span class="p">:</span> <span class="s1">&#39;YOUR_DD_APP_KEY&#39;</span>
+<span class="p">}</span>
+
+<span class="n">initialize</span><span class="p">(</span><span class="o">**</span><span class="n">options</span><span class="p">)</span>
+
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Visualizing Data Exercise&#39;</span>
+<span class="n">widgets</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="s1">&#39;definition&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;timeseries&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;requests&#39;</span><span class="p">:</span> <span class="p">[</span>
+             <span class="p">{</span><span class="s1">&#39;q&#39;</span><span class="p">:</span> <span class="s1">&#39;avg:my_metric{*}&#39;</span><span class="p">}</span>
+         <span class="p">],</span>
+        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Custom Metric Scoped Over Host&#39;</span>
+    <span class="p">}},</span>
+    <span class="p">{</span>
+    <span class="s1">&#39;definition&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;timeseries&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;requests&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s1">&#39;q&#39;</span><span class="p">:</span> <span class="s1">&#39;anomalies(avg:mysql.performance.open_files{*}, &quot;basic&quot;, 2)&#39;</span><span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;MySql mysql.performance.open_files Anomaly Funtion&#39;</span>
+        <span class="p">}},</span>
+    <span class="p">{</span>
+    <span class="s1">&#39;definition&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;timeseries&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;requests&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s1">&#39;q&#39;</span><span class="p">:</span> <span class="s1">&#39;sum:my_metric{*}.rollup(sum, 3600)&#39;</span><span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;My_metric rolled up.&#39;</span>
+    <span class="p">}</span>
+    <span class="p">}]</span>
+<span class="n">layout_type</span> <span class="o">=</span> <span class="s1">&#39;ordered&#39;</span>
+<span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;My_Metric Scoped Over Host.&#39;</span>
+<span class="n">is_read_only</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">notify_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bmello1487@gmail.com&#39;</span><span class="p">]</span>
+<span class="n">template_variables</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;host1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;prefix&#39;</span><span class="p">:</span> <span class="s1">&#39;host&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="s1">&#39;my-host&#39;</span>
+<span class="p">}]</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">Dashboard</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+                 <span class="n">widgets</span><span class="o">=</span><span class="n">widgets</span><span class="p">,</span>
+                 <span class="n">layout_type</span><span class="o">=</span><span class="n">layout_type</span><span class="p">,</span>
+                 <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+                 <span class="n">is_read_only</span><span class="o">=</span><span class="n">is_read_only</span><span class="p">,</span>
+                 <span class="n">notify_list</span><span class="o">=</span><span class="n">notify_list</span><span class="p">,</span>
+                 <span class="n">template_variables</span><span class="o">=</span><span class="n">template_variables</span><span class="p">)</span>
+</pre></div>
+</div>
+<p></p>
+<ol class="arabic simple" start="4">
+<li><p>flaskApp.py</p></li>
+</ol>
+<p></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ddtrace</span> <span class="kn">import</span> <span class="n">tracer</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># Have flask use stdout as the logger</span>
+<span class="n">main_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+<span class="n">main_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+<span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">c</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+<span class="n">main_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">api_entry</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">&#39;Entrypoint to the Application&#39;</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/apm&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">apm_endpoint</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">&#39;Getting APM Started&#39;</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/trace&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">trace_endpoint</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">&#39;Posting Traces&#39;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s1">&#39;5050&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p></p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/DDlogo.jpeg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Datadog SE Candidate Ben Mello</a></h1>
+
+
+
+<p class="blurb">A Guide to Starting Datadog</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setting up the Vagrant VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">Collecting Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Visualizing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitoring.html">Monitoring Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apm.html">Collecting APM Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Code</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, bmello.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/code.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
