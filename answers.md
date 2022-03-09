@@ -1,23 +1,28 @@
 # Datadog Technical Exercise Sale Engineering position
  by Jeff Hollis 2021
 
+{updated TOC}
+
+# Introduction
+As more company’s transition from monoliths to microservices and to cloud/hybrid environments, monitoring data has become a critical aspect to all enterprises. Datadog’s infrastructure monitoring platform allows DevOps teams to track dynamic cloud environments at a high level by making it easier to monitor the health of your infrastructure on a single pane of glass. Deployment of the Agent is quick easy. The Datadog Agent can run on cloud platforms, bare metal servers, virtual machines, containers and more. Below is an example of the agent getting deployed on a vagrant Ubuntu distribution.
 
 
-<img width="439" alt="TOC" src="https://user-images.githubusercontent.com/87458325/156687081-50fc8201-c0e3-44fa-8fa4-bd084a286fac.PNG">
 
 
 
 
 <img width="615" alt="installing the agent Ubuntu" src="https://user-images.githubusercontent.com/87458325/155767763-6e1b9c40-2c60-4275-8f30-c673ac595a9a.PNG">
 
-# Prerequisites - Setup the environment 
+## Prerequisites - Setup the environment 
 Vargrant VM method. Quick install
 
 <img width="943" alt="Agent capture to API" src="https://user-images.githubusercontent.com/87458325/155801376-491cd4a9-1dcd-43f5-9528-662dacbb0447.PNG">
 
 # Collecting Metrics
+Assessing the health of your environment is an important feature to all information technology infrastructures. With Datadog, you can further customize your Host Map with tags and create custom metrics based on the data that is most important to you and your organization. Whether it’s pulling information from your current database like mySQL or tracking the number of new users who have registered to your website, if it has a numerical value, Datadog can track it and help identify problems that arise. Datadog does this by ingesting the metric data and storing this as a data point with a value and timestamp. Knowing exactly how to allocate your resources can help save your organization money and improve performance
 
 ## Adding Tags
+To simplify and filter queries or to find problems within your environment, Datadog allows you to configure tags to quickly identify the data you are parsing. Tags can be configured on the Agent configuration file by modifying the datadog.yaml file as seen below. This can also be configured through the Datadog UI, Datadog API or with DogStatsD.
 
 <img width="602" alt="Adding Tags" src="https://user-images.githubusercontent.com/87458325/155813006-c8193297-8abb-4745-a38d-0ae3467e20ec.PNG">
 
@@ -25,11 +30,11 @@ Vargrant VM method. Quick install
 
 
 After adding tags be sure to do a $ sudo service datadog-agent restart to apply YAML file changes.
+# Database Monitoring
+Deep dive into your enterprises database to quickly determine the database health and performance. The Datadog Agent collects telemetry data points directly from the database by logging in as a Read-only user.  It’s that simple! Configure the database parameters to match Datadog perquisite settings, Grant access to the agent, verify that the permissions are correct, and start visualizing efficient indexing, disk space, and other components.
 
 ## Installing MYSQL
-sudo apt ugrade & sudo apt update
-sudo apt install mysql-server
-https://docs.datadoghq.com/database_monitoring/setup_mysql/selfhosted/?tab=mysql80
+
 
 <img width="471" alt="Creating Datadog user and grant basic permissions" src="https://user-images.githubusercontent.com/87458325/155818635-d4541565-801c-4b46-bcb5-ed8699446bbb.PNG">
 
@@ -46,7 +51,8 @@ sudo service datadog-agent restart
 <img width="545" alt="installed MySQL" src="https://user-images.githubusercontent.com/87458325/155829597-af46b943-aa1a-494e-a55f-3886f4da3827.PNG">
 
 ## Creating a custom Agent check
-sudo nano my_metric.yaml --- Content "instances: [{}]"
+Custom Checks enable you to collect metrics from custom applications or systems suitable for your unique situations and are not widely used outside your team or organization. Depending on how many custom check created might impact cost.
+my_metric.yaml 
 
 <img width="896" alt="conf d_yaml_my_metric" src="https://user-images.githubusercontent.com/87458325/155830523-f096ce1f-6f44-4094-a6fa-bd6743303635.PNG">
 
