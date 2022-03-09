@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Collecting APM Data &#8212; Datadog SE Candidate Ben Mello 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Code for Exercises" href="code.html" />
+    <link rel="prev" title="Monitoring Data" href="monitoring.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="collecting-apm-data">
+<h1>Collecting APM Data<a class="headerlink" href="#collecting-apm-data" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li><p>Enable APM in the Agent Config file</p></li>
+</ol>
+<p></p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">vim</span> <span class="pre">/etc/datadog-agent/datadog.yaml</span></code></p>
+</div></blockquote>
+<p></p>
+<blockquote>
+<div><img alt="_images/enable_apm_config.png" class="align-center" src="_images/enable_apm_config.png" />
+</div></blockquote>
+<p></p>
+<ol class="arabic simple" start="2">
+<li><p>Install ddtrace</p></li>
+</ol>
+<p></p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">ddtrace</span></code></p>
+</div></blockquote>
+<p></p>
+<ol class="arabic simple" start="3">
+<li><p>Install Flask</p></li>
+</ol>
+<p></p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">flask</span></code></p>
+</div></blockquote>
+<p></p>
+<ol class="arabic simple" start="4">
+<li><p>Create Python file that contains the Flask App provided</p></li>
+</ol>
+<dl class="simple">
+<dt></dt><dd><p><code class="docutils literal notranslate"><span class="pre">vagrant&#64;vagrant:~$</span> <span class="pre">sudo</span> <span class="pre">vim</span> <span class="pre">/etc/python/flaskApp.py</span></code></p>
+</dd>
+</dl>
+<p></p>
+<blockquote>
+<div><img alt="_images/flaskapp.png" class="align-center" src="_images/flaskapp.png" />
+</div></blockquote>
+<p></p>
+<ol class="arabic simple" start="5">
+<li><p>Start the Flask App with the following command:</p></li>
+</ol>
+<p></p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">vagrant&#64;vagrant:~$</span> <span class="pre">DD_SERVICE=&quot;myFlaskApp&quot;</span> <span class="pre">DD_ENV=&quot;dev&quot;</span> <span class="pre">DD_LOGS_INJECTION=true</span> <span class="pre">ddtrace-run</span> <span class="pre">python</span> <span class="pre">/etc/python/flaskApp.py</span></code></p>
+</div></blockquote>
+<dl>
+<dt></dt><dd><img alt="_images/start_flask_app.png" src="_images/start_flask_app.png" />
+</dd>
+</dl>
+<p></p>
+<ol class="arabic simple" start="6">
+<li><p>Once we see ddtrace active, run the following curl command to test the endpoints</p></li>
+</ol>
+<dl class="simple">
+<dt></dt><dd><p><code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">127.0.0.1:5050</span></code></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt></dt><dd><p><code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">127.0.0.1:5050/api/apm</span></code></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt></dt><dd><p><code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">127.0.0.1:5050/api/trace</span></code></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt></dt><dd><p><code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">127.0.0.1:5050/test</span></code></p>
+</dd>
+</dl>
+<p></p>
+<ol class="arabic simple" start="7">
+<li><p>The requests were successfully traced. Each trace represents the time spent by the application processing request. All traces are OK.</p></li>
+</ol>
+<dl>
+<dt></dt><dd><img alt="_images/apm1.png" class="align-center" src="_images/apm1.png" />
+</dd>
+</dl>
+<p></p>
+<blockquote>
+<div><img alt="_images/apm2.png" class="align-center" src="_images/apm2.png" />
+</div></blockquote>
+<p></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>By looking deeper into this trace, you can see each span that makes up the request.</p></li>
+</ul>
+</div></blockquote>
+<p></p>
+<blockquote>
+<div><img alt="_images/apm3.png" class="align-center" src="_images/apm3.png" />
+</div></blockquote>
+<p></p>
+<blockquote>
+<div><img alt="_images/apm4.png" class="align-center" src="_images/apm4.png" />
+</div></blockquote>
+<p></p>
+<blockquote>
+<div><img alt="_images/apm5.png" class="align-center" src="_images/apm5.png" />
+</div></blockquote>
+<p></p>
+<ol class="arabic simple" start="8">
+<li><p>APM Data Timeboard</p></li>
+</ol>
+<p></p>
+<blockquote>
+<div><img alt="_images/apm6_dashboard.png" class="align-center" src="_images/apm6_dashboard.png" />
+</div></blockquote>
+<p></p>
+<blockquote>
+<div><p><a class="reference external" href="https://p.datadoghq.com/sb/708a2847-9e46-11ec-854a-da7ad0900002-49cb9e37ff0ae5d760535ccd323c6ee2">APM and Infrastructure Metrics Dashboard</a></p>
+</div></blockquote>
+<dl class="simple">
+<dt><strong>Bonus</strong>: Service vs Resource</dt><dd><ul class="simple">
+<li><p>Service - A service is a build block in computing architecture. It groups together enpoints, quereies, or jobs to build your application.</p></li>
+<li><p>Resource - A resource represents a certain area of an application. It could be an instrumented web endpoint, database query,or background job.</p></li>
+</ul>
+</dd>
+</dl>
+<p></p>
+<section id="final-question">
+<h2>Final Question<a class="headerlink" href="#final-question" title="Permalink to this headline">¶</a></h2>
+<p>I think an ideal use for Datadog would be for the Bushnell Golf Speaker/Rangefinder. The product is great for an ideal day out on the course as it allows you to play music and also can tell you how far away the green is; even down to the detail of the front,center, and back of the green.
+This app connects to your smartphone device and has majority of courses preloaded to the app.</p>
+<p>Unfortunately, after a handful of uses my smartphone would not connect anymore to the device. With a lot of golfers on the course at once, bluetooth inteference can always be an issue. I ruled that out as I was the only device connected with bluetooth within 100 yards.
+After reaching out to Bushnell’s tech support they couldn’t see anyting on their end to help troubleshoot and made it seem like my phone was the issue.</p>
+<p>With Datadog monitoring, Bushnell would be able have visibilty to see the exact issue as to why the connection may be failing. To keep golfers satisfied, they would be able to reduce downtime and detect issues before they happen.
+It would be easier to determine what the issue exactly is; whether it’s at the device, application, or network level.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/DDlogo.jpeg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Datadog SE Candidate Ben Mello</a></h1>
+
+
+
+<p class="blurb">A Guide to Starting Datadog</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setting up the Vagrant VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">Collecting Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Visualizing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitoring.html">Monitoring Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Collecting APM Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#final-question">Final Question</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="code.html">Code</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, bmello.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/apm.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
