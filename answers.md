@@ -66,7 +66,7 @@ my_metric.yaml
 <img width="693" alt="customcheck result" src="https://user-images.githubusercontent.com/87458325/155832041-04cd749b-82e7-4cb6-af1d-101f412c41d7.PNG">
 
 # Visualizing Data
-
+Data is the monumental key for telling a story about everything and because there is an abundant about of data, it can easily be lost or misinterpret without the proper tools.  Data granularity can be observed on several echelons helping aid businesses decisions and provide a clear outlook. The best way to understand data is to see it! Datadog’s centralized visualization monitoring tools helps summarize data in a clean, easily readable format. Use preconfigured or create custom dashboards, timeboards, or screenboards with a variety of objects such as timeseries, heat maps, scatter plots, geomaps, pie charts to help represent your data in a understandable format. Add query metrics, like anomalies, to help detect when dataset are deviating from their standard means or explore outliers in your data.  
 
 My custom Metric with the rollup function applied to sum up in the past hour
 <img width="939" alt="mmgraph" src="https://user-images.githubusercontent.com/87458325/155861052-5e183fd4-e53d-4985-b484-f56a9d07cf25.PNG">
@@ -78,6 +78,7 @@ Mysql integration with the anomaly function depicting performance kernel time
 <img width="851" alt="timeboard5minute" src="https://user-images.githubusercontent.com/87458325/155861205-dd1acc24-67d1-4f16-b1c5-09069bfa9cf1.PNG">
 
 ## snapshot
+Take graph Snapshots and use the @ annotation to quickly collaborate with team members
 
 <img width="325" alt="snapshot" src="https://user-images.githubusercontent.com/87458325/155863643-c1b0e1c5-523e-45fe-8ea6-ded47ca6226a.PNG">
 
