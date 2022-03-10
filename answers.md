@@ -13,7 +13,7 @@ As more company’s transition from monoliths to microservices and to cloud or h
 
 <img width="615" alt="installing the agent Ubuntu" src="https://user-images.githubusercontent.com/87458325/155767763-6e1b9c40-2c60-4275-8f30-c673ac595a9a.PNG">
 
-## Prerequisites - Setup the environment 
+Prerequisites - Setup the environment 
 Vargrant VM method. Quick install
 
 <img width="943" alt="Agent capture to API" src="https://user-images.githubusercontent.com/87458325/155801376-491cd4a9-1dcd-43f5-9528-662dacbb0447.PNG">
@@ -87,8 +87,8 @@ Take Graph Snapshots and use the @ annotation to quickly collaborate with team m
 https://p.datadoghq.com/sb/9136907e-9663-11ec-83c8-da7ad0900002-73cac96272540807f8af3da880d08838
 
 # Monitoring Data
-
-Effective Monitoring 
+Effective monitoring is a vital condition for observing the inner workings of your system. Being able to pinpoint problems and examine performance issues through metrics, events, logs, and traces helps capture big picture awareness and can save companies time, money, and resources. Datadog’s configurable alert conditions and collaboration tools keep urgent matters under control. These Alerts can trigger point of time events, thresholds, performance optimization, errors, utilization, saturation, and availability in a comprehensive overview of your infrastructure and help resolve issues quickly. 
+ 
 
 <img width="773" alt="define the alert" src="https://user-images.githubusercontent.com/87458325/155863741-60224f89-0d20-4733-adba-bcea48cb1a87.PNG">
 
