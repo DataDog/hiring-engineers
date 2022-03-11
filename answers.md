@@ -41,13 +41,17 @@ I attempted to run the commands in the MySQL docs for verifying user creation an
 <img src="/screenshots/sql_users.png" alt="Show all SQL users" style="height: 200px; width:250px;"/> 
 
 **Update User Privleges**
+
 Agent privleges updated to collect metrics
-<img src="/screenshots/update_user.png" alt="Update DD privleges" style="height: 80px; width:400px;"/> 
+
+<img src="/screenshots/update_user.png" alt="Update DD privleges" style="height: 54px; width:691px;"/> 
 
 Grant access to performance_schema
-<img src="/screenshots/perf_schema.png" alt="Give DD access to performance schema" style="height: 80px; width:400px;"/> 
+
+<img src="/screenshots/perf_schema.png" alt="Give DD access to performance schema" style="height: 54px; width:691px;"/> 
 
 Add configuration to collect SQL metrics
+
 <img src="/screenshots/conf_yaml.png" alt="Add SQL metrics config" style="height: 200px; width:250px;"/> 
 
 Restart the user agent to sending SQL metrics back DD.  Write some data to the SQL database so metrics populate.
