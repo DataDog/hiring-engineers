@@ -1,11 +1,11 @@
-# Datadog Technical Exercise Sale Engineering position
+# Datadog Technical Exercise 
 
 
 <img width="642" alt="TOC" src="https://user-images.githubusercontent.com/87458325/157798331-741af974-ac2f-4648-99e9-aa6f8f331c7d.PNG">
 
 
 # Introduction
-As more company’s transition from monoliths to microservices and to cloud or hybrid environments, monitoring data has become a critical aspect to all enterprises. Datadog’s infrastructure monitoring platform allows DevOps teams to track dynamic cloud environments at a high level making it easier to monitor the condition of your infrastructure on a single pane of glass. Deployment of the Agent is quick easy. The Datadog Agent can run on cloud platforms, bare metal servers, virtual machines, containers and more. Below is an example of the agent getting deployed on a vagrant Ubuntu distribution.
+As more company’s transition from monoliths to microservices and to cloud or hybrid environments, monitoring data has become a critical aspect to all enterprises. Datadog’s infrastructure monitoring platform allows DevOps teams to track dynamic cloud environments at a high level making it easier to monitor the condition of your infrastructure on a single pane of glass. Deployment of the Agent is quick and easy. The Datadog Agent can run on cloud platforms, bare metal servers, virtual machines, containers and more. Below is an example of the agent getting deployed on a vagrant Ubuntu distribution.
 
 
 
@@ -20,7 +20,7 @@ Vargrant VM method. Quick install
 <img width="943" alt="Agent capture to API" src="https://user-images.githubusercontent.com/87458325/155801376-491cd4a9-1dcd-43f5-9528-662dacbb0447.PNG">
 
 # Collecting Metrics
-Assessing the health of your environment is an important feature to all infrastructures. With Datadog, you can further customize your Host Map with tags and create custom metrics based on the data that is most important to you and your organization. Whether it’s pulling information from your current database like mySQL or tracking the number of new users who have registered to your website, if it has a numerical value, Datadog can track it and help identify problems that arise. Datadog does this by ingesting the metric data and storing this as a data point with a "value and timestamp". Knowing exactly how to allocate your resources can help save your organization money and improve performance
+Assessing the health of your environment is an important feature to all infrastructures. With Datadog, you can further customize your Host Map with tags and create custom metrics based on the data that is most important to you and your organization. Whether it’s pulling information from your current database or tracking new users, if it has a numerical value, Datadog can track it and help identify problems that arise. Datadog does this by ingesting the metric data and storing this as a data point with a "value and timestamp". Knowing exactly how to allocate your resources can help save your organization money and improve performance.
 
 ## Adding Tags
 To simplify and filter queries or to find problems within your environment, Datadog allows you to configure tags to quickly identify the data you are parsing. Tags can be configured on the Agent configuration file by modifying the datadog.yaml file as seen below. This can also be configured through the Datadog UI, Datadog API or with DogStatsD.
@@ -53,7 +53,7 @@ sudo service datadog-agent restart
 <img width="545" alt="installed MySQL" src="https://user-images.githubusercontent.com/87458325/155829597-af46b943-aa1a-494e-a55f-3886f4da3827.PNG">
 
 ## Creating a custom Agent check
-Custom Checks enable you to collect metrics from custom applications or systems suitable for your unique situations. Depending on how many custom check created might impact cost. Unlike integrations, custom checks provide a quick solution for temperary needs. 
+Custom Checks enable you to collect metrics from custom applications or systems suitable for your unique situations. Depending on how many custom checks created might impact cost. Unlike integrations, custom checks provide a quick solution for temperary needs. 
 
 my_metric.yaml 
 
@@ -69,7 +69,7 @@ my_metric.yaml
 <img width="693" alt="customcheck result" src="https://user-images.githubusercontent.com/87458325/155832041-04cd749b-82e7-4cb6-af1d-101f412c41d7.PNG">
 
 # Visualizing Data
-Data is the monumental key for telling a story about everything and because there is an abundant about of data, it can easily be lost or misinterpret without the proper tools.  Data granularity can be observed on several echelons helping aid businesses to make decisions faster and provide a clear outlook on objectives. The best way to understand data is to see it! Datadog’s centralized visualization monitoring tools helps summarize data in a clean, easily readable format. Use preconfigured or create custom dashboards, timeboards, or screenboards with a variety of objects such as timeseries, heat maps, scatter plots, geomaps, pie charts to help represent your data in an logical format. Adding query metrics, like anomalies, help detect when datasets are deviating from their standard means and explore outliers in your data.  
+Data is the monumental key for telling a story about everything and because there is an abundant amount of data, it can easily be lost or misinterpreted without the proper tools.  Data granularity can be observed on several echelons helping aid businesses to make decisions faster and provide a clear outlook on objectives. The best way to understand data is to see it! Datadog’s centralized visualization monitoring tools helps summarize data in a clean, easily readable format. Use preconfigured or create custom dashboards, timeboards, or screenboards with a variety of objects such as timeseries, heat maps, scatter plots, geomaps and pie charts to help represent your data in an logical format. Adding query metrics, like anomalies, help to detect when datasets are deviating from their standard means and explore outliers in your data.  
 
 My custom Metric with the rollup function applied to sum up in the past hour
 <img width="939" alt="mmgraph" src="https://user-images.githubusercontent.com/87458325/155861052-5e183fd4-e53d-4985-b484-f56a9d07cf25.PNG">
@@ -105,7 +105,7 @@ Effective monitoring is a vital condition for observing the inner workings of yo
 
 # Application Performance Monitoring
 
- As customer’s requirements and goals change frequently, it’s important to scale with them in their journey. Datadog’s APM works with important programming languages (Java, go, python, Microsoft .NET, php, ruby, and node) to provide a complete package of front to backend tracing. With new features like Service maps, span summary, trace search analytics the ability to trouble shoot faster with deep correlation is now a streamlined task. 
+ As customer’s requirements and goals change frequently, it’s important that Datadog scale's with them on their journey. Datadog’s APM works with important programming languages (Java, go, python, Microsoft .NET, php, ruby, and node) to provide a complete package of front to backend tracing. With new features like Service maps, span summary and trace search analytics; the ability to trouble shoot faster with deep correlation is now a streamlined task. 
 
 Install pip, flask, and ddtrace
 sudo apt-get install python-pip
@@ -134,5 +134,5 @@ https://p.datadoghq.com/sb/9136907e-9663-11ec-83c8-da7ad0900002-73cac96272540807
 
 # Final Question
 
-Datadog's Agent and turnkey integrations could be a useful tool that explores how companies in the telehealth industry scale, aggregate, and analyze telemetry data as they pertain to preventive healthcare.  Covid-19 has opened the door on the feasibility and acceptance of remote encounters between patients and their primary care doctors which increase the bandwidth of traffic and other pain points causing extra pressure on healthcare servers. Datadog can leverage this new lifestyle by providing critical infrastructure monitoring solutions to telehealth systems. With easy scalable solutions and protective security, Datadog can ensure that availability and observability will always be a priority.
+Datadog's Agent and turnkey integrations could be a useful tool that explores how companies in the telehealth industry scale, aggregate, and analyze telemetry data in preventive healthcare.  Covid-19 has opened the door on the feasibility and acceptance of remote encounters between patients and their primary care doctors which increases the bandwidth of traffic and other pain points causing extra pressure on healthcare servers. Datadog can leverage this new lifestyle by providing critical infrastructure monitoring solutions to telehealth systems. With easy scalable solutions and protective security, Datadog can ensure that availability and observability will always be a priority.
 
