@@ -1,7 +1,8 @@
 # Datadog Technical Exercise Sale Engineering position
- by Jeff Hollis 2021
 
-{update TOC}
+
+<img width="642" alt="TOC" src="https://user-images.githubusercontent.com/87458325/157798331-741af974-ac2f-4648-99e9-aa6f8f331c7d.PNG">
+
 
 # Introduction
 As more company’s transition from monoliths to microservices and to cloud or hybrid environments, monitoring data has become a critical aspect to all enterprises. Datadog’s infrastructure monitoring platform allows DevOps teams to track dynamic cloud environments at a high level making it easier to monitor the condition of your infrastructure on a single pane of glass. Deployment of the Agent is quick easy. The Datadog Agent can run on cloud platforms, bare metal servers, virtual machines, containers and more. Below is an example of the agent getting deployed on a vagrant Ubuntu distribution.
@@ -68,7 +69,7 @@ my_metric.yaml
 <img width="693" alt="customcheck result" src="https://user-images.githubusercontent.com/87458325/155832041-04cd749b-82e7-4cb6-af1d-101f412c41d7.PNG">
 
 # Visualizing Data
-Data is the monumental key for telling a story about everything and because there is an abundant about of data, it can easily be lost or misinterpret without the proper tools.  Data granularity can be observed on several echelons helping aid businesses to make decisions faster and provide a clear outlook on objectives. The best way to understand data is to see it! Datadog’s centralized visualization monitoring tools helps summarize data in a clean, easily readable format. Use preconfigured or create custom dashboards, timeboards, or screenboards with a variety of objects such as timeseries, heat maps, scatter plots, geomaps, pie charts to help represent your data in an understandable format. Adding query metrics, like anomalies, help detect when datasets are deviating from their standard means and explore outliers in your data.  
+Data is the monumental key for telling a story about everything and because there is an abundant about of data, it can easily be lost or misinterpret without the proper tools.  Data granularity can be observed on several echelons helping aid businesses to make decisions faster and provide a clear outlook on objectives. The best way to understand data is to see it! Datadog’s centralized visualization monitoring tools helps summarize data in a clean, easily readable format. Use preconfigured or create custom dashboards, timeboards, or screenboards with a variety of objects such as timeseries, heat maps, scatter plots, geomaps, pie charts to help represent your data in an logical format. Adding query metrics, like anomalies, help detect when datasets are deviating from their standard means and explore outliers in your data.  
 
 My custom Metric with the rollup function applied to sum up in the past hour
 <img width="939" alt="mmgraph" src="https://user-images.githubusercontent.com/87458325/155861052-5e183fd4-e53d-4985-b484-f56a9d07cf25.PNG">
@@ -87,7 +88,7 @@ Take Graph Snapshots and use the @ annotation to quickly collaborate with team m
 https://p.datadoghq.com/sb/9136907e-9663-11ec-83c8-da7ad0900002-73cac96272540807f8af3da880d08838
 
 # Monitoring Data
-Effective monitoring is a vital condition for observing the inner workings of your system. Being able to pinpoint problems and examine performance issues through metrics, events, logs, and traces helps capture big picture awareness and can save companies time, money, and resources. Datadog’s configurable alert conditions and collaboration tools keep urgent matters under control. These Alerts can trigger point of time events, thresholds, performance optimization, errors, utilization, saturation, and availability in a comprehensive overview of your infrastructure and help resolve issues quickly. 
+Effective monitoring is a vital condition for observing the inner workings of your system. Being able to pinpoint problems and examine performance issues through metrics, events, logs, and traces helps capture big picture awareness and can save companies time, money, and resources. Datadog’s configurable alert conditions and collaboration tools keep urgent matters under control. These Alerts can trigger time events, thresholds, performance optimization, errors, utilization, saturation, and availability in a comprehensive overview of your infrastructure and help resolve issues quickly. 
  
 
 <img width="773" alt="define the alert" src="https://user-images.githubusercontent.com/87458325/155863741-60224f89-0d20-4733-adba-bcea48cb1a87.PNG">
@@ -102,7 +103,9 @@ Effective monitoring is a vital condition for observing the inner workings of yo
 <img width="300" alt="Silence weekend" src="https://user-images.githubusercontent.com/87458325/155913993-7b9199eb-65cd-4532-8c6c-b3f1221270e4.PNG">
 <img width="461" alt="downtime ss" src="https://user-images.githubusercontent.com/87458325/155914130-5e13c53e-9960-4b44-86aa-d2f6be6ffc5b.PNG">
 
-# Collecting APM Data
+# Application Performance Monitoring
+
+ As customer’s requirements and goals change frequently, it’s important to scale with them in their journey. Datadog’s APM works with important programming languages (Java, go, python, Microsoft .NET, php, ruby, and node) to provide a complete package of front to backend tracing. With new features like Service maps, span summary, trace search analytics the ability to trouble shoot faster with deep correlation is now a streamlined task. 
 
 Install pip, flask, and ddtrace
 sudo apt-get install python-pip
@@ -133,4 +136,3 @@ https://p.datadoghq.com/sb/9136907e-9663-11ec-83c8-da7ad0900002-73cac96272540807
 
 Datadog's Agent and turnkey integrations could be a useful tool that explores how companies in the telehealth industry scale, aggregate, and analyze telemetry data as they pertain to preventive healthcare.  Covid-19 has opened the door on the feasibility and acceptance of remote encounters between patients and their primary care doctors which increase the bandwidth of traffic and other pain points causing extra pressure on healthcare servers. Datadog can leverage this new lifestyle by providing critical infrastructure monitoring solutions to telehealth systems. With easy scalable solutions and protective security, Datadog can ensure that availability and observability will always be a priority.
 
-# Conclusion
