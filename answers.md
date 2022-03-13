@@ -141,7 +141,7 @@ Creating monitors using the GUI - scheduled them as requested/described + added 
 Scheduling downtime for the monitor was fairly intuitive.  I set up two - one for the weekdays, one for the weekend.  
 
 <br><img src="/screenshots/weekday_downtime.png" alt="Weekday Downtime" style="height: 300px; width: 400px;" />
-<img src="/screenshots/email_downtime.png" alt="Metric Monitor" style="height: 150px; width: 350px;" />
+<img src="/screenshots/email_downtime.png" alt="Metric Monitor" style="height: 200px; width: 350px;" />
 <img src="/screenshots/weekend_downtime.png" alt="Weekend Downtime" style="height: 200px; width: 400px;" />
 
 
