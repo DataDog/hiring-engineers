@@ -17,10 +17,6 @@ Already have a version of Ubuntu installed on VirtualBox - will use that for thi
 
 
 **Add tags in config file - host + tags on host map page in DD**
-```
-cd /etc/datadog-agent/
-nano datadog.yaml (add tags)
-```
 <img src="/screenshots/tagsyaml.png" alt="Add tags to yaml file" style="height: 125px; width:300px;"/>
 
 
@@ -39,12 +35,12 @@ Next steps in the SQL integration detail preparing your server by adding a datad
 
 I attempted to run the commands in the MySQL docs for verifying user creation and received syntax errors.  After spending a lot of time looking for answers I was still unable to figure out what the issue was and decided to move on to the next action item.
 
-<img src="/screenshots/sql_users.png" alt="Show all SQL users" style="height: 200px; width:250px;"/> 
+<img src="/screenshots/sql_users.png" alt="Show all SQL users" style="height: 200px; width:250px;"/><br> 
 
 
 **Update User Privleges**
 
-Agent privleges updated to collect metrics
+Agent privileges updated to collect metrics
 
 <img src="/screenshots/update_user.png" alt="Update DD privleges" style="height: 54px; width:691px;"/> 
 
@@ -64,9 +60,9 @@ Restart the user agent to sending SQL metrics back DD.  Write some data to the S
 ## Create Custom Agent Check
 >Create a custom Agent check that submits a metric name my_metric with a random value between 0 and 1000.
 
-Create the config file my_metric.yaml (needs to match the name of my_metric.py).
+Create the config file ```my_metric.yaml``` (needs to match the name of my_metric.py).
 
-Navigate to /checks.d and create the python script.  Import the random module, use the snippet provided in the guide to import AgentCheck module.
+Navigate to ```/checks.d``` and create the python script.  Import the random module, use the snippet provided in the guide to import AgentCheck module.
 Final step is create my_metric with random number between 1-1000.
 
 <img src="/screenshots/my_metric.png" alt="my_metric.py script" style="height: 100px; width:250px;"/> 
@@ -96,13 +92,23 @@ My_metric appears in Metrics Dashboard:
 > - Your custom metric with the rollup funciton applied to sum up all the points for the past hour into one bucket
 >
 
+Quite a few pieces to navigate/work through here.  I initially started by looking at the API reference docs.
+
+1. Install datadog-api-client. Then execute the script provided via the <a href="https://github.com/DataDog/datadog-api-client-python">python-github docs</a>.
+2. Then I used the code provided in the <a href="https://docs.datadoghq.com/api/latest/dashboards/#create-a-new-dashboard">dashboard docs</a> to create a new dashboard to confirm I could get everything working, even if the data wasn't what we were looking for yet.
+3. Through quite a bit of trial and error, and looking over the <a href="https://docs.datadoghq.com/dashboards/widgets/timeseries/">Timeseries widget</a> reference and JSON examples I was able to complete the custom metric part of the assignment.
+4. Once I understood the structure/syntax I referenced the <a href="https://docs.datadoghq.com/dashboards/functions/algorithms/#anomalies">Algorithms</a> page to use the anamoly function for part 2.
+5. Some more required reading was needed on the <a href="https://docs.datadoghq.com/dashboards/functions/rollup/">Rollup function</a> in order to complete step 3.
+
 <a href=https://p.datadoghq.com/sb/2c4e08fe-9f4b-11ec-8590-da7ad0900002-47d32d434b9f94eb95e12c99588bfec3>Public Dashboard Link</a>
 
-<img src="/screenshots/data_viz_dash.png" alt="Dashboard Visualization via API" style="height: 300px; width:600px;"/>
+<img src="/screenshots/data_viz_dash.png" alt="Dashboard Visualization via API" style="height: 300px; width:600px;"/><br>
 
-**Timeboard timeframe set to last 5 minutes**
+**Timeboard timeframe set to last 5 minutes**<br>
 
-<img src="/screenshots/5min_timeboard.png" alt="Timeboard 5 Min Timeframe" style="height: 330px; width:660px;"/>
+Using the GUI I updated the timeframe from 1 hour to 5 minutes, took a snapshot of ```my_metric``` graph and sent a message to myself.
+
+<br><img src="/screenshots/5min_timeboard.png" alt="Timeboard 5 Min Timeframe" style="height: 330px; width:660px;"/>
 
 **Snapshot sent to myself**
 
@@ -118,7 +124,9 @@ My_metric appears in Metrics Dashboard:
 > - Alerting threshold of 800
 > - Notify you if there is No Data for this query over the past 10m.
 
-<img src="/screenshots/metric_monitor.png" alt="Metric Monitor" style="height: 200px; width: 400px;" />
+Creating monitors using the GUI - scheduled them as requested/described + added the notification email.  Since my host would not actually exceed the metrics on it's own I used the test notification option that pops up prior to saving your monitor, which appeared in my email immediately.
+
+<br><img src="/screenshots/metric_monitor.png" alt="Metric Monitor" style="height: 200px; width: 400px;" />
 
 <img src="/screenshots/notification.png" alt="Notification" style="height: 200px; width: 600px;" />
 
@@ -130,6 +138,31 @@ My_metric appears in Metrics Dashboard:
 > - One that silences it all day on Sat-Sun.
 > - Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
-<img src="/screenshots/weekday_downtime.png" alt="Weekday Downtime" style="height: 300px; width: 400px;" />
+Scheduling downtime for the monitor was fairly intuitive.  I set up two - one for the weekdays, one for the weekend.  
+
+<br><img src="/screenshots/weekday_downtime.png" alt="Weekday Downtime" style="height: 300px; width: 400px;" />
 <img src="/screenshots/email_downtime.png" alt="Metric Monitor" style="height: 150px; width: 350px;" />
 <img src="/screenshots/weekend_downtime.png" alt="Weekend Downtime" style="height: 200px; width: 400px;" />
+
+
+## Collecting APM Data
+> _Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution_
+
+I installed Flask and DD Trace using the documenation I found <a href="https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers">here</a> and <a href="https://app.datadoghq.com/apm/docs?architecture=host-based&language=python">here</a>.  I set up the configuration snippet to instrument the application that was provided as part of the exercise.
+
+<img src="/screenshots/apm_config.png" alt="APM Config" style="height: 200px; width: 400px;" />
+
+You can see an overview of APM services under the APM tab and get an overview of Requests, Errors, Latency etc.  I exported all of these modules to the cloned Infrastructure dashboard (renamed Infrastructure and APM Dash)  This dashboard can be viewed <a href="https://p.datadoghq.com/sb/2c4e08fe-9f4b-11ec-8590-da7ad0900002-982f7c84669f87c67fe4a1f941e44978">here</a>.
+
+
+<img src="/screenshots/infra_apm_dash.png" alt="APM Config" style="height: 200px; width: 400px;" />
+
+**Bonus Question**
+> _What is the difference between a Service and a Resource?_
+>> Per the APM Glossary page - a **Service** is a building block in microservice architecture.  As a broad definition services group together endpoints, queries, or jobs for the purposes of building an application. For example, a group of URL endpoints may be grouped together under an API service. A **Resource** is a domain of an application.  RTesources are usually an instrumented endpoint, db query, or background job.  For example an ecommerce site may have web endpoints that handle things like checkouts, cart updates, purchases, etc.  Those endpoints themselves are examples of resources.
+
+## Final Question
+> _Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!_
+>
+>_Is there anything creative you would use Datadog for?_
+>>I love the outdoors and I especially like fishing in Massachusetts lakes.  Massachusetts has struggled with the health of its watersheds in the past, but recent conservation efforts coupled with modern technology have improved watershed health greatly in the last decade or so.  Each year Massachusetts sees an incredible number of migratory fish move from the sea into local freshwater lakes, and counting/monitoring the size of these migrations is used to understand the health of the ecosystem.  Many of the highest volume locations have installed "fish cams" that use image recognition applications to count the overall size of the migration.  Using DD to track and monitor performance of the devices and apps will ensure that local scientists can accurately monitor the migration and make informed decisions regarding the health of the Massachusets watershed and ecosystem.
