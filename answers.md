@@ -16,9 +16,11 @@ end
 ```
 Later in the exercise, I've modified the basic Vagrant configuration file to assign a custom hostname to the guest VM and provided it with a static IP, in order to reach some of the opened ports from the browser of the host machine. In the first screenshots, you'll see the standard hostname `vagrant` instead.
 - **VM Hostname:**	`v-giada-host-1`
-- **Static IP:**	`192.168.33.10`
+- **IP:**	`10.0.2.15`
+- **Vagrant Static IP:**	`192.168.33.10`
 
 *References*: 
+
 [Vagrant: Setting Hostname](https://www.vagrantup.com/docs/networking/basic_usage#setting-hostname)
 
 [Vagrant: Static IP](https://www.vagrantup.com/docs/networking/private_network#static-ip)
@@ -30,7 +32,7 @@ I've signed up for the trial account in the EU region of Datagog, [datadoghq.eu]
 
 I've followed the QuickStart instruction to install the Datadog Agent v7 on my Ubuntu VM. It was automatically suggesting the correct **DD_SITE** and **DD_API_KEY** for my account.
 ```
-DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=a37ca623e45fa0c24da7daa976f9bfd0 DD_SITE="datadoghq.eu" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=XXXXXXXXXXXXXX9bfd0 DD_SITE="datadoghq.eu" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 ```
 
 The installation prompt ended successfully and, in a few minutes, the UI's Infrastructure List and Map were showing the first entry.
@@ -260,7 +262,7 @@ python3 Timeboard_API.py
 
 ---------
 
-Once created, accessing the Dashboard from the Dashboard List in the UI:
+Once created, I was able to access the Dashboard from the Dashboard List in the UI:
 
 ### Set the Timeboard's timeframe to the past 5 minutes
 
@@ -274,5 +276,19 @@ Once created, accessing the Dashboard from the Dashboard List in the UI:
 
 ### **Bonus Question**: What is the Anomaly graph displaying?
 
-The anomaly function is applied to metrics to calculate an estimated expected value, based on the data collected in the past. It's useful to highlight anomalous behaviour of the metric during the collection interval. The function is represented graphically with a grey bundle on the metric that shows where the predicted sample should be included.
-The datadog algorith to calculate
+The anomaly function is an algorithmic feature that could be applied to metrics to calculate an estimated expected value, based on the data collected in the past. It's useful to highlight anomalous behaviour of the metric during the collection timeframe taken in exame. 
+
+The function is represented graphically with a grey band around the metric line, that shows at first glance if the new collected value lays within the predicted ones. If the new value is outside the standard deviation calculated by the function, the data is highlighted in a different colour. 
+
+The tolerance of the band is controlled by the parameter `bundle`, that in my example is set to 2. The chosen `algorithm` is *basic*.
+
+Datadog algorithm adapts its prediction to the metric’s baseline. In fact, considering the peaks of the metric used in my Dashboard, the anomaly function graph of my example shows different forecast when the time-frame is changed. Having to collecting metrics from a empty DB, almost all of them are basically flat so I chose the only one that was floating.
+
+![Anomaly function 15 min](/images/2_6_API.PNG)
+
+![Anomaly function 1 hour](/images/2_7_API.PNG)
+
+![Anomaly function 1 day](/images/2_8_API.PNG)
+
+---------------
+
