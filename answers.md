@@ -282,7 +282,7 @@ The function is represented graphically with a grey band around the metric line,
 
 The tolerance of the band is controlled by the parameter `bundle`, that in my example is set to 2. The chosen `algorithm` is *basic*.
 
-Datadog algorithm adapts its prediction to the metric’s baseline. In fact, considering the peaks of the metric used in my Dashboard, the anomaly function graph of my example shows different forecast when the time-frame is changed. Having to collecting metrics from a empty DB, almost all of them are basically flat so I chose the only one that was floating.
+Datadog algorithm adapts its prediction to the metric’s baseline. In fact, considering the peaks of the metric used in my Dashboard, the anomaly function graph of my example shows different forecast when the time-frame is changed (in the pictures below: 15 min, 1 hour, 1 day). Collecting metrics from a empty DB, almost all of them were basically flat so I had chosen the only one that was floating.
 
 ![Anomaly function 15 min](/images/2_6_API.PNG)
 
@@ -292,3 +292,120 @@ Datadog algorithm adapts its prediction to the metric’s baseline. In fact, con
 
 ---------------
 
+## 3. Monitoring Data
+
+As requested, I've used the Monitor UI to create a monitor that watches the average of `giada_custom.metric` and alerts the team if the value exceedes the indicated threshold for 5 minutes. 
+
+![Monitor creation](/images/3_1_monitor.PNG)
+
+**Alert Conditions:**
+
+* Warning threshold of 500
+* Alerting threshold of 800
+* Sending a notification if there is No Data for this query over the past 10m.
+
+![Alert conditions](/images/3_2_monitor.PNG)
+
+The customized monitor's message should have the following features:
+
+* Send an email whenever the monitor triggers.
+* Shows different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+
+I've used the condition variables to modulate the message for different triggers: Alert, Warning, No data. I've included different texts and recepients (actually, always me...) in the same body. I've also used message variables to generalize the message, such as `{{value}}`, `{{threshold}}`, `{{host.name}}` and `{{host.ip}}`[^1].
+
+![Monitor message](/images/3_3_monitor.PNG)
+
+*References*: 
+
+[Notifications](https://docs.datadoghq.com/monitors/notify/#message-template-variables)
+
+[Conditional Variables](https://docs.datadoghq.com/monitors/notify/variables/?tab=is_alert#conditional-variables)
+
+The message written for the exercise is not taking into consideration any recovery condition. 
+
+The full body is:
+
+```
+{{#is_alert}}
+{{override_priority 'P1'}}
+
+@giada.valsecchi@live.it
+
+**Avg of giada_custom.metric** on host **{{host.name}}**, IP **{{host.ip}}**, is **over threshold** ( >= {{threshold}})!!!
+**Breached value** = {{value}}  at {{last_triggered_at}} 
+
+{{/is_alert}}
+
+<!--EndFragment-->
+
+
+<!--StartFragment-->
+
+{{#is_warning}}
+
+@giada.valsecchi@live.it 
+
+**Avg of giada_custom.metric** on host **{{host.name}}**  has reached a **warning value** ({{warn_threshold}} <= x <=  {{threshold}})!
+
+{{/is_warning}}
+
+<!--EndFragment-->
+
+
+<!--StartFragment-->
+
+{{#is_no_data}}
+
+@giada.valsecchi@live.it 
+
+Agent on host **{{host.name}}** has not been sending data for **giada_custom.metric** since {{last_triggered_at}} 
+
+{{/is_no_data}} 
+
+<!--EndFragment-->
+```
+The new monitor in the UI Monitor Page:
+
+![Monitor list](/images/3_4_monitor.PNG)
+![Monitor](/images/3_4b_monitor.PNG)
+
+Below, a screenshot of the emails received:
+![Monitor WARNING email](/images/3_5_monitor.PNG)
+![Monitor ALERT email](/images/3_6_monitor.PNG)
+
+[^1] The `{{host.ip}}` variable is not providing the expected value. I've researched in the documentation to find the definition of the default `host` tag, in order to assign to it a new attribute called `host.ip` and giving it the IP value.
+
+ The entry in the infrastructure list is showing the IP field populated with the same IP that is found with the `ifconfig` command. 
+ 
+ ![Monitor host.ip issue](/images/3_8_monitor.PNG)
+ 
+ I wasn't able to find a solution to the issue above.
+ 
+----------
+
+### **Bonus Question**: Setting up two scheduled downtimes for this monitor:
+
+1. One that silences it from 7pm to 9am daily on M-F,
+2. And one that silences it all day on Sat-Sun.
+  
+I've created two recurring monitor downtimes from the Monitor UI page. In order to use only two conditions for the above requests, I've used two recurrence rules (RRULE) that shift a little from the indication, but the outcome should be the same. 
+
+The condition 1.) is scheduled from the following Monday at 07 pm, with a duration of 14 hours, and with the following Recurrence Rule:
+```
+FREQ=WEEKLY;INTERVAL=1;BYDAY=MO,TU,WE,TH,FR
+```
+ ![Monitor downtime M-F](/images/3_9_monitor.PNG)
+ 
+The condition 2. is scheduled from the following Saturday at 09 am, with a duration of 2 days, and with the following Recurrence Rule:
+```
+FREQ=WEEKLY;INTERVAL=1
+```
+ ![Monitor downtime weekends](/images/3_10_monitor.PNG)
+  
+I've received an email notification when the downtime was scheduled, as indicated in the *Notify your team* settings.
+
+ ![Email downtime schedlued](/images/3_11_monitor.png)
+ 
+----------
+ 
