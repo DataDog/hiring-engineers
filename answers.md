@@ -87,12 +87,12 @@ My_metric appears in Metrics Dashboard:
 
 ## Visualzing Data
 > _Utlilize the Data Dog API to create a Timeboard that contains:_
-> - Your custom metric scoped over your host
-> - Any metric from the integration on your database with the anomaly function applied
-> - Your custom metric with the rollup funciton applied to sum up all the points for the past hour into one bucket
+> - Your custom metric scoped over your host.
+> - Any metric from the integration on your database with the anomaly function applied.
+> - Your custom metric with the rollup funciton applied to sum up all the points for the past hour into one bucket.
 >
 
-Quite a few pieces to navigate/work through here.  I initially started by looking at the API reference docs.
+Quite a few pieces to navigate/work through here.  I initially started by looking at the API reference docs.  You can view the full script <a href="/python_code/dashboard.py">here</a>.
 
 1. Install datadog-api-client. Then execute the script provided via the <a href="https://github.com/DataDog/datadog-api-client-python">python-github docs</a>.
 2. Then I used the code provided in the <a href="https://docs.datadoghq.com/api/latest/dashboards/#create-a-new-dashboard">dashboard docs</a> to create a new dashboard to confirm I could get everything working, even if the data wasn't what we were looking for yet.
@@ -152,17 +152,17 @@ I installed Flask and DD Trace using the documenation I found <a href="https://d
 
 <img src="/screenshots/apm_config.png" alt="APM Config" style="height: 200px; width: 400px;" />
 
-You can see an overview of APM services under the APM tab and get an overview of Requests, Errors, Latency etc.  I exported all of these modules to the cloned Infrastructure dashboard (renamed Infrastructure and APM Dash)  This dashboard can be viewed <a href="https://p.datadoghq.com/sb/2c4e08fe-9f4b-11ec-8590-da7ad0900002-982f7c84669f87c67fe4a1f941e44978">here</a>.
+You can see an overview of APM services under the APM tab and get an overview of Requests, Errors, Latency etc.  I exported all of these modules to the cloned Infrastructure dashboard (renamed Infrastructure and APM Dash).  View <a href="https://p.datadoghq.com/sb/2c4e08fe-9f4b-11ec-8590-da7ad0900002-982f7c84669f87c67fe4a1f941e44978">the dashboard.</a>  View <a href="/python_code/app.py">the app.</a>
 
 
 <img src="/screenshots/infra_apm_dash.png" alt="APM Config" style="height: 200px; width: 400px;" />
 
 **Bonus Question**
 > _What is the difference between a Service and a Resource?_
->> Per the APM Glossary page - a **Service** is a building block in microservice architecture.  As a broad definition services group together endpoints, queries, or jobs for the purposes of building an application. For example, a group of URL endpoints may be grouped together under an API service. A **Resource** is a domain of an application.  RTesources are usually an instrumented endpoint, db query, or background job.  For example an ecommerce site may have web endpoints that handle things like checkouts, cart updates, purchases, etc.  Those endpoints themselves are examples of resources.
+>> Per the APM Glossary page - a **Service** is a building block in microservice architecture.  As a broad definition, services group together endpoints, queries, or jobs for the purposes of building an application. For example, a group of URL endpoints may be grouped together under an API service. A **Resource** is a domain of an application.  RTesources are usually an instrumented endpoint, db query, or background job.  For example an ecommerce site may have web endpoints that handle things like checkouts, cart updates, purchases, etc.  The endpoints themselves are examples of resources.
 
 ## Final Question
 > _Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!_
 >
 >_Is there anything creative you would use Datadog for?_
->>I love the outdoors and I especially like fishing in Massachusetts lakes.  Massachusetts has struggled with the health of its watersheds in the past, but recent conservation efforts coupled with modern technology have improved watershed health greatly in the last decade or so.  Each year Massachusetts sees an incredible number of migratory fish move from the sea into local freshwater lakes, and counting/monitoring the size of these migrations is used to understand the health of the ecosystem.  Many of the highest volume locations have installed "fish cams" that use image recognition applications to count the overall size of the migration.  Using DD to track and monitor performance of the devices and apps will ensure that local scientists can accurately monitor the migration and make informed decisions regarding the health of the Massachusets watershed and ecosystem.
+>>I love the outdoors and I especially like fishing in Massachusetts lakes.  Massachusetts has struggled with the health of its watersheds in the past, but recent conservation efforts coupled with modern technology have reatly improved watershed health in the last decade or so.  Each year Massachusetts sees an incredible number of migratory fish move from the sea into local freshwater lakes, and counting/monitoring the size of these migrations is used to understand the health of the ecosystem.  Many of the highest volume locations have installed "fish cams" that use image recognition applications to count the overall size of the migration.  Using DD to track and monitor performance of the devices and apps will ensure that local scientists can accurately monitor the migration and make informed decisions regarding the health of Massachusetts watersheds and the ecosystem.
