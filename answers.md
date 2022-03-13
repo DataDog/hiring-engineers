@@ -17,7 +17,7 @@ Already have a version of Ubuntu installed on VirtualBox - will use that for thi
 
 
 **Add tags in config file - host + tags on host map page in DD**
-<img src="/screenshots/tagsyaml.png" alt="Add tags to yaml file" style="height: 125px; width:300px;"/>
+<br><img src="/screenshots/tagsyaml.png" alt="Add tags to yaml file" style="height: 125px; width:300px;"/>
 
 
 **Restart Agent so updated tags will appear in host map**
