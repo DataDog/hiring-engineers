@@ -124,16 +124,17 @@ sudo -u dd-agent -- datadog-agent check mysql
 ```
 ![MySQL check](/images/1_8_mysql.PNG)
 ![MySQL issue 0](/images/1_9_mysql.png)
-
 **_Note_**: As you can see from the check and also in the UI, there's an Integration issue:
 >Datadog’s **mysql** integration is reporting:
 >* Instance #mysql:ae58c35fcae584e7[WARNING]: Failed to fetch records from the perf schema >'events_statements_summary_by_digest' table.
 
 I've checked the existence of the mentioned table in the `performance_schema` and also run without issues a simple SELECT query on it, with the datadog user. 
+
 ![MySQL issue 1](/images/1_10_mysql.PNG)
 ![MySQL issue 2](/images/1_11_mysql.PNG)
 
 I've decided not to carry on further analysis on the issue because it was outside the exercise scope.
+
 
 For the **Log collection** part, I followed the docs:
 [Log collection - MySQL on Host](https://docs.datadoghq.com/integrations/mysql/?tab=host#log-collection).
@@ -143,6 +144,7 @@ First of all, I changed the `/etc/alternatives/my.cnf` to enable general, error,
 I granted the `read` access to other users (including dd-agent) on the `/var/log/mysql` directory and files with `chmod -R 754 mysql`.
 
 Finally,I modified the `conf.yaml` check configuration file in `/conf.d/mysql.d` with the following:
+
 ![MySQL logs 1](/images/1_13_mysql.PNG)
 ![MySQL logs 2](/images/1_14_mysql.PNG)
 
@@ -155,7 +157,7 @@ With the `sudo datadog-agent status`, I noticed an error reading the log files t
 
 ### Creating a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-I've tried to follow the example given in the docs(Ref:[Custom Agents Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#custom-agent-check) ) but I had a few errors with the code provided. I've then adapted to the case what I found in [Metric Submission: Custom Agent Check](https://docs.datadoghq.com/metrics/agent_metrics_submission/?tab=gauge).
+I've tried to follow the example given in the docs (Ref:[Custom Agents Check](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7#custom-agent-check) ) but I had a few errors with the code provided. I've then adapted to the case what I found in [Metric Submission: Custom Agent Check](https://docs.datadoghq.com/metrics/agent_metrics_submission/?tab=gauge).
 
 I've used the following names:
 - **Custom AgentCheck:**	`custom_giada`
@@ -186,7 +188,7 @@ Then, I've created a name-matching directory, `/conf.d/custom_giada.d/`, where I
 instances: 
 	-{} 
 ```
-Each of these new files and directories is assigned to `dd-agent:dd-agent` user and group. After the agent reboot, the check was online and the custom metric was visible from the UI.
+Each of these new files and directories are assigned to `dd-agent:dd-agent` user and group. After the agent reboot, the check was online and the custom metric was visible from the UI.
 ```
 sudo -u dd-agent -- datadog-agent check custom_giada.py
 ```
@@ -197,7 +199,7 @@ sudo -u dd-agent -- datadog-agent check custom_giada.py
 
 ### Changing the check's collection interval so that it only submits the metric once every 45 seconds.
 
-To change the collection interval, I modified the `custom_giada.yaml` in `/conf.d/custom_giada.d/`, inserting the parameter in the existing instance: 
+To change the collection interval, I've modified the `custom_giada.yaml` in `/conf.d/custom_giada.d/`, inserting the parameter in the existing instance: 
 ```
 instances: 
 	#-{}
@@ -205,8 +207,72 @@ instances:
 ```
 -----------
 
-### **Bonus Question** Changing the collection interval without modifying the Python check file you created
+### **Bonus Question**: Changing the collection interval without modifying the Python check file you created
 
-The most straight-forward way to modify the collection interval seems to me the one above, that modifies the yaml file and not the python file. It is also possible to modify the collection interval globally in the `datadog.yaml` configuration file but it affects the collection interval of all the checks.
+The most straight-forward way to change the collection interval seems to me the one above, that modifies the yaml file and not the python file. It is also possible to modify the collection interval globally in the `datadog.yaml` configuration file but it affects the collection interval of all the checks.
+
+-----------
+
+## 2. Visualizing Data:
+
+In order to use the Datadog API, I had to install the `python3-pip` libraries on my VM and the `datadog-api-client` component. 
+
+I had some issues with the installation command below, that was constantly stopping with an SSL_ERROR with the certificate provided by [api.datadoghq.eu](https://api.datadoghq.eu/). 
+```
+pip3 install datadog-api-client
+```
+
+The error on the certificate was unexpected, because the root CA list on the VM was already updated. Also, the certificate check from the client was OK.
+At last, I've tried to patch the VM instance in general, without success. 
+
+The issue was solved with an upgrade of the `datadog-api-client` component.
+```
+pip3 install --upgrade datadog-api-client
+```
+
+I collected the keys that need to be exported as environment variables from the **Organization Settings** page on the UI, where I also created the Application Key called *Dashboard*:
+
+- **DD_SITE**="datadoghq.eu" 
+- **DD_API_KEY**="XXXXXXXXXXXXXXXX9bfd0" 
+- **DD_APP_KEY**="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX4d97c" 
+
+![APP Key](/images/2_1_API.PNG)
 
 
+Then, I've followed the tuturial for creating a new dashboard using the API, using python language. 
+[Using API: Create a new dashboard](https://docs.datadoghq.com/api/latest/dashboards/#create-a-new-dashboard)
+
+I compared a few examples to find something simple that I could adapt to my scope. I finally found an example that could suit me in the public GitHub repository:
+
+[datadog-api-client-python/examples/v1/dashboards/](https://github.com/DataDog/datadog-api-client-python/tree/master/examples/v1/dashboards).
+
+I've tried to understand the definitions of the widgets here:
+[Datadog API Client for Python](https://datadoghq.dev/datadog-api-client-python/datadog_api_client.v1.model.html) .
+
+![API Timeboard](/images/2_2_API.PNG)
+
+The script I produced is the **_Timeboard_API.py_** included in the **code** folder of the repository. I used the following commands to launch it:
+```
+export DD_SITE="datadoghq.eu" DD_API_KEY="XXXXXXXXXXXXXXXX9bfd0" DD_APP_KEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX4d97c" 
+
+python3 Timeboard_API.py
+```
+
+---------
+
+Once created, accessing the Dashboard from the Dashboard List in the UI:
+
+### Set the Timeboard's timeframe to the past 5 minutes
+
+![API Timeboard 5 min](/images/2_3_API.PNG)
+
+### Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+![API Timeboard snapshot](/images/2_4_API.PNG)
+
+![API Timeboard email received](/images/2_5_API.PNG)
+
+### **Bonus Question**: What is the Anomaly graph displaying?
+
+The anomaly function is applied to metrics to calculate an estimated expected value, based on the data collected in the past. It's useful to highlight anomalous behaviour of the metric during the collection interval. The function is represented graphically with a grey bundle on the metric that shows where the predicted sample should be included.
+The datadog algorith to calculate
