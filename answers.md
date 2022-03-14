@@ -1,7 +1,5 @@
 ## Hiring Exercise - Solutions Engineer
 
-**Candidate**: Giada Valsecchi
-
 **Date**: March 2022
 
 **Role**: Sales Engineer for the Dublin team
@@ -352,7 +350,7 @@ The full body is:
 {{#is_alert}}
 {{override_priority 'P1'}}
 
-@giada.valsecchi@live.it
+@giada<MY Mail>@live.it
 
 **Avg of giada_custom.metric** on host **{{host.name}}**, IP **{{host.ip}}**, is **over threshold** ( >= {{threshold}})!!!
 **Breached value** = {{value}}  at {{last_triggered_at}} 
@@ -366,7 +364,7 @@ The full body is:
 
 {{#is_warning}}
 
-@giada.valsecchi@live.it 
+@giada<MY Mail>@live.it 
 
 **Avg of giada_custom.metric** on host **{{host.name}}**  has reached a **warning value** ({{warn_threshold}} <= x <=  {{threshold}})!
 **Last value** = {{value}}  at {{last_triggered_at}} 
@@ -380,7 +378,7 @@ The full body is:
 
 {{#is_no_data}}
 
-@giada.valsecchi@live.it 
+@giada<MY Mail>@live.it 
 
 Agent on host **{{host.name}}** has not been sending data for **giada_custom.metric** since {{last_triggered_at}} 
 
