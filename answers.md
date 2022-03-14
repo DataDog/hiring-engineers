@@ -18,13 +18,14 @@ Later in the exercise, I've modified the basic Vagrant configuration file to ass
 - **Vagrant Static IP:**	`192.168.33.10`
 
 *References*: 
-
-[Vagrant: Setting Hostname](https://www.vagrantup.com/docs/networking/basic_usage#setting-hostname)
-
-[Vagrant: Static IP](https://www.vagrantup.com/docs/networking/private_network#static-ip)
+[Vagrant: Setting Hostname](https://www.vagrantup.com/docs/networking/basic_usage#setting-hostname), 
+[Vagrant: Static IP](https://www.vagrantup.com/docs/networking/private_network#static-ip).
 
 I've signed up for the trial account in the EU region of Datagog, [datadoghq.eu](https://datadoghq.eu/).
 ![New Account](/images/0_1_DD_account.png)
+
+<br>
+<br>
 
 ## 1. Collecting Metrics:
 
@@ -37,8 +38,8 @@ The installation prompt ended successfully and, in a few minutes, the UI's Infra
 ![Infrastructure List](/images/1_1_Infrastructure_List.png)
 ![Host Map](/images/1_2_Host_Map.png)
 
-
-
+<br>
+<br>
 
 ### Adding tags in the Agent config file
 
@@ -53,8 +54,8 @@ Initially, I've added only two custom tags:
 ![Tags on yaml](/images/1_3_tags.png)
 ![Tags on UI](/images/1_4_tags_on_UI.png)
 
-
-
+<br>
+<br>
 
 
 ### Installing a MySQL database and the respective Datadog integration for that database.
@@ -125,8 +126,11 @@ I used the Agent commands to view the MySQL check:
 ```
 sudo -u dd-agent -- datadog-agent check mysql
 ```
+
 ![MySQL check](/images/1_8_mysql.PNG)
 ![MySQL issue 0](/images/1_9_mysql.png)
+<br>
+
 **_Note_**: As you can see from the check and also in the UI, there's an Integration issue:
 >Datadog’s **mysql** integration is reporting:
 >* Instance #mysql:ae58c35fcae584e7[WARNING]: Failed to fetch records from the perf schema >'events_statements_summary_by_digest' table.
@@ -138,6 +142,8 @@ I've checked the existence of the mentioned table in the `performance_schema` an
 
 I've decided not to carry on further analysis on the issue because it was outside the exercise scope.
 
+<br>
+<br>
 
 For the **Log collection** part, I followed the docs:
 [Log collection - MySQL on Host](https://docs.datadoghq.com/integrations/mysql/?tab=host#log-collection).
@@ -157,8 +163,8 @@ With the `sudo datadog-agent status`, I noticed an error reading the log files t
 ![MySQL logs 4](/images/1_16_mysql.PNG)
 
 
-
-
+<br>
+<br>
 
 
 ### Creating a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
@@ -189,19 +195,24 @@ class MyClass(AgentCheck):
                 tags=["custom_metric:yes","metric_submission_type:gauge"],
                 )
 ```
+
 Then, I've created a name-matching directory, `/conf.d/custom_giada.d/`, where I created a new configuration file `custom_giada.yaml` that reports a sequence called ` instances ` that contains one empty mapping.
 ```
 instances: 
 	-{} 
 ```
+
 Each of these new files and directories are assigned to `dd-agent:dd-agent` user and group. After the agent reboot, the check was online and the custom metric was visible from the UI.
+
 ```
 sudo -u dd-agent -- datadog-agent check custom_giada.py
 ```
+
 ![Custom AgentCheck](/images/1_17_custom_check.PNG)
 ![Custom Metric](/images/1_18_custom_check.PNG)
 
-
+<br>
+<br>
 
 
 ### Changing the check's collection interval so that it only submits the metric once every 45 seconds.
@@ -213,14 +224,17 @@ instances:
 	- min_collection_interval: 45
 ```
 
-
+<br>
+<br>
 
 ### **Bonus Question**: Changing the collection interval without modifying the Python check file you created
 
 The most straight-forward way to change the collection interval seems to me the one above, that modifies the yaml file and not the python file. It is also possible to modify the collection interval globally in the `datadog.yaml` configuration file but it affects the collection interval of all the checks.
 
-
-
+<br>
+<br>
+<br>
+<br>
 
 
 ## 2. Visualizing Data:
@@ -249,7 +263,7 @@ I collected the keys that need to be exported as environment variables from the 
 ![APP Key](/images/2_1_API.PNG)
 
 
-Then, I've followed the tuturial for creating a new dashboard using the API, using python language. 
+Then, I've followed the tutorial for creating a new dashboard using the API, using python language. 
 [Using API: Create a new dashboard](https://docs.datadoghq.com/api/latest/dashboards/#create-a-new-dashboard)
 
 I compared a few examples to find something simple that I could adapt to my scope. I finally found an example that could suit me in the public GitHub repository:
@@ -262,16 +276,20 @@ I've tried to understand the definitions of the widgets here:
 ![API Timeboard](/images/2_2_API.PNG)
 
 The script I produced is the **_Timeboard_API.py_** included in the **code** folder of the repository. I used the following commands to launch it:
+
 ```
 export DD_SITE="datadoghq.eu" DD_API_KEY="XXXXXXXXXXXXXXXX9bfd0" DD_APP_KEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX4d97c" 
 
 python3 Timeboard_API.py
 ```
 
+<br>
+<br>
 
+Once created, I was able to access the Dashboard from the Dashboard List in the UI.
 
-
-Once created, I was able to access the Dashboard from the Dashboard List in the UI:
+<br>
+<br>
 
 ### Set the Timeboard's timeframe to the past 5 minutes
 
@@ -289,8 +307,8 @@ Once created, I was able to access the Dashboard from the Dashboard List in the 
  
 Suggested time-frame to apply: Mar 13, 10:00 pm – Mar 13, 11:59 pm. I can't generate a sharing URL with a fixed Time Frame.
 
-
-
+<br>
+<br>
 
 ### **Bonus Question**: What is the Anomaly graph displaying?
 
@@ -308,8 +326,10 @@ Datadog algorithm adapts its prediction to the metric’s baseline. In fact, con
 
 ![Anomaly function 1 day](/images/2_8_API.PNG)
 
-
-
+<br>
+<br>
+<br>
+<br>
 
 
 ## 3. Monitoring Data
@@ -386,6 +406,7 @@ Agent on host **{{host.name}}** has not been sending data for **giada_custom.met
 
 <!--EndFragment-->
 ```
+
 The new monitor in the UI Monitor Page:
 
 ![Monitor list](/images/3_4_monitor.PNG)
@@ -399,21 +420,23 @@ Below, a screenshot of the emails received:
 ![Monitor ALERT email](/images/3_6_monitor.PNG)
 ![Monitor NO DATA email](/images/3_7_monitor.PNG)
 
+<br>
+
 **_Note_**: The `{{host.ip}}` variable is not providing the expected value. I've researched in the documentation to find the definition of the default `host` tag, in order to check the field called `host.ip` and giving it the IP value. I wasn't able to find a solution.
 
-In the infrastructure list, the host entry is showing the IP field correctly. It has the same IP that is found with the `ifconfig` command, 10.0.2.15.
+In the infrastructure list, the host entry is showing the IP field correctly. It is the same IP that is found with the `ifconfig` command, 10.0.2.15.
  
   ![Monitor host.ip issue](/images/3_8_monitor.PNG)
    
- 
-
+<br>
+<br> 
 
 ### **Bonus Question**: Setting up two scheduled downtimes for this monitor:
 
 1. One that silences it from 7pm to 9am daily on M-F,
 2. And one that silences it all day on Sat-Sun.
   
-I've created two recurring monitor downtimes from the **Manage Downtimes** in Monitor UI list. In order to use only two conditions for the above requests, I've used two recurrence rules (RRULE) that shift a little from the indication, but the outcome should be the same. 
+I've created two recurring monitor downtimes from the **Manage Downtimes** in Monitor UI list. In order to use only two conditions for the above requests, I've used two recurrence rules (RRULE) that shift a little from the indication, but the outcome should be the same. The shift was necessary to cover the Monday morning or the Friday night interval.
 
 The condition 1. is scheduled from the following Monday at 07 pm, with a duration of 14 hours, and with the following Recurrence Rule:
 ```
@@ -431,8 +454,10 @@ I received an email notification when the downtime was scheduled, as indicated i
 
  ![Email downtime schedlued](/images/3_11_monitor.png)
  
-
-
+<br>
+<br>
+<br>
+<br>
 
 
 ## 4. Collecting APM Data:
@@ -457,11 +482,12 @@ I've used the command:
 ```
 pip3 install ddtrace
 ```
-Initially, I had a few errors caused by missing **Cython**, **gcc**, and **Ninja** components, solved with the `apt-get install` command. 
+Initially, I had a few errors caused by missing **Cython**, **gcc**, and **Ninja** components, solved installing them singularly. 
 
 The configuration of the Datadog Agent for the APM is enabled by default, without modifications to the `datadog.yaml` file.
 
-
+<br>
+<br>
 
 After a few tries with the [Python Custom Instrumentation](https://docs.datadoghq.com/tracing/setup_overview/custom_instrumentation/python/?tab=globally) in the app code, I've found the `ddtrace-run` with the dynamic setting of tags the quickest mothod to instrument the Flask application. 
 
@@ -479,8 +505,8 @@ The Flask app file is called `app.py` and the command in launched from the same 
 ![APM Service](/images/4_2_flask.png)
 ![APM Trace](/images/4_3_flask.PNG)
 
-
-
+<br>
+<br>
 
 Despite the warning about it, I fell into the known issue mentioned in your **Note**. In fact, I had initially decided to work on the code for instrumenting the app, with the following:
 
@@ -504,10 +530,10 @@ I should have probably invested more time in creating spans and adding global ta
 
 However, I had other issues caused by missing tags, so I decided to follow the easiest dynamic `ddtrace-run` method and move on to the next request.
 
+<br>
+<br>
 
-
-
-In fact, the new service `giada_flask` was showing up in the UI's Service List, but it wasn't associated with the Infrastructure metrics collected on the same host. 
+At that point, the new service `giada_flask` was showing up in the UI's Service List, but it wasn't associated with the Infrastructure metrics collected on the same host. 
 
 After some research, I've finally understood that the missing pieces were (again) tags, needed for matching different metric sources. In this context, the metric sources are the *flask service* and the *virtual host* where the service itself is installed. This study case is explicitly explained under the **System Metric** section of the **Non-containerized environment** in the **Unified Service Tagging** doc: [Link to the page](https://docs.datadoghq.com/getting_started/tagging/unified_service_tagging/?tab=systemmetrics#non-containerized-environment).
 
@@ -515,6 +541,9 @@ So, I simply added new tags to the Agent in the `datadog.yaml` and the magic hap
 
 ![Tags in the DD Agent](/images/4_4_flask.png) 
 ![Tags in the DD Agent](/images/4_5_flask.png)
+
+<br>
+<br>
 
 Finally, I was able to produce the requested Dashboard, showing both APM and Infrastructure Metrics.
 
@@ -526,8 +555,8 @@ Finally, I was able to produce the requested Dashboard, showing both APM and Inf
  
 Suggested time-frame to apply: Mar 12, 00:04 am – Mar 14, 00:04 am. I can't generate a sharing URL with a fixed Time Frame.
 
-
-
+<br>
+<br>
 
 ### **Bonus Question**: What is the difference between a Service and a Resource?
 
@@ -538,15 +567,24 @@ On the other hand, the service `giada_flask` is the logical representation of th
 ![Resources](/images/4_8_flask.PNG)
 ![Resources](/images/4_7_flask.PNG)
 
-
+<br>
+<br>
+<br>
+<br>
 
 
 
 
 ## 5. Final Question:
 
-Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+Considering the historical period we're living in, the first idea that came to my mind was related to the Ukrainian war.
 
-Is there anything creative you would use Datadog for?
+I tried to think if it was possible to build a Geomap dashboard representing regions of Ukraine and highlight the areas under an air raid in real-time. I believe such a tool could be used alongside bombing sirens and other acoustic alerts, especially by deaf people.
+
+I believe it could be quite easy to build such a Geomap with Datadog. However, the blocking point for developing the project is the availability of public data sources on real-time air alerts that could be extracted by a Datadog custom check. In fact, the intention was to use the same information sources that already control the bombing sirens in the cities.
+
+Considering the severity of the argument, I can see many reasons to keep these sources secreted or not accessible, so I was not expecting to find them online. Eventually, I came across an App that was developed in the first days of the war and is synchronized with the bombing sirens. The app, called [Air Alert](https://visitukraine.today/blog/143/air-alert-app-that-notifies-about-danger-in-certain-region-in-your-smartphone), reproduceS the bombing sirens on the mobile phone, based on the region of interest indicated by the user. For what I understood from [visitukraine.today](https://visitukraine.today/) website, the app wasn't developed by a Defence institution, so the data sources should be available somewhere. 
+
+The difficulties in reading the App texts (written of course in Cyrillic alphabet) concluded my reasearch. Luckily, the web community is big and sensitive to this topic and I'm sure that a similar geomap is already available for the Ukrainina population.
 
  
