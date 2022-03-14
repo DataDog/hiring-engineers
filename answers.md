@@ -39,7 +39,8 @@ The installation prompt ended successfully and, in a few minutes, the UI's Infra
 ![Infrastructure List](/images/1_1_Infrastructure_List.png)
 ![Host Map](/images/1_2_Host_Map.png)
 
---------
+
+
 
 ### Adding tags in the Agent config file
 
@@ -54,7 +55,9 @@ Initially, I've added only two custom tags:
 ![Tags on yaml](/images/1_3_tags.png)
 ![Tags on UI](/images/1_4_tags_on_UI.png)
 
----------
+
+
+
 
 ### Installing a MySQL database and the respective Datadog integration for that database.
 
@@ -155,7 +158,9 @@ With the `sudo datadog-agent status`, I noticed an error reading the log files t
 ![MySQL logs 3](/images/1_15_mysql.PNG)
 ![MySQL logs 4](/images/1_16_mysql.PNG)
 
------------
+
+
+
 
 
 ### Creating a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
@@ -198,7 +203,8 @@ sudo -u dd-agent -- datadog-agent check custom_giada.py
 ![Custom AgentCheck](/images/1_17_custom_check.PNG)
 ![Custom Metric](/images/1_18_custom_check.PNG)
 
-------------
+
+
 
 ### Changing the check's collection interval so that it only submits the metric once every 45 seconds.
 
@@ -208,13 +214,14 @@ instances:
 	#-{}
 	- min_collection_interval: 45
 ```
------------
+
+
 
 ### **Bonus Question**: Changing the collection interval without modifying the Python check file you created
 
 The most straight-forward way to change the collection interval seems to me the one above, that modifies the yaml file and not the python file. It is also possible to modify the collection interval globally in the `datadog.yaml` configuration file but it affects the collection interval of all the checks.
 
------------
+
 
 
 
@@ -263,7 +270,8 @@ export DD_SITE="datadoghq.eu" DD_API_KEY="XXXXXXXXXXXXXXXX9bfd0" DD_APP_KEY="XXX
 python3 Timeboard_API.py
 ```
 
----------
+
+
 
 Once created, I was able to access the Dashboard from the Dashboard List in the UI:
 
@@ -283,7 +291,8 @@ Once created, I was able to access the Dashboard from the Dashboard List in the 
  
 Suggested time-frame to apply: Mar 13, 10:00 pm – Mar 13, 11:59 pm. I can't generate a sharing URL with a fixed Time Frame.
 
------------
+
+
 
 ### **Bonus Question**: What is the Anomaly graph displaying?
 
@@ -301,7 +310,7 @@ Datadog algorithm adapts its prediction to the metric’s baseline. In fact, con
 
 ![Anomaly function 1 day](/images/2_8_API.PNG)
 
----------------
+
 
 
 
@@ -315,7 +324,7 @@ As requested, I've used the Monitor UI to create a monitor that watches the aver
 
 * Warning threshold of 500
 * Alerting threshold of 800
-* Sending a notification if there is No Data for this query over the past 10m.
+* Sending a notification if there is No Data for this query over the previous 10m.
 
 ![Alert conditions](/images/3_2_monitor.PNG)
 
@@ -384,20 +393,22 @@ The new monitor in the UI Monitor Page:
 ![Monitor list](/images/3_4_monitor.PNG)
 ![Monitor](/images/3_4b_monitor.PNG)
 
-Below, a screenshot of the emails received (The ALERT and the NO DATA images were taken on [TEST] emails. The metric and the value are therefore flat, at 0.0):
+Below, a screenshot of the emails received:
+
+*(ALERT and the NO DATA images were taken on [TEST] emails. The metric and the values are therefore flat, at 0.0)*
 
 ![Monitor WARNING email](/images/3_5_monitor.PNG)
 ![Monitor ALERT email](/images/3_6_monitor.PNG)
 ![Monitor NO DATA email](/images/3_7_monitor.PNG)
 
-**_Note_**: The `{{host.ip}}` variable is not providing the expected value. I've researched in the documentation to find the definition of the default `host` tag, in order to check field called `host.ip` and giving it the IP value. I wasn't able to find a solution to the issue.
+**_Note_**: The `{{host.ip}}` variable is not providing the expected value. I've researched in the documentation to find the definition of the default `host` tag, in order to check the field called `host.ip` and giving it the IP value. I wasn't able to find a solution.
 
-In the infrastructure list, the host entry is showing correctly the IP field. It has the same IP that is found with the `ifconfig` command, 10.0.2.15.
+In the infrastructure list, the host entry is showing the IP field correctly. It has the same IP that is found with the `ifconfig` command, 10.0.2.15.
  
   ![Monitor host.ip issue](/images/3_8_monitor.PNG)
    
  
-----------
+
 
 ### **Bonus Question**: Setting up two scheduled downtimes for this monitor:
 
@@ -406,7 +417,7 @@ In the infrastructure list, the host entry is showing correctly the IP field. It
   
 I've created two recurring monitor downtimes from the **Manage Downtimes** in Monitor UI list. In order to use only two conditions for the above requests, I've used two recurrence rules (RRULE) that shift a little from the indication, but the outcome should be the same. 
 
-The condition 1.) is scheduled from the following Monday at 07 pm, with a duration of 14 hours, and with the following Recurrence Rule:
+The condition 1. is scheduled from the following Monday at 07 pm, with a duration of 14 hours, and with the following Recurrence Rule:
 ```
 FREQ=WEEKLY;INTERVAL=1;BYDAY=MO,TU,WE,TH,FR
 ```
@@ -418,31 +429,31 @@ FREQ=WEEKLY;INTERVAL=1
 ```
  ![Monitor downtime weekends](/images/3_10_monitor.png)
   
-I've received an email notification when the downtime was scheduled, as indicated in the *Notify your team* settings.
+I received an email notification when the downtime was scheduled, as indicated in the *Notify your team* settings.
 
  ![Email downtime schedlued](/images/3_11_monitor.png)
  
-----------
+
 
 
 
 ## 4. Collecting APM Data:
 
-For the hiring exercise I've used the provided Flask app without changes. I've included it in the **code** folder, only for the sake of completeness.
+For the hiring exercise, I've used the provided Flask app without changes. I've included it in the **code** folder, only for the sake of completeness.
 
 Before starting, I installed Flask as explained here: [Flask Installation](https://flask.palletsprojects.com/en/2.0.x/installation/). 
 
-I've launched the Flask app on the customized port 9000, since the default one (5000) was already in use by the Datadog Agent. Also, I've added the *Externally Visible Server* option `--host=0.0.0.0`, in order to reach the application with the host machine browser. 
+I've launched the Flask app on the customized port 9000. The default one (5000) was already in use by the Datadog Agent. Also, I've added the *Externally Visible Server* option `--host=0.0.0.0`, to reach the application with the host-machine browser. 
 
 ```
 flask run --port 9000 --host=0.0.0.0
 ```
-From the host machine, the `vagrant` guest machine is reachable thanks to the Static IP assigned in the Vagrant configuration file, mentioned in the Prerequisites paragraph.
+Thanks to the Static IP assigned in the Vagrant configuration file (see the Prerequisites paragraph), the `vagrant` guest-machine is reachable from the host-machine. I was then able to use the PC browser to call the app.
 
  ![Flask app](/images/4_1_flask.PNG)
 
 For the `ddtrace` installation, I've followed the guide in the official Datadog docs: 
-([Tracing Python Application] (https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=otherenvironments)).
+([Tracing Python Application](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=otherenvironments)).
 
 I've used the command:
 ```
@@ -452,16 +463,16 @@ Initially, I had a few errors caused by missing **Cython**, **gcc**, and **Ninja
 
 The configuration of the Datadog Agent for the APM is enabled by default, without modifications to the `datadog.yaml` file.
 
----------
 
-After a few tries with the [Python Custom Instrumentation](https://docs.datadoghq.com/tracing/setup_overview/custom_instrumentation/python/?tab=globally) in the app code, I've found the `ddtrace-run` & *dynamic setting of tags* the quickest mothod to instrument the Flask application. 
 
-The environment variables that I used to assign the proper tags to the Flask app are:
+After a few tries with the [Python Custom Instrumentation](https://docs.datadoghq.com/tracing/setup_overview/custom_instrumentation/python/?tab=globally) in the app code, I've found the `ddtrace-run` with the dynamic setting of tags the quickest mothod to instrument the Flask application. 
+
+I used the following environment variables to assign the proper tags to the Flask app:
 * DD_SERVICE="giada_flask" 
 * DD_ENV="demo" 
 * DD_VERSION="v2_12032022", "v12032022"
 
-The command used for launching in background the Flask app is:
+The complete command used for launching in background the Flask app is:
 ```
 DD_SERVICE="giada_flask" DD_ENV="demo" DD_VERSION="v2_12032022" nohup ddtrace-run flask run --port=9000 --host=0.0.0.0 &
 ```
@@ -470,9 +481,10 @@ The Flask app file is called `app.py` and the command in launched from the same 
 ![APM Service](/images/4_2_flask.png)
 ![APM Trace](/images/4_3_flask.PNG)
 
--------------------------
 
-Despite the warning about it, I fell into the mixed methods known issue mentioned in your **Note**. In fact, I had initially decided to work on the code for instrumenting the app, with the following:
+
+
+Despite the warning about it, I fell into the known issue mentioned in your **Note**. In fact, I had initially decided to work on the code for instrumenting the app, with the following:
 
 ```python
 from ddtrace import patch_all
@@ -484,7 +496,7 @@ from ddtrace import config
     config.flask['service_name']='giada-flask'
 ```
 
-The code was working as expected for the **service** tag, assigned with the `config.flask`, but I wasn't able to find a quick solution for adding the **version** tag (the dynamic DD_ENV="demo" was working even in the mixed command).
+The code was working as expected for the **service** tag, assigned with the `config.flask`. Anyway, I wasn't able to find a quick solution for adding the **version** tag. On the contrary, the dynamic DD_ENV="demo" was working well also in the mixed command.
 
 I should have probably invested more time in creating spans and adding global tags with the Python Custom Instrumentation guide. 
 
@@ -494,17 +506,20 @@ I should have probably invested more time in creating spans and adding global ta
 
 However, I had other issues caused by missing tags, so I decided to follow the easiest dynamic `ddtrace-run` method and move on to the next request.
 
----------------
+
+
 
 In fact, the new service `giada_flask` was showing up in the UI's Service List, but it wasn't associated with the Infrastructure metrics collected on the same host. 
 
-After some research, I've finally understood that the missing pieces were (again) tags, needed for matching different metric sources (in this context, the metric sources are the *flask service* and the *virtual host* where the service itself is installed). This study case is explicitly explained under the **System Metric** section of the **Non-containerized environment** in the **Unified Service Tagging**: [Link to the page](https://docs.datadoghq.com/getting_started/tagging/unified_service_tagging/?tab=systemmetrics#non-containerized-environment).
+After some research, I've finally understood that the missing pieces were (again) tags, needed for matching different metric sources. In this context, the metric sources are the *flask service* and the *virtual host* where the service itself is installed. This study case is explicitly explained under the **System Metric** section of the **Non-containerized environment** in the **Unified Service Tagging** doc: [Link to the page](https://docs.datadoghq.com/getting_started/tagging/unified_service_tagging/?tab=systemmetrics#non-containerized-environment).
 
 So, I simply added new tags to the Agent in the `datadog.yaml` and the magic happened.
+
 ![Tags in the DD Agent](/images/4_4_flask.png) 
 ![Tags in the DD Agent](/images/4_5_flask.png)
 
 Finally, I was able to produce the requested Dashboard, showing both APM and Infrastructure Metrics.
+
 ![Tags in the DD Agent](/images/4_6_flask.png)
 
 ### Link to the above dashboard:
@@ -513,20 +528,21 @@ Finally, I was able to produce the requested Dashboard, showing both APM and Inf
  
 Suggested time-frame to apply: Mar 12, 00:04 am – Mar 14, 00:04 am. I can't generate a sharing URL with a fixed Time Frame.
 
---------------
+
+
 
 ### **Bonus Question**: What is the difference between a Service and a Resource?
 
 A service groups together different endpoints, queries, or jobs for the purposes of building an application. In the above example, the *service* is the trivial Flask app named `giada_flask`.
 
 On the other hand, the service `giada_flask` is the logical representation of three endpoints, or *resources*. These three blocks of the Flask app are three *single actions* ( a GET, a query, etc) needed to fulfill the service scope.
-:
+
 ![Resources](/images/4_8_flask.PNG)
 ![Resources](/images/4_7_flask.PNG)
 
-A resource is typically a web endpoint, a database query, or a background job.
 
-------------
+
+
 
 
 ## 5. Final Question:
