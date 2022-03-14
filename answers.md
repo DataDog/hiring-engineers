@@ -314,7 +314,7 @@ The customized monitor's message should have the following features:
 
 I've used the condition variables to modulate the message for different triggers: Alert, Warning, No data. 
 
-I've included different texts and recepients (actually, always me...) in the same body. I've also used message variables to generalize the message, such as `{{value}}`, `{{threshold}}`, `{{host.name}}` and `{{host.ip}}` [^note].
+I've included different texts and recepients (actually, always me...) in the same body. I've also used message variables to generalize the message, such as `{{value}}`, `{{threshold}}`, `{{host.name}}` and `{{host.ip}}` ^[note].
 
 ![Monitor message](/images/3_3_monitor.PNG)
 
@@ -377,7 +377,7 @@ Below, a screenshot of the emails received (The ALERT and the NO DATA images wer
 ![Monitor ALERT email](/images/3_6_monitor.PNG)
 ![Monitor NO DATA email](/images/3_7_monitor.PNG)
 
-[^note]  The `{{host.ip}}` variable is not providing the expected value. I've researched in the documentation to find the definition of the default `host` tag, in order to check field called `host.ip` and giving it the IP value.
+^[note]  The `{{host.ip}}` variable is not providing the expected value. I've researched in the documentation to find the definition of the default `host` tag, in order to check field called `host.ip` and giving it the IP value.
 
   The entry in the infrastructure list is showing the IP field populated with the same IP that is found with the `ifconfig` command. 
  
