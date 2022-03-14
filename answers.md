@@ -319,10 +319,8 @@ I've included different texts and recepients (actually, always me...) in the sam
 ![Monitor message](/images/3_3_monitor.PNG)
 
 *References*: 
-
-[Notifications](https://docs.datadoghq.com/monitors/notify/#message-template-variables)
-
-[Conditional Variables](https://docs.datadoghq.com/monitors/notify/variables/?tab=is_alert#conditional-variables)
+[Notifications](https://docs.datadoghq.com/monitors/notify/#message-template-variables) ,
+[Conditional Variables](https://docs.datadoghq.com/monitors/notify/variables/?tab=is_alert#conditional-variables).
 
 The message written for the exercise is not taking into consideration any recovery condition. 
 
@@ -374,6 +372,7 @@ The new monitor in the UI Monitor Page:
 ![Monitor](/images/3_4b_monitor.PNG)
 
 Below, a screenshot of the emails received (The ALERT and the NO DATA images were taken on [TEST] emails. The metric and the value are flat, at 0.0):
+
 ![Monitor WARNING email](/images/3_5_monitor.PNG)
 ![Monitor ALERT email](/images/3_6_monitor.PNG)
 ![Monitor NO DATA email](/images/3_7_monitor.PNG)
