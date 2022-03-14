@@ -308,11 +308,13 @@ As requested, I've used the Monitor UI to create a monitor that watches the aver
 
 The customized monitor's message should have the following features:
 
-* Send an email whenever the monitor triggers.
+* Sends an email whenever the monitor triggers.
 * Shows different messages based on whether the monitor is in an Alert, Warning, or No Data state.
-* Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+* Includes the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 
-I've used the condition variables to modulate the message for different triggers: Alert, Warning, No data. I've included different texts and recepients (actually, always me...) in the same body. I've also used message variables to generalize the message, such as `{{value}}`, `{{threshold}}`, `{{host.name}}` and `{{host.ip}}`[^1].
+I've used the condition variables to modulate the message for different triggers: Alert, Warning, No data. 
+
+I've included different texts and recepients (actually, always me...) in the same body. I've also used message variables to generalize the message, such as `{{value}}`, `{{threshold}}`, `{{host.name}}` and `{{host.ip}}` [^note].
 
 ![Monitor message](/images/3_3_monitor.PNG)
 
@@ -347,6 +349,7 @@ The full body is:
 @giada.valsecchi@live.it 
 
 **Avg of giada_custom.metric** on host **{{host.name}}**  has reached a **warning value** ({{warn_threshold}} <= x <=  {{threshold}})!
+**Last value** = {{value}}  at {{last_triggered_at}} 
 
 {{/is_warning}}
 
@@ -370,17 +373,18 @@ The new monitor in the UI Monitor Page:
 ![Monitor list](/images/3_4_monitor.PNG)
 ![Monitor](/images/3_4b_monitor.PNG)
 
-Below, a screenshot of the emails received:
+Below, a screenshot of the emails received (The ALERT and the NO DATA images were taken on [TEST] emails. The metric and the value are flat, at 0.0):
 ![Monitor WARNING email](/images/3_5_monitor.PNG)
 ![Monitor ALERT email](/images/3_6_monitor.PNG)
+![Monitor NO DATA email](/images/3_7_monitor.PNG)
 
-[^1] The `{{host.ip}}` variable is not providing the expected value. I've researched in the documentation to find the definition of the default `host` tag, in order to assign to it a new attribute called `host.ip` and giving it the IP value.
+[^note]  The `{{host.ip}}` variable is not providing the expected value. I've researched in the documentation to find the definition of the default `host` tag, in order to check field called `host.ip` and giving it the IP value.
 
- The entry in the infrastructure list is showing the IP field populated with the same IP that is found with the `ifconfig` command. 
+  The entry in the infrastructure list is showing the IP field populated with the same IP that is found with the `ifconfig` command. 
  
- ![Monitor host.ip issue](/images/3_8_monitor.PNG)
+  ![Monitor host.ip issue](/images/3_8_monitor.PNG)
  
- I wasn't able to find a solution to the issue above.
+  I wasn't able to find a solution to the issue above.
  
 ----------
 
@@ -389,19 +393,19 @@ Below, a screenshot of the emails received:
 1. One that silences it from 7pm to 9am daily on M-F,
 2. And one that silences it all day on Sat-Sun.
   
-I've created two recurring monitor downtimes from the Monitor UI page. In order to use only two conditions for the above requests, I've used two recurrence rules (RRULE) that shift a little from the indication, but the outcome should be the same. 
+I've created two recurring monitor downtimes from the **Manage Downtimes** in Monitor UI list. In order to use only two conditions for the above requests, I've used two recurrence rules (RRULE) that shift a little from the indication, but the outcome should be the same. 
 
 The condition 1.) is scheduled from the following Monday at 07 pm, with a duration of 14 hours, and with the following Recurrence Rule:
 ```
 FREQ=WEEKLY;INTERVAL=1;BYDAY=MO,TU,WE,TH,FR
 ```
- ![Monitor downtime M-F](/images/3_9_monitor.PNG)
+ ![Monitor downtime M-F](/images/3_9_monitor.png)
  
 The condition 2. is scheduled from the following Saturday at 09 am, with a duration of 2 days, and with the following Recurrence Rule:
 ```
 FREQ=WEEKLY;INTERVAL=1
 ```
- ![Monitor downtime weekends](/images/3_10_monitor.PNG)
+ ![Monitor downtime weekends](/images/3_10_monitor.png)
   
 I've received an email notification when the downtime was scheduled, as indicated in the *Notify your team* settings.
 
