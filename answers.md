@@ -1,6 +1,6 @@
 ## Andrew Kang - Sales Engineer - Technical Exercise
 
-**Table of Contents
+## Table of Contents
 
 1- Prerequisites - Setup the environment  
 
@@ -328,21 +328,28 @@ if __name__ == '__main__':
 
 * **Note**: Using both ddtrace-run and manually inserting the Middleware has been known to cause issues. Please only use one or the other.
 
+[flaskreference](https://linuxize.com/post/how-to-install-flask-on-ubuntu-20-04/)
+
+Enable APM config in /etc/datadog-agent/datadog.yaml and include above flask_app=app.py
+
+
 ```
 sudo vim /etc/datadog-agent/datadog.yaml
-apm config = true
-
-pip3 install flask
 sudo vim app.py
-
 DD_SERVICE="flask" DD_ENV="env" DD_LOGS_INJECTION=true ddtrace-run python app.py
+
+export FLASK_APP=app.py
+run flask
 ```
 
 ![flask](photos/flask.png)
 
 ![custom_service](photos/custom_service.png)
-![custom_service2](photos/custom_service2.png)
 ![custom_service3](photos/custom_service3.png)
+![custom_service2](photos/custom_service2.png)
+
+
+Apologies but I ran into an issue here as APM connection failed after it was initially working.
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 
@@ -356,6 +363,8 @@ A group of periodic jobs configured in the crond service.
 link https://p.datadoghq.com/sb/357452ce-a4a2-11ec-878a-da7ad0900002-d8df023abc4147b3a3288caa3df24f4f
 
 ![apmim1](photos/apmim1.png)
+
+Apologies but I ran into an issue here as APM connection failed after it was initially working.
 
 ## Final Question:
 
