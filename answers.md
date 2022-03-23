@@ -1,6 +1,6 @@
 Your answers to the questions go here.
 
-I started off connecting Datadog to my AWS account to see what metrics it could pull out of CloudWatch. It created a unified view of my infrastructure along with the metrics collected from the agents later on. I installed the agent on 4 of my EC2 instances to get a deeper integration. You can see it picked up two of my load balancers and an RDS cluster in the first screenshot.
+I started off connecting Datadog to my AWS account to see what metrics it could pull out of CloudWatch. I have a few web applications running in my account so it was cool to see how they were running. It created a unified view of my infrastructure along with the metrics collected from the agents later on. I installed the agent on 4 of my EC2 instances to get a deeper integration. You can see it picked up two of my load balancers and an RDS cluster in the first screenshot.
 
 I got started by using Vagrant as outlined. I created an Ubuntu VM on my Windows machine and installed the agent with my API keys.
 
@@ -22,7 +22,7 @@ I used the Datadog console integration instructions to create the datadog user a
 3. Custom agent check for my_metric
 
 I created a custom agent check as outlined in the docs - https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7
-The main thing to change was the metric name to my_metric and the return value to a the random number. The hello.py given was a good starting point.
+The main thing to change was the metric name to my_metric and the return value to a random number. The hello.py given was a good starting point. I used the built in Python random library to generate the number - https://docs.python.org/3/library/random.html
 
 ![3MyMetric](https://user-images.githubusercontent.com/11410885/159150222-2b144e6c-1cc7-4716-9c7a-6439d8ccb024.PNG)
 
@@ -47,7 +47,7 @@ Heavy use of the dashboard API - https://docs.datadoghq.com/api/latest/dashboard
 
 - See 678DashboardScript.sh file
 
-9, 10 Combined answer - Dashboard timeframe to past 5 minutes, take a snapshop and send it to myself. Created using the console and this was smooth enough.
+9, 10 Combined answer - Dashboard timeframe to past 5 minutes, take a snapshot and send it to myself. Created using the console and this was smooth enough.
 
 ![910SnapshotAndAlert](https://user-images.githubusercontent.com/11410885/159150456-6e245c32-dd9f-4e36-ace9-81b4301b7f24.PNG)
 
@@ -89,7 +89,7 @@ Public dashboard link - https://p.datadoghq.com/sb/c7c302b4-a77d-11ec-8ce8-da7ad
 
 ![22ApmData](https://user-images.githubusercontent.com/11410885/159150751-f2f34109-f3d5-4a2b-82e5-04e6e169ecb0.PNG)
 
-23. Resources and services - Resources are associated with services and are typically individual endpints or queries. A service is a set of processes that do the same job.
+23. Resources and services - Resources are associated with services and are typically individual endpoints or queries. A service is a set of processes that do the same job.
 
 24. Final question - I am from Nebraska which is a state dominated by agriculture. I would see what datadog could do with agricultural IoT, such as arrays of sensors in a farm collecting data such as moisture, temperature, sunshine, rainfall, and soil data. This data could be used to establish local and wider trends for an area to maximize agricultural output. Live data could be used to detect issues and proactively respond to them.
 
