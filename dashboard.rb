@@ -15,10 +15,7 @@ body = DatadogAPIClient::V1::Dashboard.new({
                 DatadogAPIClient::V1::TimeseriesWidgetRequest.new({
                     q: "my_metric{host:gavin-MacBookAir}"
                 })
-            ],
-            title: "My Metric",
-            show_legend: false,
-            legend_size: 0
+            ]
         })
     }),
     DatadogAPIClient::V1::Widget.new({
@@ -27,18 +24,6 @@ body = DatadogAPIClient::V1::Dashboard.new({
             requests: [
                 DatadogAPIClient::V1::TimeseriesWidgetRequest.new({
                     q: "sum:my_metric{host:gavin-MacBookAir}.rollup(sum,3600)",
-                    metadata: [
-                        {
-                            expression: "sum:my_metric{host:gavin-MacBookAir}.rollup(sum,3600)",
-                            alias_name: "my_metric_hourly_rollup"
-                        }
-                    ],
-                    display_type: "line",
-                    style: {
-                        palette: "dog_classic",
-                        line_type: "solid",
-                        line_width: "normal"
-                    }
                 })
             ]
         })
