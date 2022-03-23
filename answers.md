@@ -6,6 +6,8 @@ I got started by using Vagrant as outlined. I created an Ubuntu VM on my Windows
 
 1. Adding tags to Agent config file - I added tags as outlined in the docs https://docs.datadoghq.com/getting_started/tagging/assigning_tags?tab=noncontainerizedenvironments#methods-for-assigning-tags
 
+I used the Vagrant CLI to shell into my VM and then Vim to edit the file.
+
 Tags added were the environment, owner, and team.
 
 ![1Tags](https://user-images.githubusercontent.com/11410885/159150192-bc07f8c5-895b-428c-8161-5971f2634b6c.PNG)
@@ -37,9 +39,9 @@ I just had to use the example and change the number from 30.
 
 6, 7, 8 Combined answer -
 
-This one was confusing due to how dashboards are named and the required API call to create them. The "Create a shared dashboard" request has the "custom_timeboard" parameter however that's not the type of dashboard I needed. I had to use the "Create a new dashboard" call along with the correct reflow_type, layout_type, and then widget types. The correct combination of these creates a timeboard instead of a normal dashboard or screenboard. I realized it would be faster to just create the dashboard using the console and then GET that dashboard to see its JSON. I used that JSON to programatically create the widgets as shown in the .sh file. This one took a few tries for trial and error.
+This one was confusing due to how dashboards are named and the required API call to create them. The "Create a shared dashboard" request has the "custom_timeboard" parameter however that's not the type of dashboard I needed. I had to use the "Create a new dashboard" call along with the correct reflow_type, layout_type, and then widget types. The correct combination of these creates a timeboard instead of a normal dashboard or screenboard. I realized it would be faster to just create the dashboard using the console and then GET that dashboard to see its JSON. I had to GET all my dashboards first and then use the dashboard ID to GET that specific one. I used the returned JSON to programatically create the widgets as shown in the .sh file. This one took a few tries for trial and error.
 
-I used an example bash command and updated it with the JSON from the GET call.
+I started with an example bash command from the API docs and updated it with the JSON from the GET call.
 
 Heavy use of the dashboard API - https://docs.datadoghq.com/api/latest/dashboards/
 
