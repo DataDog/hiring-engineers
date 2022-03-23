@@ -27,6 +27,16 @@ body = DatadogAPIClient::V1::Dashboard.new({
                 })
             ]
         })
+    }),
+    DatadogAPIClient::V1::Widget.new({
+        definition: DatadogAPIClient::V1::TimeseriesWidgetDefinition.new({
+            type: DatadogAPIClient::V1::TimeseriesWidgetDefinitionType::TIMESERIES,
+            requests: [
+                DatadogAPIClient::V1::TimeseriesWidgetRequest.new({
+                    q: "anomalies(avg:postgresql.temp_bytes{host:gavin-MacBookAir}, 'basic', 2)",
+                })
+            ]
+        })
     })
   ]
 })
