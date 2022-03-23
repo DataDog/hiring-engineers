@@ -9,27 +9,30 @@ body = DatadogAPIClient::V1::Dashboard.new({
   title: "Datadog SE Candidate Dashboard",
   widgets: [
     DatadogAPIClient::V1::Widget.new({
-        definition: DatadogAPIClient::V1::QueryValueWidgetDefinition.new({
-            type: DatadogAPIClient::V1::QueryValueWidgetDefinitionType::QUERY_VALUE,
+        definition: DatadogAPIClient::V1::TimeseriesWidgetDefinition.new({
+            type: DatadogAPIClient::V1::TimeseriesWidgetDefinitionType::TIMESERIES,
             requests: [
-                DatadogAPIClient::V1::QueryValueWidgetRequest.new({
-                    formulas: [
-                        DatadogAPIClient::V1::WidgetFormula.new({
-                            formula: "query1"
-                        })
-                    ],
-                    queries: [
-                        DatadogAPIClient::V1::FormulaAndFunctionMetricQueryDefinition.new({
-                            aggregator: "avg",
-                            data_source:"metrics",
-                            name: "query1",
-                            query: "avg:my_metric(host:gavin-MacBookAir}"
-                        })
-                    ]
-                })
+                DatadogAPIClient::V1::TimeseriesWidgetRequest.new({
+                    q: "my_metric{host:gavin-MacBookair}"
+                )}
             ]
         })
     })
   ]
 })
 p api_instance.create_dashboard(body)
+
+# formulas: [
+#     DatadogAPIClient::V1::WidgetFormula.new({
+#         formula: "query1"
+#     })
+# ],
+# queries: [
+#     DatadogAPIClient::V1::FormulaAndFunctionMetricQueryDefinition.new({
+#         aggregator: "avg",
+#         data_source:"metrics",
+#         name: "query1",
+#         query: "avg:my_metric(host:gavin-MacBookAir}"
+#     })
+# ]
+# })
