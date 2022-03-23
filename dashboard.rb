@@ -13,7 +13,11 @@ body = DatadogAPIClient::V1::Dashboard.new({
             type: DatadogAPIClient::V1::TimeseriesWidgetDefinitionType::TIMESERIES,
             requests: [
                 DatadogAPIClient::V1::TimeseriesWidgetRequest.new({
-                    q: "my_metric{host:gavin-MacBookair}"
+                    q: DatadogAPIClient::V1::FormulaAndFunctionMetricQueryDefinition.new({
+                        data_source: "metrics",
+                        name: "query1",
+                        query: "my_metric{host:gavin-MacBookAir"
+                    })
                 })
             ]
         })
