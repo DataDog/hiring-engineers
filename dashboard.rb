@@ -13,6 +13,11 @@ body = DatadogAPIClient::V1::Dashboard.new({
             type: DatadogAPIClient::V1::QueryValueWidgetDefinitionType::QUERY_VALUE,
             requests: [
                 DatadogAPIClient::V1::QueryValueWidgetRequest.new({
+                    formulas: [
+                        DatadogAPIClient::V1::WidgetFormula.new({
+                            formula: "query1"
+                        })
+                    ],
                     queries: [
                         DatadogAPIClient::V1::FormulaAndFunctionMetricQueryDefinition.new({
                             aggregator: "avg",
