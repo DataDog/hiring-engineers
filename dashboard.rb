@@ -14,7 +14,7 @@ body = DatadogAPIClient::V1::Dashboard.new({
             requests: [
                 DatadogAPIClient::V1::TimeseriesWidgetRequest.new({
                     q: "my_metric{host:gavin-MacBookair}"
-                )}
+                })
             ]
         })
     })
