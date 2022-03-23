@@ -13,12 +13,14 @@ body = DatadogAPIClient::V1::Dashboard.new({
             type: DatadogAPIClient::V1::QueryValueWidgetDefinitionType::QUERY_VALUE,
             requests: [
                 DatadogAPIClient::V1::QueryValueWidgetRequest.new({
-                    profile_metrics_query: DatadogAPIClient::V1::FormulaAndFunctionMetricQueryDefinition.new({
-                        aggregator: "avg",
-                        data_source:"metrics",
-                        name: "query1",
-                        query: "avg:my_metric(host:gavin-MacBookAir}"
-                    })
+                    queries: [
+                        DatadogAPIClient::V1::FormulaAndFunctionMetricQueryDefinition.new({
+                            aggregator: "avg",
+                            data_source:"metrics",
+                            name: "query1",
+                            query: "avg:my_metric(host:gavin-MacBookAir}"
+                        })
+                    ]
                 })
             ]
         })
