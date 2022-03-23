@@ -16,7 +16,7 @@ body = DatadogAPIClient::V1::Dashboard.new({
                     q: "my_metric{host:gavin-MacBookAir}"
                 })
             ],
-            title:: "My Metric",
+            title: "My Metric",
             show_legend: false,
             legend_size: 0
         })
