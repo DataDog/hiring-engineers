@@ -48,7 +48,7 @@ APM/Infrastructure Dashboard Screenshot:
 ## Final Question
 
 Is there anything creative you would use Datadog for?
-> Using the [smartcar]{https://smartcar.com/} API to monitor certain metrics for my car, I think it would be useful to have an automation kick off using the ansible or SaltStack integration to schedule a service appointment when my engine oil life is low or when odometer reaches a certain mileage.
+> Using the [smartcar](https://smartcar.com/) API to monitor certain metrics for my car, I think it would be useful to have an automation kick off using the ansible or SaltStack integration to schedule a service appointment when my engine oil life is low or when odometer reaches a certain mileage.
 
 
 
