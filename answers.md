@@ -85,5 +85,13 @@ Please configure the monitor’s message so that it will:
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 ![Downtimes](/images/downtimes.png)
+
+I wanted to test out both options for scheduling. Here are the settings for both in the UI:
+
+![Weekday Settings](/images/mon-fri-downtime.png)
+![Weekend Settings](/images/sat-sun-downtime.png)
+
+Emails for setting up both:
+
 ![Weekday Downtime Email](/images/downtime-email.png)
 ![Weekend Downtime Email](/images/weekend-downtime-email.png)
