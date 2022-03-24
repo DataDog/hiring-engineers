@@ -2,7 +2,7 @@ curl -X POST \
   https://api.datadoghq.com/api/v1/dashboard \
   -H 'Content-Type: application/json' \
   -H 'DD-API-KEY: <redacted>' \
-  -H 'DD-APPLICATION-KEY: ffb14b0ad1f029fe9d33dacf46197898e820efab' \
+  -H 'DD-APPLICATION-KEY: <redacted>' \
   -d '{
   "title": "Chris Timeboard",
   "description": "Custom timeboard for my_metric",
