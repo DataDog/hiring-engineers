@@ -1,7 +1,7 @@
 curl -X POST \
   https://api.datadoghq.com/api/v1/dashboard \
   -H 'Content-Type: application/json' \
-  -H 'DD-API-KEY: cd275c4bbd59e898d3a8a65b34323268' \
+  -H 'DD-API-KEY: <redacted>' \
   -H 'DD-APPLICATION-KEY: ffb14b0ad1f029fe9d33dacf46197898e820efab' \
   -d '{
   "title": "Chris Timeboard",
