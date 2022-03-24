@@ -1,0 +1,74 @@
+curl -X POST \
+  https://api.datadoghq.com/api/v1/dashboard \
+  -H 'Content-Type: application/json' \
+  -H 'DD-API-KEY: cd275c4bbd59e898d3a8a65b34323268' \
+  -H 'DD-APPLICATION-KEY: ffb14b0ad1f029fe9d33dacf46197898e820efab' \
+  -d '{
+  "title": "Chris Timeboard",
+  "description": "Custom timeboard for my_metric",
+  "layout_type": "ordered",
+  "is_read_only": true,
+  "widgets": [
+    {
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "my_metric{host:vagrant}"
+          }
+        ],
+        "title": "My Metrics",
+        "legend_size": "2"
+      }
+    },
+    {
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "anomalies(avg:mysql.performance.cpu_time{host:vagrant}, '\''basic'\'', 2)",
+            "display_type": "line",
+            "style": {
+              "palette": "purple",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "Percent",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Anomalies In MySQL CPU Performance"
+      }
+    },
+    {
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:my_metric{host:vagrant}.rollup(sum, 3600)",
+            "display_type": "line",
+            "style": {
+              "palette": "cool",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "Rolled Up Value",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Hourly Rollup of Random Integers",
+        "legend_size": "2"
+      }
+    }
+  ]
+}'
