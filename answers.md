@@ -34,6 +34,8 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
 
+Dashboard Link: https://p.datadoghq.com/sb/a81c4026-aae6-11ec-8eba-da7ad0900002-3df9ebf12895529dad359fec03a4a7bf
+
 ![Timeboard](/images/timeboard.png)
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
