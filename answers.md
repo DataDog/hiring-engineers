@@ -38,7 +38,7 @@ Utilize the Datadog API to create a Timeboard that contains:
 
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-[Timeboard cURL Command](timeboard-api-request.txt)
+[Timeboard cURL Command](/documents/timeboard-api-request.txt)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
@@ -67,7 +67,7 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
 
 ![Monitor](/images/monitor.png)
-[Monitor Export JSON](monitor-export.json)
+[Monitor Export JSON](/documents/monitor-export.json)
 
 Please configure the monitor’s message so that it will:
 
@@ -95,3 +95,64 @@ Emails for setting up both:
 
 ![Weekday Downtime Email](/images/downtime-email.png)
 ![Weekend Downtime Email](/images/weekend-downtime-email.png)
+
+## Collecting APM Data:
+
+Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
+
+```python
+from flask import Flask
+import logging
+import sys
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+@app.route('/')
+def api_entry():
+    return 'Entrypoint to the Application'
+
+@app.route('/api/apm')
+def apm_endpoint():
+    return 'Getting APM Started'
+
+@app.route('/api/trace')
+def trace_endpoint():
+    return 'Posting Traces'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5050')
+```
+
+* **Bonus Question**: What is the difference between a Service and a Resource?
+
+A **resource** is a particular action of a **service**. This can be a single endpoint or query that is triggered as a part of said service. A **service** is a set of processes doing the same job. Services group together endpoints, queries, or jobs to help scale instances and build one's application. An example would be a web framework or database.
+
+Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+Please include your fully instrumented app in your submission, as well.
+
+I came across an open-source network automation tool called eNMS (https://www.enms.io/). Using this, I created some trace logs that I was able to record and add to this dashboard here. I have also added the `dd-trace` command I used in my virtual machine to get these logs running.
+
+[ddtrace command](/documents/apm-request.txt)
+
+Dashboard Link: https://p.datadoghq.com/sb/a81c4026-aae6-11ec-8eba-da7ad0900002-ca79ddeec739c80e43d5065126936ae8
+
+![APM Dashboard](/images/apm-infra.png)
+
+SQLite APM Service 
+
+![SQLite APM Service](/images/sqlite-service.png)
+
+## Final Question:
+
+Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+Is there anything creative you would use Datadog for?
