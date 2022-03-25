@@ -156,3 +156,9 @@ SQLite APM Service
 Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
 
 Is there anything creative you would use Datadog for?
+
+One big problem users of the popular MMORPG, Final Fantasy 14, have whenever they launch a new patch or expansion are login issues. Not only do these players have to wait until the servers allow them to log in, they have to sit in front of their screen for an undetermined amount of time. This is because while they are queued to log in, there are times where the queue can error out and boot the player out. If they are lucky, they can quickly log back in and get their spot back. If not, it's to the back of the line they go and this whole process can end up taking hours.
+
+![FFXIV Login Queue](/images/ffxiv-login-queue.jpg)
+
+An idea I had would be to create a an application that players can use to get notified when their character has successfully logged in or if an they've encountered an error. An API would probably need to be built to attempt to log in and return status updates on the queue. This dashboard can also include metrics such as the average wait times to login, server statuses, and different uptimes. Users on this shared dashboard would be able to sign up for notifications if a server went down or not and if their attention is required for the login process.
