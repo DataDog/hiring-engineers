@@ -10,6 +10,8 @@
 
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
+I've provided my .yaml and .py files here: [my_metric files](/documents/custom_check)
+
 ![My Metric](/images/mymetric.png)
 
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
