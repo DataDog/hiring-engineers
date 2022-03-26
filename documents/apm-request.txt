@@ -1,0 +1,1 @@
+DD_PROFILING_ENABLED=true DD_ENV="staging" DD_SERVICE="my-enms-app" DD_VERSION="1.0.0" DD_LOGS_INJECTION=true DD_RUNTIME_METRICS_ENABLED=true ddtrace-run gunicorn --config gunicorn.py app:app

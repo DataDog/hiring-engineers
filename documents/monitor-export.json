@@ -1,0 +1,26 @@
+{
+	"id": 66815567,
+	"name": "My Metrics: Random Value Exceeds Threshold on {{host.name}}",
+	"type": "query alert",
+	"query": "avg(last_5m):avg:my_metric{*} > 800",
+	"message": "Hi @christopheradural@gmail.com\n\n{{#is_alert}}\nThis message was triggered by an ALERT. \nMetric Value: {{value}} \nHost: {{host.name}}\nIP: {{host.ip}}\n{{/is_alert}} \n\n{{#is_warning}}\nThis message was triggered by a WARNING. \n{{/is_warning}} \n\n{{#is_no_data}}\nThis message was triggered by a NO DATA. \n{{/is_no_data}} \n\nThank you",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"silenced": {
+			"*": 1648364400
+		},
+		"include_tags": true,
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		},
+		"require_full_window": false,
+		"new_host_delay": 300,
+		"notify_no_data": true,
+		"renotify_interval": 0,
+		"escalation_message": "",
+		"no_data_timeframe": 10
+	},
+	"priority": null
+}
