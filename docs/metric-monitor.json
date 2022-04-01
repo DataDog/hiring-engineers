@@ -1,0 +1,25 @@
+{
+	"id": 5100669,
+	"name": "Host: {{host.ip}} - Metric High",
+	"type": "query alert",
+	"query": "avg(last_5m):avg:my_metric{host:vagrant} > 800",
+	"message": "{{#is_alert}}\n**ALERT**! my_metric has reached an ALERT threshold. \nValue: {{value}} \nIP: {{host.ip}}\n{{/is_alert}}\n\n{{#is_warning}}\n**WARNING**! my_metric has reached an WARNING threshold. \nValue: {{value}} \n{{/is_warning}} \n\n{{#is_no_data}}\n**NO DATA**! my_metric has NO DATA over the past 10 minutes. \n{{/is_no_data}} \n\n@aronday@gmail.com",
+	"tags": [],
+	"options": {
+		"thresholds": {
+			"critical": 800,
+			"warning": 500
+		},
+		"notify_audit": false,
+		"require_full_window": false,
+		"notify_no_data": true,
+		"renotify_interval": 0,
+		"silenced": {},
+		"include_tags": true,
+		"new_host_delay": 300,
+		"escalation_message": "",
+		"no_data_timeframe": 10
+	},
+	"priority": 2,
+	"restricted_roles": null
+}

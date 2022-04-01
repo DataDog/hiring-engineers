@@ -1,0 +1,73 @@
+curl -X POST \
+  https://api.datadoghq.eu/api/v1/dashboard \
+  -H 'Content-Type: application/json' \
+  -H 'DD-API-KEY: <redacted>' \
+  -H 'DD-APPLICATION-KEY: <redacted>' \
+  -d '{
+  "title": "Datadog Exercise - Visualizing Data - Timeboard",
+  "description": "Custom timeboard for Datadog Exercise - Visualizing Data",
+  "layout_type": "ordered",
+  "widgets": [
+    {
+      "definition": {
+        "title": "Custom Metric",
+        "type": "timeseries",
+        "legend_size": "2",
+        "requests": [
+          {
+            "q": "my_metric{host:vagrant}"
+          }
+        ]
+      }
+    },
+    {
+      "definition": {
+        "title": "MySQL - Anomalies - CPU Performance",
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "anomalies(avg:mysql.performance.cpu_time{host:vagrant}, '\''basic'\'', 2)",
+            "display_type": "line",
+            "style": {
+              "palette": "cool",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "Percent",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        }
+      }
+    },
+    {
+      "definition": {
+        "title": "Hourly Rollup - Custom Metric",
+        "legend_size": "2",
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:my_metric{host:vagrant}.rollup(sum, 3600)",
+            "display_type": "line",
+            "style": {
+              "palette": "cool",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "Value",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        }
+      }
+    }
+  ]
+}'
