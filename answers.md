@@ -88,6 +88,7 @@ At first, this is the error I was seeing in the root terminal and dd-agent log:<
 
 <h3>5. I took a snapshot of the graph and used the @ notation to email it to myself. 📧</h3>
 
+<h3><a href="https://p.datadoghq.com/sb/ed061656-ad77-11ec-8f93-da7ad0900002-a5b873d8ff693982e6baaa49f52b461d">Link to My_Metric Dashboard</a></h3>
 <p></p>
 
 
@@ -163,7 +164,7 @@ width="500"/>
 
 Is there anything creative you would use Datadog for?</h3>
 
-<h3>When I first moved to Atlanta, I moved into an older home with a rodent problem. I measured rodent activity in the house by making mental notes of the frequency of the scuttling sounds in the ceilings and walls. It would be interesting to place a sensor with a scanner in my home to monitor where rodent activity is the highest. I can integrate the sensor with Datadog to monitor rodent activity at different points in the house. The next time I hire Critter Stoppers, they could use these metrics to place traps in the rooms or areas with the highest measured rodent activity. I can be alerted by anomaly detection if rodent activity drops, meaning that the exterminator did a great job.</h3>
+<h3>When I first moved to Atlanta, I moved into an older home with a rodent problem. I measured rodent activity in the house by taking mental notes of the frequency of the scuttling sounds in the ceilings and walls. It would be interesting to place a sensor with a scanner in my home to monitor where rodent activity is the highest. I can integrate the sensor with Datadog to monitor rodent activity at different points in the house. The next time I hire Critter Stoppers, they could use these metrics to place traps in the rooms or areas with the highest measured rodent activity. I can be alerted by anomaly detection if rodent activity drops, meaning that the exterminator did a great job.</h3>
 
 
 
