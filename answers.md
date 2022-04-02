@@ -81,10 +81,10 @@ class HelloCheck(AgentCheck):
 
 
 
-<h3>4. Finally, I changed my check's collection interval so that it only submits the metric once every 45 seconds by modifying the respective yaml file.
+<h3>4. Finally, I changed my check's collection interval so that it only submits the metric once every 45 seconds by modifying the respective yaml file.</h3>
 
 
-An important note on min_collection_interval: If the min_collection_interval is set to 45, it does not mean that the metric is collected every 45 seconds, but rather that it could be collected as often as every 45 seconds. The collector tries to run the check every 45 seconds but the check might need to wait in line, depending on how many integrations are enabled on the same Agent. Also if the check method takes more than 45 seconds to finish, the Agent skips execution until the next interval.</h3>
+<p>An important note on min_collection_interval: If the min_collection_interval is set to 45, it does not mean that the metric is collected every 45 seconds, but rather that it could be collected as often as every 45 seconds. The collector tries to run the check every 45 seconds but the check might need to wait in line, depending on how many integrations are enabled on the same Agent. Also if the check method takes more than 45 seconds to finish, the Agent skips execution until the next interval.</p>
 
 
 <h3>Code block: conf.d/custom_my_metric.yaml</h3>
@@ -198,11 +198,11 @@ with ApiClient(configuration) as api_client:
 <img src="./images/rollup.png" alt="rollup" width="600"/>
 <img src="./images/Sum of My_Metric Points.png" alt="rollup" width="600"/>
 
-<img src="./images/Avg of My_Metric 5min.png" alt="Avg of My_Metric 5min" width="500"/>
 <h3>4. I zoomed in on the timeframe to view metrics collected over the past five minutes.</h3>
-<img src="./images/snapshot.png" alt="snapshot" width="500"/>
+<img src="./images/Avg of My_Metric 5min.png" alt="Avg of My_Metric 5min" width="500"/>
 
 <h3>5. Finally, I took a snapshot of the graph and used the @ notation to email it to myself. 📸 📧</h3>
+<img src="./images/snapshot.png" alt="snapshot" width="500"/>
 
 <h3><a href="https://p.datadoghq.com/sb/ed061656-ad77-11ec-8f93-da7ad0900002-a5b873d8ff693982e6baaa49f52b461d">Link to My_Metric Dashboard</a></h3>
 <p></p>
