@@ -97,7 +97,7 @@ instances:
 ```
 
 
-<h3><b>Bonus Question</b>: By modifying conf.yaml that lives in the conf.d folder, I already changed the collection interval without modifying custom_my_metric.py. 🙌</h3>
+<h3><b>Bonus Question</b>: By modifying custom_my_metric.yaml that lives in the conf.d folder, I already changed the collection interval without modifying custom_my_metric.py. 🙌</h3>
 
 <h2>📈 Visualizing Data:</h2>
 
@@ -241,19 +241,19 @@ Anomaly detection is an algorithmic feature that identifies when a metric is beh
 
 <p></p>
 
-<h3>1. I silenced the monitor from 7pm to 9am daily Monday-Friday. 💤</h3>
+<h3>1. The first one silenced the monitor from 7pm to 9am daily Monday-Friday. 💤</h3>
 <img src="./images/downtime.png" alt="downtime" width="500"/>
 <img src="./images/weekday.png" alt="weekday" width="500"/>
 
 <p></p>
 
-<h3>2. I also silenced the monitor all day on Saturday and Sunday. 🌴 🏄 🏖️</h3>
+<h3>2. The second one silenced the monitor all day on Saturday and Sunday. 🌴 🏄 🏖️</h3>
 
 <img src="./images/weekend_downtime.png" alt="weekend downtime" width="500"/>
 <img src="./images/weekend.png" alt="weekend" width="500"/>
 <p></p>
 
-<h3>3. 📧 My email was notified when I scheduled the downtime.</h3>
+<h3>3. 📧 My email was notified when I scheduled the downtimes.</h3>
 <img src="./images/notification.png" alt="notification" width="500"/>
 
 
