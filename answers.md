@@ -7,8 +7,8 @@
 <img src="./images/whale.gif" alt="docker gif" width="250"/>
 
 
-<h2>Collecting Metrics:</h2>
-<h3>1. I added tags in the datadog.yaml file and verified they were in the Host Map.</h3>
+<h2>📈 Collecting Metrics:</h2>
+<h3>1. I added tags in the datadog.yaml file and was very happy to see that they showed up in the Host Map on the UI. Encouraging so far!</h3>
 
 ```
 apm_config:
@@ -30,7 +30,7 @@ tags:
 <img src="./images/hostmap.png" alt="drawing" width="500"/>
 
 <p></p>
-<h3>2. I updated PostgreSQL on my machine and installed the PostgreSQL Datadog integration.
+<h3>2. Next, I updated PostgreSQL on my machine and installed the PostgreSQL Datadog integration.
 <p></p>
 
 At first, this is the error I was seeing in the root terminal and dd-agent log:</h3>
@@ -45,14 +45,17 @@ At first, this is the error I was seeing in the root terminal and dd-agent log:<
 
 <p></p>
 
-<h3>The issue was that I had set host to localhost in postgres.d/conf.yaml, but the host has a changing IP address. I reset host to host.docker.internal. This enabled the connection of the container with the db service on the host by forwarding to the internal IP address used by the host.</h3>
+<img src="./images/mathlady.png" alt="math lady" width="600"/>
+
+
+<h3>So, how did I need to change host for the connection? After much head scratching on Stack Overflow, I finally found the solution! The issue was that I had set host to localhost in postgres.d/conf.yaml. I reset the host value to be host.docker.internal. This enabled the connection of the container with the db service on the host by forwarding to the internal IP address used by the host.</h3>
 <h3>Click here to see the docs --> <a href="https://docs.docker.com/desktop/mac/networking/">Networking features in Docker Desktop for Mac</a></h3>
 
 <img src="./images/postgres.png" alt="Postgres connection" width="500"/>
 
 <img src="./images/postgres_integration.png" alt="Postgres Integration" width="400"/>
 
-<h3>3. I created a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.</h3>
+<h3>3. Next, I created a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.</h3>
 
 ```
 import random
@@ -90,9 +93,9 @@ instances:
 <h3>Code block: conf.d/custom_my_metric.yaml</h3>
 
 
-<h3><b>Bonus Question</b>: By modifying conf.yaml that lives in the conf.d folder, I did change the collection interval without modifying custom_my_metric.py.</h3>
+<h3><b>Bonus Question</b>: By modifying conf.yaml that lives in the conf.d folder, I did change the collection interval without modifying custom_my_metric.py. 🙌</h3>
 
-<h2>Visualizing Data:</h2>
+<h2>📈 Visualizing Data:</h2>
 
 <h3>I created an Application Key and verified that the App Key and the API Key are valid via Postman. Then I wrote the script for a timeboard importing the Datadog API.</h3>
 
@@ -200,7 +203,7 @@ Anomaly detection is an algorithmic feature that identifies when a metric is beh
 <img src="./images/Database + Anomaly Bonus.png" alt="Database + Anomaly Bonus" width="500"/>
 
 
-<h2>Monitoring Data:</h2>
+<h2>📈 Monitoring Data:</h2>
 
 <h3>1. I created a new Metric Monitor that watches the average of my_metric and will alert if it's above the following values over the past 5 min:
 
@@ -240,7 +243,7 @@ width="500"/>
 <h3>3. 📧 My email was notified when I scheduled the downtime.</h3>
 
 
-<h2>Collecting APM Data:</h2>
+<h2>📈 Collecting APM Data:</h2>
 
 <h3><b>Bonus Question</b>: Difference between a Service and a Resource
 <p></p>
