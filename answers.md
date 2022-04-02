@@ -10,26 +10,38 @@
 <h2>Collecting Metrics:</h2>
 <h3>1. I added tags in the datadog.yaml file and verified they were in the Host Map.</h3>
 
+```
+apm_config:
+  apm_non_local_traffic: true
 
-<img src="./images/tags.png" alt="tags code" width="500"/>
+jmx_use_container_support: true
+
+tags:
+    - "name:Julia Szymanski"
+    - "email:julszymanski@gmail.com"
+    - "region:us-east-1"
+    - "tag:test"
+    - "env:staging"
+```
+<h3>Code block: datadog.yaml with tags</h3>
 
 <p></p>
 
 <img src="./images/hostmap.png" alt="drawing" width="500"/>
 
 <p></p>
-<h3>2. I installed PostgreSQL on my machine and installed the PostgreSQL Datadog integration.
+<h3>2. I updated PostgreSQL on my machine and installed the PostgreSQL Datadog integration.
 <p></p>
 
 At first, this is the error I was seeing in the root terminal and dd-agent log:</h3>
 <p></p>
 
-<img src="./images/postgreserror.png" alt="drawing" width="500"/>
+<img src="./images/postgreserror.png" alt="drawing" width="700"/>
 
 <p></p>
 <p></p>
 
-<img src="./images/dockerlog.png" alt="Docker log" width="900"/>
+<img src="./images/dockerlog.png" alt="Docker log" width="1000"/>
 
 <p></p>
 
@@ -42,8 +54,25 @@ At first, this is the error I was seeing in the root terminal and dd-agent log:<
 
 <h3>3. I created a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.</h3>
 
+```
+import random
 
-<img src="./images/my_metric.png" alt="my_metric check" width="600"/>
+# the following try/except block will make the custom check compatible with any Agent version
+try:
+    # first, try to import the base class from new versions of the Agent...
+    from datadog_checks.base import AgentCheck
+except ImportError:
+    # ...if the above failed, the check is running in Agent version < 6.6.0
+    from checks import AgentCheck
+
+# content of the special variable __version__ will be shown in the Agent status page
+__version__ = "1.0.0"
+
+class HelloCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', random.randint(0,1000), tags=["host:docker-desktop"] + self.instance.get('tags', []))
+```
+<h3>Code block: checks.d/custom_my_metric.py</h3>
 
 <img src="./images/custom_my_metric.png" alt="my_metric check" width="600"/>
 
@@ -52,18 +81,91 @@ At first, this is the error I was seeing in the root terminal and dd-agent log:<
 <h3>4. I changed my check's collection interval so that it only submits the metric once every 45 seconds by modifying the respective yaml file.</h3>
 
 
-<img src="./images/my_metric_conf.png" alt="my_metric_conf" width="300"/>
+```
+init_config:
+
+instances:
+  - min_collection_interval: 45
+```
+<h3>Code block: conf.d/custom_my_metric.yaml</h3>
 
 
-<h3><b>Bonus Question</b>: By modifying conf.yaml that lives in the conf folder, I did change the collection interval without modifying custom_my_metric.py.</h3>
+<h3><b>Bonus Question</b>: By modifying conf.yaml that lives in the conf.d folder, I did change the collection interval without modifying custom_my_metric.py.</h3>
 
 <h2>Visualizing Data:</h2>
 
 <h3>I created an Application Key and verified that the App Key and the API Key are valid via Postman. Then I wrote the script for a timeboard importing the Datadog API.</h3>
 
+```
+"""
+Create a new dashboard returns "OK" response
+"""
 
-<img src="./images/timeboard.png" alt="timeboard" width="600"/>
-<h3>Script I used to create the timeboard</h3>
+from datadog_api_client.v1 import ApiClient, Configuration
+from datadog_api_client.v1.api.dashboards_api import DashboardsApi
+from datadog_api_client.v1.model.dashboard import Dashboard
+from datadog_api_client.v1.model.dashboard_layout_type import DashboardLayoutType
+from datadog_api_client.v1.model.log_query_definition import LogQueryDefinition
+from datadog_api_client.v1.model.log_query_definition_group_by import LogQueryDefinitionGroupBy
+from datadog_api_client.v1.model.log_query_definition_group_by_sort import LogQueryDefinitionGroupBySort
+from datadog_api_client.v1.model.log_query_definition_search import LogQueryDefinitionSearch
+from datadog_api_client.v1.model.logs_query_compute import LogsQueryCompute
+from datadog_api_client.v1.model.timeseries_widget_definition import TimeseriesWidgetDefinition
+from datadog_api_client.v1.model.timeseries_widget_definition_type import TimeseriesWidgetDefinitionType
+from datadog_api_client.v1.model.timeseries_widget_request import TimeseriesWidgetRequest
+from datadog_api_client.v1.model.widget import Widget
+from datadog_api_client.v1.model.widget_sort import WidgetSort
+
+body = Dashboard(
+    layout_type=DashboardLayoutType("ordered"),
+    title="my_metric Dash",
+    widgets=[
+        Widget(
+            definition=TimeseriesWidgetDefinition(
+                type=TimeseriesWidgetDefinitionType("timeseries"),
+                title="Avg of My_Metric",
+                requests=[
+                    TimeseriesWidgetRequest(
+                        q="avg:my_metric{host:docker-desktop}")
+                        ],
+                    )
+                ),
+        Widget(
+            definition=TimeseriesWidgetDefinition(
+                type=TimeseriesWidgetDefinitionType("timeseries"),
+                title="Database + Anomaly - Avg of PostgreSQL Connections",
+                requests=[
+                    TimeseriesWidgetRequest(
+                        q="anomalies(avg:postgresql.connections{db:julia}, 'basic', 2)"
+                        )
+                    ],
+                )
+            ),
+        Widget(
+            definition=TimeseriesWidgetDefinition(
+                type=TimeseriesWidgetDefinitionType("timeseries"),
+                title="My_Metric with Rollup Function - Sum of All Points in Last Hour",
+                requests=[
+                    TimeseriesWidgetRequest(
+                        q="my_metric{host:docker-desktop}.rollup(sum, 3600)"
+                        )
+                    ], 
+                )
+            )
+    ]
+)
+
+
+configuration = Configuration()
+with ApiClient(configuration) as api_client:
+    api_instance = DashboardsApi(api_client)
+    response = api_instance.create_dashboard(body=body)
+
+    print(response)
+    
+```
+
+<h3>Code block: Complete script in timeboard.py</h3>
 <p></p>
 
 <h3>I scoped My_Metric over my host.</h3>
