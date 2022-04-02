@@ -183,7 +183,7 @@ with ApiClient(configuration) as api_client:
 <img src="./images/Avg of My_Metric.png" alt="avg my_metric" width="500"/>
 
 
-<h3>2. I applied an anomaly function using the postgres.connections metric as an argument because I'm very proud to have successfully connected Postgres to my container.</h3>
+<h3>2. I applied an anomaly function using the postgres.connections metric as an argument.</h3>
 
 <img src="./images/anomaly.png" alt="anomaly" width="600"/>
 <img src="./images/Database + Anomaly - Avg of PostgreSQL Connections.png" alt="Database + Anomaly - Avg of PostgreSQL Connections" width="500"/>
@@ -229,29 +229,31 @@ Anomaly detection is an algorithmic feature that identifies when a metric is beh
 <h3>3. I created different messages based on whether the monitor is in an Alert, Warning, or No Data state.</h3>
 <img src="./images/message.png" alt="message" width="500"/>
 
-<h3>4. I included the metric value that caused the monitor to trigger as well as the host name and ip for an Alert state trigger.</h3>
+<h3>4. I included the metric value that caused the monitor to trigger as well as the host name and IP for an Alert state trigger.</h3>
 <img src="./images/alert_message.png" alt="alert message" width="500"/>
 
-<img src="./images/email.png" alt="email" width="500"/>
 <h3>5. Here is a screenshot of an email notification for the Alert state sent by the monitor.</h3>
+<img src="./images/email.png" alt="email" width="500"/>
 
 
 <h3><b>Bonus question:</b> I set up two scheduled downtimes for this monitor.</h3>
 
+<p></p>
+
+<h3>1. I silenced the monitor from 7pm to 9am daily Monday-Friday. 💤</h3>
 <img src="./images/downtime.png" alt="downtime" width="500"/>
 <img src="./images/weekday.png" alt="weekday" width="500"/>
 
-<h3>1. I silenced the monitor from 7pm to 9am daily Monday-Friday. 💤</h3>
 <p></p>
 
-<p></p>
+<h3>2. I also silenced the monitor all day on Saturday and Sunday. 🌴 🏄 🏖️</h3>
+
 <img src="./images/weekend_downtime.png" alt="weekend downtime" width="500"/>
 <img src="./images/weekend.png" alt="weekend" width="500"/>
-<h3>2. I also silenced the monitor all day on Saturday and Sunday. 🌴 🏄 🏖️</h3>
 <p></p>
 
-<img src="./images/notification.png" alt="notification" width="500"/>
 <h3>3. 📧 My email was notified when I scheduled the downtime.</h3>
+<img src="./images/notification.png" alt="notification" width="500"/>
 
 
 <h2>📈 Collecting APM Data:</h2>
@@ -312,7 +314,7 @@ if __name__ == '__main__':
 Is there anything creative you would use Datadog for?</h3>
 
 <h3>When I first moved to Atlanta, I moved into an older house with a rodent problem. I measured rodent activity in the house by taking mental notes of the frequency of the scuttling sounds in the ceilings and walls.
-
+<p></p>
 It would be interesting to place sensors in the ceilings and walls of my house to measure rodent activity. These sensors could be accelerometers that detect vibrations, thermal cameras, or scanners. I can integrate the sensors with a microcontroller like Raspberry Pi with the Datadog Agent installed on it. Then I can write an Agent check to collect metrics from the sensor's data. Using dashboard widgets, I can display the scanner metrics for each sensor location. From there, I can map where rodent activity is highest. The next time I hire Critter Stoppers, they could use these dashboards to place traps in the areas with the highest measured rodent activity. I can be alerted if rodent activity drops, meaning that the exterminator did a great job.</h3>
 
 
