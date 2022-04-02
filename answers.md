@@ -50,9 +50,10 @@ At first, this is the error I was seeing in the root terminal and dd-agent log:<
 <img src="./images/localhost.png" alt="localhost meme" width="200"/>
 
 
-<h3>So, how did I need to change host in the container to point to Postgres on my machine? The issue was that I had set host to localhost in postgres.d/conf.yaml. I reset the host value to be host.docker.internal. This enabled the connection of the container with the database service on the host by forwarding to the internal IP address used by the host.</h3>
+<h3>The issue was that I had set host to localhost in postgres.d/conf.yaml in the container. So, how did I need to change host in the container to point to Postgres on my machine? I reset the host value to be host.docker.internal. This enabled the connection of the container with the database service on the host by forwarding to the internal IP address used by the host.</h3>
 <h3>Click here to see the docs --> <a href="https://docs.docker.com/desktop/mac/networking/#use-cases-and-workarounds">Networking features in Docker Desktop for Mac</a></h3>
 
+<h3>Postgres on Agent status report</h3>
 <img src="./images/postgres.png" alt="Postgres connection" width="500"/>
 
 <img src="./images/postgres_integration.png" alt="Postgres Integration" width="400"/>
@@ -75,7 +76,7 @@ class HelloCheck(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', random.randint(0,1000), tags=["host:docker-desktop"] + self.instance.get('tags', []))
 ```
-Custom_my_metric on Agent status report
+<h3>Custom_my_metric on Agent status report</h3>
 <img src="./images/custom_my_metric.png" alt="my_metric check" width="600"/>
 
 
@@ -176,7 +177,7 @@ with ApiClient(configuration) as api_client:
 
 <p></p>
 
-<h3>Let's take a closer look at the code displayed above and discover what widgets are.</h3>
+<h3>Let's take a closer look at the code displayed above.</h3>
 
 <h3>1. I used the generic timeseries widget to graph my_metric over time. Widgets are building blocks for timeboards and dashboards.</h3>
 <img src="./images/Scope My_Metric Over Host.png" alt="my_metric scoped over host" width="500"/>
@@ -316,24 +317,3 @@ Is there anything creative you would use Datadog for?</h3>
 <h3>When I first moved to Atlanta, I moved into an older house with a rodent problem. I measured rodent activity in the house by taking mental notes of the frequency of the scuttling sounds in the ceilings and walls.
 <p></p>
 It would be interesting to place sensors in the ceilings and walls of my house to measure rodent activity. These sensors could be accelerometers that detect vibrations, thermal cameras, or scanners. I can integrate the sensors with a microcontroller like Raspberry Pi with the Datadog Agent installed on it. Then I can write an Agent check to collect metrics from the sensor's data. Using dashboard widgets, I can display the scanner metrics for each sensor location. From there, I can map where rodent activity is highest. The next time I hire Critter Stoppers, they could use these dashboards to place traps in the areas with the highest measured rodent activity. I can be alerted if rodent activity drops, meaning that the exterminator did a great job.</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
