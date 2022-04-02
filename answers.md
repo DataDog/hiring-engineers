@@ -16,7 +16,7 @@
 Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
 
-```![01-Host-MapTag ](01-Host-MapTag.png)```
+![01-Host-MapTag](01-Host-MapTag.png)
 
 
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
