@@ -49,6 +49,7 @@ For this example I've considered an anomaly, percentage of usage of 2% and above
 ## Monitoring Data
 
 ![warn](warn.png)
+![alert](alert.png)
 [TODO] take a screenshot
 
 
@@ -57,7 +58,10 @@ For this example I've considered an anomaly, percentage of usage of 2% and above
 
   * One that silences it from 7pm to 9am daily on M-F,
   ![donw-time](donw-time.png)
+  ![down-day](down-day.png)
+  
   * And one that silences it all day on Sat-Sun.
+  ![down-weekend](down-weekend.png)
   
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
