@@ -55,8 +55,8 @@ body = Dashboard(
 
 configuration = Configuration()
 
-configuration.api_key["apiKeyAuth"] = "bad84019978135d6a4b7edcda743d85f"
-configuration.api_key["appKeyAuth"] = "26f67d5f1daed82c3701cb3488b979e38cb2cbff"
+configuration.api_key["apiKeyAuth"] = ""
+configuration.api_key["appKeyAuth"] = ""
 with ApiClient(configuration) as api_client:
     api_instance = DashboardsApi(api_client)
     response = api_instance.create_dashboard(body=body)
