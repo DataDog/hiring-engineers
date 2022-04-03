@@ -64,6 +64,7 @@ For this example I've considered an anomaly, percentage of usage of 2% and above
   ![down-weekend](down-weekend.png)
   
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+  ![down-notifycation](down-notifycation.png)
 
 ## Collecting APM Data:
 
