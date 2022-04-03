@@ -39,7 +39,9 @@ It’s possible, by modifying the min_collection_interval on the yaml file.
 Timeboard dreated by Datadog API.
 
 [TODO] colocar o snaphot
+
 [dashboard.py](dashboard.py)
+
 * **Bonus Question**: What is the Anomaly graph displaying?
 
 For this example I've considered an anomaly, percentage of usage of 2% and above.
@@ -73,6 +75,7 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 ![APM-2](APM-2.png)
 
 Script source code:
+
 [apm-flask.py](apm-flask.py)
 
 Dashboard Link:
