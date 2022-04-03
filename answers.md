@@ -46,7 +46,7 @@ For this example I've considered an anomaly, percentage of usage of 2% and above
 
 ## Monitoring Data
 
-
+![warn](warn.png)
 [TODO] take a screenshot
 
 
