@@ -39,7 +39,7 @@ It’s possible, by modifying the min_collection_interval on the yaml file.
 Timeboard dreated by Datadog API.
 
 [TODO] colocar o snaphot
-
+[dashboard.py](dashboard.py)
 * **Bonus Question**: What is the Anomaly graph displaying?
 
 For this example I've considered an anomaly, percentage of usage of 2% and above.
@@ -54,7 +54,9 @@ For this example I've considered an anomaly, percentage of usage of 2% and above
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
   * One that silences it from 7pm to 9am daily on M-F,
+  ![donw-time](donw-time.png)
   * And one that silences it all day on Sat-Sun.
+  
   * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
 
 ## Collecting APM Data:
