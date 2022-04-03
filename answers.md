@@ -32,7 +32,7 @@ Custom Agent submits the metric once every 45 seconds.
 
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
-A configuração pode ser feita via arquivo yaml.
+It’s possible, by modifying the min_collection_interval on the yaml file. 
 
 ## Visualizing Data:
 
