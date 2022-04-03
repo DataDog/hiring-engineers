@@ -70,6 +70,10 @@ Provide a link and a screenshot of a Dashboard with both APM and Infrastructure 
 ![APM-1](APM-1.png)
 ![APM-2](APM-2.png)
 
+Script source code:
+[apm-flask.py](apm-flask.py)
+
+Dashboard Link:
 [Dashboard Link](https://us3.datadoghq.com/dash/integration/156/apm-traces---estimated-usage?from_ts=1649007993943&to_ts=1649011593943&live=true)
 
 
