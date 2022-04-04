@@ -47,9 +47,22 @@ At first, this is the error I was seeing in the root terminal and dd-agent log:<
 
 <p></p>
 
+<img src="./images/localhost.png" alt="localhost meme" width="200"/>
+
 <h3>The issue was that I had set host to localhost in postgres.d/conf.yaml in the container. So, how did I need to change host in the container to point to Postgres on my machine? I reset the host value to be host.docker.internal. This enabled the connection of the container with the database service on the host by forwarding to the internal IP address used by the host.</h3>
 
-<img src="./images/localhost.png" alt="localhost meme" width="200"/>
+
+<h3>postgres.d/conf.yaml</h3>
+
+```
+init_config:
+
+instances:
+
+  - host: host.docker.internal
+
+    port: 5432
+```
 
 <h3>Click here to see the docs --> <a href="https://docs.docker.com/desktop/mac/networking/#use-cases-and-workarounds">Networking features in Docker Desktop for Mac - Connecting from a container to a service on the host</a></h3>
 
