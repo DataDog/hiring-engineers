@@ -7,9 +7,9 @@ Thanks for the opportunity to complete this fun exercise and progress to the nex
 </br></br>
 ## Prerequisites - Setting up the Environment
 
-For the purpose of this POC, I will be using the Vagrant
+For the purpose of this POC, I will be using Vagrant
 
-Installed the latest version of Vagrant & VirtualBox by following the instructions [here](https://learn.hashicorp.com/collections/vagrant/getting-started). 
+Install the latest version of Vagrant & VirtualBox by following the instructions [here](https://learn.hashicorp.com/collections/vagrant/getting-started). 
 
 Once vagrant & virtualbox is installed, run the following commands;
 </br></br>
@@ -37,7 +37,7 @@ Install Datadog agent for Ubuntu
 
 Added tags in the `datadog.yaml` file in `/etc/datadog-agent` directory.
 </br></br>
-Changed directory to access config file.
+Change directory to access config file.
 </br>
 ```cd etc/datadog-agent```
 </br></br>
@@ -51,7 +51,7 @@ Reload Datadog service
 </br>
 ```systemctl restart datadog-agent```
 </br>
-Validate tags are getting exported via the agent
+Validate that tags are getting exported via the agent
 </br>
 <img src="images/agent_tags.png">
 </br>
@@ -63,9 +63,9 @@ Note: It can take some time (15 mins) for data to populate on the dashboard
 
 ## MySQL
 
-Installed MySQL via the Debian Package Tool "apt"
+Install MySQL via the Debian Package Tool "apt"
 
-First vaildate you have the latest packages
+Vaildate you have the latest packages
 </br>
 ```sudo apt-get update```
 </br></br>
@@ -81,7 +81,7 @@ Login to MySQL via command-line
 </br>
 ```sudo mysql -u root```
 </br></br>
-Created a database user for the Datadog Agent as documented in Datadog Documentation [here](https://app.datadoghq.eu/account/settings#integrations/mysql)
+Create a database user for the Datadog Agent as documented in Datadog Documentation [here](https://app.datadoghq.eu/account/settings#integrations/mysql)
 </br>
 ```mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';```
 </br></br>
@@ -169,7 +169,7 @@ Don't forget to install the MySQL intergration - It can take at least 5 minutes 
 </br></br>
 <img src="images/intergration_mysql.png">
 </br></br>
-We can confirm data in Datadog UI
+Confirm data in Datadog UI
 </br></br>
 <img src="images/ui_mysql.png">
 
@@ -339,7 +339,7 @@ curl -X POST \
 }'
 ```
 </br>
-Once the CuRL is ran you can access the dashboard from the Datadog UI.
+Once the CuRL comand has ran you can access the dashboard from the Datadog UI.
 
 Dashboards can be access from [here](https://app.datadoghq.eu/dashboard/lists)
 </br>
@@ -390,7 +390,7 @@ Warning Email Notification
 </br></br>
 <img src="images/monitor_email.png">
 </br></br>
-We setup a weekly evening downtime schedule. This is to make sure we dont have any alert noise during Out of Office time. Depending on the monitor you would want to exclude critical alerts. 
+We setup a weekly evening downtime schedule. This is to make sure we don't have any alert noise during Out of Office time. Depending on the monitor(s), you may want to exclude critical alerts from the downtime. 
 </br></br>
 <img src="images/downtime_2.png">
 </br></br>
@@ -398,7 +398,7 @@ Once created we recieve an email
 </br></br>
 <img src="images/downtime_1.png">
 </br></br>
-We also setup a weekend downtime schedule. This is to make sure we dont have any alert noise during Out of Office time. Depending on the monitor you would want to exclude critical alerts. 
+We also setup a weekend downtime schedule. This is to make sure we don't have any alert noise during Out of Office time. Depending on the monitor(s), you may want to exclude critical alerts from the downtime. 
 </br></br>
 Once created we recieve an email
 </br></br>
@@ -546,7 +546,7 @@ A Service is a collection of functional resources that combine together to serve
 </br>
 Is there anything creative you would use Datadog for?
 </br></br>
-Real-time monitoring of Formula 1 telemetry data. Data streaming is important for getting insights in real time and reacting to events as fast as possible.
+Real-time monitoring of Formula 1 (motorsport racing) telemetry data. Data streaming is important for getting insights in real time and reacting to events as fast as possible.
 </br></br>
 Real Formula 1 data is not easily accessible, so the best way is to simulate it.
 
