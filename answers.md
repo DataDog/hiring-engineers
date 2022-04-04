@@ -219,7 +219,7 @@ with ApiClient(configuration) as api_client:
 
 
 <h3><b>Bonus Question:</b>
-Anomaly detection is an algorithmic feature that identifies when a metric is behaving differently than it has in the past. A metric is considered to be anomalous (deviating from what is standard, normal, or expected) if it is outside of the gray anomaly band in the anomaly graph.</h3>
+Anomaly detection is an algorithmic feature that identifies when a metric is behaving differently than it has in the past. It takes into account trends, seasonal day-of-week, and time-of-day patterns, and is appriate for metrics with recurring patterns. A metric is considered to be anomalous (deviating from what is standard, normal, or expected) if it is outside of the gray anomaly band in the anomaly graph.</h3>
 
 <h3>My anomaly graph</h3>
 <img src="./images/Database + Anomaly Bonus.png" alt="Database + Anomaly Bonus" width="500"/>
@@ -330,4 +330,6 @@ Is there anything creative you would use Datadog for?</h3>
 
 <h3>When I first moved to Atlanta, I moved into an older, neglected house with a rodent problem. I measured rodent activity in the house by taking mental notes of the frequency of the scuttling sounds in the ceilings and walls. While reading about the creative ways Datadog has been used in the past, I thought of a data-driven solution to remove my unwelcome house guests. 🐿️
 <p></p>
-It would be interesting to place sensors in the ceilings and walls of my house to measure rodent activity. These sensors could be accelerometers that detect vibrations, thermal cameras, or scanners. I can integrate the sensors with a microcontroller like Raspberry Pi with the Datadog Agent installed on it. Then I can write an Agent check to collect metrics from the sensor's data. Using dashboard widgets, I can display the scanner metrics for each sensor location. From there, I can map where rodent activity is highest. The next time I hire Critter Stoppers, they could use these dashboards to place traps in the areas with the highest measured rodent activity. I can be alerted if rodent activity drops, meaning that the exterminator did a great job.</h3>
+It would be interesting to place sensors in the ceilings and walls of my house to measure rodent activity. These sensors could be accelerometers that detect vibrations, thermal cameras, or scanners. I can integrate the sensors with a microcontroller like Raspberry Pi with the Datadog Agent installed on it. Then I can write an Agent check to collect metrics from the sensor's data. Using dashboard widgets, I can display the scanner metrics for each sensor location. From there, I can map where rodent activity is highest. The next time I hire Critter Stoppers, they could use these dashboards to place traps in the areas with the highest measured rodent activity. 
+
+I can apply anomaly detection to monitor activity patterns, since rodent_activity is a metric with a recurrent pattern. Squirrels tend to be active during the day, so the anomaly graph would show low nighttime activity within the gray area. I can be alerted if rodent activity drops during the day after an extermintor visit, a deviation from what is normal, meaning that the exterminator did a great job.</h3>
