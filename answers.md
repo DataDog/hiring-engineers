@@ -332,7 +332,10 @@ pip install ddtrace
 ```
 DD_SERVICE="my_service" DD_ENV="env" DD_LOGS_INJECTION=true ddtrace-run python my_app.py
 ```
+<h3>my_service in APM > Services</h3>
+<img src="./images/my_service.png" alt="my_service" width="500"/>
 
+<h3>Screenshot of Integrations + APM Dashboard</h3>
 <img src="./images/dashboard.png" alt="dashboard" width="500"/>
 
 <a href="https://p.datadoghq.com/sb/ed061656-ad77-11ec-8f93-da7ad0900002-bd8c8a622986bb7cf5b5414c9e7ac6dc">Click here to see Integrations + APM Dashboard</a>
