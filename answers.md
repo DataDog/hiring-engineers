@@ -273,17 +273,6 @@ with ApiClient(configuration) as api_client:
 
 <h2>📈 Collecting APM Data:</h2>
 
-<h3><b>Bonus Question</b>: Difference between a Service and a Resource
-<p></p>
-<h3>Referred to <a href="https://docs.datadoghq.com/tracing/visualization">APM Glossary & Walkthrough</a></h3>
-
-<h3>
-<b>Services</b> are the building blocks of microservice architectures. A service groups together endpoints, queries, or jobs for the purposes of building your application. For example, a database service groups resources such as database queries. Resources belong to services.
-<p></p>
-<b>Resources</b> are actions for your services - they are typically an instrumented web endpoint, database query, or background job.</h3>
-
-<p></p>
-
 <h3>Code block: Flask app my_app.py</h3>
 
 ```
@@ -318,9 +307,46 @@ if __name__ == '__main__':
 
 ```
 
+<h3>First, I went to APM > Service Setup and clicked the Container-Based tab. </h3>
+
+<h3>Step 1: I chose my environment (Docker) and application language (Python). </h3>
+
+<h3> Step 2: I ran the Agent to enable trace collection in my environment using the command below.</h3>
+
+```
+docker run -d -v /var/run/docker.sock:/var/run/docker.sock:ro \
+          -v /proc/:/host/proc/:ro \
+          -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+          -p 127.0.0.1:8126:8126/tcp \
+          -e DD_API_KEY=<YOUR_API_KEY> \
+          datadog/agent:latest
+```
+
+<h3> Step 3: I installed the Python client.</h3>
+
+```
+pip install ddtrace
+```
+<h3> Step 4: I built my configuration snippet to automatically instrument my Python application, ran it in the command line, and finished my installation by restarting my device.</h3>
+
+```
+DD_SERVICE="my_service" DD_ENV="env" DD_LOGS_INJECTION=true ddtrace-run python my_app.py
+```
+
 <img src="./images/dashboard.png" alt="dashboard" width="500"/>
 
 <a href="https://p.datadoghq.com/sb/ed061656-ad77-11ec-8f93-da7ad0900002-bd8c8a622986bb7cf5b5414c9e7ac6dc">Click here to see Integrations + APM Dashboard</a>
+
+<h3><b>Bonus Question</b>: Difference between a Service and a Resource
+<p></p>
+<h3>Referred to <a href="https://docs.datadoghq.com/tracing/visualization">APM Glossary & Walkthrough</a></h3>
+
+<h3>
+<b>Services</b> are the building blocks of microservice architectures. A service groups together endpoints, queries, or jobs for the purposes of building your application. For example, a database service groups resources such as database queries. Resources belong to services.
+<p></p>
+<b>Resources</b> are actions for your services - they are typically an instrumented web endpoint, database query, or background job.</h3>
+
+<p></p>
 
 <h2>Final Question:</h2>
 
