@@ -224,7 +224,7 @@ Anomaly detection is an algorithmic feature that identifies when a metric is beh
 <h3>My anomaly graph</h3>
 <img src="./images/Database + Anomaly Bonus.png" alt="Database + Anomaly Bonus" width="500"/>
 
-<h3>Example of an anomaly graph with metrics outside of the gray anomaly band, shown in red</h3>
+<h3>Example of an anomaly graph with a recurring pattern, anomalous data shown in red</h3>
 <img src="./images/anomaly-detection.png" alt="Example anomaly graph" width="500"/>
 
 
