@@ -273,6 +273,8 @@ with ApiClient(configuration) as api_client:
 
 <h2>📈 Collecting APM Data:</h2>
 
+<h3>First, I placed my_app.py in the root folder of the container.</h3>
+
 <h3>Code block: Flask app my_app.py</h3>
 
 ```
@@ -307,7 +309,7 @@ if __name__ == '__main__':
 
 ```
 
-<h3>First, I went to APM > Service Setup and clicked the Container-Based tab. </h3>
+<h3>I went to APM > Service Setup and clicked the Container-Based tab. </h3>
 
 <h3>Step 1: I chose my environment (Docker) and application language (Python). </h3>
 
