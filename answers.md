@@ -390,7 +390,7 @@ Warning Email Notification
 </br></br>
 <img src="images/monitor_email.png">
 </br></br>
-We setup a weekly evening downtime schedule. This is to make sure we don't have any alert noise during Out of Office time. Depending on the monitor(s), you may want to exclude critical alerts from the downtime. 
+We setup a **weekly evening** downtime schedule. This is to make sure we don't have any alert noise during Out of Office time. Depending on the monitor(s), you may want to exclude critical alerts from the downtime. 
 </br></br>
 <img src="images/downtime_2.png">
 </br></br>
@@ -398,7 +398,7 @@ Once created we recieve an email
 </br></br>
 <img src="images/downtime_1.png">
 </br></br>
-We also setup a weekend downtime schedule. This is to make sure we don't have any alert noise during Out of Office time. Depending on the monitor(s), you may want to exclude critical alerts from the downtime. 
+We also setup a **weekend** downtime schedule. This is to make sure we don't have any alert noise during Out of Office time. Depending on the monitor(s), you may want to exclude critical alerts from the downtime. 
 </br></br>
 Once created we recieve an email
 </br></br>
