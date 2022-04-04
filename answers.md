@@ -1,13 +1,10 @@
 # Datadog Hiring Exercise - Mid-Market Sales Engineer, Dublin, Ireland
 #### Aron Day
 ###### April, 2022
+</br>
 
 Thanks for the opportunity to complete this fun exercise and progress to the next stage of the interviewing process. I had so much fun learning more about the different use cases to use Datadog.
-
-</br>
-I'm gonna run through this exercise as if the requirments were provided by the client, and now I'm presenting back.
 </br></br>
-
 ## Prerequisites - Setting up the Environment
 
 For the purpose of this POC, I will be using the Vagrant
@@ -546,4 +543,26 @@ A Service is a collection of functional resources that combine together to serve
 
 
 ## Final Question:
-To be finished later! 
+</br>
+Is there anything creative you would use Datadog for?
+</br></br>
+Real-time monitoring of Formula 1 telemetry data. Data streaming is important for getting insights in real time and reacting to events as fast as possible.
+</br></br>
+Real Formula 1 data is not easily accessible, so the best way is to simulate it.
+
+F1 2021 game by Codemasters has the ability to publish all the available telemetry data during a race via UDP! 
+
+The specification of all possible packets is available from Codemasters [here](https://forums.codemasters.com/topic/80231-f1-2021-udp-specification/)
+
+The idea is to use Kafka to manage all the datapoints and then use Datadog to graph the details. 
+</br>
+This is an example using Grafana!
+</br></br>
+<img src="images/tb_example.png">
+</br>
+
+## Thank you
+Thank you again for this opportunity with DataDog!
+</br></br>
+
+![](https://media3.giphy.com/media/wjBMdDqMCyxJoCJ2yZ/giphy.gif?cid=ecf05e47cbhf0ysxw11zq41ytt6fyhsfoj9k7ig8wcv0n138&rid=giphy.gif&ct=g)
