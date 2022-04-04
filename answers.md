@@ -327,7 +327,7 @@ docker run -d -v /var/run/docker.sock:/var/run/docker.sock:ro \
 ```
 pip install ddtrace
 ```
-<h3> Step 4: I built my configuration snippet to automatically instrument my Python application, ran it in the command line, and finished my installation by restarting my device.</h3>
+<h3> Step 4: I built a configuration snippet to automatically instrument my Python application, ran it in the command line, and finished the installation by restarting my device.</h3>
 
 ```
 DD_SERVICE="my_service" DD_ENV="env" DD_LOGS_INJECTION=true ddtrace-run python my_app.py
