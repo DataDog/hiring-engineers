@@ -238,7 +238,7 @@ For the database metric, I chose SQL lock times as this had a decent amount of f
           }
 ```
 
-Definition for `my_metric` with the Rollup function applied to average all values for the past hour.
+Definition for `my_metric` with the Rollup function applied to sum all values for the past hour.
 
 ```
           "definition": {
