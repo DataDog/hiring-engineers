@@ -219,7 +219,7 @@ with ApiClient(configuration) as api_client:
 
 
 <h3><b>Bonus Question:</b>
-Anomaly detection is an algorithmic feature that identifies when a metric is behaving differently than it has in the past. It takes into account trends, seasonal day-of-week, and time-of-day patterns, and is appriate for metrics with recurring patterns. A metric is considered to be anomalous (deviating from what is standard, normal, or expected) if it is outside of the gray anomaly band in the anomaly graph.</h3>
+Anomaly detection is an algorithmic feature that identifies when a metric is behaving differently than it has in the past. It takes into account trends, seasonal day-of-week, and time-of-day patterns, and is appropriate for metrics with recurring patterns. A metric is considered to be anomalous (deviating from what is standard, normal, or expected) if it is outside of the gray anomaly band in the anomaly graph.</h3>
 
 <h3>My anomaly graph</h3>
 <img src="./images/Database + Anomaly Bonus.png" alt="Database + Anomaly Bonus" width="500"/>
