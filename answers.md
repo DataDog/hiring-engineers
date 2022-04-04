@@ -47,11 +47,11 @@ At first, this is the error I was seeing in the root terminal and dd-agent log:<
 
 <p></p>
 
+<h3>The issue was that I had set host to localhost in postgres.d/conf.yaml in the container. So, how did I need to change host in the container to point to Postgres on my machine? I reset the host value to be host.docker.internal. This enabled the connection of the container with the database service on the host by forwarding to the internal IP address used by the host.</h3>
+
 <img src="./images/localhost.png" alt="localhost meme" width="200"/>
 
-
-<h3>The issue was that I had set host to localhost in postgres.d/conf.yaml in the container. So, how did I need to change host in the container to point to Postgres on my machine? I reset the host value to be host.docker.internal. This enabled the connection of the container with the database service on the host by forwarding to the internal IP address used by the host.</h3>
-<h3>Click here to see the docs --> <a href="https://docs.docker.com/desktop/mac/networking/#use-cases-and-workarounds">Networking features in Docker Desktop for Mac</a></h3>
+<h3>Click here to see the docs --> <a href="https://docs.docker.com/desktop/mac/networking/#use-cases-and-workarounds">Networking features in Docker Desktop for Mac - Connecting from a container to a service on the host</a></h3>
 
 <h3>Postgres on Agent status report</h3>
 <img src="./images/postgres.png" alt="Postgres connection" width="500"/>
@@ -189,10 +189,7 @@ with ApiClient(configuration) as api_client:
 <img src="./images/anomaly.png" alt="anomaly" width="600"/>
 <img src="./images/Database + Anomaly - Avg of PostgreSQL Connections.png" alt="Database + Anomaly - Avg of PostgreSQL Connections" width="500"/>
 
-<h3>3. The rollup function is used to aggregate metrics data. The two arguments passed to the rollup function are the aggregator (min, max, in this case sum) and the optional time interval. In my rollup function, I sum all my_metric values collected in the last hour. In the graph below, the sum value is 28.71K.
-
-
-
+<h3>3. The rollup function is used to aggregate metrics data. The two arguments passed to the rollup function are the aggregator (min, max, in this case sum) and the optional time interval. In my rollup function, I sum all my_metric values collected in the last hour.
 </h3>
 
 <img src="./images/rollup.png" alt="rollup" width="600"/>
@@ -211,7 +208,11 @@ with ApiClient(configuration) as api_client:
 <h3><b>Bonus Question:</b>
 Anomaly detection is an algorithmic feature that identifies when a metric is behaving differently than it has in the past. A metric is considered to be anomalous (deviating from what is standard, normal, or expected) if it is outside of the gray anomaly band in the anomaly graph.</h3>
 
+<h3>My anomaly graph</h3>
 <img src="./images/Database + Anomaly Bonus.png" alt="Database + Anomaly Bonus" width="500"/>
+
+<h3>Example of an anomaly graph with metrics outside of the gray anomaly band, shown in red</h3>
+<img src="./images/anomaly-detection.png" alt="Example anomaly graph" width="500"/>
 
 
 <h2>📈 Monitoring Data:</h2>
@@ -314,6 +315,6 @@ if __name__ == '__main__':
 
 Is there anything creative you would use Datadog for?</h3>
 
-<h3>When I first moved to Atlanta, I moved into an older house with a rodent problem. I measured rodent activity in the house by taking mental notes of the frequency of the scuttling sounds in the ceilings and walls.
+<h3>When I first moved to Atlanta, I moved into an older, neglected house with a rodent problem. I measured rodent activity in the house by taking mental notes of the frequency of the scuttling sounds in the ceilings and walls. While reading about the creative ways Datadog has been used in the past, I thought of a data-driven solution to remove my unwelcome house guests. 🐿️
 <p></p>
 It would be interesting to place sensors in the ceilings and walls of my house to measure rodent activity. These sensors could be accelerometers that detect vibrations, thermal cameras, or scanners. I can integrate the sensors with a microcontroller like Raspberry Pi with the Datadog Agent installed on it. Then I can write an Agent check to collect metrics from the sensor's data. Using dashboard widgets, I can display the scanner metrics for each sensor location. From there, I can map where rodent activity is highest. The next time I hire Critter Stoppers, they could use these dashboards to place traps in the areas with the highest measured rodent activity. I can be alerted if rodent activity drops, meaning that the exterminator did a great job.</h3>
