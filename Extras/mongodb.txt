@@ -1,0 +1,24 @@
+you are "systemd" type database
+
+sudo systemctl start mongod
+
+sudo systemctl status mongod
+
+sudo systemctl stop mongod
+
+sudo systemctl restart mongod
+
+user: "datadog"
+
+password: "datapass"
+
+db.createUser({
+  "user": "datadog",
+  "pwd": "datapass",
+  "roles": [
+    { role: "read", db: "admin" },
+    { role: "clusterMonitor", db: "admin" },
+    { role: "read", db: "local" }
+  ]
+})
+
