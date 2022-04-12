@@ -1,0 +1,24 @@
+sudo touch filename 
+
+/etc/datadog-agent/conf.d/my_metric.d
+
+w !sudo tee % > /dev/null
+
+sudo /etc/init.d/datadog-agent restart
+
+sudo datadog-agent status
+
+datadog sql password is 'datadog'
+
+sudo mysql -u root -p
+
+CREATE USER 'datadog'@'%' IDENTIFIED WITH mysql_native_password by 'datadog';
+true
+
+
+#################
+init_config:
+
+instances:
+  - min_collection_interval: 45
+#####################
