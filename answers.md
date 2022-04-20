@@ -65,7 +65,7 @@ Tags were added in datadog.yaml ([Getting started with tags](https://docs.datado
 >**Note**:
 Important to remove additional spaces in the yaml file when uncommenting tags details. This caused issues while restarting the agent to submit changes.
 
-Checking the Agent status, the tags were added successfully:
+Checking the Agent status, the tags were added successfully:\
 ![](Images/Tags_in_status.png)
 
 
@@ -86,7 +86,7 @@ sudo service mysql status
 
 Following the steps of the [MySQL integration](https://docs.datadoghq.com/integrations/mysql/?tab=host).
 
-1.	Create user in MySQL
+1. Create user in MySQL
 ```sql
 CREATE USER 'datadog'@'%' IDENTIFIED BY 'PASSWORD';
 ```
@@ -99,9 +99,9 @@ The Agent needs a few privileges to collect metrics. The following limited privi
 If enabled, metrics can be collected from the performance_schema database by granting an additional privilege:
 ![](Images/DB_schema.png)
 
-4. Check datadog-agent status
+4. Check datadog-agent status\
 ![](Images/Mysql.png)\
-UI status
+UI status\
 ![](Images/DB_Integ_Installed.png)
 
 ### Custom Agent Check
@@ -134,6 +134,7 @@ class MyCheck(AgentCheck):
         self.gauge("my_metric", random.uniform(0, 1000), tags=["team:hiringtest"])
 ```
 Custom check validation
+
 ![](Images/Custom_check_validation.png)
 
 For Agent v6+, `min_collection_interval` must be added at an instance level and is configured individually for each instance.
@@ -236,7 +237,8 @@ DD_SITE="datadoghq.com" DD_API_KEY="<DD_API_KEY>" DD_APP_KEY="<DD_APP_KEY>" pyth
 
 ![](Images/List_dashboards.png)
 
-[![](Images/Dashboard_visualizingData.png)](https://app.datadoghq.eu/dashboard/air-zmq-fcg/hiring-test-visualizing-data-maria?from_ts=1650359341441&to_ts=1650366541441&live=true)
+[![](Images/Dashboard_visualizingData.png)](https://app.datadoghq.eu/dashboard/air-zmq-fcg/hiring-test-visualizing-data-maria?from_ts=1650060000000&to_ts=1650319140000&live=false)
+>**Note**: The dashboard is accessible in Datadog by clicking in the image above.
 
 ### Snapshot
 
@@ -400,7 +402,7 @@ crontab -e
  >*Services are the building blocks of modern microservice architectures - broadly a service groups together endpoints, queries, or jobs for the purposes of building your application. Resources represent a particular domain of a customer application - they are typically an instrumented web endpoint, database query, or background job*.
 
 Screenshot of Integrations + APM Dashboard
-[![](Images/APM_and_infra_dashboard.png)](https://app.datadoghq.eu/dashboard/n3h-2ew-2sq/apm-and-infrastructure-metrics?from_ts=1650217707175&to_ts=1650304107175&live=true)
+[![](Images/APM_and_infra_dashboard.png)](https://app.datadoghq.eu/dashboard/n3h-2ew-2sq/apm-and-infrastructure-metrics?from_ts=1650221580000&to_ts=1650394380000&live=false)
 
  >**Note**: To visualize the APM dashboard, the date and time of the dashboard needs to be set as: Apr 17, 8:53 pm – Apr 19, 8:53 pm. The dashboard is accessible in Datadog by clicking in the image above.
 
