@@ -2,6 +2,8 @@
 April 2022
 Dublin, Ireland
 
+Note : Any API keys found in the code or documentation have been revoked and changed.
+
 ## Content
 - [Setup](#setup)
   - Vagrant Setup
