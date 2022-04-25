@@ -521,7 +521,7 @@ To create the dashboard shown below , I just exported the apm metric from the ap
 
 ### Datadog Use Case
 
-Only today I was having issues with my brodband , this seems to be a trend at the minute in my area. Given datadogs great capabilities in looking at large amounts of data , it would be useful for my brodband provider to utilise datadog to analysize data in areas where the service has gone done. Looking at data on users currently using service, their location and time of incidents to try and spot anomalies and avoid issues in the future.
+Only today I was having issues with my brodband , this seems to be a trend at the minute in my area. Given datadogs great capabilities in handling and analysing large amounts of data , it would be useful for my brodband provider to use datadog to investigate data in areas where the service has gone down often. Looking into the data for users in these areas currently using service, their location and time of incidents, to try and spot anomalies and avoid issues in the future.
 
 
 
