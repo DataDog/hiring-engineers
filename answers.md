@@ -123,7 +123,7 @@ db.auth('admin', 'password')
 db.createUser({'user': 'datadog','pwd': 'password','roles': [{ role:'read', db: 'admin' },{ role: 'clusterMonitor', db: 'admin' },{ role: 'read', db: 'local' }]})
 ```
 
-Following this i needed to edit the mongodb conf.yaml file `datadog-agent/conf.d/mongo.d/conf.yaml`
+Following this I needed to edit the mongodb conf.yaml file `datadog-agent/conf.d/mongo.d/conf.yaml`
 
 [mongodb conf.yaml file](code/mongo_conf.yaml)
 
@@ -163,7 +163,7 @@ instances:
       authSource: admin
 ```
 
-Then i reloaded the datadog agent and checked the datadog service status
+Then I reloaded the datadog agent and checked the datadog service status
 ```
 sudo service datadog-agent restart
 ```
@@ -173,7 +173,7 @@ sudo service datadog-agent restart
 
 ### Custom agent check
 
-First i had a look at the documentation provided for custom agent checks , [here](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
+First I had a look at the documentation provided for custom agent checks , [here](https://docs.datadoghq.com/developers/write_agent_check/?tab=agentv6v7)
 
 It mentions in the above doucmentation that the names of the configuration and check files must match and also to start the file names with 'custom_'
 
@@ -214,7 +214,7 @@ sudo -u dd-agent -- datadog-agent check custom_mycheck
 
 ### Bonus Question
 
-- The python file does not need to be edited to change the interval to 45, I made the change through the yaml file as i mentinoed above
+- The python file does not need to be edited to change the interval to 45, I made the change through the yaml file as I mentinoed above
 
 ***
 
@@ -226,13 +226,13 @@ The timeboard endpoint is outdated. As stated in the docs [here](https://docs.da
 
 It was recommended to use the new dashboard endpoint instead , so this is the approach I took for the exercise.
 
-First i  had to install the [datadog api client](https://docs.datadoghq.com/api/latest/?code-lang=python)
+First I  had to install the [datadog api client](https://docs.datadoghq.com/api/latest/?code-lang=python)
 
 ```
 pip3 install datadog-api-client
 ```
 
-It turned out pip wasn't install so i had to do that first
+It turned out pip wasn't install so I had to do that first
 
 ```
 pip3 install datadog-api-client
@@ -242,7 +242,7 @@ Then i used the example python file found in the [dashboard documention](https:/
 
 I named it [example_timeboard.py](code/example_timeboard.py)
 
-Then i went to run the command in the guide and found out i would need an API key , so i went to created this on the UI.
+Then I went to run the command in the guide and found out I would need an API key , so I went to created this on the UI.
 
 ![](imgs/timeboard_api.png)
 
@@ -257,7 +257,7 @@ datadog_api_client.v1.exceptions.ForbiddenException: (403) Reason: Forbidden
 ```
 
 So i went into the documention to find out if i could test the api key to see if it was valid.
-I found a sample request i could make [here](https://docs.datadoghq.com/api/latest/authentication/)
+I found a sample request I could make [here](https://docs.datadoghq.com/api/latest/authentication/)
 I used the example python script on the page
 
 ```
@@ -292,7 +292,7 @@ q = "avg:test_metric{*}"
 
 ![](imgs/timeboard_testmetric.png)
 
-The next step was to add the [anomaly](https://docs.datadoghq.com/monitors/create/types/anomaly/#overview) function
+The next step was to add the [anomaly](https://docs.datadoghq.com/monitors/create/types/anomaly/#overview) function.
 
 I used an example from this page to create my function to look for anomalies for my test metric , because the metric is only newly created i went with using 'basic'. 
 
@@ -354,7 +354,7 @@ Final result of dashoboard in the UI
 
 ![](imgs/timeboard_ui.png)
 
-Setting the Timeboards timeframe to the past 5 minutes :
+Setting the Timeboards timeframe to the past 5 minutes
 
 ![](imgs/timeboard_past5min.png)
 
@@ -362,13 +362,13 @@ Taking a snapshot of the graph and sending it to myself using the @notation to s
 
 ![](imgs/timeboard_snapshot.png)
 
-Link to my dashboard - https://p.datadoghq.eu/sb/a1f9210e-c185-11ec-86eb-da7ad0900005-427a83ee77f7adb688084278fa46b426
+Link to my dashboard [here](https://p.datadoghq.eu/sb/a1f9210e-c185-11ec-86eb-da7ad0900005-427a83ee77f7adb688084278fa46b426)
 
 ### Bonus Question:
 
 As mentioned in the Anomaly documention provided. Anomaly detection is an algorithmic feature that identifies when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week, and time-of-day patterns. It is well-suited for metrics with strong trends and recurring patterns that are hard to monitor with threshold-based alerting.
 
-To find a metric with a strong trend for my database , i looked in the MongoDB dashboard. In here i found "mongodb.opcounters.commandps" , this checks Total number of commands per second issued to the database. It seemed like it had a strong and recurring trend so i used it for the anomaly detection question.
+To find a metric with a strong trend for my database , I looked at the MongoDB dashboard. In here i found "mongodb.opcounters.commandps" , this checks Total number of commands per second issued to the database. It seemed like it had a strong and recurring trend so I used it for the anomaly detection question.
 
 ***
 
@@ -382,7 +382,7 @@ From the menu on the left in the UI i selected "Monitors" , then i selected "New
 
 I then selected metric which brought me to the page to create my metric monitor.
 
-Here i entered the below configuration so it would alert me if its above the following values over the past 5 minutes :
+Here I entered the below configuration so it would alert me if its above the following values over the past 5 minutes :
 - Warning threshold of 500
 - Alerting threshold of 800
 - And also ensure that it will notify you if there is No Data for this query over the past 10m.
@@ -433,7 +433,6 @@ Host ip : {{host.name}} - {{host.ip}}
 {{/is_no_data}}
 ```
 
-
 Example Screenshot of email notification for an warning : 
 
 ![](imgs/monitor_warning.png)
@@ -465,11 +464,11 @@ Email Notification :
 
 I first had a read through the documenation found [here](https://docs.datadoghq.com/tracing/)
 
-Then i followed the instructions on tracing python applications [here](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers)
+Then I followed the instructions on tracing python applications [here](https://docs.datadoghq.com/tracing/setup_overview/setup/python/?tab=containers)
 
 I created the [flask_app.py](code/flask_app.py) file from the code provided.
 
-Following this i edited the [datadog.yaml](code/datadog.yaml) file to be configured for APM.
+Following this, I edited the [datadog.yaml](code/datadog.yaml) file to be configured for APM.
 In the documentation it mentions that by default the apm is enabled , however it is commented out.
 
 ```
@@ -478,7 +477,7 @@ enabled:true
 reciever_port: 8126
 ```
 
-Then i had to install ddtrace
+Then i had to install ddtrace.
 
 ```
 pip3 install --upgrade pip
@@ -486,7 +485,7 @@ pip3 install ddtrace
 pip3 install flask
 ```
 
-Then I ran the [flask_app.py](code/flask_app.py) file I had created
+Then I ran the [flask_app.py](code/flask_app.py) file I had created.
 
 ![](imgs/flask_app.png)
 
@@ -496,7 +495,7 @@ I found the below command in [ddtrace documentation](https://ddtrace.readthedocs
 DD_SERVICE="APM_test" DD_ENV="flask_app" DD_VERSION=0.1 ddtrace-run python3 flask_App.py
 ```
 
-I then made some requests it using
+I then made some requests to it in the command line.
 
 ```
 curl http://0.0.0.0:5050/
@@ -505,15 +504,20 @@ curl http://0.0.0.0:5050/api/trace
 curl http://0.0.0.0:5050/api/wrong
 ```
 
-Then it showed it up the UI
+Then it showed it up the UI for me.
 
 ![](imgs/apm.png)
 
 Here is a [link](https://p.datadoghq.eu/sb/a1f9210e-c185-11ec-86eb-da7ad0900005-2cee2bac0e4fc380f7b54cdc14d5e50d) and screenshot of a dashboard with both APM and Infrastructure Metrics.
 
-To create the dashboard shown below , I just exported the apm metric from the apm page to my new dashboard from the UI and copied the infrastrure metrics from my host dashboard to the new dashboard too.
+To create the dashboard shown below , I just exported the apm metric from the apm page to my new dashboard and copied the infrastrure metrics from my host dashboard to the new dashboard too.
 
 ![](imgs/apm_infa_dash.png)
+
+### Bonus Question
+What is the difference between a Service and a Resource?
+
+As mentioned on the [Resource Page](https://docs.datadoghq.com/tracing/visualization/resource/#pagetitle) , A resource is a particular action for a given service (typically an individual endpoint or query). Whereas a service can be a group of resources to take multiple actions through the use of an endpoint.
 
 ***
 
